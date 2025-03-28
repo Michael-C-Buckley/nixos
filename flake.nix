@@ -19,11 +19,14 @@
     wfetch.url = "github:iynaix/wfetch";
 
     # Custom Modules
-    nix-devshells.url = "github:Michael-C-Buckley/nix-devshells";
     nix-secrets.url = "git+ssh://git@github.com/Michael-C-Buckley/nix-secrets";
     nixos-modules.url = "github:Michael-C-Buckley/nixos-modules";
 
     # Utilities
+    pre-commit-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     ucodenix.url = "github:e-tho/ucodenix";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     ragenix.url = "github:yaxitech/ragenix";
@@ -31,11 +34,11 @@
   };
 
   outputs = {
-    nixpkgs,
-    nix-devshells,
-    michael-home,
+    self,
     ...
   } @ inputs: {
+    checks = (import ./outputs/checks.nix {inherit inputs;});
+    devShells.x86_64-linux = (import ./outputs/devshells.nix {inherit self;});
     nixosConfigurations = (import ./outputs/hostConfigs.nix {inherit inputs;});
   };
 }
