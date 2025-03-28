@@ -1,5 +1,6 @@
 {inputs}: let
 
+  # Build the configs for the hosts based on this function
   hostConfig = {host}:
     inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs host;};
@@ -18,6 +19,7 @@
   ];
   
 in
+  # Construct and return the attribute set
   builtins.listToAttrs (map (host: {
       name = host;
       value = hostConfig {inherit host;};
