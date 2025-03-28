@@ -1,4 +1,8 @@
-{config, lib, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   options.features.gaming = lib.mkOption {
     type = lib.types.bool;
     default = false;
