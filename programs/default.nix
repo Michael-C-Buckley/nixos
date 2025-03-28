@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   imports = [
-    ./hyprland.nix
+    ./direnv.nix
     ./winbox.nix
   ];
 
@@ -11,16 +11,5 @@
       defaultEditor = true;
     };
     wireshark.enable = true;
-
-    direnv = {
-      package = pkgs.direnv;
-      silent = false;
-      loadInNixShell = true;
-      direnvrcExtra = "";
-      nix-direnv = {
-        enable = true;
-        package = pkgs.nix-direnv;
-      };
-    };
   };
 }

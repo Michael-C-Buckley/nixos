@@ -1,6 +1,7 @@
 {config, pkgs, lib, inputs, ...}:   let
   useGraphics = config.features.graphics;
 
+  # TO DO: audit these packages to see what I use
   hyprPkgs = with pkgs; [
     hyprshot
     hyprpaper
@@ -26,6 +27,8 @@ in {
     package = inputs.hyprland.packages.x86_64-linux.hyprland;
     xwayland.enable = useGraphics;
   };
+
+  programs.hyprlock.enable = useGraphics;
 
   environment.systemPackages = lib.optionals useGraphics hyprPkgs;
 }
