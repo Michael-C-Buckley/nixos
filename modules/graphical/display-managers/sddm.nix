@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) optionals mkIf;
+  inherit (lib) mkIf;
   useSDDM = config.features.displayManager == "sddm";
 in {
   services.displayManager = mkIf useSDDM {

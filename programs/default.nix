@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+_: {
   imports = [
     ./direnv.nix
     ./winbox.nix
