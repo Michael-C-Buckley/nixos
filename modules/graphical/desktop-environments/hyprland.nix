@@ -1,4 +1,10 @@
-{config, pkgs, lib, inputs, ...}:   let
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: let
   useGraphics = config.features.graphics;
 
   # TO DO: audit these packages to see what I use
@@ -20,7 +26,6 @@
     nwg-panel
     nwg-launchers
   ];
-
 in {
   programs.hyprland = {
     enable = useGraphics;
