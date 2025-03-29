@@ -1,4 +1,10 @@
-{config, pkgs, lib, inputs, ... }: let 
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: let
   wireguardInterface = inputs.nixos-modules.nixosModules.wireguard-interface {inherit config pkgs lib;};
 in {
   systemd.services = {
@@ -6,7 +12,7 @@ in {
       name = "cary4";
       ipAddresses = ["192.168.78.2/27"];
     };
-    "wireguard-creekstoneM4" = wireguardInterface  {
+    "wireguard-creekstoneM4" = wireguardInterface {
       name = "creekstoneM4";
       ipAddresses = ["192.168.62.2/27"];
     };

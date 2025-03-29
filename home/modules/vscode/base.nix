@@ -1,7 +1,8 @@
 # Single list item for imports later into Hjem/Home-managed configs
-
-{pkgs, plugins}: 
-[
+{
+  pkgs,
+  plugins,
+}: [
   (pkgs.vscode-with-extensions.override {
     vscodeExtensions = with pkgs.vscode-extensions; [
       # Microsoft
@@ -9,7 +10,7 @@
       ms-vscode-remote.remote-ssh-edit
       ms-vscode-remote.remote-containers
       ms-vsliveshare.vsliveshare
-      
+
       vscode-icons-team.vscode-icons
       mechatroner.rainbow-csv
       streetsidesoftware.code-spell-checker

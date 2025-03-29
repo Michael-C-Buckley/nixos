@@ -1,4 +1,5 @@
-{pkgs, ...}: with pkgs; [
+{pkgs, ...}:
+with pkgs; [
   # System Utilities
   networkmanagerapplet
   cpu-x

@@ -1,7 +1,11 @@
-{inputs, lib, pkgs, ...}: let
+{
+  inputs,
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkDefault;
 in {
-
   imports = [
     inputs.ragenix.nixosModules.default
   ];
@@ -40,7 +44,7 @@ in {
     nftables.enable = true;
     firewall = {
       enable = true;
-      allowPing =  true;
+      allowPing = true;
       allowedTCPPorts = [22 53 179];
       allowedUDPPorts = [53 51820];
     };

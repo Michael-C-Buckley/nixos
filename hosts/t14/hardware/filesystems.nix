@@ -3,7 +3,7 @@
     device = "rpool/root/${name}";
     fsType = "zfs";
   };
-  bindMnt = device : {
+  bindMnt = device: {
     device = device;
     fsType = "none";
     options = ["bind"];
@@ -14,7 +14,7 @@ in {
     "/boot" = {
       device = "/dev/disk/by-uuid/B227-3C56";
       fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
+      options = ["fmask=0022" "dmask=0022"];
     };
     "/drives/xfs-pool" = {
       device = "/dev/disk/by-uuid/0e9f0e00-eca4-4d8f-a12f-7534b8939d9d";
@@ -27,7 +27,7 @@ in {
 
     # ZFS Volumes
     "/" = zfsFs "nixos-2411";
-    "/home"= zfsFs "home";
+    "/home" = zfsFs "home";
     "/nix" = zfsFs "nix";
 
     # Bind mounts

@@ -1,4 +1,4 @@
-{ ...}: {
+{...}: {
   imports = [
     ./night-led.nix
   ];

@@ -1,5 +1,4 @@
 # X570 Desktop Configuration
-
 {inputs, ...}: let
   inherit (inputs.nixos-modules.nixosModules) gns3 libvirt;
 in {

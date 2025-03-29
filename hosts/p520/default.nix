@@ -1,5 +1,9 @@
 # P520 Server Configuration
-{inputs, pkgs, ...}: let
+{
+  inputs,
+  pkgs,
+  ...
+}: let
   inherit (inputs.nixos-modules.nixosModules) nvidia libvirt;
 in {
   system.stateVersion = "24.05";

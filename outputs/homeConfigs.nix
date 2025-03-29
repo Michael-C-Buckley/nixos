@@ -1,8 +1,10 @@
-# Legacy conversion output where the specific host is 
+# Legacy conversion output where the specific host is
 # I maintain a generic config and some host-specific ones
 # HOWEVER, I have mostly moved to Hjem for NixOS hosts
-
-{inputs, pkgs}: let
+{
+  inputs,
+  pkgs,
+}: let
   hmConfig = modules:
     inputs.home-manager.lib.homeManagerConfiguration {
       extraSpecialArgs = {inherit inputs;};
@@ -21,9 +23,11 @@
     "x570"
     "wsl"
   ];
-in {
+in
+  {
     "michael" = hmConfig [];
-} // builtins.listToAttrs (map (host: {
+  }
+  // builtins.listToAttrs (map (host: {
       name = host;
       value = hmHostConfig {inherit host;};
     })

@@ -20,13 +20,19 @@
 
     bridges.br0.interfaces = [];
     interfaces = {
-      lo.ipv4.addresses = [{
-        address = "192.168.63.10"; prefixLength = 32;
-      }];
+      lo.ipv4.addresses = [
+        {
+          address = "192.168.63.10";
+          prefixLength = 32;
+        }
+      ];
       enp8s0.useDHCP = true;
-      enp9s0.ipv4.addresses = [{
-        address = "192.168.48.9"; prefixLength = 24;
-      }];
+      enp9s0.ipv4.addresses = [
+        {
+          address = "192.168.48.9";
+          prefixLength = 24;
+        }
+      ];
     };
   };
 }
