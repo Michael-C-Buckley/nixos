@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-wireguardInterface = import ../../../modules/network/wireguard-interface.nix {inherit config pkgs lib;};
+  wireguardInterface = import ../../../modules/network/wireguard-interface.nix {inherit config pkgs lib;};
 in {
   systemd.services = {
     "wireguard-mt1" = wireguardInterface {
