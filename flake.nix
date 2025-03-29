@@ -1,16 +1,26 @@
 {
   description = "Michael's System Flake";
 
-  # TO-DO: Adjust follows
   inputs = {
     # Following Cosmic to maximize Cachix hits and reduce duplication
     nixpkgs.follows = "cosmic/nixpkgs";
-    lix.url = "git+https://git.lix.systems/lix-project/lix";
     nix-secrets.url = "git+ssh://git@github.com/Michael-C-Buckley/nix-secrets";
+    lix = {
+      url = "git+https://git.lix.systems/lix-project/lix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.pre-commit-hooks.follows = "pre-commit-hooks";
+    };
+      
 
     # User configs
-    home-manager.url = "github:nix-community/home-manager";
-    hjem.url = "github:feel-co/hjem";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hjem = {
+      url = "github:feel-co/hjem";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     
     # Externally Cached
     cosmic.url = "github:lilyinstarlight/nixos-cosmic";
@@ -18,18 +28,23 @@
     microvm.url = "github:astro/microvm.nix";
     wfetch.url = "github:iynaix/wfetch";
 
-    # Custom Modules
+    # Custom Modules (Deprecated)
     nixos-modules.url = "github:Michael-C-Buckley/nixos-modules";
 
     # Utilities
+    ucodenix.url = "github:e-tho/ucodenix";
     pre-commit-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ucodenix.url = "github:e-tho/ucodenix";
-    vscode-server.url = "github:nix-community/nixos-vscode-server";
-    ragenix.url = "github:yaxitech/ragenix";
-    
+    ragenix = {
+      url = "github:yaxitech/ragenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    vscode-server = {
+      url = "github:nix-community/nixos-vscode-server";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # TO-DO: Add support for ARM
