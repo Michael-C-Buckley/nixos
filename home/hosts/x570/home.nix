@@ -1,3 +1,4 @@
+# DEPRECATION
 _: {
   imports = [
     ../../modules/graphics.nix
