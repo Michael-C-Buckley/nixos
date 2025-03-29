@@ -1,14 +1,9 @@
 # T14 Laptop Configuration
-{inputs, ...}: let
-  inherit (inputs.nixos-modules.nixosModules) libvirt gns3;
-  inherit (inputs.nix-secrets.nixosModules) t14;
-in {
+{inputs, ...}: {
   system.stateVersion = "24.11";
 
   imports = [
-    gns3
-    libvirt
-    t14
+    inputs.nix-secrets.nixosModules.t14
     ./hardware
     ./networking
     ./systemd

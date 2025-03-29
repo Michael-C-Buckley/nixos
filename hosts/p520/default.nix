@@ -1,15 +1,13 @@
-# P520 Server Configuration
 {
   inputs,
   pkgs,
   ...
 }: let
-  inherit (inputs.nixos-modules.nixosModules) nvidia libvirt;
+  inherit (inputs.nixos-modules.nixosModules) nvidia;
 in {
   system.stateVersion = "24.05";
 
   imports = [
-    libvirt
     nvidia
     ./networking
     ./systemd

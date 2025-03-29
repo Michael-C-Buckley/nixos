@@ -1,11 +1,7 @@
 # X570 Desktop Configuration
-{inputs, ...}: let
-  inherit (inputs.nixos-modules.nixosModules) gns3 libvirt;
-in {
+{inputs, ...}: {
   imports = [
     inputs.nix-secrets.nixosModules.x570
-    gns3
-    libvirt
     ./hardware
     ./networking
     ./hjem.nix

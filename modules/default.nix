@@ -1,7 +1,10 @@
-{inputs, ...}: {
+_: {
   imports = [
-    inputs.nixos-modules.nixosModules.zfs
     ./graphical
     ./gaming
+    # ./hardware
+    # ./network
+    ./storage
+    ./virtualization
   ];
 }

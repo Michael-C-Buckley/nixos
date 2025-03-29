@@ -5,7 +5,6 @@
     # Following Cosmic to maximize Cachix hits and reduce duplication
     nixpkgs.follows = "cosmic/nixpkgs";
     nix-secrets.url = "git+ssh://git@github.com/Michael-C-Buckley/nix-secrets";
-    lix.url = "git+https://git.lix.systems/lix-project/lix";
 
     # User configs
     home-manager = {
@@ -20,6 +19,7 @@
     # Externally Cached
     cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     hyprland.url = "github:hyprwm/hyprland";
+    lix.url = "git+https://git.lix.systems/lix-project/lix";
     microvm.url = "github:astro/microvm.nix";
     wfetch.url = "github:iynaix/wfetch";
 
