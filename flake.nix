@@ -48,7 +48,10 @@
     checks = import ./outputs/checks.nix {inherit inputs;};
     devShells.x86_64-linux = import ./outputs/devshells.nix {inherit self pkgs;};
     homeConfigurations = import ./outputs/homeConfigs.nix {inherit inputs pkgs;};
-    nixosConfigurations = import ./outputs/hostConfigs.nix {inherit inputs;};
+    nixosConfigurations = (
+      import ./outputs/hostConfigs.nix {inherit inputs;}
+      // import ./outputs/clusterConfigs.nix {inherit inputs;}
+    );
     nixosModules = import ./outputs/nixosModules.nix {};
   };
 }
