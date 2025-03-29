@@ -16,7 +16,6 @@
     "t14"
     "p520"
   ];
-  
 in
   # Construct and return the attribute set
   builtins.listToAttrs (map (host: {

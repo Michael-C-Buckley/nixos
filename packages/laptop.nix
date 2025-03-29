@@ -1,4 +1,9 @@
-{config, pkgs, lib, ...}: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   options.features.laptop = lib.mkOption {
     type = lib.types.bool;
     default = true;

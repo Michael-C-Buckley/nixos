@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }: let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   netTools = config.features.pkgs.netTools;
   pkgList = with pkgs; [
     # System
@@ -26,6 +31,6 @@
 in {
   users.users = {
     michael.packages = lib.optionals netTools pkgList;
-    root.packages = lib.optionals netTools  pkgList;
+    root.packages = lib.optionals netTools pkgList;
   };
 }

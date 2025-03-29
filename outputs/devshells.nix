@@ -1,6 +1,6 @@
 {
   self,
-  pkgs
+  pkgs,
 }: let
   commonNixBuildInputs = with pkgs; [
     self.checks.x86_64-linux.pre-commit-check.enabledPackages

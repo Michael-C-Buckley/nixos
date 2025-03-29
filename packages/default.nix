@@ -1,4 +1,8 @@
-{pkgs, inputs, ...} : let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   wfetch = inputs.wfetch.packages.x86_64-linux.default;
   commonPkgs = with pkgs; [
     # System

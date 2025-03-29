@@ -1,4 +1,4 @@
-{ lib, ... }: let 
+{lib, ...}: let
   inherit (lib) types mkOption mkEnableOption;
   inherit (types) bool;
 in {
@@ -13,6 +13,6 @@ in {
     hyprland.enable = mkEnableOption {};
     vscode.enable = mkEnableOption {};
     waybar.enable = mkEnableOption {};
-    includeZed = mkEnableOption{};
+    includeZed = mkEnableOption {};
   };
 }

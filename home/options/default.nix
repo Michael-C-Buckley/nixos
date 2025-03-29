@@ -1,6 +1,6 @@
 _: {
-    imports = [
-        ./features.nix
-        ./packages.nix
-    ];
+  imports = [
+    ./features.nix
+    ./packages.nix
+  ];
 }

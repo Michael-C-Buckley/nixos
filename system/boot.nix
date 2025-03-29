@@ -1,4 +1,8 @@
-{pkgs, lib, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   kernelPkg = pkgs.linuxKernel.packages;
 in {
   boot = {

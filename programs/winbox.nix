@@ -1,5 +1,8 @@
-{config, pkgs, ...}:
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   graphics = config.features.graphics;
   netTools = config.features.pkgs.netTools;
   useWinbox = graphics && netTools;

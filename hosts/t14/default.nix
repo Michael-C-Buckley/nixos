@@ -1,6 +1,5 @@
 # T14 Laptop Configuration
-
-{inputs, ...}: let 
+{inputs, ...}: let
   inherit (inputs.nixos-modules.nixosModules) libvirt gns3;
   inherit (inputs.nix-secrets.nixosModules) t14;
 in {

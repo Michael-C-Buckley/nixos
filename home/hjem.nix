@@ -1,7 +1,13 @@
 # Base Entry for the Hjem outputs
-{config, pkgs, lib, inputs, ...}: let
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: let
   inherit (lib) mkOverride;
-  commonPackages = (import ./packages/common.nix {inherit pkgs;});
+  commonPackages = import ./packages/common.nix {inherit pkgs;};
 in {
   imports = [
     inputs.hjem.nixosModules.default
@@ -9,7 +15,7 @@ in {
     ./modules/vscode/hjem.nix
   ];
 
-  users.users.michael.packages = (import ./packages/userPkgs.nix {inherit config pkgs lib commonPackages;});
+  users.users.michael.packages = import ./packages/userPkgs.nix {inherit config pkgs lib commonPackages;};
   users.users.root.packages = commonPackages;
 
   # Add this above default but below force

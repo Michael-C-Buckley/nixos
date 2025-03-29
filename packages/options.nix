@@ -1,5 +1,4 @@
-{ lib, ...}: { 
-  
+{lib, ...}: {
   options = {
     features.pkgs.netTools = lib.mkOption {
       type = lib.types.bool;

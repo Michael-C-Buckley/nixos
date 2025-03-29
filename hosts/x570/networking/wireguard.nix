@@ -1,4 +1,10 @@
-{config, pkgs, lib, inputs, ... }: let 
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: let
   wireguardInterface = inputs.nixos-modules.nixosModules.wireguard-interface {inherit config pkgs lib;};
 in {
   systemd.services = {
