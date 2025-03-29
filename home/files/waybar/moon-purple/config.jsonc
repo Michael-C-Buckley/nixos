@@ -1,0 +1,74 @@
+{
+  "layer": "top",
+  "mode": "\"dock\":\"invisible\"",
+  "position": "top",
+  "reload_style_on_change": true,
+  "modules-left": ["clock"],
+  "modules-center": ["hyprland/workspaces"],
+  "modules-right": ["pulseaudio","network","battery"],
+
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "5": "󰽢",
+      "6": "󰽨",
+      "8": "󰽧",
+      "4": "󰽦",
+      "2": "󰽥",
+      "3": "󰽣",
+      "7": "󰽡",
+      "1": "󰽤"
+      //"active": "",
+      //"default": "",
+      //"empty": ""
+    },
+    "persistent-workspaces": {
+      "*": [ 1,2,3,4,5,6,7,8 ]
+    }
+  },
+  "pulseaudio": {
+    "format": "󰕾 {volume}%",
+  },
+  "clock": {
+    "format": "󰥔 {:%H:%M 󰃭 %D}",
+    "interval": 1,   
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "format": {
+        "today": "<span color='#fAfBfC'><b>{}</b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "shift_down",
+      "on-click": "shift_up"
+    }
+  },
+  "network": {
+    "format-wifi": " {signalStrength}%",
+    "format-ethernet":"",
+    "format-disconnected": " 0%",
+    "tooltip-format-disconnected": "Error",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-ethernet": "{ifname} 🖧 ",
+  },
+  "battery": {
+    "interval":30,
+    "states": {
+      "good": 95,
+      "warning": 20,
+      "critical": 10
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": "󰂄 {capacity}%",
+    "format-icons": [
+      "󰁻",
+      "󰁼",
+      "󰁾",
+      "󰂀",
+      "󰂂",
+      "󰁹"
+    ]
+  }
+}

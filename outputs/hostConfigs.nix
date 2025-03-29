@@ -1,5 +1,4 @@
 {inputs}: let
-
   # Build the configs for the hosts based on this function
   hostConfig = {host}:
     inputs.nixpkgs.lib.nixosSystem {
@@ -7,7 +6,7 @@
       modules = [
         ../default.nix
         ../hosts/${host}
-        inputs.michael-home.nixosModules.hjem.${host}
+        # inputs.michael-home.nixosModules.hjem.${host}
         inputs.vscode-server.nixosModules.default
       ];
     };
