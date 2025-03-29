@@ -5,11 +5,7 @@
     # Following Cosmic to maximize Cachix hits and reduce duplication
     nixpkgs.follows = "cosmic/nixpkgs";
     nix-secrets.url = "git+ssh://git@github.com/Michael-C-Buckley/nix-secrets";
-    lix = {
-      url = "git+https://git.lix.systems/lix-project/lix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.pre-commit-hooks.follows = "pre-commit-hooks";
-    };
+    lix.url = "git+https://git.lix.systems/lix-project/lix";
 
     # User configs
     home-manager = {

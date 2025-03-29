@@ -8,6 +8,7 @@ in {
     libvirt
     ./hardware
     ./networking
+    ./hjem.nix
   ];
 
   system.stateVersion = "24.05";
