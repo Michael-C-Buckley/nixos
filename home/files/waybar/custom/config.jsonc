@@ -1,29 +1,21 @@
 {
   "layer": "top",
   "position": "top",
-  "modules-left": [
-    "idle_inhibitor",
-    "clock",
-    "memory",
-    "cpu",
-    "temperature",
-    "custom/powerDraw",
-  ],
+  "modules-left": ["clock", "memory", "cpu", "temperature", "custom/powerDraw"],
   "modules-center": ["hyprland/workspaces", "mpd"],
   "modules-right": [
-    "hyprland/window",
+    // "idle_inhibitor",
     "tray",
     "custom/clipboard",
-    "group/blight",
-    "custom/colorpicker",
     "bluetooth",
-    "group/audio",
-    "group/networking",
+    "pulseaudio",
+    // "group/networking",
+    "backlight",
     "battery",
   ],
   "reload_style_on_change": true,
   "clock": {
-    "format": "{:%H:%M:%S}",
+    "format": "󰥔 {:%H:%M:%S}",
     "interval": 1,
     "calendar": {
       "mode": "year",
@@ -46,18 +38,18 @@
     "format-calendar-weekdays": "<span color='#aeaeae'><b>{}</b></span>",
   },
   "memory": {
-    "format": "   {percentage}%",
+    "format": "  {percentage}%",
   },
   "cpu": {
     "interval": 1,
-    "format": "󰘚  {usage}%",
+    "format": "󰘚 {usage}%",
   },
   "temperature": {
-    "format": "  {temperatureC}°C",
-    "format-critical": "  {temperatureC}°C",
+    "format": " {temperatureC}°C",
+    "format-critical": " {temperatureC}°C",
     "interval": 1,
     "critical-threshold": 65,
-    "on-click": "kitty btop",
+    "on-click": "hyprctl dispatch exec '[float;center;size 1400 1000]kitty btop'",
   },
   "custom/powerDraw": {
     "format": "{}",
@@ -67,26 +59,16 @@
   },
   "hyprland/workspaces": {
     "format": "<span font='12px'>{icon}</span>",
-  },
-  "hyprland/window": {
-    "format": "( {class} )",
-    "rewrite": {
-      "(.*) - Mozilla Firefox": "🌎 $1",
-      "org.telegram.desktop": "> [$1]",
-      "org.gnome.Nautilus": "> [$1]",
-      "(.*) - zsh": "> [$1]",
+    "format-icons": {
+      "11": "A",
+      "12": "S",
+      "13": "D",
+      "14": "F",
     },
   },
   "tray": {
     "icon-size": 14,
-    "spacing": 10,
-  },
-  "custom/updates": {
-    "format": "{}",
-    "interval": 60,
-    "exec": "~/.config/waybar/scripts/checkupdate.sh",
-    "return-type": "json",
-    "exec-if": "exit 0",
+    "spacing": 15,
   },
   "custom/clipboard": {
     // "exec": "echo '󰅍'",
@@ -96,27 +78,13 @@
     // "exec-tooltip": "sh -c cliphist list | head -n 5",
     "on-click": "sh -c 'cliphist list | rofi -dmenu | cliphist decode | wl-copy'",
   },
-  "group/blight": {
-    "orientation": "horizontal",
-    "drawer": {
-      "transition-duration": 500,
-      "transition-left-to-right": false,
-    },
-    "modules": ["backlight", "backlight/slider"],
-  },
   "backlight": {
     "device": "intel_backlight",
     "format": "<span font='12'>{icon}</span>",
     "format-icons": ["", "", "", "", "", "", "", "", "", ""],
-    "on-scroll-down": "light -U 10",
-    "on-scroll-up": "light -A 10",
+    "on-scroll-down": "light -U 5",
+    "on-scroll-up": "light -A 5",
     "smooth-scrolling-threshold": 1,
-  },
-  "backlight/slider": {
-    "min": 0,
-    "max": 100,
-    "orientation": "horizontal",
-    "device": "intel_backlight",
   },
   "idle_inhibitor": {
     "format": "<span font='12'>{icon}</span>",
@@ -142,7 +110,7 @@
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
     "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-    "on-click": "rofi-bluetooth",
+    "on-click": "hyprctl dispatch exec '[float;center;size 1000 800]blueman-manager'",
   },
   "pulseaudio": {
     "format": "{icon}",
@@ -167,55 +135,13 @@
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
     "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
   },
-  "pulseaudio#mic": {
-    "format": "{format_source}",
-    "format-source": "",
-    "format-source-muted": "",
-    "tooltip-format": "{volume}% {format_source} ",
-    "on-click": "pactl set-source-mute 0 toggle",
-    "on-scroll-down": "pactl set-source-volume 0 -1%",
-    "on-scroll-up": "pactl set-source-volume 0 +1%",
-  },
   "group/audio": {
     "orientation": "horizontal",
     "drawer": {
       "transition-duration": 500,
       "transition-left-to-right": false,
     },
-    "modules": ["pulseaudio", "pulseaudio#mic", "pulseaudio/slider"],
-  },
-  "pulseaudio/slider": {
-    "min": 0,
-    "max": 140,
-    "orientation": "horizontal",
-  },
-  "network": {
-    "format-wifi": " ",
-    "format-ethernet": "󰈀",
-    "format-disconnected": "󱐅",
-    "tooltip-format": "{ipaddr}",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%)  | {ipaddr}",
-    "tooltip-format-ethernet": "{ifname} 🖧 | {ipaddr}",
-    "tooltip-format-ethernet": "{bandwidthTotalBytes}",
-    "on-click": "networkmanager_dmenu",
-  },
-  "network#speed": {
-    "format": "{bandwidthDownBits}",
-    "interval": 1,
-    "tooltip-format": "{ipaddr}",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%)   \n{ipaddr} | {frequency} MHz{icon} ",
-    "tooltip-format-ethernet": "{ifname} 󰈀 \n{ipaddr} | {frequency} MHz{icon} ",
-    "tooltip-format-disconnected": "Not Connected to any type of Network",
-    "tooltip": true,
-    "on-click": "pgrep -x rofi &>/dev/null && notify-send rofi || networkmanager_dmenu",
-  },
-  "group/networking": {
-    "orientation": "horizontal",
-    "drawer": {
-      "transition-duration": 500,
-      "transition-left-to-right": false,
-    },
-    "modules": ["network", "network#speed"],
+    "modules": ["pulseaudio", "pulseaudio#mic"],
   },
   "battery": {
     "interval": 1,
@@ -232,7 +158,6 @@
     "format-plugged": "{capacity}% 󰠠",
     // "format-alt": "{time} {icon}",
     "format-icons": ["󰁻", "󰁼", "󰁾", "󰂀", "󰂂", "󰁹"],
-    "on-click": "~/.config/rofi/scripts/powermenu.sh",
   },
   "mpd": {
     "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) <U+F001>",
