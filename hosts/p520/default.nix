@@ -1,23 +1,12 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: let
-  inherit (inputs.nixos-modules.nixosModules) nvidia;
-in {
+_: {
   system.stateVersion = "24.05";
 
   imports = [
-    nvidia
+    ../../modules/hardware/nvidia.nix
     ./networking
     ./systemd
     ./hardware.nix
   ];
-
-  boot = {
-    extraModprobeConfig = "options kvm_intel nested=1";
-    kernelPackages = pkgs.linuxKernel.packages.linux_hardened;
-  };
 
   custom.virtualisation.libvirt = {
     users = ["michael" "root"];
