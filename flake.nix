@@ -23,9 +23,6 @@
     microvm.url = "github:astro/microvm.nix";
     wfetch.url = "github:iynaix/wfetch";
 
-    # Custom Modules (Deprecated)
-    nixos-modules.url = "github:Michael-C-Buckley/nixos-modules";
-
     # Utilities
     ucodenix.url = "github:e-tho/ucodenix";
     pre-commit-hooks = {

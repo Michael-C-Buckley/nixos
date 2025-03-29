@@ -1,6 +1,4 @@
-# This contains a function to produce a Wireguard Systemd Unit
-# 2-stage function for import to and through a flake into a config
-_: {
+{
   config,
   pkgs,
   lib,
