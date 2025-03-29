@@ -1,4 +1,4 @@
-{ config, lib, modulesPath, inputs, ... }: {
+{ config, lib, modulesPath, inputs, pkgs, ... }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.ucodenix.nixosModules.default
@@ -6,6 +6,7 @@
   ];
 
   boot = {
+    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
     initrd = {
       availableKernelModules = [ "nvme" "xhci_pci" "uas" "sd_mod" "sdhci_pci" ];
       kernelModules = [ "dm-snapshot" ];
