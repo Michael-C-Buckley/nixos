@@ -2,11 +2,9 @@
   pkgs,
   lib,
   ...
-}: let
-  kernelPkg = pkgs.linuxKernel.packages;
-in {
+}: {
   boot = {
-    kernelPackages = lib.mkDefault kernelPkg.linux_hardened;
+    kernelPackages = lib.mkDefault pkgs.linuxKernel.packages.linux_hardened;
     loader = {
       grub.enable = false;
       efi.canTouchEfiVariables = true;

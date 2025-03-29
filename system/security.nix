@@ -25,6 +25,7 @@ in {
   # services.resolved.enable = true;
   # environment.etc."systemd/resolved.conf".source = mkForce config.age.secrets.dns.path;
 
+  # TO-DO: only make rtkit for non-servers
   security = {
     rtkit.enable = true;
     sudo = {
@@ -37,7 +38,7 @@ in {
   services = {
     printing.enable = false;
     openssh.enable = mkDefault true;
-    vscode-server.enable = mkDefault true;
+    vscode-server.enable = mkDefault true; # Slotted to be phased out
   };
 
   networking = {
@@ -46,7 +47,7 @@ in {
       enable = true;
       allowPing = true;
       allowedTCPPorts = [22 53 179];
-      allowedUDPPorts = [53 51820];
+      allowedUDPPorts = [53];
     };
   };
 }

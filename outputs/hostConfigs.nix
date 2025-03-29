@@ -4,9 +4,9 @@
     inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs host;};
       modules = [
-        ../default.nix
+        ../base.nix
         ../hosts/${host}
-        # inputs.michael-home.nixosModules.hjem.${host}
+        ../home/hjem.nix
         inputs.vscode-server.nixosModules.default
       ];
     };
