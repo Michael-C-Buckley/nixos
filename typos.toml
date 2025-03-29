@@ -1,0 +1,7 @@
+[default]
+extend-ignore-identifiers-re = [
+    "[A-Za-z0-9]{32,64}" # If a string of gibberish, it's probably a hash
+]
+
+[default.extend-words]
+routeros = "routeros"

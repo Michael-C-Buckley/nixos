@@ -1,0 +1,16 @@
+[user]
+    name = "Michael Buckley"
+    email = "michaelcbuckley@proton.me"
+
+[core]
+    editor = "nvim"
+
+[color]
+    ui = true
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+
+[http]
+    postBuffer = 157286400
