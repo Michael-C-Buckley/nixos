@@ -25,8 +25,9 @@
   ".config/nushell/config.nu".source = ../nushell/config.nu;
 
   # Waybar
-  ".config/waybar/config.jsonc".source = ../waybar/moon-purple/config.jsonc;
-  ".config/waybar/style.css".source = ../waybar/moon-purple/style.css;
+  ".config/waybar/config.jsonc".source = ../waybar/custom/config.jsonc;
+  ".config/waybar/style.css".source = ../waybar/custom/style.css;
+  ".config/waybar/scripts/powerdraw.sh".source = ../waybar/waybar-minimal/scripts/powerdraw.sh;
 
   # Zsh
   ".zshrc".source = ../zsh/default.zshrc;
