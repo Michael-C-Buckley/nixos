@@ -5,7 +5,6 @@
   ...
 }: let
   wifi = config.features.wifi;
-  graphicsWifi = config.features.wifi && config.features.graphics;
 in {
   options.features.wifi = lib.mkOption {
     type = lib.types.bool;
@@ -15,9 +14,7 @@ in {
 
   config.environment.systemPackages = with pkgs;
     lib.optionals wifi [
-      wavemon
-    ]
-    ++ lib.optionals graphicsWifi [
       blueman
+      wavemon
     ];
 }

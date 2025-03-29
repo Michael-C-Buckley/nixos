@@ -1,5 +1,5 @@
 # T14 Laptop Configuration
-{inputs, ...}: {
+{inputs, pkgs, ...}: {
   system.stateVersion = "24.11";
 
   imports = [
@@ -9,6 +9,8 @@
     ./systemd
     ./hjem.nix
   ];
+
+  environment.systemPackages = [ pkgs.brightnessctl ];
 
   features = {
     cosmic = true;

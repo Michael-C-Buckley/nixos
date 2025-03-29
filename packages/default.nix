@@ -54,7 +54,6 @@
 in {
   imports = [
     ./fonts.nix
-    ./laptop.nix
     ./network.nix
     ./options.nix
     ./wifi.nix

@@ -1,5 +1,5 @@
 # My System Configuration
 
-This is the system configurations I have for my primary use systems like desktops and laptops.
+This flake is the major collection of all things I use to manage my systems.  It contains system and user profile configurations.
 
-Fair warning, traveler, do not use my configs.  They may serve as examples and inspiration but all NixOS configs are tightly coupled to the systems they configure and pose significant risks when used inappropriately.
+I previously had split up many of my flakes, but it was more difficult to manage instead of easier.  This is the rewrite recollecting them.

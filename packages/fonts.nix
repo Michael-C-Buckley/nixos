@@ -13,7 +13,6 @@
       fira-code
       jetbrains-mono
       symbols-only
-      iosevka
       zed-mono
     ];
 in {
