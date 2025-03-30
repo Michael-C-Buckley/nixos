@@ -17,11 +17,9 @@
       inherit system;
       specialArgs = {inherit customLib host system inputs;};
       modules = [
-        inputs.vscode-server.nixosModules.default
         ../base.nix
         ../clusters/${cluster}
         ../clusters/${cluster}/hosts/${host}
-        ../home/hjem.nix
       ];
     };
 
