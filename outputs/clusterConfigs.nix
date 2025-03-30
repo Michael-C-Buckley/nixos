@@ -6,7 +6,12 @@
   clusterConfig = {
     cluster,
     host,
-  }: let system = if host == "oracle1" then "aarch64-linux" else "x86_64-linux"; in
+  }: let
+    system =
+      if host == "o1"
+      then "aarch64-linux"
+      else "x86_64-linux";
+  in
     inputs.nixpkgs.lib.nixosSystem {
       # Oracle1 is an exception as it is an ARM host
       inherit system;
@@ -22,13 +27,14 @@
 
   generateCluster = {
     cluster,
+    hostPrefix,
     max,
   }:
     builtins.listToAttrs (
       builtins.genList (
         i: let
           number = i + 1;
-          host = "${cluster}${toString number}";
+          host = "${hostPrefix}${toString number}";
         in {
           name = host;
           value = clusterConfig {inherit cluster host;};
@@ -39,9 +45,11 @@
 in
   generateCluster {
     cluster = "uff";
+    hostPrefix = "uff";
     max = 3;
-  } //
-  generateCluster {
+  }
+  // generateCluster {
     cluster = "oracle";
+    hostPrefix = "o";
     max = 2;
   }
