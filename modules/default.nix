@@ -3,7 +3,7 @@ _: {
     ./graphical
     ./gaming
     # ./hardware
-    # ./network
+    ./network
     ./storage
     ./virtualization
   ];

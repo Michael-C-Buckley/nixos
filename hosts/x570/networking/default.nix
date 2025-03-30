@@ -5,6 +5,8 @@
   ];
 
   networking = {
+    ospf.enable = true;
+
     hostId = "c07fa570";
     useDHCP = lib.mkForce true;
     hostName = "x570";
@@ -12,9 +14,6 @@
     usePredictableInterfaceNames = true;
 
     firewall = {
-      extraInputRules = ''
-        ip protocol 89 accept comment "Allow OSPF"
-      '';
       allowedUDPPorts = [33401];
     };
 

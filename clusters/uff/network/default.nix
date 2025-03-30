@@ -6,5 +6,6 @@ _: {
     ./systemd.nix
   ];
 
+  networking.ospf.enable = true;
   services.ntpd-rs.enable = true;
 }
