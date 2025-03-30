@@ -1,0 +1,15 @@
+{
+  config,
+  inputs,
+  ...
+}: let
+  shh = config.age.secrets;
+in {
+  imports = [
+    inputs.nix-secrets.nixosModules.uff
+  ];
+  etc = {
+    "corosync/authkey".source = shh.corosync-authkey.path;
+    "NetworkManager/system-connections/wifi.nmconnection".source = shh.wifi.path;
+  };
+}
