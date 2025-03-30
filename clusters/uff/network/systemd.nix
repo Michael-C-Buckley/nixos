@@ -4,7 +4,7 @@
       matchConfig.MACAddress = config.custom.uff.enusb1.macAddr;
       linkConfig = {
         Name = "enusb1";
-        MTUBytes = 9000;
+        MTUBytes = 1500; # 1500 until I tweak the switch to support
       };
     };
 
