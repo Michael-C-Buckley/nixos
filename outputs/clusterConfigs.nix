@@ -1,11 +1,14 @@
-{inputs}: let
+{
+  customLib,
+  inputs,
+}: let
   # Build the configs for the hosts based on this function
   clusterConfig = {
     cluster,
     host,
   }:
     inputs.nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs host;};
+      specialArgs = {inherit customLib host inputs;};
       modules = [
         inputs.vscode-server.nixosModules.default
         ../base.nix
