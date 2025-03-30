@@ -5,6 +5,7 @@ _: {
     ./hardware.nix
     ./options.nix
     ./podman.nix
+    ./secrets.nix
   ];
 
   system.stateVersion = "25.05";
