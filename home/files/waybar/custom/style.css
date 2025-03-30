@@ -40,15 +40,20 @@ window#waybar {
 }
 
 #clock {
-    padding: 0px 12px 0px 10px;
+    padding: 0px 12px 0px 15px;
     color: cyan;
 }
-#battery,
+#battery {
+    padding: 0px 15px 0px 10px;
+}
+
 #cpu,
 #memory,
 #network,
 #pulseaudio,
-#temperature,
+#temperature {
+    padding: 0px 15px 0px 0px;
+}
 #backlight,
 #idle_inhibitor,
 #custom-sl,
