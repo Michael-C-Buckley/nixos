@@ -1,9 +1,10 @@
 {
   pkgs,
   inputs,
+  system,
   ...
 }: let
-  wfetch = inputs.wfetch.packages.x86_64-linux.default;
+  wfetch = inputs.wfetch.packages.${system}.default;
   commonPkgs = with pkgs; [
     # System
     home-manager

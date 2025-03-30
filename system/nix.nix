@@ -1,8 +1,8 @@
-{inputs, ...}: {
+{inputs, system, ...}: {
   nixpkgs.config.allowUnfree = true;
 
   nix = {
-    package = inputs.lix.packages.x86_64-linux.default;
+    package = inputs.lix.packages.${system}.default;
     settings = {
       auto-optimise-store = true;
       warn-dirty = false;
