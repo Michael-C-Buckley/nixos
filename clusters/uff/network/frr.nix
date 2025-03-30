@@ -1,5 +1,6 @@
 {config, ...}: {
   services.frr = {
+    vrrpd.enable = true;
     bgpd.enable = true;
 
     config = ''
