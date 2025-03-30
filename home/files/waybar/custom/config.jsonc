@@ -9,7 +9,6 @@
     "custom/clipboard",
     "bluetooth",
     "pulseaudio",
-    // "group/networking",
     "backlight",
     "battery",
   ],
