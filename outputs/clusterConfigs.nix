@@ -6,9 +6,11 @@
   clusterConfig = {
     cluster,
     host,
-  }:
+  }: let system = if host == "oracle1" then "aarch64-linux" else "x86_64-linux"; in
     inputs.nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit customLib host inputs;};
+      # Oracle1 is an exception as it is an ARM host
+      inherit system;
+      specialArgs = {inherit customLib host system inputs;};
       modules = [
         inputs.vscode-server.nixosModules.default
         ../base.nix
@@ -38,4 +40,8 @@ in
   generateCluster {
     cluster = "uff";
     max = 3;
+  } //
+  generateCluster {
+    cluster = "oracle";
+    max = 2;
   }
