@@ -10,6 +10,9 @@ in {
   ];
   environment.etc = {
     "corosync/authkey".source = shh.corosync-authkey.path;
-    "NetworkManager/system-connections/wifi.nmconnection".source = shh.wifi.path;
+    "NetworkManager/system-connections/wifi.nmconnection" = {
+      source = shh.wifi.path;
+      mode = "0600";
+    };
   };
 }
