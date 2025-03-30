@@ -1,7 +1,6 @@
 {config, ...}: {
   services.frr = {
     bgpd.enable = true;
-    ospfd.enable = true;
 
     config = ''
       ip forwarding

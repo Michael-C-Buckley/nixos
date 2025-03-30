@@ -4,6 +4,7 @@ _: {
   ];
 
   networking = {
+    ospf.enable = true;
     hostName = "p520";
     hostId = "181a3ead";
 
