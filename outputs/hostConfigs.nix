@@ -11,8 +11,6 @@
       modules = [
         ../base.nix
         ../hosts/${host}
-        ../home/hjem.nix
-        inputs.vscode-server.nixosModules.default
       ];
     };
 
