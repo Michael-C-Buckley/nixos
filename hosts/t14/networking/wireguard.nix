@@ -1,21 +1,21 @@
 {
   config,
-  pkgs,
-  lib,
+  customLib,
   ...
-}: let
-  wireguardInterface = import ../../../modules/network/wireguard-interface.nix {inherit config pkgs lib;};
-in {
+}: {
   systemd.services = {
-    "wireguard-cary4" = wireguardInterface {
+    "wireguard-cary4" = customLib.wireguardInterface {
+      inherit config;
       name = "cary4";
       ipAddresses = ["192.168.78.2/27"];
     };
-    "wireguard-creekstoneM4" = wireguardInterface {
+    "wireguard-creekstoneM4" = customLib.wireguardInterface {
+      inherit config;
       name = "creekstoneM4";
       ipAddresses = ["192.168.62.2/27"];
     };
-    "wireguard-o1" = wireguardInterface {
+    "wireguard-o1" = customLib.wireguardInterface {
+      inherit config;
       name = "o1";
       ipAddresses = ["192.168.32.131/27"];
     };

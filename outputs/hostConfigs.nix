@@ -1,8 +1,11 @@
-{inputs}: let
+{
+  inputs,
+  customLib,
+}: let
   # Build the configs for the hosts based on this function
   hostConfig = {host}:
     inputs.nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs host;};
+      specialArgs = {inherit customLib host inputs;};
       modules = [
         ../base.nix
         ../hosts/${host}

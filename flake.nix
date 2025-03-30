@@ -44,13 +44,15 @@
     pkgs = import inputs.nixpkgs {
       system = "x86_64-linux";
     };
+    lib = pkgs.lib;
+    customLib = import ./lib { inherit lib pkgs; };
   in {
     checks = import ./outputs/checks.nix {inherit inputs;};
     devShells.x86_64-linux = import ./outputs/devshells.nix {inherit self pkgs;};
     homeConfigurations = import ./outputs/homeConfigs.nix {inherit inputs pkgs;};
     nixosConfigurations = (
-      import ./outputs/hostConfigs.nix {inherit inputs;}
-      // import ./outputs/clusterConfigs.nix {inherit inputs;}
+      import ./outputs/hostConfigs.nix {inherit inputs customLib;}
+      // import ./outputs/clusterConfigs.nix {inherit inputs customLib;}
     );
     nixosModules = import ./outputs/nixosModules.nix {};
   };

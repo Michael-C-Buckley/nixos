@@ -1,10 +1,10 @@
 {
-  config,
   pkgs,
   lib,
   ...
 }: {
   name,
+  config,
   cfgPath ? config.age.secrets."wg-${name}".path,
   ipAddresses ? [],
   mtu ? 1420,

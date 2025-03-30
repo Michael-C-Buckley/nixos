@@ -1,13 +1,11 @@
 {
   config,
-  pkgs,
-  lib,
+  customLib,
   ...
-}: let
-  wireguardInterface = import ../../../modules/network/wireguard-interface.nix {inherit config pkgs lib;};
-in {
+}: {
   systemd.services = {
-    "wireguard-mt1" = wireguardInterface {
+    "wireguard-mt1" = customLib.wireguardInterface {
+      inherit config;
       name = "mt1";
       # Path because Agenix is currently not working on the desktop, this is the local file workaround
       cfgPath = "/etc/wireguard/wg-mt1.conf";
