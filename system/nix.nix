@@ -10,7 +10,7 @@
         "flakes"
       ];
       substituters = [
-        "http://192.168.48.9:5000" # X570 experimental cache
+        # "http://192.168.48.9:5000" # X570 experimental cache
         "https://cache.nixos.org"
         "https://nix-community.cachix.org"
         "https://hyprland.cachix.org"
@@ -21,7 +21,7 @@
         "https://cache.thalheim.io"
       ];
       trusted-public-keys = [
-        "x570-cache:0ok3K6YU/4QGbHWBZlg8SE4nAgxmG2mKd9kDT38ctDM=" # X570 experimental cache
+        # "x570-cache:0ok3K6YU/4QGbHWBZlg8SE4nAgxmG2mKd9kDT38ctDM=" # X570 experimental cache
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         "microvm.cachix.org-1:oXnBc6hRE3eX5rSYdRyMYXnfzcCxC7yKPTbZXALsqys="
