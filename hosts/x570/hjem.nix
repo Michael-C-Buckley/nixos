@@ -14,7 +14,6 @@ _: {
   '';
 
   features.michael = {
-    minimalGraphical = true;
     extendedGraphical = true;
     vscode.enable = true;
     waybar.enable = true;
