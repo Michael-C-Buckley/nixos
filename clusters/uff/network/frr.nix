@@ -12,7 +12,7 @@
       int lo
        ip ospf area 0
        ip ospf passive
-      int br0
+      int eno1
        ip ospf area 0
        ip ospf hello-interval 1
        ip ospf dead-interval 3

@@ -2,11 +2,11 @@
   options.custom.uff = {
     loopbackIPv4 = lib.mkOption {
       type = lib.types.str;
-      description = "The default IP of the bridge on the built-in ethernet.";
+      description = "The default IP of the loopback on the built-in ethernet.";
     };
-    bridgeIPv4 = lib.mkOption {
+    ethIPv4 = lib.mkOption {
       type = lib.types.str;
-      description = "The default IP of the bridge on the built-in ethernet.";
+      description = "The default IP of the built-in ethernet.";
     };
 
     enusb1 = {
