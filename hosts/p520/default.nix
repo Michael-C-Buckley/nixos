@@ -9,6 +9,6 @@ _: {
   ];
 
   virtualisation.libvirtd.enable = true;
-
+  system.zfs.enable = true;
   programs.atop.atopgpu.enable = true;
 }

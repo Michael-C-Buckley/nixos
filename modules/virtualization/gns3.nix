@@ -5,9 +5,9 @@
   ...
 }: let
   inherit (lib) mkDefault mkEnableOption mkIf;
-  gns = config.custom.virtualisation.gns3;
+  gns = config.virtualisation.gns3;
 in {
-  options.custom.virtualisation.gns3 = {
+  options.virtualisation.gns3 = {
     enable = mkEnableOption "GNS3";
   };
 
