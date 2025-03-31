@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkDefault mkEnableOption mkIf;
   gns = config.custom.virtualisation.gns3;
 in {
   options.custom.virtualisation.gns3 = {
@@ -12,6 +12,9 @@ in {
   };
 
   config = mkIf gns.enable {
+    # Enable Libvirt if using this
+    custom.virtualisation.libvirt.enable = mkDefault true;
+
     environment.systemPackages = with pkgs; [
       dynamips
       alacritty # For the consoles for GNS nodes, for now, may change later
