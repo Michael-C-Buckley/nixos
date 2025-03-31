@@ -5,7 +5,7 @@
 }: let
   inherit (lib) mkDefault;
 in {
-  # My defaults for Nix-Serve
+  # WIP: Add keys to Secrets
   services.nix-serve = {
     package = mkDefault pkgs.nix-serve-ng;
     openFirewall = mkDefault true;

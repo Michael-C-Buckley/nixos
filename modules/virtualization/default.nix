@@ -4,4 +4,6 @@ _: {
     ./incus.nix
     ./libvirt.nix
   ];
+
+  # Add docker and podman options
 }
