@@ -4,14 +4,20 @@
 }: let
   commonNixBuildInputs = with pkgs; [
     self.checks.x86_64-linux.pre-commit-check.enabledPackages
-    ragenix
-    trufflehog
+    # Editing
     alejandra
     nil
     git
     tig
     nixd
-    direnv
+
+    # Security
+    trufflehog
+    rage
+    ragenix
+    sops
+    ssh-to-pgp
+    ssh-to-age
   ];
 in {
   default = self.devShells.x86_64-linux.nixos;
