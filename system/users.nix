@@ -1,6 +1,6 @@
 {config, inputs, lib, ...}: let
   inherit (lib) types mkOption;
-  inherit (types) listOf str
+  inherit (types) listOf str;
   power = config.users.powerUsers; 
 in {
   imports = [
