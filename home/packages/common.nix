@@ -10,10 +10,15 @@ with pkgs; [
   zsh
   fish
   nushell
-  direnv
-  blesh # Bash Line Editor - for Starship transient prompt
   starship
   pure-prompt # For Zsh
+
+  # Security
+  rage
+  ragenix
+  sops
+  ssh-to-pgp
+  ssh-to-age
 
   # Machine Utilities
   python3
