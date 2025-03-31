@@ -5,6 +5,7 @@
     # Following Cosmic to maximize Cachix hits and reduce duplication
     nixpkgs.follows = "cosmic/nixpkgs";
     nix-secrets.url = "git+ssh://git@github.com/Michael-C-Buckley/nix-secrets";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
     # User configs
     home-manager = {

@@ -18,6 +18,7 @@
     "x570"
     "t14"
     "p520"
+    "wsl"
   ];
 in
   # Construct and return the attribute set

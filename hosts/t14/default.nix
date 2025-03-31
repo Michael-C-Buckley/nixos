@@ -16,6 +16,8 @@
 
   environment.systemPackages = [pkgs.brightnessctl];
 
+  programs.hyprland.enable = true;
+
   features = {
     cosmic = true;
     gaming = false;
