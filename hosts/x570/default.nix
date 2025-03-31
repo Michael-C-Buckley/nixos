@@ -21,8 +21,9 @@
     gaming = true;
   };
 
+  virtualisation.libvirtd.enable = true;
+
   custom.virtualisation = {
     gns3.enable = true;
-    libvirt.users = ["michael" "root"];
   };
 }

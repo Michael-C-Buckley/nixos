@@ -8,9 +8,7 @@ _: {
     ./hardware.nix
   ];
 
-  custom = {
-    virtualisation.libvirt.users = ["michael" "root"];
-  };
+  virtualisation.libvirtd.enable = true;
 
   programs.atop.atopgpu.enable = true;
 }

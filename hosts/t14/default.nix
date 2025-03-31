@@ -23,11 +23,10 @@
     gaming = false;
   };
 
+  virtualisation.libvirtd.enable = true;
+
   custom = {
-    virtualisation = {
-      gns3.enable = true;
-      libvirt.users = ["michael" "root"];
-    };
+    virtualisation.gns3.enable = true;
     zfs.encryption = true;
   };
 }

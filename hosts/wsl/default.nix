@@ -6,7 +6,6 @@
 
   custom = {
     zfs.enable = false;
-    virtualisation.libvirt.enable = false;
   };
 
   # Trying out Zed via WSLg
