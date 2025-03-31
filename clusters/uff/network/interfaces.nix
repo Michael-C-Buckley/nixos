@@ -1,5 +1,5 @@
 {config, ...}: let
-  brIP = config.custom.uff.bridgeIPv4;
+  ethIP = config.custom.uff.ethIPv4;
   enusb1 = config.custom.uff.enusb1;
   loopback = config.custom.uff.loopbackIPv4;
 
@@ -12,12 +12,10 @@ in {
   # environment.etc."NetworkManager/system-connections/wifi.nmconnection".source = "";
 
   networking = {
-    # Add the first interface into a bridge and disable DHCP
-    bridges.br0.interfaces = ["eno1"];
     interfaces = {
-      # Bridge-related configs
+      # WIP: Transitioning from bridge back to base interfaces, options not yet changed
       eno1.useDHCP = false;
-      br0.ipv4.addresses = [(addr brIP 24)];
+      eno1.ipv4.addresses = [(addr ethIP 24)];
 
       # Wifi gets DHCP
       wlp2s0.useDHCP = true;
