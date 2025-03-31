@@ -18,9 +18,12 @@ in {
   users.users.michael.packages = import ./packages/userPkgs.nix {inherit config pkgs lib commonPackages;};
   users.users.root.packages = commonPackages;
 
-  # Add this above default but below force
+  # Add above default but below force
   programs.fish.enable = true;
-  users.users.michael.shell = mkOverride 900 pkgs.fish;
+  users.users = {
+    root.shell = mkOverride 900 pkgs.fish;
+    michael.shell = mkOverride 900 pkgs.fish;
+  };
 
   hjem = {
     clobberByDefault = true;
