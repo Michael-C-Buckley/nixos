@@ -4,6 +4,7 @@ _: {
     ./gaming
     # ./hardware
     ./network
+    ./services
     ./storage
     ./virtualization
   ];

@@ -29,6 +29,7 @@
 
     # Utilities
     ucodenix.url = "github:e-tho/ucodenix";
+    sops-nix.url = "github:Mic92/sops-nix";
     pre-commit-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
