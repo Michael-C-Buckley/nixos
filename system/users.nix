@@ -22,6 +22,7 @@ in {
 
 
   config = {
+    users.powerUsers.groups = ["networkmanager" "wheel" "video"];
     users.users = {
       michael = {
         isNormalUser = true;
