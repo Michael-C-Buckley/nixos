@@ -1,5 +1,9 @@
 # UFF2 has the endpoints while HA is getting built-out
-{config, customLib, ...}: {
+{
+  config,
+  customLib,
+  ...
+}: {
   systemd.services = {
     "wireguard-mt1" = customLib.wireguardInterface {
       inherit config;

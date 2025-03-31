@@ -3,7 +3,6 @@
     inputs.nixos-wsl.nixosModules.default
     ./wsl.nix
   ];
-  
 
   custom = {
     zfs.enable = false;

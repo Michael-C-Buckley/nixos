@@ -1,4 +1,8 @@
-{config, lib, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   options.features.podman = {
     enable = lib.mkOption {
       type = lib.types.bool;

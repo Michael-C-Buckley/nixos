@@ -51,7 +51,7 @@
       system = "x86_64-linux";
     };
     lib = pkgs.lib;
-    customLib = import ./lib { inherit lib pkgs; };
+    customLib = import ./lib {inherit lib pkgs;};
   in {
     checks = import ./outputs/checks.nix {inherit inputs;};
     devShells.x86_64-linux = import ./outputs/devshells.nix {inherit self pkgs;};

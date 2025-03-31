@@ -9,7 +9,10 @@ _: {
     hostId = "181a3ead";
 
     # WIP: Temporary default static route to avoid issues until VRRP goes online
-    defaultGateway = { address = "192.168.48.102"; interface = "br0"; };
+    defaultGateway = {
+      address = "192.168.48.102";
+      interface = "br0";
+    };
 
     # WIP: transition to resolved
     nameservers = [

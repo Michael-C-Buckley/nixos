@@ -3,7 +3,7 @@ _: {
   disabledModules = [
     ../../system/boot.nix
   ];
-  
+
   wsl = {
     enable = true;
     defaultUser = "michael";
