@@ -1,18 +1,37 @@
-{inputs, ...}: let
-  allGroups = ["networkmanager" "wheel" "video" "wireshark"];
+{config, inputs, lib, ...}: let
+  inherit (lib) types mkOption;
+  inherit (types) listOf str
+  power = config.users.powerUsers; 
 in {
   imports = [
     inputs.nix-secrets.nixosModules.users
   ];
 
-  users.users = {
-    michael = {
-      isNormalUser = true;
-      extraGroups = allGroups;
+  options.users.powerUsers = {
+    members = mkOption  {
+      type = listOf str;
+      default = ["michael" "shawn"];
+      description = "List of users you want to add to almost all groups";
     };
-    shawn = {
-      isNormalUser = true;
-      extraGroups = allGroups;
+    groups = mkOption {
+      type = listOf str;
+      default = ["networkmanager" "wheel" "video"];
+      description = "List of groups to add to power users";
+    };
+  };
+
+
+  config = {
+    users.users = {
+      michael = {
+        isNormalUser = true;
+        extraGroups = power.groups;
+      };
+      shawn = {
+        isNormalUser = true;
+        extraGroups = power.groups;
+      };
     };
   };
 }
+
