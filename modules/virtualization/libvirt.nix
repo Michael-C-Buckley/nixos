@@ -4,35 +4,27 @@
   lib,
   ...
 }: let
-  inherit (lib) mkIf mkOption types;
-  virtCfg = config.custom.virtualisation.libvirt;
+  inherit (lib) mkDefault mkOption types;
+  virtCfg = config.virtualisation.libvirtd;
 in {
-  options.custom.virtualisation.libvirt = {
-    enable = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Enable libvirt on the host.";
-    };
-    addPkgs = mkOption {
+  options.virtualisation.libvirtd = {
+    addGUIPkgs = mkOption {
       type = types.bool;
       default = true;
       description = "Add graphical support packages for VMs.";
     };
+    # WIP: Create a config option in users for power users
     users = mkOption {
       type = types.listOf types.str;
-      default = [];
+      default = ["root" "michael" "shawn"];
       description = "List of users to add the `KVM` group to.";
-    };
-    bridges = mkOption {
-      type = types.listOf types.str;
-      default = ["br0"];
-      description = "Name of the bridge device to bind for Libvirt.";
     };
   };
 
-  config = mkIf virtCfg.enable {
+  config = {
+    # WIP: add these to the users
     environment.systemPackages = with pkgs;
-      lib.optionals virtCfg.addPkgs [
+      lib.optionals virtCfg.addGUIPkgs [
         virt-viewer
         virt-manager
         tigervnc
@@ -45,9 +37,8 @@ in {
       virtCfg.users);
 
     virtualisation.libvirtd = {
-      enable = true;
-      allowedBridges = lib.mkDefault virtCfg.bridges;
-      parallelShutdown = 5;
+      allowedBridges = mkDefault ["br0"];
+      parallelShutdown = mkDefault 5;
       qemu = {
         package = pkgs.qemu_kvm;
         runAsRoot = true;

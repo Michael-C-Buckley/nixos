@@ -13,7 +13,7 @@ in {
 
   config = mkIf gns.enable {
     # Enable Libvirt if using this
-    custom.virtualisation.libvirt.enable = mkDefault true;
+    virtualisation.libvirtd.enable = mkDefault true;
 
     environment.systemPackages = with pkgs; [
       dynamips
