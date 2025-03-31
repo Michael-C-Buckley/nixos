@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkOption;
+  inherit (lib) mkOption mkIf;
   inherit (lib.types) bool package;
   cfg = config.custom.zfs;
 in {
@@ -26,7 +26,7 @@ in {
     };
   };
 
-  config = {
+  config = mkIf cfg.enable {
     boot = {
       kernelModules = ["zfs"];
       supportedFilesystems = ["zfs"];

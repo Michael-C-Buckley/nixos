@@ -12,6 +12,8 @@
   # Experimental Nix Serve
   services.nix-serve.enable = true;
 
+  programs.hyprland.enable = true;
+
   features = {
     autoLogin = true; # Only if not on Ly
     displayManager = "ly";

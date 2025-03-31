@@ -5,7 +5,8 @@
   inputs,
   ...
 }: let
-  useGraphics = config.features.graphics;
+  inherit (lib) mkDefault optionals;
+  hyprEnable = config.programs.hyprland.enable;
 
   # TO DO: audit these packages to see what I use
   hyprPkgs = with pkgs; [
@@ -28,12 +29,9 @@
   ];
 in {
   programs.hyprland = {
-    enable = useGraphics;
-    package = inputs.hyprland.packages.x86_64-linux.hyprland;
-    xwayland.enable = useGraphics;
+    package = mkDefault inputs.hyprland.packages.x86_64-linux.hyprland;
+    xwayland.enable = mkDefault hyprEnable;
   };
-
-  programs.hyprlock.enable = useGraphics;
-
-  environment.systemPackages = lib.optionals useGraphics hyprPkgs;
+  programs.hyprlock.enable = hyprEnable;
+  environment.systemPackages = optionals hyprEnable hyprPkgs;
 }

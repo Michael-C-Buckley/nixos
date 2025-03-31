@@ -4,6 +4,7 @@
   lib,
   ...
 }: let
+  inherit (lib) mkIf mkOption types;
   virtCfg = config.custom.virtualisation.libvirt;
   ovmfList = [
     (pkgs.OVMF.override {
@@ -14,29 +15,29 @@
   ];
 in {
   options.custom.virtualisation.libvirt = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
+    enable = mkOption {
+      type = types.bool;
       default = true;
       description = "Enable libvirt on the host.";
     };
-    addPkgs = lib.mkOption {
-      type = lib.types.bool;
+    addPkgs = mkOption {
+      type = types.bool;
       default = true;
       description = "Add graphical support packages for VMs.";
     };
-    users = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
+    users = mkOption {
+      type = types.listOf types.str;
       default = [];
       description = "List of users to add the `KVM` group to.";
     };
-    bridges = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
+    bridges = mkOption {
+      type = types.listOf types.str;
       default = ["br0"];
       description = "Name of the bridge device to bind for Libvirt.";
     };
   };
 
-  config = {
+  config = mkIf virtCfg.enable {
     environment.systemPackages = with pkgs;
       lib.optionals virtCfg.addPkgs [
         virt-viewer
