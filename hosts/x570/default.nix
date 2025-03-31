@@ -1,5 +1,5 @@
 # X570 Desktop Configuration
-{inputs, pkgs, ...}: {
+{inputs, ...}: {
   imports = [
     inputs.nix-secrets.nixosModules.x570
     ./hardware
@@ -10,13 +10,7 @@
   system.stateVersion = "24.05";
 
   # Experimental Nix Serve
-  services.nix-serve = {
-    enable = true;
-    package = pkgs.nix-serve-ng;
-    openFirewall = true;
-    port = 5000;
-    secretKeyFile = "/etc/nix/nix-serve/secret-key.pem";
-  };
+  services.nix-serve.enable = true;
 
   features = {
     autoLogin = true; # Only if not on Ly
