@@ -5,6 +5,8 @@
     extraPools = ["rpool"];
   };
 
+  system.zfs.enable = true;
+
   fileSystems = {
     "/" = {
       device = "rpool/root/nixos";

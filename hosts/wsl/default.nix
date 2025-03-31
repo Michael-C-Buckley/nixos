@@ -4,15 +4,12 @@
     ./wsl.nix
   ];
 
-  custom = {
-    zfs.enable = false;
-  };
-
   # Trying out Zed via WSLg
   features.michael.packages.zed.include = true;
 
   networking = {
     hostName = "wsl";
+    hostId = "e07f0101";
     nameservers = ["1.1.1.1" "8.8.8.8" "9.9.9.9"];
   };
 

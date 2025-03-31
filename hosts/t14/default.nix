@@ -23,10 +23,13 @@
     gaming = false;
   };
 
-  virtualisation.libvirtd.enable = true;
-
-  custom = {
-    virtualisation.gns3.enable = true;
-    zfs.encryption = true;
+  virtualisation = {
+    libvirtd.enable = true;
+    gns3.enable = true;
+  };
+  
+  system.zfs = {
+    enable = true;
+    encryption = true;
   };
 }

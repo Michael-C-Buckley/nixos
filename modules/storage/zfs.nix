@@ -6,9 +6,9 @@
 }: let
   inherit (lib) mkOption mkIf;
   inherit (lib.types) bool package;
-  cfg = config.custom.zfs;
+  cfg = config.system.zfs;
 in {
-  options.custom.zfs = {
+  options.system.zfs = {
     enable = mkOption {
       type = bool;
       default = true;

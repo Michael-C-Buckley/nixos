@@ -21,9 +21,9 @@
     gaming = true;
   };
 
-  virtualisation.libvirtd.enable = true;
-
-  custom.virtualisation = {
+  virtualisation = {
+    libvirtd.enable = true;
     gns3.enable = true;
   };
+  system.zfs.enable = true;
 }
