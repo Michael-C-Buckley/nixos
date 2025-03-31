@@ -12,13 +12,15 @@
   # Experimental Nix Serve
   services.nix-serve.enable = true;
 
-  programs.hyprland.enable = true;
+  programs = {
+    hyprland.enable = true;
+    cosmic.enable = true;
+  };
 
   features = {
     autoLogin = true; # Only if not on Ly
     displayManager = "ly";
-    cosmic = true;
-    gaming = true;
+    gaming.enable = true;
   };
 
   virtualisation = {

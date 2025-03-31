@@ -16,11 +16,14 @@
 
   environment.systemPackages = [pkgs.brightnessctl];
 
-  programs.hyprland.enable = true;
+  programs = {
+    cosmic.enable = true;
+    hyprland.enable = true;
+  };
 
   features = {
-    cosmic = true;
-    gaming = false;
+    displayManager = "ly";
+    gaming.enable = false;
   };
 
   virtualisation = {

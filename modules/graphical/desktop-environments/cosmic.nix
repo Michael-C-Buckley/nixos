@@ -4,19 +4,17 @@
   lib,
   ...
 }: {
-  options.features.cosmic = lib.mkOption {
-    type = lib.types.bool;
-    default = false;
-    description = "Enable Cosmic Desktop on host";
+  options.programs.cosmic ={
+    enable = lib.mkEnableOption "Enable Cosmic Desktop on host";
   };
 
   imports = [
     inputs.cosmic.nixosModules.default
   ];
 
-  config = lib.mkIf config.features.cosmic {
+  config = {
     services.desktopManager = {
-      cosmic.enable = true;
+      cosmic.enable = config.programs.cosmic.enable;
     };
   };
 }
