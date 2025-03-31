@@ -6,13 +6,6 @@
 }: let
   inherit (lib) mkIf mkOption types;
   virtCfg = config.custom.virtualisation.libvirt;
-  ovmfList = [
-    (pkgs.OVMF.override {
-      secureBoot = true;
-      tpmSupport = true;
-    })
-    .fd
-  ];
 in {
   options.custom.virtualisation.libvirt = {
     enable = mkOption {
@@ -61,7 +54,7 @@ in {
         swtpm.enable = true;
         ovmf = {
           enable = true;
-          packages = ovmfList;
+          packages = [pkgs.OVMFFull.fd];
         };
       };
     };
