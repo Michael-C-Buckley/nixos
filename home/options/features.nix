@@ -3,12 +3,12 @@
   inherit (types) bool;
 in {
   options.features.michael = {
-    useHome = mkOption {
+    useHome = mkEnableOption "Use home-manager for any features covered by hjem";
+    minimalGraphical = mkOption {
       type = bool;
       default = true;
-      description = "Use home-manager for any features covered by hjem";
+      description = "Include a footprint of small and useful GUI packages";
     };
-    minimalGraphical = mkEnableOption {};
     extendedGraphical = mkEnableOption {};
     hyprland.enable = mkEnableOption {};
     vscode.enable = mkEnableOption {};

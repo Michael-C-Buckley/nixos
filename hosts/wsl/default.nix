@@ -1,11 +1,9 @@
 {inputs, ...}: {
   imports = [
     inputs.nixos-wsl.nixosModules.default
+    ./hjem.nix
     ./wsl.nix
   ];
-
-  # Trying out Zed via WSLg
-  features.michael.packages.zed.include = true;
 
   networking = {
     hostName = "wsl";
