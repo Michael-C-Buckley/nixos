@@ -18,6 +18,7 @@
         "https://cosmic.cachix.org/"
         "https://wfetch.cachix.org"
         "https://cache.lix.systems"
+        "https://cache.thalheim.io"
       ];
       trusted-public-keys = [
         "x570-cache:0ok3K6YU/4QGbHWBZlg8SE4nAgxmG2mKd9kDT38ctDM=" # X570 experimental cache
@@ -27,6 +28,7 @@
         "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
         "wfetch.cachix.org-1:lFMD3l0uT/M4+WwqUXpmPAm2kvEH5xFGeIld1av0kus"
         "cache.lix.systems-1:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
+        "cache.thalheim.io-1:R7msbosLEZKrxk/lKxf9BTjOOH7Ax3H0Qj0/6wiHOgc="
       ];
       trusted-users = [
         "@wheel"
