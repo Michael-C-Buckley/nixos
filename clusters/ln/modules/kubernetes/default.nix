@@ -8,6 +8,13 @@ in {
     ./packages.nix
   ];
 
+  cluster.ln.kubernetes = {
+    masterHostname = config.networking.hostName;
+    dns.forwardAddr = "192.168.65.1";
+  };
+
+  networking.extraHosts = "${kube.masterIP} ${kube.masterHostname}";
+
   services.kubernetes = {
     masterAddress = kube.masterIP;
     apiserverAddress = "http://${kube.masterIP}:${toString kube.masterApiServerPort}";
@@ -25,7 +32,4 @@ in {
       extraOpts = "--fail-swap-on=false";
     };
   };
-
-  cluster.ln.kubernetes.masterHostname = config.networking.hostName;
-  networking.extraHosts = "${kube.masterIP} ${kube.masterHostname}";
 }
