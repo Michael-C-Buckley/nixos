@@ -27,6 +27,9 @@ in {
       default = ["master" "node"];
       description = "The roles of the node";
     };
+    dns = {
+      forwardAddr = mkStrOption "Forward Address for Core DNS Addon";
+    };
   };
 
   config = {

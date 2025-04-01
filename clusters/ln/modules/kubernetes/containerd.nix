@@ -1,15 +1,15 @@
 {pkgs, ...}: let
   nvidia-container-runtime-fhs = pkgs.buildFHSEnv {
-  name = "nvidia-container-runtime-fhs";
-  targetPkgs = pkgs:
-    with pkgs; [
-      cudaPackages.cudatoolkit
-      linuxPackages.nvidia_x11
-      libnvidia-container
-      nvidia-container-toolkit
-    ];
-  runScript = "${pkgs.nvidia-container-toolkit}/bin/nvidia-container-runtime";
-};
+    name = "nvidia-container-runtime-fhs";
+    targetPkgs = pkgs:
+      with pkgs; [
+        cudaPackages.cudatoolkit
+        linuxPackages.nvidia_x11
+        libnvidia-container
+        nvidia-container-toolkit
+      ];
+    runScript = "${pkgs.nvidia-container-toolkit}/bin/nvidia-container-runtime";
+  };
 in {
   environment.systemPackages = [nvidia-container-runtime-fhs];
   hardware.nvidia-container-toolkit.enable = true;
