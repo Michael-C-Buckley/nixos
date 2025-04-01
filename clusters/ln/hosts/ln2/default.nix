@@ -12,6 +12,7 @@ in {
     masterIP = "192.168.65.171";
   };
 
+  # CONVERT
   custom = {
     networking = {
       lo.addrs = ["127.0.0.1/8" "${lo}/32"];
