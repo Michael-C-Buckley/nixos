@@ -50,4 +50,8 @@ in
     cluster = "oracle";
     hostPrefix = "o";
     max = 2;
+  } //  generateCluster {
+    cluster = "ln";
+    hostPrefix = "ln";
+    max = 3;
   }
