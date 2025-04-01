@@ -1,6 +1,7 @@
 {config, lib, ...}: let
-  inherit (lib) mkOption types;
+  inherit (lib) mkOption strings types;
   cfg = config.custom.networking;
+  netCfg = config.cluster.ln.networking;
   mkLinkFile = {mac, name, mtu ? 1500}: ''
     [Match]
     MACAddress=${mac}
@@ -22,7 +23,33 @@
   addrOption = _: mkOption {
     type = types.listOf types.str;
   };
+
+  strOption = _: mkOption  {
+    type = types.str;
+  };
+
+  # Function to convert a standard string address into the nix attrset format
+  # Ex "192.168.1.1/24"
+  addr = addrStr: let
+    parts = strings.splitString "/" addrStr;
+  in {
+    address = builtins.elemAt parts 0;
+    prefixLength = builtins.fromJSON (builtins.elemAt parts 1);
+  };
 in {
+
+  options.cluster.ln.networking = {
+    lo.addr = strOption {};
+    eno1.addr = strOption {};
+    enmlx1 = {
+      addr = strOption {};
+      mac = strOption {};
+    };
+    enmlx2 = {
+      addr = strOption {};
+      mac = strOption {};
+    };
+  };
 
   options.custom.networking = {
     lo.addrs = addrOption {};
@@ -41,13 +68,20 @@ in {
     };
   };
 
-  # WIP: Move to just using systemd for renaming
-  config.environment.etc = {
-    "systemd/network/00-lo.network".text = mkNetFile {name = "lo"; addrs = cfg.lo.addrs;};
-    "systemd/network/01-eno1.network".text = mkNetFile {name = "eno1"; addrs = cfg.eno1.addrs;};
-    "systemd/network/10-enmlx1.link".text = mkLinkFile {mac = cfg.enmlx1.mac; name = "enmlx1"; mtu = 9000;};
-    "systemd/network/11-enmlx1.network".text = mkNetFile {name = "enmlx1"; addrs = cfg.enmlx1.addrs;};
-    "systemd/network/15-enmlx2.link".text = mkLinkFile {mac = cfg.enmlx2.mac; name = "enmlx2"; mtu = 9000;};
-    "systemd/network/16-enmlx2.network".text = mkNetFile {name = "enmlx2"; addrs = cfg.enmlx2.addrs;};
+  
+  config = {
+    # WIP: Deduplicate
+    networking.interfaces = {
+      lo.ipv4.addresses = [(addr netCfg.lo.addr)];
+      eno1.ipv4.addresses = [(addr netCfg.eno1.addr)];
+      enmlx1.ipv4.addresses = [(addr netCfg.enmlx1.addr)];
+      enmlx2.ipv4.addresses = [(addr netCfg.enmlx2.addr)];
+    };
+
+    # WIP: Move to just using systemd for renaming
+    environment.etc = {
+      "systemd/network/10-enmlx1.link".text = mkLinkFile {mac = netCfg.enmlx1.mac; name = "enmlx1"; mtu = 9000;};
+      "systemd/network/11-enmlx2.link".text = mkLinkFile {mac = netCfg.enmlx2.mac; name = "enmlx2"; mtu = 9000;};
+    };
   };
 }

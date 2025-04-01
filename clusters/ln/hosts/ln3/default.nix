@@ -7,6 +7,7 @@ in {
     ./filesystems.nix
   ];
 
+  # CONVERT
   custom = {
     networking = {
       lo.addrs = ["127.0.0.1/8" "${lo}/32"];
