@@ -22,4 +22,11 @@ with pkgs; [
   libreoffice
   gimp
   zed-editor
+
+  # Communication
+  librewolf
+  signal-desktop
+  discord
+  materialgram # Telegram fork
+  tor-browser
 ]

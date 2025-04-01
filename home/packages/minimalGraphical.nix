@@ -11,10 +11,5 @@ with pkgs; [
   xfce.thunar # File manager
 
   # Communication
-  librewolf
   brave
-  signal-desktop
-  discord
-  materialgram # Telegram fork
-  tor-browser
 ]
