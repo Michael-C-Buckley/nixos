@@ -1,6 +1,7 @@
 {config, ...}: {
   imports = [
     ./containerd.nix
+    ./options.nix
     ./packages.nix
   ];
 

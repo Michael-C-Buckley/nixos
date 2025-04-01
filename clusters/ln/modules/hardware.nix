@@ -24,8 +24,8 @@
 
   networking.useDHCP = lib.mkDefault false;
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  nixpkgs.hostPlatform = "x86_64-linux";
+  hardware.cpu.amd.updateMicrocode = config.hardware.enableRedistributableFirmware;
 
   # services.ucodenix = {
   #   enable = true;

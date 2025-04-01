@@ -1,11 +1,4 @@
-# LN1 Configuration File
-{...}: let
-  # Match IP to the networking interface
-  kubeMasterIP = "192.168.65.171";
-  kubeMasterHostname = "ln1";
-  kubeMasterApiServerPort = 6443;
-  kubeRoles = ["master" "node"];
-
+_: let
   lo = "192.168.78.131";
 in {
   system.stateVersion = "24.05";
@@ -13,6 +6,10 @@ in {
   imports = [
     ./filesystems.nix
   ];
+
+  cluster.ln.kubernetes = {
+    masterIP = "192.168.65.171";
+  };
 
   custom = {
     networking = {
@@ -30,22 +27,8 @@ in {
     routing.routerId = lo;
   };
 
-  services.ceph.global.fsid = "f3fe85df-db19-4c93-b51c-9f3f9f41ca07";
-
   networking = {
     hostId = "d330b4e9";
-    hostName = kubeMasterHostname;
-    extraHosts = "${kubeMasterIP} ${kubeMasterHostname}";
-  };
-
-  services.kubernetes = {
-    roles = kubeRoles;
-    masterAddress = kubeMasterIP;
-    apiserverAddress = "https://${kubeMasterIP}:${toString kubeMasterApiServerPort}";
-    apiserver = {
-      allowPrivileged = true;
-      securePort = kubeMasterApiServerPort;
-      advertiseAddress = kubeMasterIP;
-    };
+    hostName = "ln1";
   };
 }
