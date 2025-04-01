@@ -1,6 +1,7 @@
 # CHANGE ALL
 {...}: let
   lo = "192.168.78.132";
+  mainIP = "192.168.65.12";
 in {
   system.stateVersion = "24.11";
 
@@ -8,29 +9,27 @@ in {
     ./filesystems.nix
   ];
 
-  cluster.ln.kubernetes = {
-    masterIP = "192.168.65.171";
-  };
-
-  # CONVERT
-  custom = {
+  # POPULATE WHEN BUILT
+  cluster.ln = {
+    kubernetes.masterIP = mainIP;
     networking = {
-      lo.addrs = ["127.0.0.1/8" "${lo}/32"];
-      eno1.addrs = ["192.168.65.171/24"];
+      lo.addr = "${lo}/32";
+      eno1.addr = "${mainIP}/24";
       enmlx1 = {
-        mac = "00:02:c9:39:fa:e0";
-        addrs = ["192.168.254.1/29"];
+        addr = "192.168.254.2/29";
+        mac = "";
       };
       enmlx2 = {
-        mac = "00:02:c9:39:fa:e1";
-        addrs = ["192.168.254.9/29"];
+        addr = "192.168.254.10/29";
+        mac = "";
       };
     };
-    routing.routerId = lo;
   };
 
+  custom.routing.routerId = lo;
+
   networking = {
-    hostId = "d330b4e9";
+    hostId = "";
     hostName = "ln2";
   };
 }

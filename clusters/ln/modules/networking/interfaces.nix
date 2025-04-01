@@ -1,7 +1,7 @@
 {config, lib, ...}: let
   inherit (lib) mkOption strings types;
-  cfg = config.custom.networking;
   netCfg = config.cluster.ln.networking;
+
   mkLinkFile = {mac, name, mtu ? 1500}: ''
     [Match]
     MACAddress=${mac}
@@ -10,19 +10,6 @@
     Name=${name}
     MTUBytes=${builtins.toString mtu}
   '';
-  mkNetFile = { name, addrs }: ''
-    [Match]
-    Name=${name}
-
-    ${builtins.concatStringsSep "\n\n" (map (addr: ''
-      [Address]
-      Address=${addr}
-    '') addrs)}
-  '';
-
-  addrOption = _: mkOption {
-    type = types.listOf types.str;
-  };
 
   strOption = _: mkOption  {
     type = types.str;
@@ -51,23 +38,6 @@ in {
     };
   };
 
-  options.custom.networking = {
-    lo.addrs = addrOption {};
-    eno1.addrs = addrOption {};
-    enmlx1 = {
-      addrs = addrOption {};
-      mac = mkOption {
-        type = types.str;
-      };
-    };
-    enmlx2 = {
-      addrs = addrOption {};
-      mac = mkOption {
-        type = types.str;
-      };
-    };
-  };
-
   
   config = {
     # WIP: Deduplicate
@@ -78,7 +48,6 @@ in {
       enmlx2.ipv4.addresses = [(addr netCfg.enmlx2.addr)];
     };
 
-    # WIP: Move to just using systemd for renaming
     environment.etc = {
       "systemd/network/10-enmlx1.link".text = mkLinkFile {mac = netCfg.enmlx1.mac; name = "enmlx1"; mtu = 9000;};
       "systemd/network/11-enmlx2.link".text = mkLinkFile {mac = netCfg.enmlx2.mac; name = "enmlx2"; mtu = 9000;};
