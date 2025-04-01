@@ -1,12 +1,6 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{lib, ...}: let
   inherit (lib) mkOption types;
   inherit (types) str int listOf;
-
-  kube = config.cluster.ln.kubernetes;
 
   mkStrOption = input:
     mkOption {
@@ -29,23 +23,6 @@ in {
     };
     dns = {
       forwardAddr = mkStrOption "Forward Address for Core DNS Addon";
-    };
-  };
-
-  config = {
-    cluster.ln.kubernetes.masterHostname = config.networking.hostName;
-    networking.extraHosts = "${kube.masterIP} ${kube.masterHostname}";
-
-    services.kubernetes = {
-      masterAddress = kube.masterIP;
-      apiserverAddress = "http://${kube.masterIP}:${toString kube.masterApiServerPort}";
-      kubelet.hostname = kube.masterHostname;
-
-      apiserver = {
-        allowPrivileged = true;
-        securePort = kube.masterApiServerPort;
-        advertiseAddress = kube.masterIP;
-      };
     };
   };
 }
