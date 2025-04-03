@@ -34,6 +34,10 @@
     # Utilities
     ucodenix.url = "github:e-tho/ucodenix";
     sops-nix.url = "github:Mic92/sops-nix";
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     pre-commit-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";

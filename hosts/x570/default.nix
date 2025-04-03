@@ -2,6 +2,7 @@
 {inputs, ...}: {
   imports = [
     inputs.nix-secrets.nixosModules.x570
+    inputs.nix-index-database.nixosModules.nix-index
     ./hardware
     ./networking
     ./hjem.nix
@@ -15,10 +16,10 @@
   programs = {
     hyprland.enable = true;
     cosmic.enable = true;
+    nix-index-database.comma.enable = true;
   };
 
   features = {
-    autoLogin = true; # Only if not on Ly
     displayManager = "ly";
     gaming.enable = true;
   };

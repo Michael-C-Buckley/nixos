@@ -17,6 +17,7 @@
     tmux
     wfetch
     starship
+    comma
 
     # Editor
     neovim
