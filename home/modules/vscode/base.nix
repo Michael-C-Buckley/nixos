@@ -32,6 +32,8 @@
       plugins.wicked-labs.wvsc-serendipity
       plugins.robbowen.synthwave-vscode
       plugins.eliverlara.andromeda
+      plugins.keifererikson.nightfox
+      plugins.michalpopek.dayfox-vsc
 
       # Python
       ms-python.python

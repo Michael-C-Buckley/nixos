@@ -30,6 +30,18 @@ in
             version = "1.66.0";
             sha256 = "1l484q90kq5yzfxbaz7bfdiqbick92g70gakxbmcxq48ign85wlg";
           };
+          "keifererikson"."nightfox" = vscode-utils.extensionFromVscodeMarketplace {
+            name = "nightfox";
+            publisher = "keifererikson";
+            version = "0.0.14";
+            sha256 = "09kp1ss8plg5l9mifnkk4dyf1g2immfr6gymzcaysdrzqwj8m48i";
+          };
+          "michalpopek"."dayfox-vsc" = vscode-utils.extensionFromVscodeMarketplace {
+            name = "dayfox-vsc";
+            publisher = "michalpopek";
+            version = "0.1.0";
+            sha256 = "16wmicdp35nm7gr098mibgclwqap7nr5nmnq8agnp00paq80aabi";
+          };
           "ispapp"."mikrotik-routeros-script-tools" = vscode-utils.extensionFromVscodeMarketplace {
             name = "mikrotik-routeros-script-tools";
             publisher = "ispapp";
