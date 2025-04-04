@@ -1,4 +1,8 @@
-{config, lib, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (lib) mkDefault;
   useWireshark = config.programs.wireshark.enable;
 in {
@@ -8,7 +12,10 @@ in {
   ];
 
   # Add Wireshark if enabled
-  users.powerUsers.groups = if useWireshark then ["wireshark"] else [];
+  users.powerUsers.groups =
+    if useWireshark
+    then ["wireshark"]
+    else [];
 
   programs = {
     fish.enable = true;

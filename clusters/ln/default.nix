@@ -1,7 +1,7 @@
 _: {
-    imports = [
-        ../../modules/hardware/nvidia.nix
-        ./modules
-        ./networking
-    ];
+  imports = [
+    ../../modules/hardware/nvidia.nix
+    ./modules
+    ./networking
+  ];
 }
