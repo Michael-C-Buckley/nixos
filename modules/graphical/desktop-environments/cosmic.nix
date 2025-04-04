@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  options.programs.cosmic ={
+  options.programs.cosmic = {
     enable = lib.mkEnableOption "Enable Cosmic Desktop on host";
   };
 

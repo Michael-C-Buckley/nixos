@@ -1,4 +1,8 @@
-{config, lib, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (lib) mkForce mkOption types;
   cfg = config.custom.routing;
 in {
@@ -18,17 +22,17 @@ in {
     };
 
     environment.etc."frr/frr.conf".text = mkForce ''
-        ip forwarding
+      ip forwarding
 
-        router ospf
-          router-id ${cfg.routerId}
+      router ospf
+        router-id ${cfg.routerId}
 
-        int lo
-         ip ospf passive
-         ip ospf area 0
+      int lo
+       ip ospf passive
+       ip ospf area 0
 
-        int eno1
-         ip ospf area 0
+      int eno1
+       ip ospf area 0
     '';
-    };
+  };
 }

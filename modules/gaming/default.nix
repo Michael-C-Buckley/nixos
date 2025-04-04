@@ -4,7 +4,7 @@
   ...
 }: {
   options.features.gaming = {
-    enable = lib.mkEnableOption  "Enable gaming on the host.";
+    enable = lib.mkEnableOption "Enable gaming on the host.";
   };
 
   config = lib.mkIf config.features.gaming.enable {
