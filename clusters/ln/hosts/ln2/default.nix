@@ -29,7 +29,7 @@ in {
   custom.routing.routerId = lo;
 
   networking = {
-    hostId = "";
+    hostId = "d33ab4df";
     hostName = "ln2";
   };
 }
