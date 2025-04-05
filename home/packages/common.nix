@@ -1,5 +1,11 @@
-{pkgs, ...}:
+{pkgs, 
+inputs,
+system,
+...}:
 with pkgs; [
+  #NVF
+  inputs.nvf.packages.${system}.default
+  
   # Git/Web
   git
   tig

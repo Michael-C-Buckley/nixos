@@ -4,10 +4,11 @@
   pkgs,
   lib,
   inputs,
+  system,
   ...
 }: let
   inherit (lib) mkOverride;
-  commonPackages = import ./packages/common.nix {inherit pkgs;};
+  commonPackages = import ./packages/common.nix {inherit pkgs inputs system;};
 in {
   imports = [
     inputs.hjem.nixosModules.default

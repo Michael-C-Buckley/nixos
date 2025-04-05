@@ -19,6 +19,10 @@
       url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nvf = {
+      url = "github:Michael-C-Buckley/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Externally Cached
     cosmic.url = "github:lilyinstarlight/nixos-cosmic";
