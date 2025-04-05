@@ -3,11 +3,13 @@
   config,
   lib,
   pkgs,
+  inputs,
+  system,
   ...
 }: let
   inherit (lib) mkDefault optionalAttrs;
   inherit (config.features.michael) useHome;
-  commonPackages = import ./packages/common.nix {inherit pkgs;};
+  commonPackages = import ./packages/common.nix {inherit pkgs inputs system;};
 in {
   imports = [
     ./options
