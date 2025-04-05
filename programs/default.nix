@@ -22,7 +22,7 @@ in {
     wireshark.enable = mkDefault true;
     zsh.enable = true;
     neovim = {
-      enable = true;
+      # enable = true; # Attempting to see if NVF will take over with the rest
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;

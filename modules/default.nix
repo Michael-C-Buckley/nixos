@@ -7,7 +7,5 @@ _: {
     ./services
     ./storage
     ./virtualization
-
-    ./editors/nvf
   ];
 }

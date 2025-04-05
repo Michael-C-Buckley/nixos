@@ -19,8 +19,8 @@
       url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nvf = {
-      url = "github:notashelf/nvf";
+    michael-nvf = {
+      url = "github:Michael-C-Buckley/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -72,6 +72,5 @@
       // import ./outputs/clusterConfigs.nix {inherit inputs customLib;}
     );
     nixosModules = import ./outputs/nixosModules.nix {};
-    packages = import ./outputs/packages.nix {inherit self;};
   };
 }
