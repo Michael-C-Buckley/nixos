@@ -20,7 +20,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nvf = {
-      url = "github:Michael-C-Buckley/nvf";
+      url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -72,5 +72,6 @@
       // import ./outputs/clusterConfigs.nix {inherit inputs customLib;}
     );
     nixosModules = import ./outputs/nixosModules.nix {};
+    packages = import ./outputs/packages.nix {inherit self;};
   };
 }

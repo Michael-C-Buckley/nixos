@@ -1,10 +1,6 @@
-{pkgs, 
-inputs,
-system,
-...}:
+{pkgs, ...}:
 with pkgs; [
   #Editors
-  inputs.nvf.packages.${system}.default
   emacs
   
   # Git/Web
