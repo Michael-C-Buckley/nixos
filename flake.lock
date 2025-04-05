@@ -202,11 +202,11 @@
         "nixpkgs-lib": "nixpkgs-lib"
       },
       "locked": {
-        "lastModified": 1743550720,
-        "narHash": "sha256-hIshGgKZCgWh6AYJpJmRgFdR3WUbkY04o82X05xqQiY=",
+        "lastModified": 1741352980,
+        "narHash": "sha256-+u2UunDA4Cl5Fci3m7S643HzKmIDAe+fiXrLqYsR2fs=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "c621e8422220273271f52058f618c94e405bb0f5",
+        "rev": "f4330d22f1c5d2ba72d3d22df5597d123fdb60a9",
         "type": "github"
       },
       "original": {
@@ -270,7 +270,7 @@
     },
     "flake-utils_3": {
       "inputs": {
-        "systems": "systems_4"
+        "systems": "systems_5"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -736,9 +736,30 @@
         "url": "https://git.lix.systems/lix-project/lix/archive/release-2.92.tar.gz"
       }
     },
+    "michael-nvf": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nvf": "nvf"
+      },
+      "locked": {
+        "lastModified": 1743888126,
+        "narHash": "sha256-k4sRnd7o7hOArh6GotAoxItB5FJpOWlQHUZLKxDs0bQ=",
+        "owner": "Michael-C-Buckley",
+        "repo": "nvf",
+        "rev": "c6a6fcd11933066c2fdfb5c701e103f3fa7696db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Michael-C-Buckley",
+        "repo": "nvf",
+        "type": "github"
+      }
+    },
     "microvm": {
       "inputs": {
-        "flake-utils": "flake-utils_2",
+        "flake-utils": "flake-utils_3",
         "nixpkgs": "nixpkgs_3",
         "spectrum": "spectrum"
       },
@@ -758,11 +779,11 @@
     },
     "mnw": {
       "locked": {
-        "lastModified": 1743864343,
-        "narHash": "sha256-mPtQxLpA3ZU9QAi1q7nt9G20YXmvL8YA5YB2LH4QjiU=",
+        "lastModified": 1742255973,
+        "narHash": "sha256-XfEGVKatTgEMMOVb4SNp1LYLQOSzzrFTDMVDTZFyMVE=",
         "owner": "Gerg-L",
         "repo": "mnw",
-        "rev": "5f6dcc9f567e42aaced80a7079e4a4f8ac48066f",
+        "rev": "b982dbd5e6d55d4438832b3567c09bc2a129649d",
         "type": "github"
       },
       "original": {
@@ -774,10 +795,12 @@
     "nil": {
       "inputs": {
         "flake-utils": [
+          "michael-nvf",
           "nvf",
           "flake-utils"
         ],
         "nixpkgs": [
+          "michael-nvf",
           "nvf",
           "nixpkgs"
         ],
@@ -873,11 +896,11 @@
     },
     "nixpkgs-lib": {
       "locked": {
-        "lastModified": 1743296961,
-        "narHash": "sha256-b1EdN3cULCqtorQ4QeWgLMrd5ZGOjLSLemfa00heasc=",
+        "lastModified": 1740877520,
+        "narHash": "sha256-oiwv/ZK/2FhGxrCkQkB83i7GnWXPPLzoqFHpDD3uYpk=",
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
-        "rev": "e4822aea2a6d1cdd36653c134cacfd64c97ff4fa",
+        "rev": "147dee35aab2193b174e4c0868bd80ead5ce755c",
         "type": "github"
       },
       "original": {
@@ -1000,20 +1023,21 @@
     "nvf": {
       "inputs": {
         "flake-parts": "flake-parts",
-        "flake-utils": "flake-utils_3",
+        "flake-utils": "flake-utils_2",
         "mnw": "mnw",
         "nil": "nil",
         "nixpkgs": [
+          "michael-nvf",
           "nixpkgs"
         ],
-        "systems": "systems_5"
+        "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1743879624,
-        "narHash": "sha256-y6zpoBBx8vyUxcRvzja4lxU7XYhlNfe7bcaH7HVnEFs=",
+        "lastModified": 1743787548,
+        "narHash": "sha256-hYwIkCtaV4phvzcSkhQ5BcpNBD82KtSqshlOM07pUmk=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "9e958591513a76037bb3c973293f0a9bd818929a",
+        "rev": "5a3ac8993a29ce676ba63365850656cc4789f98c",
         "type": "github"
       },
       "original": {
@@ -1098,6 +1122,7 @@
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "lix": "lix",
+        "michael-nvf": "michael-nvf",
         "microvm": "microvm",
         "nix-index-database": "nix-index-database",
         "nix-secrets": "nix-secrets",
@@ -1106,7 +1131,6 @@
           "cosmic",
           "nixpkgs"
         ],
-        "nvf": "nvf",
         "pre-commit-hooks": "pre-commit-hooks_2",
         "ragenix": "ragenix",
         "sops-nix": "sops-nix",
@@ -1139,6 +1163,7 @@
     "rust-overlay_2": {
       "inputs": {
         "nixpkgs": [
+          "michael-nvf",
           "nvf",
           "nil",
           "nixpkgs"
