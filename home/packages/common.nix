@@ -9,6 +9,7 @@ with pkgs; [
   
   # Git/Web
   git
+  delta
   tig
   curl
   wget
