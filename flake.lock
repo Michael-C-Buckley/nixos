@@ -744,11 +744,11 @@
         "nvf": "nvf"
       },
       "locked": {
-        "lastModified": 1743905135,
-        "narHash": "sha256-yftMyU2x4qjgzC0SRcnnkSqoZjKOYwTUEYGZEGieTPE=",
+        "lastModified": 1743947505,
+        "narHash": "sha256-MO8q9UpwyMK4rv+O2nUPB0sxxJoechrvwwvHS7U+sUo=",
         "owner": "Michael-C-Buckley",
         "repo": "nvf",
-        "rev": "a895396195b58e1c7b29f08e706983db2f1359a3",
+        "rev": "9ef8ce5d35dde25de97cb114a638e5fbf8fbc737",
         "type": "github"
       },
       "original": {
@@ -1033,11 +1033,11 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1743879624,
-        "narHash": "sha256-y6zpoBBx8vyUxcRvzja4lxU7XYhlNfe7bcaH7HVnEFs=",
+        "lastModified": 1743917753,
+        "narHash": "sha256-rtMPRr5aqspypIdCfU8KjuKGlFkBEYnC5sv/sjZW2AQ=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "9e958591513a76037bb3c973293f0a9bd818929a",
+        "rev": "585dfca7ca75c8190bd1596f3ebc6fde6751c7a5",
         "type": "github"
       },
       "original": {
