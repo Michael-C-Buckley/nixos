@@ -2,8 +2,7 @@
   description = "Michael's System Flake";
 
   inputs = {
-    # Following Cosmic to maximize Cachix hits and reduce duplication
-    nixpkgs.follows = "cosmic/nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nix-secrets = {
       url = "git+ssh://git@github.com/Michael-C-Buckley/nix-secrets";
