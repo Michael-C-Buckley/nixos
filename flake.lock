@@ -744,16 +744,16 @@
         "nvf": "nvf"
       },
       "locked": {
-        "lastModified": 1743987963,
-        "narHash": "sha256-g2an9z+uniFUjuIRGO/KC2mpprGcWHu8az6Xt8TGIxc=",
+        "lastModified": 1744052903,
+        "narHash": "sha256-UrVh9KJnqg5E4LFcknaBZTe42yE2x+++7NfN5eVckFI=",
         "owner": "Michael-C-Buckley",
-        "repo": "nvf",
-        "rev": "9f9399abda7cabf56d326c587c2354123df0e04c",
+        "repo": "nvf-flake",
+        "rev": "97e016810a964c19fe01c7033a194db5e5420c32",
         "type": "github"
       },
       "original": {
         "owner": "Michael-C-Buckley",
-        "repo": "nvf",
+        "repo": "nvf-flake",
         "type": "github"
       }
     },
