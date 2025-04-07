@@ -1,12 +1,14 @@
-{pkgs,
-inputs,
-system,
-...}:
+{
+  pkgs,
+  inputs,
+  system,
+  ...
+}:
 with pkgs; [
   #Editors
   emacs
   inputs.michael-nvf.packages.${system}.default
-  
+
   # Git/Web
   git
   delta
