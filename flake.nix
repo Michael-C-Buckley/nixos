@@ -19,7 +19,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     michael-nvf = {
-      url = "github:Michael-C-Buckley/nvf";
+      url = "github:Michael-C-Buckley/nvf-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
