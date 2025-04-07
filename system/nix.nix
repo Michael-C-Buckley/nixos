@@ -2,7 +2,8 @@
   nixpkgs.config.allowUnfree = true;
 
   nix = {
-    package = pkgs.nixVersions.latest;
+    # package = pkgs.nixVersions.latest;
+    package = pkgs.lix;
     settings = {
       auto-optimise-store = true;
       warn-dirty = false;
