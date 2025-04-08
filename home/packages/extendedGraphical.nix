@@ -1,4 +1,8 @@
-{pkgs, ...}:
+{
+  inputs,
+  pkgs,
+  ...
+}:
 with pkgs; [
   # System Utilities
   networkmanagerapplet
@@ -24,6 +28,7 @@ with pkgs; [
   zed-editor
 
   # Communication
+  inputs.zen-browser.packages."${system}".twilight
   librewolf
   signal-desktop
   discord

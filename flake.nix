@@ -23,6 +23,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Applications
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Externally Cached
     cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     hyprland.url = "github:hyprwm/hyprland";
