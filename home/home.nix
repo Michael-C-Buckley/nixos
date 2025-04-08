@@ -37,6 +37,6 @@ in {
     }
     // optionalAttrs useHome {
       file = import ./files/fileList.nix {inherit config lib;};
-      packages = import ./packages/userPkgs.nix {inherit config pkgs lib commonPackages;};
+      packages = import ./packages/userPkgs.nix {inherit config inputs pkgs lib commonPackages;};
     };
 }

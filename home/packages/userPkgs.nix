@@ -1,6 +1,7 @@
 # Base Entry for the Hjem outputs
 {
   config,
+  inputs,
   pkgs,
   lib,
   commonPackages,
@@ -11,5 +12,5 @@
 in
   commonPackages
   ++ optionals minimalGraphical (import ./minimalGraphical.nix {inherit pkgs;})
-  ++ optionals extendedGraphical (import ./extendedGraphical.nix {inherit pkgs;})
+  ++ optionals extendedGraphical (import ./extendedGraphical.nix {inherit inputs pkgs;})
   ++ optionals zed.include [zed.package]
