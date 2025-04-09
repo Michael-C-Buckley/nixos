@@ -24,7 +24,7 @@
   };
 
   features = {
-    displayManager = "ly";
+    displayManager = "greetd";
     gaming.enable = false;
   };
 
