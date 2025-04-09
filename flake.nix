@@ -34,11 +34,6 @@
     hyprland.url = "github:hyprwm/hyprland";
     microvm.url = "github:astro/microvm.nix";
     wfetch.url = "github:iynaix/wfetch";
-    # Lix has a cache but it has few entries and will likely miss
-    lix = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0-3.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # Utilities
     ucodenix.url = "github:e-tho/ucodenix";
