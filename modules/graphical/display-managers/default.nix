@@ -6,6 +6,7 @@
   inherit (lib) types mkOption mkEnableOption mkIf;
 in {
   imports = [
+    ./greetd.nix
     ./ly.nix
     ./sddm.nix
   ];
@@ -13,7 +14,7 @@ in {
   options.features = {
     autoLogin = mkEnableOption {};
     displayManager = mkOption {
-      type = types.enum ["sddm" "ly"];
+      type = types.enum ["sddm" "ly" "greetd"];
       default = "ly";
       description = "Which display manager to run";
     };
