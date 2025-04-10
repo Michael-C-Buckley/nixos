@@ -15,10 +15,12 @@
     router bgp 65100
       no bgp ebgp-requires-policy
       neighbor 192.168.240.241 remote-as 64800
+      network 192.168.48.0/2
 
       address-family ipv4
         network 192.168.48.0/20
         neighbor 192.168.240.241 activate
+      exit
 
     int lo
       ip ospf passive
