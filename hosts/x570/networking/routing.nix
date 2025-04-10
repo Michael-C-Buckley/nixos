@@ -41,11 +41,11 @@
 
   networking = {
     ospf.enable = true;
+                eigrp.enable = true;
     bgp.enable = true;
   };
 
   services.frr = {
     bfdd.enable = true;
-    eigrpd.enable = true;
   };
 }

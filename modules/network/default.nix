@@ -3,6 +3,7 @@
 in {
   imports = [
     ./bgp.nix
+    ./eigrp.nix
     ./ospf.nix
   ];
 
