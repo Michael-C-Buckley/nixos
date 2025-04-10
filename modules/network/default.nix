@@ -2,6 +2,7 @@
   inherit (lib) mkDefault;
 in {
   imports = [
+    ./bgp.nix
     ./ospf.nix
   ];
 

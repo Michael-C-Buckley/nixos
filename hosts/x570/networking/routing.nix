@@ -4,10 +4,21 @@
 
   environment.etc."frr/frr.conf".text = lib.mkForce ''
     ip forwarding
+    ipv6 forwarding
+
+    ip route 192.168.48.0/20 blackhole 250
 
     router ospf
       router-id 192.168.63.10
       default-information originate metric 550 metric-type 1
+
+    router bgp 65100
+      no bgp ebgp-requires-policy
+      neighbor 192.168.240.241 remote-as 64800
+
+      address-family ipv4
+        network 192.168.48.0/20
+        neighbor 192.168.240.241 activate
 
     int lo
       ip ospf passive
@@ -26,13 +37,13 @@
       ip ospf hello-interval 1
   '';
 
+  networking = {
+    ospf.enable = true;
+    bgp.enable = true;
+  };
+
   services.frr = {
-    bgpd.enable = true;
     bfdd.enable = true;
     eigrpd.enable = true;
-    ospfd.enable = true;
-    bgpd.options = ["--limit-fds 2048"];
-    zebra.options = ["--limit-fds 2048"];
-    openFilesLimit = 2048;
   };
 }
