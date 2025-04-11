@@ -11,6 +11,10 @@ _: {
     workspace=2, monitor:DP-1, default:true
     workspace=9, monitor:HDMI-A-2, default:true
     workspace=10, monitor:HDMI-A-2, default:true
+
+    # Overwrite the default so Xwayland is used
+    # Zen is causing a weird series of stability issues only here
+    bind=$mod, O, exec, MOZ_ENABLE_WAYLAND=0 $browser
   '';
 
   features.michael = {
