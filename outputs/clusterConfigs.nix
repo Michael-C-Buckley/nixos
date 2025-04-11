@@ -1,7 +1,4 @@
-{
-  customLib,
-  inputs,
-}: let
+{inputs}: let
   # Build the configs for the hosts based on this function
   clusterConfig = {
     cluster,
@@ -11,11 +8,17 @@
       if host == "o1"
       then "aarch64-linux"
       else "x86_64-linux";
+    pkgs = import inputs.nixpkgs {
+      inherit system;
+      config = {allowUnfree = true;};
+    };
+    lib = inputs.nixpkgs.lib;
+    customLib = import ../lib {inherit pkgs lib;};
   in
     inputs.nixpkgs.lib.nixosSystem {
       # Oracle1 is an exception as it is an ARM host
       inherit system;
-      specialArgs = {inherit customLib host system inputs;};
+      specialArgs = {inherit pkgs customLib lib host system inputs;};
       modules = [
         ../base.nix
         ../clusters/${cluster}
