@@ -41,7 +41,7 @@
 
   networking = {
     ospf.enable = true;
-                eigrp.enable = true;
+    eigrp.enable = true;
     bgp.enable = true;
   };
 
