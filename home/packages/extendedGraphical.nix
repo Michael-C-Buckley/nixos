@@ -28,7 +28,7 @@ with pkgs; [
   zed-editor
 
   # Communication
-  inputs.zen-browser.packages."${system}".twilight
+  inputs.zen-browser.packages."${system}".beta
   librewolf
   signal-desktop
   discord
