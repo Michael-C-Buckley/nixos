@@ -18,7 +18,7 @@
   environment.systemPackages = [pkgs.brightnessctl];
 
   programs = {
-    cosmic.enable = true;
+    cosmic.enable = false;
     hyprland.enable = true;
     nix-index-database.comma.enable = true;
   };
