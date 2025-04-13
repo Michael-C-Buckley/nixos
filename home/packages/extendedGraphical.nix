@@ -1,8 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}:
+{pkgs, ...}:
 with pkgs; [
   # System Utilities
   networkmanagerapplet
@@ -29,8 +25,6 @@ with pkgs; [
 
   # Communication
   bitwarden
-  inputs.zen-browser.packages."${system}".beta
-  vivaldi
   librewolf
   signal-desktop
   discord
