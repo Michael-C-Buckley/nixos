@@ -17,5 +17,5 @@ with pkgs; [
   xfce.thunar # File manager
 
   # Communication
-  brave
+  vivaldi
 ]
