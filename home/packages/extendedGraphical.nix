@@ -28,6 +28,7 @@ with pkgs; [
   zed-editor
 
   # Communication
+  bitwarden
   inputs.zen-browser.packages."${system}".beta
   vivaldi
   librewolf
