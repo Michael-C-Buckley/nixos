@@ -29,6 +29,7 @@ with pkgs; [
 
   # Communication
   inputs.zen-browser.packages."${system}".beta
+  vivaldi
   librewolf
   signal-desktop
   discord
