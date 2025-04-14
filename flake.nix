@@ -51,14 +51,10 @@
   };
 
   # TO-DO: Add support for ARM
-  outputs = {self, ...} @ inputs: let
-    pkgs = import inputs.nixpkgs {
-      system = "x86_64-linux";
-    };
-  in {
+  outputs = {self, ...} @ inputs: {
     checks = import ./outputs/checks.nix {inherit inputs;};
-    devShells.x86_64-linux = import ./outputs/devshells.nix {inherit self pkgs;};
-    homeConfigurations = import ./outputs/homeConfigs.nix {inherit inputs pkgs;};
+    devShells = import ./outputs/devshells.nix {inherit self;};
+    homeConfigurations = import ./outputs/homeConfigs.nix {inherit inputs;};
     nixosConfigurations = (
       import ./outputs/hostConfigs.nix {inherit inputs;}
       // import ./outputs/clusterConfigs.nix {inherit inputs;}

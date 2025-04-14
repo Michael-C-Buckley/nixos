@@ -1,10 +1,13 @@
 # Legacy conversion output where the specific host is
 # I maintain a generic config and some host-specific ones
 # HOWEVER, I have mostly moved to Hjem for NixOS hosts
-{
-  inputs,
-  pkgs,
-}: let
+{inputs}: let
+  # For now, I only use with on X86
+  pkgs = import inputs.nixpkgs {
+    system = "x86_64-linux";
+    config = {allowUnfree = true;};
+  };
+
   hmConfig = modules:
     inputs.home-manager.lib.homeManagerConfiguration {
       extraSpecialArgs = {inherit inputs;};

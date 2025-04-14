@@ -1,42 +1,39 @@
-{
-  self,
-  pkgs,
-}: let
-  commonNixBuildInputs = with pkgs; [
-    self.checks.x86_64-linux.pre-commit-check.enabledPackages
-    # Editing
-    alejandra
-    nil
-    git
-    tig
-    nixd
+{self}: let
+  systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
+in
+  builtins.listToAttrs (map (system: let
+      pkgs = import self.inputs.nixpkgs {
+        inherit system;
+        config = {allowUnfree = true;};
+      };
+    in {
+      name = system;
+      value = {
+        default = self.devShells.${system}.nixos;
 
-    # Security
-    trufflehog
-    rage
-    ragenix
-    sops
-    ssh-to-pgp
-    ssh-to-age
-  ];
-in {
-  default = self.devShells.x86_64-linux.nixos;
-  nixos = pkgs.mkShell {
-    inherit (self.checks.x86_64-linux.pre-commit-check) shellHook;
-    buildInputs = commonNixBuildInputs;
-    env = {
-      TRUFFLEHOG_NO_UPDATE = "1";
-    };
-  };
-  nixosServers = pkgs.mkShell {
-    inherit (self.checks.x86_64-linux.pre-commit-check) shellHook;
-    buildInputs = with pkgs;
-      [
-        ansible
-        ansible-lint
-        ansible-language-server
-        molecule # Ansible testing framework
-      ]
-      ++ commonNixBuildInputs;
-  };
-}
+        nixos = pkgs.mkShell {
+          inherit (self.checks.x86_64-linux.pre-commit-check) shellHook;
+          buildInputs = with pkgs; [
+            self.checks.x86_64-linux.pre-commit-check.enabledPackages
+            # Editing
+            alejandra
+            git
+            tig
+
+            # Utility
+            ansible
+
+            # Security
+            trufflehog
+            rage
+            sops
+            ssh-to-pgp
+            ssh-to-age
+          ];
+          env = {
+            TRUFFLEHOG_NO_UPDATE = "1";
+          };
+        };
+      };
+    })
+    systems)
