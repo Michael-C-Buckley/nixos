@@ -50,7 +50,6 @@
     };
   };
 
-  # TO-DO: Add support for ARM
   outputs = {self, ...} @ inputs: {
     checks = import ./outputs/checks.nix {inherit inputs;};
     devShells = import ./outputs/devshells.nix {inherit self;};
