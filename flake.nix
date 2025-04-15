@@ -1,6 +1,5 @@
 {
   description = "Michael's System Flake";
-  license = "MIT";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
