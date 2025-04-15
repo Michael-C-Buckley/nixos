@@ -31,7 +31,7 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   services.ucodenix = {
-    enable = false;
+    enable = true;
     cpuModelId = "00A20F12";
   };
 

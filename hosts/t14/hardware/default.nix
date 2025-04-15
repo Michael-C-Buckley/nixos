@@ -28,7 +28,7 @@
   networking.useDHCP = lib.mkDefault true;
 
   services.ucodenix = {
-    enable = false;
+    enable = true;
     cpuModelId = "00A50F00";
   };
 
