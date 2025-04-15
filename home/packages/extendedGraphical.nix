@@ -26,7 +26,7 @@ with pkgs; [
   # Communication
   bitwarden
   librewolf
-  signal-desktop
+  signal-desktop-bin
   discord
   materialgram # Telegram fork
   tor-browser
