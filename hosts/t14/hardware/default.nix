@@ -18,7 +18,7 @@
       availableKernelModules = ["nvme" "xhci_pci" "uas" "sd_mod" "sdhci_pci"];
       kernelModules = ["dm-snapshot"];
     };
-    kernelParams = ["amd_pstate=active"]; # AMD Power efficiency on Linux 6.3+
+    kernelParams = ["amd_pstate=active" "microcode.amd_sha_check=off"]; # AMD Power efficiency on Linux 6.3+
     kernelModules = ["kvm" "kvm-amd"];
     extraModulePackages = [];
   };
