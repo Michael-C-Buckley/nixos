@@ -15,7 +15,7 @@
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
     kernelModules = ["kvm" "kvm-amd"];
-    kernelParams = ["amd_pstate=active"]; # AMD Power efficiency on Linux 6.3+
+    kernelParams = ["amd_pstate=active" "microcode.amd_sha_check=off"]; # AMD Power efficiency on Linux 6.3+
     extraModulePackages = [];
     initrd = {
       availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "uas" "sd_mod"];
