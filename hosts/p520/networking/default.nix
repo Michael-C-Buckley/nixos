@@ -1,4 +1,6 @@
-_: {
+{customLib, ...}: let
+  inherit (customLib) mkAddress;
+in {
   imports = [
     ./routing.nix
   ];
@@ -10,7 +12,7 @@ _: {
 
     # WIP: Temporary default static route to avoid issues until VRRP goes online
     defaultGateway = {
-      address = "192.168.48.102";
+      address = "192.168.48.101";
       interface = "br0";
     };
 
@@ -21,12 +23,7 @@ _: {
 
     bridges.br0.interfaces = ["eno1"];
     interfaces.br0.ipv4 = {
-      addresses = [
-        {
-          address = "192.168.48.5";
-          prefixLength = 24;
-        }
-      ];
+      addresses = [mkAddress "192.168.48.5/24"];
     };
   };
 }
