@@ -4,11 +4,22 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkDefault mkEnableOption mkIf;
+  inherit (lib) mkDefault mkOption mkEnableOption mkIf;
+  inherit (lib.types) bool int;
   gns = config.virtualisation.gns3;
 in {
   options.virtualisation.gns3 = {
     enable = mkEnableOption "GNS3";
+    serverPort = mkOption {
+      type = int;
+      default = 3080;
+      description = "GNS3 server listen port";
+    };
+    openFirewall = mkOption {
+      type = bool;
+      default = true;
+      description = "Add a firewall allow entry for TCP and UDP on the server listen port";
+    };
   };
 
   config = mkIf gns.enable {
@@ -21,6 +32,12 @@ in {
       gns3-gui
       gns3-server
     ];
+
+    # Open the firewall
+    networking.firewall = mkIf gns.openFirewall {
+      allowedUDPPorts = [gns.serverPort];
+      allowedTCPPorts = [gns.serverPort];
+    };
 
     services.gns3-server = {
       enable = true;
