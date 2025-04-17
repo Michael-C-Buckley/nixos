@@ -23,13 +23,6 @@ with pkgs; [
   starship
   pure-prompt # For Zsh
 
-  # Security
-  rage
-  ragenix
-  sops
-  ssh-to-pgp
-  ssh-to-age
-
   # Machine Utilities
   python3
   ripgrep
