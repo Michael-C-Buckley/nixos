@@ -12,7 +12,7 @@
     then "true"
     else "false";
 in {
-  # TO-DO: make these available for mutliple users
+  # TO-DO: make these available for multiple users
   options.users.michael.ghostty = {
     config = mkOption {
       type = nullOr str;

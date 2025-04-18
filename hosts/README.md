@@ -1,6 +1,6 @@
 # Hosts
 
-These consiste of individual non-groups NixOS hosts
+These consists of individual non-groups NixOS hosts
 
 ### X570
 
