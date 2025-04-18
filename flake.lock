@@ -777,11 +777,11 @@
         "nixos": []
       },
       "locked": {
-        "lastModified": 1744982890,
-        "narHash": "sha256-MRMpVthjwGM2UL0XeySEMCoi2HTSvWXgdBmtClLhehU=",
+        "lastModified": 1744984141,
+        "narHash": "sha256-WARTHyDNyO1ZKp8r8GFilkPBQdtL2guHOZqcZMWwTaM=",
         "ref": "refs/heads/master",
-        "rev": "e0b8b12bac38e3780f5ab051e311eb602bed4da9",
-        "revCount": 58,
+        "rev": "914aa667b848f57cdfb6cf9d23d63c54d599cb55",
+        "revCount": 59,
         "type": "git",
         "url": "ssh://git@github.com/Michael-C-Buckley/nix-secrets"
       },
