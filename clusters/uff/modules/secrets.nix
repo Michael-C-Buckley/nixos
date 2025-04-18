@@ -3,7 +3,7 @@
   inputs,
   ...
 }: let
-  shh = config.age.secrets;
+  shh = config.sops.secrets;
 in {
   imports = [
     inputs.nix-secrets.nixosModules.uff
