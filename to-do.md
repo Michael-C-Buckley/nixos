@@ -2,6 +2,9 @@
 
 * Setup up caching/remote building
 * Module import structure
+* Finish style consistency of pointers and themes
+* Nebula networking
+* Secrets integration & Migration
 
 ## In Progress
 
