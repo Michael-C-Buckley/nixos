@@ -30,6 +30,9 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
+  # For sound
+  security.rtkit.enable = true;
+
   services.ucodenix = {
     enable = true;
     cpuModelId = "00A20F12";

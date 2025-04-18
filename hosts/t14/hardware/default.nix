@@ -27,6 +27,9 @@
   swapDevices = [];
   networking.useDHCP = lib.mkDefault true;
 
+  # For sound
+  security.rtkit.enable = true;
+
   services.ucodenix = {
     enable = true;
     cpuModelId = "00A50F00";

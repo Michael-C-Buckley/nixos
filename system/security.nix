@@ -1,20 +1,14 @@
 {
   inputs,
   lib,
-  pkgs,
   ...
 }: let
   inherit (lib) mkDefault;
 in {
-  imports = [
-    inputs.ragenix.nixosModules.default
-    inputs.sops-nix.nixosModules.sops
-  ];
-
-  environment.systemPackages = with pkgs; [
-    ragenix
-    rage
-    sops
+  imports = with inputs; [
+    ragenix.nixosModules.default
+    sops-nix.nixosModules.sops
+    nix-secrets.nixosModules.ssh
   ];
 
   age.identityPaths = [
@@ -29,9 +23,7 @@ in {
   # services.resolved.enable = true;
   # environment.etc."systemd/resolved.conf".source = mkForce config.age.secrets.dns.path;
 
-  # TO-DO: only make rtkit for non-servers
   security = {
-    rtkit.enable = true;
     sudo = {
       extraConfig = "Defaults lecture=never";
       wheelNeedsPassword = mkDefault false;

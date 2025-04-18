@@ -10,9 +10,6 @@
 
   system.stateVersion = "24.05";
 
-  # Experimental Nix Serve
-  services.nix-serve.enable = true;
-
   programs = {
     hyprland.enable = true;
     cosmic.enable = false;
