@@ -17,8 +17,6 @@ in {
     "/root/.ssh/id_ed25519"
   ];
 
-  sops.age.keyFile = "/etc/sops/age/host.txt";
-
   # WIP: Age not working on desktop
   # services.resolved.enable = true;
   # environment.etc."systemd/resolved.conf".source = mkForce config.age.secrets.dns.path;
