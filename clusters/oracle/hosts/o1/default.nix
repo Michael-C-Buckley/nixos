@@ -9,6 +9,9 @@
     zfs.enable = true;
   };
 
-  # This service is causing 25.05 to fail because it can't find group 30000 for whatever reason
-  services.logrotate.enable = false;
+  services = {
+    nix-serve.enable = true;
+    # This service is causing 25.05 to fail because it can't find group 30000 for whatever reason
+    logrotate.enable = false;
+  };
 }
