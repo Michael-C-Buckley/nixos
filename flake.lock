@@ -671,6 +671,8 @@
     "michael-nvf": {
       "inputs": {
         "nixpkgs": [
+          "michael-nvf",
+          "nvf",
           "nixpkgs"
         ],
         "nvf": "nvf"
@@ -777,11 +779,11 @@
         "nixos": []
       },
       "locked": {
-        "lastModified": 1744984141,
-        "narHash": "sha256-WARTHyDNyO1ZKp8r8GFilkPBQdtL2guHOZqcZMWwTaM=",
+        "lastModified": 1745115229,
+        "narHash": "sha256-eSNxeHOkN7ni62EvhD6PDPisdYzUE4+E4SQX/79aWME=",
         "ref": "refs/heads/master",
-        "rev": "914aa667b848f57cdfb6cf9d23d63c54d599cb55",
-        "revCount": 59,
+        "rev": "6302ef0eff90db9783e527599ecd3ae9a712cf0a",
+        "revCount": 60,
         "type": "git",
         "url": "ssh://git@github.com/Michael-C-Buckley/nix-secrets"
       },
