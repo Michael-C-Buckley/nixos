@@ -14,9 +14,12 @@ alias ...='cd ../..'
 alias gst='git status'
 alias gco='git checkout'
 alias ga='git add'
+alias gaa='git add *'
 alias gc='git commit'
+alias gcm='git commit -m'
 alias gp='git push'
 alias gf='git fetch'
+alias grv='git remote -v'
 
 # Kubernetes
 alias k='kubectl'
