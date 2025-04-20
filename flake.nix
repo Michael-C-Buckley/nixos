@@ -20,7 +20,6 @@
     };
     michael-nvf = {
       url = "github:Michael-C-Buckley/nvf-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Externally Cached
