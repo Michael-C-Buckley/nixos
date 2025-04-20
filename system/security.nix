@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   lib,
   ...
@@ -9,6 +10,7 @@ in {
     ragenix.nixosModules.default
     sops-nix.nixosModules.sops
     nix-secrets.nixosModules.ssh
+    nix-secrets.nixosModules.common
   ];
 
   age.identityPaths = [
@@ -17,9 +19,11 @@ in {
     "/root/.ssh/id_ed25519"
   ];
 
-  # WIP: Age not working on desktop
-  # services.resolved.enable = true;
-  # environment.etc."systemd/resolved.conf".source = mkForce config.age.secrets.dns.path;
+  services.resolved.enable = true;
+  environment.etc."systemd/resolved.conf" = {
+    source = config.sops.secrets.dns.path;
+    mode = "0644";
+  };
 
   security = {
     sudo = {

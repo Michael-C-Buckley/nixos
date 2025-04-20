@@ -776,14 +776,19 @@
     },
     "nix-secrets": {
       "inputs": {
-        "nixos": []
+        "nixos": [],
+        "nixpkgs": [
+          "nix-secrets",
+          "nixos",
+          "nixpkgs"
+        ]
       },
       "locked": {
-        "lastModified": 1745115229,
-        "narHash": "sha256-eSNxeHOkN7ni62EvhD6PDPisdYzUE4+E4SQX/79aWME=",
+        "lastModified": 1745147777,
+        "narHash": "sha256-fPTZiviwUBKnnwcd9QHgE7MYvyQY6HJIIvarV2c09ro=",
         "ref": "refs/heads/master",
-        "rev": "6302ef0eff90db9783e527599ecd3ae9a712cf0a",
-        "revCount": 60,
+        "rev": "54a5270f81e595fbbe7d69388cf9fc10fea8abfa",
+        "revCount": 64,
         "type": "git",
         "url": "ssh://git@github.com/Michael-C-Buckley/nix-secrets"
       },
