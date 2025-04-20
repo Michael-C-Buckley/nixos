@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkDefault;
+  inherit (lib) mkDefault mkForce;
 in {
   imports = with inputs; [
     ragenix.nixosModules.default
@@ -21,7 +21,8 @@ in {
 
   services.resolved.enable = true;
   environment.etc."systemd/resolved.conf" = {
-    source = config.sops.secrets.dns.path;
+    # There is a conflict default source
+    source = mkForce config.sops.secrets.dns.path;
     mode = "0644";
   };
 
