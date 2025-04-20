@@ -24,6 +24,9 @@
   # Nushell
   ".config/nushell/config.nu".source = ../nushell/config.nu;
 
+  # Vivaldi Browser
+  ".config/vivaldi/custom/phi.css".source = ../vivaldi/phi.css;
+
   # Waybar
   ".config/waybar/config.jsonc".source = ../waybar/custom/config.jsonc;
   ".config/waybar/style.css".source = ../waybar/custom/style.css;
