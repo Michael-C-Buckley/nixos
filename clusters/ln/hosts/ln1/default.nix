@@ -26,6 +26,8 @@ in {
 
   custom.routing.routerId = lo;
 
+  services.kubernetes.kubelet.enable = true;
+
   networking = {
     hostId = "d330b4e9";
     hostName = "ln1";
