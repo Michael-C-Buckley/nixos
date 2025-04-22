@@ -7,7 +7,6 @@
   wfetch = inputs.wfetch.packages.${system}.default;
   commonPkgs = with pkgs; [
     # System
-    home-manager
     fastfetch
     microfetch
     killall
