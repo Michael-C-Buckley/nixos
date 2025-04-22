@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  inputs,
   ...
 }: let
   inherit (lib) mkDefault optionals;
@@ -29,7 +28,6 @@
   ];
 in {
   programs.hyprland = {
-    package = mkDefault inputs.hyprland.packages.x86_64-linux.hyprland;
     xwayland.enable = mkDefault hyprEnable;
   };
   programs.hyprlock.enable = hyprEnable;
