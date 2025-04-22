@@ -24,7 +24,6 @@
 
     # Externally Cached
     cosmic.url = "github:lilyinstarlight/nixos-cosmic";
-    hyprland.url = "github:hyprwm/hyprland";
     microvm.url = "github:astro/microvm.nix";
     wfetch.url = "github:iynaix/wfetch";
 
