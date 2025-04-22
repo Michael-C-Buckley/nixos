@@ -21,7 +21,6 @@
     swww
     rofi-wayland
     xdg-desktop-portal
-    xdg-desktop-portal-hyprland
     nwg-look
     nwg-panel
     nwg-launchers
