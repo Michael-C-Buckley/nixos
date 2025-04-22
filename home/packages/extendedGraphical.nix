@@ -3,36 +3,35 @@ with pkgs; [
   # System Utilities
   networkmanagerapplet
   cpu-x
-  pavucontrol # Pulse Volume control
+  pavucontrol                   # Pulse Volume control
   gammastep
   wireshark
 
   # Cursors
-  graphite-cursors
-  bibata-cursors
-  nordzy-cursor-theme
+  # graphite-cursors
+  # bibata-cursors
+  nordzy-cursor-theme           # Only active theme
 
   # Desktop
-  xfce.thunar # File manager
+  xfce.thunar                   # File manager
 
   # Media
   vlc
-  zathura # PDF Viewer
-  sxiv # Simple photo viewer
+  zathura                       # PDF Viewer
+  sxiv                          # Simple photo viewer
 
   # Productivity
-  kdePackages.kalgebra # Calculator
+  kdePackages.kalgebra          # Calculator
   neovide # Nvim GUI
   obsidian
   libreoffice
-  gimp
+  gimp3
   zed-editor
 
   # Communication
   bitwarden
-  librewolf
   signal-desktop-bin
   discord
-  materialgram # Telegram fork
+  materialgram                  # Telegram fork
   tor-browser
 ]
