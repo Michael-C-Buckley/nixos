@@ -20,6 +20,9 @@
   ".config/gtk-3.0/settings.ini".source = ../userfiles/gtk.conf;
   ".config/gtk-4.0/settings.ini".source = ../userfiles/gtk.conf;
 
+  #Rofi
+  # ".config/rofi/config.rasi".source = ../rofi/config.rasi;
+
   # Shell Common
   ".config/starship.toml".source = ../shells/starship.toml;
   ".config/shells/aliases.sh".source = ../shells/aliases.sh;
