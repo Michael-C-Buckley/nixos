@@ -52,7 +52,7 @@ in
   // generateCluster {
     cluster = "oracle";
     hostPrefix = "o";
-    max = 2;
+    max = 3;
   }
   // generateCluster {
     cluster = "ln";
