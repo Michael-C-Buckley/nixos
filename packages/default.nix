@@ -18,20 +18,14 @@
     starship
     comma
 
-    # Editor
-    neovim
-
     # Development/Management
     python3
     git
     tig
-    alejandra
-    nixd
-    nil
-    nixfmt-rfc-style
 
     # File/Navigation
     lsd
+    eza
     fd
     du-dust
     fzf
