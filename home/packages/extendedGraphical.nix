@@ -7,6 +7,11 @@ with pkgs; [
   gammastep
   wireshark
 
+  # Cursors
+  graphite-cursors
+  bibata-cursors
+  nordzy-cursor-theme
+
   # Desktop
   xfce.thunar # File manager
 
