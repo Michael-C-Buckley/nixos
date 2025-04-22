@@ -6,9 +6,6 @@ with pkgs; [
   cliphist
   wl-clipboard-x11
 
-  # Cursor
-  graphite-cursors
-
   # Display
   cage
 
