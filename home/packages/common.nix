@@ -21,7 +21,7 @@ with pkgs; [
   fish
   nushell
   starship
-  pure-prompt # For Zsh
+  pure-prompt               # For Zsh
 
   # Machine Utilities
   python3
