@@ -39,6 +39,9 @@
   ".config/waybar/style.css".source = ../waybar/custom/style.css;
   ".config/waybar/scripts/powerdraw.sh".source = ../waybar/waybar-minimal/scripts/powerdraw.sh;
 
+  # X-server
+  ".config/.Xresources".source = ../userfiles/Xresources;
+
   # Zsh
   ".zshrc".source = ../zsh/default.zshrc;
   ".config/zsh/geometry/myGeometry.zsh".source = ../zsh/myGeometry.zsh;
