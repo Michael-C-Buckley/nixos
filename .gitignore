@@ -1,3 +1,7 @@
 result
 .direnv
 .pre-commit-config.yaml
+
+# Image files
+*.raw
+*.qcow2
