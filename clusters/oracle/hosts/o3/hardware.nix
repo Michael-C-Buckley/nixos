@@ -9,11 +9,7 @@
       availableKernelModules = ["ata_piix" "uhci_hcd" "xen_blkfront" "vmw_pvscsi"];
       kernelModules = ["nvme"];
     };
-    loader.grub = {
-      efiSupport = true;
-      efiInstallAsRemovable = true;
-      device = "nodev";
-    };
+    zfs.extraPools = ["zroot"];
   };
 
   fileSystems = {
