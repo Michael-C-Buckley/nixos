@@ -1,6 +1,8 @@
-_: {
+{inputs, ...}: {
   imports = [
+    inputs.disko.nixosModules.disko
     ./networking.nix
+    # ./disko.nix
   ];
 
   features = {

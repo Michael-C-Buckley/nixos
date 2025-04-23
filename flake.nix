@@ -28,6 +28,10 @@
     wfetch.url = "github:iynaix/wfetch";
 
     # Utilities
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     ucodenix.url = "github:e-tho/ucodenix";
     sops-nix.url = "github:Mic92/sops-nix";
     nix-index-database = {
