@@ -6,19 +6,9 @@
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
-  boot = {
-    # Swap to Grub
-    loader = lib.mkForce {
-      systemd-boot.enable = false;
-      efi.canTouchEfiVariables = false;
-      grub = {
-        enable = true;
-        efiSupport = true;
-        efiInstallAsRemovable = true;  # ⬅ Ensures BOOTX64.EFI is installed!
-        device = "nodev";              # Required for UEFI boot
-      };
-    };
+  features.boot = "grub";
 
+  boot = {
     tmp.cleanOnBoot = true;
     kernelModules = ["kvm-amd"];
     initrd = {
