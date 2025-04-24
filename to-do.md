@@ -27,15 +27,14 @@ Something for myself as I learn this process.  YMMV on the store path of OVMF, i
 * Build it:
 `sudo ./result --build-memory 16384`
 
-* Run the VM
+* Run the VM (Oracle appears to have settings similar to these)
 ```
-qemu-system-x86_64
-  -m 16G \
-  -machine type=q35,accel=kvm \
-  -smp 8 \
+qemu-system-x86_64 \
+  -m 1G \
+  -machine type=pc-i440fx-7.2,accel=kvm \
+  -smp 2 \
   -drive format=raw,file=main.raw \
   -cpu host \
   -display default \
-  -vga virtio \
-  -bios /nix/store/ypfbsa465m41zyxkcdgqhlgc7j9411di-OVMF-202411-fd/FV/OVMF.fd
+  -vga virtio -bios /nix/store/ypfbsa465m41zyxkcdgqhlgc7j9411di-OVMF-202411-fd/FV/OVMF.fd
 ```
