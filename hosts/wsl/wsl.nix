@@ -1,8 +1,6 @@
 _: {
-  # Disable the default boot module
-  disabledModules = [
-    ../../system/boot.nix
-  ];
+  # Disable the default boot options, as WSL has its own
+  features.boot = "non";
 
   wsl = {
     enable = true;
