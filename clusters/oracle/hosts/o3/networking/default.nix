@@ -4,7 +4,7 @@ _: {
   ];
 
   networking = {
-    hostName = "o2";
+    hostName = "o3";
     hostId = "f82ab703";
     firewall = {
       allowedUDPPortRanges = [

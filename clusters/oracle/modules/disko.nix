@@ -1,4 +1,4 @@
-let
+{config, ...}: let
   zfsFs = mount: {
     mountpoint = mount;
     options.mountpoint = "legacy";
@@ -47,6 +47,13 @@ in {
     };
     zpool."zroot" = {
       type = "zpool";
+      preCreateHook = ''
+        hostid=${config.networking.hostId}
+        printf "\\x${hostid:0:2}\\x${hostid:2:2}\\x${hostid:4:2}\\x${hostid:6:2}" > /etc/hostid
+      '';
+      postCreateHook = ''
+        zpool set multihost=on zroot
+      '';
       datasets = {
         "nix" = zfsFs "/nix";
         "root" = zfsFs "/";
