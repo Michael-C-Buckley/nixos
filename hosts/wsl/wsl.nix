@@ -1,6 +1,6 @@
 _: {
   # Disable the default boot options, as WSL has its own
-  features.boot = "non";
+  features.boot = "none";
 
   wsl = {
     enable = true;
