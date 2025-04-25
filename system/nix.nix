@@ -1,9 +1,22 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: let
+  inherit (lib) mapAttrs mapAttrsToList;
+in {
   nixpkgs.config.allowUnfree = true;
 
   nix = {
     # package = pkgs.nixVersions.latest;
     package = pkgs.lix;
+
+    # Disable channels and add the inputs to the registry
+    channel.enable = false;
+    registry = mapAttrs (_: flake: {inherit flake;}) inputs;
+    nixPath = mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
+
     settings = {
       auto-optimise-store = true;
       warn-dirty = false;
@@ -11,6 +24,11 @@
         "nix-command"
         "flakes"
       ];
+
+      # Disable channels and add the inputs to the registry
+      nix-path = mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
+      flake-registry = "";
+
       substituters = [
         "https://cache.nixos.org"
         "https://nix-community.cachix.org"
