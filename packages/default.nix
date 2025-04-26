@@ -10,6 +10,7 @@
     fastfetch
     microfetch
     killall
+    nh
 
     # Shells (Zsh defined on its own)
     nushell

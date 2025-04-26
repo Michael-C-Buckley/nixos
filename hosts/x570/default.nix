@@ -22,6 +22,7 @@
   };
 
   virtualisation = {
+    incus.enable = true;
     libvirtd.enable = true;
     gns3.enable = true;
   };
