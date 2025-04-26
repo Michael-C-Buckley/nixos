@@ -1,10 +1,4 @@
-{
-  pkgs,
-  inputs,
-  system,
-  ...
-}: let
-  wfetch = inputs.wfetch.packages.${system}.default;
+{pkgs, ...}: let
   commonPkgs = with pkgs; [
     # System
     fastfetch
@@ -15,7 +9,6 @@
     # Shells (Zsh defined on its own)
     nushell
     tmux
-    wfetch
     starship
     comma
 

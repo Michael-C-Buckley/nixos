@@ -25,7 +25,6 @@
     # Externally Cached
     cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     microvm.url = "github:astro/microvm.nix";
-    wfetch.url = "github:iynaix/wfetch";
 
     # Utilities
     disko = {
