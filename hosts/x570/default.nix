@@ -20,6 +20,7 @@
     michael.nvf.package = "default";
     displayManager = "greetd";
     gaming.enable = true;
+    pkgs.fonts = true;
   };
 
   virtualisation = {
