@@ -7,7 +7,7 @@
     };
     features.pkgs.fonts = lib.mkOption {
       type = lib.types.bool;
-      default = true;
+      default = false;
       description = "Include additional fonts.";
     };
   };
