@@ -6,6 +6,8 @@
     ./wsl.nix
   ];
 
+  features.michael.nvf.package = "default";
+
   networking = {
     hostName = "wsl";
     hostId = "e07f0101";

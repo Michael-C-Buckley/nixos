@@ -1,13 +1,16 @@
 {
+  config,
   pkgs,
   inputs,
   system,
   ...
-}:
-with pkgs; [
+}: let 
+  nvf = inputs.michael-nvf.packages.${system};
+  nvfPkg = config.features.michael.nvf.package;
+in with pkgs; [
   #Editors
   emacs
-  inputs.michael-nvf.packages.${system}.default
+  nvf.${nvfPkg}
 
   # Git/Web
   git
