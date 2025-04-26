@@ -17,6 +17,18 @@ in {
     registry = mapAttrs (_: flake: {inherit flake;}) inputs;
     nixPath = mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
 
+    extraOptions = ''
+      accept-flake-config      = True
+
+      # Optimizing cache requests with faster failing
+      connect-timeout          = 5
+      stalled-download-timeout = 30
+      download-attempts        = 2
+      http-connections         = 50
+      max-substitution-jobs    = 32
+      fallback                 = true
+    '';
+
     settings = {
       auto-optimise-store = true;
       warn-dirty = false;
