@@ -18,7 +18,7 @@ in {
     nixPath = mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
 
     extraOptions = ''
-      accept-flake-config      = True
+      accept-flake-config      = true
 
       # Optimizing cache requests with faster failing
       connect-timeout          = 5
