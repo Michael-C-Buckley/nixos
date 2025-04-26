@@ -8,7 +8,7 @@
 }: let
   inherit (lib) optionals;
   inherit (config.features.michael) minimalGraphical extendedGraphical;
-  zed = config.features.michael.packages.zed;
+  zed = config.features.michael.zed;
 in
   commonPackages
   ++ optionals minimalGraphical (import ./minimalGraphical.nix {inherit pkgs;})

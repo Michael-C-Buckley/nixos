@@ -24,6 +24,7 @@
   };
 
   features = {
+    michael.nvf.package = "default";
     displayManager = "greetd";
     gaming.enable = false;
   };

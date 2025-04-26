@@ -18,6 +18,7 @@ _: {
     vscode.enable = true;
     waybar.enable = true;
     hyprland.enable = true;
-    packages.zed.include = true;
+    zed.include = true;
+    nvf.package = "default";
   };
 }
