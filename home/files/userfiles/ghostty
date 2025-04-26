@@ -1,8 +1,9 @@
-keybind = ctrl+z=close_surface
-keybind = ctrl+j=new_split:down
-keybind = ctrl+h=new_split:left
-keybind = ctrl+k=new_split:up
-keybind = ctrl+l=new_split:right
+# I'm not using these since I use tiling at the WM level
+#keybind = ctrl+z=close_surface
+#keybind = ctrl+j=new_split:down
+#keybind = ctrl+h=new_split:left
+#keybind = ctrl+k=new_split:up
+#keybind = ctrl+l=new_split:right
 
 theme = Seti
 
