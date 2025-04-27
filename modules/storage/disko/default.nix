@@ -60,7 +60,7 @@ in {
           partitions = import ./partitions.nix {inherit config;};
         };
       };
-      zpool."zroot" = import ./zroot.nix;
+      zpool."zroot" = import ./zroot.nix {inherit config;};
       nodev = import ./nodevs.nix {inherit config;};
     };
   };
