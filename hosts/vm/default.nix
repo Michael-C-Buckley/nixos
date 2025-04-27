@@ -17,7 +17,7 @@ _: {
       enable = true;
       main = {
         device = "/dev/sda"; # First virtual drive
-        imageSize = "20G";
+        imageSize = "10G";
       };
     };
   };
