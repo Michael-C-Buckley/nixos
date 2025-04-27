@@ -9,7 +9,12 @@
   ];
 
   boot = {
-    zfs.forceImportRoot = true; # Workaround until Disko ZFS multihost is fixed
+    # Force Import seems to be required for the firstr boot of the device
+    # when created using Disko per this repo's settings.
+    # It can be remove afterward.
+    zfs.forceImportRoot = lib.mkForce true;
+
+    # Normal operational settings which do not require tampering
     kernelModules = ["kvm-amd"];
     extraModulePackages = [];
     initrd = {
@@ -20,4 +25,5 @@
 
   networking.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  system.stateVersion = "25.05";
 }

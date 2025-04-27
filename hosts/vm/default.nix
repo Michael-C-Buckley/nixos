@@ -3,7 +3,10 @@ _: {
     ./hardware.nix
   ];
 
-  networking.hostId = "11111111";
+  networking = {
+    hostName = "vm";
+    hostId = "11111111";
+  };
 
   # programs.hyprland.enable = true;
 
