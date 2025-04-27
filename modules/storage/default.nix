@@ -1,6 +1,7 @@
 _: {
   imports = [
     # ./nfs.nix
+    ./disko
     ./zfs.nix
   ];
 
