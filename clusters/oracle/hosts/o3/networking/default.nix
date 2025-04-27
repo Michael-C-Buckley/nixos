@@ -4,6 +4,7 @@ _: {
   ];
 
   networking = {
+    useDHCP = true;
     hostName = "o3";
     hostId = "f82ab703";
     firewall = {
