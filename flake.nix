@@ -60,5 +60,6 @@
       // import ./outputs/clusterConfigs.nix {inherit inputs;}
     );
     nixosModules = import ./outputs/nixosModules.nix {};
+    packages = import ./outputs/packages.nix {inherit self;};
   };
 }
