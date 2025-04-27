@@ -4,14 +4,14 @@
   ...
 }: {
   systemd.services = {
-    "wireguard-cary4" = customLib.wireguardInterface {
+    "wireguard-mt1" = customLib.wireguardInterface {
       inherit config;
-      name = "cary4";
+      name = "mt1";
       ipAddresses = ["192.168.78.2/27"];
     };
-    "wireguard-creekstoneM4" = customLib.wireguardInterface {
+    "wireguard-mt3" = customLib.wireguardInterface {
       inherit config;
-      name = "creekstoneM4";
+      name = "mt3";
       ipAddresses = ["192.168.62.2/27"];
     };
     "wireguard-o1" = customLib.wireguardInterface {
