@@ -7,6 +7,9 @@ with pkgs; [
   gammastep
   wireshark
 
+  # Extra things I'm just checking out
+  flow-control
+
   # Cursors
   # graphite-cursors
   # bibata-cursors
