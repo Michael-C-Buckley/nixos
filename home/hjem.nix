@@ -14,6 +14,11 @@ in {
     inputs.hjem.nixosModules.default
     ./options
     ./modules/vscode/hjem.nix
+    (import ./modules {
+      user = "michael";
+      inherit config lib;
+    })
+    ./michael.nix
   ];
 
   users.users = {
@@ -33,7 +38,10 @@ in {
       enable = true;
       user = "michael";
       directory = "/home/michael";
-      files = import ./files/fileList.nix {inherit config lib;};
+      files = lib.mkMerge [
+        (import ./files/fileList.nix {inherit config lib;})
+        config.home.features.michael.fileList
+      ];
     };
     # Here's an attempt at seeing if Hjem can apply user configs to root
     users.root = {

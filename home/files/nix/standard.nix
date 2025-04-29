@@ -17,8 +17,8 @@
   ".gitconfig".source = ../userfiles/.gitconfig;
 
   #GTK
-  ".config/gtk-3.0/settings.ini".source = ../userfiles/gtk.conf;
-  ".config/gtk-4.0/settings.ini".source = ../userfiles/gtk.conf;
+  #".config/gtk-3.0/settings.ini".source = ../userfiles/gtk.conf;
+  #".config/gtk-4.0/settings.ini".source = ../userfiles/gtk.conf;
 
   #Rofi
   # ".config/rofi/config.rasi".source = ../rofi/config.rasi;
@@ -40,7 +40,7 @@
   ".config/waybar/scripts/powerdraw.sh".source = ../waybar/waybar-minimal/scripts/powerdraw.sh;
 
   # X-server
-  ".config/.Xresources".source = ../userfiles/Xresources;
+  #".config/.Xresources".source = ../userfiles/Xresources;
 
   # Zsh
   ".zshrc".source = ../zsh/default.zshrc;
