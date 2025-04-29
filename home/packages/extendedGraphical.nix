@@ -11,8 +11,6 @@ with pkgs; [
   flow-control
 
   # Cursors
-  # graphite-cursors
-  # bibata-cursors
   nordzy-cursor-theme           # Only active theme
 
   # Desktop
@@ -20,21 +18,20 @@ with pkgs; [
 
   # Media
   vlc
-  zathura                       # PDF Viewer
   sxiv                          # Simple photo viewer
 
   # Productivity
   kdePackages.kalgebra          # Calculator
-  neovide # Nvim GUI
   obsidian
-  libreoffice
   gimp3
-  zed-editor
+
+  # Development
+  nix-search-tv
 
   # Communication
+  vivaldi
   bitwarden
   signal-desktop-bin
   discord
   materialgram                  # Telegram fork
-  tor-browser
 ]
