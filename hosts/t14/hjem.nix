@@ -8,7 +8,6 @@ _: {
     vscode.enable = true;
     waybar.enable = true;
     hyprland.enable = true;
-    zed.include = true;
     nvf.package = "default";
   };
 }

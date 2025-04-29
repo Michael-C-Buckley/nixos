@@ -12,11 +12,14 @@ with pkgs; [
   # Terminals
   ghostty
   kitty
-
-  # Desktop
-  xfce.thunar # File manager
+  flow-control    # Simple TUI IDE
 
   # Communication
+<<<<<<< Updated upstream
   vivaldi
+||||||| Stash base
+  vivaldi
+=======
+>>>>>>> Stashed changes
   librewolf
 ]

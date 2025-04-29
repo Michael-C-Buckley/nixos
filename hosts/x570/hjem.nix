@@ -18,7 +18,6 @@ _: {
     vscode.enable = true;
     waybar.enable = true;
     hyprland.enable = true;
-    zed.include = true;
-    nvf.package = "default";
+    nvf.package = "d2013233974efault";
   };
 }
