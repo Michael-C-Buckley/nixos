@@ -18,4 +18,5 @@ with pkgs; [
 
   # Communication
   vivaldi
+  librewolf
 ]
