@@ -21,8 +21,6 @@ in {
     allowBroken = false;
   };
 
-  programs.home-manager.enable = true;
-
   home =
     {
       username = "michael";
