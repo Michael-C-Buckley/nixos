@@ -15,11 +15,6 @@ with pkgs; [
   flow-control    # Simple TUI IDE
 
   # Communication
-<<<<<<< Updated upstream
   vivaldi
-||||||| Stash base
-  vivaldi
-=======
->>>>>>> Stashed changes
   librewolf
 ]
