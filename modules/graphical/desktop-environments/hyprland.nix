@@ -20,6 +20,7 @@
     swww
     rofi-wayland
     xdg-desktop-portal
+    kdePackages.dolphin
 
     # GTK Tools
     nwg-look
