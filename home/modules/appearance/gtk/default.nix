@@ -69,4 +69,10 @@ in {
       };
     };
   };
+  config = {
+    users.users.${user}.packages = [
+      local.theme.package
+      local.iconTheme.package
+    ];
+  };
 }
