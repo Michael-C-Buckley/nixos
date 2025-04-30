@@ -26,5 +26,9 @@ in {
       viAlias = true;
       vimAlias = true;
     };
+    nh = {
+      enable = true;
+      flake = mkDefault "/etc/nixos";
+    };
   };
 }
