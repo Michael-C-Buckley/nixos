@@ -37,7 +37,7 @@
   # Waybar
   ".config/waybar/config.jsonc".source = ../waybar/custom/config.jsonc;
   ".config/waybar/style.css".source = ../waybar/custom/style.css;
-  ".config/waybar/scripts/powerdraw.sh".source = ../waybar/waybar-minimal/scripts/powerdraw.sh;
+  ".config/waybar/scripts/powerdraw.sh".source = ../waybar/custom/powerdraw.sh;
 
   # X-server
   #".config/.Xresources".source = ../userfiles/Xresources;
