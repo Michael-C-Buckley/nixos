@@ -84,4 +84,9 @@ in {
       };
     };
   };
+  config = {
+    users.users.${user}.packages = [
+      local.package
+    ];
+  };
 }
