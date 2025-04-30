@@ -48,7 +48,7 @@
     "format-critical": " {temperatureC}°C",
     "interval": 1,
     "critical-threshold": 65,
-    "on-click": "hyprctl dispatch exec '[float;center;size 1400 1000]kitty btop'",
+    "on-click": "hyprctl dispatch exec '[float;center;size 1400 1000]ghostty --command=btop'",
   },
   "custom/powerDraw": {
     "format": "{}",
