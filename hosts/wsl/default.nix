@@ -1,10 +1,12 @@
-{inputs, ...}: {
+{inputs, pkgs, ...}: {
   imports = [
     inputs.nixos-wsl.nixosModules.default
     inputs.nix-index-database.nixosModules.nix-index
     ./hjem.nix
     ./wsl.nix
   ];
+
+  environment.systemPackages = [pkgs.brave];
 
   features.michael.nvf.package = "default";
 
