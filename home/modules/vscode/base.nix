@@ -17,6 +17,9 @@
       formulahendry.auto-rename-tag # Matches XML tags while editing
       alefragnani.bookmarks
 
+      # Tree-sitter
+      plugins.alecghost.tree-sitter-vscode
+
       # Ansible
       redhat.ansible
       redhat.vscode-yaml
@@ -30,10 +33,10 @@
       catppuccin.catppuccin-vsc
       jdinhlife.gruvbox
       plugins.wicked-labs.wvsc-serendipity
-      plugins.robbowen.synthwave-vscode
-      plugins.eliverlara.andromeda
       plugins.keifererikson.nightfox
       plugins.michalpopek.dayfox-vsc
+      plugins.mthierman.theme-flexoki
+      plugins.metaphore.kanagawa-vscode-color-theme
 
       # Python
       ms-python.python
@@ -56,6 +59,7 @@
       # Networking
       plugins.jamiewoodio.cisco
       plugins.ispapp.mikrotik-routeros-script-tools
+      plugins.srl-labs.vscode-containerlab
     ];
   })
 ]

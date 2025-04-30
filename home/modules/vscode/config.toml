@@ -1,0 +1,18 @@
+vscode_version = "1.99.3"
+
+extensions = [
+    # Themes
+    "wicked-labs"."wvsc-serendipity"
+    "keifererikson.nightfox",
+    "michalpopek.dayfox-vsc",
+    "mthierman.theme-flexoki",
+    "metaphore.kanagawa-vscode-color-theme",
+
+    # Editor Tools
+    "AlecGhost.tree-sitter-vscode",
+
+    # Networking Tools
+    "jamiewoodio.cisco",
+    "ispapp.mikrotik-routeros-script-tools",
+    "srl-labs.vscode-containerlab",
+]
