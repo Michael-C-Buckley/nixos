@@ -11,19 +11,26 @@
   hyprPkgs = with pkgs; [
     hyprshot
     hyprpaper
-    hyprlock
     hyprcursor
+    hyprsunset
+    hyprpolkitagent # Auth agent
     dunst
     waybar
-    swayws
-    wlogout
     libnotify
     swww
     rofi-wayland
     xdg-desktop-portal
+
+    # GTK Tools
     nwg-look
     nwg-panel
     nwg-launchers
+
+    # Clipboard
+    clipse
+    wl-clip-persist
+    wl-clipboard
+    xclip
   ];
 in {
   programs.hyprland = {
