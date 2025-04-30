@@ -4,7 +4,7 @@
   inputs,
   system,
   ...
-}: let 
+}: let
   nvf = inputs.michael-nvf.packages.${system};
   nvfPkg = config.features.michael.nvf.package;
 in with pkgs; [
@@ -25,6 +25,7 @@ in with pkgs; [
   nushell
   starship
   pure-prompt               # For Zsh
+  yazi
 
   # Machine Utilities
   python3
