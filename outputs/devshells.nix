@@ -20,9 +20,6 @@ in
             git
             tig
 
-            # Utility
-            ansible
-
             # Security
             trufflehog
             rage
