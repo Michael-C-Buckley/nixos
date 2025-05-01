@@ -1,39 +1,27 @@
-{...}: let
+{inputs, ...}: let
   zfsFs = name: {
-    device = "rpool/root/${name}";
+    device = "zroot/${name}";
     fsType = "zfs";
-  };
-  bindMnt = device: {
-    device = device;
-    fsType = "none";
-    options = ["bind"];
+    neededForBoot = true;
   };
 in {
+  imports = [
+    inputs.impermanence.nixosModules.impermanence
+    ../../../modules/storage/impermanence.nix
+  ];
   fileSystems = {
     # Physical
     "/boot" = {
-      device = "/dev/disk/by-uuid/B227-3C56";
+      device = "/dev/disk/by-label/BOOTDEV";
       fsType = "vfat";
-      options = ["fmask=0022" "dmask=0022"];
-    };
-    "/drives/xfs-pool" = {
-      device = "/dev/disk/by-uuid/0e9f0e00-eca4-4d8f-a12f-7534b8939d9d";
-      fsType = "xfs";
-    };
-    "/drives/ext4-pool" = {
-      device = "/dev/disk/by-uuid/cdfdca97-9c34-41d6-9a7f-fa190c920088";
-      fsType = "ext4";
     };
 
     # ZFS Volumes
-    "/" = zfsFs "nixos-2411";
-    "/home" = zfsFs "home";
+    #  Root and tmp are a fallbacks for tmpfs
+    "/" = zfsFs "nixroot";
+    "/tmp" = zfsFs "tmp";
     "/nix" = zfsFs "nix";
-
-    # Bind mounts
-    "/var/lib/libvirt" = bindMnt "/drives/xfs-pool/libvirt";
-    "/var/lib/docker" = bindMnt "/drives/xfs-pool/docker";
-    "/home/michael/Downloads" = bindMnt "/drives/ext4-pool/downloads";
-    "/home/michael/Downloads/ISOs" = bindMnt "/drives/xfs-pool/downloads";
+    "/cache" = zfsFs "cache";
+    "/persist" = zfsFs "persist";
   };
 }
