@@ -19,8 +19,9 @@ let
 in
   [
     {
+      # Close buffer
       mode = "n";
-      key = "<leader>bd";
+      key = "<leader>bd<CR>";
       action = ":bd";
       silent = true;
     }
