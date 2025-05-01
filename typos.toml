@@ -5,4 +5,5 @@ extend-ignore-identifiers-re = [
 
 [default.extend-words]
 routeros = "routeros"
-metaphore = "metaphore" # vscode extension ublisher
+metaphore = "metaphore" # vscode extension publisher
+noice = "noice" # Nvim extension

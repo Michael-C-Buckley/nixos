@@ -1,4 +1,5 @@
-{inputs}: let
+{self}: let
+  inherit (self) inputs;
   # Build the configs for the hosts based on this function
   clusterConfig = {
     cluster,
@@ -18,7 +19,7 @@
     inputs.nixpkgs.lib.nixosSystem {
       # Oracle1 is an exception as it is an ARM host
       inherit system;
-      specialArgs = {inherit pkgs customLib lib host system inputs;};
+      specialArgs = {inherit self pkgs customLib lib host system inputs;};
       modules = [
         ../base.nix
         ../clusters/${cluster}
