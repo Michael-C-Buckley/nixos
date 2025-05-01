@@ -26,7 +26,7 @@ with pkgs; [
   gimp3
 
   # Development
-  # Custom
+  # **Persist: ~/.cache/nix-search-tv
     (writeShellApplication {
       name = "ns";
       runtimeInputs = with pkgs; [
