@@ -9,6 +9,8 @@ in {
     inputs.impermanence.nixosModules.impermanence
     ../../../modules/storage/impermanence.nix
   ];
+  boot.zfs.forceImportAll = true;
+
   fileSystems = {
     # Physical
     "/boot" = {
