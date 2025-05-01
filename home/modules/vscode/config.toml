@@ -8,6 +8,7 @@ extensions = [
     "mthierman.theme-flexoki",
     "metaphore.kanagawa-vscode-color-theme",
     "zhuangtongfa.Material-theme",
+    "ddiu8081.moegi-theme",
 
     # Editor Tools
     "AlecGhost.tree-sitter-vscode",
