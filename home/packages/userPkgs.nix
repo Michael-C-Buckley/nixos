@@ -5,6 +5,7 @@
   pkgs,
   lib,
   commonPackages,
+  ...
 }: let
   inherit (lib) optionals;
   inherit (config.features.michael) minimalGraphical extendedGraphical;

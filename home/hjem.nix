@@ -1,5 +1,6 @@
 # Base Entry for the Hjem outputs
 {
+  self,
   config,
   pkgs,
   lib,
@@ -8,7 +9,7 @@
   ...
 }: let
   inherit (lib) mkOverride;
-  commonPackages = import ./packages/common.nix {inherit config pkgs inputs system;};
+  commonPackages = import ./packages/common.nix {inherit self config pkgs inputs system;};
 in {
   imports = [
     inputs.hjem.nixosModules.default

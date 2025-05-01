@@ -49,6 +49,9 @@
       url = "github:nix-community/nixos-vscode-server";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Applications
+    nvf.url = "github:notashelf/nvf";
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -59,10 +62,10 @@
   outputs = {self, ...} @ inputs: {
     checks = import ./outputs/checks.nix {inherit inputs;};
     devShells = import ./outputs/devshells.nix {inherit self;};
-    homeConfigurations = import ./outputs/homeConfigs.nix {inherit inputs;};
+    homeConfigurations = import ./outputs/homeConfigs.nix {inherit self;};
     nixosConfigurations = (
-      import ./outputs/hostConfigs.nix {inherit inputs;}
-      // import ./outputs/clusterConfigs.nix {inherit inputs;}
+      import ./outputs/hostConfigs.nix {inherit self;}
+      // import ./outputs/clusterConfigs.nix {inherit self;}
     );
     nixosModules = import ./outputs/nixosModules.nix {};
     packages = import ./outputs/packages.nix {inherit self;};

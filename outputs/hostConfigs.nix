@@ -1,4 +1,5 @@
-{inputs}: let
+{self}: let
+  inherit (self) inputs;
   # All current individual hosts are currently X86
   system = "x86_64-linux";
   # Build the configs for the hosts based on this function
@@ -11,7 +12,7 @@
     customLib = import ../lib {inherit pkgs lib;};
   in
     inputs.nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit pkgs customLib lib host system inputs;};
+      specialArgs = {inherit self pkgs customLib lib host system inputs;};
       modules = [
         ../base.nix
         ../hosts/${host}

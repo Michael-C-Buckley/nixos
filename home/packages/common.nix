@@ -1,12 +1,12 @@
 {
+  self,
   config,
   pkgs,
-  inputs,
   system,
   ...
 }: let
-  nvf = inputs.michael-nvf.packages.${system};
-  nvfPkg = config.features.michael.nvf.package;
+  nvf = self.outputs.packages.${system};
+  nvfPkg = "nvf-${config.features.michael.nvf.package}";
 in with pkgs; [
   #Editors
   emacs

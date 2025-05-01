@@ -1,7 +1,8 @@
 # Legacy conversion output where the specific host is
 # I maintain a generic config and some host-specific ones
 # HOWEVER, I have mostly moved to Hjem for NixOS hosts
-{inputs}: let
+{self}: let
+  inherit (self) inputs;
   # For now, I only use with on X86
   pkgs = import inputs.nixpkgs {
     system = "x86_64-linux";
@@ -10,7 +11,7 @@
 
   hmConfig = modules:
     inputs.home-manager.lib.homeManagerConfiguration {
-      extraSpecialArgs = {inherit inputs;};
+      extraSpecialArgs = {inherit self inputs;};
       inherit pkgs;
       modules = [../home/home.nix] ++ modules;
     };
