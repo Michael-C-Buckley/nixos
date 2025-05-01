@@ -37,6 +37,7 @@
       plugins.michalpopek.dayfox-vsc
       plugins.mthierman.theme-flexoki
       plugins.metaphore.kanagawa-vscode-color-theme
+      plugins.zhuangtongfa.material-theme
 
       # Python
       ms-python.python

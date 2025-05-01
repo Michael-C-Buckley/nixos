@@ -74,6 +74,13 @@ merge
           sha256 = "1l484q90kq5yzfxbaz7bfdiqbick92g70gakxbmcxq48ign85wlg";
 
         };
+        "zhuangtongfa"."material-theme" = vscode-utils.extensionFromVscodeMarketplace {
+          name = "material-theme";
+          publisher = "zhuangtongfa";
+          version = "3.19.0";
+          sha256 = "1z3wiacb2m7hvpfhn6qs710lsaxpy7c56jbjckccvqi705w9firb";
+
+        };
       }
         (lib.attrsets.optionalAttrs (isLinux && (isi686 || isx86_64)) { }))
       (lib.attrsets.optionalAttrs (isLinux && (isAarch32 || isAarch64)) { }))
