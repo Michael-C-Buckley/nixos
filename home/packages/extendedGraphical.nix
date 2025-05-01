@@ -26,7 +26,15 @@ with pkgs; [
   gimp3
 
   # Development
-  nix-search-tv
+  # Custom
+    (writeShellApplication {
+      name = "ns";
+      runtimeInputs = with pkgs; [
+        fzf
+        nix-search-tv
+      ];
+      text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
+    })
 
   # Communication
   vivaldi

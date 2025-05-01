@@ -27,9 +27,6 @@ alias k='kubectl'
 # Nu/Nushell
 alias n='nu -c'
 
-# Nix-search-TV (Option fuzzy finder)
-alias ns="nix-search-tv print | fzf --preview 'nix-search-tv preview {}' --scheme history"
-
 # ZFS
 alias zls='zfs list -o name,used,compressratio,lused,avail'
 alias zsls='zfs list -t snapshot -S creation -o name,creation,used,written,refer'
