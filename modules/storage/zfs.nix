@@ -38,5 +38,10 @@ in {
 
     environment.systemPackages = [cfg.package];
     services.zfs.autoScrub.enable = true;
+
+    systemd.services = {
+      # https://github.com/openzfs/zfs/issues/10891
+      systemd-udev-settle.enable = false;
+    };
   };
 }
