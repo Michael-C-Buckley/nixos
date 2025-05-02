@@ -14,7 +14,7 @@ in {
   fileSystems = {
     # Physical
     "/boot" = {
-      device = "/dev/disk/by-label/BOOTDEV";
+      device = "/dev/disk/by-uuid/1A0C-115C";
       fsType = "vfat";
     };
 
