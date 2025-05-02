@@ -40,6 +40,6 @@ with pkgs; [
   vivaldi
   bitwarden
   signal-desktop-bin
-  discord
+  legcord
   materialgram                  # Telegram fork
 ]
