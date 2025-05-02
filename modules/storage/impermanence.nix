@@ -22,13 +22,13 @@
       "/var/lib/incus"
       "/var/lib/gns3"
       "/var/lib/nixos-container"
-      "/var/lib/systemd/coredump"
     ];
   };
   environment.persistence."/persist" = {
     hideMounts = true;
     directories = [
       "/etc/ssh"
+      "/etc/nix/secrets"
       "/var/log" # systemd journal is stored in /var/log/journal
       "/var/lib/bluetooth"
       "/var/lib/nixos" # for persisting user uids and gids
@@ -51,16 +51,17 @@
         "Pictures"
         "Documents"
         "Videos"
+        "nixos" # My system flake is in ~/
         ".config/Bitwarden"
         ".config/fish"
         ".config/sops"
         ".config/vivaldi"
         ".config/signal"
         ".config/telegram"
+        ".config/discord"
+        ".config/BraveSoftware"
+        ".config/dconf"
         ".pki"
-        ".ssh"
-        ".local/share/.gnupg"
-        ".local/share/keyrings"
         ".local/state/wireplumber"
         {
           directory = ".gnupg";
