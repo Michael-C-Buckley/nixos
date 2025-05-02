@@ -64,6 +64,7 @@
         ".config/discord"
         ".config/BraveSoftware"
         ".config/dconf"
+        ".config/legcord"
         ".pki"
         ".local/state/wireplumber"
         {
