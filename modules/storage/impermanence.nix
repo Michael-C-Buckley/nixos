@@ -1,22 +1,38 @@
 # Mostly default example from Impermanence
+#
+# Differences in mounts:
+# - Persist: persisted and ZFS snapshotted
+# - Cache: persisted but no snapshots
 {
   environment.persistence."/cache" = {
     hideMounts = true;
     users.michael.directories = [
       "Downloads"
+      ".cache/yarn"
+      ".local/share/.cargo"
+      ".local/share/.rustup"
+      ".cache/nix-index"
+      ".local/share/fish"
+      ".cache/pip"
+      ".cache/thumbnails"
     ];
-
+    directories = [
+      "/var/lib/libvirt"
+      "/var/lib/docker"
+      "/var/lib/incus"
+      "/var/lib/gns3"
+      "/var/lib/nixos-container"
+      "/var/lib/systemd/coredump"
+    ];
   };
   environment.persistence."/persist" = {
     hideMounts = true;
     directories = [
       "/etc/ssh"
-      "/var/log"
+      "/var/log" # systemd journal is stored in /var/log/journal
       "/var/lib/bluetooth"
-      "/var/lib/nixos"
+      "/var/lib/nixos" # for persisting user uids and gids
       "/var/lib/systemd/coredump"
-      "/var/lib/libvirtd"
-      "/var/lib/docker"
       "/etc/NetworkManager/system-connections"
       {
         directory = "/var/lib/colord";
@@ -27,18 +43,25 @@
     ];
     files = [
       "/etc/machine-id"
-      {
-        file = "/var/keys/secret_file";
-        parentDirectory = {mode = "u=rwx,g=,o=";};
-      }
     ];
     users.michael = {
       directories = [
+        "projects"
         "Music"
         "Pictures"
         "Documents"
         "Videos"
-        "Projects"
+        ".config/Bitwarden"
+        ".config/fish"
+        ".config/sops"
+        ".config/vivaldi"
+        ".config/signal"
+        ".config/telegram"
+        ".pki"
+        ".ssh"
+        ".local/share/.gnupg"
+        ".local/share/keyrings"
+        ".local/state/wireplumber"
         {
           directory = ".gnupg";
           mode = "0700";
@@ -52,12 +75,6 @@
           mode = "0700";
         }
         ".local/share/direnv"
-
-        # Browsers
-        ".cache/librewolf"
-        ".config/.librewolf"
-        ".cache/BraveSoftware"
-        ".config/BraveSoftware"
       ];
       files = [
         ".screenrc"
