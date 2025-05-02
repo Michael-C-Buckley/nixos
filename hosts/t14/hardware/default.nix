@@ -12,8 +12,7 @@ in {
     (modulesPath + "/installer/scan/not-detected.nix")
     ucodenix.nixosModules.default
     impermanence.nixosModules.impermanence
-    ./disko
-    # ./filesystems.nix
+    ./filesystems.nix
   ];
 
   boot = {
