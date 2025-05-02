@@ -5,11 +5,15 @@
   inputs,
   pkgs,
   ...
-}: {
+}: let
+  inherit (inputs) ucodenix impermanence;
+in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    inputs.ucodenix.nixosModules.default
-    ./filesystems.nix
+    ucodenix.nixosModules.default
+    impermanence.nixosModules.impermanence
+    ./disko
+    # ./filesystems.nix
   ];
 
   boot = {
