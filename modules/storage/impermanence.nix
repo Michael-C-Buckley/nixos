@@ -14,6 +14,13 @@
       ".cache/yarn"
       ".local/share/.cargo"
       ".local/share/.rustup"
+<<<<<<< Updated upstream
+||||||| Stash base
+      ".cache/nix-index"
+=======
+      ".cache/nix-index"
+      ".cache/nix-search-tv"
+>>>>>>> Stashed changes
       ".local/share/fish"
       ".cache/pip"
       ".cache/thumbnails"

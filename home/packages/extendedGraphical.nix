@@ -14,11 +14,11 @@ with pkgs; [
   nordzy-cursor-theme           # Only active theme
 
   # Desktop
-  xfce.thunar                   # File manager
+  kdePackages.dolphin
 
   # Media
   vlc
-  sxiv                          # Simple photo viewer
+  kdePackages.koko              # Photo viewer
 
   # Productivity
   kdePackages.kalgebra          # Calculator
