@@ -6,6 +6,10 @@
   # Direnv
   ".config/direnv/direnv.toml".source = ../userfiles/direnv.toml;
 
+  # Environment
+  ".config/environment.d/standard.conf".source = ../userfiles/standard.conf;
+  ".local/share/applications/mimeapp.list".source = ../userfiles/mimeapps.list;
+
   # Fish
   ".config/fish/config.fish".source = ../fish/config.fish;
   ".config/fish/conf.d/functions.fish".source = ../fish/functions.fish;
@@ -16,12 +20,8 @@
   #Git
   ".gitconfig".source = ../userfiles/.gitconfig;
 
-  #GTK
-  #".config/gtk-3.0/settings.ini".source = ../userfiles/gtk.conf;
-  #".config/gtk-4.0/settings.ini".source = ../userfiles/gtk.conf;
-
   #Rofi
-  # ".config/rofi/config.rasi".source = ../rofi/config.rasi;
+  ".config/rofi/config.rasi".source = ../rofi/config.rasi;
 
   # Shell Common
   ".config/starship.toml".source = ../shells/starship.toml;
