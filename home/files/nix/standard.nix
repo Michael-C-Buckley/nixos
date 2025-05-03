@@ -8,7 +8,8 @@
 
   # Environment
   ".config/environment.d/standard.conf".source = ../userfiles/standard.conf;
-  ".local/share/applications/mimeapp.list".source = ../userfiles/mimeapps.list;
+  ".local/share/applications/mimeapps.list".source = ../userfiles/mimeapps.list;
+  ".config/mimeapps.list". source = ../userfiles/mimeapps.list;
 
   # Fish
   ".config/fish/config.fish".source = ../fish/config.fish;

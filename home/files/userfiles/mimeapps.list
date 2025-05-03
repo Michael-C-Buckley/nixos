@@ -1,9 +1,35 @@
+# WIP
 [Default Applications]
-text/plain=neovim.desktop
-image/png=koko.desktop
 x-scheme-handler/http=librewolf.desktop
 x-scheme-handler/https=librewolf.desktop
+x-scheme-handler/chrome=librewolf.desktop
+text/html=librewolf.desktop
+application/x-extension-htm=librewolf.desktop
+application/x-extension-html=librewolf.desktop
+application/x-extension-shtml=librewolf.desktop
+application/xhtml+xml=librewolf.desktop
+application/x-extension-xhtml=librewolf.desktop
+application/x-extension-xht=librewolf.desktop
+x-scheme-handler/tg=io.github.kukuruzka165.materialgram.desktop
+x-scheme-handler/discord=legcord.desktop
+x-scheme-handler/tonsite=io.github.kukuruzka165.materialgram.desktop
+x-scheme-handler/about=librewolf.desktop
+x-scheme-handler/unknown=librewolf.desktop
 
+# WIP
 [Added Associations]
+x-scheme-handler/http=librewolf.desktop;
+x-scheme-handler/https=librewolf.desktop;
+x-scheme-handler/chrome=librewolf.desktop;
+text/html=librewolf.desktop;zen-twilight.desktop;userapp-Twilight-YRQP42.desktop;zen-beta.desktop;librewolf.desktop;
+application/x-extension-htm=librewolf.desktop;zen-twilight.desktop;userapp-Twilight-YRQP42.desktop;zen-beta.desktop;librewolf.desktop;
+application/x-extension-html=librewolf.desktop;zen-twilight.desktop;userapp-Twilight-YRQP42.desktop;zen-beta.desktop;librewolf.desktop;
+application/x-extension-shtml=librewolf.desktop;zen-twilight.desktop;userapp-Twilight-YRQP42.desktop;zen-beta.desktop;librewolf.desktop;
+application/xhtml+xml=librewolf.desktop;zen-twilight.desktop;userapp-Twilight-YRQP42.desktop;zen-beta.desktop;librewolf.desktop;
+application/x-extension-xhtml=librewolf.desktop;zen-twilight.desktop;userapp-Twilight-YRQP42.desktop;zen-beta.desktop;librewolf.desktop;
+application/x-extension-xht=librewolf.desktop;zen-twilight.desktop;userapp-Twilight-YRQP42.desktop;zen-beta.desktop;librewolf.desktop;
+x-scheme-handler/tg=io.github.kotatogram.desktop;io.github.kukuruzka165.materialgram.desktop;
+application/zip=org.pwmt.zathura-cb.desktop;
+x-scheme-handler/tonsite=io.github.kukuruzka165.materialgram.desktop;
 text/plain=neovim.desktop;vim.desktop;
-
+image/png=koko.desktop
