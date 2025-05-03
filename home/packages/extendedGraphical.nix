@@ -17,16 +17,19 @@ with pkgs; [
   kdePackages.dolphin
 
   # Media
-  vlc
-  kdePackages.koko              # Photo viewer
+  mpv
+  imv
+  zathura                       # PDF Viewer
+  kdePackages.koko              # Photo Viewer
+  foliate                       # Ebook Reader
 
   # Productivity
   kdePackages.kalgebra          # Calculator
+  kdePackages.calligra
   obsidian
   gimp3
 
   # Development
-  # **Persist: ~/.cache/nix-search-tv
     (writeShellApplication {
       name = "ns";
       runtimeInputs = with pkgs; [

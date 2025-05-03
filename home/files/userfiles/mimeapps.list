@@ -1,8 +1,9 @@
 # WIP
 [Default Applications]
+# Browsers
 x-scheme-handler/http=librewolf.desktop
 x-scheme-handler/https=librewolf.desktop
-x-scheme-handler/chrome=librewolf.desktop
+x-scheme-handler/chrome=librewolf.desktop  # needs tweaking
 text/html=librewolf.desktop
 application/x-extension-htm=librewolf.desktop
 application/x-extension-html=librewolf.desktop
@@ -10,11 +11,56 @@ application/x-extension-shtml=librewolf.desktop
 application/xhtml+xml=librewolf.desktop
 application/x-extension-xhtml=librewolf.desktop
 application/x-extension-xht=librewolf.desktop
+x-scheme-handler/about=librewolf.desktop
+x-scheme-handler/unknown=librewolf.desktop
+
+# Communication
 x-scheme-handler/tg=io.github.kukuruzka165.materialgram.desktop
 x-scheme-handler/discord=legcord.desktop
 x-scheme-handler/tonsite=io.github.kukuruzka165.materialgram.desktop
-x-scheme-handler/about=librewolf.desktop
-x-scheme-handler/unknown=librewolf.desktop
+
+# Editors
+text/plain=nvim.desktop
+application/json=nvim.desktop
+application/x-shellscript=nvim.desktop
+application/x-yaml=nvim.desktop
+application/xml=nvim.desktop
+
+# Images
+image/png=imv.desktop
+image/jpeg=imv.desktop
+image/svg+xml=imv.desktop
+image/gif=imv.desktop
+
+# PDFs and documents
+application/pdf=zathura.desktop
+application/epub+zip=foliate.desktop
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop
+
+# Archives
+application/zip=org.gnome.FileRoller.desktop
+application/x-tar=org.gnome.FileRoller.desktop
+application/x-bzip2=org.gnome.FileRoller.desktop
+application/x-7z-compressed=org.gnome.FileRoller.desktop
+
+# Audio and video
+audio/mpeg=mpv.desktop
+audio/x-wav=mpv.desktop
+video/mp4=mpv.desktop
+video/x-matroska=mpv.desktop
+video/x-msvideo=mpv.desktop
+
+# Code & dev
+text/x-python=nvim.desktop
+text/x-csrc=nvim.desktop
+text/x-c++src=nvim.desktop
+text/x-java=nvim.desktop
+application/javascript=nvim.desktop
+
+# Terminal emulator for opening unknown types
+inode/directory=ghostty.desktop
+application/octet-stream=ghostty.desktop
+
 
 # WIP
 [Added Associations]
