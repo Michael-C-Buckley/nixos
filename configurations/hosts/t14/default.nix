@@ -14,8 +14,6 @@
     ./systemd
   ];
 
-  environment.systemPackages = [pkgs.brightnessctl];
-
   programs = {
     cosmic.enable = false;
     hyprland.enable = true;
