@@ -14,6 +14,6 @@
     ];
   };
   programs.nh = {
-    flake = "~/nixos";
+    flake = "/home/michael/nixos";
   };
 }
