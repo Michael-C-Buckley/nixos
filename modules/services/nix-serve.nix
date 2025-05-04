@@ -1,14 +1,7 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
-  inherit (lib) mkDefault;
-in {
-  # WIP: Add keys to Secrets
+{pkgs, ...}: {
   services.nix-serve = {
-    package = mkDefault pkgs.nix-serve-ng;
-    openFirewall = mkDefault true;
-    secretKeyFile = mkDefault "/etc/nix/nix-serve/secret-key.pem";
+    package = pkgs.nix-serve-ng;
+    openFirewall = true;
+    secretKeyFile = "/run/secrets/cachePrivateKey";
   };
 }
