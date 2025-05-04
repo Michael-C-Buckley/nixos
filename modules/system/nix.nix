@@ -42,6 +42,7 @@ in {
       flake-registry = "";
 
       substituters = [
+        "https://nix-cache.groovyreserve.com"
         "https://cache.nixos.org"
         "https://nix-community.cachix.org"
         "https://microvm.cachix.org"
@@ -49,6 +50,7 @@ in {
         "https://cache.thalheim.io" # sops-nix
       ];
       trusted-public-keys = [
+        ""
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "microvm.cachix.org-1:oXnBc6hRE3eX5rSYdRyMYXnfzcCxC7yKPTbZXALsqys="
         "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
