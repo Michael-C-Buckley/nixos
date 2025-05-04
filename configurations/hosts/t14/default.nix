@@ -12,7 +12,6 @@
     ./hardware
     ./networking
     ./systemd
-    ./hjem.nix
   ];
 
   environment.systemPackages = [pkgs.brightnessctl];
@@ -24,7 +23,13 @@
   };
 
   features = {
-    michael.nvf.package = "default";
+    michael = {
+      extendedGraphical = true;
+      vscode.enable = true;
+      waybar.enable = true;
+      hyprland.enable = true;
+      nvf.package = "default";
+    };
     displayManager = "greetd";
     gaming.enable = false;
     pkgs.fonts = true;
@@ -39,4 +44,8 @@
     enable = true;
     encryption = true;
   };
+
+  hjem.users.michael.files.".config/hypr/host.conf".text = ''
+    monitor=eDP-1,1920x1080@60.01Hz,0x0,1
+  '';
 }

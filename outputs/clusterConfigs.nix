@@ -21,9 +21,10 @@
       inherit system;
       specialArgs = {inherit self pkgs customLib lib host system inputs;};
       modules = [
-        ../base.nix
-        ../clusters/${cluster}
-        ../clusters/${cluster}/hosts/${host}
+        ../modules
+        ../configurations/clusters/${cluster}
+        ../configurations/clusters/${cluster}/hosts/${host}
+        ../configurations/home/hjem.nix
       ];
     };
 
@@ -60,3 +61,4 @@ in
     hostPrefix = "ln";
     max = 3;
   }
+
