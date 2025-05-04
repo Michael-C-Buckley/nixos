@@ -1,5 +1,6 @@
-{...}: {
+{inputs, ...}: {
   imports = [
+    inputs.nix-secrets.nixosModules.oracleAcme
     ./hardware.nix
     ./networking
   ];
