@@ -2,7 +2,7 @@ _: {
   system.stateVersion = "24.05";
 
   imports = [
-    ../../modules/hardware/nvidia.nix
+    ../../../modules/hardware/nvidia.nix
     ./networking
     ./systemd
     ./hardware.nix

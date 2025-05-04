@@ -502,11 +502,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1746377744,
-        "narHash": "sha256-doboTS4/Yl/+LItWxFnBfCeHilW0+4Aslb0jw4vBUd8=",
+        "lastModified": 1746392391,
+        "narHash": "sha256-Sf6wxqPF5xdbA0jgT/RyEwzqZE7MbvNNLlYFwMl4gGM=",
         "ref": "refs/heads/master",
-        "rev": "55592698b7cdefce72cc2f39f233014ce8d9154d",
-        "revCount": 97,
+        "rev": "6a1143cd2376798adf9902deefc4e6e4fd378e92",
+        "revCount": 103,
         "type": "git",
         "url": "ssh://git@github.com/Michael-C-Buckley/nix-secrets"
       },

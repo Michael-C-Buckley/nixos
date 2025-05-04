@@ -14,8 +14,9 @@
     inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {inherit self pkgs customLib lib host system inputs;};
       modules = [
-        ../base.nix
-        ../hosts/${host}
+        ../modules
+        ../configurations/hosts/${host}
+        ../configurations/home/hjem.nix
       ];
     };
 
