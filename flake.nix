@@ -4,10 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-    nix-secrets = {
-      url = "git+ssh://git@github.com/Michael-C-Buckley/nix-secrets";
-      inputs.nixos.follows = ""; # Ignore because it inputs this flake
-    };
+    nix-secrets.url = "git+ssh://git@github.com/Michael-C-Buckley/nix-secrets";
 
     # User configs
     home-manager = {
@@ -17,9 +14,6 @@
     hjem = {
       url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    michael-nvf = {
-      url = "github:Michael-C-Buckley/nvf-flake";
     };
 
     # Externally Cached
