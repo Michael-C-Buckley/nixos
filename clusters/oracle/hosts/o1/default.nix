@@ -3,7 +3,7 @@
     inputs.nix-secrets.nixosModules.oracleAcme
     ./hardware.nix
     ./networking
-    ./nginx
+    ./nginx.nix
   ];
 
   system = {
