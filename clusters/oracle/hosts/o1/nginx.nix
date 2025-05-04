@@ -7,15 +7,13 @@
       enableACME = true;
       forceSSL = true;
 
-      # Serve static homepage
       root = "/var/www/nix-cache-web";
       locations."/" = {
         index = "index.html";
       };
 
-      # Proxy all other requests
       locations."~ ^/(nix-cache|nix|store|nar|.narinfo|log|cache)/" = {
-        proxyPass = "http://127.0.0.1:5000"; # replace with actual backend
+        proxyPass = "http://127.0.0.1:5000";
         proxyWebsockets = true;
       };
     };

@@ -3,6 +3,7 @@
     inputs.nix-secrets.nixosModules.oracleAcme
     ./hardware.nix
     ./networking
+    ./cache.nix
     ./nginx.nix
   ];
 
