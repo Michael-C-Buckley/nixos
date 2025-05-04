@@ -1,11 +1,13 @@
-{
+{config, ...}: let 
+  nixServe = config.services.nix-serve;
+in {
   # Test deployment
   services.nginx = {
     enable = true;
 
     virtualHosts."nix-cache.groovyreserve.com" = {
       locations."/" = {
-        proxyPass = "http://127.0.0.1:5000";
+        proxyPass = "http://${nixServe.bindAddress}:${nixServe.port}";
         proxyWebsockets = true;
         extraConfig = ''
           proxy_set_header Host $host;

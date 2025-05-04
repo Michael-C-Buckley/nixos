@@ -28,6 +28,8 @@
     pkgs.fonts = true;
   };
 
+  services.nix-serve.enable = true;
+
   virtualisation = {
     incus.enable = true;
     libvirtd.enable = true;
