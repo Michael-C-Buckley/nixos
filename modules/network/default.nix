@@ -1,7 +1,8 @@
-{lib, ...}: let
+{lib, inputs, ...}: let
   inherit (lib) mkDefault;
 in {
   imports = [
+    inputs.nix-secrets.nixosModules.network.hosts
     ./bgp.nix
     ./eigrp.nix
     ./ospf.nix
