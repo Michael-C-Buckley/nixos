@@ -13,4 +13,7 @@
       "x570.michael.lan:b3fLRrQyBeUbmpS+AGi68O1L2F1kSLEVX2ePAyDPNWk="
     ];
   };
+  programs.nh = {
+    flake = "~/nixos";
+  };
 }
