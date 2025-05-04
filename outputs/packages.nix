@@ -6,7 +6,7 @@
   mkNvf = system: extraModules: (
     (nvf.lib.neovimConfiguration {
       pkgs = import nixpkgs {inherit system;};
-      modules = [./packages/nvf/config/default.nix] ++ extraModules;
+      modules = [../packages/nvf/config/default.nix] ++ extraModules;
     })
             .neovim
   );
@@ -25,7 +25,7 @@ in
       name = system;
       value =
         {
-          nvf-default = mkNvf system [./packages/nvf/config/extended.nix];
+          nvf-default = mkNvf system [../packages/nvf/config/extended.nix];
           nvf-minimal = mkNvf system [];
         }
         // mkDiskoImage system;
