@@ -61,6 +61,8 @@
       };
     };
 
+    lsp.enable = true;
+
     visuals = {
       nvim-scrollbar.enable = true;
       nvim-web-devicons.enable = true;
