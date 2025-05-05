@@ -17,7 +17,7 @@
       specialArgs = {inherit self pkgs customLib lib host system inputs;};
       modules =
         [
-          ../modules
+          ./modules
           ./hosts/${host}
           ./user/hjem.nix
         ]
@@ -28,7 +28,7 @@
     hostConfig {
       inherit host;
       extraModules = [
-        ../modules/presets/michael.nix
+        ./modules/presets/michael.nix
       ];
     };
   michaelhosts = ["x570" "t14" "p520" "wsl" "vm"];
