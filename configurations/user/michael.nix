@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{config, lib, pkgs, ...}: {
+  imports = [
+    (import ./default.nix {inherit config lib pkgs; user = "michael";})  
+  ];
+
+  apps.michael.browsers.librewolf.enable = true;
+
   home.features.michael = {
     cursor = {
       hyprtheme = "Nordzy-hyprcursors-white";
