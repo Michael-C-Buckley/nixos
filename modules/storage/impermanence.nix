@@ -68,8 +68,6 @@
         ".config/legcord"
         ".cache/nix-index"
         ".cache/nix-search-tv"
-        ".config/librewolf"
-        ".cache/librewolf"
         ".pki"
         ".local/state/wireplumber"
         {
