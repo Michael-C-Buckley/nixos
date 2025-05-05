@@ -23,7 +23,7 @@
       specialArgs = {inherit self pkgs customLib lib host system inputs;};
       modules =
         [
-          ../modules
+          ./modules
           ./clusters/${cluster}
           .clusters/${cluster}/hosts/${host}
           ./user/hjem.nix
@@ -53,7 +53,7 @@ in
   generateCluster {
     cluster = "uff";
     hostPrefix = "uff";
-    extraModules = [../modules/presets/michael.nix];
+    extraModules = [./modules/presets/michael.nix];
     max = 3;
   }
   // generateCluster {
