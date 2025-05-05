@@ -4,6 +4,7 @@
   clusterConfig = {
     cluster,
     host,
+    extraModules ? [],
   }: let
     system =
       if host == "o1"
@@ -20,17 +21,20 @@
       # Oracle1 is an exception as it is an ARM host
       inherit system;
       specialArgs = {inherit self pkgs customLib lib host system inputs;};
-      modules = [
-        ../modules
-        ../configurations/clusters/${cluster}
-        ../configurations/clusters/${cluster}/hosts/${host}
-        ../configurations/home/hjem.nix
-      ];
+      modules =
+        [
+          ../modules
+          ../configurations/clusters/${cluster}
+          ../configurations/clusters/${cluster}/hosts/${host}
+          ../configurations/home/hjem.nix
+        ]
+        ++ extraModules;
     };
 
   generateCluster = {
     cluster,
     hostPrefix,
+    extraModules ? [],
     max,
   }:
     builtins.listToAttrs (
@@ -40,7 +44,7 @@
           host = "${hostPrefix}${toString number}";
         in {
           name = host;
-          value = clusterConfig {inherit cluster host;};
+          value = clusterConfig {inherit cluster host extraModules;};
         }
       )
       max
@@ -49,6 +53,7 @@ in
   generateCluster {
     cluster = "uff";
     hostPrefix = "uff";
+    extraModules = [../modules/presets/michael.nix];
     max = 3;
   }
   // generateCluster {
@@ -61,4 +66,3 @@ in
     hostPrefix = "ln";
     max = 3;
   }
-
