@@ -7,7 +7,7 @@ in {
 
     virtualHosts."nix-cache.groovyreserve.com" = {
       locations."/" = {
-        proxyPass = "http://${nixServe.bindAddress}:${nixServe.port}";
+        proxyPass = "http://${nixServe.bindAddress}:${builtins.toString nixServe.port}";
         proxyWebsockets = true;
         extraConfig = ''
           proxy_set_header Host $host;
