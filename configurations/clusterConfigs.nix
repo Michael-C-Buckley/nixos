@@ -24,9 +24,9 @@
       modules =
         [
           ../modules
-          ../configurations/clusters/${cluster}
-          ../configurations/clusters/${cluster}/hosts/${host}
-          ../configurations/user/hjem.nix
+          ./clusters/${cluster}
+          .clusters/${cluster}/hosts/${host}
+          ./user/hjem.nix
         ]
         ++ extraModules;
     };

@@ -18,8 +18,8 @@
       modules =
         [
           ../modules
-          ../configurations/hosts/${host}
-          ../configurations/user/hjem.nix
+          ./hosts/${host}
+          ./user/hjem.nix
         ]
         ++ extraModules;
     };
