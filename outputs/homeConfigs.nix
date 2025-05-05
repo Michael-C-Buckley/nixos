@@ -13,13 +13,13 @@
     inputs.home-manager.lib.homeManagerConfiguration {
       extraSpecialArgs = {inherit self inputs;};
       inherit pkgs;
-      modules = [../home/home.nix] ++ modules;
+      modules = [../configurations/user/home.nix] ++ modules;
     };
 
   hmHostConfig = host:
     hmConfig [
-      ../home/hosts/${host}
-      ../home/hosts/${host}/home.nix
+      ../configurations/user/hosts/${host}
+      ../configurations/user/hosts/${host}/home.nix
     ];
 
   hosts = [

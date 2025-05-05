@@ -19,7 +19,7 @@
         [
           ../modules
           ../configurations/hosts/${host}
-          ../configurations/home/hjem.nix
+          ../configurations/user/hjem.nix
         ]
         ++ extraModules;
     };
