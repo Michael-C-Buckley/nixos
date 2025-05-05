@@ -21,8 +21,8 @@ in
     {
       # Close buffer
       mode = "n";
-      key = "<leader>bd<CR>";
-      action = ":bd";
+      key = "<leader>bd";
+      action = ":bd<CR>";
       silent = true;
     }
     {
