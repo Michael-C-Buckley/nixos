@@ -1,5 +1,4 @@
 {
-  enableLSP = true;
   enableTreesitter = true;
 
   bash.enable = true;
