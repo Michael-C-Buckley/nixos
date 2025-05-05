@@ -7,16 +7,9 @@
   inherit (lib) mkDefault mkForce;
 in {
   imports = with inputs; [
-    ragenix.nixosModules.default
     sops-nix.nixosModules.sops
     nix-secrets.nixosModules.ssh
     nix-secrets.nixosModules.common
-  ];
-
-  age.identityPaths = [
-    "/etc/ssh/ssh_host_ed25519_key"
-    "/home/michael/.ssh/id_ed25519"
-    "/root/.ssh/id_ed25519"
   ];
 
   services.resolved.enable = true;
