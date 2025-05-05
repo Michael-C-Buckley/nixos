@@ -49,10 +49,10 @@
   outputs = {self, ...} @ inputs: {
     checks = import ./outputs/checks.nix {inherit inputs;};
     devShells = import ./outputs/devshells.nix {inherit self;};
-    homeConfigurations = import ./outputs/homeConfigs.nix {inherit self;};
+    homeConfigurations = import ./configurations/homeConfigs.nix {inherit self;};
     nixosConfigurations = (
-      import ./outputs/hostConfigs.nix {inherit self;}
-      // import ./outputs/clusterConfigs.nix {inherit self;}
+      import ./configurations/hostConfigs.nix {inherit self;}
+      // import ./configurations/clusterConfigs.nix {inherit self;}
     );
     nixosModules = import ./outputs/nixosModules.nix {};
     packages = import ./outputs/packages.nix {inherit self;};
