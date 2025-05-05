@@ -38,10 +38,12 @@
     gns3.enable = true;
   };
 
-  system.zfs = {
+  system = {
+    impermanence.enable = true;
+    zfs = {
     enable = true;
     encryption = true;
-  };
+  };};
 
   hjem.users.michael.files.".config/hypr/host.conf".text = ''
     monitor=eDP-1,1920x1080@60.01Hz,0x0,1

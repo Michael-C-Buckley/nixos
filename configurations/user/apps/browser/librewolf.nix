@@ -20,15 +20,18 @@ in {
   };
 
   config = {
-    environment.persistence."/persist".users.${user}.directories =
+    environment = if config.system.impermanence.enable then {
+      
+      persistence."/persist".users.${user}.directories =
       if cfg.enable
       then [
         ".config/librewolf"
         ".cache/librewolf"
       ]
       else [];
+    } else {};
 
-    users.${user}.packages =
+    users.users.${user}.packages =
       if cfg.enable
       then [cfg.package]
       else [];

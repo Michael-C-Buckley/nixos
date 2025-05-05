@@ -15,10 +15,6 @@ in {
     inputs.hjem.nixosModules.default
     ./options
     ./modules/vscode/hjem.nix
-    (import ./modules {
-      user = "michael";
-      inherit config lib;
-    })
     ./michael.nix
   ];
 
