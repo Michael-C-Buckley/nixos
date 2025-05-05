@@ -20,6 +20,8 @@
     nix-index-database.comma.enable = true;
   };
 
+  environment.systemPackages = [pkgs.brightnessctl];
+
   features = {
     michael = {
       extendedGraphical = true;
