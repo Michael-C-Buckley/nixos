@@ -26,7 +26,7 @@
           ../modules
           ../configurations/clusters/${cluster}
           ../configurations/clusters/${cluster}/hosts/${host}
-          ../configurations/home/hjem.nix
+          ../configurations/user/hjem.nix
         ]
         ++ extraModules;
     };
