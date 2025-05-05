@@ -1,4 +1,4 @@
-{pkgs, inputs, system, ...}: {
+{pkgs, ...}: {
   home.features.michael = {
     cursor = {
       hyprtheme = "Nordzy-hyprcursors-white";
@@ -17,7 +17,4 @@
       };
     };
   };
-  users.users.michael.packages =
-    [inputs.zen-browser.packages."${system}".default
-    ];
 }
