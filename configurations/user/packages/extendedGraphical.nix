@@ -7,12 +7,6 @@ with pkgs; [
   gammastep
   wireshark
 
-  # Extra things I'm just checking out
-  flow-control
-
-  # Cursors
-  nordzy-cursor-theme           # Only active theme
-
   # Desktop
   kdePackages.dolphin
 

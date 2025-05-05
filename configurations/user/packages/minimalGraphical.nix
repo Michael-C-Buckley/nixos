@@ -15,6 +15,5 @@ with pkgs; [
   flow-control    # Simple TUI IDE
 
   # Communication
-  vivaldi
   librewolf
 ]
