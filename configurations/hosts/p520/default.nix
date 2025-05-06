@@ -1,6 +1,4 @@
 _: {
-  system.stateVersion = "24.05";
-
   imports = [
     ../../../modules/presets/nvidia.nix
     ./networking
@@ -9,6 +7,10 @@ _: {
   ];
 
   virtualisation.libvirtd.enable = true;
-  system.zfs.enable = true;
+  system = {
+    preset = "server";
+    stateVersion = "24.05";
+    zfs.enable = true;
+  };
   programs.atop.atopgpu.enable = true;
 }

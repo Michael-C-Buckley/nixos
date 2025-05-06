@@ -7,7 +7,11 @@
     ./networking
   ];
 
-  system.stateVersion = "24.05";
+  system = {
+    preset = "desktop";
+    stateVersion = "24.05";
+    zfs.enable = true;
+  };
 
   programs = {
     hyprland.enable = true;
@@ -35,7 +39,6 @@
     libvirtd.enable = true;
     gns3.enable = true;
   };
-  system.zfs.enable = true;
 
   hjem.users.michael.files.".config/hypr/host.conf".text = ''
     # Main Ultrawide Monitor

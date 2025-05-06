@@ -4,8 +4,6 @@
   pkgs,
   ...
 }: {
-  system.stateVersion = "24.11";
-
   imports = [
     inputs.nix-secrets.nixosModules.t14
     inputs.nix-index-database.nixosModules.nix-index
@@ -41,11 +39,14 @@
   };
 
   system = {
+    preset = "laptop";
+    stateVersion = "24.11";
     impermanence.enable = true;
     zfs = {
-    enable = true;
-    encryption = true;
-  };};
+      enable = true;
+      encryption = true;
+    };
+  };
 
   hjem.users.michael.files.".config/hypr/host.conf".text = ''
     monitor=eDP-1,1920x1080@60.01Hz,0x0,1
