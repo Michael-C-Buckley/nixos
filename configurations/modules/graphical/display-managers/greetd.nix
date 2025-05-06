@@ -1,19 +1,29 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
+  inherit (lib) mkIf;
   useGreetd = config.features.displayManager == "greetd";
+
+  tuiSession = {
+    command = "tuigreet --cmd hyprland";
+    user = "greeter";
+  };
 in {
-  # For now, it performs an autologin for me
-  services.greetd = lib.mkIf useGreetd {
+  environment.systemPackages = [pkgs.greetd.tuigreet];
+
+  services.greetd = mkIf useGreetd {
     enable = true;
     settings = {
-      default_session.command = "hyprland";
-      initial_session = {
+      # Session on first login which would use auto-login
+      initial_session = mkIf config.features.autoLogin {
         user = "michael";
         command = "hyprland";
       };
+      # All other sessions
+      default_session = tuiSession;
     };
   };
 }

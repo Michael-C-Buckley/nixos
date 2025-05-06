@@ -15,7 +15,7 @@ in {
     autoLogin = mkEnableOption {};
     displayManager = mkOption {
       type = types.enum ["sddm" "ly" "greetd"];
-      default = "ly";
+      default = "greetd";
       description = "Which display manager to run";
     };
     graphics = mkOption {
