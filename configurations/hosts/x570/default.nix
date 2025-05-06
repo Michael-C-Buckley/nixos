@@ -27,6 +27,7 @@
       waybar.enable = true;
       hyprland.enable = true;
     };
+    autoLogin = true;
     displayManager = "greetd";
     gaming.enable = true;
     pkgs.fonts = true;

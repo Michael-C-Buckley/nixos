@@ -28,6 +28,7 @@
       hyprland.enable = true;
       nvf.package = "default";
     };
+    autoLogin = true;
     displayManager = "greetd";
     gaming.enable = false;
     pkgs.fonts = true;
