@@ -50,7 +50,7 @@ in {
         "https://cache.thalheim.io" # sops-nix
       ];
       trusted-public-keys = [
-        ""
+        "nix-cache.groovyreserve.com:2bl9yB/F+bbd9H2zND2ZHyU21kFNErnteY47q5K6Jww="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "microvm.cachix.org-1:oXnBc6hRE3eX5rSYdRyMYXnfzcCxC7yKPTbZXALsqys="
         "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
