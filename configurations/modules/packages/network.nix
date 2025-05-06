@@ -21,6 +21,7 @@
     bridge-utils
     lldpd
     cdpr
+    ndisc6
   ];
 
   useExtra = elem config.system.preset ["laptop" "server" "desktop"];
