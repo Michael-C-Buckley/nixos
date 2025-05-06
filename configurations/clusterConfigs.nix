@@ -25,7 +25,7 @@
         [
           ./modules
           ./clusters/${cluster}
-          .clusters/${cluster}/hosts/${host}
+          ./clusters/${cluster}/hosts/${host}
           ./user/hjem.nix
         ]
         ++ extraModules;
