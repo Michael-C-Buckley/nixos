@@ -23,6 +23,10 @@ with pkgs; [
   obsidian
   gimp3
 
+  # Terminals
+  kitty
+  wezterm
+
   # Development
     (writeShellApplication {
       name = "ns";

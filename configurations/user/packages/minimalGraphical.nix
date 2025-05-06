@@ -11,7 +11,6 @@ with pkgs; [
 
   # Terminals
   ghostty
-  kitty
   flow-control    # Simple TUI IDE
 
   # Communication
