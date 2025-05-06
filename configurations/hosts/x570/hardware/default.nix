@@ -36,7 +36,7 @@
   security.rtkit.enable = true;
 
   services.ucodenix = {
-    enable = true;
+    enable = false; # Desktop is suffering CPU crashes, dump the extra microcode
     cpuModelId = "00A20F12";
   };
 
