@@ -17,5 +17,8 @@
   programs.nix-index-database.comma.enable = true;
 
   nixpkgs.hostPlatform = "x86_64-linux";
-  system.stateVersion = "24.11";
+  system = {
+    preset = "wsl";
+    stateVersion = "24.11";
+  };
 }

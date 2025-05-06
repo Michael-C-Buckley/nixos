@@ -8,7 +8,10 @@ _: {
     ./secrets.nix
   ];
 
-  system.stateVersion = "25.05";
+  system = {
+    preset = "server";
+    stateVersion = "25.05";
+  };
   custom.uff.enusb1.ipv4.prefixLength = 27;
   features.podman.enable = true;
   services.glusterfs.enable = true;

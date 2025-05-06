@@ -7,5 +7,8 @@
   environment.enableAllTerminfo = true;
   time.timeZone = "America/New_York";
 
-  system.zfs.enable = true;
+  system = {
+    preset = "cloud";
+    zfs.enable = true;
+  };
 }

@@ -4,33 +4,30 @@
   lib,
   ...
 }: let
-  netTools = config.features.pkgs.netTools;
-  pkgList = with pkgs; [
-    # System
-    ethtool
+  inherit (lib) optionals;
+  inherit (builtins) elem;
+  basePkgs = with pkgs; [
     nmap
     iperf
     tcpdump
     inetutils
-
-    # L2
+    frr
+    wireguard-tools
+    dig
+  ];
+  extraPkgs = with pkgs; [
+    ethtool
     vlan
     bridge-utils
     lldpd
     cdpr
-
-    # L3
-    ndisc6
-    frr
-    wireguard-tools
-
-    # L4+
-    dig
-    nftables
   ];
+
+  useExtra = elem config.system.preset ["laptop" "server" "desktop"];
+
+  networkPkgs = basePkgs ++ optionals useExtra extraPkgs;
 in {
   users.users = {
-    michael.packages = lib.optionals netTools pkgList;
-    root.packages = lib.optionals netTools pkgList;
+    root.packages = networkPkgs;
   };
 }

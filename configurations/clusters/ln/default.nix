@@ -4,4 +4,6 @@ _: {
     ./modules
     ./networking
   ];
+
+  system.preset = "server";
 }
