@@ -3,7 +3,10 @@
   lib,
   ...
 }: let
-  inherit (lib) types mkOption mkEnableOption mkIf;
+  inherit (lib) mkOption mkEnableOption mkIf;
+  inherit (lib.types) nullOr enum bool;
+
+  choices = enum ["sddm" "ly" "greetd"];
 in {
   imports = [
     ./greetd.nix
@@ -14,12 +17,12 @@ in {
   options.features = {
     autoLogin = mkEnableOption {};
     displayManager = mkOption {
-      type = types.enum ["sddm" "ly" "greetd"];
-      default = "greetd";
+      type = nullOr choices;
+      default = null;
       description = "Which display manager to run";
     };
     graphics = mkOption {
-      type = types.bool;
+      type = bool;
       default = true;
       description = "Enable graphical features on host.";
     };
