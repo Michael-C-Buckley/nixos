@@ -5,6 +5,7 @@
   ...
 }: let
   inherit (lib) mkDefault mkForce;
+
 in {
   imports = with inputs; [
     sops-nix.nixosModules.sops
@@ -14,21 +15,20 @@ in {
 
   services.resolved.enable = true;
   environment.etc."systemd/resolved.conf" = {
-    # There is a conflict default source
-    source = mkForce config.sops.secrets.dns.path;
+    source = mkForce config.sops.secrets.dns.path; # There is a conflict default source
     mode = "0644";
   };
 
   security = {
+    apparmor.enable = true;
     sudo = {
       extraConfig = "Defaults lecture=never";
       wheelNeedsPassword = mkDefault false;
     };
   };
 
-  # Revoke printing for its flaws over the years
   services = {
-    printing.enable = false;
+    printing.enable = false; # Revoke printing for its flaws over the years
     openssh.enable = mkDefault true;
     vscode-server.enable = mkDefault true; # Slotted to be phased out
   };
@@ -38,7 +38,7 @@ in {
     firewall = {
       enable = true;
       allowPing = true;
-      allowedTCPPorts = [22 53 179];
+      allowedTCPPorts = [22 53];
       allowedUDPPorts = [53];
     };
   };
