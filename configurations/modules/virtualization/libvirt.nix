@@ -10,7 +10,7 @@ in {
   options.virtualisation.libvirtd = {
     addGUIPkgs = mkOption {
       type = types.bool;
-      default = true;
+      default = virtCfg.enable;
       description = "Add graphical support packages for VMs.";
     };
     # WIP: Create a config option in users for power users
