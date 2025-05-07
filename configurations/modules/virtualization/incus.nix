@@ -12,9 +12,11 @@ in {
   };
 
   config = {
+    services.lvm.boot.thin.enable = mkDefault incus.useLvmThin;
+    # Incus will prefer Red Hat's Virtiofs over 9P
+    environment.systemPackages = [pkgs.virtiofsd];
     # Incus requires nftables over iptables
     networking.nftables.enable = mkDefault incus.enable;
-    services.lvm.boot.thin.enable = mkDefault incus.useLvmThin;
 
     virtualisation = {
       incus = {
