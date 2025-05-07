@@ -2,11 +2,15 @@
   imports = [
     inputs.nixos-wsl.nixosModules.default
     inputs.nix-index-database.nixosModules.nix-index
-    ./hjem.nix
     ./wsl.nix
   ];
 
-  features.michael.nvf.package = "default";
+  features.michael = {
+    nvf.package = "default";
+    extendedGraphical = false;
+    vscode.enable = false;
+    waybar.enable = false;
+  };
 
   networking = {
     hostName = "wsl";
