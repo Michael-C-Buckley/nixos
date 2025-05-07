@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkDefault mkOption;
+  inherit (lib) mkDefault mkOption mkIf;
   inherit (lib.types) enum;
   loader = config.features.boot;
 in {
@@ -17,25 +17,19 @@ in {
   };
   config = {
     boot = {
-      kernelPackages = mkDefault pkgs.linuxKernel.packages.linux_hardened;
+      kernelPackages = mkDefault pkgs.linuxPackages_6_13_hardened;
       loader = {
         # Grub
-        grub = {
-          enable =
-            if loader == "grub"
-            then true
-            else false;
+        grub = mkIf (loader == "grub") {
+          enable = true;
           efiSupport = true;
           efiInstallAsRemovable = true;
           device = "nodev";
         };
 
         # Systemd Related options
-        systemd-boot = {
-          enable =
-            if loader == "systemd"
-            then true
-            else false;
+        systemd-boot = mkIf (loader == "systemd") {
+          enable = true;
           configurationLimit = 15;
           netbootxyz.enable = true;
         };
