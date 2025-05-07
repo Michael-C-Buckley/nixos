@@ -15,7 +15,7 @@
 
   programs = {
     hyprland.enable = true;
-    cosmic.enable = false;
+    cosmic.enable = true;
     nix-index-database.comma.enable = true;
   };
 
