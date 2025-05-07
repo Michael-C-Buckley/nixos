@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkEnableOption mkDefault;
+  inherit (lib) mkEnableOption mkDefault optionals;
   incus = config.virtualisation.incus;
 in {
   options.virtualisation.incus = {
@@ -12,13 +12,11 @@ in {
   };
 
   config = {
-    # Incus is bested used with these modules available
-    boot.kernelModules = ["apparmor" "virtiofs" "9p" "9pnet_virtio"];
     services.lvm.boot.thin.enable = mkDefault incus.useLvmThin;
+    # Incus is bested used with these modules available
+    boot.kernelModules = optionals incus.enable ["apparmor" "virtiofs" "9p" "9pnet_virtio"];
     # Incus will prefer Red Hat's Virtiofs over 9P
-    environment.systemPackages = [pkgs.virtiofsd];
-    # Incus requires nftables over iptables
-    networking.nftables.enable = mkDefault incus.enable;
+    environment.systemPackages = optionals incus.enable [pkgs.virtiofsd];
 
     security.apparmor.enable = mkDefault true;
 
