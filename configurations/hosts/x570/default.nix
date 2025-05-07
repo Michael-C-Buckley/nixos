@@ -33,7 +33,10 @@
     pkgs.fonts = true;
   };
 
-  services.nix-serve.enable = true;
+  services = {
+    flatpak.enable = true;
+    nix-serve.enable = true;
+  };
 
   virtualisation = {
     incus.enable = true;
