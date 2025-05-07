@@ -39,6 +39,8 @@
     gns3.enable = true;
   };
 
+  services.flatpak.enable = true;
+
   system = {
     preset = "laptop";
     stateVersion = "24.11";
