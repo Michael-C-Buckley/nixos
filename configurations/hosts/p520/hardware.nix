@@ -13,7 +13,7 @@
       kernelModules = ["dm-snapshot"];
     };
     extraModprobeConfig = "options kvm_intel nested=1";
-    kernelModules = ["kvm-intel"];
+    kernelModules = ["kvm-intel" "virtiofs" "9p" "9pnet_virtio"];
     extraModulePackages = [];
   };
 

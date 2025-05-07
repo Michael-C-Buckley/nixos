@@ -13,7 +13,7 @@
       availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "uas" "sd_mod"];
       kernelModules = ["dm-snapshot"];
     };
-    kernelModules = ["kvm-intel"];
+    kernelModules = ["kvm-intel" "virtiofs" "9p" "9pnet_virtio"];
     extraModulePackages = [];
   };
 

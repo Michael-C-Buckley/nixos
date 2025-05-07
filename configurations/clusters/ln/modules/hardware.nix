@@ -16,7 +16,7 @@
       availableKernelModules = ["nvme" "mpt3sas" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
       kernelModules = ["dm-snapshot"];
     };
-    kernelModules = ["kvm-amd"];
+    kernelModules = ["kvm-amd" "virtiofs" "9p" "9pnet_virtio"];
     extraModulePackages = [];
   };
 
