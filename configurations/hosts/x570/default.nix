@@ -15,7 +15,7 @@
 
   programs = {
     hyprland.enable = true;
-    cosmic.enable = true;
+    cosmic.enable = false; # Currently bugged and won't activate
     nix-index-database.comma.enable = true;
   };
 
