@@ -1,5 +1,6 @@
 _: {
   imports = [
+    ./docker.nix
     ./gns3.nix
     ./incus.nix
     ./libvirt.nix

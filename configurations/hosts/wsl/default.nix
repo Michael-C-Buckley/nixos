@@ -25,4 +25,9 @@
     preset = "wsl";
     stateVersion = "24.11";
   };
+
+  virtualisation.docker = {
+    enable = true;
+    kata.enable = true;
+  };
 }
