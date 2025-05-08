@@ -1,10 +1,22 @@
 {
   config,
   inputs,
+  pkgs,
   lib,
   ...
 }: let
-  inherit (lib) mkDefault mkForce;
+  inherit (lib) mkDefault mkForce mkIf optionals;
+
+  notCloud = config.system.preset != "cloud";
+
+  gpgPkgs = with pkgs; [
+    gnupg # gpg, gpg-agent, scdaemon
+    pinentry-curses # or pinentry-gtk2
+    yubikey-manager # “ykman” CLI / GUI
+    yubikey-personalization
+    yubico-piv-tool
+    opensc # PKCS#11 engine for OpenSSL
+  ];
 
 in {
   imports = with inputs; [
@@ -19,6 +31,8 @@ in {
     mode = "0644";
   };
 
+  environment.systemPackages = optionals notCloud gpgPkgs;
+
   security = {
     apparmor.enable = true;
     sudo = {
@@ -28,8 +42,10 @@ in {
   };
 
   services = {
+    pcscd.enable = mkIf notCloud true;
     printing.enable = false; # Revoke printing for its flaws over the years
     openssh.enable = mkDefault true;
+    udev.packages = optionals notCloud [pkgs.yubikey-personalization];
     vscode-server.enable = mkDefault true; # Slotted to be phased out
   };
 
