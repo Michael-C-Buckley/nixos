@@ -13,8 +13,7 @@
   ];
 
   boot = {
-    #kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-    kernelPackages = (pkgs.linuxPackagesFor inputs.lava.packages.x86_64-linux.linux-lava);
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     kernelModules = ["kvm" "kvm-amd" "virtiofs" "9p" "9pnet_virtio"];
     kernelParams = [
       "amd_pstate=active" # AMD Power efficiency on Linux 6.3+
@@ -37,7 +36,7 @@
   security.rtkit.enable = true;
 
   services.ucodenix = {
-    enable = false; # Desktop is suffering CPU crashes, dump the extra microcode
+    enable = true;
     cpuModelId = "00A20F12";
   };
 

@@ -43,9 +43,6 @@
 
     # Applications
     nvf.url = "github:notashelf/nvf";
-
-    # Other Flakes
-    lava.url = "github:LavaDesu/flakes";
   };
 
   outputs = {self, ...} @ inputs: {
