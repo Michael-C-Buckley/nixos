@@ -22,6 +22,7 @@ with pkgs; [
   kdePackages.calligra
   obsidian
   gimp3
+  zed-editor
 
   # Terminals
   kitty

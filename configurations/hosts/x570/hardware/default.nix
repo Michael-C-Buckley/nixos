@@ -13,7 +13,8 @@
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    #kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    kernelPackages = (pkgs.linuxPackagesFor inputs.lava.packages.x86_64-linux.linux-lava);
     kernelModules = ["kvm" "kvm-amd" "virtiofs" "9p" "9pnet_virtio"];
     kernelParams = [
       "amd_pstate=active" # AMD Power efficiency on Linux 6.3+
