@@ -13,8 +13,7 @@
   ];
 
   boot = {
-    #kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-    kernelPackages = (pkgs.linuxPackagesFor inputs.lava.packages.x86_64-linux.linux-lava);
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     initrd = {
       availableKernelModules = ["nvme" "xhci_pci" "uas" "sd_mod" "sdhci_pci"];
       kernelModules = ["dm-snapshot"];
