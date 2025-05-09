@@ -2,6 +2,9 @@ _: {
   # Disable the default boot options, as WSL has its own
   features.boot = "none";
 
+  # Consistent problems are coming up with the non-FHS
+  services.vscode-server.enableFHS = true;
+
   wsl = {
     enable = true;
     defaultUser = "michael";
