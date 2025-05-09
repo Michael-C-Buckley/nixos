@@ -1,6 +1,6 @@
 _: {
   imports = [
-    ../../../modules/presets/nvidia.nix
+    ../../modules/presets/nvidia.nix
     ./networking
     ./systemd
     ./hardware.nix
