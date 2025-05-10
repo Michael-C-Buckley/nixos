@@ -10,6 +10,7 @@ in {
     "nix" = mkZfsLegacyFs "/nix";
     "persist" = mkZfsLegacyFs "/persist";
     "cache" = mkZfsLegacyFs "/cache";
+    "tmp" = mkZfsLegacyFs "/tmp";
   };
   options = {
     ashift = "12";

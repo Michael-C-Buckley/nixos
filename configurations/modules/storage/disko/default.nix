@@ -13,27 +13,37 @@ in {
 
   options = {
     features.disko = {
-      enable = mkEnableOption "Enable Disko for this host";
+      enable = mkEnableOption "Enable Disko for this host.";
       main = {
         device = mkOption {
           type = nullOr str;
           default = null;
-          description = "Activate Disko by declaring the primary drive";
+          description = "Activate Disko by declaring the primary drive.";
+        };
+        bootSize = mkOption {
+          type = str;
+          default = "500M";
+          description = "What size to create the boot partition.";
         };
         swapSize = mkOption {
           type = str;
           default = "1G";
-          description = "Swap partition size";
+          description = "Swap partition size.";
         };
         rootSize = mkOption {
           type = str;
           default = "1G";
-          description = "Size of the root tmpfs";
+          description = "Size of the root tmpfs.";
         };
         imageSize = mkOption {
           type = nullOr str;
           default = null;
-          description = "Size of VM image to be created, if making a VM";
+          description = "Size of VM image to be created, if making a VM.";
+        };
+        zfsSize = mkOption {
+          type = str;
+          default = "100%";
+          description = "What size to use on the ZFS volume.";
         };
       };
     };
