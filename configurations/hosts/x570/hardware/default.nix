@@ -36,7 +36,7 @@
   security.rtkit.enable = true;
 
   services.ucodenix = {
-    enable = true;
+    enable = false; # Desktop is suffering crashes, this may be causing it
     cpuModelId = "00A20F12";
   };
 
