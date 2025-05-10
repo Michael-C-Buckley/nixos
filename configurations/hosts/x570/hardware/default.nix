@@ -10,6 +10,9 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.ucodenix.nixosModules.default
     ./disko.nix
+     # WIP: Make this an option
+    inputs.impermanence.nixosModules.impermanence
+    ../../../modules/storage/impermanence.nix
   ];
 
   boot = {
