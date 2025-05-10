@@ -2,7 +2,7 @@ _: {
     features.disko = {
         enable = true;
         main = {
-            device = "nvme0n1";
+            device = "/dev/nvme0n1";
             bootSize = "1G";
             rootSize = "2G";
             swapSize = "8G";

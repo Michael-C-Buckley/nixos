@@ -5,6 +5,10 @@
     inputs.nix-index-database.nixosModules.nix-index
     ./hardware
     ./networking
+
+    # WIP: Make this an option
+    inputs.impermanence.nixosModules.impermanence
+    ../../../modules/storage/impermanence.nix
   ];
 
   system = {
