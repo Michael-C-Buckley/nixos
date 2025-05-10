@@ -6,6 +6,7 @@
   };
 in {
   imports = [
+    # WIP: Make this an option
     inputs.impermanence.nixosModules.impermanence
     ../../../modules/storage/impermanence.nix
   ];

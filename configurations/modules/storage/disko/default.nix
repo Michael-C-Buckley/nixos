@@ -37,7 +37,7 @@ in {
         };
         imageSize = mkOption {
           type = nullOr str;
-          default = null;
+          default = "2G";
           description = "Size of VM image to be created, if making a VM.";
         };
         zfsSize = mkOption {
