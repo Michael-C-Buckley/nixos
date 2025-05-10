@@ -1,5 +1,5 @@
 {config}: let
-  mainDisko = config.features.disko.main;
+  inherit (config.features.disko.main) bootSize swapSize zfsSize;
 in {
   boot = {
     alignment = 3;
@@ -9,7 +9,7 @@ in {
       type = "filesystem";
     };
     name = "boot";
-    size = "500M";
+    size = bootSize;
     start = "1M";
     type = "EF00";
   };
@@ -19,7 +19,7 @@ in {
       type = "swap";
     };
     name = "swap";
-    size = mainDisko.swapSize;
+    size = swapSize;
   };
   zfs = {
     alignment = 1;
@@ -28,6 +28,6 @@ in {
       type = "zfs";
     };
     name = "zfs";
-    size = "100%";
+    size = zfsSize;
   };
 }

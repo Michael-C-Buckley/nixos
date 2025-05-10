@@ -9,7 +9,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.ucodenix.nixosModules.default
-    ./filesystems.nix
+    ./disko.nix
   ];
 
   boot = {

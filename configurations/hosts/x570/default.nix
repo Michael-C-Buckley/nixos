@@ -9,7 +9,8 @@
 
   system = {
     preset = "desktop";
-    stateVersion = "24.05";
+    stateVersion = "25.05";
+    impermanence.enable = true;
     zfs.enable = true;
   };
 
