@@ -1,5 +1,9 @@
 # X570 Desktop Configuration
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.nix-secrets.nixosModules.x570
     inputs.nix-index-database.nixosModules.nix-index
