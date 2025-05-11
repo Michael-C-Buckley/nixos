@@ -5,6 +5,7 @@
   pkgs,
   lib,
   commonPackages,
+  system,
   ...
 }: let
   inherit (lib) optionals;
@@ -12,4 +13,4 @@
 in
   commonPackages
   ++ optionals minimalGraphical (import ./minimalGraphical.nix {inherit pkgs;})
-  ++ optionals extendedGraphical (import ./extendedGraphical.nix {inherit inputs pkgs;})
+  ++ optionals extendedGraphical (import ./extendedGraphical.nix {inherit inputs pkgs system;})

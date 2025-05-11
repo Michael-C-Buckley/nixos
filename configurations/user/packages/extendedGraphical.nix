@@ -1,9 +1,14 @@
-{pkgs, ...}:
+{
+  pkgs,
+  inputs,
+  system,
+  ...
+}:
 with pkgs; [
   # System Utilities
   networkmanagerapplet
   cpu-x
-  pavucontrol                   # Pulse Volume control
+  pavucontrol # Pulse Volume control
   gammastep
   wireshark
 
@@ -13,30 +18,31 @@ with pkgs; [
   # Media
   mpv
   imv
-  zathura                       # PDF Viewer
-  kdePackages.koko              # Photo Viewer
-  foliate                       # Ebook Reader
+  zathura # PDF Viewer
+  kdePackages.koko # Photo Viewer
+  foliate # Ebook Reader
 
   # Productivity
-  kdePackages.kalgebra          # Calculator
+  kdePackages.kalgebra # Calculator
   kdePackages.calligra
   obsidian
   gimp3
   zed-editor
+  inputs.nil.packages.${system}.default # Add to user so Zed has access, for now; WIP: figure out how to move
 
   # Terminals
   kitty
   wezterm
 
   # Development
-    (writeShellApplication {
-      name = "ns";
-      runtimeInputs = with pkgs; [
-        fzf
-        nix-search-tv
-      ];
-      text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
-    })
+  (writeShellApplication {
+    name = "ns";
+    runtimeInputs = with pkgs; [
+      fzf
+      nix-search-tv
+    ];
+    text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
+  })
 
   # Communication
   vivaldi

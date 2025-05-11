@@ -43,6 +43,7 @@
 
     # Applications
     nvf.url = "github:notashelf/nvf";
+    nil.follows = "nvf/nil";
   };
 
   outputs = {self, ...} @ inputs: {

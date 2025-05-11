@@ -21,7 +21,7 @@ in {
 
   users.users = {
     michael = {
-      packages = import ./packages/userPkgs.nix {inherit config inputs pkgs lib commonPackages;};
+      packages = import ./packages/userPkgs.nix {inherit config inputs pkgs lib commonPackages system;};
       shell = mkOverride 900 pkgs.fish;
     };
     root = {
