@@ -3,11 +3,7 @@
 # Differences in mounts:
 # - Persist: persisted and ZFS snapshotted
 # - Cache: persisted but no snapshots
-{
-  config,
-  lib,
-  ...
-}: {
+{config, ...}: {
   # To make sure keys are available for sops decryption
   fileSystems."/etc/ssh".neededForBoot = true;
 
@@ -94,8 +90,8 @@
     };
   };
 
-  sanoid = {
-    enable = lib.mkIf config.system.zfs.enable;
+  services.sanoid = {
+    enable = config.system.zfs.enable;
 
     datasets = {
       "zroot/persist" = {
