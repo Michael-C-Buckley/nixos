@@ -628,6 +628,10 @@
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "microvm": "microvm",
+        "nil": [
+          "nvf",
+          "nil"
+        ],
         "nix-index-database": "nix-index-database",
         "nix-secrets": "nix-secrets",
         "nixos-wsl": "nixos-wsl",
