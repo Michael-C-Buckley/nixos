@@ -4,6 +4,10 @@
 # - Persist: persisted and ZFS snapshotted
 # - Cache: persisted but no snapshots
 {
+  config,
+  lib,
+  ...
+}: {
   # To make sure keys are available for sops decryption
   fileSystems."/etc/ssh".neededForBoot = true;
 
@@ -87,6 +91,19 @@
       files = [
         ".screenrc"
       ];
+    };
+  };
+
+  sanoid = {
+    enable = lib.mkIf config.system.zfs.enable;
+
+    datasets = {
+      "zroot/persist" = {
+        hourly = 50;
+        daily = 15;
+        weekly = 3;
+        monthly = 1;
+      };
     };
   };
 }
