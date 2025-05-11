@@ -5,7 +5,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkDefault mkForce mkIf optionals;
+  inherit (lib) mkDefault mkForce optionals;
 
   notCloud = config.system.preset != "cloud";
 
@@ -43,15 +43,17 @@ in {
     };
   };
 
+  hardware.gpgSmartcards.enable = notCloud;
+
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-    enableBrowserSocket = mkIf notCloud true;
+    enableBrowserSocket = notCloud;
   };
 
   services = {
-    pcscd.enable = mkIf notCloud true;
-    yubikey-agent.enable = mkIf notCloud true;
+    pcscd.enable = notCloud;
+    yubikey-agent.enable = notCloud;
     printing.enable = false; # Revoke printing for its flaws over the years
     openssh.enable = mkDefault true;
     udev.packages = optionals notCloud [pkgs.yubikey-personalization];
