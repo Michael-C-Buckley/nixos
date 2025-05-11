@@ -49,6 +49,7 @@ in {
     enable = true;
     enableSSHSupport = true;
     enableBrowserSocket = notCloud;
+    pinentryPackage = pkgs.pinentry-curses;
   };
 
   services = {
