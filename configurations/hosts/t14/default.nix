@@ -18,7 +18,10 @@
     nix-index-database.comma.enable = true;
   };
 
-  environment.systemPackages = [pkgs.brightnessctl];
+  environment.systemPackages = with pkgs; [
+    brightnessctl
+    talosctl
+  ];
 
   features = {
     michael = {
