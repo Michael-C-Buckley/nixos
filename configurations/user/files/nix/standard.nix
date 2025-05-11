@@ -17,6 +17,7 @@
 
   # GnuPG
   ".config/pubkeys/michael1.asc".source = ../gnupg/michael1.asc;
+  ".gnupg/gpg.conf".source = ../gnupg/gpg.conf;
 
   # Ghostty
   ".config/ghostty/config".source = ../userfiles/ghostty;

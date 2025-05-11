@@ -43,7 +43,7 @@ in {
     };
   };
 
-  hardware.gpgSmartcards.enable = notCloud;
+  #hardware.gpgSmartcards.enable = notCloud;
 
   programs.gnupg.agent = {
     enable = true;
