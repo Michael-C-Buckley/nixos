@@ -12,12 +12,14 @@
   gpgPkgs = with pkgs; [
     gnupg
     pinentry-curses
-    yubikey-manager
-    yubikey-personalization
-    yubico-piv-tool
     opensc
   ];
 
+  yubikeyPkgs = with pkgs; [
+    yubikey-manager
+    yubikey-personalization
+    yubico-piv-tool
+  ];
 in {
   imports = with inputs; [
     sops-nix.nixosModules.sops
@@ -31,7 +33,7 @@ in {
     mode = "0644";
   };
 
-  environment.systemPackages = optionals notCloud gpgPkgs;
+  environment.systemPackages = gpgPkgs ++ optionals notCloud yubikeyPkgs;
 
   security = {
     apparmor.enable = true;
