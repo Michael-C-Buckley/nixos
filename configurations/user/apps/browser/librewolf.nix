@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkOption;
+  inherit (lib) mkEnableOption mkOption mkIf;
   cfg = config.apps.${user}.browsers.librewolf;
 in {
   options = {
@@ -20,20 +20,14 @@ in {
   };
 
   config = {
-    environment = if config.system.impermanence.enable then {
-      
-      persistence."/persist".users.${user}.directories =
-      if cfg.enable
-      then [
-        ".config/librewolf"
-        ".cache/librewolf"
-      ]
-      else [];
-    } else {};
+    environment.persistence = mkIf config.system.impermanence.enable {
+      "/persist".users.${user}.directories = mkIf cfg.enable [
+        # Default profile location
+        ".mozilla/librewolf"
+        ".cache/mozilla/librewolf"
+      ];
+    };
 
-    users.users.${user}.packages =
-      if cfg.enable
-      then [cfg.package]
-      else [];
+    users.users.${user}.packages = mkIf cfg.enable [cfg.package];
   };
 }
