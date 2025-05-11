@@ -28,7 +28,7 @@ in {
       ]
       else [];
 
-    users.${user}.packages =
+    users.users.${user}.packages =
       if cfg.enable
       then [cfg.package]
       else [];

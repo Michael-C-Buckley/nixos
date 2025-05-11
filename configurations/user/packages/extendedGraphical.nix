@@ -41,7 +41,5 @@ with pkgs; [
   # Communication
   vivaldi
   bitwarden
-  signal-desktop-bin
   legcord
-  materialgram                  # Telegram fork
 ]

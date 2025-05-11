@@ -1,9 +1,13 @@
-{config, lib, pkgs, ...}: {
-  imports = [
-    (import ./default.nix {inherit config lib pkgs; user = "michael";})  
-  ];
+{pkgs, ...}: {
 
-  apps.michael.browsers.librewolf.enable = true;
+  apps.michael = {
+    browsers.librewolf.enable = true;
+    communication = {
+      signal.enable = true;
+      discord.enable = true;
+      telegram.enable = true;
+    };
+  };
 
   home.features.michael = {
     cursor = {

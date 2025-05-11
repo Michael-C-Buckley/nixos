@@ -16,6 +16,7 @@ in {
     ./options
     ./modules/vscode/hjem.nix
     ./michael.nix
+    ./default.nix
   ];
 
   users.users = {

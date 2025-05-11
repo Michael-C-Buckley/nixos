@@ -1,16 +1,25 @@
-{config, lib, pkgs, user, ... }:
-
-let
-  userArgs = { inherit config lib pkgs user; };
-
-  # helper to import a module with special args
-  importWithArgs = modulePath:
-    (import modulePath) userArgs;
-
-  modules = [
-    (importWithArgs ./apps/browser/librewolf.nix)
-    (importWithArgs ./modules)
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  # users = ["michael" "shawn"];
+  userModules = [
+    ./apps
+    ./modules
   ];
+in {
+  imports = lib.flatten (map (m:
+    import m {
+      inherit config lib pkgs;
+      user = "michael";
+    })
+  userModules);
 
-in
-lib.foldl' lib.recursiveUpdate {} modules
+  # Does not recognize the user param
+  # imports = lib.flatten (map (user:
+  #   map (m: import m ({inherit config lib pkgs user;}))
+  #       userModules)
+  #   users);
+}
