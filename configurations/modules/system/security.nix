@@ -10,12 +10,12 @@
   notCloud = config.system.preset != "cloud";
 
   gpgPkgs = with pkgs; [
-    gnupg # gpg, gpg-agent, scdaemon
-    pinentry-curses # or pinentry-gtk2
-    yubikey-manager # “ykman” CLI / GUI
+    gnupg
+    pinentry-curses
+    yubikey-manager
     yubikey-personalization
     yubico-piv-tool
-    opensc # PKCS#11 engine for OpenSSL
+    opensc
   ];
 
 in {
@@ -41,8 +41,15 @@ in {
     };
   };
 
+  gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    enableBrowserSocket = mkIf notCloud true;
+  };
+
   services = {
     pcscd.enable = mkIf notCloud true;
+    yubikey-agent.enable = mkIf notCloud true;
     printing.enable = false; # Revoke printing for its flaws over the years
     openssh.enable = mkDefault true;
     udev.packages = optionals notCloud [pkgs.yubikey-personalization];
