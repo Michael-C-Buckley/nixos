@@ -30,5 +30,10 @@ in {
       enable = true;
       flake = mkDefault "/etc/nixos";
     };
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+      enableBrowserSocket = true;
+    };
   };
 }
