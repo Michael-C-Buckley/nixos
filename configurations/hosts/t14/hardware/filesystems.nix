@@ -1,15 +1,10 @@
-{inputs, ...}: let
+_: let
   zfsFs = name: {
     device = "zroot/${name}";
     fsType = "zfs";
     neededForBoot = true;
   };
 in {
-  imports = [
-    # WIP: Make this an option
-    inputs.impermanence.nixosModules.impermanence
-    ../../../modules/storage/impermanence.nix
-  ];
   boot.zfs.forceImportAll = true;
 
   fileSystems = {
