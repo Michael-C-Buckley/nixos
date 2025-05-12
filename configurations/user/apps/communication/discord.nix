@@ -20,8 +20,8 @@ in {
   };
 
   config = {
-    environment.persistence = mkIf config.system.impermanence.enable {
-      "/persist".users.${user}.directories = mkIf cfg.enable [
+    environment = mkIf config.system.impermanence.enable {
+      persistence."/persist".users.${user}.directories = mkIf cfg.enable [
         ".config/legcord"
       ];
     };

@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkOption;
+  inherit (lib) mkEnableOption mkOption mkIf;
   cfg = config.apps.${user}.browsers.vivaldi;
 in {
   options = {
@@ -20,17 +20,13 @@ in {
   };
 
   config = {
-    environment.persistence."/persist".users.${user}.directories =
-      if cfg.enable
-      then [
+    environment = mkIf config.system.impermanence.enable {
+      persistence."/persist".users.${user}.directories = mkIf cfg.enable [
         ".config/vivaldi"
         ".cache/vivaldi"
-      ]
-      else [];
+      ];
+    };
 
-    users.users.${user}.packages =
-      if cfg.enable
-      then [cfg.package]
-      else [];
+    users.users.${user}.packages = mkIf cfg.enable [cfg.package];
   };
 }
