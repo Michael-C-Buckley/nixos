@@ -17,6 +17,7 @@
 
   # GnuPG
   ".config/pubkeys/michael1.asc".source = ../gnupg/michael1.asc;
+  ".config/pubkeys/michael2.asc".source = ../gnupg/michael2.asc;
   ".gnupg/gpg.conf".source = ../gnupg/gpg.conf;
   ".gnupg/gpg-agent.conf".source = ../gnupg/gpg-agent.conf;
 
