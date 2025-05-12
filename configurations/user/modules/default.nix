@@ -7,8 +7,8 @@
   cfg = config.home.features.${user};
 in {
   imports = [
-    (import ./appearance/cursor {inherit config lib user;})
-    (import ./appearance/gtk {inherit config lib user;})
+    (import ./appearance/cursor.nix {inherit config lib user;})
+    (import ./appearance/gtk.nix {inherit config lib user;})
   ];
 
   options.home.features.${user}.fileList = lib.mkOption {
