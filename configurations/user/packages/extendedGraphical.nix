@@ -13,7 +13,7 @@ with pkgs; [
   wireshark
 
   # Desktop
-  kdePackages.dolphin
+  xfce.thunar
 
   # Media
   mpv
