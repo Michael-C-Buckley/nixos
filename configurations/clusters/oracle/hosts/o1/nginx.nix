@@ -5,11 +5,6 @@ in {
   services.nginx = {
     enable = true;
 
-    ssl_client_certificate  /etc/nginx/ca/root-ca.crt;   # <- the file you just copied
-    ssl_trusted_certificate /etc/nginx/ca/root-ca.crt;   # good practice for full chain
-    ssl_verify_client       on;        # optional | optional_no_ca | off
-    ssl_verify_depth        2;         # how many intermediates you allow
-
     virtualHosts."nix-cache.groovyreserve.com" = {
       locations."/" = {
         proxyPass = "http://${nixServe.bindAddress}:${builtins.toString nixServe.port}";
