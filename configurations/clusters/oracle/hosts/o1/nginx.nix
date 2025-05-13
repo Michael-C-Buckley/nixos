@@ -22,9 +22,10 @@ in {
       enableACME = true;
       forceSSL = true;
 
+      ssl_trusted_certificate = "/etc/certs/michael.crt.pem";
+
       extraConfig = ''
         ssl_client_certificate  /etc/certs/michael.crt.pem;
-        ssl_trusted_certificate /etc/certs/michael.crt.pem;
         ssl_verify_client       optional;
         ssl_verify_depth        2;
       '';
