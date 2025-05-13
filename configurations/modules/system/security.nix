@@ -19,6 +19,7 @@
     yubikey-manager
     yubikey-personalization
     yubico-piv-tool
+    libp11
   ];
 in {
   imports = with inputs; [
@@ -28,12 +29,21 @@ in {
   ];
 
   services.resolved.enable = true;
-  environment.etc."systemd/resolved.conf" = {
-    source = mkForce config.sops.secrets.dns.path; # There is a conflict default source
-    mode = "0644";
-  };
 
-  environment.systemPackages = gpgPkgs ++ optionals notCloud yubikeyPkgs;
+  environment = {
+    systemPackages = gpgPkgs ++ optionals notCloud yubikeyPkgs;
+    etc = {
+      "pkcs11/pkcs11.conf".text = ''
+        module: ${pkgs.opensc}/lib/opensc-pkcs11.so
+        critical: yes
+        log-calls: yes
+      '';
+      "systemd/resolved.conf" = {
+        source = mkForce config.sops.secrets.dns.path; # There is a conflict default source
+        mode = "0644";
+      };
+    };
+  };
 
   security = {
     apparmor.enable = true;
