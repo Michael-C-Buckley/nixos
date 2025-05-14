@@ -14,6 +14,10 @@ _: {
       noice.enable = true;
     };
 
+    runner.run-nvim = {
+      enable = true;
+    };
+
     visuals = {
       cinnamon-nvim.enable = true;
       fidget-nvim.enable = true;
