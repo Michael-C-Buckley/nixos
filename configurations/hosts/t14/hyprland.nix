@@ -6,9 +6,9 @@ in {
       monitor=eDP-1,1920x1080@60.01Hz,0x0,1
     '';
 
-    ".config/hypr/hyprland.conf".text = ''
-      preload = ${wpDir}/sundown-over-water.jgp
-      wallpaper = , ${wpDir}/sundown-over-water.jgp
+    ".config/hypr/hyprpaper.conf".text = ''
+      preload = ${wpDir}/sundown-over-water.jpg
+      wallpaper = , ${wpDir}/sundown-over-water.jpg
     '';
   };
 }
