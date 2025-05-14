@@ -18,7 +18,10 @@
     zfs.enable = true;
   };
 
-  environment.systemPackages = [pkgs.talosctl];
+  environment.systemPackages = with pkgs; [
+    talosctl
+    devenv
+  ];
 
   programs = {
     hyprland.enable = true;
