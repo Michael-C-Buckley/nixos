@@ -12,7 +12,12 @@
     autopairs.nvim-autopairs.enable = true;
     comments.comment-nvim.enable = true;
     statusline.lualine.enable = true;
-    useSystemClipboard = true;
+
+    #Clipboard
+    clipboard = {
+      enable = true;
+      registers = "unnamedplus";
+    };
 
     # Appearance
     theme = {
