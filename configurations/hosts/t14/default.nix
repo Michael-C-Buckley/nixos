@@ -39,11 +39,9 @@
   };
 
   virtualisation = {
-    libvirtd.enable = true;
-    gns3.enable = true;
+    docker.enable = true;
+    incus.enable = true;
   };
-
-  services.flatpak.enable = true;
 
   system = {
     preset = "laptop";
