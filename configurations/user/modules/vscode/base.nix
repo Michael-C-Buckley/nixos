@@ -34,15 +34,11 @@
       jdinhlife.gruvbox
       plugins.wicked-labs.wvsc-serendipity
       plugins.keifererikson.nightfox
-      plugins.michalpopek.dayfox-vsc
-      plugins.mthierman.theme-flexoki
       plugins.metaphore.kanagawa-vscode-color-theme
-      plugins.zhuangtongfa.material-theme
 
       # Python
       ms-python.python
       ms-python.vscode-pylance
-      ms-pyright.pyright
       ms-python.debugpy
 
       # Nix
