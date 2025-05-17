@@ -11,6 +11,9 @@
   ".local/share/applications/mimeapps.list".source = ../userfiles/mimeapps.list;
   ".config/mimeapps.list". source = ../userfiles/mimeapps.list;
 
+  # Fastfetch
+  ".config/fastfetch/config.jsonc".source = ../fastfetch/config.jsonc;
+
   # Fish
   ".config/fish/config.fish".source = ../fish/config.fish;
   ".config/fish/conf.d/functions.fish".source = ../fish/functions.fish;
