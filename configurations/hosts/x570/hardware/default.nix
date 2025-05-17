@@ -13,7 +13,7 @@
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod;
+    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
     kernelModules = ["kvm" "kvm-amd" "virtiofs" "9p" "9pnet_virtio"];
     kernelParams = [
       "amd_pstate=active" # AMD Power efficiency on Linux 6.3+
