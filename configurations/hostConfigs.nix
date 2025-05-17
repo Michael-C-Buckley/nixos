@@ -8,13 +8,12 @@
   }: let
     pkgs = import inputs.nixpkgs {
       inherit system;
-      config.allowUnfree = true;
     };
     lib = inputs.nixpkgs.lib;
     customLib = import ../lib {inherit pkgs lib;};
   in
     inputs.nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit self pkgs customLib lib host system inputs;};
+      specialArgs = {inherit self customLib lib host system inputs;};
       modules =
         [
           ./modules

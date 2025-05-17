@@ -12,7 +12,6 @@
       else "x86_64-linux";
     pkgs = import inputs.nixpkgs {
       inherit system;
-      config = {allowUnfree = true;};
     };
     lib = inputs.nixpkgs.lib;
     customLib = import ../lib {inherit pkgs lib;};
@@ -20,7 +19,7 @@
     inputs.nixpkgs.lib.nixosSystem {
       # Oracle1 is an exception as it is an ARM host
       inherit system;
-      specialArgs = {inherit self pkgs customLib lib host system inputs;};
+      specialArgs = {inherit self customLib lib host system inputs;};
       modules =
         [
           ./modules

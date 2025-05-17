@@ -4,11 +4,9 @@ extensions = [
     # Themes
     "wicked-labs.wvsc-serendipity",
     "keifererikson.nightfox",
-    "michalpopek.dayfox-vsc",
-    "mthierman.theme-flexoki",
     "metaphore.kanagawa-vscode-color-theme",
-    "zhuangtongfa.Material-theme",
     "ddiu8081.moegi-theme",
+    "sainnhe.everforest",
 
     # Editor Tools
     "AlecGhost.tree-sitter-vscode",
