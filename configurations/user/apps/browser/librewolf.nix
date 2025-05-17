@@ -23,6 +23,7 @@ in {
     environment = mkIf config.system.impermanence.enable {
       persistence."/persist".users.${user}.directories = mkIf cfg.enable [
         # Default profile location
+        ".librewolf"
         ".mozilla/librewolf"
         ".cache/mozilla/librewolf"
       ];
