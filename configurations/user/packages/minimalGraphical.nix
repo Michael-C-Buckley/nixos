@@ -12,7 +12,4 @@ with pkgs; [
   # Terminals
   ghostty
   flow-control    # Simple TUI IDE
-
-  # Communication
-  librewolf
 ]
