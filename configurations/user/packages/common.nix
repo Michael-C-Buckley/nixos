@@ -28,6 +28,8 @@ in with pkgs; [
   yazi
 
   # Machine Utilities
+  ethtool
+  gparted
   python3
   ripgrep
   eza
@@ -39,5 +41,4 @@ in with pkgs; [
   btop
   fd
   fzf
-  zoxide
 ]
