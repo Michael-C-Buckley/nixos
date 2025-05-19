@@ -1,9 +1,19 @@
-_: {
+{pkgs, ...}: let
+  vscodeExtensions = with pkgs.vscode-extensions; [
+    ms-pyright.pyright
+    ms-python.vscode-pylance
+    ms-python.python
+    ms-python.debugpy
+  ];
+in {
   # Disable the default boot options, as WSL has its own
   features.boot = "none";
 
   # Consistent problems are coming up with the non-FHS
-  services.vscode-server.enableFHS = true;
+  services.vscode-server = {
+    enableFHS = true;
+    extraRuntimeDependencies = vscodeExtensions;
+  };
 
   wsl = {
     enable = true;

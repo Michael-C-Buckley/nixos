@@ -1,9 +1,15 @@
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.nixos-wsl.nixosModules.default
     inputs.nix-index-database.nixosModules.nix-index
     ./wsl.nix
   ];
+
+  environment.systemPackages = [pkgs.devenv];
 
   features.michael = {
     nvf.package = "default";
