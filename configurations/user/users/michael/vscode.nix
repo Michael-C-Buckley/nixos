@@ -1,6 +1,6 @@
 {pkgs, ...}: {
-  home.features.michael.vscode = {
-    enable = true;
+  features.michael.vscode = {
+    # Enable set on per host basis
     extensions = with pkgs.vscode-extensions; [
       # Microsoft
       ms-vscode-remote.remote-ssh

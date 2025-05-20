@@ -9,11 +9,11 @@
   inherit (lib) mkOption;
   inherit (lib.types) package lines int str attrs;
 
-  local = config.home.features.${user}.cursor;
+  local = config.features.${user}.cursor;
   size = toString local.size;
 in {
   # Options the user will define for themselves
-  options.home.features.${user}.cursor = {
+  options.features.${user}.cursor = {
     xtheme = mkOption {
       type = str;
       description = "Name of the xcursor theme to use.";

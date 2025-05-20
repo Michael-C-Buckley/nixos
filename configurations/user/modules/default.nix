@@ -4,7 +4,7 @@
   user,
   ...
 }: let
-  cfg = config.home.features.${user};
+  cfg = config.features.${user};
   inherit (lib) mkOption;
   inherit (lib.types) attrs listOf package;
 in {
@@ -13,7 +13,7 @@ in {
     (import ./appearance/gtk.nix {inherit config lib user;})
   ];
 
-  options.home.features.${user} = {
+  options.features.${user} = {
     fileList = mkOption {
       type = attrs;
       internal = true;

@@ -21,7 +21,7 @@ in {
 
   users.users = {
     michael = {
-      packages = userPackages ++ config.home.features.michael.packageList;
+      packages = userPackages ++ config.features.michael.packageList;
       shell = mkOverride 900 pkgs.fish;
     };
     root = {
@@ -38,7 +38,7 @@ in {
       directory = "/home/michael";
       files = lib.mkMerge [
         (import ./files/fileList.nix {inherit config lib;})
-        config.home.features.michael.fileList
+        config.features.michael.fileList
       ];
     };
     # Here's an attempt at seeing if Hjem can apply user configs to root
