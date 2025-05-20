@@ -13,10 +13,12 @@ in {
     extensions = mkOption {
       type = listOf package;
       description = "Extensions from Nixpkgs.";
+      default = [];
     };
     nonNixExtensions = mkOption {
       type = listOf str;
       description = "Extensions by name found in the vscode store.";
+      default = [];
     };
   };
 
