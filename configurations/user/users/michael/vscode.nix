@@ -1,25 +1,7 @@
-# Single list item for imports later into Hjem/Home-managed configs
-{pkgs, ...}: let
-  # Overlay defined in `configurations/modules/system/nix.nix`
-  nix4vscodePkgs = pkgs.nix4vscode.forVscode [
-    # Themes
-    "wicked-labs.wvsc-serendipity"
-    "keifererikson.nightfox"
-    "metaphore.kanagawa-vscode-color-theme"
-    "ddiu8081.moegi-theme"
-    "sainnhe.everforest"
-
-    # Editor Tools
-    "AlecGhost.tree-sitter-vscode"
-
-    # Networking Tools
-    "jamiewoodio.cisco"
-    "ispapp.mikrotik-routeros-script-tools"
-    "srl-labs.vscode-containerlab"
-  ];
-in [
-  (pkgs.vscode-with-extensions.override {
-    vscodeExtensions = with pkgs.vscode-extensions; [
+{pkgs, ...}: {
+  home.features.michael.vscode = {
+    enable = true;
+    extensions = with pkgs.vscode-extensions; [
       # Microsoft
       ms-vscode-remote.remote-ssh
       ms-vscode-remote.remote-ssh-edit
@@ -64,6 +46,22 @@ in [
 
       # Elixir
       elixir-lsp.vscode-elixir-ls
-    ] ++ nix4vscodePkgs;
-  })
-]
+    ];
+    nonNixExtensions = [
+      # Themes
+      "wicked-labs.wvsc-serendipity"
+      "keifererikson.nightfox"
+      "metaphore.kanagawa-vscode-color-theme"
+      "ddiu8081.moegi-theme"
+      "sainnhe.everforest"
+
+      # Editor Tools
+      "AlecGhost.tree-sitter-vscode"
+
+      # Networking Tools
+      "jamiewoodio.cisco"
+      "ispapp.mikrotik-routeros-script-tools"
+      "srl-labs.vscode-containerlab"
+    ];
+  };
+}

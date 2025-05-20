@@ -11,5 +11,5 @@ with pkgs; [
 
   # Terminals
   ghostty
-  flow-control    # Simple TUI IDE
+  flow-control # Simple TUI IDE
 ]

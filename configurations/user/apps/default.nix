@@ -1,4 +1,10 @@
-{config, lib, pkgs, user, ...}: {
+{
+  config,
+  lib,
+  pkgs,
+  user,
+  ...
+}: {
   imports = [
     # WIP: De-duplicate
     (import ./browser/librewolf.nix {inherit config lib pkgs user;})
@@ -6,5 +12,6 @@
     (import ./communication/discord.nix {inherit config lib pkgs user;})
     (import ./communication/telegram.nix {inherit config lib pkgs user;})
     (import ./communication/signal.nix {inherit config lib pkgs user;})
+    (import ./editors/vscode.nix {inherit config lib pkgs user;})
   ];
 }
