@@ -6,7 +6,10 @@
 }: let
   inherit (lib) mapAttrs mapAttrsToList;
 in {
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [inputs.nix4vscode.overlays.forVscode];
+  };
 
   nix = {
     # package = pkgs.nixVersions.latest;
