@@ -20,6 +20,9 @@
       # Tree-sitter
       plugins.alecghost.tree-sitter-vscode
 
+      # Kubernetes
+      ms-kubernetes-tools.vscode-kubernetes-tools
+
       # Ansible
       redhat.ansible
       redhat.vscode-yaml

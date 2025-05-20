@@ -9,6 +9,7 @@
     ./hardware
     ./networking
     ./hyprland.nix
+    ./k3s.nix
   ];
 
   system = {
