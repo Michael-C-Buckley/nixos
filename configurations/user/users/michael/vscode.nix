@@ -1,5 +1,7 @@
-{pkgs, ...}: {
-  features.michael.vscode = {
+{config, pkgs, lib, ...}: let
+  useCode = config.features.michael.vscode.enable;
+in {
+  features.michael.vscode = lib.mkIf useCode {
     # Enable set on per host basis
     extensions = with pkgs.vscode-extensions; [
       # Microsoft
