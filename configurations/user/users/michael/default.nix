@@ -1,4 +1,7 @@
 {pkgs, ...}: {
+  imports = [
+    ./vscode.nix
+  ];
 
   apps.michael = {
     browsers.librewolf.enable = true;
@@ -17,14 +20,10 @@
       package = pkgs.nordzy-cursor-theme;
     };
     gtk = {
-      theme = {
-        name = "Materia-dark";
-        package = pkgs.materia-theme;
-      };
-      iconTheme = {
-        name = "Gruvbox Dark";
-        package = pkgs.gruvbox-dark-icons-gtk;
-      };
+      theme.name = "Materia-dark";
+      theme.package = pkgs.materia-theme;
+      iconTheme.name = "Gruvbox Dark";
+      iconTheme.package = pkgs.gruvbox-dark-icons-gtk;
     };
   };
 }

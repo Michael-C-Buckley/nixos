@@ -10,18 +10,18 @@
 }: let
   inherit (lib) mkOverride;
   commonPackages = import ./packages/common.nix {inherit self config pkgs inputs system;};
+  userPackages = import ./packages/userPkgs.nix {inherit config inputs pkgs lib commonPackages system;};
 in {
   imports = [
     inputs.hjem.nixosModules.default
     ./options
-    ./modules/vscode/hjem.nix
-    ./michael.nix
+    ./users/michael
     ./default.nix
   ];
 
   users.users = {
     michael = {
-      packages = import ./packages/userPkgs.nix {inherit config inputs pkgs lib commonPackages system;};
+      packages = userPackages ++ config.home.features.michael.packageList;
       shell = mkOverride 900 pkgs.fish;
     };
     root = {
