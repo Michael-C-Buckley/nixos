@@ -1,8 +1,23 @@
 # Single list item for imports later into Hjem/Home-managed configs
-{
-  pkgs,
-  plugins,
-}: [
+{pkgs, ...}: let
+  # Overlay defined in `configurations/modules/system/nix.nix`
+  nix4vscodePkgs = pkgs.nix4vscode.forVscode [
+    # Themes
+    "wicked-labs.wvsc-serendipity"
+    "keifererikson.nightfox"
+    "metaphore.kanagawa-vscode-color-theme"
+    "ddiu8081.moegi-theme"
+    "sainnhe.everforest"
+
+    # Editor Tools
+    "AlecGhost.tree-sitter-vscode"
+
+    # Networking Tools
+    "jamiewoodio.cisco"
+    "ispapp.mikrotik-routeros-script-tools"
+    "srl-labs.vscode-containerlab"
+  ];
+in [
   (pkgs.vscode-with-extensions.override {
     vscodeExtensions = with pkgs.vscode-extensions; [
       # Microsoft
@@ -15,10 +30,7 @@
       mechatroner.rainbow-csv
       streetsidesoftware.code-spell-checker
       formulahendry.auto-rename-tag # Matches XML tags while editing
-      alefragnani.bookmarks
-
-      # Tree-sitter
-      plugins.alecghost.tree-sitter-vscode
+      oderwat.indent-rainbow
 
       # Kubernetes
       ms-kubernetes-tools.vscode-kubernetes-tools
@@ -35,9 +47,6 @@
       mvllow.rose-pine
       catppuccin.catppuccin-vsc
       jdinhlife.gruvbox
-      plugins.wicked-labs.wvsc-serendipity
-      plugins.keifererikson.nightfox
-      plugins.metaphore.kanagawa-vscode-color-theme
 
       # Python
       ms-python.python
@@ -55,11 +64,6 @@
 
       # Elixir
       elixir-lsp.vscode-elixir-ls
-
-      # Networking
-      plugins.jamiewoodio.cisco
-      plugins.ispapp.mikrotik-routeros-script-tools
-      plugins.srl-labs.vscode-containerlab
-    ];
+    ] ++ nix4vscodePkgs;
   })
 ]
