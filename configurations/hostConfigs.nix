@@ -22,12 +22,17 @@
         ++ modules;
     };
 
-  mkMichaelConfig = {host, modules}:
+  mkMichaelConfig = {
+    host,
+    modules,
+  }:
     hostConfig {
       inherit host;
-      modules = [
-        ./modules/presets/michael.nix
-      ] ++ modules;
+      modules =
+        [
+          ./modules/presets/michael.nix
+        ]
+        ++ modules;
     };
   michaelhosts = ["x570" "t14" "p520" "wsl" "vm" "ssk"];
 in

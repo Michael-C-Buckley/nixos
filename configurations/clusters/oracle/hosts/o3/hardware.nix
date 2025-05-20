@@ -1,4 +1,8 @@
-{modulesPath, lib, ...}: {
+{
+  modulesPath,
+  lib,
+  ...
+}: {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -14,7 +18,7 @@
     tmp.cleanOnBoot = true;
     kernelModules = ["kvm-amd"];
     initrd = {
-      availableKernelModules = [ "virtio_pci" "virtio_blk" "xhci_pci" "ahci" "sd_mod" "ata_piix" "uhci_hcd" "xen_blkfront" "vmw_pvscsi"];
+      availableKernelModules = ["virtio_pci" "virtio_blk" "xhci_pci" "ahci" "sd_mod" "ata_piix" "uhci_hcd" "xen_blkfront" "vmw_pvscsi"];
       kernelModules = ["nvme"];
     };
     zfs.extraPools = ["zroot"];

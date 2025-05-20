@@ -22,7 +22,7 @@ in {
 
     virtualisation = {
       incus = {
-        package = mkDefault pkgs.incus; # Stable version is old 
+        package = mkDefault pkgs.incus; # Stable version is old
         ui.enable = mkDefault true;
         agent.enable = mkDefault true;
       };

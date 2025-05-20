@@ -3,7 +3,12 @@
 # Differences in mounts:
 # - Persist: persisted and ZFS snapshotted
 # - Cache: persisted but no snapshots
-{config, lib, ...}: lib.mkIf config.system.impermanence.enable {
+{
+  config,
+  lib,
+  ...
+}:
+lib.mkIf config.system.impermanence.enable {
   # To make sure keys are available for sops decryption
   fileSystems."/etc/ssh".neededForBoot = true;
 

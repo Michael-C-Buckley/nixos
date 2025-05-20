@@ -18,7 +18,8 @@
     kernelParams = [
       "amd_pstate=active" # AMD Power efficiency on Linux 6.3+
       "microcode.amd_sha_check=off" # Linux kernel check, disable for ucodenix
-    ];     extraModulePackages = [];
+    ];
+    extraModulePackages = [];
     initrd = {
       availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "uas" "sd_mod"];
       kernelModules = ["dm-snapshot"];
