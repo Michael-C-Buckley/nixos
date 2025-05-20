@@ -9,10 +9,10 @@
   inherit (lib) mkOption;
   inherit (lib.types) package lines str attrs;
 
-  userCfg = config.home.features.${user};
+  userCfg = config.features.${user};
   local = userCfg.gtk;
 in {
-  options.home.features.${user}.gtk = {
+  options.features.${user}.gtk = {
     theme = {
       name = mkOption {
         type = str;

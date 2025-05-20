@@ -6,9 +6,9 @@
 }: let
   inherit (lib) mkEnableOption mkOption mkIf;
   inherit (lib.types) listOf str package;
-  cfg = config.home.features.${user}.vscode;
+  cfg = config.features.${user}.vscode;
 in {
-  options.home.features.${user}.vscode = {
+  options.features.${user}.vscode = {
     enable = mkEnableOption {};
     extensions = mkOption {
       type = listOf package;
@@ -20,7 +20,7 @@ in {
     };
   };
 
-  config.home.features.${user} = mkIf cfg.enable {
+  config.features.${user} = mkIf cfg.enable {
     packageList = [
       (pkgs.vscode-with-extensions.override {
         vscodeExtensions =

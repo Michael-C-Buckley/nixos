@@ -12,7 +12,7 @@
     };
   };
 
-  home.features.michael = {
+  features.michael = {
     cursor = {
       hyprtheme = "Nordzy-hyprcursors-white";
       xtheme = "Nordzy-cursors-white";
