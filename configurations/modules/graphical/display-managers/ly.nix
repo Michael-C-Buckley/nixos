@@ -1,7 +1,6 @@
 # Legacy Module
 #  TUIgreet has pretty much replaced this for me
 #  Since it does not support auto-login
-
 {
   config,
   lib,

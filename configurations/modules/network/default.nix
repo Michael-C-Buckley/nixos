@@ -1,4 +1,8 @@
-{lib, inputs, ...}: let
+{
+  lib,
+  inputs,
+  ...
+}: let
   inherit (lib) mkDefault;
 in {
   imports = [

@@ -1,4 +1,9 @@
-{config, pkgs, lib, ...}: let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   useCode = config.features.michael.vscode.enable;
 in {
   features.michael.vscode = lib.mkIf useCode {

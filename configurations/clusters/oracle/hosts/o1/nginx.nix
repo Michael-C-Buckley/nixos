@@ -1,4 +1,4 @@
-{config, ...}: let 
+{config, ...}: let
   nixServe = config.services.nix-serve;
 in {
   # Test deployment
