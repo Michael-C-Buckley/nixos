@@ -39,8 +39,5 @@ in {
 
     # Use OpenGL driver from host
     useWindowsDriver = true;
-
-    # Attaching USB, this one is my Yubikey
-    usbip.autoAttach = ["2-1"];
   };
 }
