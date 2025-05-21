@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   vim = {
+    startPlugins = [pkgs.vimPlugins.everforest];
     extraPlugins = import ./plugins {inherit pkgs;};
     keymaps = import ./keymaps/basic.nix;
 
