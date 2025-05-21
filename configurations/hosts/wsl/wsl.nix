@@ -9,6 +9,8 @@ in {
   # Disable the default boot options, as WSL has its own
   features.boot = "none";
 
+  nixpkgs.hostPlatform = "x86_64-linux";
+
   # Consistent problems are coming up with the non-FHS
   services.vscode-server = {
     enableFHS = true;

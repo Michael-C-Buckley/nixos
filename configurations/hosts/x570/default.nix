@@ -9,7 +9,6 @@
     ./hardware
     ./networking
     ./hyprland.nix
-    ./k3s.nix
   ];
 
   system = {
@@ -47,6 +46,7 @@
   services = {
     flatpak.enable = true;
     nix-serve.enable = true;
+    k3s.enable = true;
   };
 
   virtualisation = {
