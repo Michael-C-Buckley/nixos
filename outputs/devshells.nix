@@ -12,9 +12,9 @@ in
         default = self.devShells.${system}.nixos;
 
         nixos = pkgs.mkShell {
-          inherit (self.checks.x86_64-linux.pre-commit-check) shellHook;
+          inherit (self.checks.${system}.pre-commit-check) shellHook;
           buildInputs = with pkgs; [
-            self.checks.x86_64-linux.pre-commit-check.enabledPackages
+            self.checks.${system}.pre-commit-check.enabledPackages
             # Editing
             alejandra
             git
