@@ -8,6 +8,7 @@ in
       pre-commit-check = pre-commit-hooks.lib.${system}.run {
         src = ../.;
         hooks = {
+          trufflehog.enable = true;
           check-merge-conflicts.enable = true;
           deadnix.enable = true;
           detect-private-keys.enable = true;
