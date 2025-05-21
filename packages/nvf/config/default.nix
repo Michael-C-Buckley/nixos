@@ -13,6 +13,10 @@
     comments.comment-nvim.enable = true;
     statusline.lualine.enable = true;
 
+    notes = {
+      todo-comments.enable = true;
+    };
+
     #Clipboard
     clipboard = {
       enable = true;
