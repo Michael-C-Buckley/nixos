@@ -12,7 +12,7 @@
   networking.hostId = "fd78a12b";
 
   programs = {
-    cosmic.enable = false;
+    cosmic.enable = true;
     hyprland.enable = true;
   };
 
