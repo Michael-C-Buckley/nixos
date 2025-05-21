@@ -26,7 +26,8 @@
 
   programs.nix-index-database.comma.enable = true;
 
-  nixpkgs.hostPlatform = "x86_64-linux";
+  services.k3s.enable = true;
+
   system = {
     preset = "wsl";
     stateVersion = "24.11";
@@ -34,6 +35,6 @@
 
   virtualisation.docker = {
     enable = true;
-    kata.enable = true;
+    kata.enable = false; # Needs debugging
   };
 }
