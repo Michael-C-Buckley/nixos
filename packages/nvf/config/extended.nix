@@ -12,6 +12,11 @@ _: {
 
     ui = {
       noice.enable = true;
+      breadcrumbs = {
+        enable = true;
+        lualine.winbar.enable = true;
+        navbuddy.enable = true;
+      };
     };
 
     runner.run-nvim = {

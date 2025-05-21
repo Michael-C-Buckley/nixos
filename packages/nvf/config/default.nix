@@ -1,8 +1,10 @@
 {pkgs, ...}: {
   vim = {
-    startPlugins = [pkgs.vimPlugins.everforest];
-    extraPlugins = import ./plugins {inherit pkgs;};
     keymaps = import ./keymaps/basic.nix;
+    extraPlugins = import ./plugins {inherit pkgs;};
+    startPlugins = with pkgs.vimPlugins; [
+      everforest
+    ];
 
     # Navigation
     projects.project-nvim.enable = true;
@@ -57,10 +59,12 @@
     treesitter = {
       enable = true;
       context.enable = true;
+      fold = true;
     };
 
     git = {
       enable = true;
+      git-conflict.enable = true;
       gitsigns.enable = true;
     };
 
