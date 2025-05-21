@@ -1,8 +1,8 @@
 {self}: let
-  inherit (self.inputs) nixpkgs; 
+  inherit (self.inputs) nixpkgs;
   systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
   forAllSystems = nixpkgs.lib.genAttrs systems;
-  pkgsForSystem = system: 
+  pkgsForSystem = system:
     import nixpkgs {
       inherit system;
       config.allowUnfree = true;
@@ -23,14 +23,10 @@ in
         tig
 
         # Security
-        trufflehog
         rage
         sops
         ssh-to-pgp
         ssh-to-age
       ];
-      env = {
-        TRUFFLEHOG_NO_UPDATE = "1";
-      };
     };
   })
