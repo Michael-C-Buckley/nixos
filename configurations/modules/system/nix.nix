@@ -12,8 +12,7 @@ in {
   };
 
   nix = {
-    # package = pkgs.nixVersions.latest;
-    package = pkgs.lix;
+    package = pkgs.nixVersions.latest;
 
     # Disable channels and add the inputs to the registry
     channel.enable = false;
