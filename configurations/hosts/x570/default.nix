@@ -26,7 +26,7 @@
 
   programs = {
     hyprland.enable = true;
-    cosmic.enable = false; # Currently bugged and won't activate
+    cosmic.enable = true;
     nix-index-database.comma.enable = true;
   };
 
