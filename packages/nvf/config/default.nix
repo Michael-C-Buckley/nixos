@@ -6,6 +6,10 @@
       everforest
     ];
 
+    lazy.plugins."telescope-undo.nvim" = {
+      package = pkgs.vimPlugins.telescope-undo-nvim;
+    };
+
     # Navigation
     projects.project-nvim.enable = true;
     telescope.enable = true;

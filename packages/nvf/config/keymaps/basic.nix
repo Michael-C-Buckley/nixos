@@ -20,22 +20,12 @@
   }
   {
     mode = "n";
-    key = "<leader>ff";
-    action = ":Telescope find_files<CR>";
-  }
-  {
-    mode = "n";
-    key = "<leader>fg";
-    action = ":Telescope live_grep<CR>";
-  }
-  {
-    mode = "n";
     key = "<leader>fh";
     action = ":Telescope help_tags<CR>";
   }
   {
     mode = "n";
-    key = "<leader>fb";
-    action = ":Telescope buffers<CR>";
+    key = "<leader>fu";
+    action = ":Telescope undo<CR>";
   }
 ]
