@@ -6,7 +6,10 @@ _: {
     autocomplete.blink-cmp.enable = true;
     tabline.nvimBufferline.enable = true;
 
-    dashboard.alpha.enable = true;
+    dashboard.alpha = {
+      enable = true;
+      theme = "theta";
+    };
 
     filetree.neo-tree.enable = true;
 
