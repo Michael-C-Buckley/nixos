@@ -1,4 +1,5 @@
-# T14 Laptop Configuration
+# Persistent USB NVMe install
+#  Uncreatively, SSK is just the name of the enclosure
 {
   inputs,
   pkgs,
@@ -16,13 +17,14 @@
     hyprland.enable = true;
   };
 
-  # Gnome for the eenvironment
+  # Gnome for the environment
   services.xserver.desktopManager.gnome.enable = true;
 
   environment.systemPackages = with pkgs; [
     brightnessctl
     talosctl
     devenv
+    nixos-anywhere
   ];
 
   features = {
