@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
+{pkgs, ...}: let
   vscodeExtensions = with pkgs.vscode-extensions; [
     ms-pyright.pyright
     ms-python.vscode-pylance
@@ -16,9 +12,6 @@ in {
   nixpkgs.hostPlatform = "x86_64-linux";
 
   services = {
-    xserver.displayManager.lightdm.enable = lib.mkForce false;
-    displayManager.enable = lib.mkForce false;
-
     # Consistent problems are coming up with the non-FHS
     vscode-server = {
       enableFHS = true;
