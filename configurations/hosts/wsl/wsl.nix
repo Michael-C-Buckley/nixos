@@ -13,6 +13,7 @@ in {
 
   services = {
     # Consistent problems are coming up with the non-FHS
+    # Make sure that the WSL settings is also NAT mode
     vscode-server = {
       enableFHS = true;
       extraRuntimeDependencies = vscodeExtensions;
