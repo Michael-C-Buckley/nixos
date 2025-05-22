@@ -4,4 +4,12 @@ _: {
     ./modules
     ./network
   ];
+
+  services = {
+    k3s.enable = true;
+  };
+
+  virtualisation = {
+    incus.enable = true;
+  };
 }
