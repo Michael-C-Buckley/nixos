@@ -58,7 +58,8 @@
       import ./configurations/hostConfigs.nix {inherit self;}
       // import ./configurations/clusterConfigs.nix {inherit self;}
     );
-    nixosModules = import ./outputs/nixosModules.nix {};
+    nixosModules = import ./modules/nixosModules.nix {};
+    overlays = import ./outputs/overlays.nix {inherit self;};
     packages = import ./outputs/packages.nix {inherit self;};
   };
 }

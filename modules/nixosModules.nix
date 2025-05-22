@@ -3,4 +3,6 @@ _: {
   hjemConfig = {
     default = {...}: {imports = [../configurations/home/hjem.nix];};
   };
+
+  packageSets = {...}: {imports = [./nixos/packageSets];};
 }
