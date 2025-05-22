@@ -1,28 +1,30 @@
-{lib, ...}: {
-  # Planned options for the ZFS module
-  boot.zfs = {
-    forceImportRoot = lib.mkForce true;
-    extraPools = ["rpool"];
+{config, ...}: let
+  inherit (config.networking) hostName;
+  zfsFs = name: {
+    device = "rpool/${hostName}/${name}";
+    fsType = "zfs";
+    neededForBoot = true;
+  };
+in {
+  system = {
+    impermanence.enable = true;
+    zfs.enable = true;
   };
 
-  system.zfs.enable = true;
-
   fileSystems = {
+    # Tmpfs
     "/" = {
-      device = "rpool/root/nixos";
-      fsType = "zfs";
+      device = "tmpfs";
+      fsType = "tmpfs";
+      options = [
+        "defaults"
+        "size=1G"
+        "mode=755"
+      ];
     };
-    "/nix" = {
-      device = "rpool/root/nix";
-      fsType = "zfs";
-    };
-    "/home" = {
-      device = "rpool/root/home";
-      fsType = "zfs";
-    };
-    "/data/gluster" = {
-      device = "rpool/root/gluster";
-      fsType = "zfs";
-    };
+    "/tmp" = zfsFs "tmp";
+    "/nix" = zfsFs "nix";
+    "/cache" = zfsFs "cache";
+    "/persist" = zfsFs "persist";
   };
 }
