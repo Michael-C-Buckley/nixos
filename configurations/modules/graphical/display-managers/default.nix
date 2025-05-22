@@ -30,6 +30,6 @@ in {
 
   config = mkIf config.features.graphics {
     hardware.graphics.enable = true;
-    services.xserver.enable = true;
+    services.xserver.enable = (config.features.displayManager != null);
   };
 }
