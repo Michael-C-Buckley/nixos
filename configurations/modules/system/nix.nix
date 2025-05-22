@@ -1,4 +1,5 @@
 {
+  self,
   pkgs,
   lib,
   inputs,
@@ -8,7 +9,7 @@
 in {
   nixpkgs = {
     config.allowUnfree = true;
-    overlays = [inputs.nix4vscode.overlays.forVscode];
+    overlays = self.overlays.global;
   };
 
   nix = {
