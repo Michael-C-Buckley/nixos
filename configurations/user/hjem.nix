@@ -16,6 +16,7 @@ in {
     inputs.hjem.nixosModules.default
     self.nixosModules.packageSets
     ./options/hjem.nix
+    ./users/michael/hjem.nix
   ];
 
   users.users = {
@@ -42,8 +43,9 @@ in {
       files = lib.mkMerge [
         (import ./users/michael/files/fileList.nix {inherit config lib;})
       ];
+      system.impermanence.enable = true;
     };
-    
+
     users.root = {
       enable = true;
       user = "root";

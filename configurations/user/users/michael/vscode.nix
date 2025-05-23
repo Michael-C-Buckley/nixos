@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  apps.editors.vscode = {
+  hjem.users.michael.apps.editors.vscode = {
     # Enable set on a per-host basis
     extensions = with pkgs.vscode-extensions; [
       # Microsoft
