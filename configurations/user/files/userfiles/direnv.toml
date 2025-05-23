@@ -1,8 +1,0 @@
-[whitelist]
-prefix = [
-    "/home/michael/",
-    "/etc/nixos"
-]
-
-[log]
-level = "error"
