@@ -10,7 +10,14 @@
 }: let
   inherit (config.packageSets) common;
   inherit (lib) mkOverride;
-  userPackages = import ./packages/userPkgs.nix {inherit config self lib system;};
+  rawUser = import ./packages/userPkgs.nix {inherit config self lib system;};
+
+  # NVF selections
+  extGfx = config.features.michael.extendedGraphical;
+  nvfVersion = if extGfx then "default" else "minimal";
+  nvf = [self.packages.${system}."nvf-${nvfVersion}"];
+  commonPkgs = common ++ nvf;
+  userPkgs = rawUser ++ nvf;
 in {
   imports = [
     inputs.hjem.nixosModules.default
@@ -21,11 +28,11 @@ in {
 
   users.users = {
     michael = {
-      packages = userPackages;
+      packages = userPkgs ++ config.hjem.users.michael.packageList;
       shell = mkOverride 900 pkgs.fish;
     };
     root = {
-      packages = common;
+      packages = commonPkgs;
       shell = mkOverride 900 pkgs.fish;
     };
   };

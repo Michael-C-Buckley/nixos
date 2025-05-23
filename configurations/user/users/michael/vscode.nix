@@ -1,6 +1,6 @@
-{pkgs, ...}: {
+{config, pkgs, ...}: {
   hjem.users.michael.apps.editors.vscode = {
-    # Enable set on a per-host basis
+    enable = config.features.michael.extendedGraphical;
     extensions = with pkgs.vscode-extensions; [
       # Microsoft
       ms-vscode-remote.remote-ssh
