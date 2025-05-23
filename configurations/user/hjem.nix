@@ -40,7 +40,7 @@ in {
       user = "michael";
       directory = "/home/michael";
       files = lib.mkMerge [
-        (import ./files/fileList.nix {inherit config lib;})
+        (import ./users/michael/files/fileList.nix {inherit config lib;})
       ];
     };
     
