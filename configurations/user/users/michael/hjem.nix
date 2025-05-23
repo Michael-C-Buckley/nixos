@@ -1,10 +1,10 @@
 # Split into per-host basis
 
 {config, pkgs, system, lib, ...}: let 
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkDefault;
   local = config.hjem.users.michael;
   useImperm = (config.system.impermanence.enable && local.system.impermanence.enable);
-  extGfx = config.features.michael.extendedGraphical;
+  extGfx = mkDefault config.features.michael.extendedGraphical;
 in {
   imports = [
     ./vscode.nix
