@@ -1,9 +1,14 @@
 # Split into per-host basis
-
-{config, pkgs, system, lib, ...}: let 
+{
+  config,
+  pkgs,
+  system,
+  lib,
+  ...
+}: let
   inherit (lib) mkIf mkDefault;
   local = config.hjem.users.michael;
-  useImperm = (config.system.impermanence.enable && local.system.impermanence.enable);
+  useImperm = config.system.impermanence.enable && local.system.impermanence.enable;
   extGfx = mkDefault config.features.michael.extendedGraphical;
 in {
   imports = [
@@ -14,7 +19,6 @@ in {
     "/cache".users.michael.directories = local.system.impermanence.userCacheDirs;
     "/persist".users.michael.directories = local.system.impermanence.userPersistDirs;
   };
-
 
   hjem.users.michael = {
     apps = {

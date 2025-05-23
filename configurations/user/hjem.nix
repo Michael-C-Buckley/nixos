@@ -14,7 +14,10 @@
 
   # NVF selections
   extGfx = config.features.michael.extendedGraphical;
-  nvfVersion = if extGfx then "default" else "minimal";
+  nvfVersion =
+    if extGfx
+    then "default"
+    else "minimal";
   nvf = [self.packages.${system}."nvf-${nvfVersion}"];
   commonPkgs = common ++ nvf;
   userPkgs = rawUser ++ nvf;

@@ -1,4 +1,8 @@
-{config, pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   hjem.users.michael.apps.editors.vscode = {
     enable = config.features.michael.extendedGraphical;
     extensions = with pkgs.vscode-extensions; [

@@ -1,3 +1,3 @@
 {
-    default = {imports = [./user];};
+  default = {imports = [./user];};
 }
