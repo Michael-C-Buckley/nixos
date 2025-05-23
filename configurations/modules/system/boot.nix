@@ -15,9 +15,15 @@ in {
       description = "Which bootloader settings to use from this repository.";
     };
   };
+
   config = {
     boot = {
       kernelPackages = mkDefault pkgs.linuxPackages_6_13_hardened;
+
+      initrd = {
+        systemd.enable = true;
+      };
+      
       loader = {
         # Grub
         grub = mkIf (loader == "grub") {
@@ -33,6 +39,7 @@ in {
           configurationLimit = 15;
           netbootxyz.enable = true;
         };
+        
         efi.canTouchEfiVariables =
           if loader == "systemd"
           then true
