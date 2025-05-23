@@ -28,7 +28,6 @@
   features = {
     michael = {
       extendedGraphical = true;
-      vscode.enable = true;
       waybar.enable = true;
       hyprland.enable = true;
       nvf.package = "default";
@@ -43,6 +42,10 @@
     docker.enable = true;
     incus.enable = true;
   };
+
+  # hjem.users.michael = {
+  #   apps.vscode.enable = true;
+  # };
 
   system = {
     preset = "laptop";

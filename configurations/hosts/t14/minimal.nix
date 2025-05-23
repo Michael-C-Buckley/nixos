@@ -22,8 +22,6 @@
 
   features = {
     michael = {
-      extendedGraphical = false;
-      vscode.enable = false;
       waybar.enable = true;
       hyprland.enable = true;
       nvf.package = "minimal";
