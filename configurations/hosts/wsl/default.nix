@@ -11,12 +11,7 @@
 
   environment.systemPackages = [pkgs.devenv];
 
-  features.michael = {
-    nvf.package = "default";
-    extendedGraphical = false;
-    vscode.enable = false;
-    waybar.enable = false;
-  };
+  features.michael.nvf.package = "default";
 
   networking = {
     hostName = "wsl";

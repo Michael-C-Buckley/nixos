@@ -1,0 +1,267 @@
+format = """
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$direnv\
+$directory\
+$vcsh\
+$fossil_branch\
+$fossil_metrics\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$pijul_channel\
+$docker_context\
+$package\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$gleam\
+$golang\
+$guix_shell\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$gradle\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$quarto\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$solidity\
+$swift\
+$terraform\
+$typst\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$nats\
+$env_var\
+$crystal\
+$custom\
+$sudo\
+$cmd_duration\
+$fill\
+$nix_shell$username$os\
+$line_break\
+$jobs\
+$battery\
+$status\
+$container\
+$shell\
+$character\
+"""
+right_format = """$time"""
+
+[time]
+disabled = false
+format = '[< $time >]($style) '
+# time_format = '%T'
+# utc_time_offset = '-5'
+# time_range = '10:00:00-14:00:00'
+
+
+[cmd_duration]
+min_time = 5000
+
+[fill]
+symbol = ' '
+
+[os]
+format = "[\\[ \\]]($style)"
+style = "bold blue"
+disabled = false
+
+[username]
+style_user = 'white bold'
+style_root = 'black bold'
+format = '[$user]($style)[](green bold)'
+disabled = false
+show_always = true
+
+[nix_shell]
+impure_msg = '[impure shell](bold red)'
+pure_msg = '[pure shell](bold green)'
+unknown_msg = '[unknown shell](bold yellow)'
+format = '[(\($name\) $state) ](bold blue)'
+
+
+[directory]
+format = '[$path]($style)[ $read_only]($read_only_style) '
+read_only = '🔒'
+truncate_to_repo = true
+truncation_length = 0
+truncation_symbol = '…/'
+repo_root_format = '[ ]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) '
+before_repo_root_style = 'blue'
+repo_root_style = 'bold blue'
+
+[direnv]
+disabled = false
+format = '[$symbol]($style)'
+symbol = '󰚝 '
+
+[buf]
+format = '(with [$symbol$version ]($style))'
+
+[bun]
+format = '(via [$symbol($version )]($style))'
+
+[c]
+format = '(via [$symbol($version(-$name) )]($style))'
+
+[cmake]
+format = '(via [$symbol($version )]($style))'
+
+[cobol]
+format = '(via [$symbol($version )]($style))'
+
+[crystal]
+format = '(via [$symbol($version )]($style))'
+
+[daml]
+format = '(via [$symbol($version )]($style))'
+
+[dart]
+format = '(via [$symbol($version )]($style))'
+
+[deno]
+format = '(via [$symbol($version )]($style))'
+
+[dotnet]
+format = '(via [$symbol($version )(🎯 $tfm )]($style))'
+
+[elixir]
+format = '(via [$symbol($version \(OTP $otp_version\) )]($style))'
+
+[elm]
+format = '(via [$symbol($version )]($style))'
+
+[erlang]
+format = '(via [$symbol($version )]($style))'
+
+[fennel]
+format = '(via [$symbol($version )]($style))'
+
+[gleam]
+format = '(via [$symbol($version )]($style))'
+
+[golang]
+format = '(via [$symbol($version )]($style))'
+
+[haskell]
+format = '(via [$symbol($version )]($style))'
+
+[helm]
+format = '(via [$symbol($version )]($style))'
+
+[java]
+format = '(via [$symbol($version )]($style))'
+
+[julia]
+format = '(via [$symbol($version )]($style))'
+
+[kotlin]
+format = '(via [$symbol($version )]($style))'
+
+[lua]
+format = '(via [$symbol($version )]($style))'
+
+[nim]
+format = '(via [$symbol($version )]($style))'
+
+[nodejs]
+format = '(via [$symbol($version )]($style))'
+
+[ocaml]
+format = '(via [$symbol($version )(\($switch_indicator$switch_name\) )]($style))'
+
+[opa]
+format = '(via [$symbol($version )]($style))'
+[package]
+format = '(is [$symbol$version]($style) )'
+
+[perl]
+format = '(via [$symbol($version )]($style))'
+
+[php]
+format = '(via [$symbol($version )]($style))'
+
+[purescript]
+format = '(via [$symbol($version )]($style))'
+
+[python]
+format = '(via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style))'
+
+[quarto]
+format = '(via [$symbol($version )]($style))'
+
+[raku]
+format = '(via [$symbol($version-$vm_version )]($style))'
+
+[red]
+format = '(via [$symbol($version )]($style))'
+
+[rlang]
+format = '(via [$symbol($version )]($style))'
+
+[ruby]
+format = '(via [$symbol($version )]($style))'
+
+[rust]
+format = '(via [$symbol($version )]($style))'
+
+[scala]
+format = '(via [$symbol($version )]($style))'
+
+[swift]
+format = '(via [$symbol($version )]($style))'
+
+[typst]
+format = '(via [$symbol($version )]($style))'
+
+[vagrant]
+format = '(via [$symbol($version )]($style))'
+
+[vlang]
+format = '(via [$symbol($version )]($style))'
+
+[zig]
+format = '(via [$symbol($version )]($style))'
