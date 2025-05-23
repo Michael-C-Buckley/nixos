@@ -3,7 +3,7 @@
     ./vscode.nix
   ];
 
-  apps.michael = {
+  apps = {
     browsers.librewolf.enable = true;
     communication = {
       signal.enable = true;
@@ -12,14 +12,16 @@
     };
   };
 
-  features.michael = {
+  appearance = {
     cursor = {
+      manage = true;
       hyprtheme = "Nordzy-hyprcursors-white";
       xtheme = "Nordzy-cursors-white";
       size = 28;
       package = pkgs.nordzy-cursor-theme;
     };
     gtk = {
+      manage = true;
       theme.name = "Materia-dark";
       theme.package = pkgs.materia-theme;
       iconTheme.name = "Gruvbox Dark";

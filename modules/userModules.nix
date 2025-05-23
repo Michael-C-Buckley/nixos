@@ -1,0 +1,3 @@
+{
+    default = {imports = [./user];};
+}

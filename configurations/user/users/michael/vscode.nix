@@ -1,13 +1,6 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
-  useCode = config.features.michael.vscode.enable;
-in {
-  features.michael.vscode = lib.mkIf useCode {
-    # Enable set on per host basis
+{pkgs, ...}: {
+  apps.editors.vscode = {
+    # Enable set on a per-host basis
     extensions = with pkgs.vscode-extensions; [
       # Microsoft
       ms-vscode-remote.remote-ssh

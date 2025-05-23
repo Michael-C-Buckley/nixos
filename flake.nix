@@ -61,5 +61,6 @@
     nixosModules = import ./modules/nixosModules.nix {};
     overlays = import ./outputs/overlays.nix {inherit self;};
     packages = import ./outputs/packages.nix {inherit self;};
+    userModules = import ./modules/userModules.nix;
   };
 }

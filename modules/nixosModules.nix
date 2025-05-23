@@ -4,5 +4,5 @@ _: {
     default = {...}: {imports = [../configurations/home/hjem.nix];};
   };
 
-  packageSets = {...}: {imports = [./nixos/packageSets];};
+  packageSets = {imports = [./nixos/packageSets];};
 }
