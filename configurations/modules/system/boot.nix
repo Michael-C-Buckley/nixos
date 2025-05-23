@@ -23,7 +23,7 @@ in {
       initrd = {
         systemd.enable = true;
       };
-      
+
       loader = {
         # Grub
         grub = mkIf (loader == "grub") {
@@ -39,7 +39,7 @@ in {
           configurationLimit = 15;
           netbootxyz.enable = true;
         };
-        
+
         efi.canTouchEfiVariables =
           if loader == "systemd"
           then true

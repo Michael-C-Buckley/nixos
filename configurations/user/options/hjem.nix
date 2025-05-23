@@ -1,5 +1,9 @@
 # Interim Options
-{pkgs, lib, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   inherit (lib) types mkOption mkEnableOption;
   inherit (types) bool package enum;
 in {

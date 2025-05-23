@@ -9,10 +9,10 @@
   cfg = config.apps.editors.vscode;
 
   # Only run the helper if there's actually something to give it
-  outOfStoreExt = if (cfg.nonNixExtensions != []) then
-    pkgs.nix4vscode.forVscode cfg.nonNixExtensions
+  outOfStoreExt =
+    if (cfg.nonNixExtensions != [])
+    then pkgs.nix4vscode.forVscode cfg.nonNixExtensions
     else [];
-
 in {
   options.apps.editors.vscode = {
     enable = mkEnableOption "Enable VScode";
