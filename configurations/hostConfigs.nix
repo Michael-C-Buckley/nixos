@@ -1,4 +1,4 @@
-{self}: let
+{self, overlays}: let
   inherit (self) inputs;
   # Build the configs for the hosts based on this function
   hostConfig = {
@@ -10,11 +10,10 @@
       inherit system;
     };
     lib = inputs.nixpkgs.lib;
-    localOverlay = ../ovelays/localPkgs.nix;
     customLib = import ../lib {inherit pkgs lib;};
   in
     inputs.nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit self customLib lib host system inputs localOverlay;};
+      specialArgs = {inherit self customLib lib host system inputs overlays;};
       modules =
         [
           ./modules

@@ -1,4 +1,4 @@
-{self}: let
+{self, overlays}: let
   inherit (self) inputs;
   # Build the configs for the hosts based on this function
   clusterConfig = {
@@ -15,12 +15,11 @@
     };
     lib = inputs.nixpkgs.lib;
     customLib = import ../lib {inherit pkgs lib;};
-    localOverlay = ../ovelays/localPkgs.nix;
   in
     inputs.nixpkgs.lib.nixosSystem {
       # Oracle1 is an exception as it is an ARM host
       inherit system;
-      specialArgs = {inherit self customLib lib host system inputs localOverlay;};
+      specialArgs = {inherit self customLib lib host system inputs overlays;};
       modules =
         [
           ./modules
