@@ -7,7 +7,7 @@
   system,
   ...
 }: let
-  inherit (lib) types mkOption mkEnableOption;
+  inherit (lib) types mkOption mkEnableOption mkDefault hiPrio;
   inherit (types) bool package enum;
   cfg = config.features.michael;
   extGfx = cfg.extendedGraphical;
@@ -39,12 +39,12 @@ in {
   };
 
   config = {
-    packageList = [(lib.hiPrio self.packages.${system}."nvf-${cfg.nvf.package}")];
+    hjem.users.michael.packageList = [(hiPrio self.packages.${system}."nvf-${cfg.nvf.package}")];
     features.michael = {
-      nvf.package =
-        if extGfx
+      nvf.package = mkDefault
+        (if extGfx
         then "default"
-        else "minimal";
+        else "minimal");
     };
   };
 }

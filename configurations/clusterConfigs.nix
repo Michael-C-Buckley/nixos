@@ -15,11 +15,12 @@
     };
     lib = inputs.nixpkgs.lib;
     customLib = import ../lib {inherit pkgs lib;};
+    localOverlay = ../ovelays/localPkgs.nix;
   in
     inputs.nixpkgs.lib.nixosSystem {
       # Oracle1 is an exception as it is an ARM host
       inherit system;
-      specialArgs = {inherit self customLib lib host system inputs;};
+      specialArgs = {inherit self customLib lib host system inputs localOverlay;};
       modules =
         [
           ./modules
