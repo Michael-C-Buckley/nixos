@@ -5,10 +5,18 @@
   lib,
   ...
 }: let
-  inherit (lib) mkIf mkDefault;
+  inherit (config) packageSets;
+  inherit (config.features.michael) minimalGraphical extendedGraphical;
+  inherit (lib) mkIf mkDefault optionals mkOverride;
   local = config.hjem.users.michael;
   useImperm = config.system.impermanence.enable && local.system.impermanence.enable;
-  extGfx = mkDefault config.features.michael.extendedGraphical;
+  extGfx = mkDefault extendedGraphical;
+
+  nvfVer = if extendedGraphical then "default" else "minimal";
+
+  userPkgs =   packageSets.common
+  ++ optionals minimalGraphical packageSets.minimalGraphical
+  ++ optionals extendedGraphical packageSets.extendedGraphical;
 in {
   imports = [
     ./vscode.nix
@@ -19,13 +27,30 @@ in {
     "/persist".users.michael.directories = local.system.impermanence.userPersistDirs;
   };
 
+  users.users = {
+    michael = {
+      packages = userPkgs ++ local.packageList;
+      shell = mkOverride 900 pkgs.fish;
+    };
+  };
+
   hjem.users.michael = {
+    enable = true;
+    user = "michael";
+    directory = "/home/michael";
+    files = import ./files/fileList.nix {inherit config lib;};
+    system.impermanence.enable = config.system.impermanence.enable;
+
     apps = {
       browsers.librewolf.enable = extGfx;
       communication = {
         signal.enable = extGfx;
         discord.enable = extGfx;
         telegram.enable = extGfx;
+      };
+      editors.nvf = {
+        enable = true;
+        package = pkgs."nvf-${nvfVer}";
       };
     };
 

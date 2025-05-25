@@ -5,22 +5,10 @@
   pkgs,
   lib,
   inputs,
-  system,
   ...
 }: let
-  inherit (config.packageSets) common;
   inherit (lib) mkOverride;
-  rawUser = import ./packages/userPkgs.nix {inherit config self lib system;};
 
-  # NVF selections
-  extGfx = config.features.michael.extendedGraphical;
-  nvfVersion =
-    if extGfx
-    then "default"
-    else "minimal";
-  nvf = [pkgs."nvf-${nvfVersion}"];
-  commonPkgs = common ++ nvf;
-  userPkgs = rawUser ++ nvf;
 in {
   imports = [
     inputs.hjem.nixosModules.default
@@ -30,31 +18,17 @@ in {
   ];
 
   users.users = {
-    michael = {
-      packages = userPkgs ++ config.hjem.users.michael.packageList;
-      shell = mkOverride 900 pkgs.fish;
-    };
     root = {
-      packages = commonPkgs;
+      packages = config.packageSets.common;
       shell = mkOverride 900 pkgs.fish;
     };
   };
 
   hjem = {
+    clobberByDefault = true;
     extraModules = [
       self.userModules.default
     ];
-
-    clobberByDefault = true;
-    users.michael = {
-      enable = true;
-      user = "michael";
-      directory = "/home/michael";
-      files = lib.mkMerge [
-        (import ./users/michael/files/fileList.nix {inherit config lib;})
-      ];
-      system.impermanence.enable = true;
-    };
 
     users.root = {
       enable = true;

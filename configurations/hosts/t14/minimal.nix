@@ -22,7 +22,6 @@
 
   features = {
     michael = {
-      waybar.enable = true;
       hyprland.enable = true;
       nvf.package = "minimal";
     };

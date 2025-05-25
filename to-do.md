@@ -8,7 +8,7 @@
 
 ## In Progress
 
-* Nix Cache
+* Nix Cache (Attic)
 
 This was started but paused due to time constraints.
 
