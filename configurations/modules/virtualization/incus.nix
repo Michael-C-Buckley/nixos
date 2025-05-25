@@ -18,8 +18,8 @@ in {
     # Incus will prefer Red Hat's Virtiofs over 9P
     environment.systemPackages = optionals incus.enable [pkgs.virtiofsd];
 
-    # For now, only enable if Incus is
-    security.apparmor.enable = mkDefault incus.enable;
+    # Incus Profile is bugged
+    # security.apparmor.enable = mkDefault incus.enable;
 
     virtualisation = {
       incus = {
