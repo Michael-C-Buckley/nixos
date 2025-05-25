@@ -2,6 +2,7 @@
   self,
   config,
   lib,
+  system,
   ...
 }: let
   inherit (lib) mkEnableOption mkOption mkIf;

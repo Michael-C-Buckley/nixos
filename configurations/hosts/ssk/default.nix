@@ -30,7 +30,6 @@
   features = {
     michael = {
       extendedGraphical = true;
-      vscode.enable = true;
       waybar.enable = true;
       hyprland.enable = true;
       nvf.package = "default";

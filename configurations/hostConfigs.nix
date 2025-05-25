@@ -10,10 +10,11 @@
       inherit system;
     };
     lib = inputs.nixpkgs.lib;
+    localOverlay = ../ovelays/localPkgs.nix;
     customLib = import ../lib {inherit pkgs lib;};
   in
     inputs.nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit self customLib lib host system inputs;};
+      specialArgs = {inherit self customLib lib host system inputs localOverlay;};
       modules =
         [
           ./modules
