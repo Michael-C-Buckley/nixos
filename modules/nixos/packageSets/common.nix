@@ -1,12 +1,11 @@
 {
-  self,
+  lib,
   pkgs,
-  system,
   ...
 }: {
   packageSets.common = with pkgs; [
     #Editors
-    self.packages.${system}.nvf-minimal
+    (lib.lowPrio pkgs.nvf-minimal)
 
     # Git/Web
     git

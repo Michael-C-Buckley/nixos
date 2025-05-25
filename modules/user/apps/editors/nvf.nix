@@ -1,8 +1,7 @@
 {
-  self,
+  pkgs,
   config,
   lib,
-  system,
   ...
 }: let
   inherit (lib) mkEnableOption mkOption mkIf;
@@ -13,7 +12,7 @@ in {
       enable = mkEnableOption "Install NVF";
       package = mkOption {
         type = lib.types.package;
-        default = self.packages.${system}."nvf-minimal";
+        default = pkgs.nvf-minimal;
         description = "Package to use for NVF";
       };
     };

@@ -1,10 +1,8 @@
 # Interim Options
 {
-  self,
   config,
   pkgs,
   lib,
-  system,
   ...
 }: let
   inherit (lib) types mkOption mkEnableOption mkDefault hiPrio;
@@ -39,7 +37,7 @@ in {
   };
 
   config = {
-    hjem.users.michael.packageList = [(hiPrio self.packages.${system}."nvf-${cfg.nvf.package}")];
+    hjem.users.michael.packageList = [(hiPrio pkgs.nvf)];
     features.michael = {
       nvf.package = mkDefault
         (if extGfx

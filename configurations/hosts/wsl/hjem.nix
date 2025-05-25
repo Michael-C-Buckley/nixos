@@ -1,11 +1,10 @@
 {
-  self,
-  system,
+  pkgs,
   lib,
   ...
 }: {
   hjem.users.michael = {
-    packageList = [(lib.hiPrio self.packages.${system}.nvf-default)];
+    packageList = [(lib.hiPrio pkgs.nvf)];
     apps = {
       browsers.librewolf.enable = true;
     };
