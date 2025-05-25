@@ -1,6 +1,6 @@
 {...}: let
   ethIP = "192.168.48.23";
-  
+
   addr = addr: prefix: {
     address = addr;
     prefixLength = prefix;

@@ -13,8 +13,8 @@ in {
 
   fileSystems = {
     "/boot" = {
-        device = "/dev/disk/by-label/SFFBOOT";
-        fsType = "vfat";
+      device = "/dev/disk/by-label/SFFBOOT";
+      fsType = "vfat";
     };
 
     # Tmpfs
