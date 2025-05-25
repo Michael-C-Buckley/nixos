@@ -1,5 +1,5 @@
-system: extraModules: (
-    (nvf.lib.neovimConfiguration {
+{system, inputs}: extraModules: (
+    (inputs.nvf.lib.neovimConfiguration {
       pkgs = import nixpkgs {inherit system;};
       modules = [../config/default.nix] ++ extraModules;
     }).neovim
