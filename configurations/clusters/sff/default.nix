@@ -1,9 +1,11 @@
 {self, ...}: {
   imports = [
      "${self}/configurations/modules/presets/michael.nix"
+     ./filesystems.nix
   ];
 
   system = {
+    stateVersion = "25.11";
     preset = "server";
     impermanence.enable = true;
   };
