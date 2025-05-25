@@ -1,11 +1,16 @@
 # Interim Options
 {
+  self,
+  config,
   pkgs,
   lib,
+  system,
   ...
 }: let
   inherit (lib) types mkOption mkEnableOption;
   inherit (types) bool package enum;
+  cfg = config.features.michael;
+  extGfx = cfg.extendedGraphical;
 in {
   options.features.michael = {
     useHome = mkEnableOption "Use home-manager for any features covered by hjem";
@@ -31,5 +36,15 @@ in {
     hyprland.enable = mkEnableOption {};
     waybar.enable = mkEnableOption {};
     includeZed = mkEnableOption {};
+  };
+
+  config = {
+    packageList = [(lib.hiPrio self.packages.${system}."nvf-${cfg.nvf.package}")];
+    features.michael = {
+      nvf.package =
+        if extGfx
+        then "default"
+        else "minimal";
+    };
   };
 }
