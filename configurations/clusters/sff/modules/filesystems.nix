@@ -23,7 +23,7 @@ in {
       fsType = "tmpfs";
       options = [
         "defaults"
-        "size=1G"
+        "size=2G"
         "mode=755"
       ];
     };
@@ -34,4 +34,4 @@ in {
   };
 
   swapDevices = [];
-}1
+}
