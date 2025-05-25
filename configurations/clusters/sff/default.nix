@@ -1,7 +1,7 @@
 {self, ...}: {
   imports = [
      "${self}/configurations/modules/presets/michael.nix"
-     ./filesystems.nix
+     ./modules/filesystems.nix
   ];
 
   system = {
