@@ -1,5 +1,7 @@
 # ZFS Install Script for the cluster
 
+set -x
+
 read -rp "Enter hostname for this server: " hostname
 echo "You entered: $hostname"
 
@@ -9,7 +11,7 @@ if [[ "$confirm" =~ ^[Yy]$ ]]; then
 else
   echo "Aborted."
   exit 1
-
+fi
 
 echo "Wiping drives..."
 # Wipe the NVMe
@@ -63,16 +65,5 @@ mount /dev/nvme0n1p1 /mnt/boot
 zfs create -o mountpoint=none zroot/$hostname
 for zvol in "tmp" "nix" "cache" "persist"; do
     zfs create -o mountpoint=legacy zroot/$hostname/$zvol
-    mount -t zfs zroot/$hosname/$zol /mnt/$zol
+    mount -t zfs zroot/$hostname/$zol /mnt/$zol
 done
-
-
-
-
-
-for zvol in 
-
-mount -t zfs zroot/root/nix /mnt/nix
-mount -t zfs zroot/root/home /mnt/home
-mount -t zfs zroot/root/gluster /mnt/data/gluster
-
