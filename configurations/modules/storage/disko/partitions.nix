@@ -1,5 +1,5 @@
 {config}: let
-  inherit (config.features.disko.main) bootSize swapSize zfsSize;
+  inherit (config.system.disko.main) bootSize swapSize zfsSize;
 in {
   boot = {
     alignment = 3;

@@ -8,13 +8,8 @@ _: {
     hostId = "11111111";
   };
 
-  system.preset = "desktop";
-
-  # programs.hyprland.enable = true;
-
-  features = {
-    # displayManager = "greetd";
-
+  system = {
+    preset = "desktop";
     disko = {
       enable = true;
       main = {

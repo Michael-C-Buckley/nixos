@@ -1,5 +1,5 @@
 _: {
-  features.disko = {
+  system.disko = {
     enable = true;
     main = {
       device = "/dev/nvme0n1";
