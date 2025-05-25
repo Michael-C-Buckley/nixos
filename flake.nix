@@ -50,16 +50,22 @@
     nil.follows = "nvf/nil";
   };
 
-  outputs = {self, ...} @ inputs: {
+  outputs = {self, ...} @ inputs: let 
+    overlays = [
+      (import ./overlays/localPkgs.nix {inherit self;})
+      inputs.nix4vscode.overlays.forVscode
+    ];
+    cfgVars = {inherit self overlays;};
+  in {
     checks = import ./outputs/checks.nix {inherit inputs;};
     devShells = import ./outputs/devshells.nix {inherit self;};
-    homeConfigurations = import ./configurations/homeConfigs.nix {inherit self;};
+    homeConfigurations = import ./configurations/homeConfigs.nix cfgVars;
     nixosConfigurations = (
-      import ./configurations/hostConfigs.nix {inherit self;}
-      // import ./configurations/clusterConfigs.nix {inherit self;}
+      import ./configurations/hostConfigs.nix cfgVars
+      // import ./configurations/clusterConfigs.nix cfgVars
     );
     nixosModules = import ./modules/nixosModules.nix {};
-    overlays = import ./overlays {inherit self;};
+    # overlays = import ./overlays {inherit self;};
     packages = import ./packages {inherit self;};
     userModules = import ./modules/userModules.nix;
   };

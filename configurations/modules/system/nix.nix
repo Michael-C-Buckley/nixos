@@ -1,15 +1,15 @@
 {
-  self,
   pkgs,
   lib,
   inputs,
+  overlays,
   ...
 }: let
   inherit (lib) mapAttrs mapAttrsToList;
 in {
   nixpkgs = {
     config.allowUnfree = true;
-    overlays = self.overlays.global;
+    inherit overlays;
   };
 
   nix = {
