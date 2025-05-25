@@ -32,7 +32,7 @@
 
   generateCluster = {
     cluster,
-    hostPrefix,
+    hostPrefix ? cluster,
     extraModules ? [],
     max,
   }:
@@ -63,5 +63,8 @@ in
   // generateCluster {
     cluster = "ln";
     hostPrefix = "ln";
+    max = 3;
+  } // generateCluster {
+    cluster = "sff";
     max = 3;
   }
