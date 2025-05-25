@@ -24,13 +24,13 @@ sgdisk --zap-all /dev/sda
 echo "Formatting drives..."
 # Put boot on the NVMe then fill the rest with ZFS
 sgdisk -n1:1M:+1G -t1:EF00 -c1:"EFI System" /dev/nvme0n1
-sgdisk -n2:0:0 -t2:BF01 -c2:"ZFS Pool" /dev/nvme0n1
+sgdisk -n2:0:0 -t2:BF01 -c2:"ZROOT" /dev/nvme0n1
 
 # Format the boot partition
 mkfs.vfat -F32 /dev/nvme0n1p1
 
 # Format the HDD 
-sgdisk -n1:0:0 -t2:BF01 -c2:"ZFS Pool" /dev/sda
+sgdisk -n1:0:0 -t2:BF01 -c2:"ZDATA" /dev/sda
 
 echo "Creating zroot..."
 # Create the pool on the drive, use reasonable settings
