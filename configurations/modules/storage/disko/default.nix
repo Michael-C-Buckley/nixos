@@ -6,13 +6,13 @@
 }: let
   inherit (lib) mkDefault mkEnableOption mkOption mkIf;
   inherit (lib.types) nullOr str;
-  disko = config.features.disko;
+  disko = config.system.disko;
   mainDisko = disko.main;
 in {
   imports = [inputs.disko.nixosModules.disko];
 
   options = {
-    features.disko = {
+    system.disko = {
       enable = mkEnableOption "Enable Disko for this host.";
       main = {
         device = mkOption {

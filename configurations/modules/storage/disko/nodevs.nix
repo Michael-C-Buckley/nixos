@@ -1,5 +1,5 @@
 {config}: let
-  mainDisko = config.features.disko.main;
+  mainDisko = config.system.disko.main;
 in {
   "/" = {
     fsType = "tmpfs";

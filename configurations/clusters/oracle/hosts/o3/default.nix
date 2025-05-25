@@ -5,7 +5,7 @@
     ./hardware.nix
   ];
 
-  features.disko = {
+  system.disko = {
     enable = true;
     main = {
       device = "/dev/sda"; # First virtual drive
