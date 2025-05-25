@@ -30,9 +30,7 @@
   features = {
     michael = {
       extendedGraphical = true;
-      waybar.enable = true;
       hyprland.enable = true;
-      nvf.package = "default";
     };
     autoLogin = false;
     displayManager = "greetd";
