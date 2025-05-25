@@ -12,7 +12,6 @@
       ms-vscode-remote.remote-containers
       ms-vsliveshare.vsliveshare
 
-      vscode-icons-team.vscode-icons
       mechatroner.rainbow-csv
       streetsidesoftware.code-spell-checker
       formulahendry.auto-rename-tag # Matches XML tags while editing
@@ -65,7 +64,7 @@
       # Networking Tools
       "jamiewoodio.cisco"
       "ispapp.mikrotik-routeros-script-tools"
-      "srl-labs.vscode-containerlab"
+      # "srl-labs.vscode-containerlab" # Nags way too much about CL not installed
     ];
   };
 }
