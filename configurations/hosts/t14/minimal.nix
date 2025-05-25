@@ -23,7 +23,6 @@
   features = {
     michael = {
       hyprland.enable = true;
-      nvf.package = "minimal";
     };
     autoLogin = true;
     displayManager = "greetd";
