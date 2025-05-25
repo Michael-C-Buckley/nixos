@@ -12,6 +12,11 @@ in {
   };
 
   fileSystems = {
+    "/boot" = {
+        device = "/dev/disk/by-label/SFFBOOT";
+        fsType = "vfat";
+    };
+
     # Tmpfs
     "/" = {
       device = "tmpfs";
@@ -27,4 +32,6 @@ in {
     "/cache" = zfsFs "cache";
     "/persist" = zfsFs "persist";
   };
-}
+
+  swapDevices = [];
+}1
