@@ -10,7 +10,10 @@
     ./hardware
   ];
 
-  networking.hostId = "fd78a12b";
+  networking = {
+    hostId = "fd78a12b";
+    hostName = "ssk";
+  };
 
   programs = {
     cosmic.enable = true;
