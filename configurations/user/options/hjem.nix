@@ -1,14 +1,7 @@
 # Interim Options
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
-  inherit (lib) types mkOption mkEnableOption mkDefault hiPrio;
-  inherit (types) bool package enum;
-  cfg = config.features.michael;
-  extGfx = cfg.extendedGraphical;
+{lib, ...}: let
+  inherit (lib) types mkOption mkEnableOption;
+  inherit (types) bool;
 in {
   options.features.michael = {
     minimalGraphical = mkOption {
@@ -16,25 +9,7 @@ in {
       default = true;
       description = "Include a footprint of small and useful GUI packages";
     };
-    nvf = {
-      package = mkOption {
-        type = enum ["default" "minimal"];
-        default = "minimal";
-      };
-    };
     extendedGraphical = mkEnableOption {};
     hyprland.enable = mkEnableOption {};
-    waybar.enable = mkEnableOption {};
-    includeZed = mkEnableOption {};
-  };
-
-  config = {
-    hjem.users.michael.packageList = [(hiPrio pkgs.nvf)];
-    features.michael = {
-      nvf.package = mkDefault
-        (if extGfx
-        then "default"
-        else "minimal");
-    };
   };
 }
