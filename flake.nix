@@ -52,7 +52,7 @@
 
   outputs = {self, ...} @ inputs: let 
     overlays = [
-      (import ./overlays/localPkgs.nix {inherit self;})
+      (import ./overlays/localPkgs.nix {inherit self inputs;})
       inputs.nix4vscode.overlays.forVscode
     ];
     cfgVars = {inherit self overlays;};

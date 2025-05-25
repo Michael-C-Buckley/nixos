@@ -18,7 +18,7 @@
     if extGfx
     then "default"
     else "minimal";
-  nvf = [self.packages.${system}."nvf-${nvfVersion}"];
+  nvf = [pkgs."nvf-${nvfVersion}"];
   commonPkgs = common ++ nvf;
   userPkgs = rawUser ++ nvf;
 in {
