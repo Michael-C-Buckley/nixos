@@ -17,7 +17,7 @@
     };
 
     # Externally Cached
-    cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+    # cosmic.url = "github:lilyinstarlight/nixos-cosmic"; # Unmaintained
     microvm.url = "github:astro/microvm.nix";
 
     # Utilities
@@ -50,7 +50,7 @@
     nil.follows = "nvf/nil";
   };
 
-  outputs = {self, ...} @ inputs: let 
+  outputs = {self, ...} @ inputs: let
     overlays = [
       (import ./overlays/localPkgs.nix {inherit self inputs;})
       inputs.nix4vscode.overlays.forVscode
