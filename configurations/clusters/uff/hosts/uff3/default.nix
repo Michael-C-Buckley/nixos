@@ -1,10 +1,7 @@
 {...}: let
   ipAddress = "192.168.48.103";
 in {
-  system = {
-    stateVersion = "25.11";
-    boot.uuid = "802A-C2C6";
-  };
+  system.boot.uuid = "802A-C2C6";
 
   custom.uff = {
     ethIPv4 = ipAddress;
