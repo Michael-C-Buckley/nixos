@@ -6,10 +6,6 @@
     prefixLength = prefix;
   };
 in {
-  # imports = [
-  #   ./hardware.nix
-  # ];
-
   networking = {
     hostName = "sff1";
     hostId = "fb020cc1";
