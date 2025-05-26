@@ -13,7 +13,7 @@ in {
 
   fileSystems = {
     "/boot" = {
-      device = "/dev/disk/by-label/SFFBOOT";
+      device = "/dev/disk/by-uuid/${config.system.boot.uuid}";
       fsType = "vfat";
     };
 
