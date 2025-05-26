@@ -58,3 +58,6 @@ for zvol in "tmp" "nix" "cache" "persist"; do
     zfs create -o mountpoint=legacy zroot/$hostname/$zvol
     mount -t zfs zroot/$hostname/$zvol /mnt/$zvol
 done
+
+uuid=$(blkid -s UUID -o value /dev/nvme0n1p1)
+echo "Boot UUID: $uuid"
