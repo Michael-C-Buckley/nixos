@@ -34,6 +34,7 @@ in {
        no bgp default ipv4-unicast
 
        neighbor fabric peer-group
+       neighbor fabric update-source ${lo}
        neighbor fabric remote-as 65101
        neighbor 192.168.61.1 peer-group fabric
        neighbor 192.168.61.2 peer-group fabric
