@@ -1,3 +1,4 @@
+# DEACTIVATED: Cosmic flake is out of date and unmaintained
 {
   config,
   inputs,
