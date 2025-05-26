@@ -36,7 +36,8 @@ sgdisk -n1:1M:+1G -t1:EF00 -c1:"EFI System" /dev/nvme0n1
 sgdisk -n2:0:0 -t2:BF01 -c2:"ZROOT" /dev/nvme0n1
 
 # Format the boot partition
-mkfs.vfat -F32 /dev/nvme0n1p1 -n SFFBOOT
+mkfs.vfat -F32 /dev/nvme0n1p1
+parted -s /dev/nvme0n1 name 1 SFFBOOT
 
 # Format the HDD 
 sgdisk -n1:0:0 -t1:BF01 -c1:"ZDATA" /dev/sda
