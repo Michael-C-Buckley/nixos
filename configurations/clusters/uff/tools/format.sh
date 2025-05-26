@@ -9,8 +9,6 @@ ZFS_OPTS="-o ashift=12 \
   -O normalization=formD \
   -O mountpoint=none"
 
-ZROOT_PREFIX="rpool"
-
 read -rp "Enter hostname for this server: " hostname
 echo "You entered: $hostname"
 
@@ -38,12 +36,12 @@ sgdisk -n2:0:0 -t2:BF01 -c2:"ZROOT" /dev/nvme0n1
 # Format the boot partition
 mkfs.vfat -F32 /dev/nvme0n1p1
 
-# Format the HDD 
+# Format the HDD
 sgdisk -n1:0:0 -t1:BF01 -c1:"ZDATA" /dev/sda
 
 # Create the pool on the drive, use reasonable settings
-echo "Creating $ZROOT_PREFIX..."
-zpool create -f $ZFS_OPTS $ZROOT_PREFIX /dev/nvme0n1p2
+echo "Creating zroot..."
+zpool create -f $ZFS_OPTS zroot /dev/nvme0n1p2
 
 echo "Creating zdata..."
 zpool create -f $ZFS_OPTS zdata /dev/sda1
@@ -55,11 +53,16 @@ mount /dev/nvme0n1p1 /mnt/boot
 
 
 # This create the zvols used in this cluster
-zfs create -o mountpoint=none $ZROOT_PREFIX/$hostname
+zfs create -o mountpoint=none zroot/$hostname
 for zvol in "tmp" "nix" "cache" "persist"; do
-    zfs create -o mountpoint=legacy $ZROOT_PREFIX/$hostname/$zvol
-    mount -t zfs $ZROOT_PREFIX/$hostname/$zvol /mnt/$zvol
+    zfs create -o mountpoint=legacy zroot/$hostname/$zvol
+    mount -t zfs zroot/$hostname/$zvol /mnt/$zvol
 done
+
+echo "Generating host keys..."
+ssh-keygen -t ed25519 -N '' -f /mnt/etc/ssh/ssh_host_ed25519_key
+ssh-keygen -t rsa -b 4096 -N '' -f /mnt/etc/ssh/ssh_host_rsa_key
 
 uuid=$(blkid -s UUID -o value /dev/nvme0n1p1)
 echo "Boot UUID: $uuid"
+echo ssh-to-age -i /mnt/mydrive/etc/ssh/ssh_host_ed25519_key.pub

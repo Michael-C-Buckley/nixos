@@ -1,7 +1,7 @@
 {config, ...}: let
   inherit (config.networking) hostName;
   zfsFs = name: {
-    device = "rpool/${hostName}/${name}";
+    device = "zroot/${hostName}/${name}";
     fsType = "zfs";
     neededForBoot = true;
   };
