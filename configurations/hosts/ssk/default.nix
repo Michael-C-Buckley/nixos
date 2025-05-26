@@ -28,6 +28,11 @@
     talosctl
     devenv
     nixos-anywhere
+
+    # Storage tools
+    parted
+    gptfdisk
+    nvme-cli
   ];
 
   features = {
