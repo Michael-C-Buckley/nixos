@@ -32,6 +32,10 @@
     parted
     gptfdisk
     nvme-cli
+
+    # Security
+    sops
+    ssh-to-age
   ];
 
   features = {
