@@ -51,20 +51,20 @@
 in
   generateCluster {
     cluster = "uff";
-    hostPrefix = "uff";
     extraModules = [./modules/presets/michael.nix];
     max = 3;
   }
   // generateCluster {
     cluster = "oracle";
     hostPrefix = "o";
+    extraModules = [./modules/presets/michael.nix];
     max = 3;
   }
   // generateCluster {
     cluster = "ln";
-    hostPrefix = "ln";
     max = 3;
   } // generateCluster {
     cluster = "sff";
+    extraModules = [./modules/presets/michael.nix];
     max = 3;
   }
