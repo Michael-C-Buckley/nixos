@@ -1,9 +1,7 @@
 {...}: let
   ipAddress = "192.168.48.101";
 in {
-  imports = [
-    ./hardware.nix
-  ];
+  system.boot.uuid = "AB50-96FA";
 
   custom.uff = {
     loopbackIPv4 = "192.168.61.1";

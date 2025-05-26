@@ -2,9 +2,10 @@
   ipAddress = "192.168.48.102";
 in {
   imports = [
-    ./hardware.nix
     ./wireguard.nix
   ];
+
+  system.boot.uuid = "F50D-E713";
 
   custom.uff = {
     loopbackIPv4 = "192.168.61.2";
