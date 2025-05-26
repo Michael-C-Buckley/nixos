@@ -1,7 +1,5 @@
 # ZFS Install Script for the cluster
 
-set -x
-
 ZFS_OPTS="-o ashift=12 \
   -O compression=zstd \
   -O atime=off \
