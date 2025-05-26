@@ -7,13 +7,9 @@ _: let
 in {
   boot.zfs.forceImportAll = true;
 
-  fileSystems = {
-    # Physical
-    "/boot" = {
-      device = "/dev/disk/by-uuid/1A0C-115C";
-      fsType = "vfat";
-    };
+  system.boot.uuid  = "1A0C-115C";
 
+  fileSystems = {
     # Tmpfs
     "/" = {
       device = "tmpfs";
@@ -26,8 +22,6 @@ in {
     };
 
     # ZFS Volumes
-    #  Root and tmp are a fallbacks for tmpfs
-    # "/" = zfsFs "nixroot";
     "/tmp" = zfsFs "tmp";
     "/nix" = zfsFs "nix";
     "/cache" = zfsFs "cache";

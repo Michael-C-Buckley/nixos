@@ -1,4 +1,4 @@
-{inputs, lib, ...}: {
+{config, inputs, lib, ...}: {
   imports = [
     # ./nfs.nix
     inputs.impermanence.nixosModules.impermanence
@@ -8,8 +8,14 @@
   ];
 
   options.system.boot.uuid = lib.mkOption {
-    type = lib.types.str;
+    type = lib.types.nullOr lib.types.str;
+    default = null;
     description = "The UUID of the /boot partition.";
+  };
+
+  config.fileSystems."/boot" = lib.mkIf (config.system.boot.uuid != null) {
+    device = "/dev/disk/by-uuid/${config.system.boot.uuid}";
+    fsType = "vfat";
   };
 
   # Add gluster module
