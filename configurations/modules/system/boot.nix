@@ -18,7 +18,7 @@ in {
 
   config = {
     boot = {
-      kernelPackages = mkDefault pkgs.linuxPackages_6_13_hardened;
+      kernelPackages = mkDefault pkgs.linuxPackages_6_14;
 
       initrd = {
         systemd.enable = true;
