@@ -19,6 +19,7 @@ in {
     ./eigrp.nix
     ./options.nix
     ./ospf.nix
+    ./vxlan.nix
   ];
 
   # Set sane standards on file descriptor limits for FRR daemons

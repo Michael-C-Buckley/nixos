@@ -1,7 +1,10 @@
 {config, ...}: let
   lo = config.networking.loopback.ipv4;
 in {
-  networking.ospf.enable = true;
+  networking = {
+    bgp.enable = true;
+    ospf.enable = true;
+  };
 
   services.frr = {
     bfdd.enable = true;
@@ -30,7 +33,7 @@ in {
        bgp router-id ${lo}
        no bgp default ipv4-unicast
 
-       neighbor fabric unicast
+       neighbor fabric peer-group
        neighbor fabric remote-as 65101
        neighbor 192.168.61.1 peer-group fabric
        neighbor 192.168.61.2 peer-group fabric
