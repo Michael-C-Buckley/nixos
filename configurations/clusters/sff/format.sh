@@ -2,6 +2,15 @@
 
 set -x
 
+ZFS_OPTS="-o ashift=12 \
+  -O compression=zstd \
+  -O atime=off \
+  -O xattr=sa \
+  -O acltype=posixacl \
+  -O dnodesize=auto \
+  -O normalization=formD \
+  -O mountpoint=none"
+
 read -rp "Enter hostname for this server: " hostname
 echo "You entered: $hostname"
 
@@ -24,7 +33,7 @@ sgdisk --zap-all /dev/sda
 echo "Formatting drives..."
 # Put boot on the NVMe then fill the rest with ZFS
 sgdisk -n1:1M:+1G -t1:EF00 -c1:"EFI System" /dev/nvme0n1
-sgdisk -n2:0:0 -t1:BF01 -c1:"ZROOT" /dev/nvme0n1
+sgdisk -n2:0:0 -t2:BF01 -c2:"ZROOT" /dev/nvme0n1
 
 # Format the boot partition
 mkfs.vfat -F32 /dev/nvme0n1p1 -n SFFBOOT
@@ -34,26 +43,10 @@ sgdisk -n1:0:0 -t1:BF01 -c1:"ZDATA" /dev/sda
 
 # Create the pool on the drive, use reasonable settings
 echo "Creating zroot..."
-zpool create -f -o ashift=12 \
-  -O compression=zstd \
-  -O atime=off \
-  -O xattr=sa \
-  -O acltype=posixacl \
-  -O dnodesize=auto \
-  -O normalization=formD \
-  -O mountpoint=none \
-  zroot /dev/nvme0n1p2
+zpool create -f $ZFS_OPTS zroot /dev/nvme0n1p2
 
 echo "Creating zdata..."
-zpool create -f -o ashift=12 \
-  -O compression=zstd \
-  -O atime=off \
-  -O xattr=sa \
-  -O acltype=posixacl \
-  -O dnodesize=auto \
-  -O normalization=formD \
-  -O mountpoint=none \
-  zdata /dev/sda1
+zpool create -f $ZFS_OPTS zdata /dev/sda1
 
 # Mount the drives and prepare for the install
 mkdir -p /mnt
