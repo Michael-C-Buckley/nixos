@@ -1,7 +1,7 @@
 {self, ...}: {
   imports = [
     "${self}/configurations/modules/presets/michael.nix"
-    ./modules/filesystems.nix
+    ./modules
   ];
 
   # Logrotate randomly breaking?
