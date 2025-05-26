@@ -7,12 +7,5 @@
         MTUBytes = 1500; # 1500 until I tweak the switch to support
       };
     };
-
-    networks = {
-      br0.bridgeConfig = {
-        type = "bridge";
-        name = "br0";
-      };
-    };
   };
 }

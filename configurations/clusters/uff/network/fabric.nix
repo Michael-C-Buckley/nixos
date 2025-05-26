@@ -1,46 +1,46 @@
 # First attempt at creating a VXLAN fabric
+{config, ...}: let
+  lo = config.networking.loopback.ipv4;
+in {
+  networking.useNetworkd = true;
 
-{...}: {
-    networking.useNetworkd = true;
+  boot.kernel.sysctl = {
+    "net.bridge.bridge-nf-call-iptables" = false;
+    "net.bridge.bridge-nf-call-ip6tables" = false;
+  };
 
-    boot.kernel.sysctl = {
-        "net.bridge.bridge-nf-call-iptables" = false;
-        "net.bridge.bridge-nf-call-ip6tables" = false;
-    };
-
-    systemd.network.networks = {
+  systemd.network.networks = {
     "vxlan100" = {
-        matchConfig.Name = "vxlan100";
-        networkConfig = {
+      matchConfig.Name = "vxlan100";
+      networkConfig = {
         Bridge = "br100";
-        };
+      };
     };
 
     "br100" = {
-        matchConfig.Name = "br100";
-        bridgeConfig = {};
+      matchConfig.Name = "br100";
+      bridgeConfig = {};
     };
-    };
+  };
 
-    systemd.network.links = {
+  systemd.network.links = {
     "vxlan100" = {
-        # matchConfig.MACAddress = "02:00:00:00:00:01"; # For eventual static assignment
-        linkConfig = {
+      # matchConfig.MACAddress = "02:00:00:00:00:01"; # For eventual static assignment
+      linkConfig = {
         Name = "vxlan100";
         MTUBytes = 1450;
-        };
+      };
     };
-    };
+  };
 
-    systemd.services.vxlan-setup = {
-    wantedBy = [ "network-online.target" ];
+  systemd.services.vxlan-setup = {
+    wantedBy = ["network-online.target"];
     script = ''
-        ip link add vxlan100 type vxlan id 100 dev eth0 dstport 4789 local 10.0.0.1 group 239.1.1.100
-        ip link set vxlan100 up
-        ip link add br100 type bridge
-        ip link set vxlan100 master br100
-        ip link set br100 up
+      ip link add vxlan100 type vxlan id 100 dev eth0 dstport 4789 local ${lo} group 239.1.1.100
+      ip link set vxlan100 up
+      ip link add br100 type bridge
+      ip link set vxlan100 master br100
+      ip link set br100 up
     '';
-    };
-
+  };
 }
