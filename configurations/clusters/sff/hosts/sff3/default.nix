@@ -6,8 +6,8 @@
     prefixLength = prefix;
   };
 in {
-  system.boot.uuid = "5D01-2034";
-  
+  system.boot.uuid = "FC43-B84D";
+
   networking = {
     hostName = "sff3";
     hostId = "fb020cc3";
