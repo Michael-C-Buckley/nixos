@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+
 # ZFS Install Script for the cluster
 
 ZFS_OPTS="-o ashift=12 \
@@ -59,10 +63,20 @@ for zvol in "tmp" "nix" "cache" "persist"; do
     mount -t zfs zroot/$hostname/$zvol /mnt/$zvol
 done
 
-echo "Generating host keys..."
-ssh-keygen -t ed25519 -N '' -f /mnt/etc/ssh/ssh_host_ed25519_key
-ssh-keygen -t rsa -b 4096 -N '' -f /mnt/etc/ssh/ssh_host_rsa_key
+# Update the boot drive reference
+new_uuid=$(blkid -s UUID -o value /dev/nvme0n1p1)
+file=../hosts/$hostname/default.nix
+sed -i -E \
+  "s|^([[:space:]]*system\.boot\.uuid[[:space:]]*=[[:space:]]*\")[0-9A-Fa-f-]+(\"[[:space:]]*;)|\1${new_uuid}\2|" \
+  "$file"
 
-uuid=$(blkid -s UUID -o value /dev/nvme0n1p1)
-echo "Boot UUID: $uuid"
-echo ssh-to-age -i /mnt/mydrive/etc/ssh/ssh_host_ed25519_key.pub
+echo "Updated UUID for $hostname"
+
+# Lastly, deploy the secrets
+key_dir=/etc/nix/secrets/ssh/keys/$hostname
+cp "$key_dir"/ssh_host_{ed25519,rsa}_key.pub /mnt/persist/etc/ssh
+
+for key in ed25519 rsa; do
+  sops -d "$key_dir/ssh_host_${key}_key" > /mnt/persist/etc/ssh/ssh_host_${key}_key
+  chmod 0600 /mnt/persist/etc/ssh/ssh_host_${key}_key
+done
