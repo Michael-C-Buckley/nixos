@@ -41,10 +41,10 @@ in {
     path = [pkgs.iproute2];
     script = ''
       ip link add br100 type bridge
-      ip link set br100 up
       ip link add vxlan100 type vxlan id 100 dstport ${toString vxl.port} dev eno1 group 239.1.1.100
-      ip link set vxlan100 up
       ip link set vxlan100 master br100
+      ip link set br100 up
+      ip link set vxlan100 up
     '';
   };
 }
