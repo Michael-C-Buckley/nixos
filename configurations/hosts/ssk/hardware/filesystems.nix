@@ -7,14 +7,9 @@ _: let
 in {
   boot.zfs.forceImportAll = true;
 
-  fileSystems = {
-    # Physical
-    "/boot" = {
-      device = "/dev/disk/by-uuid/3A0E-2554";
-      fsType = "vfat";
-    };
+  system.boot.uuid = "3A0E-2554";
 
-    # ZFS Volumes
+  fileSystems = {
     "/" = zfsFs "root";
     "/tmp" = zfsFs "tmp";
     "/nix" = zfsFs "nix";
