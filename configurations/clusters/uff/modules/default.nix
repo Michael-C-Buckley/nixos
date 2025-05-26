@@ -10,9 +10,8 @@
 
   system = {
     preset = "server";
-    stateVersion = lib.mkDefault "25.05";
+    stateVersion = lib.mkDefault "25.11";
   };
   custom.uff.enusb1.ipv4.prefixLength = 27;
-  features.podman.enable = true;
   services.glusterfs.enable = true;
 }
