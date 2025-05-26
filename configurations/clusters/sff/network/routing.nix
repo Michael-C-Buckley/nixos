@@ -11,8 +11,7 @@
       ip forwarding
       ipv6 forwarding
       router ospf
-       router-id ${config.networking.loopback.ipv4}
-       default-information originate metric 600 metric-type 1
+       router-id ${config.custom.sff.loopbackIPv4}
       int lo
        ip ospf area 0
        ip ospf passive
@@ -20,9 +19,12 @@
        ip ospf area 0
        ip ospf cost 400
        uo
-      int enusb1
+      int enx520p1
        ip ospf area 0
-       ip ospf cost 100
+       ip ospf cost 40
+      int enx520p2
+       ip ospf area 0
+       ip ospf cost 40
     '';
   };
 }

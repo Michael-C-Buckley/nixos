@@ -1,7 +1,6 @@
 {config, ...}: let
   ethIP = config.custom.uff.ethIPv4;
   enusb1 = config.custom.uff.enusb1;
-  loopback = config.custom.uff.loopbackIPv4;
 
   addr = addr: prefix: {
     address = addr;
@@ -20,9 +19,8 @@ in {
       # Wifi gets DHCP
       wlp2s0.useDHCP = true;
 
-      # L3 reachable loopback addresses for host and anycast
+      # L3 reachable loopback for anycast
       lo.ipv4.addresses = [
-        (addr loopback 32)
         (addr "192.168.61.0" 32)
       ];
 
