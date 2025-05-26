@@ -1,4 +1,4 @@
-_: {
+{lib, ...}: {
   imports = [
     ./corosync.nix
     ./filesystems.nix
@@ -10,7 +10,7 @@ _: {
 
   system = {
     preset = "server";
-    stateVersion = "25.05";
+    stateVersion = lib.mkDefault "25.05";
   };
   custom.uff.enusb1.ipv4.prefixLength = 27;
   features.podman.enable = true;
