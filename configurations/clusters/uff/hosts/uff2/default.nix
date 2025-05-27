@@ -5,7 +5,7 @@ in {
     ./wireguard.nix
   ];
 
-  system.boot.uuid = "F50D-E713";
+  system.boot.uuid = "E8D1-BB86";
 
   custom.uff = {
     ethIPv4 = ipAddress;
