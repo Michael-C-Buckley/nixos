@@ -7,6 +7,9 @@ _: let
 in {
   system.boot.uuid = "3A0E-2554";
 
+  # Preserve everything for root
+  environment.persistence."/persist".directories = ["/root"];
+
   fileSystems = {
     # Tmpfs
     "/" = {
