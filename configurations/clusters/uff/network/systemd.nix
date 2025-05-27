@@ -3,11 +3,11 @@
 in {
   systemd.network = {
     networks = {
-      "20-eno1" = {
+      "10-eno1" = {
         matchConfig.Name = "eno1";
         address = netd.eno1.addresses.ipv4;
       };
-      "21-enusb1" = {
+      "11-enusb1" = {
         matchConfig.Name = "enusb1";
         address = netd.enusb1.addresses.ipv4;
       };
@@ -18,7 +18,7 @@ in {
       };
     };
     links = {
-      "10-enusb1" = {
+      "12-enusb1" = {
         matchConfig.MACAddress = netd.enusb1.mac;
         linkConfig = {
           Name = "enusb1";
