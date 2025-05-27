@@ -7,9 +7,14 @@
   neighbors = concatMapStringsSep "\n" (
     n: "neighbor ${n} peer-group fabric"
   ) (filter (n: n != lo) [
+    # UFFs
     "192.168.61.1"
     "192.168.61.2"
     "192.168.61.3"
+    # SFFs
+    "192.168.61.5"
+    "192.168.61.6"
+    "192.168.61.7"
   ]);
 
 in {
