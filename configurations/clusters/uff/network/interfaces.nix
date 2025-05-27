@@ -7,9 +7,6 @@
     prefixLength = prefix;
   };
 in {
-  # WIP: Wifi connection after adding age-encryption
-  # environment.etc."NetworkManager/system-connections/wifi.nmconnection".source = "";
-
   networking = {
     interfaces = {
       # WIP: Transitioning from bridge back to base interfaces, options not yet changed
