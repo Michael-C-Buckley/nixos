@@ -46,7 +46,7 @@ in {
   };
 
   security = {
-    apparmor.enable = true;
+    apparmor.enable = false; # currently bugged for Incus profiles
     sudo = {
       extraConfig = "Defaults lecture=never";
       wheelNeedsPassword = mkDefault false;
