@@ -1,7 +1,6 @@
 _: {
   imports = [
     ./fabric.nix
-    ./interfaces.nix
     ./routing.nix
     ./systemd.nix
   ];
