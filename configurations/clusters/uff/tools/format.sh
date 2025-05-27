@@ -76,7 +76,7 @@ echo "Updated UUID for $hostname"
 key_dir=/etc/nix/secrets/ssh/keys/$hostname
 persist_dir=/mnt/persist/etc/ssh
 mkdir -p $persist_dir
-cp "$key_dir"/ssh_host_{ed25519,rsa}_key.pub /mnt/etc/ssh
+cp "$key_dir"/ssh_host_{ed25519,rsa}_key.pub ${persist_dir}
 
 for key in ed25519 rsa; do
   sops -d "$key_dir/ssh_host_${key}_key.sops" > ${persist_dir}/ssh_host_${key}_key
