@@ -1,18 +1,16 @@
-{...}: let
-  ipAddress = "192.168.48.101";
-in {
+_: {
   system.boot.uuid = "6B03-5772";
 
-  custom.uff = {
-    ethIPv4 = ipAddress;
+  networkd = {
+    eno1.addresses.ipv4 = ["192.168.48.101/24"];
     enusb1 = {
-      ipv4.addr = "192.168.254.1";
+      mac = "6c:1f:f7:06:27:8e";
+      addresses.ipv4 = ["192.168.254.1/27"];
     };
   };
 
   networking = {
     loopback.ipv4 = "192.168.61.1";
-    hardware.enusb1.mac = "6c:1f:f7:06:27:8e";
     hostName = "uff1";
     hostId = "ab0406ca";
   };
