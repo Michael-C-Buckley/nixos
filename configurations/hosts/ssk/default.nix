@@ -16,6 +16,7 @@
   };
 
   programs = {
+    cosmic.enable = true;
     hyprland.enable = true;
   };
 
