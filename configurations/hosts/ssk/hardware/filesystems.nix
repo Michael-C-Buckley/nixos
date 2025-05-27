@@ -5,8 +5,6 @@ _: let
     neededForBoot = true;
   };
 in {
-  boot.zfs.forceRoot = true;
-
   system.boot.uuid = "3A0E-2554";
 
   fileSystems = {
