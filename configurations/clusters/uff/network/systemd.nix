@@ -1,13 +1,15 @@
-{config, ...}: {
+{config, ...}: let
+  netd = config.networkd;
+in {
   systemd.network = {
     networks = {
       "20-eno1" = {
         matchConfig.Name = "eno1";
-        address = ["${config.custom.uff.ethIPv4}/24"];
+        address = netd.eno1.addresses.ipv4;
       };
       "21-enusb1" = {
         matchConfig.Name = "enusb1";
-        address = ["${config.custom.uff.enusb1.ipv4.addr}/27"];
+        address = netd.enusb1.addresses.ipv4;
       };
       # 40 is the default system generated one, this overwrites it
       "40-lo" = {
@@ -17,7 +19,7 @@
     };
     links = {
       "10-enusb1" = {
-        matchConfig.MACAddress = config.networking.hardware.enusb1.mac;
+        matchConfig.MACAddress = netd.enusb1.mac;
         linkConfig = {
           Name = "enusb1";
           MTUBytes = 1500; # 1500 until I tweak the switch to support

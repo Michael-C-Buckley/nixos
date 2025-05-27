@@ -1,22 +1,20 @@
-{...}: let
-  ipAddress = "192.168.48.102";
-in {
+_: {
   imports = [
     ./wireguard.nix
   ];
 
   system.boot.uuid = "E8D1-BB86";
 
-  custom.uff = {
-    ethIPv4 = ipAddress;
+  networkd = {
+    eno1.addresses.ipv4 = ["192.168.48.102/24"];
     enusb1 = {
-      ipv4.addr = "192.168.254.2";
+      mac = "6c:1f:f7:06:27:ae";
+      addresses.ipv4 = ["192.168.254.2/27"];
     };
   };
 
   networking = {
     loopback.ipv4 = "192.168.61.2";
-    hardware.enusb1.mac = "6c:1f:f7:06:27:ae";
     hostName = "uff2";
     hostId = "072294f5";
   };

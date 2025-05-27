@@ -1,5 +1,9 @@
 # First attempt at creating a VXLAN fabric
-{config, pkgs, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   vxl = config.networking.vxlan;
 in {
   networking = {
