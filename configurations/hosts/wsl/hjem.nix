@@ -5,8 +5,8 @@
 }: {
   hjem.users.michael = {
     packageList = [(lib.hiPrio pkgs.nvf)];
-    apps = {
-      browsers.librewolf.enable = true;
+    programs = {
+      librewolf.enable = true;
     };
   };
 }

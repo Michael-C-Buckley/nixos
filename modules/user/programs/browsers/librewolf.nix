@@ -5,16 +5,16 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkOption mkIf;
-  cfg = config.apps.browsers.vivaldi;
+  cfg = config.programs.librewolf;
   imperm = config.system.impermanence.enable;
 in {
   options = {
-    apps.browsers.vivaldi = {
-      enable = mkEnableOption "Install vivaldi";
+    programs.librewolf = {
+      enable = mkEnableOption "Install Librewolf";
       package = mkOption {
         type = lib.types.package;
-        default = pkgs.vivaldi;
-        description = "Package to use for Vivaldi";
+        default = pkgs.librewolf;
+        description = "Package to use for Librewold";
       };
     };
   };
@@ -23,8 +23,10 @@ in {
     packageList = mkIf cfg.enable [cfg.package];
     system.impermanence = mkIf (cfg.enable && imperm) {
       userPersistDirs = [
-        ".config/vivaldi"
-        ".cache/vivaldi"
+        # Default profile location
+        ".librewolf"
+        ".mozilla/librewolf"
+        ".cache/mozilla/librewolf"
       ];
     };
   };

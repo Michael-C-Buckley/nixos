@@ -5,16 +5,16 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkOption mkIf;
-  cfg = config.apps.browsers.librewolf;
+  cfg = config.programs.signal;
   imperm = config.system.impermanence.enable;
 in {
   options = {
-    apps.browsers.librewolf = {
-      enable = mkEnableOption "Install Librewolf";
+    programs.signal = {
+      enable = mkEnableOption "Install Signal.";
       package = mkOption {
         type = lib.types.package;
-        default = pkgs.librewolf;
-        description = "Package to use for Librewold";
+        default = pkgs.signal-desktop-bin;
+        description = "Package to use for Signal.";
       };
     };
   };
@@ -23,10 +23,7 @@ in {
     packageList = mkIf cfg.enable [cfg.package];
     system.impermanence = mkIf (cfg.enable && imperm) {
       userPersistDirs = [
-        # Default profile location
-        ".librewolf"
-        ".mozilla/librewolf"
-        ".cache/mozilla/librewolf"
+        ".config/Signal"
       ];
     };
   };

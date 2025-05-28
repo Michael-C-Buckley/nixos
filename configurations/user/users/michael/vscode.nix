@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  hjem.users.michael.apps.editors.vscode = {
+  hjem.users.michael.programs.vscode = {
     enable = config.features.michael.extendedGraphical;
     extensions = with pkgs.vscode-extensions; [
       # Microsoft

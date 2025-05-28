@@ -5,10 +5,10 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkOption mkIf;
-  cfg = config.apps.communication.telegram;
+  cfg = config.programs.telegram;
   imperm = config.system.impermanence.enable;
 in {
-  options.apps.communication.telegram = {
+  options.programs.telegram = {
     enable = mkEnableOption "Install Telegram.";
     package = mkOption {
       type = lib.types.package;

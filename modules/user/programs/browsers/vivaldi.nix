@@ -5,16 +5,16 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkOption mkIf;
-  cfg = config.apps.communication.signal;
+  cfg = config.programs.vivaldi;
   imperm = config.system.impermanence.enable;
 in {
   options = {
-    apps.communication.signal = {
-      enable = mkEnableOption "Install Signal.";
+    programs.vivaldi = {
+      enable = mkEnableOption "Install vivaldi";
       package = mkOption {
         type = lib.types.package;
-        default = pkgs.signal-desktop-bin;
-        description = "Package to use for Signal.";
+        default = pkgs.vivaldi;
+        description = "Package to use for Vivaldi";
       };
     };
   };
@@ -23,7 +23,8 @@ in {
     packageList = mkIf cfg.enable [cfg.package];
     system.impermanence = mkIf (cfg.enable && imperm) {
       userPersistDirs = [
-        ".config/Signal"
+        ".config/vivaldi"
+        ".cache/vivaldi"
       ];
     };
   };
