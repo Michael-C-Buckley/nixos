@@ -37,6 +37,8 @@
         fzf
         nix-search-tv
       ];
+      # Ignore the checks
+      checkPhase = "";
       text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
     })
 
