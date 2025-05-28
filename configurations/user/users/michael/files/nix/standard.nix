@@ -18,12 +18,9 @@
   ".config/fish/config.fish".source = ../fish/config.fish;
   ".config/fish/conf.d/functions.fish".source = ../fish/functions.fish;
 
-  # GnuPG
+  # GnuPG (Pubkeys)
   ".config/pubkeys/michael1.asc".source = ../gnupg/michael1.asc;
   ".config/pubkeys/michael2.asc".source = ../gnupg/michael2.asc;
-  ".gnupg/gpg.conf".source = ../gnupg/gpg.conf;
-  ".gnupg/gpg-agent.conf".source = ../gnupg/gpg-agent.conf;
-  ".gnupg/scdaemon.conf".source = ../gnupg/scdaemon.conf;
 
   # Ghostty
   ".config/ghostty/config".source = ../userfiles/ghostty;

@@ -41,6 +41,8 @@ in {
     files = import ./files/fileList.nix {inherit config lib;};
     system.impermanence.enable = config.system.impermanence.enable;
 
+    environment.gnupg.enable = true;
+
     programs = {
       custom.ns.enable = extGfx;
       librewolf.enable = extGfx;
