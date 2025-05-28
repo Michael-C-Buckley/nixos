@@ -1,6 +1,5 @@
-{inputs, ...}: {
+_: {
   imports = [
-    inputs.vscode-server.nixosModules.default
     ./graphical
     ./gaming
     # ./hardware
