@@ -9,6 +9,8 @@
   inherit (config.features.michael) minimalGraphical extendedGraphical;
   inherit (lib) mkIf mkDefault optionals mkOverride;
   local = config.hjem.users.michael;
+  inherit (local) fileList;
+
   useImperm = config.system.impermanence.enable && local.system.impermanence.enable;
   extGfx = mkDefault extendedGraphical;
 
@@ -38,8 +40,12 @@ in {
     enable = true;
     user = "michael";
     directory = "/home/michael";
-    files = import ./files/fileList.nix {inherit config lib;};
+    
+    # Mirror the system's impermanence
     system.impermanence.enable = config.system.impermanence.enable;
+
+    # Push the existing files in to be merged, for now
+    files = import ./files/fileList.nix {inherit config lib fileList;};
 
     environment.gnupg = {
       enable = true;
