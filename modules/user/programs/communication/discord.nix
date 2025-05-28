@@ -5,11 +5,11 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkOption mkIf;
-  cfg = config.apps.communication.discord;
+  cfg = config.programs.discord;
   imperm = config.system.impermanence.enable;
 in {
   options = {
-    apps.communication.discord = {
+    programs.discord = {
       enable = mkEnableOption "Install Discord";
       package = mkOption {
         type = lib.types.package;

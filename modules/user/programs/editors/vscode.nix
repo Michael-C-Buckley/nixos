@@ -6,7 +6,7 @@
 }: let
   inherit (lib) mkEnableOption mkOption mkIf;
   inherit (lib.types) listOf str package;
-  cfg = config.apps.editors.vscode;
+  cfg = config.programs.vscode;
 
   # Only run the helper if there's actually something to give it
   outOfStoreExt =
@@ -14,7 +14,7 @@
     then pkgs.nix4vscode.forVscode cfg.nonNixExtensions
     else [];
 in {
-  options.apps.editors.vscode = {
+  options.programs.vscode = {
     enable = mkEnableOption "Enable VScode";
     extensions = mkOption {
       type = listOf package;

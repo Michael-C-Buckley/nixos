@@ -41,10 +41,6 @@
     incus.enable = true;
   };
 
-  # hjem.users.michael = {
-  #   apps.vscode.enable = true;
-  # };
-
   system = {
     preset = "laptop";
     stateVersion = "24.11";

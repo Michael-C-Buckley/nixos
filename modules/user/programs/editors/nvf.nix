@@ -5,10 +5,10 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkOption mkIf;
-  cfg = config.apps.editors.nvf;
+  cfg = config.programs.nvf;
 in {
   options = {
-    apps.editors.nvf = {
+    programs.nvf = {
       enable = mkEnableOption "Install NVF";
       package = mkOption {
         type = lib.types.package;

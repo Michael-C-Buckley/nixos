@@ -2,7 +2,7 @@ _: {
   imports = [
     ./appearance/cursor.nix
     ./appearance/gtk.nix
-    ./apps
+    ./programs
     ./options
   ];
 }

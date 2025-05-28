@@ -41,14 +41,12 @@ in {
     files = import ./files/fileList.nix {inherit config lib;};
     system.impermanence.enable = config.system.impermanence.enable;
 
-    apps = {
-      browsers.librewolf.enable = extGfx;
-      communication = {
-        signal.enable = extGfx;
-        discord.enable = extGfx;
-        telegram.enable = extGfx;
-      };
-      editors.nvf = {
+    programs = {
+      librewolf.enable = extGfx;
+      signal.enable = extGfx;
+      discord.enable = extGfx;
+      telegram.enable = extGfx;
+      nvf = {
         enable = true;
         package = pkgs."nvf-${nvfVer}";
       };
