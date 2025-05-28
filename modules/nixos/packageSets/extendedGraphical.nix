@@ -30,18 +30,6 @@
     kitty
     wezterm
 
-    # Development
-    (writeShellApplication {
-      name = "ns";
-      runtimeInputs = with pkgs; [
-        fzf
-        nix-search-tv
-      ];
-      # Ignore the checks
-      checkPhase = "";
-      text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
-    })
-
     # Communication
     bitwarden
   ];

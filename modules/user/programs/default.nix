@@ -6,6 +6,7 @@ _: {
     ./communication/discord.nix
     ./communication/telegram.nix
     ./communication/signal.nix
+    ./custom/ns.nix
     ./editors/nvf.nix
     ./editors/vscode.nix
   ];

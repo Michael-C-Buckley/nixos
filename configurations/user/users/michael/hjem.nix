@@ -42,6 +42,7 @@ in {
     system.impermanence.enable = config.system.impermanence.enable;
 
     programs = {
+      custom.ns.enable = extGfx;
       librewolf.enable = extGfx;
       signal.enable = extGfx;
       discord.enable = extGfx;
