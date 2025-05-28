@@ -41,7 +41,10 @@ in {
     files = import ./files/fileList.nix {inherit config lib;};
     system.impermanence.enable = config.system.impermanence.enable;
 
-    environment.gnupg.enable = true;
+    environment.gnupg = {
+      enable = true;
+      enableSSHsupport = true;
+    };
 
     programs = {
       custom.ns.enable = extGfx;

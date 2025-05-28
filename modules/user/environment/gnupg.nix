@@ -43,9 +43,9 @@ in {
         ''
           allow-loopback-pinentry
           pinentry-program ${local.pinentryPkg}
-          default-cache-ttl ${local.cacheTTL}
+          default-cache-ttl ${builtins.toString local.cacheTTL}
         ''
-        + (mkIf local.enableSSHsupport "enable-ssh-support");
+        + (if local.enableSSHsupport then "enable-ssh-support" else "");
 
       ".gnupg/scdaemon.conf".text = ''
         # Stops the CCID conflict from pcscd and scdaemon
