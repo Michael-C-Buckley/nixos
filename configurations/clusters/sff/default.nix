@@ -16,10 +16,10 @@
   };
 
   services = {
-    k3s.enable = true;
+    k3s.enable = false; # while still deploying
   };
 
   virtualisation = {
-    incus.enable = true;
+    incus.enable = false;
   };
 }
