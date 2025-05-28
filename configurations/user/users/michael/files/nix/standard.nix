@@ -23,6 +23,7 @@
   ".config/pubkeys/michael2.asc".source = ../gnupg/michael2.asc;
   ".gnupg/gpg.conf".source = ../gnupg/gpg.conf;
   ".gnupg/gpg-agent.conf".source = ../gnupg/gpg-agent.conf;
+  ".gnupg/scdaemon.conf".source = ../gnupg/scdaemon.conf;
 
   # Ghostty
   ".config/ghostty/config".source = ../userfiles/ghostty;
