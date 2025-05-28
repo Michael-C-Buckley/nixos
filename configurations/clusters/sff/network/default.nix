@@ -7,6 +7,7 @@ _: {
   ];
 
   networking = {
+    useNetworkd = true;
     networkmanager.enable = true;
     useDHCP = false;
   };
