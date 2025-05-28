@@ -70,11 +70,14 @@ in {
 
   #hardware.gpgSmartcards.enable = notCloud;
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    enableBrowserSocket = notCloud;
-    pinentryPackage = pkgs.pinentry-curses;
+  programs = {
+    nix-ld.enable = mkDefault true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+      enableBrowserSocket = notCloud;
+      pinentryPackage = mkDefault pkgs.pinentry-curses;
+    };
   };
 
   services = {
@@ -83,7 +86,6 @@ in {
     printing.enable = false; # Revoke printing for its flaws over the years
     openssh.enable = mkDefault true;
     udev.packages = optionals notCloud [pkgs.yubikey-personalization];
-    vscode-server.enable = mkDefault true; # Slotted to be phased out
   };
 
   networking = {
