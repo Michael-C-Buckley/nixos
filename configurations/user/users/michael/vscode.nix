@@ -5,13 +5,12 @@
 }: {
   hjem.users.michael.programs.vscode = {
     enable = config.features.michael.extendedGraphical;
-    extensions = with pkgs.vscode-extensions; [
-      # Microsoft
-      ms-vscode-remote.remote-ssh
-      ms-vscode-remote.remote-ssh-edit
-      ms-vscode-remote.remote-containers
+    enableRemote = true;
+    package = pkgs.vscodium-fhs;
+    msExtensions = with pkgs.vscode-extensions; [
       ms-vsliveshare.vsliveshare
-
+    ];
+    extensions = with pkgs.vscode-extensions; [
       mechatroner.rainbow-csv
       streetsidesoftware.code-spell-checker
       formulahendry.auto-rename-tag # Matches XML tags while editing

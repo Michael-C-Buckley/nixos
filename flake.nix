@@ -21,6 +21,10 @@
     microvm.url = "github:astro/microvm.nix";
 
     # Utilities
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -50,6 +54,7 @@
     overlays = [
       (import ./overlays/localPkgs.nix {inherit self inputs;})
       inputs.nix4vscode.overlays.forVscode
+      inputs.nix-vscode-extensions.overlays.default
     ];
     cfgVars = {inherit self overlays;};
   in {
