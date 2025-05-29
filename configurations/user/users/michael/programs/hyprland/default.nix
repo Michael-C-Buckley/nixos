@@ -7,14 +7,16 @@ _: {
   hjem.users.michael.programs.hyprland = {
     enable = true;
 
-    extraConfig = ''
+    initialConfig = ''
       $browser=librewolf
       $fileManager=thunar
       $ide=code
       $menu=wofi -s drun -show-icons
       $mod=SUPER
       $terminal=ghostty
+    '';
 
+    extraConfig = ''
       master {
         new_status=master
       }

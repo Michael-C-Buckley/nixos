@@ -34,6 +34,12 @@ in {
     bindeList = mkEmptyListOfOption "List of binde (string following the `bind=`).";
     sourceList = mkEmptyListOfOption "List of files to source.";
 
+    initialConfig = mkOption {
+      type = lines;
+      default = '''';
+      description = "Config lines at the top of the Hyprland config file.";
+    };
+
     extraConfig = mkOption {
       type = lines;
       default = '''';
@@ -47,7 +53,8 @@ in {
 
     fileList = {
       ".config/hypr/hyprland.conf".text =
-        fuse "exec-once=" cfg.execList
+        cfg.initialConfig
+        + fuse "exec-once=" cfg.execList
         + fuse "bind=" cfg.bindList
         + fuse "binde=" cfg.bindeList
         + fuse "bindm=" cfg.bindmList
