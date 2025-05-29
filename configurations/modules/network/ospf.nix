@@ -11,6 +11,8 @@ in {
   };
   config = mkIf ospf.enable {
     services.frr.ospfd.enable = true;
-    networking.firewall.extraInputRules = ''ip protocol 89 accept comment "Allow OSPF"'';
+    networking.firewall.extraInputRules = ''
+      ip protocol 89 accept comment "Allow OSPF"
+    '';
   };
 }
