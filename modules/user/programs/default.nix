@@ -9,5 +9,7 @@ _: {
     ./custom/ns.nix
     ./editors/nvf.nix
     ./editors/vscode.nix
+
+    ./hyprland
   ];
 }
