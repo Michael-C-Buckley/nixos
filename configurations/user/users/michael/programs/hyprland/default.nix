@@ -7,6 +7,37 @@ _: {
   hjem.users.michael.programs.hyprland = {
     enable = true;
 
+    extraConfig = ''
+      $browser=librewolf
+      $fileManager=thunar
+      $ide=code
+      $menu=wofi -s drun -show-icons
+      $mod=SUPER
+      $terminal=ghostty
+
+      master {
+        new_status=master
+      }
+
+      misc {
+        disable_hyprland_logo=true
+        force_default_wallpaper=0
+      }
+
+      ecosystem {
+        no_update_news=true
+      }
+
+      env=XCURSOR_SIZE,28
+      env=HYPRCURSOR_SIZE,28
+    '';
+
+    sourceList = [
+      "~/.config/hypr/input.conf"
+      "~/.config/hypr/lookfeel.conf"
+      "~/.config/hypr/host.conf"
+    ];
+
     execList = [
       "systemctl --user start hyprpolkitagent"
       "hyprpaper &"
