@@ -4,6 +4,7 @@ _: {
     ./routing.nix
     ./options.nix
     ./systemd.nix
+    ./vrrp.nix
   ];
 
   networking = {
