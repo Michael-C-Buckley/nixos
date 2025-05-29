@@ -21,6 +21,7 @@
   ++ optionals extendedGraphical packageSets.extendedGraphical;
 in {
   imports = [
+    ./programs/hyprland
     ./vscode.nix
   ];
 
