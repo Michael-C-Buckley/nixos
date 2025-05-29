@@ -37,7 +37,6 @@ _: {
     sourceList = [
       "~/.config/hypr/input.conf"
       "~/.config/hypr/lookfeel.conf"
-      "~/.config/hypr/host.conf"
     ];
 
     execList = [

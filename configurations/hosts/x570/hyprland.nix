@@ -1,8 +1,9 @@
 _: let
   wpDir = "/home/michael/Pictures/wallpapers";
 in {
-  hjem.users.michael.files = {
-    ".config/hypr/host.conf".text = ''
+  hjem.users.michael = {
+    programs.hyprland.extraConfig = ''
+      #X570 Host-Specific
       # Main Ultrawide Monitor
       monitor=DP-1,3440x1440@144.00,0x0,1
 
@@ -15,12 +16,13 @@ in {
       workspace=9, monitor:HDMI-A-2, default:true
       workspace=10, monitor:HDMI-A-2, default:true
     '';
-
-    ".config/hypr/hyprpaper.conf".text = ''
-      preload = ${wpDir}/nord-2-imgur.png
-      preload = ${wpDir}/nord-6-imgur.png
-      wallpaper = DP-1, ${wpDir}/nord-6-imgur.png
-      wallpaper = HDMI-A-2, ${wpDir}/nord-2-imgur.png
-    '';
+    files = {
+      ".config/hypr/hyprpaper.conf".text = ''
+        preload = ${wpDir}/nord-2-imgur.png
+        preload = ${wpDir}/nord-6-imgur.png
+        wallpaper = DP-1, ${wpDir}/nord-6-imgur.png
+        wallpaper = HDMI-A-2, ${wpDir}/nord-2-imgur.png
+      '';
+    };
   };
 }
