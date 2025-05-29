@@ -20,6 +20,7 @@ in {
   networking = {
     bgp.enable = true;
     ospf.enable = true;
+    vrrp.enable = true;
   };
 
   services.frr = {
