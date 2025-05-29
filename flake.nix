@@ -17,7 +17,6 @@
     };
 
     # Externally Cached
-    # cosmic.url = "github:lilyinstarlight/nixos-cosmic"; # Unmaintained
     microvm.url = "github:astro/microvm.nix";
 
     # Utilities

@@ -4,15 +4,21 @@
   lib,
   ...
 }: let
-  inherit (lib) mkEnableOption mkOption mkIf;
+  inherit (lib) mkEnableOption mkOption mkIf concatStringsSep;
   inherit (lib.types) lines str package listOf;
   cfg = config.programs.hyprland;
 
-  mkEmptyListOfOption = description: mkOption {
-    inherit description;
-    type = listOf str;
-    default = [];
-  };
+  mkEmptyListOfOption = description:
+    mkOption {
+      inherit description;
+      type = listOf str;
+      default = [];
+    };
+
+  # Custom wrapper for handling things like properly adding the first prepend and last newline
+  fuse = prepend: list: (
+    prepend + (concatStringsSep "\n${prepend}" list) + "\n\n"
+  );
 in {
   options.programs.hyprland = {
     enable = mkEnableOption "Install and enable Hyprland.";
@@ -26,16 +32,27 @@ in {
     bindList = mkEmptyListOfOption "List of binds (string following the `bind=`).";
     bindmList = mkEmptyListOfOption "List of bindm (string following the `bind=`).";
     bindeList = mkEmptyListOfOption "List of binde (string following the `bind=`).";
+    sourceList = mkEmptyListOfOption "List of files to source.";
 
     extraConfig = mkOption {
       type = lines;
       default = '''';
-      description = "Additional lines to add to the end of the Hyprland config file.";
+      description = "Additional lines to add the Hyprland config file.";
     };
   };
 
   config = {
     # WIP: Portals and other things later
     packageList = mkIf cfg.enable [cfg.package];
+
+    fileList = {
+      ".config/hypr/hyprland.conf".text =
+        fuse "exec-once=" cfg.execList
+        + fuse "bind=" cfg.bindList
+        + fuse "binde=" cfg.bindeList
+        + fuse "bindm=" cfg.bindmList
+        + cfg.extraConfig
+        + fuse "source=" cfg.sourceList;
+    };
   };
 }
