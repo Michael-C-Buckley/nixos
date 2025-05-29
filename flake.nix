@@ -2,7 +2,7 @@
   description = "Michael's System Flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nix-secrets.url = "git+ssh://git@github.com/Michael-C-Buckley/nix-secrets";
 
