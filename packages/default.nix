@@ -12,9 +12,12 @@
     }).neovim
   );
 in
-  forAllSystems (system: {
+  forAllSystems (system: let 
+    pkgs = import nixpkgs {inherit system;};
+  in {
     nvf-default = mkNvf system [./nvf/config/extended.nix];
     nvf-minimal = mkNvf system [];
     vm = sysCfg.vm.config.system.build.diskoImagesScript;
     o3 = sysCfg.o3.config.system.build.diskoImagesScript;
+    ns = pkgs.callPackage ./custom/ns.nix {inherit pkgs;};
   })
