@@ -35,7 +35,6 @@ in {
       ipv6 forwarding
       router ospf
        router-id ${lo}
-       default-information originate metric 600 metric-type 1
       int lo
        ip ospf area 0
        ip ospf passive
