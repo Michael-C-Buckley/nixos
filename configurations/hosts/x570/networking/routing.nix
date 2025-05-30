@@ -29,14 +29,10 @@
     int enp8s0
       ip ospf cost 400
       ip ospf area 0
-      ip ospf dead-interval 3
-      ip ospf hello-interval 1
 
     int enp9s0
       ip ospf cost 100
       ip ospf area 0
-      ip ospf dead-interval 3
-      ip ospf hello-interval 1
   '';
 
   networking = {
