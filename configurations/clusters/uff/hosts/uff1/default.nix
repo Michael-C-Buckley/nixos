@@ -13,5 +13,10 @@ _: {
     loopback.ipv4 = "192.168.61.1";
     hostName = "uff1";
     hostId = "ab0406ca";
+
+    ospf.defaultRoute = {
+      metricType = 1;
+      metric = 520;
+    };
   };
 }
