@@ -342,11 +342,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1748397582,
-        "narHash": "sha256-tpKEOMbjmQhw2tbQZolrFu6jRHwu8d1K1KQzKENSJvE=",
+        "lastModified": 1748611519,
+        "narHash": "sha256-j7Udn/p6wc24Qf0GQv6WRXs6Yk/xyKBmjO+0gV3m6JA=",
         "ref": "refs/heads/master",
-        "rev": "ee442cf38d7b8a477c3ec75030a8bb56aab2c192",
-        "revCount": 158,
+        "rev": "60ed9f40a8beb105debcacf47f5c9a3c9922a3d3",
+        "revCount": 160,
         "type": "git",
         "url": "ssh://git@github.com/Michael-C-Buckley/nix-secrets"
       },
@@ -451,11 +451,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1748217807,
-        "narHash": "sha256-P3u2PXxMlo49PutQLnk2PhI/imC69hFl1yY4aT5Nax8=",
+        "lastModified": 1748506378,
+        "narHash": "sha256-oS0Gxh63Df8b8r04lqEYDDLKhHIrVr9/JLOn2bn8JaI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3108eaa516ae22c2360928589731a4f1581526ef",
+        "rev": "3866ad91cfc172f08a6839def503d8fc2923c603",
         "type": "github"
       },
       "original": {
