@@ -7,7 +7,7 @@ _: let
 in {
   boot.zfs.forceImportAll = true;
 
-  system.boot.uuid  = "1A0C-115C";
+  system.boot.uuid = "1A0C-115C";
 
   fileSystems = {
     # Tmpfs

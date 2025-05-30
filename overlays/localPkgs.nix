@@ -1,5 +1,8 @@
 # Add local packages
-{self, inputs}: _: super: let
+{
+  self,
+  inputs,
+}: _: super: let
   nvfPath = "${self}/packages/nvf/packages";
 in {
   nvf = super.callPackage "${nvfPath}/default.nix" {inherit self inputs;};

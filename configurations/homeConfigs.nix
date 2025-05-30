@@ -1,7 +1,10 @@
 # Legacy conversion output where the specific host is
 # I maintain a generic config and some host-specific ones
 # HOWEVER, I have mostly moved to Hjem for NixOS hosts
-{self, overlays}: let
+{
+  self,
+  overlays,
+}: let
   inherit (self) inputs;
   # For now, I only use with on X86
   pkgs = import inputs.nixpkgs {

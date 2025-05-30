@@ -22,19 +22,20 @@ in {
     allowBroken = false;
   };
 
-  home = {
-    username = "michael";
-    homeDirectory = "/home/michael";
-    stateVersion = mkDefault "24.05";
-    sessionVariables = {
-      EDITOR = "nvim";
-      BROWSER = "librewolf";
-      NIXOS_OZONE_WL = "1";
-      GTK_USE_PORTAL = "1";
+  home =
+    {
+      username = "michael";
+      homeDirectory = "/home/michael";
+      stateVersion = mkDefault "24.05";
+      sessionVariables = {
+        EDITOR = "nvim";
+        BROWSER = "librewolf";
+        NIXOS_OZONE_WL = "1";
+        GTK_USE_PORTAL = "1";
+      };
+    }
+    // optionalAttrs useHome {
+      file = import ./files/fileList.nix {inherit config lib;};
+      packages = import ./packages/userPkgs.nix {inherit config inputs pkgs lib commonPackages system;};
     };
-  }
-  // optionalAttrs useHome {
-    file = import ./files/fileList.nix {inherit config lib;};
-    packages = import ./packages/userPkgs.nix {inherit config inputs pkgs lib commonPackages system;};
-  };
 }

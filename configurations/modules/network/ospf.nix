@@ -29,7 +29,6 @@ in {
         router ospf
           default-information originate metric ${builtins.toString ospf.defaultRoute.metric} metric-type ${builtins.toString ospf.defaultRoute.metricType}
       '';
-
     };
     networking.firewall.extraInputRules = ''
       ip protocol 89 accept comment "Allow OSPF"

@@ -1,6 +1,6 @@
 {
-    imports = [
-        ./filesystems.nix
-        ./hardware.nix
-    ];
+  imports = [
+    ./filesystems.nix
+    ./hardware.nix
+  ];
 }

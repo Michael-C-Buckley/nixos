@@ -10,5 +10,5 @@ in
   mkMerge [
     (import ./nix/standard.nix)
     (mkIf hyprland (import ./nix/hyprland.nix))
-    (fileList) # Push in the other files, for now
+    fileList # Push in the other files, for now
   ]
