@@ -1,10 +1,14 @@
 {config, ...}: let
   inherit (config.networking) hostName;
-  zfsFs = name: {
-    device = "zroot/${hostName}/${name}";
+
+  zfsFs = name: prefix : {
+    device = "${prefix}/${hostName}/${name}";
     fsType = "zfs";
     neededForBoot = true;
   };
+
+  zrootFs = name: zfsFs name "zroot";
+  # zdataFs = name: zfsFs name "zdata";
 in {
   system = {
     impermanence.enable = true;
@@ -22,9 +26,9 @@ in {
         "mode=755"
       ];
     };
-    "/tmp" = zfsFs "tmp";
-    "/nix" = zfsFs "nix";
-    "/cache" = zfsFs "cache";
-    "/persist" = zfsFs "persist";
+    "/tmp" = zrootFs "tmp";
+    "/nix" = zrootFs "nix";
+    "/cache" = zrootFs "cache";
+    "/persist" = zrootFs "persist";
   };
 }
