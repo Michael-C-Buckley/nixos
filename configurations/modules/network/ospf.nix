@@ -11,7 +11,7 @@ in {
     enable = mkEnableOption "Enable OSPF and allow protocol 89";
     defaultRoute = {
       metricType = mkOption {
-        type = nullOr enum [1 2];
+        type = enum [1 2];
         default = null;
         description = "OSPF External metric type [1 or 2].";
       };
