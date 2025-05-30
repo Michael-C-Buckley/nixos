@@ -21,7 +21,7 @@ in {
   networking = {
     bgp.enable = true;
     ospf.enable = true;
-    vrrp.enable = true;
+    vrrp.enable = false; #FRR is bugged
   };
 
   services.frr = {
