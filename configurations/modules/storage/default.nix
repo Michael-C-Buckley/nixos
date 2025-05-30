@@ -1,4 +1,9 @@
-{config, inputs, lib, ...}: {
+{
+  config,
+  inputs,
+  lib,
+  ...
+}: {
   imports = [
     # ./nfs.nix
     inputs.impermanence.nixosModules.impermanence

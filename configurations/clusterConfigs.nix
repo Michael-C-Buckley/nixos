@@ -1,4 +1,7 @@
-{self, overlays}: let
+{
+  self,
+  overlays,
+}: let
   inherit (self) inputs;
   # Build the configs for the hosts based on this function
   clusterConfig = {
@@ -63,7 +66,8 @@ in
   // generateCluster {
     cluster = "ln";
     max = 3;
-  } // generateCluster {
+  }
+  // generateCluster {
     cluster = "sff";
     extraModules = [./modules/presets/michael.nix];
     max = 3;

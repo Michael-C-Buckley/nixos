@@ -1,8 +1,8 @@
 {pkgs, ...}: {
-    systemd.services.vrrp-setup = {
+  systemd.services.vrrp-setup = {
     wantedBy = ["network-online.target"];
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
+    after = ["network-online.target"];
+    wants = ["network-online.target"];
     path = [pkgs.iproute2];
     script = ''
       set -euxo pipefail

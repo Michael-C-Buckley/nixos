@@ -28,8 +28,8 @@ in {
   # Yet creating the bridge in the one-shot caused issues with timing
   systemd.services.vxlan-setup = {
     wantedBy = ["network-online.target"];
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
+    after = ["network-online.target"];
+    wants = ["network-online.target"];
     path = [pkgs.iproute2];
     script = ''
       set -euxo pipefail

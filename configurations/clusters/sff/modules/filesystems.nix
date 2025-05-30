@@ -1,7 +1,7 @@
 {config, ...}: let
   inherit (config.networking) hostName;
 
-  zfsFs = name: prefix : {
+  zfsFs = name: prefix: {
     device = "${prefix}/${hostName}/${name}";
     fsType = "zfs";
     neededForBoot = true;

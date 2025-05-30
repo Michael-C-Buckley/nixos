@@ -14,11 +14,15 @@
   useImperm = config.system.impermanence.enable && local.system.impermanence.enable;
   extGfx = mkDefault extendedGraphical;
 
-  nvfVer = if extendedGraphical then "default" else "minimal";
+  nvfVer =
+    if extendedGraphical
+    then "default"
+    else "minimal";
 
-  userPkgs =   packageSets.common
-  ++ optionals minimalGraphical packageSets.minimalGraphical
-  ++ optionals extendedGraphical packageSets.extendedGraphical;
+  userPkgs =
+    packageSets.common
+    ++ optionals minimalGraphical packageSets.minimalGraphical
+    ++ optionals extendedGraphical packageSets.extendedGraphical;
 in {
   imports = [
     ./programs/hyprland
@@ -41,7 +45,7 @@ in {
     enable = true;
     user = "michael";
     directory = "/home/michael";
-    
+
     # Mirror the system's impermanence
     system.impermanence.enable = config.system.impermanence.enable;
 

@@ -1,21 +1,26 @@
-{config, lib, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (lib) filter;
   inherit (lib.strings) concatMapStringsSep;
   lo = config.networking.loopback.ipv4;
 
   # Exclude the current host from the neighbors
-  neighbors = concatMapStringsSep "\n" (
-    n: "neighbor ${n} peer-group fabric"
-  ) (filter (n: n != lo) [
-    # UFFs
-    "192.168.61.1"
-    "192.168.61.2"
-    "192.168.61.3"
-    # SFFs
-    "192.168.61.5"
-    "192.168.61.6"
-    "192.168.61.7"
-  ]);
+  neighbors =
+    concatMapStringsSep "\n" (
+      n: "neighbor ${n} peer-group fabric"
+    ) (filter (n: n != lo) [
+      # UFFs
+      "192.168.61.1"
+      "192.168.61.2"
+      "192.168.61.3"
+      # SFFs
+      "192.168.61.5"
+      "192.168.61.6"
+      "192.168.61.7"
+    ]);
 in {
   networking = {
     bgp.enable = true;

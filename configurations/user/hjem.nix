@@ -8,7 +8,6 @@
   ...
 }: let
   inherit (lib) mkOverride;
-
 in {
   imports = [
     inputs.hjem.nixosModules.default
