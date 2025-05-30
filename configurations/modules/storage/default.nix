@@ -7,6 +7,7 @@
   imports = [
     # ./nfs.nix
     inputs.impermanence.nixosModules.impermanence
+    ./gluster.nix
     ./disko
     ./impermanence.nix
     ./zfs.nix
