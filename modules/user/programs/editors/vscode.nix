@@ -8,6 +8,11 @@
   inherit (lib.types) listOf str package;
   cfg = config.programs.vscode;
 
+  imperm = config.system.impermanence.enable;
+  impermDir = if (cfg.package == pkgs.vscodium) then [
+        ".config/VScodium"
+      ] else [];
+
   # Only run the helper if there's actually something to give it
   outOfStoreExt =
     if (cfg.nonNixExtensions != [])
@@ -59,10 +64,17 @@ in {
     };
   };
 
-  config.packageList = mkIf cfg.enable [
+  config = {system.impermanence = mkIf (cfg.enable && imperm) {
+      userPersistDirs = impermDir;
+    };
+    packageList = mkIf cfg.enable [
+
+
+
     (pkgs.vscode-with-extensions.override {
       vscode = cfg.package;
       vscodeExtensions = cfg.extensions ++ outOfStoreExt ++ msExtensionList ++ optionals cfg.enableRemote remoteExtension;
     })
   ];
+  };
 }
