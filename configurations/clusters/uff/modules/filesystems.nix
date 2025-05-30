@@ -13,6 +13,7 @@ in {
   system = {
     impermanence.enable = true;
     zfs.enable = true;
+    gluster.enable = true;
   };
 
   fileSystems = {
