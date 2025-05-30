@@ -1,3 +1,6 @@
+# Currently completely broken on the FRR side
+# https://github.com/FRRouting/frr/issues/18379
+
 {
   config,
   lib,
