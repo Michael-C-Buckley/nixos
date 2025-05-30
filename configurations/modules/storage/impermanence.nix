@@ -22,6 +22,7 @@ lib.mkIf config.system.impermanence.enable {
       ".local/share/fish"
       ".cache/pip"
       ".cache/thumbnails"
+      ".cache/cosmic"
     ];
     directories = [
       "/var/lib/libvirt"
@@ -59,6 +60,7 @@ lib.mkIf config.system.impermanence.enable {
         "Documents"
         "Videos"
         "nixos" # My system flake is in ~/
+        ".config/cosmic"
         ".config/zen"
         ".cache/zen"
         ".config/vivaldi"
