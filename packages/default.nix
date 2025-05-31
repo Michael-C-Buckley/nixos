@@ -5,12 +5,11 @@
 
   sysCfg = self.outputs.nixosConfigurations;
 
-  mkNvf = system: extraModules: (
+  mkNvf = system: extraModules:
     (nvf.lib.neovimConfiguration {
       pkgs = import nixpkgs {inherit system;};
       modules = [./nvf/config/default.nix] ++ extraModules;
-    }).neovim
-  );
+    }).neovim;
 in
   forAllSystems (system: let
     pkgs = import nixpkgs {inherit system;};

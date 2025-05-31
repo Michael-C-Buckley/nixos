@@ -60,10 +60,9 @@
     checks = import ./outputs/checks.nix {inherit inputs;};
     devShells = import ./outputs/devshells.nix {inherit self;};
     homeConfigurations = import ./configurations/homeConfigs.nix cfgVars;
-    nixosConfigurations = (
+    nixosConfigurations =
       import ./configurations/hostConfigs.nix cfgVars
-      // import ./configurations/clusterConfigs.nix cfgVars
-    );
+      // import ./configurations/clusterConfigs.nix cfgVars;
     nixosModules = import ./modules/nixosModules.nix {};
     # overlays = import ./overlays {inherit self;};
     packages = import ./packages {inherit self;};

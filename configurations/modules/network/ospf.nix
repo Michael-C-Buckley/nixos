@@ -5,7 +5,7 @@
 }: let
   inherit (lib) mkEnableOption mkOption mkIf;
   inherit (lib.types) int enum nullOr;
-  ospf = config.networking.ospf;
+  inherit (config.networking) ospf;
 in {
   options.networking.ospf = {
     enable = mkEnableOption "Enable OSPF and allow protocol 89";

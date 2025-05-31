@@ -1,6 +1,6 @@
 {pkgs}: let
   createTheme = name: package: {
-    package = package;
+    inherit package;
     setup = "require('${name}').setup {}";
   };
 in

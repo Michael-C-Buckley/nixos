@@ -6,7 +6,7 @@
 }: let
   inherit (lib) mkEnableOption mkOption mkIf;
   cfg = config.virtualisation.docker;
-  kata = cfg.kata;
+  inherit (cfg) kata;
 in {
   options.virtualisation.docker.kata = {
     enable = mkEnableOption "Enable Kata container runtime on Docker";

@@ -95,7 +95,7 @@ lib.mkIf config.system.impermanence.enable {
   };
 
   services.sanoid = {
-    enable = config.system.zfs.enable;
+    inherit (config.system.zfs) enable;
 
     datasets = {
       "zroot/persist" = {

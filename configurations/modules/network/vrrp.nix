@@ -6,7 +6,7 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
-  vrrp = config.networking.vrrp;
+  inherit (config.networking) vrrp;
 in {
   options.networking = {
     vrrp.enable = mkEnableOption "Enable VRRP and allow protocol 112";

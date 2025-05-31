@@ -4,9 +4,9 @@
 
   mkPkgSet = description:
     mkOption {
+      inherit description;
       type = listOf package;
       default = [];
-      description = description;
     };
 in {
   imports = [

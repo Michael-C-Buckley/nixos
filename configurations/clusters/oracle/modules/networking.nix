@@ -1,4 +1,4 @@
-{...}: let
+_: let
   fileLimit = 1024;
 in {
   services.frr = {

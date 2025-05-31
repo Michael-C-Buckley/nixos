@@ -1,4 +1,4 @@
-{...}: {
+_: {
   systemd.services.shutdown-timer = {
     description = "Shutdown the system at night";
     wantedBy = [];

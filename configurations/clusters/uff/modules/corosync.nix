@@ -1,4 +1,4 @@
-{...}: {
+_: {
   services.pacemaker.enable = true;
 
   services.corosync = {

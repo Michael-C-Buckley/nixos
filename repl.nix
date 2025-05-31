@@ -2,7 +2,7 @@
 # https://bmcgee.ie/posts/2023/01/nix-and-its-slow-feedback-loop/#how-you-should-use-the-repl
 # Special thanks to Iynaix for the inspiration:
 # https://github.com/iynaix/dotfiles/blob/main/repl.nix
-{...}: let
+_: let
   inherit (builtins) getFlake;
   flake = getFlake (toString ./.);
 

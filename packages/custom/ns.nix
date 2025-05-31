@@ -3,7 +3,7 @@ pkgs.stdenv.mkDerivation {
   pname = "ns";
   version = "1.0";
 
-  src = pkgs.nix-search-tv.src;
+  inherit (pkgs.nix-search-tv) src;
 
   nativeBuildInputs = [pkgs.makeWrapper];
   buildInputs = with pkgs; [
