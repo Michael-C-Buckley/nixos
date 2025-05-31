@@ -25,7 +25,7 @@ in {
   config = mkIf ospf.enable {
     services.frr = {
       ospfd.enable = true;
-      config = mkIf (ospf.defaultRoute.metricType != null) ''
+      config = mkIf (ospf.defaultRoute.metric != null) ''
         router ospf
           default-information originate metric ${builtins.toString ospf.defaultRoute.metric} metric-type ${builtins.toString ospf.defaultRoute.metricType}
       '';
