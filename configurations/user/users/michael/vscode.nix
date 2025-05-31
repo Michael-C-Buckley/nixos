@@ -55,18 +55,16 @@
     ];
   };
 }
-
 # Removed tools (this is for my notes, they can be added via devshells)
-
 # extensions = [
 #   rust-lang.rust-analyzer
-#   golang.go 
+#   golang.go
 #   elixir-lsp.vscode-elixir-ls
 #   redhat.ansible
 # ]
-
 # nonNixExtensions = [
 #   "jamiewoodio.cisco"
 #   "ispapp.mikrotik-routeros-script-tools"
 #   "srl-labs.vscode-containerlab"
 # ]
+

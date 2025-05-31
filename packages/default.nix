@@ -12,7 +12,7 @@
     }).neovim
   );
 in
-  forAllSystems (system: let 
+  forAllSystems (system: let
     pkgs = import nixpkgs {inherit system;};
   in {
     nvf-default = mkNvf system [./nvf/config/extended.nix];
