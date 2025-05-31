@@ -14,7 +14,14 @@ in
     default = self.devShells.${system}.nixos;
 
     nixos = pkgs.mkShell {
-      inherit (self.checks.${system}.pre-commit-check) shellHook;
+      shellHook = ''
+        ${self.checks.${system}.pre-commit-check}
+
+        if [ -d .git ]; then
+          git fetch
+          git status --short --branch
+        fi
+      '';
       buildInputs = with pkgs; [
         self.checks.${system}.pre-commit-check.enabledPackages
         # Editing
