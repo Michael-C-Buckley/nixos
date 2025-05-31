@@ -1,4 +1,4 @@
-{lib, ...}: let
+_: let
   certSecret = file: {
     owner = "michael";
     path = "/home/michael/.certs/${file}";
@@ -17,13 +17,12 @@ in {
   };
 
   networking = {
-    ospf.enable = true;
-
     hostId = "c07fa570";
-    useDHCP = lib.mkForce true;
     hostName = "x570";
     networkmanager.enable = true;
     usePredictableInterfaceNames = true;
+
+    loopback.ipv4 = "192.168.63.10/32";
 
     firewall = {
       allowedUDPPorts = [33401];
@@ -31,19 +30,8 @@ in {
 
     bridges.br0.interfaces = [];
     interfaces = {
-      lo.ipv4.addresses = [
-        {
-          address = "192.168.63.10";
-          prefixLength = 32;
-        }
-      ];
+      enp9s0.useDHCP = true;
       enp8s0.useDHCP = true;
-      enp9s0.ipv4.addresses = [
-        {
-          address = "192.168.48.9";
-          prefixLength = 24;
-        }
-      ];
     };
   };
 }
