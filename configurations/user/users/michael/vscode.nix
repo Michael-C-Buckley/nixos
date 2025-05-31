@@ -7,9 +7,11 @@
     enable = config.features.michael.extendedGraphical;
     enableRemote = true;
     package = pkgs.vscodium-fhs;
+
     msExtensions = with pkgs.vscode-extensions; [
       ms-vsliveshare.vsliveshare
     ];
+
     extensions = with pkgs.vscode-extensions; [
       mechatroner.rainbow-csv
       streetsidesoftware.code-spell-checker
@@ -20,7 +22,6 @@
       ms-kubernetes-tools.vscode-kubernetes-tools
 
       # Ansible
-      redhat.ansible
       redhat.vscode-yaml
 
       # Themes
@@ -39,16 +40,8 @@
 
       # Nix
       bbenoist.nix
-
-      # Rust
-      rust-lang.rust-analyzer
-
-      # Go
-      golang.go
-
-      # Elixir
-      elixir-lsp.vscode-elixir-ls
     ];
+
     nonNixExtensions = [
       # Themes
       "wicked-labs.wvsc-serendipity"
@@ -59,11 +52,21 @@
 
       # Editor Tools
       "AlecGhost.tree-sitter-vscode"
-
-      # Networking Tools
-      "jamiewoodio.cisco"
-      "ispapp.mikrotik-routeros-script-tools"
-      # "srl-labs.vscode-containerlab" # Nags way too much about CL not installed
     ];
   };
 }
+
+# Removed tools (this is for my notes, they can be added via devshells)
+
+# extensions = [
+#   rust-lang.rust-analyzer
+#   golang.go 
+#   elixir-lsp.vscode-elixir-ls
+#   redhat.ansible
+# ]
+
+# nonNixExtensions = [
+#   "jamiewoodio.cisco"
+#   "ispapp.mikrotik-routeros-script-tools"
+#   "srl-labs.vscode-containerlab"
+# ]
