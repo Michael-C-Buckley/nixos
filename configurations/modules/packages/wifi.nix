@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  wifi = config.features.wifi;
+  inherit (config.features) wifi;
 in {
   options.features.wifi = lib.mkOption {
     type = lib.types.bool;

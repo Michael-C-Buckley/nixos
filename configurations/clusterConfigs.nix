@@ -16,7 +16,7 @@
     pkgs = import inputs.nixpkgs {
       inherit system;
     };
-    lib = inputs.nixpkgs.lib;
+    inherit (inputs.nixpkgs) lib;
     customLib = import ../lib {inherit pkgs lib;};
   in
     inputs.nixpkgs.lib.nixosSystem {

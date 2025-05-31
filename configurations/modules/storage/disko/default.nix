@@ -6,7 +6,7 @@
 }: let
   inherit (lib) mkDefault mkEnableOption mkOption mkIf;
   inherit (lib.types) nullOr str;
-  disko = config.system.disko;
+  inherit (config.system) disko;
   mainDisko = disko.main;
 in {
   imports = [inputs.disko.nixosModules.disko];
@@ -61,9 +61,8 @@ in {
 
     disko.devices = {
       disk."main" = {
-        device = mainDisko.device;
         type = "disk";
-        imageSize = mainDisko.imageSize;
+        inherit (mainDisko) imageSize device;
 
         content = {
           type = "gpt";
