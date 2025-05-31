@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
-  eigrp = config.networking.eigrp;
+  inherit (config.networking) eigrp;
 in {
   options.networking = {
     eigrp.enable = mkEnableOption "Enable EIGRP and allow protocol 88";

@@ -29,24 +29,26 @@ in {
   virtualisation.containerd = {
     enable = true;
     settings = {
-      plugins."io.containerd.grpc.v1.cri" = {
-        default_runtime_name = "nvidia";
-        enable_cdi = true;
-        cdi_spec_dirs = ["/var/run/cdi"];
-      };
-      plugins."io.containerd.grpc.v1.cri".containerd = {
-        default_runtime_name = "nvidia";
-        snapshotter = "overlayfs";
-      };
-      plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia = {
-        privileged_without_host_devices = false;
-        runtime_type = "io.containerd.runc.v2";
-        runtime_engine = "";
-        runtime_root = "";
-      };
-      plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia.options = {
-        BinaryName = "${nvidia-container-runtime-fhs}/bin/nvidia-container-runtime-fhs";
-        SystemdCgroup = true;
+      plugins = {
+        "io.containerd.grpc.v1.cri" = {
+          default_runtime_name = "nvidia";
+          enable_cdi = true;
+          cdi_spec_dirs = ["/var/run/cdi"];
+        };
+        "io.containerd.grpc.v1.cri".containerd = {
+          default_runtime_name = "nvidia";
+          snapshotter = "overlayfs";
+        };
+        "io.containerd.grpc.v1.cri".containerd.runtimes.nvidia = {
+          privileged_without_host_devices = false;
+          runtime_type = "io.containerd.runc.v2";
+          runtime_engine = "";
+          runtime_root = "";
+        };
+        "io.containerd.grpc.v1.cri".containerd.runtimes.nvidia.options = {
+          BinaryName = "${nvidia-container-runtime-fhs}/bin/nvidia-container-runtime-fhs";
+          SystemdCgroup = true;
+        };
       };
     };
   };
