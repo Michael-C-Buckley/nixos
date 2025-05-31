@@ -36,7 +36,13 @@
   '';
 
   networking = {
-    ospf.enable = true;
+    ospf = {
+      enable = true;
+      defaultRoute = {
+        metricType = 1;
+        metric = 550;
+      };
+    };
     eigrp.enable = true;
     bgp.enable = true;
   };
