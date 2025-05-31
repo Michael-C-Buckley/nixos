@@ -12,15 +12,15 @@ in
           alejandra.enable = true;
           deadnix.enable = true;
           flake-checker.enable = true;
-          statix.enable = true;
+          statix.enable = false;
           nil.enable = true;
-          
+
           # Cleanliness
           typos.enable = true;
           check-merge-conflicts.enable = true;
 
           # Security
-          trufflehog.enable = false; # quite cumbersome
+          trufflehog.enable = false;
           detect-private-keys.enable = true;
         };
       };

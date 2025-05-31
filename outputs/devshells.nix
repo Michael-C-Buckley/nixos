@@ -21,12 +21,15 @@ in
         alejandra
         git
         tig
+        statix
+        deadnix
 
         # Security
         rage
         sops
         ssh-to-pgp
         ssh-to-age
+        trufflehog
       ];
     };
   })
