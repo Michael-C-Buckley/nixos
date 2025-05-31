@@ -8,12 +8,20 @@ in
       pre-commit-check = pre-commit-hooks.lib.${system}.run {
         src = ../.;
         hooks = {
-          trufflehog.enable = true;
-          check-merge-conflicts.enable = true;
+          # Nix
+          alejandra.enable = true;
           deadnix.enable = true;
-          detect-private-keys.enable = true;
-          typos.enable = true;
           flake-checker.enable = true;
+          statix.enable = true;
+          nil.enable = true;
+          
+          # Cleanliness
+          typos.enable = true;
+          check-merge-conflicts.enable = true;
+
+          # Security
+          trufflehog.enable = false; # quite cumbersome
+          detect-private-keys.enable = true;
         };
       };
     }
