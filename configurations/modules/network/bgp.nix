@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (lib) mkDefault mkEnableOption mkIf mkOption;
-  bgp = config.networking.bgp;
+  inherit (config.networking) bgp;
 in {
   options.networking.bgp = {
     enable = mkEnableOption "Enable BGP and allow the default port";

@@ -19,7 +19,7 @@
     });
 
     virtualisation.podman = {
-      enable = config.features.podman.enable;
+      inherit (config.features.podman) enable;
       dockerCompat = true;
       dockerSocket.enable = true;
     };

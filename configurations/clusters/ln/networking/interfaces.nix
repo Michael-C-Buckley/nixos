@@ -57,12 +57,12 @@ in {
 
     environment.etc = {
       "systemd/network/10-enmlx1.link".text = mkLinkFile {
-        mac = netCfg.enmlx1.mac;
+        inherit (netCfg.enmlx1) mac;
         name = "enmlx1";
         mtu = 9000;
       };
       "systemd/network/11-enmlx2.link".text = mkLinkFile {
-        mac = netCfg.enmlx2.mac;
+        inherit (netCfg.enmlx1) mac;
         name = "enmlx2";
         mtu = 9000;
       };

@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkDefault optionals;
-  incus = config.virtualisation.incus;
+  inherit (config.virtualisation) incus;
 in {
   options.virtualisation.incus = {
     useLvmThin = mkEnableOption "LVM Thin Boot";

@@ -1,5 +1,5 @@
 # WIP: trigger on login if after 9 PM
-{...}: {
+_: {
   systemd.services.night-led-timer = let
     bash = "/run/current-system/sw/bin/bash";
     powerPath = "/sys/class/leds/tpacpi::power/brightness";
