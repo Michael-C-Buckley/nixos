@@ -5,7 +5,12 @@
 }: let
   inherit (lib) mkEnableOption mkOption mkIf;
   inherit (lib.types) int enum nullOr;
-  inherit (config.networking) ospf;
+  inherit (config.networking) ospf loopback;
+
+  originate =
+    if ospf.defaultRoute.metric != null
+    then "default-information originate metric ${builtins.toString ospf.defaultRoute.metric} metric-type ${builtins.toString ospf.defaultRoute.metricType}"
+    else "";
 in {
   options.networking.ospf = {
     enable = mkEnableOption "Enable OSPF and allow protocol 89";
@@ -25,10 +30,12 @@ in {
   config = mkIf ospf.enable {
     services.frr = {
       ospfd.enable = true;
-      config = mkIf (ospf.defaultRoute.metric != null) ''
-        router ospf
-          default-information originate metric ${builtins.toString ospf.defaultRoute.metric} metric-type ${builtins.toString ospf.defaultRoute.metricType}
-      '';
+      config =
+        ''
+          router ospf
+            router-id ${loopback.ipv4}
+        ''
+        + originate;
     };
     networking.firewall.extraInputRules = ''
       ip protocol 89 accept comment "Allow OSPF"
