@@ -32,7 +32,7 @@ in {
     bfdd.enable = true;
     bgpd.enable = true;
     ospf6d.enable = true;
-    vrrpd.enable = true;
+    vrrpd.enable = false;
 
     config = ''
       ip forwarding
