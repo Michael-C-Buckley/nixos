@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./filesystems.nix
     ./kubernetes
     ./hardware.nix
   ];
