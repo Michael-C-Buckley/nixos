@@ -5,21 +5,9 @@
 in {
   system.boot.uuid = "2665-7F8D";
 
-  # Entire thing due for a refactor
+  # WIP: legacy options not long for this world
   cluster.ln = {
     kubernetes.masterIP = mainIP;
-    networking = {
-      lo.addr = "${loopback.ipv4}/32"; 
-      eno1.addr = "${mainIP}/24";
-      enmlx1 = {
-        addr = "192.168.254.3/29";
-        mac = "f4:52:14:5e:22:20";
-      };
-      enmlx2 = {
-        addr = "192.168.254.119/29";
-        mac = "f4:52:14:5e:22:21";
-      };
-    };
   };
 
   custom.routing.routerId = loopback.ipv4;
@@ -28,5 +16,16 @@ in {
     hostId = "9db44f50";
     hostName = "ln3";
     loopback.ipv4 = "192.168.78.133";
+  };
+
+  networkd = {
+    enmlx1 = {
+      mac = "f4:52:14:5e:22:20";
+      addresses.ipv4 = ["192.168.254.3/29"];
+    };
+    enmlx2 = {
+      mac = "f4:52:14:5e:22:21";
+      addresses.ipv4 = ["192.168.254.119/29"];
+    };
   };
 }
