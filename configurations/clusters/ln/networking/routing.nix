@@ -3,8 +3,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkForce mkOption types;
-  cfg = config.custom.routing;
+  inherit (lib) mkOption types;
 in {
   options.custom.routing = {
     routerId = mkOption {
@@ -21,11 +20,9 @@ in {
       bfdd.enable = true;
     };
 
-    environment.etc."frr/frr.conf".text = mkForce ''
+    services.frr.config = ''
       ip forwarding
-
-      router ospf
-        router-id ${cfg.routerId}
+      ipv6 forwarding
 
       int lo
        ip ospf passive

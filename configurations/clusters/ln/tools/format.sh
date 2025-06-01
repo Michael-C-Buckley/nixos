@@ -25,7 +25,7 @@ if [[ "$confirm" =~ ^[Yy]$ ]]; then
     sgdisk -n2:0:+800G -t2:BF01 -c2:"ZROOT" $dev
 
     # Format the boot partition
-mkfs.vfat -F32 /dev/nvme0n1p1
+    mkfs.vfat -F32 /dev/nvme1n1p1
   done
 
   # Format for the striped ZFS pool
