@@ -3,7 +3,7 @@
   mainIP = "192.168.65.133";
 
 in {
-  system.boot.uuid = "B34E-A49B";
+  system.boot.uuid = "2665-7F8D";
 
   # Entire thing due for a refactor
   cluster.ln = {
