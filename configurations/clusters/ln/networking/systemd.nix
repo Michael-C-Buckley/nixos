@@ -22,14 +22,14 @@ in {
         matchConfig.MACAddress = enmlx1.mac;
         linkConfig = {
           Name = "enmlx1";
-          MTUBytes = 1500; # 1500 until I tweak the switch to support
+          MTUBytes = 9000;
         };
       };
       "12-enmlx2" = {
         matchConfig.MACAddress = enmlx2.mac;
         linkConfig = {
           Name = "enmlx2";
-          MTUBytes = 1500; # 1500 until I tweak the switch to support
+          MTUBytes = 9000;
         };
       };
     };
