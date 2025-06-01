@@ -28,7 +28,7 @@ in {
     nix-secrets.nixosModules.common
   ];
 
-  services.resolved.enable = true;
+  services.resolved.enable = mkDefault true;
 
   environment = {
     systemPackages = gpgPkgs ++ optionals notCloud yubikeyPkgs;
