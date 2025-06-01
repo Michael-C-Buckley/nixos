@@ -13,7 +13,7 @@ _: {
     wantedBy = ["timers.target"];
     timerConfig = {
       OnCalendar = "22:00:00";
-      Persistent = true;
+      Persistent = false;
     };
   };
 }
