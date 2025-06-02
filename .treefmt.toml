@@ -1,0 +1,32 @@
+excludes = ["*.lock", ".gitignore"]
+on-unmatched = "warn"
+
+[formatter.alejandr]
+command = "alejandra"
+excludes = []
+includes = ["*.nix"]
+options = []
+
+[formatter.jsonfmt]
+command = "jsonfmt"
+excludes = []
+includes = ["*.json"]
+options = ["-w"]
+
+[formatter.mdformat]
+command = "mdformat"
+excludes = []
+includes = ["*.md"]
+options = []
+
+[formatter.taplo]
+command = "taplo"
+excludes = []
+includes = ["*.toml"]
+options = ["format"]
+
+[formatter.yamlfmt]
+command = "yamlfmt"
+excludes = []
+includes = ["*.yaml", "*.yml"]
+options = []

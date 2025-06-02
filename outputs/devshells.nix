@@ -15,7 +15,7 @@ in
 
     nixos = pkgs.mkShell {
       shellHook = ''
-        ${self.checks.${system}.pre-commit-check}
+        lefthook install
 
         if [ -d .git ]; then
           git fetch
@@ -23,11 +23,18 @@ in
         fi
       '';
       buildInputs = with pkgs; [
-        self.checks.${system}.pre-commit-check.enabledPackages
-        # Editing
-        alejandra
         git
         tig
+        commitlint-rs
+        editorconfig-checker
+        jsonfmt
+        lefthook
+        mdformat
+        treefmt
+        taplo
+
+        # Nix
+        alejandra
         statix
         deadnix
 
@@ -37,6 +44,10 @@ in
         ssh-to-pgp
         ssh-to-age
         trufflehog
+
+        # Yaml
+        actionlint
+        yamlfmt
       ];
     };
   })
