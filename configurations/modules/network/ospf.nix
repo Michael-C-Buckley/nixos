@@ -9,7 +9,12 @@
 
   originate =
     if ospf.defaultRoute.metric != null
-    then "default-information originate metric ${builtins.toString ospf.defaultRoute.metric} metric-type ${builtins.toString ospf.defaultRoute.metricType}"
+    then "default-information originate metric ${builtins.toString ospf.defaultRoute.metric} metric-type ${builtins.toString ospf.defaultRoute.metricType}\n"
+    else "";
+
+  routerId =
+    if loopback.ipv4 != null
+    then "router-id ${loopback.ipv4}\n"
     else "";
 in {
   options.networking.ospf = {
@@ -30,12 +35,7 @@ in {
   config = mkIf ospf.enable {
     services.frr = {
       ospfd.enable = true;
-      config =
-        ''
-          router ospf
-            router-id ${loopback.ipv4}
-        ''
-        + originate;
+      config =  "router ospf\n" + routerId + originate;
     };
     networking.firewall.extraInputRules = ''
       ip protocol 89 accept comment "Allow OSPF"
