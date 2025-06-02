@@ -27,6 +27,7 @@ run = "taplo lint {staged_files}"
 name = "treefmt"
 run = "treefmt"
 stage_fixed = true
+interactive = true
 
 #[[prepare-commit-msg.jobs]]
 #name = "commitlint-rs"
