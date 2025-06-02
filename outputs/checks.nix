@@ -9,10 +9,10 @@ in
         src = ../.;
         hooks = {
           # Nix
-          alejandra.enable = true;
+          # alejandra.enable = true;
           deadnix.enable = true;
           flake-checker.enable = true;
-          statix.enable = false;
+          statix.enable = true;
           nil.enable = true;
 
           # Cleanliness
