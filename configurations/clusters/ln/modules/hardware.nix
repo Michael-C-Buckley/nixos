@@ -26,9 +26,4 @@
 
   nixpkgs.hostPlatform = "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = config.hardware.enableRedistributableFirmware;
-
-  # services.ucodenix = {
-  #   enable = true;
-  #   cpuModelId = "00830F10";
-  # };
 }
