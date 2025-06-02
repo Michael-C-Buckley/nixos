@@ -2,13 +2,11 @@
   config,
   lib,
   modulesPath,
-  inputs,
   pkgs,
   ...
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    inputs.ucodenix.nixosModules.default
     ./disko.nix
   ];
 
@@ -17,7 +15,6 @@
     kernelModules = ["kvm" "kvm-amd" "virtiofs" "9p" "9pnet_virtio"];
     kernelParams = [
       "amd_pstate=active" # AMD Power efficiency on Linux 6.3+
-      "microcode.amd_sha_check=off" # Linux kernel check, disable for ucodenix
     ];
     extraModulePackages = [];
     initrd = {
@@ -35,11 +32,6 @@
 
   # For sound
   security.rtkit.enable = true;
-
-  services.ucodenix = {
-    enable = false; # Desktop is suffering crashes, this may be causing it
-    cpuModelId = "00A20F12";
-  };
 
   swapDevices = [];
 }

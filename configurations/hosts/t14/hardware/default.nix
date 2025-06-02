@@ -2,13 +2,11 @@
   config,
   lib,
   modulesPath,
-  inputs,
   pkgs,
   ...
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    inputs.ucodenix.nixosModules.default
     ./filesystems.nix
   ];
 
@@ -20,7 +18,6 @@
     };
     kernelParams = [
       "amd_pstate=active" # AMD Power efficiency on Linux 6.3+
-      "microcode.amd_sha_check=off" # Linux kernel check, disable for ucodenix
     ];
     kernelModules = ["kvm" "kvm-amd" "virtiofs" "9p" "9pnet_virtio"];
     extraModulePackages = [];
@@ -32,11 +29,6 @@
 
   # For sound
   security.rtkit.enable = true;
-
-  services.ucodenix = {
-    enable = true;
-    cpuModelId = "00A50F00";
-  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
