@@ -5,7 +5,6 @@
 }: {
   imports = [
     inputs.nix-secrets.nixosModules.x570
-    inputs.nix-index-database.nixosModules.nix-index
     ./hardware
     ./networking
     ./hyprland.nix
@@ -26,7 +25,6 @@
   programs = {
     cosmic.enable = true;
     hyprland.enable = true;
-    nix-index-database.comma.enable = true;
   };
 
   features = {

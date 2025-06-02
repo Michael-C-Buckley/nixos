@@ -6,7 +6,6 @@
 }: {
   imports = [
     inputs.nix-secrets.nixosModules.t14
-    inputs.nix-index-database.nixosModules.nix-index
     ./hardware
     ./networking
     ./systemd
@@ -16,7 +15,6 @@
   programs = {
     cosmic.enable = true;
     hyprland.enable = true;
-    nix-index-database.comma.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
