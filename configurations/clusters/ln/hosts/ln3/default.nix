@@ -1,7 +1,6 @@
 {config, ...}: let
   inherit (config.networking) loopback;
   mainIP = "192.168.65.133";
-
 in {
   system.boot.uuid = "2665-7F8D";
 

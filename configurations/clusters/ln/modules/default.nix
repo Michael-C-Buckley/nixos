@@ -10,7 +10,6 @@
     impermanence.enable = true;
   };
 
-
   virtualisation = {
     incus.enable = true;
   };
