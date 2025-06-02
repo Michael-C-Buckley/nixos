@@ -35,7 +35,7 @@ in {
   config = mkIf ospf.enable {
     services.frr = {
       ospfd.enable = true;
-      config =  "router ospf\n" + routerId + originate;
+      config = "router ospf\n" + routerId + originate;
     };
     networking.firewall.extraInputRules = ''
       ip protocol 89 accept comment "Allow OSPF"
