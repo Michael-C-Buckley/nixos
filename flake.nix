@@ -35,10 +35,6 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    pre-commit-hooks = {
-      url = "github:Michael-C-Buckley/git-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix4vscode = {
       url = "github:nix-community/nix4vscode";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,7 +53,6 @@
     ];
     cfgVars = {inherit self overlays;};
   in {
-    checks = import ./outputs/checks.nix {inherit inputs;};
     devShells = import ./outputs/devshells.nix {inherit self;};
     homeConfigurations = import ./configurations/homeConfigs.nix cfgVars;
     nixosConfigurations =
