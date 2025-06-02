@@ -1,35 +1,30 @@
-_: let
-  lo = "192.168.78.131";
-  mainIP = "192.168.65.171";
+{config, ...}: let
+  inherit (config.networking) loopback;
+  mainIP = "192.168.65.131";
 in {
-  system.stateVersion = "24.05";
+  system.boot.uuid = "2312-A651";
 
-  imports = [
-    ./filesystems.nix
-  ];
-
+  # WIP: legacy options not long for this world
   cluster.ln = {
     kubernetes.masterIP = mainIP;
-    networking = {
-      lo.addr = "${lo}/32";
-      eno1.addr = "${mainIP}/24";
-      enmlx1 = {
-        addr = "192.168.254.1/29";
-        mac = "00:02:c9:39:fa:e0";
-      };
-      enmlx2 = {
-        addr = "192.168.254.9/29";
-        mac = "00:02:c9:39:fa:e1";
-      };
-    };
   };
 
-  custom.routing.routerId = lo;
-
-  services.kubernetes.kubelet.enable = true;
+  custom.routing.routerId = loopback.ipv4;
 
   networking = {
     hostId = "d330b4e9";
     hostName = "ln1";
+    loopback.ipv4 = "192.168.78.131";
+  };
+
+  networkd = {
+    enmlx1 = {
+      mac = "00:02:c9:39:fa:e0";
+      addresses.ipv4 = ["192.168.254.1/29"];
+    };
+    enmlx2 = {
+      mac = "00:02:c9:39:fa:e1";
+      addresses.ipv4 = ["192.168.254.17/29"];
+    };
   };
 }
