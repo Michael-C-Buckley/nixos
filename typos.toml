@@ -1,10 +1,10 @@
 [default]
 extend-ignore-identifiers-re = [
-    "[A-Za-z0-9]{32,64}", # If a string of gibberish, it's probably a hash
+  "[A-Za-z0-9]{32,64}", # If a string of gibberish, it's probably a hash
 ]
 
 [default.extend-words]
 routeros = "routeros"
 metaphore = "metaphore" # vscode extension publisher
-noice = "noice" # Nvim extension
-ba = "ba" # It pains me but this matches some of the Intel X520 cards and regex won't match
+noice = "noice"         # Nvim extension
+ba = "ba"               # It pains me but this matches some of the Intel X520 cards and regex won't match

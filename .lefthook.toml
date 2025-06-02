@@ -1,0 +1,33 @@
+assert_lefthook_installed = true
+
+[[pre-commit.jobs]]
+name = "actionlint"
+glob = ".github/workflows/*.yml"
+run = "actionlint {staged_files}"
+
+[[pre-commit.jobs]]
+name = "deadnix"
+glob = "*.nix"
+run = "deadnix --fail {staged_files}"
+
+#[[pre-commit.jobs]]
+#name = "editorconfig-checker"
+#run = "editorconfig-checker -exclude LICENSE"
+
+[[pre-commit.jobs]]
+name = "statix"
+run = "statix check --format errfmt"
+
+[[pre-commit.jobs]]
+name = "taplo"
+glob = "*.toml"
+run = "taplo lint {staged_files}"
+
+[[pre-commit.jobs]]
+name = "treefmt"
+run = "treefmt"
+stage_fixed = true
+
+#[[prepare-commit-msg.jobs]]
+#name = "commitlint-rs"
+#run = "commitlint --edit ./.git/COMMIT_EDITMSG"

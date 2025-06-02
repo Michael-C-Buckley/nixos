@@ -1,33 +1,34 @@
 # Some things I am reminding myself I want to work on
 
-* Setup up caching/remote building
-* Module import structure
-* Finish style consistency of pointers and themes
-* Nebula networking
-* Secrets integration & Migration
+- Setup up caching/remote building
+- Module import structure
+- Finish style consistency of pointers and themes
+- Nebula networking
+- Secrets integration & Migration
 
 ## In Progress
 
-* Nix Cache (Attic)
+- Nix Cache (Attic)
 
 This was started but paused due to time constraints.
 
 Still needs:
 
-* TLS
-* Push mechanism
+- TLS
+- Push mechanism
 
 ## Disko Usage
 
-Something for myself as I learn this process.  YMMV on the store path of OVMF, it's valid only at time of writing on my machine.
+Something for myself as I learn this process. YMMV on the store path of OVMF, it's valid only at time of writing on my machine.
 
-* Create build script:
-`nix build .#nixosConfigurations.o3.config.system.build.diskoImagesScript`
+- Create build script:
+  `nix build .#nixosConfigurations.o3.config.system.build.diskoImagesScript`
 
-* Build it:
-`sudo ./result --build-memory 16384`
+- Build it:
+  `sudo ./result --build-memory 16384`
 
-* Run the VM (Oracle appears to have settings similar to these)
+- Run the VM (Oracle appears to have settings similar to these)
+
 ```
 qemu-system-x86_64 \
   -m 1G \
