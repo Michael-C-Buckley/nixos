@@ -1,7 +1,12 @@
-result
-.direnv
-.pre-commit-config.yaml
+# Created by https://www.toptal.com/developers/gitignore/api/direnv
+# Edit at https://www.toptal.com/developers/gitignore?templates=direnv
 
-# Image files
+### direnv ###
+.direnv
+# .envrc
+
+# End of https://www.toptal.com/developers/gitignore/api/direnv
+
+### image files ###
 *.raw
 *.qcow2

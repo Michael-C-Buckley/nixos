@@ -1,0 +1,186 @@
+{
+  "layer": "top",
+  "position": "top",
+  "modules-left": ["clock", "memory", "cpu", "temperature", "custom/powerDraw"],
+  "modules-center": ["hyprland/workspaces", "mpd"],
+  "modules-right": [
+    // "idle_inhibitor",
+    "tray",
+    "custom/clipboard",
+    "bluetooth",
+    "pulseaudio",
+    "backlight",
+    "battery"
+  ],
+  "reload_style_on_change": true,
+  "clock": {
+    "format": "󰥔 {:%H:%M:%S}",
+    "interval": 1,
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    },
+    "tooltip-format": "\n<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "calendar-weeks-pos": "right",
+    "today-format": "<span color='#7645AD'><b><u>{}</u></b></span>",
+    "format-calendar": "<span color='#aeaeae'><b>{}</b></span>",
+    "format-calendar-weeks": "<span color='#aeaeae'><b>W{:%V}</b></span>",
+    "format-calendar-weekdays": "<span color='#aeaeae'><b>{}</b></span>"
+  },
+  "memory": {
+    "format": "  {percentage}%"
+  },
+  "cpu": {
+    "interval": 1,
+    "format": "󰘚 {usage}%"
+  },
+  "temperature": {
+    "format": " {temperatureC}°C",
+    "format-critical": " {temperatureC}°C",
+    "interval": 1,
+    "critical-threshold": 65,
+    "on-click": "hyprctl dispatch exec '[float;center;size 1400 1000]ghostty --command=btop'"
+  },
+  "custom/powerDraw": {
+    "format": "{}",
+    "interval": 1,
+    "exec": "~/.config/waybar/scripts/powerdraw.sh",
+    "return-type": "json"
+  },
+  "hyprland/workspaces": {
+    "format": "<span font='12px'>{icon}</span>",
+    "format-icons": {
+      "11": "A",
+      "12": "S",
+      "13": "D",
+      "14": "F"
+    }
+  },
+  "tray": {
+    "icon-size": 14,
+    "spacing": 15
+  },
+  "custom/clipboard": {
+    // "exec": "echo '󰅍'",
+    "interval": 5,
+    "tooltip": true,
+    // "tooltip-format": "{output}",
+    // "exec-tooltip": "sh -c cliphist list | head -n 5",
+    "on-click": "sh -c 'cliphist list | rofi -dmenu | cliphist decode | wl-copy'"
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "<span font='12'>{icon}</span>",
+    "format-icons": ["", "", "", "", "", "", "", "", "", ""],
+    "on-scroll-down": "light -U 5",
+    "on-scroll-up": "light -A 5",
+    "smooth-scrolling-threshold": 1
+  },
+  "idle_inhibitor": {
+    "format": "<span font='12'>{icon}</span>",
+    "format-icons": {
+      "activated": "󰾪",
+      "deactivated": "󰅶"
+    }
+  },
+  "custom/colorpicker": {
+    "format": "{}",
+    "return-type": "json",
+    "interval": "once",
+    "exec": "~/.config/waybar/scripts/colorpicker.sh -j",
+    "on-click": "sleep 1 && ~/.config/waybar/scripts/colorpicker.sh"
+  },
+  "bluetooth": {
+    "format-on": "󰂰",
+    "format-off": "",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂴",
+    "format-connected-battery": "{device_battery_percentage}% 󰂴",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+    "on-click": "hyprctl dispatch exec '[float;center;size 1000 800]blueman-manager'"
+  },
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-bluetooth": "󰂰",
+    "format-muted": "",
+    "tooltip-format": "{volume}% {icon}",
+    "format-icons": {
+      "headphones": "",
+      "bluetooth": "󰥰",
+      "handsfree": "",
+      "headset": "󱡬",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["🕨", "🕩", "🕪"]
+    },
+    "scroll-step": 5,
+    "justify": "center",
+    "on-click": "amixer sset Master toggle",
+    "on-click-right": "pavucontrol",
+    "tooltip-format": "{volume}%  {icon}",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+  },
+  "group/audio": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 500,
+      "transition-left-to-right": false
+    },
+    "modules": ["pulseaudio", "pulseaudio#mic"]
+  },
+  "battery": {
+    "interval": 1,
+    "states": {
+      "good": 85,
+      "warning": 30,
+      "critical": 20
+    },
+    "tooltip": true,
+    "format": "{capacity}% <span font='16px'>{icon}</span>",
+    "format-time": "{H}h {M}min",
+    "tooltip": "{time}",
+    "format-charging": "{capacity}% <span font='16px'>{icon}</span>",
+    "format-plugged": "{capacity}% 󰠠",
+    // "format-alt": "{time} {icon}",
+    "format-icons": ["󰁻", "󰁼", "󰁾", "󰂀", "󰂂", "󰁹"]
+  },
+  "mpd": {
+    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) <U+F001>",
+    "format-disconnected": "Disconnected <U+F001>",
+    "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped <U+F001>",
+    "interval": 2,
+    "consume-icons": {
+      "on": "<U+F0C4> "
+    },
+    "random-icons": {
+      "off": "<span color=\"#f53c3c\"><U+F074></span> ",
+      "on": "<U+F074> "
+    },
+    "repeat-icons": {
+      "on": "<U+F01E> "
+    },
+    "single-icons": {
+      "on": "<U+F01E>1 "
+    },
+    "state-icons": {
+      "paused": "<U+F04C>",
+      "playing": "<U+F04B>"
+    },
+    "tooltip-format": "MPD (connected)",
+    "tooltip-format-disconnected": "MPD (disconnected)"
+  }
+}
