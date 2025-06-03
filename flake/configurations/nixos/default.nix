@@ -10,7 +10,7 @@ _: {
     };
     "t14-minimal" = {
       system = "x86_64-linux";
-      configuration = ./t14-minimal/minimal.nix;
+      configuration = ./t14/minimal.nix;
     };
     "t14" = {
       system = "x86_64-linux";
