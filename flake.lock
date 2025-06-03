@@ -242,11 +242,11 @@
         "flake-parts": "flake-parts_2"
       },
       "locked": {
-        "lastModified": 1748930104,
-        "narHash": "sha256-hrG3xrQKRDiMP42yusd2PUbzzSzImc8REPbeODD0TSs=",
+        "lastModified": 1748966260,
+        "narHash": "sha256-9CdYEoiEiFL+/DWzLmfmJ0z9XdlaUe6bWn1b8fXSvPg=",
         "owner": "teamwolfyta",
         "repo": "lupinix",
-        "rev": "04892b612f7ed368db589920c91d8191768251e0",
+        "rev": "f81ece05b8ed89a71743954b64bbb23407c83202",
         "type": "github"
       },
       "original": {
