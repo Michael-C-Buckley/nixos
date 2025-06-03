@@ -1,18 +1,19 @@
 assert_lefthook_installed = true
 
 [[pre-commit.jobs]]
-name = "actionlint"
-glob = ".github/workflows/*.yml"
-run = "actionlint {staged_files}"
-
-[[pre-commit.jobs]]
 name = "deadnix"
 glob = "*.nix"
 run = "deadnix --fail {staged_files}"
 
-#[[pre-commit.jobs]]
-#name = "editorconfig-checker"
-#run = "editorconfig-checker -exclude LICENSE"
+[[pre-commit.jobs]]
+name = "editorconfig-checker"
+run = "editorconfig-checker -exclude LICENSE"
+
+# @jet you should re-enable this and deal with the output. :D - @TeamWolfyta
+# [[pre-commit.jobs]]
+# name = "shellcheck"
+# glob = "*.sh"
+# run = "shellcheck {staged_files}"
 
 [[pre-commit.jobs]]
 name = "statix"
@@ -24,11 +25,7 @@ glob = "*.toml"
 run = "taplo lint {staged_files}"
 
 [[pre-commit.jobs]]
+interactive = true
 name = "treefmt"
 run = "treefmt"
 stage_fixed = true
-interactive = true
-
-#[[prepare-commit-msg.jobs]]
-#name = "commitlint-rs"
-#run = "commitlint --edit ./.git/COMMIT_EDITMSG"
