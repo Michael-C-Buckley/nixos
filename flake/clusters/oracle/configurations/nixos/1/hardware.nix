@@ -1,4 +1,8 @@
-{modulesPath, ...}: {
+{
+  modulesPath,
+  lib,
+  ...
+}: {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
@@ -12,8 +16,9 @@
     extraModulePackages = [];
   };
 
-  fileSystems = {
-    "/boot" = {
+  # WIP: Convert to Impermanence
+  fileSystems = lib.mkForce {
+    "/boot" = lib.mkForce {
       device = "/dev/disk/by-uuid/82F3-455E";
       fsType = " vfat";
       options = ["fmask=0022" "dmask=0022"];
@@ -26,7 +31,7 @@
       device = "rpool/root/home";
       fsType = "zfs";
     };
-    "/" = {
+    "/" = lib.mkForce {
       device = "rpool/root/nixos";
       fsType = "zfs";
     };
