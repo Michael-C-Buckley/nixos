@@ -3,6 +3,7 @@
   config,
   pkgs,
   lib,
+  self',
   ...
 }: let
   inherit (config) packageSets;
@@ -16,8 +17,8 @@
 
   nvfVer =
     if extendedGraphical
-    then "default"
-    else "minimal";
+    then ""
+    else "-minimal";
 
   userPkgs =
     packageSets.common
@@ -65,7 +66,7 @@ in {
       telegram.enable = extGfx;
       nvf = {
         enable = true;
-        package = pkgs."nvf-${nvfVer}";
+        package = self'.packages."nvf${nvfVer}";
       };
     };
 
