@@ -1,32 +1,29 @@
 excludes = ["*.lock", ".gitignore"]
 on-unmatched = "warn"
 
-[formatter.alejandr]
+[formatter.alejandra]
 command = "alejandra"
-excludes = []
 includes = ["*.nix"]
-options = []
 
-[formatter.jsonfmt]
-command = "jsonfmt"
-excludes = []
-includes = ["*.json"]
-options = ["-w"]
+[formatter.biome]
+command = "biome"
+includes = ["*.json", "*.jsonc"]
+options = [
+  "format",
+  "--no-errors-on-unmatched",
+  "--use-editorconfig=true",  # This should be on by default.
+  "--write",
+]
+
+[formatter.keep-sorted]
+command = "keep-sorted"
+includes = ["*"]
 
 [formatter.mdformat]
 command = "mdformat"
-excludes = []
 includes = ["*.md"]
-options = []
 
 [formatter.taplo]
 command = "taplo"
-excludes = []
 includes = ["*.toml"]
 options = ["format"]
-
-[formatter.yamlfmt]
-command = "yamlfmt"
-excludes = []
-includes = ["*.yaml", "*.yml"]
-options = []
