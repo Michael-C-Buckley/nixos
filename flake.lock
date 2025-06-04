@@ -242,11 +242,11 @@
         "flake-parts": "flake-parts_2"
       },
       "locked": {
-        "lastModified": 1749046824,
-        "narHash": "sha256-akFwG4h9oML3kvjCueN5WiIhWCT070elBSI24tFt34A=",
+        "lastModified": 1749050116,
+        "narHash": "sha256-5B14bzhDpKbZT0r54VfKk2judWMWkwyjNdUgCZjCtUk=",
         "owner": "Michael-C-Buckley",
         "repo": "lupinix",
-        "rev": "ca516b56690c44206fcf84db764baf47b6981d9d",
+        "rev": "e708d1d7f0fcd6abebf542feb3e1f924616433c2",
         "type": "github"
       },
       "original": {
