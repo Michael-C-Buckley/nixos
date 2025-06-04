@@ -6,7 +6,7 @@
 }: let
   inherit (config.networking) hostName;
   inherit (lib) mkOption mkIf;
-  inherit (lib.types) str;
+  inherit (lib.types) str bool;
   inherit (config.system) impermanence;
 
   zfsFs = name: {
@@ -16,6 +16,11 @@
   };
 in {
   options.system.impermanence = {
+    usePreset = mkOption {
+      type = bool;
+      default = true;
+      description = "Configures the impermanence preset rules.";
+    };
     zrootPath = mkOption {
       type = str;
       default = "zroot/${hostName}";
@@ -28,12 +33,15 @@ in {
     };
   };
 
-  config = mkIf impermanence.enable {
-    fileSystems."/boot" = {
-      device = "/dev/disk/by-uuid/${config.system.boot.uuid}";
-      fsType = "vfat";
-    };
+  config = mkIf (impermanence.enable && impermanence.usePreset) {
+    system.zfs.enable = true;
+
     fileSystems = {
+      "/boot" = {
+        device = "/dev/disk/by-uuid/${config.system.boot.uuid}";
+        fsType = "vfat";
+      };
+
       # Tmpfs
       "/" = {
         device = "tmpfs";
