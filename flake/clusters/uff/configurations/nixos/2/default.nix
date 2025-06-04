@@ -1,6 +1,4 @@
 _: {
-  system.boot.uuid = "E8D1-BB86";
-
   networkd = {
     eno1.addresses.ipv4 = ["192.168.48.102/24"];
     enusb1 = {
@@ -17,5 +15,10 @@ _: {
       metricType = 1;
       metric = 510;
     };
+  };
+
+  system = {
+    boot.uuid = "E8D1-BB86";
+    impermanence.zrootPath = "zroot/uff2";
   };
 }

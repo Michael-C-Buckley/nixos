@@ -2,13 +2,8 @@
   inherit (config.networking) loopback;
   mainIP = "192.168.65.132";
 in {
-  system.boot.uuid = "AAAA-AAAA";
-
   # WIP: legacy options not long for this world
-  cluster.ln = {
-    kubernetes.masterIP = mainIP;
-  };
-
+  cluster.ln.kubernetes.masterIP = mainIP;
   custom.routing.routerId = loopback.ipv4;
 
   networking = {
@@ -25,5 +20,10 @@ in {
       mac = "";
       addresses.ipv4 = ["192.168.254.18/29"];
     };
+  };
+
+  system = {
+    boot.uuid = "AAAA-AAAA";
+    impermanence.zrootPath = "zroot/ln2";
   };
 }

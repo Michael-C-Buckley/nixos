@@ -1,6 +1,4 @@
 _: {
-  system.boot.uuid = "FC43-B84D";
-
   networkd = {
     eno1.addresses.ipv4 = ["192.168.48.23/24"];
     enx520p1 = {
@@ -16,5 +14,10 @@ _: {
   networking = {
     loopback.ipv4 = "192.168.61.7";
     hostId = "fb020cc3";
+  };
+
+  system = {
+    boot.uuid = "FC43-B84D";
+    impermanence.zrootPath = "zroot/sff3";
   };
 }
