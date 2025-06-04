@@ -11,6 +11,7 @@ _: {
     useNetworkd = true;
     networkmanager.enable = true;
     useDHCP = false;
+    interfaces.eno1.useDHCP = true;
   };
 
   services = {

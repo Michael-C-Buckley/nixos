@@ -1,6 +1,5 @@
 _: {
   networkd = {
-    eno1.addresses.ipv4 = ["192.168.48.103/24"];
     enusb1 = {
       mac = "6c:1f:f7:06:13:8f";
       addresses.ipv4 = ["192.168.254.3/27"];
