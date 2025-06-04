@@ -1,6 +1,5 @@
 _: {
   networkd = {
-    eno1.addresses.ipv4 = ["192.168.48.22/24"];
     enx520p1 = {
       mac = "90:e2:ba:44:86:68";
       addresses.ipv4 = [];

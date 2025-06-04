@@ -15,7 +15,6 @@
   };
 in {
   options.networkd = {
-    eno1.addresses = mkAddrs "Onboard Ethernet";
     enx520p1 = {
       mac = mkOption {
         type = str;
