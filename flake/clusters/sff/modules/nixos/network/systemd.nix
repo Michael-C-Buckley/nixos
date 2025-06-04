@@ -1,12 +1,8 @@
 {config, ...}: let
-  inherit (config.networkd) eno1 enx520p1 enx520p2;
+  inherit (config.networkd) enx520p1 enx520p2;
 in {
   systemd.network = {
     networks = {
-      "10-eno1" = {
-        matchConfig.Name = "eno1";
-        address = eno1.addresses.ipv4;
-      };
       "20-enx520p1" = {
         matchConfig.Name = "enx520p1";
         address = enx520p1.addresses.ipv4;
