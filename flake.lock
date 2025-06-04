@@ -242,15 +242,16 @@
         "flake-parts": "flake-parts_2"
       },
       "locked": {
-        "lastModified": 1748966260,
-        "narHash": "sha256-9CdYEoiEiFL+/DWzLmfmJ0z9XdlaUe6bWn1b8fXSvPg=",
-        "owner": "teamwolfyta",
+        "lastModified": 1749046824,
+        "narHash": "sha256-akFwG4h9oML3kvjCueN5WiIhWCT070elBSI24tFt34A=",
+        "owner": "Michael-C-Buckley",
         "repo": "lupinix",
-        "rev": "f81ece05b8ed89a71743954b64bbb23407c83202",
+        "rev": "ca516b56690c44206fcf84db764baf47b6981d9d",
         "type": "github"
       },
       "original": {
-        "owner": "teamwolfyta",
+        "owner": "Michael-C-Buckley",
+        "ref": "noDash",
         "repo": "lupinix",
         "type": "github"
       }
