@@ -6,8 +6,7 @@ _: {
     network = import ./network;
     packageSets = import ./packageSets;
     packages = import ./packages;
-    presets-michael = import ./presets/michael.nix;
-    presets-nvidia = import ./presets/nvidia.nix;
+    presets = import ./presets;
     programs = import ./programs;
     services = import ./services;
     storage = import ./storage;

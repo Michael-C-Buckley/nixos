@@ -1,6 +1,4 @@
 _: {
-  system.boot.uuid = "3A1C-9DCC";
-
   networkd = {
     eno1.addresses.ipv4 = ["192.168.48.22/24"];
     enx520p1 = {
@@ -16,5 +14,10 @@ _: {
   networking = {
     loopback.ipv4 = "192.168.61.6";
     hostId = "fb020cc2";
+  };
+
+  system = {
+    boot.uuid = "3A1C-9DCC";
+    impermanence.zrootPath = "zroot/sff2";
   };
 }

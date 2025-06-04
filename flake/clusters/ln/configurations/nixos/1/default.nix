@@ -1,14 +1,16 @@
-{config, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.networking) loopback;
   mainIP = "192.168.65.131";
 in {
-  system.boot.uuid = "2312-A651";
+  # Just because this one isn't yet updated to impermanence
+  imports = [./filesystems.nix];
 
   # WIP: legacy options not long for this world
-  cluster.ln = {
-    kubernetes.masterIP = mainIP;
-  };
-
+  cluster.ln.kubernetes.masterIP = mainIP;
   custom.routing.routerId = loopback.ipv4;
 
   networking = {
@@ -24,6 +26,14 @@ in {
     enmlx2 = {
       mac = "00:02:c9:39:fa:e1";
       addresses.ipv4 = ["192.168.254.17/29"];
+    };
+  };
+
+  system = {
+    boot.uuid = "2312-A651";
+    impermanence = {
+      enable = lib.mkForce false; # Temporary, until rebuilt
+      zrootPath = "zroot/ln1";
     };
   };
 }

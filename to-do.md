@@ -6,6 +6,12 @@
 - Nebula networking
 - Secrets integration & Migration
 
+## Restructuring
+
+- Impermanence Preset
+- Disko Preset
+- Oracle nodes
+
 ## In Progress
 
 - Nix Cache (Attic)

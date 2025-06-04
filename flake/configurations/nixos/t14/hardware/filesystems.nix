@@ -1,30 +1,15 @@
-_: let
-  zfsFs = name: {
-    device = "zroot/t14/nixos/${name}";
-    fsType = "zfs";
-    neededForBoot = true;
-  };
-in {
+_: {
   boot.zfs.forceImportAll = true;
 
-  system.boot.uuid = "1A0C-115C";
+  swapDevices = [];
 
-  fileSystems = {
-    # Tmpfs
-    "/" = {
-      device = "tmpfs";
-      fsType = "tmpfs";
-      options = [
-        "defaults"
-        "size=2G"
-        "mode=755"
-      ];
+  system = {
+    boot.uuid = "1A0C-115C";
+    impermanence = {
+      enable = true;
+      zrootPath = "zroot/t14/nixos";
+      tmpRootSize = "2G";
     };
-
-    # ZFS Volumes
-    "/tmp" = zfsFs "tmp";
-    "/nix" = zfsFs "nix";
-    "/cache" = zfsFs "cache";
-    "/persist" = zfsFs "persist";
+    zfs.enable = true;
   };
 }
