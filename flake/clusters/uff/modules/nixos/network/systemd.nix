@@ -6,6 +6,7 @@ in {
       "11-enusb1" = {
         matchConfig.Name = "enusb1";
         address = netd.enusb1.addresses.ipv4;
+        DHCP = "no";
       };
       # 40 is the default system generated one, this overwrites it
       "40-lo" = {
