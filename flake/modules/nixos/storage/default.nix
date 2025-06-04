@@ -5,11 +5,11 @@
   ...
 }: {
   imports = [
-    # ./nfs.nix
     inputs.impermanence.nixosModules.impermanence
-    ./gluster.nix
     ./disko
-    ./impermanence.nix
+    ./impermanence
+    ./gluster.nix
+    # ./nfs.nix
     ./zfs.nix
   ];
 
