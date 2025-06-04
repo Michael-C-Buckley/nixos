@@ -3,10 +3,6 @@
 in {
   systemd.network = {
     networks = {
-      "10-eno1" = {
-        matchConfig.Name = "eno1";
-        address = netd.eno1.addresses.ipv4;
-      };
       "11-enusb1" = {
         matchConfig.Name = "enusb1";
         address = netd.enusb1.addresses.ipv4;
