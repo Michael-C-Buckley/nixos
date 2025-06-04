@@ -8,7 +8,7 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     systems.url = "github:nix-systems/default";
-    lupinix.url = "github:teamwolfyta/lupinix";
+    lupinix.url = "github:Michael-C-Buckley/lupinix/noDash";
 
     home-manager = {
       url = "github:nix-community/home-manager";
