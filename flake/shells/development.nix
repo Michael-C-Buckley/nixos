@@ -38,10 +38,9 @@ mkShell {
   shellHook = ''
     lefthook install
 
-    # !!! DISABLED DUE TO HOW LARGE THE DIFF IS !!!
-    # if [ -d .git ]; then
-    #   git fetch
-    #   git status --short --branch
-    # fi
+    if [ -d .git ]; then
+      git fetch
+      git status --short --branch
+    fi
   '';
 }
