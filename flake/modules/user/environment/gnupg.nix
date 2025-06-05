@@ -7,7 +7,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkOption mkEnableOption mkIf;
+  inherit (lib) mkOption mkEnableOption mkIf getExe;
   inherit (lib.types) int package;
 
   local = config.environment.gnupg;
@@ -42,7 +42,7 @@ in {
       ".gnupg/gpg-agent.conf".text =
         ''
           allow-loopback-pinentry
-          pinentry-program ${local.pinentryPkg}
+          pinentry-program ${getExe local.pinentryPkg}
           default-cache-ttl ${builtins.toString local.cacheTTL}
         ''
         + (
