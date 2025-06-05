@@ -8,7 +8,7 @@ _: {
 
   networking = {
     useNetworkd = true;
-    networkmanager.enable = true;
+    networkmanager.enable = false;
     useDHCP = false;
     interfaces.eno1.useDHCP = true;
   };

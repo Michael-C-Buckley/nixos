@@ -2,7 +2,7 @@ _: {
   networkd = {
     enx520p1 = {
       mac = "90:e2:ba:60:01:b8";
-      addresses.ipv4 = [];
+      addresses.ipv4 = ["192.168.254.3/27"];
     };
     enx520p2 = {
       mac = "90:e2:ba:60:01:b9";
