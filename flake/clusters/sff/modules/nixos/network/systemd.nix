@@ -3,11 +3,11 @@
 in {
   systemd.network = {
     networks = {
-      "20-enx520p1" = {
+      "21-enx520p1" = {
         matchConfig.Name = "enx520p1";
         address = enx520p1.addresses.ipv4;
       };
-      "21-enx520p2" = {
+      "22-enx520p2" = {
         matchConfig.Name = "enx520p2";
         address = enx520p1.addresses.ipv4;
       };
