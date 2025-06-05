@@ -1,11 +1,11 @@
 # Hyprland config according to my custom module
-_: {
+{config, ...}: {
   imports = [
     ./binds.nix
   ];
 
   hjem.users.michael.programs.hyprland = {
-    enable = true;
+    inherit (config.programs.hyprland) enable;
 
     initialConfig = ''
       $browser=librewolf
