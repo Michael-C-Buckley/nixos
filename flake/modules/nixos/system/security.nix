@@ -68,7 +68,7 @@ in {
     '';
   };
 
-  #hardware.gpgSmartcards.enable = notCloud;
+  hardware.gpgSmartcards.enable = notCloud;
 
   programs = {
     nix-ld.enable = mkDefault true;
