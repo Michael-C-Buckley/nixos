@@ -14,6 +14,7 @@
     tig
     curl
     wget
+    tree
 
     # Shells/Terminals
     zsh
