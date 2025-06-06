@@ -24,6 +24,10 @@ _: {
       system = "x86_64-linux";
       configuration = ./wsl;
     };
+    "x370" = {
+      system = "x86_64-linux";
+      configuration = ./x370;
+    };
     "x570" = {
       system = "x86_64-linux";
       configuration = ./x570;
