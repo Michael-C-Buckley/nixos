@@ -9,6 +9,7 @@
 
     # Editors
     emacs
+    meld
 
     # File Explorer
     xfce.thunar
