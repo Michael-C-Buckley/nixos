@@ -6,7 +6,7 @@ _: {
     ./options.nix
     ./risks.nix
     ./security.nix
-    ./users.nix
+    ./users
   ];
 
   time.timeZone = "America/New_York";

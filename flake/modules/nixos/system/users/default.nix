@@ -10,6 +10,7 @@
 in {
   imports = [
     inputs.nix-secrets.nixosModules.users
+    ./updatebot.nix
   ];
 
   options.users.powerUsers = {
@@ -26,15 +27,18 @@ in {
   };
 
   config = {
-    users.powerUsers.groups = ["networkmanager" "wheel" "video"];
-    users.users = {
-      michael = {
-        isNormalUser = true;
-        extraGroups = power.groups;
-      };
-      shawn = {
-        isNormalUser = true;
-        extraGroups = power.groups;
+    users = {
+      powerUsers.groups = ["networkmanager" "wheel" "video" "update"];
+      groups.update = {};
+      users = {
+        michael = {
+          isNormalUser = true;
+          extraGroups = power.groups;
+        };
+        shawn = {
+          isNormalUser = true;
+          extraGroups = power.groups;
+        };
       };
     };
   };
