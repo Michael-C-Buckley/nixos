@@ -17,11 +17,6 @@ _: {
       int br0
         ip ospf area 0
         ip ospf cost 100
-        ip ospf dead-interval 3
-        ip ospf hello-interval 1
-
-      router ospf
-        router-id 192.168.48.5
     '';
   };
 }
