@@ -9,6 +9,10 @@ _: {
     hostName = "x370";
   };
 
+  virtualisation = {
+    incus.enable = true;
+  };
+
   system = {
     boot.uuid = "B187-B440";
     preset = "server";
