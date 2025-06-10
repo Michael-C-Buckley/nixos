@@ -10,7 +10,7 @@ _: {
   };
 
   system = {
-    boot.uuid = "";
+    boot.uuid = "B187-B440";
     preset = "server";
     stateVersion = "25.11";
     zfs.enable = true;
