@@ -29,7 +29,7 @@ in {
 
     bridges.br0.interfaces = [];
     interfaces = {
-      enp9s0.useDHCP = true;
+      enp7s0.useDHCP = true;
       enp8s0.useDHCP = true;
     };
   };

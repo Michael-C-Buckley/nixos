@@ -21,11 +21,11 @@ _: {
       ip ospf passive
       ip ospf area 0
 
-    int enp8s0
+    int enp7s0
       ip ospf cost 400
       ip ospf area 0
 
-    int enp9s0
+    int enp8s0
       ip ospf cost 100
       ip ospf area 0
   '';
