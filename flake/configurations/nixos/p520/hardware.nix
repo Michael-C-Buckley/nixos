@@ -17,24 +17,6 @@
     extraModulePackages = [];
   };
 
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-uuid/2f81fed5-ced4-496d-a1da-1df6fd255c98";
-      fsType = "ext4";
-    };
-
-    "/boot" = {
-      device = "/dev/disk/by-uuid/5A10-ADAC";
-      fsType = "vfat";
-      options = ["fmask=0077" "dmask=0077"];
-    };
-
-    "/var/lib/private/ollama/models" = {
-      device = "/dev/disk/by-uuid/dd30ea1b-9f02-4b97-981c-d358926fd7bc";
-      fsType = "ext4";
-    };
-  };
-
   swapDevices = [];
 
   nixpkgs.hostPlatform = "x86_64-linux";
