@@ -3,6 +3,10 @@ set -euo pipefail
 
 # ZFS Install Script for P520 Workstation Server
 
+INTEL=/dev/disk/by-id/nvme-INTEL_SSDPE2KX010T8_BTLJ9103057V1P0FGN_1
+SAMSUNG1=/dev/disk/by-id/nvme-Samsung_SSD_980_1TB_S64ANS0T100673K
+SAMSUNG2=/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5P2NC0RA09780V
+
 ZFS_OPTS="-o ashift=12 \
   -O compression=zstd \
   -O atime=off \
@@ -25,19 +29,19 @@ fi
 
 echo "Wiping drives..."
 # Wipe the NVMe drives
-for i in 0 1 2; do
-    wipefs -a /dev/nvme$i
-    sgdisk --zap-all /dev/nvme$i
-end
+for i in $INTEL $SAMSUNG1 $SAMSUNG2; do
+    wipefs -a $i
+    sgdisk --zap-all $i
+done
 
 echo "Formatting drives..."
 # Put boot on the NVMe DC drive
-sgdisk -n1:1M:+512M -t1:EF00 -c1:"EFI System" /dev/nvme0n1
-mkfs.vfat -F32 /dev/nvme0n1p1
+sgdisk -n1:1M:+512M -t1:EF00 -c1:"EFI System" $INTEL
+mkfs.vfat -F32 "$INTEL"-part1
 
 # Create the pool on the drive, use reasonable settings
 echo "Creating zroot..."
-zpool create -f $ZFS_OPTS zroot /dev/nvme1 /dev/nvme2
+zpool create $ZFS_OPTS zroot $SAMSUNG1 $SAMSUNG2
 
 # Mount the drives and prepare for the install
 mkdir -p /mnt
@@ -61,7 +65,7 @@ sed -i -E \
 echo "Updated UUID for $hostname"
 
 # Lastly, deploy the secrets
-key_dir=/etc/nix/secrets/ssh/keys/$hostname
+key_dir=/etc/nix/secrets/crypt/ssh/$hostname
 persist_dir=/mnt/persist/etc/ssh
 mkdir -p $persist_dir
 cp "$key_dir"/ssh_host_{ed25519,rsa}_key.pub ${persist_dir}
