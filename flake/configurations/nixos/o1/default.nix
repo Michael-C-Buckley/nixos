@@ -2,7 +2,7 @@
   imports = with inputs; [
     disko.nixosModules.disko
     nix-secrets.nixosModules.oracle
-    ./disko.nix
+    # ./disko.nix
     ./hardware.nix
     ./networking
   ];
@@ -14,7 +14,19 @@
     stateVersion = "25.11";
     preset = "cloud";
     zfs.enable = true;
-    impermanence.enable = true;
+
+    disko = {
+      enable = true;
+      main = {
+        swapSize = "4G";
+        imageSize = "100G";
+      };
+    };
+
+    impermanence = {
+      enable = true;
+      usePreset = false;
+    };
   };
 
   features = {
