@@ -7,6 +7,7 @@
   inherit (lib) mkDefault mkEnableOption mkOption mkIf;
   inherit (lib.types) nullOr str;
   inherit (config.system) disko;
+  inherit (config.networking) hostName;
   mainDisko = disko.main;
 in {
   imports = [inputs.disko.nixosModules.disko];
@@ -69,7 +70,7 @@ in {
           partitions = import ./partitions.nix {inherit config;};
         };
       };
-      zpool."zroot" = import ./zroot.nix;
+      zpool."zroot/${hostName}" = import ./zroot.nix;
       nodev = import ./nodevs.nix {inherit config;};
     };
   };
