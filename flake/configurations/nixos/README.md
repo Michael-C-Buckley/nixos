@@ -6,16 +6,16 @@ These consists of individual non-groups NixOS hosts. The naming is based on mode
 
 Oracle Cloud free-tier ARM server.
 
-CPU: 4x vCPU
-RAM: 24G
+- CPU: 4x vCPU
+- RAM: 24G
 
 ## p520
 
 This is a Lenovo P520 workstation I use as a virtualization heavy server.
 
-CPU: Xeon W-2195
-RAM: 256G
-GPU: AMD Vega-56
+- CPU: Xeon W-2195
+- RAM: 256G
+- GPU: AMD Vega-56
 
 ## ssk
 
@@ -27,8 +27,8 @@ I like it better than a live ISO since I can update it more easily and not have 
 
 Lenovo T14 Gen2 AMD, my personal laptop.
 
-CPU: AMD Ryzen 5850U
-RAM: 32G
+- CPU: AMD Ryzen 5850U
+- RAM: 32G
 
 ## vm
 
@@ -42,6 +42,6 @@ It is a WSL system I have for when I need to use a Windows machine.
 
 My desktop, which I use often when at home and sometimes game with.
 
-CPU: AMD Ryzen 5950X
-RAM: 64G
-GPU: Intel A770
+- CPU: AMD Ryzen 5950X
+- RAM: 64G
+- GPU: Intel A770
