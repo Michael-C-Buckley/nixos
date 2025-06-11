@@ -5,7 +5,11 @@ _: {
     ./hardware.nix
   ];
 
-  virtualisation.libvirtd.enable = true;
+  virtualisation = {
+    libvirtd.enable = true;
+    incus.enable = true;
+  };
+
   system = {
     impermanence.enable = true;
     boot.uuid = "D8CD-79D6";
@@ -13,5 +17,4 @@ _: {
     stateVersion = "24.05";
     zfs.enable = true;
   };
-  programs.atop.atopgpu.enable = true;
 }
