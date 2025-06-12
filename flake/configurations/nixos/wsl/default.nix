@@ -1,15 +1,9 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{inputs, ...}: {
   imports = [
     inputs.nixos-wsl.nixosModules.default
     ./hjem.nix
     ./wsl.nix
   ];
-
-  environment.systemPackages = [pkgs.devenv];
 
   networking = {
     hostId = "e07f0101";
