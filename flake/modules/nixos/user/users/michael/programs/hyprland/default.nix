@@ -10,7 +10,7 @@
     initialConfig = ''
       $browser=librewolf
       $fileManager=thunar
-      $ide=code
+      $ide=codium
       $menu=wofi -s drun -show-icons
       $mod=SUPER
       $terminal=ghostty

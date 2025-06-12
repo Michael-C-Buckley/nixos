@@ -33,17 +33,19 @@ in {
         # See https://wiki.hyprland.org/Configuring/Keywords/
         "$mod, W, exec, rofi -show drun -show-icons"
         "$mod, Return, exec, $terminal"
+        "$mod CTRL, Return, exec, sakura"
         "$mod, Q, killactive,"
         "$mod, M, exit,"
         "$mod, E, exec, $fileManager"
-        "$mod, V, togglefloating,"
+        "$mod, space, togglefloating,"
         "$mod, R, exec, $menu"
         "$mod, P, pseudo,"
         "$mod, G, togglesplit,"
         "$mod, I, exec, $ide"
-        "$mod, Z, exec, zeditor"
         "$mod, O, exec, $browser"
         "$mod, L, exec, hyprlock"
+        "$mod, Tab, exec, rofi -show window"
+        "$mod, F, fullscreen,1"
 
         # System Control
         "$mod CTRL, semicolon, exec, sudo shutdown now"
