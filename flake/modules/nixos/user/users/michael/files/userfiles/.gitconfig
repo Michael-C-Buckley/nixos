@@ -1,6 +1,14 @@
 [user]
     name = "Michael Buckley"
     email = "michaelcbuckley@proton.me"
+    signingKey = "17B7D4048AE35B3D!"
+
+[commit]
+    gpgsign = true
+
+[gpg]
+    program = "gpg"
+
 
 [core]
     editor = "nvim"
