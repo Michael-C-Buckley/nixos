@@ -82,7 +82,7 @@ in {
 
   services = {
     pcscd.enable = notCloud;
-    yubikey-agent.enable = notCloud;
+    yubikey-agent.enable = false; # I'm using GPG for now
     printing.enable = false; # Revoke printing for its flaws over the years
     openssh.enable = mkDefault true;
     udev.packages = optionals notCloud [pkgs.yubikey-personalization];
