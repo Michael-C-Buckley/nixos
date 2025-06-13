@@ -19,6 +19,7 @@ in {
     ./eigrp.nix
     ./options.nix
     ./ospf.nix
+    ./unbound.nix
     ./vrrp.nix
     ./vxlan.nix
   ];

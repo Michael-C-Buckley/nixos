@@ -42,6 +42,7 @@
     flatpak.enable = true;
     nix-serve.enable = true;
     k3s.enable = true;
+    unbound.enable = true;
   };
 
   virtualisation = {

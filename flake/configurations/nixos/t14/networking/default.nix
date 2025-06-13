@@ -4,6 +4,8 @@
     ./wireguard.nix
   ];
 
+  services.unbound.enable = true;
+
   networking = {
     ospf.enable = true;
     hostId = "8425e349";

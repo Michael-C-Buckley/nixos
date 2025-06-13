@@ -19,8 +19,6 @@
 
   environment.systemPackages = with pkgs; [
     brightnessctl
-    talosctl
-    devenv
   ];
 
   features = {
