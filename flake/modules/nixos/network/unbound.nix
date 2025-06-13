@@ -23,7 +23,7 @@ in {
   # The secret is owned by root by default as it is a common secret
   sops.secrets.unboundLocal = mkIf local.enable {
     owner = "unbound";
-    group = "group";
+    group = "unbound";
   };
 
   networking = mkIf config.services.unbound.enable {
