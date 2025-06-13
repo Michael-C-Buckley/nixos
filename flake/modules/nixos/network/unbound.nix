@@ -4,6 +4,7 @@
   ...
 }: let
   inherit (lib) mkDefault mkIf;
+  local = config.services.unbound;
 in {
   services.unbound = {
     # Keep non-sensitive settings here
@@ -17,6 +18,12 @@ in {
       };
       include = config.sops.secrets.unboundLocal.path;
     };
+  };
+
+  # The secret is owned by root by default as it is a common secret
+  sops.secrets.unboundLocal = mkIf local.enable {
+    owner = "unbound";
+    group = "group";
   };
 
   networking = mkIf config.services.unbound.enable {
