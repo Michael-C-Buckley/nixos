@@ -16,6 +16,8 @@ in {
     "x570-p12" = certSecret "x570.p12";
   };
 
+  services.unbound.enable = true;
+
   networking = {
     hostId = "c07fa570";
     networkmanager.enable = true;

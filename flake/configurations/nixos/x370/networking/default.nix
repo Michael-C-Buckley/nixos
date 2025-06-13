@@ -1,10 +1,7 @@
-{lib, ...}: {
+_: {
   imports = [
     ./routing.nix
   ];
-
-  # Use local DNS instead
-  services.resolved.enable = lib.mkForce false;
 
   networking = {
     hostName = "x370";
