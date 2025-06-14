@@ -45,6 +45,8 @@
     unbound.enable = true;
   };
 
+  security.tpm2.enable = true;
+
   virtualisation = {
     docker.enable = true;
     incus.enable = true;
