@@ -3,9 +3,14 @@
   lib,
   pkgs,
   ...
-}: {
-  config = lib.mkIf (config.system.preset
-    == "desktop") {
+}: let
+  inherit (lib) mkIf;
+  inherit (config.system) preset;
+in {
+  # These are shared on my systems, laptops get everything plus more
+  config = mkIf (preset
+    == "desktop"
+    || preset == "laptop") {
     environment.systemPackages = with pkgs; [
       devenv
     ];
