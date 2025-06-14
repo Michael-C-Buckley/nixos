@@ -18,6 +18,7 @@
     disko = {
       enable = true;
       main = {
+        device = "/dev/sda";
         swapSize = "4G";
         imageSize = "200G";
       };
