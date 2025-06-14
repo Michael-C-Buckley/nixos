@@ -19,7 +19,7 @@
       enable = true;
       main = {
         swapSize = "4G";
-        imageSize = "100G";
+        imageSize = "200G";
       };
     };
 
