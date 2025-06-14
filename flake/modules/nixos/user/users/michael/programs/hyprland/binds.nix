@@ -32,23 +32,35 @@ in {
       ++ [
         # See https://wiki.hyprland.org/Configuring/Keywords/
         "$mod, W, exec, rofi -show drun -show-icons"
+        "$mod, Tab, exec, rofi -show window"
+
+        # Launch Programs
         "$mod, Return, exec, $terminal"
         "$mod ALT, Return, exec, $terminal2"
-        "$mod, Q, killactive,"
-        "$mod CTRL, M, exit,"
         "$mod, E, exec, $fileManager"
-        "$mod, space, togglefloating,"
-        "$mod, R, exec, $menu"
-        "$mod, P, pseudo,"
-        "$mod, G, togglesplit,"
         "$mod, I, exec, $ide"
         "$mod, O, exec, $browser"
-        "$mod, L, exec, hyprlock"
-        "$mod, Tab, exec, rofi -show window"
+        "$mod, R, exec, $menu"
+
+        # Window Manipulation
+        "$mod, space, togglefloating,"
+        "$mod, Q, killactive,"
+        "$mod, P, pseudo,"
+        "$mod, G, togglesplit,"
         "$mod, F, fullscreen,0"
         "$mod CTRL, f, fullscreen,1"
+        "$mod, left, movefocus, l"
+        "$mod, right, movefocus, r"
+        "$mod, up, movefocus, u"
+        "$mod, down, movefocus, d"
+        "$mod ALT, left, resizeactive, -200 0"
+        "$mod ALT, right, resizeactive, 200 0"
+        "$mod ALT, up, resizeactive, 0 -200"
+        "$mod ALT, down, resizeactive, 0 200"
 
         # System Control
+        "$mod CTRL, M, exit,"
+        "$mod, L, exec, hyprlock"
         "$mod CTRL, semicolon, exec, sudo shutdown now"
         "$mod CTRL ALT, semicolon, exec, sudo reboot now"
 
@@ -58,23 +70,10 @@ in {
         "$mod, K, togglespecialworkspace, magic2"
         "$mod SHIFT, K, movetoworkspace, special:magic2"
 
-        # Window Manipulation
-        "$mod, left, movefocus, l"
-        "$mod, right, movefocus, r"
-        "$mod, up, movefocus, u"
-        "$mod, down, movefocus, d"
-        "$mod, mouse_down, workspace, e+1"
-        "$mod, mouse_up, workspace, e-1"
-        "$mod ALT, left, resizeactive, -200 0"
-        "$mod ALT, right, resizeactive, 200 0"
-        "$mod ALT, up, resizeactive, 0 -200"
-        "$mod ALT, down, resizeactive, 0 200"
-
         # Media Controls
         ", XF86MonBrightnessDown, exec, brightnessctl s 10%-"
         ", XF86MonBrightnessUp, exec, brightnessctl s +10%"
         "$mod, Home, exec, hyprshot -m region"
-        "$mod, B, exec, pkill -f waybar && waybar &"
       ];
 
     bindeList = [
