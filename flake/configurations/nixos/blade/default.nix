@@ -3,6 +3,7 @@ _: {
     ./kubernetes
     ./networking
     ./hardware.nix
+    ./fans.nix
   ];
 
   networking = {
@@ -10,7 +11,7 @@ _: {
   };
 
   virtualisation = {
-    incus.enable = true;
+    incus.enable = false;
   };
 
   system = {
