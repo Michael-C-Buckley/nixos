@@ -12,6 +12,7 @@ _: {
 
   system = {
     impermanence.enable = true;
+    builder.enable = true;
     boot.uuid = "D8CD-79D6";
     preset = "server";
     stateVersion = "24.05";
