@@ -1,9 +1,5 @@
 # T14 Laptop Configuration
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{inputs, ...}: {
   imports = [
     inputs.nix-secrets.nixosModules.t14
     ./hardware
@@ -11,26 +7,6 @@
     ./systemd
     ./hyprland.nix
   ];
-
-  programs = {
-    cosmic.enable = true;
-    hyprland.enable = true;
-  };
-
-  environment.systemPackages = with pkgs; [
-    brightnessctl
-  ];
-
-  features = {
-    michael = {
-      extendedGraphical = true;
-      hyprland.enable = true;
-    };
-    autoLogin = true;
-    displayManager = "greetd";
-    gaming.enable = false;
-    pkgs.fonts = true;
-  };
 
   virtualisation = {
     docker.enable = true;
