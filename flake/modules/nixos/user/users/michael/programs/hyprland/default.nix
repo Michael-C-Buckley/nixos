@@ -14,6 +14,7 @@
       $menu=wofi -s drun -show-icons
       $mod=SUPER
       $terminal=ghostty
+      $terminal2=sakura
     '';
 
     extraConfig = ''
