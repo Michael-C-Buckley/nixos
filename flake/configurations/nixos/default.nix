@@ -1,5 +1,9 @@
 _: {
   lupinix.nixos.configurations = {
+    "blade" = {
+      system = "x86_64-linux";
+      configuration = ./blade;
+    };
     "o1" = {
       system = "aarch64-linux";
       configuration = ./o1;
