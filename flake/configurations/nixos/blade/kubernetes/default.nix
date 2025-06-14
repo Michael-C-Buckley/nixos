@@ -11,7 +11,7 @@ in {
   custom.kube = {
     masterHostname = config.networking.hostName;
     dns.forwardAddr = "192.168.65.1";
-    masterIP = "192.168.65.100";
+    masterIP = "192.168.65.99";
   };
 
   networking.extraHosts = "${kube.masterIP} ${kube.masterHostname}";
