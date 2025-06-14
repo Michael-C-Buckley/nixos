@@ -5,7 +5,6 @@ _: {
     ./nix.nix
     ./options.nix
     ./risks.nix
-    ./security.nix
     ./users
   ];
 
