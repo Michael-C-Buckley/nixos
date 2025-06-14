@@ -15,8 +15,6 @@ in {
     # I only use this to start from `x86_64-linux`
     boot.binfmt.emulatedSystems = [
       "aarch64-linux"
-      "aarch64-darwn"
-      "x86_64-darwin"
     ];
   };
 }
