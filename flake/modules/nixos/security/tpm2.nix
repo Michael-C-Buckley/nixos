@@ -1,3 +1,4 @@
+# WIP MODULE
 {
   config,
   lib,
@@ -5,6 +6,7 @@
 }: let
   inherit (lib) mkIf;
   inherit (config.system) impermanence;
+  local = config.security.tpm2;
 in {
   # environment.etc."tpm2-tss/fapi-config.json".text = builtins.toJSON {
   #   profile_name = "pkcs11";
@@ -34,7 +36,7 @@ in {
     };
   };
 
-  environment.persistence = mkIf impermanence.enable {
+  environment.persistence = mkIf (impermanence.enable && local.enable) {
     "/persist".directories = [
       "/var/lib/tpm2-pkcs11"
       "/var/lib/tpm2-tss/system/keystore"
