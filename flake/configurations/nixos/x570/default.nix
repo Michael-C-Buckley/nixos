@@ -1,8 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{inputs, ...}: {
   imports = [
     inputs.nix-secrets.nixosModules.x570
     ./hardware
@@ -15,27 +11,6 @@
     stateVersion = "25.05";
     impermanence.enable = true;
     zfs.enable = true;
-  };
-
-  environment.systemPackages = with pkgs; [
-    talosctl
-    devenv
-  ];
-
-  programs = {
-    cosmic.enable = true;
-    hyprland.enable = true;
-  };
-
-  features = {
-    michael = {
-      extendedGraphical = true;
-      hyprland.enable = true;
-    };
-    autoLogin = true;
-    displayManager = "greetd";
-    gaming.enable = true;
-    pkgs.fonts = true;
   };
 
   services = {
