@@ -7,6 +7,7 @@
   ];
 
   system = {
+    builder.enable = true;
     preset = "desktop";
     stateVersion = "25.05";
     impermanence.enable = true;
