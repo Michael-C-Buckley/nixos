@@ -24,10 +24,6 @@
     sops-nix.url = "github:Mic92/sops-nix";
 
     impermanence.url = "github:nix-community/impermanence"; # has no inputs
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     nvf.url = "github:notashelf/nvf";
     nil.follows = "nvf/nil";

@@ -12,6 +12,8 @@
     extraModulePackages = [];
   };
 
+  swapDevices = [];
+
   networking.useDHCP = true;
   nixpkgs.hostPlatform = "aarch64-linux";
 }
