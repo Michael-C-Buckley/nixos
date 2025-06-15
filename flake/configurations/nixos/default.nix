@@ -24,10 +24,6 @@ _: {
       system = "x86_64-linux";
       configuration = ./t14;
     };
-    "vm" = {
-      system = "x86_64-linux";
-      configuration = ./vm;
-    };
     "wsl" = {
       system = "x86_64-linux";
       configuration = ./wsl;

@@ -6,7 +6,6 @@
 }: {
   imports = [
     inputs.impermanence.nixosModules.impermanence
-    ./disko
     ./impermanence
     ./gluster.nix
     # ./nfs.nix
