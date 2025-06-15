@@ -9,7 +9,7 @@
   time.timeZone = "America/New_York";
 
   system = {
-    boot.uuid = "";
+    boot.uuid = "12CE-A600";
     stateVersion = "25.11";
     preset = "cloud";
     zfs.enable = true;

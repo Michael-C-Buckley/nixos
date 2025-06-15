@@ -43,7 +43,7 @@ zpool create -f $ZFS_OPTS zroot /dev/sda3
 # Mount the drives and prepare for the install
 mkdir -p /mnt
 mkdir -p /mnt/{cache,nix,persist,tmp,boot}
-mount /dev/sda3 /mnt/boot
+mount /dev/sda1 /mnt/boot
 
 # This create the zvols used in this cluster
 zfs create -o mountpoint=none zroot/$hostname
