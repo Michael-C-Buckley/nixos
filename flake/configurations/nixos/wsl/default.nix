@@ -5,12 +5,12 @@
     ./wsl.nix
   ];
 
-  networking = {
-    hostId = "e07f0101";
-    nameservers = ["1.1.1.1" "8.8.8.8" "9.9.9.9"];
-  };
+  networking.hostId = "e07f0101";
 
-  services.k3s.enable = true;
+  services = {
+    k3s.enable = true;
+    unbound.enable = true;
+  };
 
   system = {
     preset = "wsl";
