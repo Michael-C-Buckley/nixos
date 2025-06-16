@@ -17,6 +17,8 @@
     stateVersion = "24.11";
   };
 
+  programs.winbox.enable = true;
+
   virtualisation.docker = {
     enable = true;
     kata.enable = false; # Needs debugging
