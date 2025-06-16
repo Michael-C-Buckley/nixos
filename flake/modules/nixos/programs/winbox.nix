@@ -2,6 +2,7 @@
   config,
   pkgs,
   system,
+  lib,
   ...
 }: let
   inherit (config.features) graphics;
@@ -10,7 +11,7 @@
   useWinbox = graphics && netTools && system == "x86_64-linux";
 in {
   programs.winbox = {
-    enable = useWinbox;
+    enable = lib.mkDefault useWinbox;
     package = pkgs.winbox4;
     openFirewall = useWinbox;
   };
