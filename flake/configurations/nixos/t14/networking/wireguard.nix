@@ -18,6 +18,10 @@ in {
       name = "mt1";
       ipAddresses = ["192.168.78.2/27"];
     };
+    "wireguard-mt1-v6" = mkInterface {
+      name = "mt1v6";
+      ipAddresses = ["192.168.78.34/27"];
+    };
     "wireguard-mt3" = mkInterface {
       name = "mt3";
       ipAddresses = ["192.168.62.2/27"];
