@@ -10,7 +10,10 @@
 }:
 lib.mkIf config.system.impermanence.enable {
   # To make sure keys are available for sops decryption
-  fileSystems."/etc/ssh".neededForBoot = true;
+  fileSystems = {
+    "/etc/ssh".neededForBoot = true;
+    "/etc/sops".neededForBoot = true;
+  };
 
   environment.persistence."/cache" = {
     hideMounts = true;
@@ -36,6 +39,7 @@ lib.mkIf config.system.impermanence.enable {
     hideMounts = true;
     directories = [
       "/etc/ssh"
+      "/etc/sops"
       "/etc/nix/secrets"
       "/var/log" # systemd journal is stored in /var/log/journal
       "/var/lib/bluetooth"

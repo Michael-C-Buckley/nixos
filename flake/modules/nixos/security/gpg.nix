@@ -14,6 +14,11 @@
     opensc
   ];
 
+  tpmPkgs = with pkgs; [
+    p11-kit
+    gnupg-pkcs11-scd
+  ];
+
   yubikeyPkgs = with pkgs; [
     yubikey-manager
     yubikey-personalization
@@ -22,7 +27,10 @@
   ];
 in {
   environment = {
-    systemPackages = gpgPkgs ++ optionals notCloud yubikeyPkgs;
+    systemPackages =
+      gpgPkgs
+      ++ optionals notCloud yubikeyPkgs
+      ++ optionals config.security.tpm2.enable tpmPkgs;
     etc."pkcs11/pkcs11.conf".text = ''
       module: ${pkgs.opensc}/lib/opensc-pkcs11.so
       critical: yes

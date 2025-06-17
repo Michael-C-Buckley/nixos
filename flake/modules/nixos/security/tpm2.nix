@@ -2,6 +2,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   inherit (lib) mkIf;
@@ -36,8 +37,9 @@ in {
     };
   };
 
-  environment.persistence = mkIf (impermanence.enable && local.enable) {
-    "/persist".directories = [
+  environment = mkIf (impermanence.enable && local.enable) {
+    systemPackages = [pkgs.ssh-tpm-agent];
+    persistence."/persist".directories = [
       "/var/lib/tpm2-pkcs11"
       "/var/lib/tpm2-tss/system/keystore"
       "/etc/tpm2-tss"
