@@ -2,13 +2,17 @@
   description = "Michael's System Flake";
 
   inputs = {
-    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
-    nixos-wsl.url = "github:nix-community/nixos-wsl/main";
+    #nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-secrets.url = "git+ssh://git@github.com/michael-c-buckley/nix-secrets";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     systems.url = "github:nix-systems/default";
-    lupinix.url = "github:Michael-C-Buckley/lupinix/noDash";
+
+    nixos-wsl = {
+      url = "github:nix-community/nixos-wsl/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -21,11 +25,15 @@
     };
 
     microvm.url = "github:astro/microvm.nix";
-    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    impermanence.url = "github:nix-community/impermanence"; # has no inputs
-
-    nvf.url = "github:notashelf/nvf";
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nil.follows = "nvf/nil";
 
     nix4vscode = {
@@ -37,6 +45,10 @@
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # No Nixpkgs Inputs
+    lupinix.url = "github:Michael-C-Buckley/lupinix/noDash";
+    impermanence.url = "github:nix-community/impermanence"; # has no inputs
   };
 
   outputs = {flake-parts, ...} @ inputs:
