@@ -18,6 +18,7 @@ in {
     programs = {
       cosmic.enable = true;
       hyprland.enable = true;
+      niri.enable = true;
     };
 
     features = {
