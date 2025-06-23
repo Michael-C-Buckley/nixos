@@ -3,7 +3,7 @@
 
   inputs = {
     #nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-secrets.url = "git+ssh://git@github.com/michael-c-buckley/nix-secrets";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
