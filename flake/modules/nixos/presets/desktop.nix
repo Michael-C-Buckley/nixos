@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkDefault mkIf;
   inherit (config.system) preset;
 in {
   # These are shared on my systems, laptops get everything plus more
@@ -16,20 +16,20 @@ in {
     ];
 
     programs = {
-      cosmic.enable = true;
-      hyprland.enable = true;
-      niri.enable = true;
+      cosmic.enable = mkDefault true;
+      hyprland.enable = mkDefault true;
+      niri.enable = mkDefault true;
     };
 
     features = {
       michael = {
-        extendedGraphical = true;
-        hyprland.enable = true;
+        extendedGraphical = mkDefault true;
+        hyprland.enable = mkDefault true;
       };
-      autoLogin = true;
-      displayManager = "greetd";
-      gaming.enable = true;
-      pkgs.fonts = true;
+      autoLogin = mkDefault true;
+      displayManager = mkDefault "greetd";
+      gaming.enable = mkDefault true;
+      pkgs.fonts = mkDefault true;
     };
   };
 }
