@@ -3,6 +3,7 @@
 {
   inputs,
   pkgs,
+  lib,
   ...
 }: {
   imports = [
@@ -24,8 +25,6 @@
 
   environment.systemPackages = with pkgs; [
     brightnessctl
-    talosctl
-    devenv
     nixos-anywhere
 
     # Storage tools
@@ -45,7 +44,7 @@
     };
     autoLogin = false;
     displayManager = "greetd";
-    gaming.enable = false;
+    gaming.enable = lib.mkForce false; # It does not need steam et al
     pkgs.fonts = true;
   };
 
