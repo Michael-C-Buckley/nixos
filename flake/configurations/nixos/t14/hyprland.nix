@@ -1,5 +1,6 @@
 _: let
   wpDir = "/home/michael/Pictures/wallpapers";
+  paper1 = "${wpDir}/deviant/sky_light_by_bisbiswas_de3r7zn.jpg";
 in {
   hjem.users.michael = {
     programs.hyprland.extraConfig = ''
@@ -12,8 +13,8 @@ in {
 
     files = {
       ".config/hypr/hyprpaper.conf".text = ''
-        preload = ${wpDir}/sundown-over-water.jpg
-        wallpaper = , ${wpDir}/sundown-over-water.jpg
+        preload = ${paper1}
+        wallpaper = , ${paper1}
       '';
     };
   };
