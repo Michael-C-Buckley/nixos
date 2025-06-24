@@ -3,7 +3,6 @@
 {
   inputs,
   pkgs,
-  lib,
   ...
 }: {
   imports = [
@@ -44,7 +43,7 @@
     };
     autoLogin = false;
     displayManager = "greetd";
-    gaming.enable = lib.mkForce false; # It does not need steam et al
+    gaming.enable = false;
     pkgs.fonts = true;
   };
 
