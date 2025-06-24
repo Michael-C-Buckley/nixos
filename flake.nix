@@ -20,7 +20,7 @@
     };
 
     hjem = {
-      url = "github:feel-co/hjem";
+      url = "github:Michael-C-Buckley/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
