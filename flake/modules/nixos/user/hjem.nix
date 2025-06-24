@@ -4,7 +4,6 @@
   pkgs,
   lib,
   inputs,
-  inputs',
   ...
 }: let
   inherit (lib) attrValues mkOverride;
@@ -26,7 +25,7 @@ in {
     clobberByDefault = true;
     extraModules = attrValues self.userModules;
 
-    linker = inputs'.hjem.packages.smfh;
+    #linker = inputs'.hjem.packages.smfh;
 
     users.root = {
       enable = true;
