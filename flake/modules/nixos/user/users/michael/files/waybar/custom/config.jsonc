@@ -1,7 +1,7 @@
 {
   "layer": "top",
   "position": "top",
-  "modules-left": ["clock", "memory", "cpu", "temperature", "custom/powerDraw"],
+  "modules-left": ["clock", "temperature", "custom/powerDraw"],
   "modules-center": ["hyprland/workspaces", "mpd"],
   "modules-right": [
     // "idle_inhibitor",
@@ -100,10 +100,10 @@
     "on-click": "sleep 1 && ~/.config/waybar/scripts/colorpicker.sh"
   },
   "bluetooth": {
-    "format-on": "󰂰",
-    "format-off": "",
-    "format-disabled": "󰂲",
-    "format-connected": "󰂴",
+    "format-on": "󰂰 ",
+    "format-off": " ",
+    "format-disabled": "󰂲 ",
+    "format-connected": "󰂴 ",
     "format-connected-battery": "{device_battery_percentage}% 󰂴",
     "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
