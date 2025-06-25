@@ -70,6 +70,19 @@ in {
       };
     };
 
+    rum.misc.gtk = {
+      enable = true;
+      packages = with pkgs; [
+        nordzy-cursor-theme
+        gruvbox-dark-icons-gtk
+        arc-theme
+      ];
+      settings = {
+        theme-name = "Arc-Dark";
+        application-prefer-dark-theme = true;
+      };
+    };
+
     appearance = {
       cursor = {
         manage = extGfx;
@@ -79,7 +92,7 @@ in {
         package = pkgs.nordzy-cursor-theme;
       };
       gtk = {
-        manage = extGfx;
+        manage = false;
         theme.name = "Materia-dark";
         theme.package = pkgs.materia-theme;
         iconTheme.name = "Gruvbox Dark";
