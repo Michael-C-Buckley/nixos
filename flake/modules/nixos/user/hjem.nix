@@ -23,7 +23,7 @@ in {
 
   hjem = {
     clobberByDefault = true;
-    extraModules = attrValues self.userModules;
+    extraModules = attrValues self.userModules ++ [inputs.hjem-rum.hjemModules.default];
 
     #linker = inputs'.hjem.packages.smfh;
 

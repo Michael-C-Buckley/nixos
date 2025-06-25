@@ -2,7 +2,6 @@
   description = "Michael's System Flake";
 
   inputs = {
-    #nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-secrets.url = "git+ssh://git@github.com/michael-c-buckley/nix-secrets";
 
@@ -22,6 +21,14 @@
     hjem = {
       url = "github:Michael-C-Buckley/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hjem-rum = {
+      url = "github:snugnug/hjem-rum";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        hjem.follows = "hjem";
+      };
     };
 
     microvm.url = "github:astro/microvm.nix";
