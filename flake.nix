@@ -2,7 +2,7 @@
   description = "Michael's System Flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable?shallow=1";
     nix-secrets.url = "git+ssh://git@github.com/michael-c-buckley/nix-secrets";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
