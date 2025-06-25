@@ -7,7 +7,7 @@
   inherit (lib) mapAttrs mapAttrsToList;
 in {
   nix = {
-    package = pkgs.nixVersions.latest;
+    package = pkgs.nixVersions.nix_2_29;
 
     # Disable channels and add the inputs to the registry
     channel.enable = false;
