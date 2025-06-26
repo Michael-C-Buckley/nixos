@@ -71,7 +71,7 @@ in {
     };
 
     rum.misc.gtk = {
-      enable = true;
+      enable = extGfx;
       packages = with pkgs; [
         nordzy-cursor-theme
         gruvbox-dark-icons-gtk
@@ -90,13 +90,6 @@ in {
         xtheme = "Nordzy-cursors-white";
         size = 28;
         package = pkgs.nordzy-cursor-theme;
-      };
-      gtk = {
-        manage = false;
-        theme.name = "Materia-dark";
-        theme.package = pkgs.materia-theme;
-        iconTheme.name = "Gruvbox Dark";
-        iconTheme.package = pkgs.gruvbox-dark-icons-gtk;
       };
     };
   };
