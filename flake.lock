@@ -341,11 +341,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1750853932,
-        "narHash": "sha256-mouFIv5Dsjf3+EHjpCh3eSBfxoBVVd0SDr/v2pnV9SU=",
+        "lastModified": 1750936443,
+        "narHash": "sha256-AlMweLkGIBUPahV6D9Kn2R8m2n63mY6vgSae5ACuQKk=",
         "ref": "refs/heads/master",
-        "rev": "f8718bf54768f7901014992fd7b7143ec486cb15",
-        "revCount": 220,
+        "rev": "304434dac5f9b18fea95c0549d31a017aee0d63c",
+        "revCount": 222,
         "type": "git",
         "url": "ssh://git@github.com/michael-c-buckley/nix-secrets"
       },
