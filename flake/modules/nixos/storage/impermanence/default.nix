@@ -39,6 +39,7 @@ lib.mkIf config.system.impermanence.enable {
     hideMounts = true;
     directories = [
       "/etc/ssh"
+      "/etc/nixos"
       "/etc/sops"
       "/etc/nix/secrets"
       "/var/log" # systemd journal is stored in /var/log/journal
