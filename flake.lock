@@ -168,15 +168,16 @@
       "locked": {
         "lastModified": 1750771069,
         "narHash": "sha256-aTV2Y3EXEFlJDDgK7bKmV6o1jkZs0aNDqyo7yPP4iag=",
-        "owner": "Michael-C-Buckley",
-        "repo": "hjem",
+        "ref": "refs/heads/main",
         "rev": "19c77d391a9d89fe0b44ec7a1204e730bad9c099",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/Michael-C-Buckley/hjem"
       },
       "original": {
-        "owner": "Michael-C-Buckley",
-        "repo": "hjem",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/Michael-C-Buckley/hjem"
       }
     },
     "hjem-rum": {
@@ -193,15 +194,16 @@
       "locked": {
         "lastModified": 1750378130,
         "narHash": "sha256-WsZvQJi0++puVPfnoz77dnBkOK7jCTba1K3/3VUIloo=",
-        "owner": "snugnug",
-        "repo": "hjem-rum",
+        "ref": "refs/heads/main",
         "rev": "3c4df802cc07eec156e53b285859458cf3cb63d4",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/snugnug/hjem-rum"
       },
       "original": {
-        "owner": "snugnug",
-        "repo": "hjem-rum",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/snugnug/hjem-rum"
       }
     },
     "home-manager": {
@@ -213,30 +215,32 @@
       "locked": {
         "lastModified": 1750973805,
         "narHash": "sha256-BZXgag7I0rnL/HMHAsBz3tQrfKAibpY2vovexl2lS+Y=",
-        "owner": "nix-community",
-        "repo": "home-manager",
+        "ref": "refs/heads/master",
         "rev": "080e8b48b0318b38143d5865de9334f46d51fce3",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nix-community/home-manager"
       },
       "original": {
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nix-community/home-manager"
       }
     },
     "impermanence": {
       "locked": {
         "lastModified": 1737831083,
         "narHash": "sha256-LJggUHbpyeDvNagTUrdhe/pRVp4pnS6wVKALS782gRI=",
-        "owner": "nix-community",
-        "repo": "impermanence",
+        "ref": "refs/heads/master",
         "rev": "4b3e914cdf97a5b536a889e939fb2fd2b043a170",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nix-community/impermanence"
       },
       "original": {
-        "owner": "nix-community",
-        "repo": "impermanence",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/nix-community/impermanence"
       }
     },
     "lupinix": {
@@ -246,16 +250,17 @@
       "locked": {
         "lastModified": 1749050116,
         "narHash": "sha256-5B14bzhDpKbZT0r54VfKk2judWMWkwyjNdUgCZjCtUk=",
-        "owner": "Michael-C-Buckley",
-        "repo": "lupinix",
+        "ref": "noDash",
         "rev": "e708d1d7f0fcd6abebf542feb3e1f924616433c2",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/Michael-C-Buckley/lupinix"
       },
       "original": {
-        "owner": "Michael-C-Buckley",
         "ref": "noDash",
-        "repo": "lupinix",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/Michael-C-Buckley/lupinix"
       }
     },
     "microvm": {
@@ -658,15 +663,16 @@
       "locked": {
         "lastModified": 1750119275,
         "narHash": "sha256-Rr7Pooz9zQbhdVxux16h7URa6mA80Pb/G07T4lHvh0M=",
-        "owner": "Mic92",
-        "repo": "sops-nix",
+        "ref": "refs/heads/master",
         "rev": "77c423a03b9b2b79709ea2cb63336312e78b72e2",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/Mic92/sops-nix"
       },
       "original": {
-        "owner": "Mic92",
-        "repo": "sops-nix",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/Mic92/sops-nix"
       }
     },
     "spectrum": {
