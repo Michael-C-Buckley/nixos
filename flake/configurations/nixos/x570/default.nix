@@ -17,14 +17,13 @@
   services = {
     flatpak.enable = true;
     unbound.enable = true;
+    podman.enable = true;
   };
 
   security.tpm2.enable = true;
 
   virtualisation = {
-    docker.enable = true;
     incus.enable = true;
-    libvirtd.enable = true;
     gns3.enable = true;
   };
 }
