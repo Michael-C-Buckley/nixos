@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: let
   inherit (lib) mkDefault mkIf;
@@ -11,10 +10,6 @@ in {
   config = mkIf (preset
     == "desktop"
     || preset == "laptop") {
-    environment.systemPackages = with pkgs; [
-      devenv
-    ];
-
     programs = {
       cosmic.enable = mkDefault true;
       hyprland.enable = mkDefault true;
