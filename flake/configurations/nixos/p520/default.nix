@@ -10,6 +10,8 @@ _: {
     incus.enable = true;
   };
 
+  security.tpm2.enable = true;
+
   system = {
     impermanence.enable = true;
     builder.enable = true;
