@@ -26,6 +26,7 @@ lib.mkIf config.system.impermanence.enable {
       ".cache/pip"
       ".cache/thumbnails"
       ".cache/cosmic"
+      ".cache/nix"
     ];
     directories = [
       "/var/lib/libvirt"
