@@ -8,7 +8,6 @@
   networking.hostId = "e07f0101";
 
   services = {
-    k3s.enable = true;
     unbound.enable = true;
   };
 
