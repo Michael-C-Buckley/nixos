@@ -17,7 +17,6 @@
   services = {
     flatpak.enable = true;
     unbound.enable = true;
-    podman.enable = true;
   };
 
   security.tpm2.enable = true;
@@ -25,5 +24,6 @@
   virtualisation = {
     incus.enable = true;
     gns3.enable = true;
+    podman.enable = true;
   };
 }
