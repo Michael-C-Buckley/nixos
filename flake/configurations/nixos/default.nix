@@ -12,6 +12,10 @@ _: {
       system = "x86_64-linux";
       configuration = ./p520;
     };
+    "sff" = {
+      system = "x86_64-linux";
+      configuration = ./sff;
+    };
     "ssk" = {
       system = "x86_64-linux";
       configuration = ./ssk;
