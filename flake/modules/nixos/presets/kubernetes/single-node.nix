@@ -7,13 +7,20 @@
   ...
 }: let
   inherit (lib) mkDefault mkEnableOption mkIf;
-  local = config.presets.kubernetes.singleNode;
+  inherit (config.presets.kubernetes) singleNode;
+  imperm = config.system.impermanence.enable;
 in {
   options.presets.kubernetes = {
     singleNode = mkEnableOption "Enable and define the preset for a single-node Kube instance.";
   };
 
-  config = mkIf local {
+  config = mkIf singleNode {
+    networking.firewall.allowedTCPPorts = [
+      80
+      443
+      6443
+    ];
+
     virtualisation.containerd = {
       enable = true;
       settings = {
@@ -41,13 +48,25 @@ in {
       '';
     };
 
-    environment.systemPackages = with pkgs; [
-      cfssl
-      openssl
-      kubernetes
-      kubernetes-helm
-      kubectl
-      kompose
-    ];
+    environment = {
+      persistence = mkIf imperm {
+        "/persist".directories = [
+          "/var/lib/cfssl"
+          "/var/lib/cni"
+          "/var/lib/containerd"
+          "/var/lib/etcd"
+          "/var/lib/kubelet"
+          "/var/lib/kubernetes"
+        ];
+      };
+      systemPackages = with pkgs; [
+        cfssl
+        openssl
+        kubernetes
+        kubernetes-helm
+        kubectl
+        kompose
+      ];
+    };
   };
 }
