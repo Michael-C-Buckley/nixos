@@ -1,7 +1,6 @@
 # 1 has been temporarily moved to a separate location
 _: {
   imports = [
-    # ./kubernetes
     ./networking/routing.nix
     ./hardware.nix
   ];
@@ -10,6 +9,8 @@ _: {
     loopback.ipv4 = "192.168.78.140";
     hostId = "fb020cc1";
   };
+
+  presets.kubernetes.singleNode = true;
 
   system = {
     stateVersion = "25.11";
