@@ -30,6 +30,7 @@ in {
       default = pkgs.pinentry-curses;
       description = "Which pinentry package to use with GnuPG";
     };
+    enableExtraSocket = mkEnableOption "Add the extra socket required for agent forwarding.";
   };
 
   config = mkIf local.enable {
@@ -48,6 +49,11 @@ in {
         + (
           if local.enableSSHsupport
           then "enable-ssh-support"
+          else ""
+        )
+        + (
+          if local.enableExtraSocket
+          then "extra-socket"
           else ""
         );
 
