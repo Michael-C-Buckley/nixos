@@ -15,6 +15,12 @@
     };
     kernelModules = ["kvm-intel" "virtiofs" "9p" "9pnet_virtio"];
     extraModulePackages = [];
+    zfs.extraPools = ["zdata"];
+  };
+
+  fileSystems."/storage" = {
+    device = "zdata/storage";
+    fsType = "zfs";
   };
 
   nixpkgs.hostPlatform = "x86_64-linux";

@@ -11,6 +11,8 @@ _: {
   };
 
   presets.kubernetes.singleNode = true;
+  # WIP: Add this to a kube option
+  services.kubernetes.masterAddress = "192.168.65.106";
 
   system = {
     stateVersion = "25.11";
