@@ -19,6 +19,7 @@
         extraPackages = with pkgs; [
           intel-compute-runtime
           intel-graphics-compiler
+          intel-vaapi-driver
           intel-ocl
           ocl-icd
         ];
