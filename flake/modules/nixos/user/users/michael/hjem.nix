@@ -8,7 +8,7 @@
 }: let
   inherit (config) packageSets;
   inherit (config.features.michael) minimalGraphical extendedGraphical;
-  inherit (lib) mkIf mkDefault optionals mkOverride;
+  inherit (lib) mkDefault optionals mkOverride;
   local = config.hjem.users.michael;
   inherit (local) fileList;
 
