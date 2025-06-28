@@ -32,6 +32,7 @@
     duf
     bat
     killall
+    lm_sensors
     du-dust
     atop
     btop
