@@ -18,11 +18,6 @@
     zfs.extraPools = ["zdata"];
   };
 
-  fileSystems."/storage" = {
-    device = "zdata/storage";
-    fsType = "zfs";
-  };
-
   nixpkgs.hostPlatform = "x86_64-linux";
   hardware = {
     cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
