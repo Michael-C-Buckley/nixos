@@ -345,13 +345,15 @@
     },
     "nix-secrets": {
       "inputs": {
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
-        "lastModified": 1751029517,
-        "narHash": "sha256-g5GZUvK6K3zLcwTOT76zgI/WJYIgIGltO29dIgKP2RI=",
+        "lastModified": 1751123695,
+        "narHash": "sha256-vH0UFSCzb84tapxIJ7YMTEcrGty3a3I2ZKcZb3FB4as=",
         "ref": "refs/heads/master",
-        "rev": "c15c50688167d14a18fd000c6fbcff96440c49d7",
+        "rev": "91f77b8dd53421adce9baeaecbf1a6aeaa6d313f",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/michael-c-buckley/nix-secrets"
@@ -510,22 +512,6 @@
       "locked": {
         "lastModified": 1750776420,
         "narHash": "sha256-/CG+w0o0oJ5itVklOoLbdn2dGB0wbZVOoDm4np6w09A=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "30a61f056ac492e3b7cdcb69c1e6abdcf00e39cf",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
-        "lastModified": 1750776420,
-        "narHash": "sha256-/CG+w0o0oJ5itVklOoLbdn2dGB0wbZVOoDm4np6w09A=",
         "ref": "nixos-unstable",
         "rev": "30a61f056ac492e3b7cdcb69c1e6abdcf00e39cf",
         "shallow": true,
@@ -582,7 +568,7 @@
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nix4vscode": "nix4vscode",
         "nixos-wsl": "nixos-wsl",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_2",
         "nvf": "nvf",
         "sops-nix": "sops-nix",
         "systems": "systems_7"

@@ -3,7 +3,10 @@
 
   inputs = {
     nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
-    nix-secrets.url = "git+ssh://git@github.com/michael-c-buckley/nix-secrets?shallow=1";
+    nix-secrets = {
+      url = "git+ssh://git@github.com/michael-c-buckley/nix-secrets?shallow=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     flake-parts.url = "git+https://github.com/hercules-ci/flake-parts?shallow=1";
     systems.url = "github:nix-systems/default";
