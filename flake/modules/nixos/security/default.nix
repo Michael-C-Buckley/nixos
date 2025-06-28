@@ -42,6 +42,7 @@ in {
       settings = {
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
+        streamLocalBindUnlink = true;
       };
     };
   };
