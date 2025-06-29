@@ -35,16 +35,10 @@ in {
 
   config = mkIf local.enable {
     fileList = {
-      ".gnupg/gpg.conf".text =
-        ''
-          auto-key-locate local
-          auto-key-retrieve
-        ''
-        + (
-          if local.enableExtraSocket
-          then "extra-socket"
-          else ""
-        );
+      ".gnupg/gpg.conf".text = ''
+        auto-key-locate local
+        auto-key-retrieve
+      '';
 
       ".gnupg/gpg-agent.conf".text =
         ''
@@ -54,8 +48,17 @@ in {
         ''
         + (
           if local.enableSSHsupport
-          then "enable-ssh-support"
-          else ""
+          then ''
+            enable-ssh-support
+          ''
+          else ''''
+        )
+        + (
+          if local.enableExtraSocket
+          then ''
+            extra-socket
+          ''
+          else ''''
         );
 
       ".gnupg/scdaemon.conf".text = ''
