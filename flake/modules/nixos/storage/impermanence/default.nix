@@ -43,6 +43,7 @@ lib.mkIf config.system.impermanence.enable {
       "/etc/nixos"
       "/etc/sops"
       "/etc/nix/secrets"
+      "/etc/wireguard"
       "/var/log" # systemd journal is stored in /var/log/journal
       "/var/lib/bluetooth"
       "/var/lib/nixos" # for persisting user uids and gids
