@@ -38,7 +38,10 @@ in {
   };
 
   environment = mkIf (impermanence.enable && local.enable) {
-    systemPackages = [pkgs.ssh-tpm-agent];
+    systemPackages = with pkgs; [
+      ssh-tpm-agent
+      tpm2-tools
+    ];
     persistence."/persist".directories = [
       "/var/lib/tpm2-pkcs11"
       "/var/lib/tpm2-tss/system/keystore"
