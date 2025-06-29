@@ -26,6 +26,7 @@
     ++ optionals extendedGraphical packageSets.extendedGraphical;
 in {
   imports = [
+    ./impermanence.nix
     ./programs/hyprland
     ./vscode.nix
   ];
