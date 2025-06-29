@@ -4,12 +4,15 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  inherit (config.hardware.graphics) useIntel;
+  inherit (lib) mkEnableOption mkIf;
+in {
   options.hardware.graphics = {
-    useIntel = lib.mkEnableOption "Enable and configure standard Intel Graphics options.";
+    useIntel = mkEnableOption "Enable and configure standard Intel Graphics options.";
   };
 
-  config = {
+  config = mkIf useIntel {
     boot.kernelModules = ["i915"];
 
     hardware = {
