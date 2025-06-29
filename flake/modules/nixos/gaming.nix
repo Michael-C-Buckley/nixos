@@ -22,7 +22,10 @@ in {
     };
     environment.persistence."/cache".users = mkIf impermanence.enable {
       # WIP: Add logic for all users
-      michael.directories = [".steam"];
+      michael.directories = [
+        ".steam"
+        ".local/share/Steam"
+      ];
     };
   };
 }
