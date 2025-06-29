@@ -55,7 +55,6 @@ in {
 
     environment.gnupg = {
       enable = true;
-      enableExtraSocket = true;
       enableSSHsupport = true;
     };
 
