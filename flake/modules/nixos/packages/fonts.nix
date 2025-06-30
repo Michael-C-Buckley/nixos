@@ -17,7 +17,7 @@
   extraFonts = with pkgs; [
     dejavu_fonts
     vista-fonts
-    #font-awesome
+    font-awesome
   ];
 in {
   fonts.packages =

@@ -72,7 +72,7 @@ window#waybar {
 }
 
 #battery.charging {
-    color: white;
+    color: green;
 }
 
 @keyframes blink {
