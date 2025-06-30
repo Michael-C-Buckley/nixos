@@ -50,8 +50,8 @@ in {
   networking = {
     nftables.enable = true;
     firewall = {
-      enable = true;
-      allowPing = true;
+      enable = mkDefault true;
+      allowPing = mkDefault true;
       allowedTCPPorts = [22 53];
       allowedUDPPorts = [53];
     };
