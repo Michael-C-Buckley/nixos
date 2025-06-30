@@ -44,7 +44,7 @@ in {
       };
       flannel.enable = true;
       kubelet.extraOpts = ''
-        --fail-swap-on=false --resolv-conf=/run/systemd/resolve/resolv.conf
+        --fail-swap-on=false
       '';
     };
 
