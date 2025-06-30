@@ -23,7 +23,6 @@ in {
       };
       autoLogin = mkDefault true;
       displayManager = mkDefault "greetd";
-      gaming.enable = mkDefault true;
       pkgs.fonts = mkDefault true;
     };
   };

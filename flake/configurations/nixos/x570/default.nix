@@ -6,6 +6,8 @@
     ./hyprland.nix
   ];
 
+  features.gaming.enable = true;
+
   system = {
     builder.enable = true;
     preset = "desktop";
