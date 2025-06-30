@@ -8,6 +8,7 @@ _: {
     hostName = "sff";
     loopback.ipv4 = "192.168.78.140";
     hostId = "fb020cc1";
+    firewall.enable = false;
   };
 
   presets.kubernetes.singleNode = true;
