@@ -56,11 +56,6 @@ window#waybar {
 }
 #backlight,
 #idle_inhibitor,
-#custom-sl,
-#custom-spotify {
-    padding: 0 6px;
-    margin: 0 5px;
-}
 
 #clock {
     background-color: transparent;
@@ -143,11 +138,3 @@ window#waybar {
     background-color: red;
 }
 
-#custom-spotify.playing {
-    border-bottom: none;
-    border-bottom: 3px solid @color2;
-}
-
-#custom-spotify.paused {
-    border-bottom: 3px solid @color1;
-}

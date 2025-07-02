@@ -6,7 +6,7 @@
 
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["tray", "pulseaudio", "bluetooth", "battery"],
+    "modules-right": ["tray", "pulseaudio", "battery"],
 
     "hyprland/workspaces": {
     "format": "<span font='13px'>{icon}</span>",
@@ -79,15 +79,6 @@
         "format-plugged": "<span font='15px'> 󰠠 {icon}</span>",
         // "format-alt": "{time} {icon}",
         "format-icons": ["󰁻", "󰁼", "󰁾", "󰂀", "󰂂", "󰁹"]
-    },
-
-    "bluetooth": {
-        "format": "<span font='15px'>\udb80\udcaf</span>",
-        "format-disabled": "<span font='15px'>\udb80\udcb2</span>",
-        "format-connected": "<span font='15px'>\udb80\udcb1</span>",
-        "tooltip-format": "{controller_alias}\t{controller_address}",
-        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
     },
 
     "tray": {
