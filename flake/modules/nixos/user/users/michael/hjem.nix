@@ -27,7 +27,6 @@
 in {
   imports = [
     ./impermanence.nix
-    ./programs/hyprland
     ./vscode.nix
   ];
 
