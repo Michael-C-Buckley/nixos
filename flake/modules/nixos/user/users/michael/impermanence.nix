@@ -26,6 +26,7 @@ in
           ".local/share/.cargo"
           ".local/share/.rustup"
           ".local/share/fish"
+          ".local/share/flatpak/"
         ];
       };
       "/persist".users.michael = {
