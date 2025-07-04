@@ -16,6 +16,8 @@ in {
       niri.enable = mkDefault true;
     };
 
+    services.flatpak.enable = true;
+
     features = {
       michael = {
         extendedGraphical = mkDefault true;

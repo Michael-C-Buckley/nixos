@@ -31,8 +31,10 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  # For sound
-  security.rtkit.enable = true;
+  security = {
+    rtkit.enable = true;
+    tpm2.enable = true;
+  };
 
   swapDevices = [];
 }
