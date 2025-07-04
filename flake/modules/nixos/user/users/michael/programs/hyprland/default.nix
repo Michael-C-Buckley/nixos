@@ -45,12 +45,12 @@
       "hyprpaper &"
       "nm-applet --indicator &"
       "blueman-applet &"
-      "waybar &"
       "dunst &"
       "gammastep -l 36:-78 -t 6500k:1800k"
       "[workspace 11 silent] $terminal"
       "[workspace 12 silent] signal-desktop"
       "[workspace 12 silent] materialgram"
+      "systemctl --user start waybar"
     ];
   };
 }
