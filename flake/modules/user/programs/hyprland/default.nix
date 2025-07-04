@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkEnableOption mkOption mkIf concatStringsSep;
+  inherit (lib) mkDefault mkEnableOption mkOption mkIf concatStringsSep;
   inherit (lib.types) lines str package listOf;
   cfg = config.programs.hyprland;
 
@@ -52,14 +52,13 @@ in {
     packageList = mkIf cfg.enable [cfg.package];
 
     fileList = {
-      ".config/hypr/hyprland.conf".text =
-        cfg.initialConfig
+      ".config/hypr/hyprland.conf".text = mkDefault (cfg.initialConfig
         + fuse "exec-once=" cfg.execList
         + fuse "bind=" cfg.bindList
         + fuse "binde=" cfg.bindeList
         + fuse "bindm=" cfg.bindmList
         + cfg.extraConfig
-        + fuse "source=" cfg.sourceList;
+        + fuse "source=" cfg.sourceList);
     };
   };
 }
