@@ -16,13 +16,6 @@
     zfs.enable = true;
   };
 
-  services = {
-    flatpak.enable = true;
-    unbound.enable = true;
-  };
-
-  security.tpm2.enable = true;
-
   virtualisation = {
     incus.enable = true;
     gns3.enable = true;

@@ -5,6 +5,11 @@
 - Finish style consistency of pointers and themes
 - Nebula networking
 
+## UI
+
+- Waybar Tray to BT/Network
+- Waybar Battery
+
 ## Restructuring
 
 - Remove files for my user configs
