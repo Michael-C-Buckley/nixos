@@ -58,6 +58,9 @@ in {
         "$mod ALT, up, resizeactive, 0 -200"
         "$mod ALT, down, resizeactive, 0 200"
 
+        # Info
+        "$mod, H, exec, hyprctl dispatch exec '[float;center;size 1400 1000]ghostty --command=btop'"
+
         # System Control
         "$mod CTRL, M, exit,"
         "$mod, L, exec, hyprlock"
