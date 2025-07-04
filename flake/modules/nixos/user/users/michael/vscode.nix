@@ -1,18 +1,22 @@
 {
   config,
   pkgs,
+  lib,
   ...
-}: {
+}: let
+  inherit (lib) mkDefault;
+  inherit (pkgs) vscodium-fhs vscode-extensions;
+in {
   hjem.users.michael.programs.vscode = {
-    enable = config.features.michael.extendedGraphical;
-    enableRemote = true;
-    package = pkgs.vscodium-fhs;
+    enable = mkDefault config.features.michael.extendedGraphical;
+    enableRemote = mkDefault true;
+    package = mkDefault vscodium-fhs;
 
-    msExtensions = with pkgs.vscode-extensions; [
+    msExtensions = with vscode-extensions; [
       ms-vsliveshare.vsliveshare
     ];
 
-    extensions = with pkgs.vscode-extensions; [
+    extensions = with vscode-extensions; [
       mechatroner.rainbow-csv
       streetsidesoftware.code-spell-checker
       formulahendry.auto-rename-tag # Matches XML tags while editing
