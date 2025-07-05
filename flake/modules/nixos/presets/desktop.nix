@@ -16,7 +16,15 @@ in {
       niri.enable = mkDefault true;
     };
 
-    services.flatpak.enable = true;
+    services.flatpak = {
+      enable = true;
+      apps = [
+        {
+          remote = "flathub";
+          name = "com.vscodium.codium";
+        }
+      ];
+    };
 
     features = {
       michael = {
