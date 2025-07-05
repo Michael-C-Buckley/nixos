@@ -69,6 +69,7 @@ in {
       signal.enable = extGfx;
       discord.enable = extGfx;
       telegram.enable = extGfx;
+      vscode.enable = extGfx;
       nvf = {
         enable = true;
         package = self'.packages."nvf${nvfVer}";

@@ -10,12 +10,17 @@
 }: let
   inherit (lib) mkIf;
   inherit (config.system) impermanence;
+  privateDir = directory: {
+    inherit directory;
+    mode = "0700";
+  };
 in
   mkIf impermanence.enable {
     environment.persistence = {
       "/cache".users.michael = {
         directories = [
           "Downloads"
+          "nixos" # My system flake is in ~/
           ".cache/yarn"
           ".cache/pip"
           ".cache/thumbnails"
@@ -36,7 +41,6 @@ in
           "Pictures"
           "Documents"
           "Videos"
-          "nixos" # My system flake is in ~/
           ".config/cosmic"
           ".config/Bitwarden"
           ".config/fish"
@@ -45,19 +49,9 @@ in
           ".config/dconf"
           ".pki"
           ".local/state/wireplumber"
-          {
-            directory = ".gnupg";
-            mode = "0700";
-          }
-          {
-            directory = ".ssh";
-            mode = "0700";
-          }
-          {
-            directory = ".local/share/keyrings";
-            mode = "0700";
-          }
-          ".local/share/direnv"
+          (privateDir ".gnupg")
+          (privateDir ".ssh")
+          (privateDir ".local/share/keyrings")
         ];
         files = [
           ".screenrc"
