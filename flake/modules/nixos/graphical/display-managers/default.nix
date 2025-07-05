@@ -6,12 +6,10 @@
   inherit (lib) mkOption mkEnableOption mkIf;
   inherit (lib.types) nullOr enum bool;
 
-  choices = enum ["sddm" "ly" "greetd"];
+  choices = enum ["greetd"]; # For now, just greetd as others were removed
 in {
   imports = [
     ./greetd.nix
-    ./ly.nix
-    ./sddm.nix
   ];
 
   options.features = {
