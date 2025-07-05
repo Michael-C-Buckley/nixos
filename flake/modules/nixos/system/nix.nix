@@ -32,6 +32,7 @@ in {
       experimental-features = [
         "nix-command"
         "flakes"
+        "pipe-operators"
       ];
 
       # Disable channels and add the inputs to the registry

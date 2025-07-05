@@ -19,7 +19,6 @@ lib.mkIf config.system.impermanence.enable {
     hideMounts = true;
     directories = [
       "/var/lib/libvirt"
-      "/var/lib/flatpak"
       "/var/lib/docker"
       "/var/lib/incus"
       "/var/lib/gns3"

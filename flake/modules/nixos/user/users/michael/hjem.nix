@@ -53,9 +53,11 @@ in {
     # Push the existing files in to be merged, for now
     files = import ./files/fileList.nix {inherit config lib fileList;};
 
-    environment.gnupg = {
-      enable = true;
-      enableSSHsupport = true;
+    environment = {
+      gnupg = {
+        enable = true;
+        enableSSHsupport = true;
+      };
     };
 
     programs = {
