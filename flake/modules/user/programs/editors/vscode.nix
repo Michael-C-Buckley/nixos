@@ -11,9 +11,9 @@
 
   imperm = config.system.impermanence.enable;
   impermDir =
-    if (cfg.package == (vscodium || vscodium-fhs))
+    if (cfg.package == pkgs.vscodium || cfg.package == pkgs.vscodium-fhs)
     then [".config/VSCodium" ".vscode-oss/extensions"]
-    else if (cfg.package == (vscode || vscode-fhs))
+    else if (cfg.package == pkgs.vscode || cfg.package == pkgs.vscode-fhs)
     then [".config/Code" ".vscode/extensions"]
     else [];
 in {
