@@ -10,6 +10,9 @@ alias l='ls -CF'           # Simple classified list
 alias ..='cd ..'
 alias ...='cd ../..'
 
+# Navigation
+alias z='zoxide'
+
 # Git aliases
 alias gst='git status'
 alias gco='git checkout'
