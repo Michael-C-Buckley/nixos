@@ -22,6 +22,7 @@
     nushell
     starship
     yazi
+    zoxide
 
     # Machine Utilities
     ethtool
