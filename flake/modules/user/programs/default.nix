@@ -8,8 +8,6 @@ _: {
     ./communication/signal.nix
     ./custom/ns.nix
     ./editors/nvf.nix
-    ./editors/vscode.nix
-
     ./hyprland
   ];
 }

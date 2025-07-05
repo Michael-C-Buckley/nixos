@@ -27,7 +27,6 @@
 in {
   imports = [
     ./impermanence.nix
-    ./vscode.nix
   ];
 
   environment.persistence = lib.mkIf useImperm {
@@ -52,6 +51,10 @@ in {
 
     # Push the existing files in to be merged, for now
     files = import ./files/fileList.nix {inherit config lib fileList;};
+
+    packageList = with pkgs; [
+      vscodium-fhs
+    ];
 
     environment = {
       gnupg = {
