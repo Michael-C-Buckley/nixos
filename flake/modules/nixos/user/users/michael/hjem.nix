@@ -52,28 +52,24 @@ in {
     # Push the existing files in to be merged, for now
     files = import ./files/fileList.nix {inherit config lib fileList;};
 
-    packageList = with pkgs; [
-      vscodium-fhs
-    ];
-
-    environment = {
-      gnupg = {
-        enable = true;
-        enableSSHsupport = true;
-      };
+    environment.gnupg = {
+      enable = true;
+      enableSSHsupport = true;
     };
 
     programs = {
+      # keep-sorted start
       custom.ns.enable = extGfx;
-      librewolf.enable = extGfx;
-      signal.enable = extGfx;
       discord.enable = extGfx;
-      telegram.enable = extGfx;
-      vscode.enable = extGfx;
+      librewolf.enable = extGfx;
       nvf = {
         enable = true;
         package = self'.packages."nvf${nvfVer}";
+      signal.enable = extGfx;
+      telegram.enable = extGfx;
+      vscode.enable = extGfx;
       };
+      # keep-sorted end
     };
 
     rum.misc.gtk = {
