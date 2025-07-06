@@ -62,14 +62,14 @@ in {
       custom.ns.enable = extGfx;
       discord.enable = extGfx;
       librewolf.enable = extGfx;
-      nvf = {
-        enable = true;
-        package = self'.packages."nvf${nvfVer}";
       signal.enable = extGfx;
       telegram.enable = extGfx;
       vscode.enable = extGfx;
-      };
       # keep-sorted end
+      nvf = {
+        enable = true;
+        package = self'.packages."nvf${nvfVer}";
+      };
     };
 
     rum.misc.gtk = {
