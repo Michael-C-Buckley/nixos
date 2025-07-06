@@ -140,24 +140,6 @@
         "type": "github"
       }
     },
-    "flake-utils_3": {
-      "inputs": {
-        "systems": "systems_5"
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
     "hjem": {
       "inputs": {
         "nixpkgs": [
@@ -364,50 +346,6 @@
         "url": "ssh://git@github.com/michael-c-buckley/nix-secrets"
       }
     },
-    "nix-vscode-extensions": {
-      "inputs": {
-        "flake-utils": "flake-utils_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1751422033,
-        "narHash": "sha256-R6ZonDO1yldt3KUDi+u8irXo09+EjisiqK4s7Je46B4=",
-        "ref": "refs/heads/master",
-        "rev": "e3a859385648ba529eacc2efe61d529eef6f5485",
-        "shallow": true,
-        "type": "git",
-        "url": "https://github.com/nix-community/nix-vscode-extensions"
-      },
-      "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "https://github.com/nix-community/nix-vscode-extensions"
-      }
-    },
-    "nix4vscode": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "systems": "systems_4"
-      },
-      "locked": {
-        "lastModified": 1751610235,
-        "narHash": "sha256-Jl3psXn969fNUivpnhyNwmoploVuXGR6Qg8s+AdPBKE=",
-        "ref": "refs/heads/master",
-        "rev": "2d70de1f86b9f5e83076b320584204615a60c0e5",
-        "shallow": true,
-        "type": "git",
-        "url": "https://github.com/nix-community/nix4vscode"
-      },
-      "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "https://github.com/nix-community/nix4vscode"
-      }
-    },
     "nixos-wsl": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -527,13 +465,13 @@
     "nvf": {
       "inputs": {
         "flake-parts": "flake-parts_4",
-        "flake-utils": "flake-utils_3",
+        "flake-utils": "flake-utils_2",
         "mnw": "mnw",
         "nil": "nil",
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems_6"
+        "systems": "systems_4"
       },
       "locked": {
         "lastModified": 1751520935,
@@ -564,13 +502,11 @@
           "nil"
         ],
         "nix-secrets": "nix-secrets",
-        "nix-vscode-extensions": "nix-vscode-extensions",
-        "nix4vscode": "nix4vscode",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_2",
         "nvf": "nvf",
         "sops-nix": "sops-nix",
-        "systems": "systems_7"
+        "systems": "systems_5"
       }
     },
     "rust-overlay": {
@@ -701,7 +637,6 @@
       }
     },
     "systems_4": {
-      "flake": false,
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
@@ -717,36 +652,6 @@
       }
     },
     "systems_5": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_6": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_7": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
