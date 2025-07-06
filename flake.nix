@@ -46,16 +46,6 @@
     };
     nil.follows = "nvf/nil";
 
-    nix4vscode = {
-      url = "git+https://github.com/nix-community/nix4vscode?shallow=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-vscode-extensions = {
-      url = "git+https://github.com/nix-community/nix-vscode-extensions?shallow=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # No Nixpkgs Inputs
     lupinix.url = "git+https://github.com/Michael-C-Buckley/lupinix?shallow=1&ref=noDash";
     impermanence.url = "git+https://github.com/nix-community/impermanence?shallow=1"; # has no inputs
@@ -74,10 +64,6 @@
         _module.args.pkgs = import inputs.nixpkgs {
           inherit system;
           config = {allowUnfree = true;};
-          overlays = with inputs; [
-            nix4vscode.overlays.forVscode
-            nix-vscode-extensions.overlays.default
-          ];
         };
       };
     };
