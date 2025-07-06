@@ -166,10 +166,10 @@
         "smfh": "smfh"
       },
       "locked": {
-        "lastModified": 1750771069,
-        "narHash": "sha256-aTV2Y3EXEFlJDDgK7bKmV6o1jkZs0aNDqyo7yPP4iag=",
+        "lastModified": 1751802226,
+        "narHash": "sha256-BxsIsKYturxQOV1egZ1R3FGxo3igcQG8CFVaAbLtVUg=",
         "ref": "refs/heads/main",
-        "rev": "19c77d391a9d89fe0b44ec7a1204e730bad9c099",
+        "rev": "ae408ccda1e6a9c9d86bbf01cce2ffb8a5f4eb20",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/Michael-C-Buckley/hjem"
@@ -605,15 +605,15 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1749547788,
-        "narHash": "sha256-n6fd0pb7zd6fVstSzNUEm7qc3NJdPkmDLulGtARQkCI=",
-        "owner": "Gerg-L",
+        "lastModified": 1749906619,
+        "narHash": "sha256-/9Ww10kYopxfCNNnNDwENTubs7Wzqlw+O6PJAHNOYQw=",
+        "owner": "feel-co",
         "repo": "smfh",
-        "rev": "c2dfd2c142a80d9f4ef3b22b65ba1cc6b6d5d40c",
+        "rev": "39f5c06153f63100376bc607b1465850b6df77fd",
         "type": "github"
       },
       "original": {
-        "owner": "Gerg-L",
+        "owner": "feel-co",
         "repo": "smfh",
         "type": "github"
       }
