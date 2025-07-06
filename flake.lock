@@ -148,10 +148,10 @@
         "smfh": "smfh"
       },
       "locked": {
-        "lastModified": 1751802226,
-        "narHash": "sha256-BxsIsKYturxQOV1egZ1R3FGxo3igcQG8CFVaAbLtVUg=",
+        "lastModified": 1751827729,
+        "narHash": "sha256-D/tacGMyMu/pjV0OduqyrsUwB20XuLc87ehbNORqxyI=",
         "ref": "refs/heads/main",
-        "rev": "ae408ccda1e6a9c9d86bbf01cce2ffb8a5f4eb20",
+        "rev": "2ce6d7abf06b84ca623464ab04e45126cfee1039",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/Michael-C-Buckley/hjem"
