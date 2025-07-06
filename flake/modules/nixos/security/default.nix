@@ -52,7 +52,7 @@ in {
     firewall = {
       enable = mkDefault true;
       allowPing = mkDefault true;
-      allowedTCPPorts = [22 53];
+      allowedTCPPorts = [22 53 5201];
       allowedUDPPorts = [53];
     };
   };
