@@ -2,6 +2,7 @@ _: {
   networking = {
     ospf.enable = true;
     bgp.enable = true;
+    eigrp.enable = true;
   };
 
   services.frr = {
