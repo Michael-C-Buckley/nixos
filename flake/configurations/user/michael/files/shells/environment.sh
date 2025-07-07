@@ -3,11 +3,20 @@
 # -----------------------------
 
 # Set the default editor
-export EDITOR="nvim"
-export VISUAL="nvim"
+export VISUAL="vim"
+export EDITOR=$VISUAL
+export GIT_EDITOR=$VISUAL
+export PAGER="bat"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export BROWSER=librewolf
+export DIFF=diff-so-fancy
 
 # Enable color in `ls` and other commands
 export CLICOLOR=1
 export LSCOLORS="auto"
 export DIFF_COLOR=auto
 export IP_COLOR=always
+
+# Some specific things
+NIXOS_OZONE_WL=1
+GTK_USE_PORTAL=1
