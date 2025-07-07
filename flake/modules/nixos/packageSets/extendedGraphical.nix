@@ -5,6 +5,7 @@
     pavucontrol # Pulse Volume control
     gammastep
     wireshark
+    gparted
 
     # Editors
     emacs

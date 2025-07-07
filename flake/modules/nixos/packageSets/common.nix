@@ -30,6 +30,7 @@
     # Machine Utilities
     ethtool
     gptfdisk
+    parted
     python3
     lm_sensors
   ];
