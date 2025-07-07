@@ -4,9 +4,12 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkDefault mkOption mkEnableOption mkIf;
+  inherit (lib) optionals mkDefault mkOption mkEnableOption mkIf;
   inherit (lib.types) bool int;
-  gns = config.virtualisation.gns3;
+  inherit (config.features) graphics;
+  inherit (config.virtualisation) gns3;
+
+  gfxPkgs = with pkgs; [alacritty gns3-gui];
 in {
   options.virtualisation.gns3 = {
     enable = mkEnableOption "GNS3";
@@ -22,21 +25,17 @@ in {
     };
   };
 
-  config = mkIf gns.enable {
-    # Enable Libvirt if using this
+  config = mkIf gns3.enable {
     virtualisation.libvirtd.enable = mkDefault true;
 
-    environment.systemPackages = with pkgs; [
-      dynamips
-      alacritty # For the consoles for GNS nodes, for now, may change later
-      gns3-gui
-      gns3-server
-    ];
+    environment.systemPackages = with pkgs;
+      [dynamips gns3-server]
+      ++ optionals graphics gfxPkgs;
 
     # Open the firewall
-    networking.firewall = mkIf gns.openFirewall {
-      allowedUDPPorts = [gns.serverPort];
-      allowedTCPPorts = [gns.serverPort];
+    networking.firewall = mkIf gns3.openFirewall {
+      allowedUDPPorts = [gns3.serverPort];
+      allowedTCPPorts = [gns3.serverPort];
     };
 
     services.gns3-server = {

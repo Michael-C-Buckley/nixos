@@ -8,8 +8,9 @@
   lib,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf optionals;
   inherit (config.system) impermanence;
+  inherit (config.virtualisation) gns3;
   privateDir = directory: {
     inherit directory;
     mode = "0700";
@@ -35,24 +36,29 @@ in
         ];
       };
       "/persist".users.michael = {
-        directories = [
-          "projects"
-          "Music"
-          "Pictures"
-          "Documents"
-          "Videos"
-          ".config/cosmic"
-          ".config/Bitwarden"
-          ".config/fish"
-          ".config/sops"
-          ".config/telegram"
-          ".config/dconf"
-          ".pki"
-          ".local/state/wireplumber"
-          (privateDir ".gnupg")
-          (privateDir ".ssh")
-          (privateDir ".local/share/keyrings")
-        ];
+        directories =
+          [
+            "projects"
+            "Music"
+            "Pictures"
+            "Documents"
+            "Videos"
+            ".config/cosmic"
+            ".config/Bitwarden"
+            ".config/fish"
+            ".config/sops"
+            ".config/telegram"
+            ".config/dconf"
+            ".pki"
+            ".local/state/wireplumber"
+            (privateDir ".gnupg")
+            (privateDir ".ssh")
+            (privateDir ".local/share/keyrings")
+          ]
+          ++ optionals gns3.enable [
+            ".config.GNS3"
+            "GNS3"
+          ];
         files = [
           ".screenrc"
         ];
