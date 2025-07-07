@@ -18,5 +18,5 @@ export DIFF_COLOR=auto
 export IP_COLOR=always
 
 # Some specific things
-NIXOS_OZONE_WL=1
-GTK_USE_PORTAL=1
+export NIXOS_OZONE_WL=1
+export GTK_USE_PORTAL=1
