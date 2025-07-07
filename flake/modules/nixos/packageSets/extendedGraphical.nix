@@ -2,7 +2,6 @@
   packageSets.extendedGraphical = with pkgs; [
     # System Utilities
     networkmanagerapplet
-    cpu-x
     pavucontrol # Pulse Volume control
     gammastep
     wireshark
@@ -23,13 +22,11 @@
 
     # Productivity
     kdePackages.kalgebra # Calculator
-    kdePackages.calligra
     obsidian
     gimp3
 
     # Terminals
     kitty
-    wezterm
 
     # Communication
     bitwarden
