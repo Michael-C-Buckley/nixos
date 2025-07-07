@@ -12,6 +12,5 @@
     # Terminals
     ghostty
     sakura
-    flow-control # Simple TUI IDE
   ];
 }
