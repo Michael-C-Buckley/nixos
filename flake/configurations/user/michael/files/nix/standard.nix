@@ -49,6 +49,9 @@
   # X-server
   #".config/.Xresources".source = ../userfiles/Xresources;
 
+  # Vim
+  ".vimrc".source = ../vim/.vimrc;
+
   # Zsh
   ".zshrc".source = ../zsh/default.zshrc;
   ".config/zsh/geometry/myGeometry.zsh".source = ../zsh/myGeometry.zsh;
