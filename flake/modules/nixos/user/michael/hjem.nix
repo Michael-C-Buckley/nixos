@@ -4,7 +4,6 @@
   config,
   pkgs,
   lib,
-  self',
   ...
 }: let
   inherit (config) packageSets;
@@ -15,11 +14,6 @@
 
   useImperm = config.system.impermanence.enable && local.system.impermanence.enable;
   extGfx = mkDefault extendedGraphical;
-
-  nvfVer =
-    if extendedGraphical
-    then ""
-    else "-minimal";
 
   userPkgs =
     packageSets.common
@@ -63,14 +57,11 @@ in {
       custom.ns.enable = extGfx;
       discord.enable = extGfx;
       librewolf.enable = extGfx;
+      nvf.enable = extGfx;
       signal.enable = extGfx;
       telegram.enable = extGfx;
       vscode.enable = extGfx;
       # keep-sorted end
-      nvf = {
-        enable = true;
-        package = self'.packages."nvf${nvfVer}";
-      };
     };
 
     rum.misc.gtk = {
