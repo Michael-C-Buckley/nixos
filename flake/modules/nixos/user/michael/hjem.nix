@@ -1,5 +1,6 @@
 # Split into per-host basis
 {
+  self,
   config,
   pkgs,
   lib,
@@ -50,7 +51,7 @@ in {
     system.impermanence.enable = config.system.impermanence.enable;
 
     # Push the existing files in to be merged, for now
-    files = import ./files/fileList.nix {inherit config lib fileList;};
+    files = import "${self}/flake/configurations/user/michael/files/fileList.nix" {inherit config lib fileList;};
 
     environment.gnupg = {
       enable = true;
