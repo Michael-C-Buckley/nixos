@@ -1,4 +1,6 @@
-_: {
+{config, ...}: let
+  inherit (config.networking) loopback;
+in {
   # Default Nixos will have standard priority, force to override
   # environment.etc."frr/frr.conf".source = lib.mkForce config.age.secrets.frr.path;
 
@@ -7,6 +9,10 @@ _: {
     ipv6 forwarding
 
     ip route 192.168.48.0/20 blackhole 250
+
+    router eigrp 1
+      network 192.168.50.32/27
+      network ${loopback.ipv4}
 
     router bgp 65100
       no bgp ebgp-requires-policy
