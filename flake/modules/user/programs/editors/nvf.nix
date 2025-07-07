@@ -12,7 +12,7 @@ in {
       enable = mkEnableOption "Install NVF";
       package = mkOption {
         type = lib.types.package;
-        default = pkgs.nvf-minimal;
+        default = pkgs.nvf;
         description = "Package to use for NVF";
       };
     };

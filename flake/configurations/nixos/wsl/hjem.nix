@@ -1,13 +1,11 @@
-{
-  self',
-  lib,
-  ...
-}: {
+_: {
   hjem.users.michael = {
-    packageList = [(lib.hiPrio self'.packages.nvf)];
     programs = {
+      # keep-sorted start
       custom.ns.enable = true;
       librewolf.enable = true;
+      nvf.enable = true;
+      # keep-sorted end
     };
   };
 }
