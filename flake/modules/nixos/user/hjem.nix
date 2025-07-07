@@ -11,8 +11,8 @@
 in {
   imports = [
     inputs.hjem.nixosModules.default
-    ./options/hjem.nix
-    ./users/michael/hjem.nix
+    ./options
+    ./michael/hjem.nix
   ];
 
   users.users = {
