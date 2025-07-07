@@ -2,6 +2,7 @@
   imports = [
     inputs.nixos-wsl.nixosModules.default
     ./hjem.nix
+    ./networking.nix
     ./wsl.nix
   ];
 
