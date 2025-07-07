@@ -1,43 +1,36 @@
-{
-  lib,
-  pkgs,
-  self',
-  ...
-}: {
+{pkgs, ...}: {
   packageSets.common = with pkgs; [
-    #Editors
-    (lib.lowPrio self'.packages.nvf-minimal)
-
     # Git/Web
     git
     delta
     tig
     curl
     wget
-    tree
 
     # Shells/Terminals
     zsh
     fish
     nushell
     starship
-    yazi
-    zoxide
 
-    # Machine Utilities
-    ethtool
-    gparted
-    python3
+    # Terminal Utilities
     ripgrep
     eza
     duf
     bat
-    killall
-    lm_sensors
+    tree
+    vim
+    yazi
+    zoxide
     du-dust
-    atop
     btop
     fd
     fzf
+
+    # Machine Utilities
+    ethtool
+    gptfdisk
+    python3
+    lm_sensors
   ];
 }
