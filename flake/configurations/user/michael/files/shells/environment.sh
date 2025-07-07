@@ -7,7 +7,7 @@ export VISUAL="vim"
 export EDITOR=$VISUAL
 export GIT_EDITOR=$VISUAL
 export PAGER="bat"
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER="bat -l man -p"
 export BROWSER=librewolf
 export DIFF=diff-so-fancy
 
