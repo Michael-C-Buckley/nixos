@@ -8,7 +8,7 @@
   inherit (lib.types) bool int;
   inherit (config.features) graphics;
   inherit (config.virtualisation) gns3;
-
+  inherit (config.system) impermanence;
   gfxPkgs = with pkgs; [alacritty gns3-gui];
 in {
   options.virtualisation.gns3 = {
@@ -28,9 +28,12 @@ in {
   config = mkIf gns3.enable {
     virtualisation.libvirtd.enable = mkDefault true;
 
-    environment.systemPackages = with pkgs;
-      [dynamips gns3-server]
-      ++ optionals graphics gfxPkgs;
+    environment = {
+      persistence."/cache".directories = optionals impermanence.enable ["/var/lib/gns3"];
+      systemPackages = with pkgs;
+        [dynamips gns3-server]
+        ++ optionals graphics gfxPkgs;
+    };
 
     # Open the firewall
     networking.firewall = mkIf gns3.openFirewall {

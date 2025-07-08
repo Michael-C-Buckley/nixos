@@ -4,9 +4,10 @@
   lib,
   ...
 }: let
-  inherit (lib) mkEnableOption mkOption mkIf;
-  cfg = config.virtualisation.docker;
-  inherit (cfg) kata;
+  inherit (lib) mkEnableOption mkOption mkIf optionals;
+  inherit (config.system) impermanence;
+  inherit (config.virtualisation) docker;
+  inherit (docker) kata;
 in {
   options.virtualisation.docker.kata = {
     enable = mkEnableOption "Enable Kata container runtime on Docker";
@@ -17,12 +18,14 @@ in {
     };
   };
 
-  config = {
+  config = mkIf docker.enable {
     environment = mkIf kata.enable {
-      systemPackages = [kata.package];
-      etc."docker/daemon.json".text = builtins.toJSON {
-        runtimes.kata-runtime = {
-          path = "${kata.package}/bin/kata-runtime";
+      persistence."/cache".directories = optionals impermanence.enable ["/var/lib/docker"];
+      # Kata Features
+      systemPackages = optionals kata.enable [kata.package];
+      etc = mkIf kata.enable {
+        "docker/daemon.json".text = builtins.toJSON {
+          runtimes.kata-runtime.path = "${kata.package}/bin/kata-runtime";
         };
       };
     };

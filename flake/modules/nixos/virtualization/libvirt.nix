@@ -4,13 +4,14 @@
   lib,
   ...
 }: let
-  inherit (lib) mkDefault mkOption types;
-  virtCfg = config.virtualisation.libvirtd;
+  inherit (lib) mkDefault mkOption types optionals;
+  inherit (config.system) impermanence;
+  inherit (config.virtualisation) libvirtd;
 in {
   options.virtualisation.libvirtd = {
     addGUIPkgs = mkOption {
       type = types.bool;
-      default = virtCfg.enable;
+      default = libvirtd.enable;
       description = "Add graphical support packages for VMs.";
     };
     # WIP: Create a config option in users for power users
@@ -23,18 +24,21 @@ in {
 
   config = {
     # WIP: add these to the users
-    environment.systemPackages = with pkgs;
-      lib.optionals virtCfg.addGUIPkgs [
-        virt-viewer
-        virt-manager
-        tigervnc
-      ];
+    environment = {
+      persistence."/cache".directories = optionals impermanence.enable ["/var/lib/libvirt"];
+      systemPackages = with pkgs;
+        lib.optionals virtCfg.addGUIPkgs [
+          virt-viewer
+          virt-manager
+          tigervnc
+        ];
+    };
 
     users.users = lib.listToAttrs (map (user: {
         name = user;
         value = {extraGroups = ["kvm"];};
       })
-      virtCfg.users);
+      libvirtd.users);
 
     virtualisation.libvirtd = {
       allowedBridges = mkDefault ["br0"];
