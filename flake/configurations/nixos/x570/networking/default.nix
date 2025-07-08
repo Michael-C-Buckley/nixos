@@ -30,13 +30,5 @@ in {
     };
 
     bridges.br0.interfaces = [];
-    interfaces = {
-      # Onboard 1GbE
-      enp7s0.useDHCP = true;
-      # Onboard 2.5GbE
-      enp8s0.useDHCP = true;
-      # Intel X520-DA2
-      enp16s0f0.useDHCP = true;
-    };
   };
 }
