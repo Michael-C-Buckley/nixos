@@ -1,7 +1,7 @@
 [user]
     name = "Michael Buckley"
     email = "michaelcbuckley@proton.me"
-    signingKey = "991E8FDA2A5C4480!"
+    signingKey = "483864BF916E149C4F57E2371A0163427F977C33!"
 
 [commit]
     gpgsign = true
