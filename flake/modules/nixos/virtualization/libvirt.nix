@@ -27,7 +27,7 @@ in {
     environment = {
       persistence."/cache".directories = optionals impermanence.enable ["/var/lib/libvirt"];
       systemPackages = with pkgs;
-        lib.optionals virtCfg.addGUIPkgs [
+        lib.optionals libvirtd.addGUIPkgs [
           virt-viewer
           virt-manager
           tigervnc
