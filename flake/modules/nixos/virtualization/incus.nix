@@ -4,19 +4,23 @@
   lib,
   ...
 }: let
-  inherit (lib) mkEnableOption mkDefault optionals;
+  inherit (lib) mkEnableOption mkDefault mkIf optionals;
+  inherit (config.system) impermanence;
   inherit (config.virtualisation) incus;
 in {
   options.virtualisation.incus = {
     useLvmThin = mkEnableOption "LVM Thin Boot";
   };
 
-  config = {
+  config = mkIf incus.enable {
     services.lvm.boot.thin.enable = mkDefault incus.useLvmThin;
     # Incus is bested used with these modules available
-    boot.kernelModules = optionals incus.enable ["apparmor" "virtiofs" "9p" "9pnet_virtio"];
+    boot.kernelModules = ["apparmor" "virtiofs" "9p" "9pnet_virtio"];
     # Incus will prefer Red Hat's Virtiofs over 9P
-    environment.systemPackages = optionals incus.enable [pkgs.virtiofsd];
+    environment = {
+      persistence."/cache".directories = optionals impermanence.enable ["/var/lib/incus"];
+      systemPackages = [pkgs.virtiofsd];
+    };
 
     # Incus Profile is bugged
     # security.apparmor.enable = mkDefault incus.enable;

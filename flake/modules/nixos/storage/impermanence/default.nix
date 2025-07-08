@@ -21,10 +21,6 @@ in
     environment.persistence."/cache" = {
       hideMounts = true;
       directories = [
-        "/var/lib/libvirt"
-        "/var/lib/docker"
-        "/var/lib/incus"
-        "/var/lib/gns3"
         "/var/lib/nixos-container"
       ];
     };
