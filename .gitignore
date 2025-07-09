@@ -10,3 +10,5 @@
 ### image files ###
 *.raw
 *.qcow2
+
+result
