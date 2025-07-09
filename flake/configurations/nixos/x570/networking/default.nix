@@ -21,7 +21,7 @@ in {
   networking = {
     hostId = "c07fa570";
     networkmanager.enable = true;
-    usePredictableInterfaceNames = true;
+    #useNetworkd = true;
 
     loopback.ipv4 = "192.168.63.10/32";
 
@@ -29,6 +29,13 @@ in {
       allowedUDPPorts = [33401];
     };
 
-    bridges.br0.interfaces = [];
+    interfaces = {
+      enp7s0.ipv4.addresses = [
+        {
+          address = "192.168.48.10";
+          prefixLength = 24;
+        }
+      ];
+    };
   };
 }
