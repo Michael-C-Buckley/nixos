@@ -24,6 +24,5 @@ in {
 
   system = {
     boot.uuid = "AAAA-AAAA";
-    impermanence.zrootPath = "zroot/ln2";
   };
 }

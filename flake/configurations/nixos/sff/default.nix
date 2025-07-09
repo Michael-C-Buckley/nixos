@@ -20,6 +20,5 @@ _: {
     preset = "server";
     impermanence.enable = true;
     boot.uuid = "DF19-0E9F";
-    impermanence.zrootPath = "zroot/sff1";
   };
 }

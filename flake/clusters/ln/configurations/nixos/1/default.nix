@@ -33,7 +33,6 @@ in {
     boot.uuid = "2312-A651";
     impermanence = {
       enable = lib.mkForce false; # Temporary, until rebuilt
-      zrootPath = "zroot/ln1";
     };
   };
 }

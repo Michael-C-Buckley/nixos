@@ -17,6 +17,5 @@ _: {
 
   system = {
     boot.uuid = "3A1C-9DCC";
-    impermanence.zrootPath = "zroot/sff2";
   };
 }
