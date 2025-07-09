@@ -8,6 +8,7 @@
 
   services = {
     k3s.enable = true;
+    unbound.enable = true;
   };
 
   virtualisation = {

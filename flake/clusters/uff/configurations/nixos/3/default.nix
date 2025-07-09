@@ -1,5 +1,6 @@
 _: {
   networkd = {
+    eno1.addresses.ipv4 = ["192.168.48.33/24"];
     enusb1 = {
       mac = "6c:1f:f7:06:13:8f";
       addresses.ipv4 = ["192.168.254.3/27"];
@@ -18,6 +19,5 @@ _: {
 
   system = {
     boot.uuid = "1555-62FA";
-    impermanence.zrootPath = "zroot/uff3";
   };
 }
