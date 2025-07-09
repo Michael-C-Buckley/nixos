@@ -44,7 +44,6 @@
       url = "git+https://github.com/notashelf/nvf?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nil.follows = "nvf/nil";
 
     # No Nixpkgs Inputs
     lupinix.url = "git+https://github.com/Michael-C-Buckley/lupinix?shallow=1&ref=noDash";
