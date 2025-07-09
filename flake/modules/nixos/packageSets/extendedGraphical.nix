@@ -27,7 +27,7 @@
     gimp3
 
     # Terminals
-    kitty
+    ghostty
 
     # Communication
     bitwarden

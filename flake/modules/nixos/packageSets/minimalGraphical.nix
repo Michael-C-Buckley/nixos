@@ -10,7 +10,8 @@
     cage
 
     # Terminals
-    ghostty
+    wezterm
+    kitty
     sakura
   ];
 }
