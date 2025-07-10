@@ -2,10 +2,8 @@
 # Paths and Environment
 # -----------------------------
 
-# Add custom paths to $PATH
-# export PATH="$HOME/bin:$PATH"
-
 source "$HOME/.config/shells/environment.sh"
+source "$HOME/.config/shells/functions.sh"
 
 # -----------------------------
 # Geometry Entry
