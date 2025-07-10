@@ -38,6 +38,7 @@
   ".config/starship.toml".source = ../shells/starship.toml;
   ".config/shells/aliases.sh".source = ../shells/aliases.sh;
   ".config/shells/environment.sh".source = ../shells/environment.sh;
+  ".config/shells/functions.sh".source = ../shells/functions.sh;
 
   # Nushell
   ".config/nushell/config.nu".source = ../nushell/config.nu;

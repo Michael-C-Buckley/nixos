@@ -30,14 +30,10 @@ if command -v bat >/dev/null 2>&1; then
     alias cat='bat -p'
 fi
 
-# FRR
-show() {
-    sudo vtysh -c "show $*"
-}
-
 # Other Files
 source "$HOME/.config/shells/environment.sh"
 source "$HOME/.config/shells/aliases.sh"
+source "$HOME/.config/shells/functions.sh"
 
 if [ -d ~/.config/shells/bash.d ]; then
   for file in ~/.config/shells/bash.d/*.sh; do
