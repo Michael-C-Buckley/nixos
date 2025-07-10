@@ -16,7 +16,8 @@
 
   # Fish
   ".config/fish/config.fish".source = ../fish/config.fish;
-  ".config/fish/functions/functions.fish".source = ../fish/functions.fish;
+  ".config/fish/functions/fcd.fish".source = ../fish/fcd.fish;
+  ".config/fish/functions/show.fish".source = ../fish/show.fish;
 
   # GnuPG (Pubkeys)
   ".config/pubkeys/michael.asc".source = ../gnupg/michael.asc;
