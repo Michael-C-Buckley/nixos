@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   inputs,
   ...
@@ -7,8 +6,6 @@
   inherit (lib) mapAttrs mapAttrsToList;
 in {
   nix = {
-    package = pkgs.nixVersions.nix_2_29;
-
     # Disable channels and add the inputs to the registry
     channel.enable = false;
     registry = mapAttrs (_: flake: {inherit flake;}) inputs;
@@ -32,7 +29,6 @@ in {
       experimental-features = [
         "nix-command"
         "flakes"
-        "pipe-operators"
       ];
 
       # Disable channels and add the inputs to the registry

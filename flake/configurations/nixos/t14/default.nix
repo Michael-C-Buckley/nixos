@@ -1,7 +1,10 @@
 # T14 Laptop Configuration
-{inputs, ...}: {
+{inputs, ...}: let
+  inherit (inputs) lix nix-secrets;
+in {
   imports = [
-    inputs.nix-secrets.nixosModules.t14
+    nix-secrets.nixosModules.t14
+    lix.nixosModules.default
     ./hardware
     ./networking
     ./systemd
