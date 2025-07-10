@@ -28,7 +28,7 @@
   ".gitconfig".source = ../userfiles/.gitconfig;
 
   # Kitty
-  ".config/kitty/kitty.conf".source = ../kitty/kitty.conf;
+  ".config/kitty/kitty-base.conf".source = ../kitty/kitty-base.conf;
 
   #Rofi
   ".config/rofi/config.rasi".source = ../rofi/config.rasi;
