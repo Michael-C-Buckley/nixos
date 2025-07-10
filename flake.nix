@@ -9,7 +9,12 @@
     };
 
     flake-parts.url = "git+https://github.com/hercules-ci/flake-parts?shallow=1";
-    systems.url = "github:nix-systems/default";
+    systems.url = "git+https://github.com/nix-systems/default?shallow=1";
+
+    flake-utils = {
+      url = "git+https://github.com/numtide/flake-utils?shallow=1";
+      inputs.systems.follows = "systems";
+    };
 
     nixos-wsl = {
       url = "git+https://github.com/nix-community/nixos-wsl?shallow=1&ref=main";
@@ -29,6 +34,14 @@
       };
     };
 
+    lix = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.2-1.tar.gz";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+
     sops-nix = {
       url = "git+https://github.com/Mic92/sops-nix?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,12 +52,16 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
+        flake-utils.follows = "flake-utils";
         systems.follows = "systems";
       };
     };
 
     # No Nixpkgs Inputs
-    lupinix.url = "git+https://github.com/Michael-C-Buckley/lupinix?shallow=1&ref=noDash";
+    lupinix = {
+      url = "git+https://github.com/Michael-C-Buckley/lupinix?shallow=1&ref=noDash";
+      inputs.flake-parts.follows = "flake-parts";
+    };
     impermanence.url = "git+https://github.com/nix-community/impermanence?shallow=1";
   };
 
