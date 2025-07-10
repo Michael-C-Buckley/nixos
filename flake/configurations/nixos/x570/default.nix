@@ -1,6 +1,9 @@
-{inputs, ...}: {
+{inputs, ...}: let
+  inherit (inputs) lix nix-secrets;
+in {
   imports = [
-    inputs.nix-secrets.nixosModules.x570
+    nix-secrets.nixosModules.x570
+    lix.nixosModules.default
     ./hardware
     ./networking
     ./hyprland.nix
