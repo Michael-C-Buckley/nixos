@@ -31,7 +31,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         hjem.follows = "hjem";
-        ndg.inputs.flake-parts.follows = "flake-parts";
       };
     };
 
