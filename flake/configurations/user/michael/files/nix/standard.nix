@@ -25,8 +25,11 @@
   # Ghostty
   ".config/ghostty/config".source = ../userfiles/ghostty;
 
-  #Git
+  # Git
   ".gitconfig".source = ../userfiles/.gitconfig;
+
+  # Kitty
+  ".config/kitty/kitty.conf".source = ../kitty/kitty.conf;
 
   #Rofi
   ".config/rofi/config.rasi".source = ../rofi/config.rasi;
