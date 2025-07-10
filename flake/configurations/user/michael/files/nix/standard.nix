@@ -1,7 +1,7 @@
 {
   # Bash
-  ".bashrc".source = ../bash/.bashrc;
-  ".bash_profile".source = ../bash/.bash_profile;
+  ".bashrc".source = ../bash/bashrc;
+  ".bash_profile".source = ../bash/bash_profile;
 
   # Direnv
   ".config/direnv/direnv.toml".source = ../userfiles/direnv.toml;
