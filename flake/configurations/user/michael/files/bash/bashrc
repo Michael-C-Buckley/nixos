@@ -25,11 +25,6 @@ shopt -s histappend
 # Direnv
 eval "$(direnv hook bash)"
 
-# Bat replaces Cat if available
-if command -v bat >/dev/null 2>&1; then
-    alias cat='bat -p'
-fi
-
 # Other Files
 source "$HOME/.config/shells/environment.sh"
 source "$HOME/.config/shells/aliases.sh"
