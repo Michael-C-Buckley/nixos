@@ -12,6 +12,7 @@
     # Terminals
     wezterm
     kitty
+    kitty-themes
     sakura
   ];
 }
