@@ -16,11 +16,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    home-manager = {
-      url = "git+https://github.com/nix-community/home-manager?shallow=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     hjem = {
       url = "git+https://github.com/Michael-C-Buckley/hjem?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,7 +29,6 @@
       };
     };
 
-    microvm.url = "git+https://github.com/astro/microvm.nix?shallow=1";
     sops-nix = {
       url = "git+https://github.com/Mic92/sops-nix?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,12 +36,16 @@
 
     nvf = {
       url = "git+https://github.com/notashelf/nvf?shallow=1";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        systems.follows = "systems";
+      };
     };
 
     # No Nixpkgs Inputs
     lupinix.url = "git+https://github.com/Michael-C-Buckley/lupinix?shallow=1&ref=noDash";
-    impermanence.url = "git+https://github.com/nix-community/impermanence?shallow=1"; # has no inputs
+    impermanence.url = "git+https://github.com/nix-community/impermanence?shallow=1";
   };
 
   outputs = {flake-parts, ...} @ inputs:
