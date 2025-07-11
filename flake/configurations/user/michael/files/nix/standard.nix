@@ -39,6 +39,7 @@
   ".config/shells/aliases.sh".source = ../shells/aliases.sh;
   ".config/shells/environment.sh".source = ../shells/environment.sh;
   ".config/shells/functions.sh".source = ../shells/functions.sh;
+  ".config/shells/posix.sh".source = ../shells/posix.sh;
 
   # Nushell
   ".config/nushell/config.nu".source = ../nushell/config.nu;

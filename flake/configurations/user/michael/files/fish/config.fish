@@ -12,4 +12,9 @@ if status is-interactive
     # Common other shell elements being reused
     source ~/.config/shells/aliases.sh
     source ~/.config/shells/environment.sh
+
+    # Bat replaces Cat if available
+    if command -q bat
+        alias cat 'bat -p'
+    end
 end
