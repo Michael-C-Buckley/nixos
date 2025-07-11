@@ -18,7 +18,6 @@
     eza
     duf
     bat
-    tree
     vim
     yazi
     zoxide

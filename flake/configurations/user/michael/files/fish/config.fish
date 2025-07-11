@@ -17,4 +17,12 @@ if status is-interactive
     if command -q bat
         alias cat 'bat -p'
     end
+
+    # Eza binds
+    if command -q eza
+        alias ls 'eza'
+        alias ll 'eza -la -g --icons'
+        alias lt 'eza --tree --level=2 --icons'
+        alias tree 'eza --tree'
+    end
 end
