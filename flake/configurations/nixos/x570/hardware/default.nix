@@ -24,6 +24,8 @@
   };
 
   hardware = {
+    enableAllFirmware = true;
+    enableAllHardware = true;
     intel-gpu-tools.enable = true;
     graphics.useIntel = true;
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

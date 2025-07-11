@@ -27,6 +27,7 @@ in {
 
     firewall = {
       allowedUDPPorts = [33401];
+      trustedInterfaces = ["br0"];
     };
 
     interfaces = {
