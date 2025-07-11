@@ -29,6 +29,7 @@ eval "$(direnv hook bash)"
 source "$HOME/.config/shells/environment.sh"
 source "$HOME/.config/shells/aliases.sh"
 source "$HOME/.config/shells/functions.sh"
+source "$HOME/.config/shells/posix.sh"
 
 if [ -d ~/.config/shells/bash.d ]; then
   for file in ~/.config/shells/bash.d/*.sh; do

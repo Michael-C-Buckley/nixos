@@ -37,7 +37,3 @@ alias zsls='zfs list -t snapshot -S creation -o name,creation,used,written,refer
 # SSH bypass
 alias sshn='ssh -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile=/dev/null'
 
-# Bat replaces Cat if available
-if command -v bat >/dev/null 2>&1; then
-    alias cat='bat -p'
-fi

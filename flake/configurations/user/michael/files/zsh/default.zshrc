@@ -4,6 +4,7 @@
 
 source "$HOME/.config/shells/environment.sh"
 source "$HOME/.config/shells/functions.sh"
+source "$HOME/.config/shells/posix.sh"
 
 # -----------------------------
 # Geometry Entry
