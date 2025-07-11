@@ -15,6 +15,7 @@
   system = {
     preset = "wsl";
     stateVersion = "24.11";
+    zfs.enable = false;
   };
 
   programs.winbox.enable = true;
