@@ -18,6 +18,11 @@ in {
 
   config = {
     boot = {
+      kernel.sysctl = {
+        "net.ipv4.conf.all.forwarding" = true;
+        "net.ipv6.conf.all.forwarding" = true;
+      };
+
       kernelPackages = mkDefault pkgs.linuxPackages_6_15;
 
       initrd = {

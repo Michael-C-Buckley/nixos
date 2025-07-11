@@ -16,6 +16,8 @@ in {
       niri.enable = mkDefault true;
     };
 
+    hjem.users.michael.programs = {vivaldi.enable = true;};
+
     services.flatpak = {
       enable = true;
       apps = [
