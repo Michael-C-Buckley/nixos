@@ -1,9 +1,4 @@
-# I'm not using these since I use tiling at the WM level
-#keybind = ctrl+z=close_surface
-#keybind = ctrl+j=new_split:down
-#keybind = ctrl+h=new_split:left
-#keybind = ctrl+k=new_split:up
-#keybind = ctrl+l=new_split:right
+keybind = ctrl+alt+d=toggle_window_decorations
 
 theme = Seti
 
@@ -12,4 +7,4 @@ window-decoration = false
 background = #000000
 cursor-color = #44A3A3
 cursor-opacity = 0.7
-font-size = 12
+font-size = 11
