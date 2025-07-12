@@ -5,8 +5,7 @@
   ...
 }: let
   inherit (lib) mkDefault optionals;
-
-  net = config.networking;
+  inherit (config.networking) loopback;
 
   addr = addr: prefix: {
     address = addr;
@@ -24,15 +23,18 @@ in {
     ./vxlan.nix
   ];
 
-  # Set sane standards on file descriptor limits for FRR daemons
-  services.frr = {
-    bgpd.options = mkDefault ["--limit-fds 2048"];
-    zebra.options = mkDefault ["--limit-fds 2048"];
-    openFilesLimit = mkDefault 2048;
+  services = {
+    lldpd.enable = mkDefault true;
+    # Set sane standards on file descriptor limits for FRR daemons
+    frr = {
+      bgpd.options = mkDefault ["--limit-fds 2048"];
+      zebra.options = mkDefault ["--limit-fds 2048"];
+      openFilesLimit = mkDefault 2048;
+    };
   };
 
   # Apply the loopback address if added
-  networking.interfaces.lo.ipv4.addresses = optionals (net.loopback.ipv4 != null) [
-    (addr net.loopback.ipv4 32)
+  networking.interfaces.lo.ipv4.addresses = optionals (loopback.ipv4 != null) [
+    (addr loopback.ipv4 32)
   ];
 }
