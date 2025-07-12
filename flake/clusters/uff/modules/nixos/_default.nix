@@ -1,13 +1,14 @@
-{lib, ...}: {
+{inputs, ...}: {
+  imports = [inputs.lix.nixosModules.default];
+
   system = {
     preset = "server";
-    stateVersion = lib.mkDefault "25.11";
+    stateVersion = "25.11";
     impermanence.enable = true;
     zfs.enable = true;
   };
 
   services = {
-    k3s.enable = true;
     unbound.enable = true;
   };
 
