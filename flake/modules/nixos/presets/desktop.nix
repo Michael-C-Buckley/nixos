@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   inherit (lib) mkDefault mkIf;
@@ -15,6 +16,8 @@ in {
       hyprland.enable = mkDefault true;
       niri.enable = mkDefault true;
     };
+
+    environment.systemPackages = with pkgs; [pulseaudioFull];
 
     hjem.users.michael.programs = {vivaldi.enable = true;};
 
