@@ -21,15 +21,7 @@ in {
 
     hjem.users.michael.programs = {vivaldi.enable = true;};
 
-    services.flatpak = {
-      enable = true;
-      apps = [
-        {
-          remote = "flathub";
-          name = "com.vscodium.codium";
-        }
-      ];
-    };
+    services.flatpak.enable = true;
 
     features = {
       michael = {
