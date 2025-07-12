@@ -11,5 +11,7 @@ in {
     environment.systemPackages = [
       pkgs.brightnessctl
     ];
+    # Disable discovery for laptops
+    services.lldpd.enable = false;
   };
 }
