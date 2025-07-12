@@ -32,6 +32,6 @@
     parted
     python3
     lm_sensors
-    inetUtils
+    inetutils
   ];
 }
