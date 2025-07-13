@@ -17,6 +17,10 @@ _: {
     };
   };
 
+  services.keepalived.vrrpInstances.wan = {
+    priority = 120;
+  };
+
   system = {
     boot.uuid = "E8D1-BB86";
   };

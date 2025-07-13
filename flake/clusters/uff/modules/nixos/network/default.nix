@@ -9,7 +9,10 @@ _: {
 
   networking = {
     useNetworkd = true;
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      unmanaged = ["eno1" "enusb1"];
+    };
     useDHCP = false;
   };
 

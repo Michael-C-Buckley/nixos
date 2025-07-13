@@ -17,6 +17,11 @@ _: {
     };
   };
 
+  services.keepalived.vrrpInstances.wan = {
+    priority = 130;
+    state = "MASTER";
+  };
+
   system = {
     boot.uuid = "1555-62FA";
   };
