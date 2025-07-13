@@ -15,6 +15,7 @@
     extraModprobeConfig = "options kvm_intel nested=1";
     kernelModules = ["kvm-intel" "virtiofs" "9p" "9pnet_virtio"];
     extraModulePackages = [];
+    zfs.extraPools = ["zhdd"];
   };
 
   swapDevices = [];
@@ -23,5 +24,6 @@
   hardware = {
     cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
     nvidia.useNvidia = false; # Currently using AMD now
+    ksm.enable = true;
   };
 }
