@@ -17,6 +17,10 @@ _: {
     };
   };
 
+  services.keepalived.vrrpInstances.wan = {
+    priority = 110;
+  };
+
   system = {
     boot.uuid = "6B03-5772";
   };

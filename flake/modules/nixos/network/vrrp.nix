@@ -9,10 +9,10 @@
   inherit (config.networking) vrrp;
 in {
   options.networking = {
-    vrrp.enable = mkEnableOption "Enable VRRP and allow protocol 112";
+    vrrp.enable = mkEnableOption "Enable VRRP (via keepalived) and allow protocol 112";
   };
   config = mkIf vrrp.enable {
-    services.frr.vrrpd.enable = true;
+    services.keepalived.enable = true;
     networking.firewall.extraInputRules = ''
       ip protocol 112 accept comment "Allow VRRP"
     '';
