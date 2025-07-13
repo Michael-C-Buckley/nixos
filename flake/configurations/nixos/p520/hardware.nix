@@ -26,4 +26,11 @@
     nvidia.useNvidia = false; # Currently using AMD now
     ksm.enable = true;
   };
+
+  fileSystems = {
+    "/data" = {
+      device = "zhdd/data";
+      fsType = "zfs";
+    };
+  };
 }
