@@ -11,6 +11,7 @@
     zsh
     fish
     nushell
+    xonsh
     starship
 
     # Terminal Utilities
