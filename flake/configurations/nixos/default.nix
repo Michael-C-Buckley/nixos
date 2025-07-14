@@ -28,6 +28,11 @@ _: {
       system = "x86_64-linux";
       configuration = ./wsl;
     };
+    # This is a test on doing pre-formatted Btrfs WSL instance
+    "wsl2" = {
+      system = "x86_64-linux";
+      configuration = ./wsl/wsl2.nix;
+    };
     "x370" = {
       system = "x86_64-linux";
       configuration = ./x370;
