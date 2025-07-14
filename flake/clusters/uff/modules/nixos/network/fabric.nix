@@ -46,6 +46,9 @@ in {
       # Bring interfaces up
       ip link set br100 up
       ip link set vxlan100 up
+
+      # Configure the Anycast Gateway Address
+      ip address add 192.168.52.1/26 dev br100
     '';
   };
 }
