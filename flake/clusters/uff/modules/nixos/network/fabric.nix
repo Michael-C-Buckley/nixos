@@ -30,7 +30,6 @@ in {
       Address=192.168.52.1/26
       LinkLocalAddressing=no
       LLDP=no
-      MACAddress=35-C3-67-70-CF-67
     '';
   };
 
@@ -50,10 +49,8 @@ in {
       # Create VXLAN and bridge if missing (bridge created by systemd)
       ip link add vxlan100 type vxlan id 100 dstport ${toString vxl.port} dev eno1 group 239.1.1.100
 
-      # Attach to bridge
+      # Attach and bring online
       ip link set vxlan100 master br100
-
-      # Bring interfaces up
       ip link set br100 up
       ip link set vxlan100 up
     '';
