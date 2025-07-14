@@ -22,6 +22,16 @@ in {
       Name=br100
       Kind=bridge
     '';
+    "systemd/network/21-br100.network".text = ''
+      [Match]
+      Name=br100
+
+      [Network]
+      Address=192.168.52.1/26
+      LinkLocalAddressing=no
+      LLDP=no
+      MACAddress=35-C3-67-70-CF-67
+    '';
   };
 
   # Create and configure VXLAN with a service since NetDev was silently failing
@@ -46,9 +56,6 @@ in {
       # Bring interfaces up
       ip link set br100 up
       ip link set vxlan100 up
-
-      # Configure the Anycast Gateway Address
-      ip address add 192.168.52.1/26 dev br100
     '';
   };
 }
