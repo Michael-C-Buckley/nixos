@@ -14,6 +14,7 @@ in {
   virtualisation = {
     docker.enable = true;
     incus.enable = true;
+    libvirtd.enable = true;
   };
 
   security.tpm2.enable = true;
