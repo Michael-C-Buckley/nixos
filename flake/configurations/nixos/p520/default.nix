@@ -1,6 +1,5 @@
-{inputs, ...}: {
+_: {
   imports = [
-    inputs.lix.nixosModules.default
     ./networking
     ./systemd
     ./hardware.nix
