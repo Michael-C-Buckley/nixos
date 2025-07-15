@@ -1,4 +1,5 @@
-_: {
+{inputs, ...}: {
+  imports = [inputs.quadlet-nix.nixosModules.quadlet];
   system = {
     preset = "server";
     stateVersion = "25.11";
