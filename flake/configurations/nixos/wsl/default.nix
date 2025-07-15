@@ -1,9 +1,11 @@
 {inputs, ...}: {
   imports = [
     inputs.nixos-wsl.nixosModules.default
+    inputs.quadlet-nix.nixosModules.quadlet
     ./hjem.nix
     ./networking.nix
     ./wsl.nix
+    ./quadlet.nix
   ];
 
   networking.hostId = "e07f0101";
