@@ -9,6 +9,7 @@
           image = "vaultwarden/server:latest";
           networks = ["podman" networks.internal.ref];
           pod = pods.foo.ref;
+          volumes = ["/var/lib/quadlet/vaultwarden:/data/"];
         };
         serviceConfig.TimeoutStartSec = "60";
       };
@@ -17,7 +18,9 @@
       internal.networkConfig.subnets = ["10.0.123.1/24"];
     };
     pods = {
-      foo = {};
+      foo = {
+        podConfig.publishPorts = ["80:80"];
+      };
     };
   };
 }
