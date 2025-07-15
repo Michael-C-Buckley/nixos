@@ -3,7 +3,8 @@ _: let
   mkBtrfs = vol: {
     device = "/dev/disk/by-uuid/e0b199ac-5b2d-42f3-90fc-70bf8083d2d3";
     fsType = "btrfs";
-    options = ["subvol=@${vol}" "compress=zstd" "noatime"];
+    options = ["subvol=@${vol}" "compress=zstd:3" "noatime"];
+    neededForBoot = true;
   };
 in {
   # Use everything else WSL already has
@@ -17,5 +18,8 @@ in {
     "/tmp" = mkBtrfs "tmp";
   };
 
-  system.impermanence.enable = true;
+  system.impermanence = {
+    enable = true;
+    usePreset = false;
+  };
 }
