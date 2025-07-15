@@ -63,6 +63,7 @@
       inputs.flake-parts.follows = "flake-parts";
     };
     impermanence.url = "git+https://github.com/nix-community/impermanence?shallow=1";
+    quadlet-nix.url = "git+https://github.com/SEIAROTg/quadlet-nix?shallow=1";
   };
 
   outputs = {flake-parts, ...} @ inputs:

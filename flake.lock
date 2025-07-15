@@ -356,6 +356,22 @@
         "url": "https://github.com/notashelf/nvf"
       }
     },
+    "quadlet-nix": {
+      "locked": {
+        "lastModified": 1751931728,
+        "narHash": "sha256-i4OALPUnFhe9j9NauZaszZZTgIYSaLHmCO2gp9MZYKQ=",
+        "ref": "refs/heads/main",
+        "rev": "5cb4f185dc3722d589bdf238e6802c4c9f87994e",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/SEIAROTg/quadlet-nix"
+      },
+      "original": {
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/SEIAROTg/quadlet-nix"
+      }
+    },
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -369,6 +385,7 @@
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
         "nvf": "nvf",
+        "quadlet-nix": "quadlet-nix",
         "sops-nix": "sops-nix",
         "systems": "systems_2"
       }
