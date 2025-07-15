@@ -1,9 +1,9 @@
 {pkgs, ...}: {
   packageSets.common = with pkgs; [
     # Git/Web
-    git
+    gitFull
+    lazygit
     delta
-    tig
     curl
     wget
 
