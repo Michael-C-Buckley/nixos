@@ -20,8 +20,5 @@
 
   programs.winbox.enable = true;
 
-  virtualisation.docker = {
-    enable = true;
-    kata.enable = false; # Needs debugging
-  };
+  virtualisation.podman.enable = true;
 }
