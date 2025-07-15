@@ -1,6 +1,4 @@
-{inputs, ...}: {
-  imports = [inputs.lix.nixosModules.default];
-
+_: {
   system = {
     preset = "server";
     stateVersion = "25.11";
