@@ -1,6 +1,7 @@
 _: {
   lupinix.clusters."uff".nixos.modules = {
     # keep-sorted start
+    containers = import ./containers;
     corosync = import ./corosync.nix;
     default = import ./_default.nix;
     fileSystems = import ./filesystems.nix;
