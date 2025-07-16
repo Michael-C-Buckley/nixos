@@ -331,6 +331,30 @@
         "url": "https://github.com/notashelf/nvf"
       }
     },
+    "pcsd": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1751827808,
+        "narHash": "sha256-EXVT4ScsdggIWv/eJheNF1eNHM5X09d5ecfqNX0X1JY=",
+        "ref": "refs/heads/master",
+        "rev": "fb232173dbb1eab996d0ecdf839849ea67dcbb59",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/matt1432/nixos-pcsd"
+      },
+      "original": {
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/matt1432/nixos-pcsd"
+      }
+    },
     "quadlet-nix": {
       "locked": {
         "lastModified": 1751931728,
@@ -359,6 +383,7 @@
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
         "nvf": "nvf",
+        "pcsd": "pcsd",
         "quadlet-nix": "quadlet-nix",
         "sops-nix": "sops-nix",
         "systems": "systems_2"
