@@ -1,6 +1,6 @@
 {lib}: {
   genInterface = {
-    cfgPath ? config.sops.secrets."wg-${name}".path,
+    cfgPath ? config.sops.secrets."wireguard-${name}".path,
     config,
     ipAddresses ? [],
     mtu ? 1420,
