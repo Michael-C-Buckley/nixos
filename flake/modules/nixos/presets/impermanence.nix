@@ -5,9 +5,11 @@
   ...
 }: let
   inherit (config.networking) hostName;
-  inherit (lib) mkOption mkIf;
+  inherit (lib) mkEnableOption mkOption mkIf;
   inherit (lib.types) str bool;
   inherit (config.system) impermanence;
+
+  nixPkg = config.nix.package;
 
   zfsFs = name: {
     device = "${impermanence.zrootPath}/${name}";
@@ -31,17 +33,13 @@ in {
       default = "1G";
       description = "The size of the tmpfs root partition.";
     };
+    useTmpDataset = mkEnableOption "Create a separate dataset for `\tmp`. Optional after Nix 2.30, where it builds in `\nix` instead of `\tmp`.";
   };
 
   config = mkIf (impermanence.enable && impermanence.usePreset) {
     system.zfs.enable = true;
 
     fileSystems = {
-      "/boot" = {
-        device = "/dev/disk/by-uuid/${config.system.boot.uuid}";
-        fsType = "vfat";
-      };
-
       # Tmpfs
       "/" = {
         device = "tmpfs";
@@ -54,10 +52,13 @@ in {
       };
 
       # ZFS Volumes
-      "/tmp" = zfsFs "tmp";
       "/nix" = zfsFs "nix";
       "/cache" = zfsFs "cache";
       "/persist" = zfsFs "persist";
+
+      # Use a Tmp dataset for nix builds
+      # Lix guard statement since it follows older Nix behavior
+      "/tmp" = mkIf (impermanence.useTmpDataset || nixPkg.pname == "lix") (zfsFs "tmp");
     };
   };
 }
