@@ -6,33 +6,36 @@
   lib,
   ...
 }: let
-  inherit (config.sops) secrets;
+  inherit (lib) splitString elemAt;
 
-  mkWg = {
+  mkInterface = {
+    hostName,
+    ipAddresses,
+  }:
+    self.lib.wireguard.genInterface {
+      inherit config pkgs ipAddresses;
+      name = elemAt (splitString "-" hostName) 1;
+    };
+
+  mkNspawn = {
     localAddress,
     hostName,
-    #wgInterface,
-    cfgPath,
+    ipAddresses,
     ...
-  }: {
+  }: let
+    cfgPath = config.sops.secrets.${hostName}.path;
+    hostConfig = config;
+  in {
     inherit localAddress;
     autoStart = true;
+    bindMounts.${cfgPath}.hostPath = cfgPath;
     privateNetwork = true;
     hostBridge = "br100";
 
-    config = _: {
-      environment = {
-        enableAllTerminfo = true;
-        systemPackages = with pkgs; [
-          iproute2
-          wireguard-tools
-        ];
-      };
-      bindMounts.${cfgPath} = {
-        hostPath = cfgPath;
-        isReadOnly = true;
-      };
-      system.stateVersion = config.system.stateVersion;
+    config = {pkgs, ...}: {
+      environment.systemPackages = with pkgs; [iproute2 wireguard-tools];
+      system.stateVersion = hostConfig.system.stateVersion;
+      systemd.services.${hostName} = mkInterface {inherit hostName ipAddresses;};
       networking = {
         inherit hostName;
         defaultGateway.address = "192.168.52.1";
@@ -43,15 +46,10 @@
 in {
   # WIP: For testing, deploy only on UFF2 until proper clustering is completed
   containers = lib.mkIf (config.networking.hostName == "uff2") {
-    wireguard-mt1 = mkWg {
-      cfgPath = secrets."wg-mt1".path;
+    wireguard-mt1 = mkNspawn {
       hostName = "wireguard-mt1";
       localAddress = "192.168.52.11/26";
-      wgInterface = self.lib.wireguard.genInterface {
-        inherit config pkgs;
-        name = "mt1";
-        ipAddresses = ["192.168.254.81/31" "fe80::254:81/64"];
-      };
+      ipAddresses = ["192.168.254.81/31" "fe80::254:81/64"];
     };
   };
 }
