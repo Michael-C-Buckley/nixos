@@ -22,15 +22,19 @@ in {
       Name=br100
       Kind=bridge
     '';
-    "systemd/network/21-br100.network".text = ''
-      [Match]
-      Name=br100
+    "systemd/network/21-br100.network" = {
+      # Disabled so podman can configure the device
+      enable = false;
+      text = ''
+        [Match]
+        Name=br100
 
-      [Network]
-      Address=192.168.52.1/26
-      LinkLocalAddressing=no
-      LLDP=no
-    '';
+        [Network]
+        Address=192.168.52.1/26
+        LinkLocalAddressing=no
+        LLDP=no
+      '';
+    };
   };
 
   # Create and configure VXLAN with a service since NetDev was silently failing

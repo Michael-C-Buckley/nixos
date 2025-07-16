@@ -6,18 +6,21 @@
       vaultwarden = {
         containerConfig = {
           image = "vaultwarden/server:latest";
-          networks = ["podman" networks.br100-fabric.ref];
+          networks = ["${networks.br100-fabric.ref}:ip=192.168.52.10"];
           volumes = ["/var/lib/quadlet/vaultwarden:/data/"];
-          ip = "192.168.52.10";
         };
         serviceConfig.TimeoutStartSec = "60";
       };
     };
-    networks.br100-fabric.networkConfig = {
-      subnets = ["192.168.52.0/26"];
-      options."com.redhat.network.bridge.name" = "br100";
-      driver = "bridge";
-      gateways = ["192.168.52.1"];
+    networks = {
+      # Systemd has created the interface and bound it to the fabric
+      # Podman will configure the address so that containers may be in the subnet
+      br100-fabric.networkConfig = {
+        podmanArgs = ["--interface-name=br100"];
+        driver = "bridge";
+        gateways = ["192.168.52.1"];
+        subnets = ["192.168.52.0/26"];
+      };
     };
   };
 }
