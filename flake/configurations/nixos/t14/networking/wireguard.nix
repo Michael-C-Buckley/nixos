@@ -24,9 +24,7 @@
       inherit config pkgs name ipAddresses;
     };
 in {
-  systemd.services = mapAttrs' (a: ipAddresses: let
-    name = "wireguard-${a}";
-  in
-    nameValuePair name (mkInterface {inherit name ipAddresses;}))
+  systemd.services = mapAttrs' (name: ipAddresses:
+    nameValuePair "wireguard-${name}" (mkInterface {inherit name ipAddresses;}))
   interfaces;
 }
