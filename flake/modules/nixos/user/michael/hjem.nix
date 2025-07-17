@@ -10,7 +10,6 @@
   inherit (config.features.michael) minimalGraphical extendedGraphical;
   inherit (lib) mkDefault optionals mkOverride;
   local = config.hjem.users.michael;
-  inherit (local) fileList;
 
   useImperm = config.system.impermanence.enable && local.system.impermanence.enable;
   extGfx = mkDefault extendedGraphical;
@@ -45,7 +44,7 @@ in {
     system.impermanence.enable = config.system.impermanence.enable;
 
     # Push the existing files in to be merged, for now
-    files = import "${self}/flake/configurations/user/michael/files/fileList.nix" {inherit config lib fileList;};
+    files = import "${self}/flake/configurations/user/michael" {inherit lib;};
 
     environment.gnupg = {
       enable = true;
