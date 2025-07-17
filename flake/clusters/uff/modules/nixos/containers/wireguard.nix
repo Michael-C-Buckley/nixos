@@ -27,10 +27,12 @@
     hostConfig = config;
   in {
     inherit localAddress;
-    autoStart = false;
+    autoStart = true;
     bindMounts.${cfgPath}.hostPath = cfgPath;
     privateNetwork = true;
     hostBridge = "br100";
+    ephemeral = true;
+    enableTun = true;
 
     config = {pkgs, ...}: {
       environment.systemPackages = with pkgs; [iproute2 wireguard-tools];
