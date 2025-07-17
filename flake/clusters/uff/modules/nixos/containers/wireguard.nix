@@ -27,7 +27,7 @@
     hostConfig = config;
   in {
     inherit localAddress;
-    autoStart = true;
+    autoStart = false;
     bindMounts.${cfgPath}.hostPath = cfgPath;
     privateNetwork = true;
     hostBridge = "br100";
@@ -44,8 +44,7 @@
     };
   };
 in {
-  # WIP: For testing, deploy only on UFF2 until proper clustering is completed
-  containers = lib.mkIf (config.networking.hostName == "uff2") {
+  containers = {
     wireguard-mt1 = mkNspawn {
       hostName = "wireguard-mt1";
       localAddress = "192.168.52.11/26";
