@@ -9,8 +9,7 @@
 }: let
   inherit (lib) mkOption mkEnableOption mkIf getExe;
   inherit (lib.types) int package;
-
-  local = config.environment.gnupg;
+  inherit (config.environment) gnupg;
 in {
   options.environment.gnupg = {
     enable = mkEnableOption "Enable gnupg features for the user.";
@@ -32,36 +31,25 @@ in {
     };
   };
 
-  config = mkIf local.enable {
+  config = mkIf gnupg.enable {
     fileList = {
-      ".gnupg/gpg.conf".text = ''
-        auto-key-locate local
-        auto-key-retrieve
-      '';
-
       ".gnupg/gpg-agent.conf".text =
         ''
           allow-loopback-pinentry
-          pinentry-program ${getExe local.pinentryPkg}
-          default-cache-ttl ${builtins.toString local.cacheTTL}
+          pinentry-program ${getExe gnupg.pinentryPkg}
+          default-cache-ttl ${builtins.toString gnupg.cacheTTL}
         ''
         + (
-          if local.enableSSHsupport
+          if gnupg.enableSSHsupport
           then ''
             enable-ssh-support
           ''
           else ''''
         );
-
-      ".gnupg/scdaemon.conf".text = ''
-        # Stops the CCID conflict from pcscd and scdaemon
-        # https://support.yubico.com/hc/en-us/articles/4819584884124-Resolving-GPG-s-CCID-conflicts
-        disable-ccid
-      '';
     };
     packageList = [
-      local.package
-      local.pinentryPkg
+      gnupg.package
+      gnupg.pinentryPkg
     ];
   };
 }
