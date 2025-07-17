@@ -15,11 +15,13 @@ in {
     corosyncKeyFile = corosync-authkey.path;
     clusterUserPasswordFile = hacluster-password.path;
 
+    extraCommands = ["pcs property set stonith-enabled=false"];
+
     virtualIps = [];
 
     systemdResources = [
       {
-        systemdName = "wireguard-mt1";
+        systemdName = "systemd-nspawn@wireguard-mt1";
         enable = true;
       }
     ];
