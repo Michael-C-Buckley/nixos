@@ -1,10 +1,30 @@
-_: {
-  services.pacemaker.enable = true;
+{
+  config,
+  inputs,
+  ...
+}: let
+  inherit (config.sops.secrets) corosync-authkey hacluster-password;
+in {
+  imports = [inputs.pcsd.nixosModules.default];
 
-  services.corosync = {
+  services.pcsd = {
     enable = true;
+    enableBinaryCache = true;
+    enableWebUI = true;
     clusterName = "uff";
-    nodelist = [
+    corosyncKeyFile = corosync-authkey.path;
+    clusterUserPasswordFile = hacluster-password.path;
+
+    virtualIps = [];
+
+    systemdResources = [
+      {
+        systemdName = "wireguard-mt1";
+        enable = true;
+      }
+    ];
+
+    nodes = [
       {
         name = "uff1";
         nodeid = 1;

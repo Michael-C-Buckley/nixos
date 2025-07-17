@@ -8,6 +8,10 @@
   };
 
   services = {
+    pcsd = {
+      enable = true;
+      enableBinaryCache = true;
+    };
     unbound.enable = true;
   };
 
