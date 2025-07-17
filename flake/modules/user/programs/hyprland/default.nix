@@ -47,9 +47,9 @@ in {
     };
   };
 
-  config = {
+  config = mkIf cfg.enable {
     # WIP: Portals and other things later
-    packageList = mkIf cfg.enable [cfg.package];
+    packageList = [cfg.package];
 
     fileList = {
       ".config/hypr/hyprland.conf".text = mkDefault (cfg.initialConfig
