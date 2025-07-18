@@ -13,6 +13,8 @@
     nushell
     xonsh
     starship
+    tmux
+    zellij
 
     # Terminal Utilities
     ripgrep
