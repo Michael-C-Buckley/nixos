@@ -1,0 +1,139 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family:
+        Consolas,
+        JetBrains Mono,
+        "Font Awesome";
+    font-size: 12px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(10, 10, 10, 0.5);
+    border-bottom: 3px solid transparent;
+    color: white;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    margin: 0 3px;
+    color: white;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button.active {
+    color: cyan;
+    border: none;
+    transition: all 0.5s ease;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button.focused {
+    background: rgba(100, 114, 125, 0.2);
+    border-bottom: 3px solid @color15;
+}
+
+#mode {
+    background: transparent;
+    border-bottom: 3px solid @color15;
+}
+
+#clock {
+    padding: 0px 12px 0px 15px;
+    color: cyan;
+}
+#battery {
+    padding: 0px 15px 0px 10px;
+}
+
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#temperature {
+    padding: 0px 15px 0px 0px;
+}
+#backlight,
+#idle_inhibitor,
+
+#clock {
+    background-color: transparent;
+    color: white;
+}
+
+#battery {
+    color: white;
+}
+
+#battery.charging {
+    color: green;
+}
+
+@keyframes blink {
+    to {
+        background-color: rgba(1, 1, 1, 0);
+    }
+}
+
+#battery.warning:not(.charging) {
+    background: #f53c3c;
+    color: white;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#cpu {
+    background: transparent;
+    /* border-bottom: 2px solid @color5; */
+    color: white;
+}
+
+#memory {
+    background: transparent;
+    /* border-bottom: 3px solid @color7; */
+    color: white;
+}
+
+#network {
+    background: transparent;
+    color: white;
+}
+
+#network.disconnected {
+    background: transparent;
+    color: crimson;
+}
+
+#pulseaudio {
+    background: transparent;
+    color: white;
+}
+
+#pulseaudio.muted {
+    border-bottom: 3px solid @color1;
+}
+
+#tray {
+    background-color: transparent;
+    padding: 0px 15px 0px 15px;
+}
+
+#custom-sl.good {
+    border-bottom: 3px solid green;
+}
+
+#custom-sl.other {
+    border-bottom: 3px solid #f4af39;
+}
+
+#custom-sl.minor {
+    background-color: red;
+}
+
+#custom-sl.major {
+    background-color: red;
+}
