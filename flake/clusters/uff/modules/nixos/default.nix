@@ -7,6 +7,7 @@ _: {
     fileSystems = import ./filesystems.nix;
     hardware = import ./hardware.nix;
     network = import ./network;
+    quadlet = import ./quadlet;
     secrets = import ./secrets.nix;
     # keep-sorted end
   };

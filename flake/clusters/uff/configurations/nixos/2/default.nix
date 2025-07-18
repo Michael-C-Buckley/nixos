@@ -24,4 +24,9 @@ _: {
   system = {
     boot.uuid = "E8D1-BB86";
   };
+
+  # CONTAINERS
+  virtualisation.quadlet.containers = {
+    forgejo.autoStart = true;
+  };
 }
