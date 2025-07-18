@@ -20,6 +20,12 @@
   }
   {
     mode = "n";
+    key = "<leader>ff";
+    action = ":Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>";
+    silent = true;
+  }
+  {
+    mode = "n";
     key = "<leader>fh";
     action = ":Telescope help_tags<CR>";
   }
