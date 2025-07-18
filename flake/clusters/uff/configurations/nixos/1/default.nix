@@ -1,6 +1,4 @@
 _: {
-  imports = [./quadlet.nix];
-
   networkd = {
     eno1.addresses.ipv4 = ["192.168.48.31/24"];
     enusb1 = {
@@ -25,5 +23,14 @@ _: {
 
   system = {
     boot.uuid = "6B03-5772";
+  };
+
+  # CONTAINERS
+  containers = {
+    wireguard-mt1.autoStart = true;
+  };
+
+  virtualisation.quadlet.containers = {
+    vaultwarden.autoStart = true;
   };
 }

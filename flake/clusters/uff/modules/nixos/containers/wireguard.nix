@@ -6,7 +6,7 @@
   lib,
   ...
 }: let
-  inherit (lib) splitString elemAt;
+  inherit (lib) splitString elemAt mkDefault;
 
   mkInterface = {
     hostName,
@@ -27,7 +27,8 @@
     hostConfig = config;
   in {
     inherit localAddress;
-    autoStart = true;
+    # For now, deploying manually on the selected nodes
+    autoStart = mkDefault false;
     bindMounts.${cfgPath}.hostPath = cfgPath;
     privateNetwork = true;
     hostBridge = "br100";
