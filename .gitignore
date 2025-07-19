@@ -1,11 +1,9 @@
-# Created by https://www.toptal.com/developers/gitignore/api/direnv
-# Edit at https://www.toptal.com/developers/gitignore?templates=direnv
+# For my editor to not search these
+.git
 
-### direnv ###
+# Direnv
 .direnv
 # .envrc
-
-# End of https://www.toptal.com/developers/gitignore/api/direnv
 
 ### image files ###
 *.raw
