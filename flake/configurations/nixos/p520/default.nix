@@ -7,7 +7,7 @@ _: {
 
   virtualisation = {
     libvirtd.enable = true;
-    incus.enable = true;
+    podman.enable = true;
   };
 
   security.tpm2.enable = true;

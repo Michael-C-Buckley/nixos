@@ -12,7 +12,6 @@ in {
 
   virtualisation = {
     podman.enable = true;
-    incus.enable = true;
     libvirtd.enable = true;
   };
 
