@@ -7,7 +7,7 @@
     inherit (config.virtualisation.quadlet.networks.br100-fabric) ref;
 
     # Latest as of July 18 2025
-    version = "sha256-87996ca0371d043df90f04a0fa8efb72a880927eb71edc3fd55fd8ad354e42c8";
+    version = "1.34.1-alpine";
   in {
     containers.vaultwarden = {
       autoStart = lib.mkDefault false;
