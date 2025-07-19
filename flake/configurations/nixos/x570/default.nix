@@ -19,7 +19,6 @@ in {
   };
 
   virtualisation = {
-    incus.enable = true;
     gns3.enable = true;
     podman.enable = true;
   };
