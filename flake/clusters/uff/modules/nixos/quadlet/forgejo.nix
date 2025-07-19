@@ -7,7 +7,7 @@
     inherit (config.virtualisation.quadlet.networks.br100-fabric) ref;
 
     # Latest as of July 18 2025
-    version = "" 12.0 .0 "";
+    version = "12.0.0";
   in {
     containers.forgejo = {
       autoStart = lib.mkDefault false;
