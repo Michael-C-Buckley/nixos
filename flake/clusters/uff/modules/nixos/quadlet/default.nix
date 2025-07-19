@@ -9,6 +9,7 @@ _: {
     br100-fabric.networkConfig = {
       podmanArgs = ["--interface-name=br100"];
       driver = "bridge";
+      disableDns = true;
       gateways = ["192.168.52.1"];
       subnets = ["192.168.52.0/26"];
     };
