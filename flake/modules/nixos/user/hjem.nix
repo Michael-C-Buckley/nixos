@@ -13,16 +13,13 @@ in {
     inputs.hjem.nixosModules.default
     ./options
     ./michael/hjem.nix
+    ./shawn/hjem.nix
   ];
 
   users.users = {
     root = {
       packages = config.packageSets.common;
       shell = mkOverride 900 pkgs.fish;
-    };
-    shawn = {
-      packages = config.packageSets.common;
-      shell = pkgs.zsh;
     };
   };
 
