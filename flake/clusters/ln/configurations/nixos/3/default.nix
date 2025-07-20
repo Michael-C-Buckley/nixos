@@ -24,6 +24,6 @@ in {
   };
 
   system = {
-    boot.uuid = "2665-7F8D";
+    boot.uuid = "93A8-3B45";
   };
 }
