@@ -10,6 +10,8 @@ _: {
     podman.enable = true;
   };
 
+  sops.age.sshKeyPaths = [];
+
   security.tpm2.enable = true;
 
   system = {

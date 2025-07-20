@@ -220,10 +220,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1752921574,
-        "narHash": "sha256-cHFPZOuGJdVsaBxFTmPXNFIc3imfFPwevD98rlTROqM=",
+        "lastModified": 1753017901,
+        "narHash": "sha256-ApPbFDVPVJhRKYDEG/5wLwfLfqdq+cVN5XjcRZKslAg=",
         "ref": "refs/heads/master",
-        "rev": "6842dff1a212e0ab596b9e451509cc549fe9d647",
+        "rev": "15e173c41ffdc897aaec00bdb94d2a0b1d4e4de6",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/michael-c-buckley/nix-secrets"

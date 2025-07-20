@@ -17,11 +17,6 @@ in {
 
   security.tpm2.enable = true;
 
-  sops.gnupg = {
-    home = "/etc/sops";
-    sshKeyPaths = [];
-  };
-
   system = {
     preset = "laptop";
     stateVersion = "24.11";
