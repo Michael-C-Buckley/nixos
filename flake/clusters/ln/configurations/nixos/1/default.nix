@@ -1,14 +1,7 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{config, ...}: let
   inherit (config.networking) loopback;
   mainIP = "192.168.65.131";
 in {
-  # Just because this one isn't yet updated to impermanence
-  imports = [./filesystems.nix];
-
   # WIP: legacy options not long for this world
   cluster.ln.kubernetes.masterIP = mainIP;
   custom.routing.routerId = loopback.ipv4;
@@ -30,9 +23,6 @@ in {
   };
 
   system = {
-    boot.uuid = "2312-A651";
-    impermanence = {
-      enable = lib.mkForce false; # Temporary, until rebuilt
-    };
+    boot.uuid = "406D-8DEA";
   };
 }
