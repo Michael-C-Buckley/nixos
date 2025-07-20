@@ -20,6 +20,10 @@ in {
       packages = config.packageSets.common;
       shell = mkOverride 900 pkgs.fish;
     };
+    shawn = {
+      packages = config.packageSets.common;
+      shell = pkgs.zsh;
+    };
   };
 
   hjem = {
