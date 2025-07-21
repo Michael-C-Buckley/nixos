@@ -1,20 +1,8 @@
-_: let
-  certSecret = file: {
-    owner = "michael";
-    path = "/home/michael/.certs/${file}";
-  };
-in {
+_: {
   imports = [
     ./routing.nix
     ./wireguard.nix
   ];
-
-  # Certs for my own services
-  sops.secrets = {
-    "x570-key" = certSecret "x570.key.pem";
-    "x570-crt" = certSecret "x570.crt.pem";
-    "x570-p12" = certSecret "x570.p12";
-  };
 
   services.unbound.enable = true;
 
