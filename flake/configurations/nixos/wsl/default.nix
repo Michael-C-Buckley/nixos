@@ -8,6 +8,8 @@
 
   networking.hostId = "e07f0101";
 
+  sops.age.sshKeyPaths = [];
+
   services = {
     unbound.enable = true;
   };
