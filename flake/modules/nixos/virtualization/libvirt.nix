@@ -36,7 +36,7 @@ in {
 
     users.users = lib.listToAttrs (map (user: {
         name = user;
-        value = {extraGroups = ["kvm"];};
+        value = {extraGroups = ["kvm" "libvirt"];};
       })
       libvirtd.users);
 
