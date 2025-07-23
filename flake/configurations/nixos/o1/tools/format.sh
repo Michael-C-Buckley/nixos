@@ -60,3 +60,4 @@ sed -i -E \
   "$file"
 
 echo "Updated UUID for $hostname"
+
