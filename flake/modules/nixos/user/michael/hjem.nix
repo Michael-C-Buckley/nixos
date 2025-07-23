@@ -18,6 +18,11 @@
     packageSets.common
     ++ optionals minimalGraphical packageSets.minimalGraphical
     ++ optionals extendedGraphical packageSets.extendedGraphical;
+
+  # WIP: Integrat this better
+  myPackages = with pkgs; [
+    alejandra
+  ];
 in {
   imports = [
     ./impermanence.nix
@@ -30,7 +35,7 @@ in {
 
   users.users = {
     michael = {
-      packages = userPkgs ++ local.packageList;
+      packages = userPkgs ++ local.packageList ++ myPackages;
       shell = mkOverride 900 pkgs.fish;
     };
   };
