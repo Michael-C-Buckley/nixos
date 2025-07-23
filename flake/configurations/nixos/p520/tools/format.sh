@@ -65,12 +65,11 @@ sed -i -E \
 echo "Updated UUID for $hostname"
 
 # Lastly, deploy the secrets
-key_dir=/etc/nix/secrets/crypt/ssh/$hostname
-persist_dir=/mnt/persist/etc/ssh
+key=/etc/nix/secrets/crypt/age/p520.sops
+persist_dir=/mnt/persist/etc/sops
 mkdir -p $persist_dir
-cp "$key_dir"/ssh_host_{ed25519,rsa}_key.pub ${persist_dir}
 
 for key in ed25519 rsa; do
-  sops -d "$key_dir/ssh_host_${key}_key.sops" >${persist_dir}/ssh_host_${key}_key
+  sops -d "$key" >${persist_dir}/age.txt
   chmod 0600 ${persist_dir}/ssh_host_${key}_key
 done
