@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
-    #nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
     nix-secrets = {
       url = "git+ssh://git@github.com/michael-c-buckley/nix-secrets?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -54,6 +53,14 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
+      };
+    };
+
+    attic = {
+      url = "git+https://github.com/zhaofengli/attic?shallow=1";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
       };
     };
 
