@@ -316,10 +316,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1753437112,
-        "narHash": "sha256-oGvZBbOGBO5pikQ0CUfE4MZbRhFFcOIq2iI8Yh+3bSk=",
+        "lastModified": 1753558917,
+        "narHash": "sha256-70BBjuMC2CyoRno826Vg3HYlpwqRu6L1vuiPG98gKu8=",
         "ref": "refs/heads/master",
-        "rev": "40143dce839aa80dc27406880da3dd6739b5ee64",
+        "rev": "5844e668248da540abc75bdf9d56d878763cb571",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/michael-c-buckley/nix-secrets"
@@ -338,10 +338,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1752682362,
-        "narHash": "sha256-ZNIpqCG/CfhmV+TgIeyO/XbhDjSWpwWokHM44j0Mn0w=",
+        "lastModified": 1753450337,
+        "narHash": "sha256-l0QLEenVKuU6U2g1wI0zuf9IAm7QpisIbf8wAI6BUX4=",
         "ref": "main",
-        "rev": "20001f9bf0aaf2b1c307e43a5eec8cf8f800fe14",
+        "rev": "a8dfcd2962f6e788759a75b36ca86b14aa44d8e5",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/nixos-wsl"
@@ -355,11 +355,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1753333710,
-        "narHash": "sha256-kKSZJAdp/nw+4lsKQzLmwz/oHXe5xsiE0MtXIwdnso0=",
-        "rev": "fc02ee70efb805d3b2865908a13ddd4474557ecf",
+        "lastModified": 1753512643,
+        "narHash": "sha256-mAYzeIYxVk5ByCfYDAtdWv0TGhY+F4wGqbGrfqGDH+M=",
+        "rev": "7fd36ee82c0275fb545775cc5e4d30542899511d",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre833752.fc02ee70efb8/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre834672.7fd36ee82c02/nixexprs.tar.xz"
       },
       "original": {
         "type": "tarball",
@@ -430,10 +430,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1753369692,
-        "narHash": "sha256-PpeSQWUZCKXinsFO/tJ+T1V8zfrd8XPS1eWZhYu6jKk=",
+        "lastModified": 1753554143,
+        "narHash": "sha256-7hFt6eb+D4+T6I9BxQd0YAGXYWi9sayhThupKvfCk8A=",
         "ref": "refs/heads/main",
-        "rev": "a125a61d6bec1594d0378dab06169dd92272f63b",
+        "rev": "eaad512c1a6695a2e61a7f030b1fbbe53e04b594",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/notashelf/nvf"
