@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  imports = [./impermanence.nix];
+  #imports = [./impermanence.nix];
 
   users.users.shawn = {
     packages = config.packageSets.common;

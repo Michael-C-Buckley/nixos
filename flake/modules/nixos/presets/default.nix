@@ -7,5 +7,6 @@ _: {
     ./laptop.nix
     ./michael.nix
     ./nvidia.nix
+    ./zfs.nix
   ];
 }
