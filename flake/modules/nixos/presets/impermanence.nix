@@ -23,6 +23,7 @@ in {
       default = true;
       description = "Configures the impermanence preset rules.";
     };
+    # WIP: De-nest 1 level
     zrootPath = mkOption {
       type = str;
       default = "zroot/${hostName}";

@@ -11,7 +11,6 @@
   inherit (lib) mkDefault optionals mkOverride;
   local = config.hjem.users.michael;
 
-  useImperm = config.system.impermanence.enable && local.system.impermanence.enable;
   extGfx = mkDefault extendedGraphical;
 
   userPkgs =
@@ -24,14 +23,11 @@
     alejandra
   ];
 in {
-  imports = [
-    ./impermanence.nix
+  # Home is not impermanent, but this removes these from snapshots
+  environment.persistence."/cache".users.michael.directories = [
+    "Downloads"
+    ".cache/nix" # Git caches are very large
   ];
-
-  environment.persistence = lib.mkIf useImperm {
-    "/cache".users.michael.directories = local.system.impermanence.userCacheDirs;
-    "/persist".users.michael.directories = local.system.impermanence.userPersistDirs;
-  };
 
   users.users = {
     michael = {
@@ -45,8 +41,8 @@ in {
     user = "michael";
     directory = "/home/michael";
 
-    # Mirror the system's impermanence
-    system.impermanence.enable = config.system.impermanence.enable;
+    # WIP: Remove this entire feature
+    system.impermanence.enable = false;
 
     # Push the existing files in to be merged, for now
     files = import "${self}/flake/configurations/user/michael" {inherit lib;} // local.fileList;
