@@ -28,6 +28,7 @@ in {
     };
 
     kubelet = {
+      enable = true;
       hostname = kube.masterHostname;
       extraOpts = "--fail-swap-on=false";
     };
