@@ -14,7 +14,7 @@ hostname="x570"
 
 read -rp "This will erase the NVMe drives, as you sure? [y/N]" confirm
 if [[ $confirm =~ ^[Yy]$ ]]; then
-  for dev in /dev/nvme{0,2}n1; do
+  for dev in /dev/nvme{0,1}n1; do
     echo "Erasing NVMe ${dev}..."
     wipefs -a $dev
     sgdisk --zap-all $dev
@@ -22,7 +22,7 @@ if [[ $confirm =~ ^[Yy]$ ]]; then
 
     # Format the partitions
     sgdisk -n1:1M:+2G -t1:EF00 -c1:"EFI System" $dev
-    sgdisk -n2:0:+1000G -t2:BF01 -c2:"ZROOT" $dev
+    sgdisk -n2:0:+1500G -t2:BF01 -c2:"ZROOT" $dev
 
     # Windows
     sgdisk -n3:0:+200G -t3:0700 -c3:"Windows" $dev
@@ -31,11 +31,9 @@ if [[ $confirm =~ ^[Yy]$ ]]; then
     # Format the first partition
     mkfs.vfat -F32 {$dev}p1
   done
-  # Remove the boot flag from the second drive
-  sgdisk --attributes=1:!63 /dev/nvme2n1
 
   # Format for the striped ZFS pool
-  zpool create -f $ZFS_OPTS zroot /dev/nvme1n1p2 /dev/nvme2n1p2
+  zpool create -f $ZFS_OPTS zroot /dev/nvme0n1p2 /dev/nvme1n1p2
 else
   echo "Skipping NVMe wipe."
 fi
@@ -44,7 +42,7 @@ fi
 zfs create -o mountpoint=none zroot/local
 for set in "crypt" "cache" "games"; do
   zfs create -o mountpoint=legacy zroot/local/$set
-end
+done
 # Nix store gets higher compression
 zfs create -o mountpoint=legacy -o compression=zstd zroot/local/nix
 
@@ -59,15 +57,15 @@ done
 for dir in "cache" "crypt" "nix"; do
   mkdir -p /mnt/$dir
   mount -t zfs zroot/local/$dir /mnt/$dir
-end
+done
 mkdir -p /mnt/persist
 mount -t zfs zroot/$hostname/nixos/persist
 
 # Mount user homes
 for user in "michael" "shawn"; do
   mkdir -p /mnt/home/$user
-  mount -t zfs zroot/$hostname/home/$user /home/$user
-end
+  mount -t zfs zroot/$hostname/home/$user /mnt/home/$user
+done
 
 # Mount boot
 mkdir -p /mnt/boot

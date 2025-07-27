@@ -31,7 +31,7 @@ in {
       kernelModules = ["zfs"];
       supportedFilesystems = ["zfs"];
       zfs = {
-        # forceImportRoot = false;
+        forceImportAll = false;
         requestEncryptionCredentials = cfg.encryption;
       };
     };
