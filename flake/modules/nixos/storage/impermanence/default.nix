@@ -10,6 +10,13 @@
 }: let
   inherit (config.networking) hostName;
   inherit (config.system) impermanence;
+
+  sanoidDefaults = {
+    hourly = 12;
+    daily = 3;
+    weekly = 2;
+    monthly = 2;
+  };
 in
   lib.mkIf impermanence.enable {
     # To make sure keys are available for sops decryption
@@ -30,13 +37,13 @@ in
         "/etc/ssh"
         "/etc/nixos"
         "/etc/sops"
-        "/etc/nix/secrets"
+        "/etc/nix/"
         "/etc/wireguard"
         "/var/log" # systemd journal is stored in /var/log/journal
         "/var/lib/bluetooth"
         "/var/lib/nixos" # for persisting user uids and gids
         "/var/lib/systemd/coredump"
-        "/etc/NetworkManager/system-connections"
+        "/etc/NetworkManager/"
         {
           directory = "/var/lib/colord";
           user = "colord";
@@ -53,12 +60,9 @@ in
       inherit (config.system.zfs) enable;
 
       datasets = {
-        "zroot/${hostName}/persist" = {
-          hourly = 50;
-          daily = 15;
-          weekly = 3;
-          monthly = 1;
-        };
+        "zroot/${hostName}/nixos/persist" = sanoidDefaults;
+        "zroot/${hostName}/nixos/home/michael" = sanoidDefaults;
+        "zroot/${hostName}/nixos/home/shawn" = sanoidDefaults;
       };
     };
   }
