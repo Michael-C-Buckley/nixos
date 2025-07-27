@@ -4,7 +4,6 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
-  inherit (config.system) impermanence;
   inherit (config.features) gaming;
 in {
   options.features.gaming = {
@@ -19,13 +18,6 @@ in {
       enable = true;
       remotePlay.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
-    };
-    environment.persistence."/cache".users = mkIf impermanence.enable {
-      # WIP: Add logic for all users
-      michael.directories = [
-        ".steam"
-        ".local/share/Steam"
-      ];
     };
   };
 }
