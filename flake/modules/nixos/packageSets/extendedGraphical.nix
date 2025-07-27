@@ -9,6 +9,7 @@
 
     # Browser
     firefox
+    ungoogled-chromium
 
     # Editors
     emacs
