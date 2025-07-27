@@ -42,11 +42,11 @@ in {
       "/crypt" = mkZfs "local/crypt";
 
       # ZFS Volumes
-      "/persist" = mkZfs "${hostName}nixos/persist";
+      "/persist" = mkZfs "${hostName}/nixos/persist";
 
       # Home
-      "/home/michael" = mkZfs "home/michael";
-      "/home/shawn" = mkZfs "home/shawn";
+      "/home/michael" = mkZfs "${hostName}/home/michael";
+      "/home/shawn" = mkZfs "${hostName}/home/shawn";
     };
   };
 }

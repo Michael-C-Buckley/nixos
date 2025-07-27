@@ -1,6 +1,6 @@
 _: {
   system = {
-    boot.uuid = "AFF4-A1EE";
+    boot.uuid = "26BA-7AD8";
 
     impermanence = {
       usePreset = false;
