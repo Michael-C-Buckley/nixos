@@ -7,6 +7,9 @@
     wireshark
     gparted
 
+    # Browser
+    firefox
+
     # Editors
     emacs
     meld
