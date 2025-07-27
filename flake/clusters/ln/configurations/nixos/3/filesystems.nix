@@ -1,6 +1,6 @@
 _: let
   mkZFS = path: {
-    device = "zroot/ln1/${path}";
+    device = "zroot/ln3/${path}";
     fsType = "zfs";
     neededForBoot = true;
   };

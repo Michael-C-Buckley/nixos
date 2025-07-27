@@ -2,6 +2,8 @@
   inherit (config.networking) loopback;
   mainIP = "192.168.65.131";
 in {
+  imports = [./filesystems.nix];
+
   # WIP: legacy options not long for this world
   cluster.ln.kubernetes.masterIP = mainIP;
   custom.routing.routerId = loopback.ipv4;
