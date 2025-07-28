@@ -1,6 +1,6 @@
 _: let
   zfsFs = path: {
-    device = "zroot/uff1/${path}";
+    device = "zroot/uff3/${path}";
     fsType = "zfs";
     neededForBoot = true;
   };
