@@ -1,8 +1,8 @@
 _: {
   imports = [
+    ./hardware
     ./networking
     ./systemd
-    ./hardware.nix
   ];
 
   virtualisation = {
