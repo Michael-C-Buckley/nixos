@@ -1,4 +1,5 @@
 _: {
+  imports = [./filesystems.nix];
   networkd = {
     eno1.addresses.ipv4 = ["192.168.48.33/24"];
     enusb1 = {
