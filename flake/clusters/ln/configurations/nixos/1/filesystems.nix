@@ -14,6 +14,7 @@ in {
   };
 
   fileSystems = {
+    # "/" = mkZFS "root";
     "/" = {
       device = "tmpfs";
       fsType = "tmpfs";
