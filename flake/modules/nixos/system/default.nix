@@ -2,7 +2,6 @@ _: {
   imports = [
     ./boot.nix
     ./builder.nix
-    ./hardware.nix
     ./nix.nix
     ./options.nix
     ./risks.nix

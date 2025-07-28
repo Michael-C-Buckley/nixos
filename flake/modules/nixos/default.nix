@@ -1,8 +1,8 @@
 _: {
   lupinix.nixos.modules = {
     # keep-sorted start
-    gaming = import ./gaming.nix;
     graphical = import ./graphical;
+    hardware = import ./hardware;
     network = import ./network;
     packageSets = import ./packageSets;
     packages = import ./packages;

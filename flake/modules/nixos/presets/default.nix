@@ -2,8 +2,7 @@ _: {
   imports = [
     ./kubernetes/single-node.nix
     ./desktop.nix
-    ./intelGraphics.nix
+    ./gaming.nix
     ./laptop.nix
-    ./nvidia.nix
   ];
 }
