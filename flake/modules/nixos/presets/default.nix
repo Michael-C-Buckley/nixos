@@ -4,7 +4,6 @@ _: {
     ./desktop.nix
     ./intelGraphics.nix
     ./laptop.nix
-    ./michael.nix
     ./nvidia.nix
   ];
 }
