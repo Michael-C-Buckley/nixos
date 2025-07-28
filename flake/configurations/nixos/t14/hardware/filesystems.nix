@@ -1,6 +1,4 @@
 _: {
-  boot.zfs.forceImportAll = true;
-
   swapDevices = [];
 
   system = {
