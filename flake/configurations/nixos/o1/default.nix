@@ -1,7 +1,7 @@
 {inputs, ...}: {
   imports = with inputs; [
     nix-secrets.nixosModules.oracle
-    ./hardware.nix
+    ./hardware
     ./networking
   ];
 
