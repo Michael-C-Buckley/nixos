@@ -31,7 +31,7 @@ in {
     "/cache" = mkZfs "local/cache";
     "/nix" = mkZfs "local/nix";
     "/crypt" = mkZfs "local/crypt";
-    "/media/games" = mkZfs "zroot/local/games";
+    "/media/games" = mkZfs "local/games";
 
     # ZFS Volumes
     "/persist" = mkZfs "x570/nixos/persist";
