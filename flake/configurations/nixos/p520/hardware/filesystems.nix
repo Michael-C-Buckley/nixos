@@ -9,10 +9,7 @@ in {
     extraPools = ["zhdd"];
   };
   system = {
-    impermanence = {
-      enable = true;
-      usePreset = false;
-    };
+    impermanence.enable = true;
     zfs.enable = true;
   };
 

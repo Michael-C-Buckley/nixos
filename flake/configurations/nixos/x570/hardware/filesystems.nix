@@ -7,12 +7,7 @@ _: let
 in {
   system = {
     boot.uuid = "26BA-7AD8";
-    impermanence = {
-      # Deprecation of FS presets in projeress
-      usePreset = false;
-      usePreset2 = false;
-      enable = true;
-    };
+    impermanence.enable = true;
     zfs.enable = true;
   };
 

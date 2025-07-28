@@ -1,18 +1,17 @@
 _: let
   zfsFs = path: {
-    device = "zroot/uff1/${path}";
+    device = "zroot/x370/${path}";
     fsType = "zfs";
     neededForBoot = true;
   };
 in {
   system = {
+    boot.uuid = "B187-B440";
     impermanence.enable = true;
-    gluster.enable = true;
     zfs.enable = true;
   };
 
   fileSystems = {
-    # Tmpfs
     "/" = {
       device = "tmpfs";
       fsType = "tmpfs";
@@ -27,6 +26,5 @@ in {
     "/nix" = zfsFs "nix";
     "/cache" = zfsFs "cache";
     "/persist" = zfsFs "persist";
-    "/data/gluster" = zfsFs "gluster";
   };
 }

@@ -7,10 +7,7 @@ _: let
 in {
   system = {
     zfs.enable = true;
-    impermanence = {
-      enable = true;
-      usePreset = false;
-    };
+    impermanence.enable = true;
   };
 
   fileSystems = {

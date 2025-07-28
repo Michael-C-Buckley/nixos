@@ -2,7 +2,7 @@
 _: {
   imports = [
     ./networking/routing.nix
-    ./hardware.nix
+    ./hardware
   ];
   networking = {
     hostName = "sff";
