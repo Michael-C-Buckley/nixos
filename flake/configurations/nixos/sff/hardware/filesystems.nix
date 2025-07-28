@@ -1,32 +1,33 @@
 _: let
-  zfsFs = path: {
-    device = "zroot/uff1/${path}";
+  zfsFs = device: {
+    inherit device;
     fsType = "zfs";
     neededForBoot = true;
   };
 in {
   system = {
     impermanence.enable = true;
-    gluster.enable = true;
     zfs.enable = true;
   };
 
   fileSystems = {
-    # Tmpfs
     "/" = {
       device = "tmpfs";
       fsType = "tmpfs";
       options = [
         "defaults"
-        "size=500M"
+        "size=1G"
         "mode=755"
       ];
     };
 
     # ZFS Volumes
-    "/nix" = zfsFs "nix";
-    "/cache" = zfsFs "cache";
-    "/persist" = zfsFs "persist";
-    "/data/gluster" = zfsFs "gluster";
+    "/nix" = zfsFs "zroot/sff/nix";
+    "/cache" = zfsFs "zroot/sff/cache";
+    "/persist" = zfsFs "zroot/sff/persist";
+
+    # Data
+    "/storage" = zfsFs "zdata/storage";
+    "/storage/services" = zfsFs "zdata/storage/services";
   };
 }

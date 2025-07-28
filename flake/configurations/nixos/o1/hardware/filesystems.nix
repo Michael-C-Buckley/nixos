@@ -6,10 +6,7 @@ _: let
   };
 in {
   system = {
-    impermanence = {
-      enable = true;
-      usePreset = false;
-    };
+    impermanence.enable = true;
     zfs.enable = true;
   };
 
