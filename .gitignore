@@ -1,0 +1,20 @@
+# For my editor to not search these
+.git
+
+# Direnv
+.direnv
+.envrc
+
+# Local Development Files
+.editorconfig
+.envrc
+.lefthook.toml
+.treefmt.toml
+
+# Image files (most often because of microvm.nix development)
+*.raw
+*.qcow2
+
+# Nix
+result
+
