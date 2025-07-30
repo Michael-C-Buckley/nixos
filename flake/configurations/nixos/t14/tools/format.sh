@@ -21,7 +21,7 @@ if [[ $confirm =~ ^[Yy]$ ]]; then
   echo "Erasing NVMe ${dev}..."
   wipefs -a "$dev"
   sgdisk --zap-all "$dev"
-  zpool labelclear -f "$dev"
+  zpool labelclear -f "$dev" || :
 
   # Create the partitions
   sgdisk -n1:1M:+2G -t1:EF00 -c1:"EFI System" "$dev"
@@ -57,13 +57,17 @@ if [[ $confirm =~ ^[Yy]$ ]]; then
   zfs create -o encryption=aes-256-gcm -o compression=zstd -o keyformat=passphrase -o mountpoint=legacy zroot/local/crypt
   zmount "zroot/local/crypt" "/mnt/crypt"
 
-  # Generate keys
+  # Generate keys - They need to be in the actual location and are copied over to the mount
+  mkdir -p /crypt/zfs
   mkdir -p /mnt/crypt/zfs
-  dd if=/dev/urandom of=/mnt/crypt/zfs/nixos.key bs=32 count=1
-  dd if=/dev/urandom of=/mnt/crypt/zfs/cache.key bs=32 count=1
+  dd if=/dev/urandom of=/crypt/zfs/nixos.key bs=32 count=1
+  dd if=/dev/urandom of=/crypt/zfs/cache.key bs=32 count=1
+  cp /crypt/zfs/cache.key /mnt/crypt/zfs/cache.key
+  cp /crypt/zfs/nixos.key /mnt/crypt/zfs/nixos.key
 
   zfs create -o mountpoint=legacy -o encryption=aes-128-gcm -o keyformat=raw -o keylocation=file:///crypt/zfs/cache.key zroot/local/cache
   zmount "zroot/local/cache" "/mnt/cache"
+  cp /crypt/zfs/cache.key /mnt/crypt/zfs/cache.key 
 
   # isn't needed for install
   zfs create -o mountpoint=legacy zroot/local/games
@@ -88,9 +92,10 @@ if [[ $confirm =~ ^[Yy]$ ]]; then
 
   # Create user homes
   for user in "michael" "shawn"; do
-    dd if=/dev/urandom of=/mnt/crypt/zfs/"$user".key bs=32 count=1
+    dd if=/dev/urandom of=/crypt/zfs/"$user".key bs=32 count=1
     zfs create -o mountpoint=legacy -o encryption=aes-128-gcm -o keyformat=raw -o keylocation=file:///crypt/zfs/"$user".key zroot/"$hostname"/nixos/home/"$user"
     zmount "zroot/$hostname/nixos/home/$user" "/mnt/home/$user"
+    cp /crypt/zfs/"$user".key /mnt/crypt/zfs/"$user".key 
   done
 
 else
