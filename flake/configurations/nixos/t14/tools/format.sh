@@ -15,7 +15,7 @@ hostname="t14"
 
 read -rp "This will erase the NVMe drive, as you sure? [y/N]" confirm
 if [[ $confirm =~ ^[Yy]$ ]]; then
-  dev="nvme1n1"
+  dev="/dev/nvme0n1"
   echo "Erasing NVMe ${dev}..."
   wipefs -a $dev
   sgdisk --zap-all $dev
@@ -28,7 +28,7 @@ if [[ $confirm =~ ^[Yy]$ ]]; then
   sgdisk -n4:0:+150G -t4:0700 -c4:"Windows" $dev
 
   # Format boot partition
-  mkfs.vfat -F32 {$dev}p1
+  mkfs.vfat -F32 "$dev"p1
 
   # Format for the ZFS pool for Linux
   zpool create -f $ZFS_OPTS zroot /dev/nvme0n1p2
@@ -38,10 +38,8 @@ fi
 
 LOCAL_DATASETS=("crypt" "cache" "games")
 
-
 read -rp "Create Datasets? [y/N]" confirm
 if [[ $confirm =~ ^[Yy]$ ]]; then
-
   # Create local datasets
   zfs create -o mountpoint=none zroot/local
   for set in "${LOCAL_DATASETS[@]}"; do
@@ -52,12 +50,14 @@ if [[ $confirm =~ ^[Yy]$ ]]; then
 
   # Create hostnamed sets
   zfs create -o mountpoint=none zroot/$hostname
-  for set in "" "home" "home/michael" "home/shawn" "persist" "root"; do
+  zfs create -o mountpoint=none zroot/$hostname/nixos
+  for set in  "home" "home/michael" "home/shawn" "persist" "root"; do
     zfs create -o mountpoint=legacy zroot/$hostname/nixos/$set
   done
 else
   echo "Skipping dataset creation."
 fi
+
 
 read -rp "Mount Datasets? [y/N]" confirm
 if [[ $confirm =~ ^[Yy]$ ]]; then
@@ -83,7 +83,9 @@ else
   echo "Skipping mounting."
 fi
 
+
 read -rp "Ready for deploy? [y/N]" confirm
+if [[ $confirm =~ ^[Yy]$ ]]; then
   # Update the boot drive reference
   new_uuid=$(blkid -s UUID -o value /dev/nvme0n1p1)
   file=../hosts/$hostname/default.nix
