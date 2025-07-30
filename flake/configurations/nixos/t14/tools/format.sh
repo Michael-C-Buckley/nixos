@@ -9,15 +9,6 @@ ZFS_LINUX_OPTS="-o ashift=12 \
   -O normalization=formD \
   -O mountpoint=none"
 
-# Consider ACL Type of nfsv4
-ZFS_BSD_OPTS="-o ashift=12 \
-  -O compression=lz4 \
-  -O atime=off \
-  -O xattr=sa \
-  -O acltype=posixacl \
-  -O normalization=formD \
-  -O dnodesize=auto"
-
 # Host Info
 modprobe zfs zfs_hostid=0x8425e349
 hostname="t14"
@@ -34,8 +25,7 @@ if [[ $confirm =~ ^[Yy]$ ]]; then
   sgdisk -n1:1M:+2G -t1:EF00 -c1:"EFI System" $dev
   sgdisk -n2:0:+128M -t2:0C01 -c2:"Microsoft Reserved" $dev
   sgdisk -n3:0:+8G -t3:8200 -c3:"WAP" $dev
-  sgdisk -n4:0:+300G -t4:BF01 -c4:"ZLINUX" $dev
-  sgdisk -n5:0:+150G -t5:BF01 -c5:"ZBSD" $dev
+  sgdisk -n4:0:+300G -t4:BF01 -c4:"Zroot" $dev
   sgdisk -n6:0:+150G -t6:0700 -c6:"Windows" $dev
 
   # Format boot partition
@@ -43,7 +33,6 @@ if [[ $confirm =~ ^[Yy]$ ]]; then
 
   # Create the pools
   zpool create -f $ZFS_LINUX_OPTS zroot /dev/nvme0n1p2 || { echo "Failed to create zroot"; exit 1; }
-  zpool create -f $ZFS_BSD_OPTS zbsd /dev/nvme0n1p3 || { echo "Failed to create zbsd"; exit 1; }
 else
   echo "Skipping NVMe wipe."
 fi
@@ -70,30 +59,31 @@ else
   echo "Skipping dataset creation."
 fi
 
-read -rp "Create BSD Datasets? [y/N]" confirm
-if [[ $confirm =~ ^[Yy]$ ]]; then
-  # Create top level datasets
-  zfs create -o mountpoint=none -o compression=zstd zbsd/ROOT
-  zfs create -o mountpoint=/ zbsd/ROOT/default
+# NOT CURRENTLY WORKING
+# read -rp "Create BSD Datasets? [y/N]" confirm
+# if [[ $confirm =~ ^[Yy]$ ]]; then
+#   # Create top level datasets
+#   zfs create -o mountpoint=none -o compression=zstd zbsd/ROOT
+#   zfs create -o mountpoint=/ zbsd/ROOT/default
 
-  # Does not get mounted
-  zfs create -o mountpoint=none zbsd/usr
+#   # Does not get mounted
+#   zfs create -o mountpoint=none zbsd/usr
 
-  for set in "home" "var" "tmp"; do
-    zfs create -o mountpoint=/$set zbsd/$set
-  done
+#   for set in "home" "var" "tmp"; do
+#     zfs create -o mountpoint=/$set zbsd/$set
+#   done
 
-  for varset in "audit" "log" "crash" "mail" "tmp" "db"; do
-    zfs create -o mountpoint=/var/$varset zbsd/var/$varset
-  done
+#   for varset in "audit" "log" "crash" "mail" "tmp" "db"; do
+#     zfs create -o mountpoint=/var/$varset zbsd/var/$varset
+#   done
 
-  for usrset in "ports" "src"; do
-    zfs create -o mountpoint=/usr/$usrset -o compression=zstd zbsd/usr/$usrset
-  done
+#   for usrset in "ports" "src"; do
+#     zfs create -o mountpoint=/usr/$usrset -o compression=zstd zbsd/usr/$usrset
+#   done
 
-else
-  echo "Skipping BSD dataset creation."
-fi
+# else
+#   echo "Skipping BSD dataset creation."
+# fi
 
 
 read -rp "Mount Datasets? [y/N]" confirm
