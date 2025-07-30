@@ -32,9 +32,11 @@ if [[ $confirm =~ ^[Yy]$ ]]; then
 
   # Create the partitions
   sgdisk -n1:1M:+2G -t1:EF00 -c1:"EFI System" $dev
-  sgdisk -n2:0:+250G -t2:BF01 -c2:"ZLINUX" $dev
-  sgdisk -n3:0:+150G -t3:BF01 -c3:"ZBSD" $dev
-  sgdisk -n4:0:+150G -t4:0700 -c4:"Windows" $dev
+  sgdisk -n2:0:+128M -t2:0C01 -c2:"Microsoft Reserved" $dev
+  sgdisk -n3:0:+8G -t3:8200 -c3:"WAP" $dev
+  sgdisk -n4:0:+300G -t4:BF01 -c4:"ZLINUX" $dev
+  sgdisk -n5:0:+150G -t5:BF01 -c5:"ZBSD" $dev
+  sgdisk -n6:0:+150G -t6:0700 -c6:"Windows" $dev
 
   # Format boot partition
   mkfs.vfat -F32 "$dev"p1
