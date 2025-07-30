@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkOption mkIf;
+  inherit (lib) mkOption mkIf mkDefault;
   inherit (lib.types) bool package;
   cfg = config.system.zfs;
 in {
@@ -31,7 +31,7 @@ in {
       kernelModules = ["zfs"];
       supportedFilesystems = ["zfs"];
       zfs = {
-        forceImportAll = false;
+        forceImportAll = mkDefault false;
         requestEncryptionCredentials = cfg.encryption;
       };
     };
