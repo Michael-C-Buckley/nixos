@@ -1,6 +1,6 @@
 _: let
-  zfsFs = name: {
-    device = "zroot/t14/nixos/${name}";
+  mkZfs = device: {
+    inherit device;
     fsType = "zfs";
     neededForBoot = true;
   };
@@ -8,12 +8,14 @@ in {
   swapDevices = [];
 
   system = {
-    boot.uuid = "1A0C-115C";
+    boot.uuid = "DE87-32BC";
     impermanence.enable = true;
-    zfs.enable = true;
+    zfs = {
+      encryption = true;
+      enable = true;
+    };
   };
   fileSystems = {
-    # Tmpfs
     "/" = {
       device = "tmpfs";
       fsType = "tmpfs";
@@ -24,9 +26,13 @@ in {
       ];
     };
 
-    # ZFS Volumes
-    "/nix" = zfsFs "nix";
-    "/cache" = zfsFs "cache";
-    "/persist" = zfsFs "persist";
+    "/crypt" = mkZfs "zroot/local/crypt";
+    "/nix" = mkZfs "zroot/local/nix";
+    "/cache" = mkZfs "zroot/local/cache";
+
+    "/persist" = mkZfs "zroot/t14/nixos/persist";
+    "/home" = mkZfs "zroot/t14/nixos/home";
+    "/home/michael" = mkZfs "zroot/t14/nixos/home/michael";
+    "/home/shawn" = mkZfs "zroot/t14/nixos/home/shawn";
   };
 }
