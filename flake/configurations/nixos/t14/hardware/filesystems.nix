@@ -7,6 +7,8 @@ _: let
 in {
   swapDevices = [];
 
+  boot.zfs.forceImportAll = true;
+
   system = {
     boot.uuid = "DE87-32BC";
     impermanence.enable = true;
