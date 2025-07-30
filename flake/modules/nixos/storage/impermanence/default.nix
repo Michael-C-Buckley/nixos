@@ -37,13 +37,13 @@ in
         "/etc/ssh"
         "/etc/nixos"
         "/etc/sops"
-        "/etc/nix/"
+        "/etc/nix"
         "/etc/wireguard"
         "/var/log" # systemd journal is stored in /var/log/journal
         "/var/lib/bluetooth"
         "/var/lib/nixos" # for persisting user uids and gids
-        "/var/lib/systemd/coredump"
-        "/etc/NetworkManager/"
+        "/var/lib/systemd"
+        "/etc/NetworkManager"
         {
           directory = "/var/lib/colord";
           user = "colord";

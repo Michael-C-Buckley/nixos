@@ -14,10 +14,10 @@ ZFS_LINUX_OPTS="-o ashift=12 \
 # Host Info
 modprobe zfs zfs_hostid=0x8425e349
 hostname="t14"
+dev="/dev/nvme0n1"
 
 read -rp "This will erase the NVMe drive, are you sure? [y/N] " confirm
 if [[ $confirm =~ ^[Yy]$ ]]; then
-  dev="/dev/nvme0n1"
   echo "Erasing NVMe ${dev}..."
   wipefs -a "$dev"
   sgdisk --zap-all "$dev"

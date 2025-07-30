@@ -20,10 +20,5 @@ in {
   system = {
     preset = "laptop";
     stateVersion = "24.11";
-    impermanence.enable = true;
-    zfs = {
-      enable = true;
-      encryption = true;
-    };
   };
 }
