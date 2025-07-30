@@ -1,6 +1,6 @@
 # ZFS Install Script for T14
 
-ZFS_OPTS="-o ashift=12 \
+ZFS_LINUX_OPTS="-o ashift=12 \
   -O compression=lz4 \
   -O atime=off \
   -O xattr=sa \
@@ -8,6 +8,15 @@ ZFS_OPTS="-o ashift=12 \
   -O dnodesize=auto \
   -O normalization=formD \
   -O mountpoint=none"
+
+# Consider ACL Type of nfsv4
+ZFS_BSD_OPTS="-o ashift=12 \
+  -O compression=lz4 \
+  -O atime=off \
+  -O xattr=sa \
+  -O acltype=posixacl \
+  -O normalization=formD \
+  -O dnodesize=auto"
 
 # Host Info
 modprobe zfs zfs_hostid=0x8425e349
@@ -30,8 +39,9 @@ if [[ $confirm =~ ^[Yy]$ ]]; then
   # Format boot partition
   mkfs.vfat -F32 "$dev"p1
 
-  # Format for the ZFS pool for Linux
-  zpool create -f $ZFS_OPTS zroot /dev/nvme0n1p2
+  # Create the pools
+  zpool create -f $ZFS_LINUX_OPTS zroot /dev/nvme0n1p2 || { echo "Failed to create zroot"; exit 1; }
+  zpool create -f $ZFS_BSD_OPTS zbsd /dev/nvme0n1p3 || { echo "Failed to create zbsd"; exit 1; }
 else
   echo "Skipping NVMe wipe."
 fi
@@ -58,6 +68,31 @@ else
   echo "Skipping dataset creation."
 fi
 
+read -rp "Create BSD Datasets? [y/N]" confirm
+if [[ $confirm =~ ^[Yy]$ ]]; then
+  # Create top level datasets
+  zfs create -o mountpoint=none -o compression=zstd zbsd/ROOT
+  zfs create -o mountpoint=/ zbsd/ROOT/default
+
+  # Does not get mounted
+  zfs create -o mountpoint=none zbsd/usr
+
+  for set in "home" "var" "tmp"; do
+    zfs create -o mountpoint=/$set zbsd/$set
+  done
+
+  for varset in "audit" "log" "crash" "mail" "tmp" "db"; do
+    zfs create -o mountpoint=/var/$varset zbsd/var/$varset
+  done
+
+  for usrset in "ports" "src"; do
+    zfs create -o mountpoint=/usr/$usrset -o compression=zstd zbsd/usr/$usrset
+  done
+
+else
+  echo "Skipping BSD dataset creation."
+fi
+
 
 read -rp "Mount Datasets? [y/N]" confirm
 if [[ $confirm =~ ^[Yy]$ ]]; then
@@ -68,7 +103,7 @@ if [[ $confirm =~ ^[Yy]$ ]]; then
     mount -t zfs zroot/local/$dir /mnt/$dir
   done
   mkdir -p /mnt/persist
-  mount -t zfs zroot/$hostname/nixos/persist
+  mount -t zfs zroot/$hostname/nixos/persist /mnt/persist
 
   # Mount user homes
   for user in "michael" "shawn"; do
@@ -82,6 +117,8 @@ if [[ $confirm =~ ^[Yy]$ ]]; then
 else
   echo "Skipping mounting."
 fi
+# Export BSD as we are done with it
+zpool export zbsd
 
 
 read -rp "Ready for deploy? [y/N]" confirm
