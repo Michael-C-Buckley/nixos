@@ -32,7 +32,7 @@ in {
       supportedFilesystems = ["zfs"];
       zfs = {
         forceImportAll = mkDefault false;
-        requestEncryptionCredentials = cfg.encryption;
+        requestEncryptionCredentials = mkDefault cfg.encryption;
       };
     };
 
