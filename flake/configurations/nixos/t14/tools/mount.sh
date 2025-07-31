@@ -15,6 +15,9 @@ zfs load-key zroot/local/crypt
 zmount "zroot/local/crypt" "/mnt/crypt"
 zmount "zroot/local/nix" "/mnt/nix"
 
+mkdir -p /crypt/zfs
+cp /mnt/crypt/zfs/* /crypt/zfs
+
 # Load the key files
 zfs load-key zroot/local/cache
 zfs load-key zroot/t14/nixos
@@ -31,3 +34,5 @@ done
 for user in "michael" "shawn"; do
     zmount "zroot/t14/nixos/home/$user" "/mnt/home/$user"
 done
+
+rm -rf /crypt/zfs

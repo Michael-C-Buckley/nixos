@@ -26,7 +26,10 @@ in {
       kernelPackages = mkDefault pkgs.linuxPackages_6_15;
 
       initrd = {
-        systemd.enable = true;
+        systemd = {
+          enable = true;
+          emergencyAccess = config.users.users.root.hashedPassword;
+        };
       };
 
       loader = {
