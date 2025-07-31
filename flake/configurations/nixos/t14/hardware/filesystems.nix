@@ -31,10 +31,9 @@ in {
       ];
     };
 
-    "/crypt" = mkZfs "zroot/local/crypt";
     "/nix" = mkZfs "zroot/local/nix";
-    "/cache" = mkZfs "zroot/local/cache";
 
+    "/cache" = mkZfs "zroot/t14/nixos/cache";
     "/persist" = mkZfs "zroot/t14/nixos/persist";
     "/home" = mkZfs "zroot/t14/nixos/home";
     "/home/michael" = mkZfs "zroot/t14/nixos/home/michael";
