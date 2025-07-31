@@ -8,7 +8,6 @@ in {
   swapDevices = [];
 
   boot.zfs = {
-    requestEncryptionCredentials = ["zroot/local/crypt"];
     forceImportAll = true;
   };
 
