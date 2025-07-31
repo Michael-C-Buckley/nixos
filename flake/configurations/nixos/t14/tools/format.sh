@@ -72,11 +72,6 @@ if [[ $confirm =~ ^[Yy]$ ]]; then
   # isn't needed for install
   zfs create -o mountpoint=legacy zroot/local/games
 
-  for set in "${LOCAL_DATASETS[@]}"; do
-    zfs create -o mountpoint=legacy zroot/local/"$set"
-    zmount "zroot/local/$set" "/mnt/$set" 
-  done
-
   # Nix store gets higher compression
   zfs create -o mountpoint=legacy -o compression=zstd zroot/local/nix
   zmount "zroot/local/nix" "/mnt/nix"
