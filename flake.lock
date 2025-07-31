@@ -143,27 +143,6 @@
         "type": "github"
       }
     },
-    "flake-utils": {
-      "inputs": {
-        "systems": [
-          "systems"
-        ]
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "ref": "refs/heads/main",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "shallow": true,
-        "type": "git",
-        "url": "https://github.com/numtide/flake-utils"
-      },
-      "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "https://github.com/numtide/flake-utils"
-      }
-    },
     "hjem": {
       "inputs": {
         "nixpkgs": [
@@ -316,10 +295,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1753558917,
-        "narHash": "sha256-70BBjuMC2CyoRno826Vg3HYlpwqRu6L1vuiPG98gKu8=",
+        "lastModified": 1753923264,
+        "narHash": "sha256-9A3BsDO7XMvRJlegeRzUnGmqPiK66nDI3pbid3hJ6bk=",
         "ref": "refs/heads/master",
-        "rev": "5844e668248da540abc75bdf9d56d878763cb571",
+        "rev": "940facc8c1cb6575c7aba3f6ed8dcc8c5d8debf3",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/michael-c-buckley/nix-secrets"
@@ -418,9 +397,6 @@
         "flake-parts": [
           "flake-parts"
         ],
-        "flake-utils": [
-          "flake-utils"
-        ],
         "mnw": "mnw",
         "nixpkgs": [
           "nixpkgs"
@@ -430,10 +406,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1753710899,
-        "narHash": "sha256-5Du8IMbCBQiMuzpkZJuTGEa5v/oTC5pCS1FYrY49v/g=",
+        "lastModified": 1753878721,
+        "narHash": "sha256-Y+Kr6FTHggnZ31nhaiOhIboIi+dhnLmQ9p0xf0wwnDc=",
         "ref": "refs/heads/main",
-        "rev": "3ae510fefafa35f8b457bfbc8944d884fe18ba98",
+        "rev": "e35a74c44a35b28fd09f136dd3c0dbe9f300258f",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/notashelf/nvf"
@@ -488,7 +464,6 @@
       "inputs": {
         "attic": "attic",
         "flake-parts": "flake-parts",
-        "flake-utils": "flake-utils",
         "hjem": "hjem",
         "hjem-rum": "hjem-rum",
         "impermanence": "impermanence",
