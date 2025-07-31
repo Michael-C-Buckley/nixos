@@ -13,7 +13,7 @@ in {
   };
 
   system = {
-    boot.uuid = "DE87-32BC";
+    boot.uuid = "A926-212B";
     impermanence.enable = true;
     zfs = {
       encryption = true;
