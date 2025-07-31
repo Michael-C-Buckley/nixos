@@ -12,6 +12,8 @@
   inherit (config.system) impermanence;
 
   sanoidDefaults = {
+    autoprune = true;
+    autosnap = true;
     hourly = 12;
     daily = 3;
     weekly = 2;
