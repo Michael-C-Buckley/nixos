@@ -7,7 +7,10 @@ _: let
 in {
   swapDevices = [];
 
-  boot.zfs.forceImportAll = true;
+  boot.zfs = {
+    requestEncryptionCredentials = ["zroot/local/crypt"];
+    forceImportAll = true;
+  };
 
   system = {
     boot.uuid = "DE87-32BC";
