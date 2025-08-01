@@ -10,7 +10,7 @@
 in {
   options.features = {
     boot = mkOption {
-      type = enum ["systemd" "grub" "none"];
+      type = enum ["systemd" "grub" "limine" "none"];
       default = "systemd";
       description = "Which bootloader settings to use from this repository.";
     };
@@ -46,6 +46,10 @@ in {
           enable = true;
           configurationLimit = 15;
           netbootxyz.enable = true;
+        };
+
+        limine = mkIf (loader == "limine") {
+          enable = true;
         };
 
         efi.canTouchEfiVariables =

@@ -10,6 +10,8 @@ in {
     ./hyprland.nix
   ];
 
+  features.boot = "limine";
+
   virtualisation = {
     podman.enable = true;
     libvirtd.enable = true;
