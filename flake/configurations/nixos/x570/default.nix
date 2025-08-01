@@ -8,7 +8,10 @@ in {
     ./hyprland.nix
   ];
 
-  features.gaming.enable = true;
+  features = {
+    boot = "limine";
+    gaming.enable = true;
+  };
 
   system = {
     builder.enable = true;
