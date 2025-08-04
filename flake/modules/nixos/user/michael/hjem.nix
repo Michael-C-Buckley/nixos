@@ -45,7 +45,7 @@ in {
     system.impermanence.enable = false;
 
     # Push the existing files in to be merged, for now
-    files = import "${self}/flake/configurations/user/michael" {inherit lib;} // local.fileList;
+    files = self.outputs.userConfigurations.michael {inherit lib;} // local.fileList;
 
     environment.gnupg = {
       enable = true;
