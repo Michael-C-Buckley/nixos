@@ -19,8 +19,6 @@ in {
 
     environment.systemPackages = with pkgs; [pulseaudioFull];
 
-    hjem.users.michael.programs = {vivaldi.enable = true;};
-
     services.flatpak.enable = true;
 
     features = {
