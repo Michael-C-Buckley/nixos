@@ -17,11 +17,6 @@
     packageSets.common
     ++ optionals minimalGraphical packageSets.minimalGraphical
     ++ optionals extendedGraphical packageSets.extendedGraphical;
-
-  # WIP: Integrat this better
-  myPackages = with pkgs; [
-    alejandra
-  ];
 in {
   # Home is not impermanent, but this removes these from snapshots
   environment.persistence."/cache".users.michael.directories = [
@@ -31,7 +26,8 @@ in {
 
   users.users = {
     michael = {
-      packages = userPkgs ++ local.packageList ++ myPackages;
+      # Plan this better
+      packages = userPkgs ++ local.packageList ++ (import ./packages.nix {inherit pkgs;});
       shell = mkOverride 900 pkgs.fish;
     };
   };
@@ -55,11 +51,7 @@ in {
     programs = {
       # keep-sorted start
       custom.ns.enable = extGfx;
-      discord.enable = extGfx;
-      librewolf.enable = extGfx;
       nvf.enable = extGfx;
-      signal.enable = extGfx;
-      telegram.enable = extGfx;
       vscode.enable = extGfx;
       # keep-sorted end
     };
