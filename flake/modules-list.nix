@@ -9,4 +9,3 @@
   ./shells
   # keep-sorted end
 ]
-++ import ./clusters/modules-list.nix
