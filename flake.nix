@@ -17,7 +17,7 @@
     };
 
     hjem = {
-      url = "git+https://github.com/Michael-C-Buckley/hjem?shallow=1";
+      url = "git+https://github.com/feel-co/hjem?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
