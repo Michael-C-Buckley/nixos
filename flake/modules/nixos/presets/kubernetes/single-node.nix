@@ -7,18 +7,20 @@
   ...
 }: let
   inherit (lib) mkDefault mkEnableOption mkIf;
-  inherit (config.presets.kubernetes) singleNode;
+  inherit (config.presets.kubernetes) singleNode useImpermanence;
   imperm = config.system.impermanence.enable;
+  kube = config.services.kubernetes;
 in {
   options.presets.kubernetes = {
     singleNode = mkEnableOption "Enable and define the preset for a single-node Kube instance.";
+    useImpermanence = mkEnableOption "Enable persistence for Kubernetes directories";
   };
 
   config = mkIf singleNode {
     networking.firewall.allowedTCPPorts = [
       80
       443
-      6443
+      kube.apiserver.securePort
     ];
 
     virtualisation.containerd = {
@@ -49,7 +51,7 @@ in {
     };
 
     environment = {
-      persistence = mkIf imperm {
+      persistence = mkIf (imperm && useImpermanence) {
         "/persist".directories = [
           "/var/lib/cfssl"
           "/var/lib/cni"

@@ -13,6 +13,8 @@ in {
     gaming.enable = true;
   };
 
+  presets.kubernetes.singleNode = true;
+
   system = {
     builder.enable = true;
     preset = "desktop";
