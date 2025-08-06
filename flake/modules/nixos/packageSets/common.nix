@@ -30,6 +30,7 @@
     fzf
 
     # Machine Utilities
+    sbctl
     ethtool
     gptfdisk
     parted

@@ -12,14 +12,12 @@ in {
     == "desktop"
     || preset == "laptop") {
     programs = {
-      cosmic.enable = mkDefault false; # I don't use it currently
+      cosmic.enable = mkDefault false;
       hyprland.enable = mkDefault true;
       niri.enable = mkDefault true;
     };
 
     environment.systemPackages = with pkgs; [pulseaudioFull];
-
-    services.flatpak.enable = true;
 
     features = {
       michael = {
