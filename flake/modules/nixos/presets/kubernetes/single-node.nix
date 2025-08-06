@@ -39,6 +39,9 @@ in {
       apiserver = {
         allowPrivileged = true;
         securePort = 6443;
+
+        # Local file for testing until secrets are used
+        serviceAccountKeyFile = "/var/lib/kubernetes/secrets/service-account-key.pem";
       };
       addons.dns = {
         enable = true;
