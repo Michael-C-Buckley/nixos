@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) optionals mkDefault;
+  inherit (lib) optionals;
 
   notCloud = config.system.preset != "cloud";
 
@@ -44,7 +44,7 @@ in {
     enable = true;
     enableSSHSupport = true;
     enableBrowserSocket = notCloud;
-    pinentryPackage = mkDefault pkgs.pinentry-curses;
+    pinentryPackage = pkgs.pinentry-curses;
   };
 
   services = {
