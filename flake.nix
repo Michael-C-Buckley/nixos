@@ -58,6 +58,14 @@
       };
     };
 
+    mangowc = {
+      url = "git+https://github.com/DreamMaoMao/mangowc?shallow=1";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
+    };
+
     # No Nixpkgs Inputs
     lupinix = {
       url = "git+https://github.com/Michael-C-Buckley/lupinix?shallow=1&ref=noDash";

@@ -1,8 +1,9 @@
 {inputs, ...}: let
-  inherit (inputs) nix-secrets;
+  inherit (inputs) nix-secrets mangowc;
 in {
   imports = [
     nix-secrets.nixosModules.x570
+    mangowc.nixosModules.mango
     ./hardware
     ./networking
     ./hyprland.nix
@@ -12,6 +13,9 @@ in {
     boot = "limine";
     gaming.enable = true;
   };
+
+  # Testing the Mango Wayland Compositor
+  programs.mango.enable = true;
 
   presets.kubernetes.singleNode = true;
 
