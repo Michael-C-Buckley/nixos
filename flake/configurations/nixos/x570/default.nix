@@ -17,7 +17,8 @@ in {
   # Testing the Mango Wayland Compositor
   programs.mango.enable = true;
 
-  presets.kubernetes.singleNode = true;
+  # Only used during active testing, as it isn't completed
+  presets.kubernetes.singleNode = false;
 
   system = {
     builder.enable = true;
