@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: {
   options.programs.cosmic = {
@@ -11,5 +12,10 @@
     services.desktopManager = {
       cosmic.enable = config.programs.cosmic.enable;
     };
+    environment.cosmic.excludePackages = with pkgs; [
+      cosmic-greeter
+      cosmic-store
+      cosmic-design-demo
+    ];
   };
 }

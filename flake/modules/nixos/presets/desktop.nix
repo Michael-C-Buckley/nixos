@@ -12,7 +12,7 @@ in {
     == "desktop"
     || preset == "laptop") {
     programs = {
-      cosmic.enable = mkDefault false;
+      cosmic.enable = mkDefault true;
       hyprland.enable = mkDefault true;
       niri.enable = mkDefault true;
     };
