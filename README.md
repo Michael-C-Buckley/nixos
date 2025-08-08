@@ -1,4 +1,4 @@
-# My System Configuration
+# My System Configuration (README heavily WIP currently)
 
 This flake is the major collection of all things I use to manage my systems. It contains system and user profile configurations.
 
@@ -10,13 +10,8 @@ Caveat: I have included some custom options merged into the default Nix options 
 
 These sections include more detail Readme files in them.
 
-- Clusters
 - Home
 - Hosts
-
-### Clusters
-
-Configurations for systems that are members of a defined cluster that share most of their settings.
 
 ### Home
 
