@@ -12,7 +12,7 @@
     user = "greeter";
   };
 in {
-  environment.systemPackages = [pkgs.greetd.tuigreet];
+  environment.systemPackages = [pkgs.tuigreet];
 
   services.greetd = mkIf useGreetd {
     enable = true;
