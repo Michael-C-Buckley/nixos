@@ -9,13 +9,18 @@
   };
 
   config = {
-    services.desktopManager = {
-      cosmic.enable = config.programs.cosmic.enable;
+    services.desktopManager.cosmic = {
+      inherit (config.programs.cosmic) enable;
+      showExcludedPkgsWarning = false;
     };
     environment.cosmic.excludePackages = with pkgs; [
+      # keep-sorted start
+      cosmic-design-demo
+      cosmic-edit
       cosmic-greeter
       cosmic-store
-      cosmic-design-demo
+      cosmic-terminal
+      # keep-sorted end
     ];
   };
 }
