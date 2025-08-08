@@ -17,6 +17,7 @@
       # keep-sorted start
       cosmic-design-demo
       cosmic-edit
+      cosmic-files
       cosmic-greeter
       cosmic-player
       cosmic-store
