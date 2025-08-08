@@ -18,8 +18,9 @@
       cosmic-design-demo
       cosmic-edit
       cosmic-greeter
+      cosmic-player
       cosmic-store
-      cosmic-terminal
+      cosmic-term
       # keep-sorted end
     ];
   };
