@@ -20,6 +20,7 @@ in {
     environment.systemPackages = with pkgs; [pulseaudioFull];
 
     features = {
+      boot = mkDefault "systemd";
       michael = {
         extendedGraphical = mkDefault true;
         hyprland.enable = mkDefault true;

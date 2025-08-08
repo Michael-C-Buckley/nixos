@@ -10,6 +10,7 @@
 in {
   options.features = {
     boot = mkOption {
+      # None is used in special circumstances like WSL
       type = enum ["systemd" "grub" "limine" "none"];
       default = "systemd";
       description = "Which bootloader settings to use from this repository.";
