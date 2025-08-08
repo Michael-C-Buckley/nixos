@@ -10,7 +10,7 @@ in {
   ];
 
   features = {
-    boot = "limine";
+    boot = "systemd";
     gaming.enable = true;
   };
 
