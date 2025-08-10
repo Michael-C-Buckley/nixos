@@ -17,6 +17,10 @@ in {
       niri.enable = mkDefault true;
     };
 
+    virtualisation = {
+      containerlab.enable = true;
+    };
+
     environment.systemPackages = with pkgs; [pulseaudioFull];
 
     features = {
