@@ -30,11 +30,11 @@
     fzf
 
     # Machine Utilities
-    sbctl
+    unixtools.netstat
+    unixtools.arp
     ethtool
     gptfdisk
     parted
-    python3
     lm_sensors
     inetutils
   ];
