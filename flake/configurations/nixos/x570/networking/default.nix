@@ -11,6 +11,11 @@ _: {
     networkmanager.enable = true;
     #useNetworkd = true;
 
+    # Virtual only bridge
+    bridges.br0 = {
+      interfaces = [];
+    };
+
     loopback.ipv4 = "192.168.63.10/32";
 
     firewall = {
