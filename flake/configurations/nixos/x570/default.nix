@@ -27,7 +27,9 @@ in {
   };
 
   virtualisation = {
-    gns3.enable = true;
+    incus.enable = true;
+    gns3.enable = false; # Replaced with EVE-NG via Incus container
     podman.enable = true;
+    libvirtd.enable = true;
   };
 }
