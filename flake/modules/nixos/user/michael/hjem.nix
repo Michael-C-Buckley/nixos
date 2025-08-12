@@ -13,10 +13,15 @@
 
   extGfx = mkDefault extendedGraphical;
 
+  myCommonPkgs = import ./packageSets/common.nix {inherit pkgs;};
+  myGUIExtPkgs = import ./packageSets/extendedGraphical.nix {inherit pkgs;};
+
   userPkgs =
     packageSets.common
+    ++ myCommonPkgs
     ++ optionals minimalGraphical packageSets.minimalGraphical
-    ++ optionals extendedGraphical packageSets.extendedGraphical;
+    ++ optionals extendedGraphical packageSets.extendedGraphical
+    ++ optionals extendedGraphical myGUIExtPkgs;
 in {
   # Home is not impermanent, but this removes these from snapshots
   environment.persistence."/cache".users.michael.directories = [
@@ -26,8 +31,7 @@ in {
 
   users.users = {
     michael = {
-      # Plan this better
-      packages = userPkgs ++ local.packageList ++ (import ./packages.nix {inherit pkgs;});
+      packages = userPkgs ++ local.packageList;
       shell = mkOverride 900 pkgs.fish;
     };
   };
@@ -36,9 +40,6 @@ in {
     enable = true;
     user = "michael";
     directory = "/home/michael";
-
-    # WIP: Remove this entire feature
-    system.impermanence.enable = false;
 
     # Push the existing files in to be merged, for now
     files = self.outputs.userConfigurations.michael {inherit lib;} // local.fileList;
