@@ -195,10 +195,10 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1754617552,
-        "narHash": "sha256-j2Tf31D3dnFSHiFkbZioxPwQ2uwarB5qIfgoW7YvUAo=",
+        "lastModified": 1754935863,
+        "narHash": "sha256-ZDH7t5IXiGQRkzBqkNvp/3apFVNZfiPt2zBrfK/NvE8=",
         "ref": "refs/heads/main",
-        "rev": "0f6b280c6c6073258da1a093d9aeae9368daedce",
+        "rev": "7cf8955775df5bc5693bbb1f2f54cfb3f7645108",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/snugnug/hjem-rum"
@@ -259,10 +259,10 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1754825105,
-        "narHash": "sha256-OeHRH9sTGWszhdijHj6hmb/nKVW3mcVyi5mS9omKgyE=",
+        "lastModified": 1755154141,
+        "narHash": "sha256-OJT+AjsyOikCTwClsWzmsuhRyuCJPnjvKNhK+AamLU0=",
         "ref": "refs/heads/main",
-        "rev": "3346c8a099bbf01973cc250cc4c786195f897267",
+        "rev": "189a1490d3207cb0ad11481b72adda1e6b169651",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/DreamMaoMao/mangowc"
@@ -361,10 +361,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1754908771,
-        "narHash": "sha256-w6cvXyST58W0NCQrFblOXsQFI2LzzpxGZoYe5Ezov4Q=",
+        "lastModified": 1755168632,
+        "narHash": "sha256-GfUPIOdj/gj+Tt6LjQL1cHeXYgybm4ieQdvjTccK+FQ=",
         "ref": "refs/heads/master",
-        "rev": "fd24bf18b381cb5b4cac41c0ee7ace4b62bc9589",
+        "rev": "11df7ad9cc73f3ff55c9129da82ff8245c4e2322",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/michael-c-buckley/nix-secrets"
@@ -383,10 +383,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1754326498,
-        "narHash": "sha256-3ynDaygIzQYlBZFHGDeQzXmPkX2ILeZ0wWJ84FR4g7E=",
+        "lastModified": 1755128472,
+        "narHash": "sha256-BVjUDSHplAJKNdSVYrucM6XVYdBepv5LsuFuWcRyil8=",
         "ref": "main",
-        "rev": "ca55236cd9ef3cdea29b51a0b52a9402c60e9a27",
+        "rev": "8f9cb0d5cc32c364be4348d7bf497c51361ba5bb",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/nixos-wsl"
@@ -400,11 +400,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1754796037,
-        "narHash": "sha256-JGKmmJ5kW090+8lK2MNAmOsVZFZFg4hY9RFtr/v5Fy8=",
-        "rev": "85dbfc7aaf52ecb755f87e577ddbe6dbbdbc1054",
+        "lastModified": 1755101581,
+        "narHash": "sha256-8ppDHtFBxY8V1ePXXS+4pcRtIkqylw89z/JHrQn6nhc=",
+        "rev": "005433b926e16227259a1843015b5b2b7f7d1fc3",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre841808.85dbfc7aaf52/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre843472.005433b926e1/nixexprs.tar.xz"
       },
       "original": {
         "type": "tarball",
@@ -487,10 +487,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1754832356,
-        "narHash": "sha256-CHWUy7FY1icSQnvTNv+9ty6VFjBNDyb3gD8hHhVEZ9Y=",
+        "lastModified": 1755115677,
+        "narHash": "sha256-98Ad2F5w1xW94KymQiBohNBYpFqMa0K28v9S1SzyTY8=",
         "ref": "refs/heads/main",
-        "rev": "1681ad703470e784156ce3461d92d18492c5baef",
+        "rev": "c5dc7192496a1fad38134e54f8b4fca8ac51a9fe",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/notashelf/nvf"
@@ -633,10 +633,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1754328224,
-        "narHash": "sha256-glPK8DF329/dXtosV7YSzRlF4n35WDjaVwdOMEoEXHA=",
+        "lastModified": 1754988908,
+        "narHash": "sha256-t+voe2961vCgrzPFtZxha0/kmFSHFobzF00sT8p9h0U=",
         "ref": "refs/heads/master",
-        "rev": "49021900e69812ba7ddb9e40f9170218a7eca9f4",
+        "rev": "3223c7a92724b5d804e9988c6b447a0d09017d48",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/Mic92/sops-nix"
