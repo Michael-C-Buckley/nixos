@@ -4,7 +4,10 @@
     eigrp.enable = true;
     bgp.enable = true;
 
-    interfaces.enu1c2.useDHCP = true;
+    networkmanager = {
+      enable = true;
+      unmanaged = ["*"];
+    };
   };
 
   environment.systemPackages = [pkgs.dhcpcd];
