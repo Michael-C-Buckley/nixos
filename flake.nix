@@ -42,21 +42,6 @@
         systems.follows = "systems";
       };
     };
-    pcsd = {
-      url = "git+https://github.com/matt1432/nixos-pcsd?shallow=1";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-      };
-    };
-
-    attic = {
-      url = "git+https://github.com/zhaofengli/attic?shallow=1";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
-    };
 
     mangowc = {
       url = "git+https://github.com/DreamMaoMao/mangowc?shallow=1";
