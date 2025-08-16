@@ -8,6 +8,7 @@
     gparted
 
     # Browser
+    librewolf
     firefox
     ungoogled-chromium
 
@@ -27,7 +28,6 @@
 
     # Productivity
     kdePackages.kalgebra # Calculator
-    obsidian
     gimp3
 
     # Terminals
