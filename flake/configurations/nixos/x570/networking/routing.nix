@@ -30,10 +30,17 @@ in {
     int enp7s0
       ip ospf cost 400
       ip ospf area 0
+      ip ospf bfd
 
     int enp8s0
       ip ospf cost 100
       ip ospf area 0
+      ip ospf bfd
+
+    bfd
+     peer 192.168.48.31
+     peer 192.168.48.32
+     peer 192.168.48.33
   '';
 
   networking = {
@@ -46,6 +53,8 @@ in {
     };
     eigrp.enable = true;
     bgp.enable = true;
+
+    firewall.allowedUDPPorts = [3784 3785];
   };
 
   services.frr = {
