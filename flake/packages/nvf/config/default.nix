@@ -10,6 +10,8 @@
       package = pkgs.vimPlugins.telescope-undo-nvim;
     };
 
+    options.tabstop = 4;
+
     # Navigation
     projects.project-nvim.enable = true;
     telescope.enable = true;
