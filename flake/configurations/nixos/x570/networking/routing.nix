@@ -1,5 +1,7 @@
 {config, ...}: let
-  inherit (config.networking) loopback;
+  inherit (builtins) head getAttr toString;
+  lo = getAttr "address" (head config.networking.interfaces.lo.ipv4.addresses);
+  loPrefix = toString (getAttr "prefixLength" (head config.networking.interfaces.lo.ipv4.addresses));
 in {
   # Default Nixos will have standard priority, force to override
   # environment.etc."frr/frr.conf".source = lib.mkForce config.age.secrets.frr.path;
@@ -10,9 +12,12 @@ in {
 
     ip route 192.168.48.0/20 blackhole 250
 
+    router ospf
+      router-id ${lo}
+
     router eigrp 1
       network 192.168.50.32/27
-      network ${loopback.ipv4}
+      network ${lo}/${loPrefix}
 
     router bgp 65100
       no bgp ebgp-requires-policy
