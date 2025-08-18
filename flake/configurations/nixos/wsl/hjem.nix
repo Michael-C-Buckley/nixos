@@ -10,6 +10,7 @@
 
   users.users.michael.packages = with pkgs; [
     firefox
+    librewolf
     ungoogled-chromium
   ];
 }
