@@ -1,6 +1,6 @@
 keybind = ctrl+alt+d=toggle_window_decorations
 
-theme = Seti
+theme ="Wombat"
 
 window-theme = system
 window-decoration = false
