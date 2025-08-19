@@ -136,10 +136,10 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1754935863,
-        "narHash": "sha256-ZDH7t5IXiGQRkzBqkNvp/3apFVNZfiPt2zBrfK/NvE8=",
+        "lastModified": 1755481525,
+        "narHash": "sha256-HnKSN39AuEa8MuzwVRh816rddZjTGLRN/A9dvzlfjhA=",
         "ref": "refs/heads/main",
-        "rev": "7cf8955775df5bc5693bbb1f2f54cfb3f7645108",
+        "rev": "7c639526ac8e4c3674221e6dcc9ab0f7c7a42a16",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/snugnug/hjem-rum"
@@ -200,10 +200,10 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1755404783,
-        "narHash": "sha256-cLjquQo5DG3nszR3yUZyV1wWJf8exrnd1aQBQUFUZD4=",
+        "lastModified": 1755517372,
+        "narHash": "sha256-hPLk6SSLTzag/anov7f+zmIvmuQBWw22q19qFydkTvQ=",
         "ref": "refs/heads/main",
-        "rev": "c1c7b0e4f72f107703a22e60fe465bea45c28b3a",
+        "rev": "51ba025716d4b5ddaac9e2dbf87eef3f65506990",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/DreamMaoMao/mangowc"
@@ -281,10 +281,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1755347231,
-        "narHash": "sha256-ve2/Y0c+aiVKIDAEAjP3SU1pd3klXBObIuDcDhEjcN0=",
+        "lastModified": 1755599953,
+        "narHash": "sha256-aYPk6KDydTaY9KV/dZ0AmTzn0EwPNzFZlirMDV3rkMQ=",
         "ref": "refs/heads/master",
-        "rev": "55330d868df1a4e7534a96f857c367c7e6fde416",
+        "rev": "cb37bd079c899761ab65eb967e8a5fb24b1451e7",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/michael-c-buckley/nix-secrets"
@@ -391,10 +391,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1755252692,
-        "narHash": "sha256-98Ad2F5w1xW94KymQiBohNBYpFqMa0K28v9S1SzyTY8=",
+        "lastModified": 1755463179,
+        "narHash": "sha256-5Ggb1Mhf7ZlRgGi2puCa2PvWs6KbMnWBlW6KW7Vf79Y=",
         "ref": "refs/heads/main",
-        "rev": "b6490efbe0b28b3bca727ecd4846fc8006352822",
+        "rev": "03833118267ad32226b014b360692bdce9d6e082",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/notashelf/nvf"
