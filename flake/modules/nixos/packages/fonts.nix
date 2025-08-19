@@ -18,6 +18,7 @@
     dejavu_fonts
     vista-fonts
     font-awesome
+    geist-font
   ];
 in {
   fonts.packages =
