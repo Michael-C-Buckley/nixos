@@ -30,6 +30,7 @@
     fzf
 
     # Machine Utilities
+    dig
     unixtools.netstat
     unixtools.arp
     ethtool
