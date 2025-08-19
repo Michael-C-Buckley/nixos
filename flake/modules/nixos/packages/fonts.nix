@@ -12,6 +12,8 @@
   extraNerdFonts = with pkgs.nerd-fonts; [
     caskaydia-cove
     symbols-only
+    inconsolata
+    meslo-lg
   ];
 
   extraFonts = with pkgs; [
@@ -19,6 +21,9 @@
     vista-fonts
     font-awesome
     geist-font
+    cascadia-code
+    fira-code
+    hack-font
   ];
 in {
   fonts.packages =
