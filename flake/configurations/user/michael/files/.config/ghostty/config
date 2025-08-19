@@ -1,10 +1,9 @@
 keybind = ctrl+alt+d=toggle_window_decorations
 
-theme ="Wombat"
+theme = "Everblush"
 
 window-theme = system
 window-decoration = false
-background = #000000
-cursor-color = #44A3A3
-cursor-opacity = 0.7
+#cursor-color = #44A3A3
+cursor-opacity = 0.6
 font-size = 11
