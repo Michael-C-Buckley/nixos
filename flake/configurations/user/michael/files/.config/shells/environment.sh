@@ -21,3 +21,6 @@ export IP_COLOR=always
 export NIXOS_OZONE_WL=1
 export GTK_USE_PORTAL=1
 export NH_FLAKE=/home/michael/nixos
+
+# GPG Terminal Compatibility for pinentry
+export GPG_TTY=$(tty)
