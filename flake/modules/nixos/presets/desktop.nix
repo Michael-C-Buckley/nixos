@@ -17,6 +17,8 @@ in {
       niri.enable = mkDefault false;
     };
 
+    services.xserver.windowManager.stumpwm.enable = true;
+
     virtualisation = {
       containerlab.enable = true;
     };
