@@ -4,17 +4,9 @@
   lib,
   ...
 }: let
-  inherit (builtins) concatLists;
   inherit (lib) optionals;
 
   useFonts = config.features.pkgs.fonts;
-
-  extraNerdFonts = with pkgs.nerd-fonts; [
-    caskaydia-cove
-    symbols-only
-    inconsolata
-    meslo-lg
-  ];
 
   extraFonts = with pkgs; [
     dejavu_fonts
@@ -22,12 +14,14 @@
     font-awesome
     geist-font
     cascadia-code
-    fira-code
-    hack-font
+    noto-fonts
+
+    nerd-fonts.meslo-lg
+    nerd-fonts.symbols-only
   ];
 in {
   fonts.packages =
     # Unconditionally make Jetbrains Mono available for basic things like Ghostty
     [pkgs.nerd-fonts.jetbrains-mono]
-    ++ optionals useFonts (concatLists [extraNerdFonts extraFonts]);
+    ++ optionals useFonts extraFonts;
 }
