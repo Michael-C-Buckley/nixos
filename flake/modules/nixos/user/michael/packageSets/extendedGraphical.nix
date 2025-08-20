@@ -5,6 +5,7 @@ with pkgs; [
   joplin-desktop
   legcord
   materialgram
+  obsidian
   signal-desktop
   # keep-sorted ends
 ]
