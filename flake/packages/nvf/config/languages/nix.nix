@@ -11,5 +11,4 @@
     enable = true;
     type = "alejandra";
   };
-  lsp.server = "nil";
 }
