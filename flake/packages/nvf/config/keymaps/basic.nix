@@ -15,7 +15,7 @@
   {
     mode = "n";
     key = "<leader>fa";
-    action = ":!alejandra %<CR>";
+    action = ":lua vim.lsp.buf.format()<CR>";
     silent = true;
   }
   {
