@@ -24,10 +24,14 @@
     ++ optionals extendedGraphical myGUIExtPkgs;
 in {
   # Home is not impermanent, but this removes these from snapshots
-  environment.persistence."/cache".users.michael.directories = [
-    "Downloads"
-    ".cache/nix" # Git caches are very large
-  ];
+  environment.persistence."/cache".users.michael.directories =
+    [
+      "Downloads"
+      ".cache"
+    ]
+    ++ optionals extendedGraphical [
+      ".config/legcord/Cache"
+    ];
 
   users.users = {
     michael = {
