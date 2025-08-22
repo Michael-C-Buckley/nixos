@@ -15,7 +15,10 @@
   wsl = {
     enable = true;
     defaultUser = "michael";
-    wslConf.network.generateResolvConf = false;
+    wslConf.network = {
+      generateResolvConf = false;
+      generateHosts = false;
+    };
 
     # Windows path and binary execution compat
     interop = {
