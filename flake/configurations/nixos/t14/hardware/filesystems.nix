@@ -25,7 +25,7 @@ in {
       fsType = "tmpfs";
       options = [
         "defaults"
-        "size=500M"
+        "size=1000M"
         "mode=755"
       ];
     };
@@ -37,5 +37,6 @@ in {
     "/home" = mkZfs "zroot/t14/nixos/home";
     "/home/michael" = mkZfs "zroot/t14/nixos/home/michael";
     "/home/shawn" = mkZfs "zroot/t14/nixos/home/shawn";
+    "/var/lib/docker" = mkZfs "zroot/local/var/lib/docker";
   };
 }
