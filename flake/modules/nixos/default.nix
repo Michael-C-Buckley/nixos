@@ -4,6 +4,7 @@ _: {
     graphical = import ./graphical;
     hardware = import ./hardware;
     network = import ./network;
+    nix = import ./nix;
     packageSets = import ./packageSets;
     packages = import ./packages;
     presets = import ./presets;
