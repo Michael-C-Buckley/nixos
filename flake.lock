@@ -200,10 +200,10 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1755867994,
-        "narHash": "sha256-Dof0qbhtZUTDCKCjLbwWjG1QW/9rtHE4w5DbrRFvweU=",
+        "lastModified": 1755956287,
+        "narHash": "sha256-Yw/g/eX+w+CR709qr7mLFTO3OvMjWM7VxjooQXN+Re4=",
         "ref": "refs/heads/main",
-        "rev": "53128416d6469df82c633ff5e7df513bcfe886e7",
+        "rev": "87b094c95850ecd6c4233ae76f2e7f96be555e59",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/DreamMaoMao/mangowc"
@@ -281,10 +281,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1755895820,
-        "narHash": "sha256-4M3Bx88DRk0e55Sx7LECkvcSH6i3Kz5GaZIDHPjMVzA=",
+        "lastModified": 1755967541,
+        "narHash": "sha256-tZnBXFZQefHn3cr2pIdC6GR0AslsYRRj3sN8MD1Mnwo=",
         "ref": "refs/heads/master",
-        "rev": "b51775926e12ae31fdcd197f37c2815024b32cf6",
+        "rev": "fdc2fabe3a178980f33c2ae1b5f2b6ac65f67f57",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/michael-c-buckley/nix-secrets"
