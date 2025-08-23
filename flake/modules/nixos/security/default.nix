@@ -36,13 +36,15 @@ in {
   };
 
   services = {
-    printing.enable = false; # Revoke printing for its flaws over the years
+    # Farewell printing, read this article if you didn't know you could print with just netcat
+    # https://retrohacker.substack.com/p/bye-cups-printing-with-netcat
+    printing.enable = false;
     openssh = {
       enable = mkDefault true;
       settings = {
-        PasswordAuthentication = false;
-        KbdInteractiveAuthentication = false;
-        streamLocalBindUnlink = true;
+        PasswordAuthentication = mkDefault false;
+        KbdInteractiveAuthentication = mkDefault false;
+        streamLocalBindUnlink = mkDefault true;
       };
     };
   };
