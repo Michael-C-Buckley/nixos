@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+_: {
   hjem.users.michael = {
     programs = {
       # keep-sorted start
@@ -7,8 +7,4 @@
       # keep-sorted end
     };
   };
-
-  users.users.michael.packages = with pkgs; [
-    ungoogled-chromium
-  ];
 }
