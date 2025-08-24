@@ -8,8 +8,6 @@
     wireshark
 
     # Browser
-    librewolf
-    firefox
     ungoogled-chromium
 
     # Editors
