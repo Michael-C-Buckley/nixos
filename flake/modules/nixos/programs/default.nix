@@ -21,11 +21,7 @@ in {
     fish.enable = true;
     wireshark.enable = mkDefault true;
     zsh.enable = true;
-    neovim = {
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
-    };
+    neovim.defaultEditor = true;
     nh = {
       enable = true;
       flake = mkDefault "/etc/nixos";
