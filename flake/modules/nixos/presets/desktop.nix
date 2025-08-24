@@ -23,6 +23,11 @@ in {
 
       # Programs
       wireshark.enable = mkDefault true;
+      winbox = {
+        enable = mkDefault true;
+        package = pkgs.winbox4;
+        openFirewall = mkDefault true;
+      };
     };
 
     virtualisation = {
