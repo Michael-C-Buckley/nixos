@@ -1,18 +1,18 @@
 # WIP
 [Default Applications]
 # Browsers
-x-scheme-handler/http=librewolf.desktop
-x-scheme-handler/https=librewolf.desktop
-x-scheme-handler/chrome=librewolf.desktop  # needs tweaking
-text/html=librewolf.desktop
-application/x-extension-htm=librewolf.desktop
-application/x-extension-html=librewolf.desktop
-application/x-extension-shtml=librewolf.desktop
-application/xhtml+xml=librewolf.desktop
-application/x-extension-xhtml=librewolf.desktop
-application/x-extension-xht=librewolf.desktop
-x-scheme-handler/about=librewolf.desktop
-x-scheme-handler/unknown=librewolf.desktop
+x-scheme-handler/http=schizofox.desktop
+x-scheme-handler/https=schizofox.desktop
+x-scheme-handler/chrome=schizofox.desktop  # needs tweaking
+text/html=schizofox.desktop
+application/x-extension-htm=schizofox.desktop
+application/x-extension-html=schizofox.desktop
+application/x-extension-shtml=schizofox.desktop
+application/xhtml+xml=schizofox.desktop
+application/x-extension-xhtml=schizofox.desktop
+application/x-extension-xht=schizofox.desktop
+x-scheme-handler/about=schizofox.desktop
+x-scheme-handler/unknown=schizofox.desktop
 
 # Communication
 x-scheme-handler/tg=io.github.kukuruzka165.materialgram.desktop
@@ -64,16 +64,16 @@ application/octet-stream=ghostty.desktop
 
 # WIP
 [Added Associations]
-x-scheme-handler/http=librewolf.desktop;
-x-scheme-handler/https=librewolf.desktop;
-x-scheme-handler/chrome=librewolf.desktop;
-text/html=librewolf.desktop;zen-twilight.desktop;userapp-Twilight-YRQP42.desktop;zen-beta.desktop;librewolf.desktop;
-application/x-extension-htm=librewolf.desktop;zen-twilight.desktop;userapp-Twilight-YRQP42.desktop;zen-beta.desktop;librewolf.desktop;
-application/x-extension-html=librewolf.desktop;zen-twilight.desktop;userapp-Twilight-YRQP42.desktop;zen-beta.desktop;librewolf.desktop;
-application/x-extension-shtml=librewolf.desktop;zen-twilight.desktop;userapp-Twilight-YRQP42.desktop;zen-beta.desktop;librewolf.desktop;
-application/xhtml+xml=librewolf.desktop;zen-twilight.desktop;userapp-Twilight-YRQP42.desktop;zen-beta.desktop;librewolf.desktop;
-application/x-extension-xhtml=librewolf.desktop;zen-twilight.desktop;userapp-Twilight-YRQP42.desktop;zen-beta.desktop;librewolf.desktop;
-application/x-extension-xht=librewolf.desktop;zen-twilight.desktop;userapp-Twilight-YRQP42.desktop;zen-beta.desktop;librewolf.desktop;
+x-scheme-handler/http=schizofox.desktop;
+x-scheme-handler/https=schizofox.desktop;
+x-scheme-handler/chrome=schizofox.desktop;
+text/html=schizofox.desktop;zen-twilight.desktop;userapp-Twilight-YRQP42.desktop;zen-beta.desktop;schizofox.desktop;
+application/x-extension-htm=schizofox.desktop;zen-twilight.desktop;userapp-Twilight-YRQP42.desktop;zen-beta.desktop;schizofox.desktop;
+application/x-extension-html=schizofox.desktop;zen-twilight.desktop;userapp-Twilight-YRQP42.desktop;zen-beta.desktop;schizofox.desktop;
+application/x-extension-shtml=schizofox.desktop;zen-twilight.desktop;userapp-Twilight-YRQP42.desktop;zen-beta.desktop;schizofox.desktop;
+application/xhtml+xml=schizofox.desktop;zen-twilight.desktop;userapp-Twilight-YRQP42.desktop;zen-beta.desktop;schizofox.desktop;
+application/x-extension-xhtml=schizofox.desktop;zen-twilight.desktop;userapp-Twilight-YRQP42.desktop;zen-beta.desktop;schizofox.desktop;
+application/x-extension-xht=schizofox.desktop;zen-twilight.desktop;userapp-Twilight-YRQP42.desktop;zen-beta.desktop;schizofox.desktop;
 x-scheme-handler/tg=io.github.kotatogram.desktop;io.github.kukuruzka165.materialgram.desktop;
 application/zip=org.pwmt.zathura-cb.desktop;
 x-scheme-handler/tonsite=io.github.kukuruzka165.materialgram.desktop;

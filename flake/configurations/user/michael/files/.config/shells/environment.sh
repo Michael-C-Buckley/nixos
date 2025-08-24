@@ -8,7 +8,7 @@ export EDITOR=$VISUAL
 export GIT_EDITOR=$VISUAL
 export PAGER="bat"
 export MANPAGER="bat -l man -p"
-export BROWSER=librewolf
+export BROWSER=schizofox
 export DIFF=diff-so-fancy
 
 # Enable color in `ls` and other commands

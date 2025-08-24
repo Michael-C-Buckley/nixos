@@ -19,7 +19,7 @@ in {
     stateVersion = mkDefault "25.11";
     sessionVariables = {
       EDITOR = "nvim";
-      BROWSER = "librewolf";
+      BROWSER = "schizofox";
       NIXOS_OZONE_WL = "1";
       GTK_USE_PORTAL = "1";
     };
