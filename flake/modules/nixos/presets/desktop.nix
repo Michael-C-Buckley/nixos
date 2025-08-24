@@ -2,11 +2,15 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: let
   inherit (lib) mkDefault mkIf;
   inherit (config.system) preset;
+  inherit (pkgs) pulseaudioFull;
 in {
+  imports = [inputs.mangowc.nixosModules.mango];
+
   # These are shared on my systems, laptops get everything plus more
   config = mkIf (preset
     == "desktop"
@@ -14,16 +18,16 @@ in {
     programs = {
       cosmic.enable = mkDefault false;
       hyprland.enable = mkDefault true;
-      niri.enable = mkDefault false;
+      mango.enable = mkDefault true;
     };
-
-    services.xserver.windowManager.stumpwm.enable = true;
 
     virtualisation = {
-      containerlab.enable = true;
+      containerlab.enable = mkDefault true;
+      podman.enable = mkDefault true;
+      libvirtd.enable = mkDefault true;
     };
 
-    environment.systemPackages = with pkgs; [pulseaudioFull];
+    environment.systemPackages = [pulseaudioFull];
 
     features = {
       boot = mkDefault "systemd";

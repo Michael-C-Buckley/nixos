@@ -6,12 +6,10 @@
 }: let
   inherit (lib) mkIf;
   inherit (config.system) preset;
+  inherit (pkgs) brightnessctl;
 in {
   config = mkIf (preset == "laptop") {
-    environment.systemPackages = [
-      pkgs.brightnessctl
-    ];
-    # Disable discovery for laptops
-    services.lldpd.enable = false;
+    environment.systemPackages = [brightnessctl];
+    services.lldpd.enable = false; # Disable discovery for laptops
   };
 }

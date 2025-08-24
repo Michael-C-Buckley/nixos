@@ -1,9 +1,6 @@
-{inputs, ...}: let
-  inherit (inputs) nix-secrets mangowc;
-in {
+{inputs, ...}: {
   imports = [
-    nix-secrets.nixosModules.x570
-    mangowc.nixosModules.mango
+    inputs.nix-secrets.nixosModules.x570
     ./hardware
     ./networking
     ./hyprland.nix
@@ -14,12 +11,6 @@ in {
     gaming.enable = true;
   };
 
-  # Testing the Mango Wayland Compositor
-  programs.mango.enable = true;
-
-  # Only used during active testing, as it isn't completed
-  presets.kubernetes.singleNode = false;
-
   system = {
     preset = "desktop";
     stateVersion = "25.05";
@@ -27,8 +18,6 @@ in {
 
   virtualisation = {
     incus.enable = true;
-    gns3.enable = false; # Replaced with EVE-NG via Incus container
-    podman.enable = true;
-    libvirtd.enable = true;
+    gns3.enable = false;
   };
 }

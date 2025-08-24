@@ -15,11 +15,11 @@ in {
 
   config = mkIf gaming.enable {
     # Large, downloadable so remove from snapshots
+    # Any Custom Filesystem mounts will be under the host itself
     environment.persistence."/cache".users = mkIf impermanence.enable {
       michael = commonDir;
       shawn = commonDir;
     };
-    # Any Custom Filesystem mounts will be under the host itself
     hardware.steam-hardware.enable = true;
 
     programs.steam = {
