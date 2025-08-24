@@ -14,8 +14,8 @@
 
 - Remove files for my user configs
 - Integrate *some* Nix management of specific dots
-- vscodium flatpak and sync
 - Git signing keys per machine
+- Nixpak (browsers, vscodium, obsidian)
 
 ## In Progress
 
