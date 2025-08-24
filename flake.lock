@@ -186,18 +186,18 @@
         "smfh": "smfh"
       },
       "locked": {
-        "lastModified": 1754609586,
-        "narHash": "sha256-sfFiSnUmGRlaOOybWjocuSQ0UDzVwtzDp0BZ7cxFTF0=",
+        "lastModified": 1756046137,
+        "narHash": "sha256-AS8mTZyvQDvP3XgSLPp/DI0GFhvdMlxcQBWTR48mBjU=",
         "ref": "refs/heads/main",
-        "rev": "d72cf4bbc2872e30414820de60427074e64fbe41",
+        "rev": "ce24546f7f552bb92315e013f2599776e0b33249",
         "shallow": true,
         "type": "git",
-        "url": "https://github.com/michael-c-buckley/hjem"
+        "url": "https://github.com/feel-co/hjem"
       },
       "original": {
         "shallow": true,
         "type": "git",
-        "url": "https://github.com/michael-c-buckley/hjem"
+        "url": "https://github.com/feel-co/hjem"
       }
     },
     "hjem-rum": {
