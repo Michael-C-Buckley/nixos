@@ -16,9 +16,13 @@ in {
     == "desktop"
     || preset == "laptop") {
     programs = {
+      # Graphical Environments
       cosmic.enable = mkDefault false;
       hyprland.enable = mkDefault true;
       mango.enable = mkDefault true;
+
+      # Programs
+      wireshark.enable = mkDefault true;
     };
 
     virtualisation = {
@@ -39,5 +43,11 @@ in {
       displayManager = mkDefault "greetd";
       pkgs.fonts = mkDefault true;
     };
+
+    # Add Wireshark if enabled
+    users.powerUsers.groups =
+      if config.programs.wireshark.enable
+      then ["wireshark"]
+      else [];
   };
 }

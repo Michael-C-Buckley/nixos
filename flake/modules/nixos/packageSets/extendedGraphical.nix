@@ -4,7 +4,6 @@
     networkmanagerapplet
     pavucontrol # Pulse Volume control
     gammastep
-    wireshark
     gparted
 
     # Browser
