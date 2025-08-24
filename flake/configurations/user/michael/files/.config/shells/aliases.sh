@@ -9,6 +9,7 @@ alias la='ls -A'           # List all except `.` and `..`
 alias l='ls -CF'           # Simple classified list
 alias ..='cd ..'
 alias ...='cd ../..'
+alias nv='nvim'
 
 # Navigation
 alias z='zoxide'
