@@ -11,6 +11,7 @@
   ];
 
   boot = {
+    binfmt.emulatedSystems = ["aarch64-linux"];
     kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
     kernelModules = ["kvm" "kvm-amd" "virtiofs" "9p" "9pnet_virtio"];
     kernelParams = [
