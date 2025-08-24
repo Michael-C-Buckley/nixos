@@ -21,7 +21,6 @@ in {
   presets.kubernetes.singleNode = false;
 
   system = {
-    builder.enable = true;
     preset = "desktop";
     stateVersion = "25.05";
   };
