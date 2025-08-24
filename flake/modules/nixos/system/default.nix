@@ -4,7 +4,6 @@ _: {
     ./builder.nix
     ./options.nix
     ./relink.nix
-    ./risks.nix
     ./users
   ];
 
