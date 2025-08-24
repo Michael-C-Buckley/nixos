@@ -8,7 +8,7 @@
     wireshark
 
     # Browser
-    ungoogled-chromium
+    vivaldi
 
     # Editors
     emacs
