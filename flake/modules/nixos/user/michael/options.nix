@@ -10,6 +10,5 @@ in {
       description = "Include a footprint of small and useful GUI packages";
     };
     extendedGraphical = mkEnableOption {};
-    hyprland.enable = mkEnableOption {};
   };
 }

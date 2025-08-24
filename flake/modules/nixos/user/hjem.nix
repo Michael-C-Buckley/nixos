@@ -11,7 +11,6 @@
 in {
   imports = [
     inputs.hjem.nixosModules.default
-    ./options
     ./michael/hjem.nix
     ./shawn/hjem.nix
   ];

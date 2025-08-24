@@ -35,10 +35,7 @@ in {
 
     features = {
       boot = mkDefault "systemd";
-      michael = {
-        extendedGraphical = mkDefault true;
-        hyprland.enable = mkDefault true;
-      };
+      michael.extendedGraphical = mkDefault true;
       autoLogin = mkDefault true;
       displayManager = mkDefault "greetd";
       pkgs.fonts = mkDefault true;

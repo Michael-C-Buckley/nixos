@@ -23,6 +23,8 @@
     ++ optionals extendedGraphical packageSets.extendedGraphical
     ++ optionals extendedGraphical myGUIExtPkgs;
 in {
+  imports = [./options.nix];
+
   # Home is not impermanent, but this removes these from snapshots
   environment.persistence."/cache".users.michael.directories =
     [
