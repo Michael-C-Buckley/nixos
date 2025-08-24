@@ -10,7 +10,6 @@ _: {
     presets = import ./presets;
     programs = import ./programs;
     security = import ./security;
-    services = import ./services;
     storage = import ./storage;
     system = import ./system;
     virtualization = import ./virtualization;

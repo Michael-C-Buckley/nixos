@@ -53,5 +53,10 @@ in {
         };
       };
     };
+
+    services.cockpit = {
+      enable = mkDefault config.virtualisation.libvirtd.enable;
+      openFirewall = mkDefault config.services.cockpit.enable;
+    };
   };
 }
