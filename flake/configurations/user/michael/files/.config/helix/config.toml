@@ -1,0 +1,10 @@
+theme = "everblush"
+
+[editor]
+line-number = "relative"
+bufferline = "always"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
