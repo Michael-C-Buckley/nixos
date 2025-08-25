@@ -7,6 +7,9 @@
     curl
     wget
 
+    # Editors
+    helix
+
     # Shells/Terminals
     zsh
     fish
