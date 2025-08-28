@@ -8,12 +8,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    flake-compat.url = "git+https://github.com/edolstra/flake-compat?shallow=1";
-    flake-parts.url = "git+https://github.com/hercules-ci/flake-parts?shallow=1";
-    systems.url = "git+https://github.com/nix-systems/default?shallow=1";
+    flake-compat.url = "github:edolstra/flake-compat";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    systems.url = "github:nix-systems/default";
 
     nixos-wsl = {
-      url = "git+https://github.com/nix-community/nixos-wsl?shallow=1&ref=main";
+      url = "github:nix-community/nixos-wsl?shallow=1&ref=main";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-compat.follows = "flake-compat";
@@ -21,12 +21,12 @@
     };
 
     hjem = {
-      url = "git+https://github.com/feel-co/hjem?shallow=1";
+      url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hjem-rum = {
-      url = "git+https://github.com/snugnug/hjem-rum?shallow=1";
+      url = "github:snugnug/hjem-rum";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         hjem.follows = "hjem";
@@ -38,7 +38,7 @@
     };
 
     home-config = {
-      url = "git+https://github.com/Michael-C-Buckley/home-config?shallow=1";
+      url = "github:Michael-C-Buckley/home-config";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
@@ -50,12 +50,12 @@
     };
 
     sops-nix = {
-      url = "git+https://github.com/Mic92/sops-nix?shallow=1";
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nvf = {
-      url = "git+https://github.com/notashelf/nvf?shallow=1";
+      url = "github:notashelf/nvf";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-compat.follows = "flake-compat";
@@ -65,7 +65,7 @@
     };
 
     mangowc = {
-      url = "git+https://github.com/DreamMaoMao/mangowc?shallow=1";
+      url = "github:DreamMaoMao/mangowc";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
@@ -74,7 +74,7 @@
     };
 
     schizofox = {
-      url = "git+https://github.com/schizofox/schizofox?shallow=1";
+      url = "github:schizofox/schizofox";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-compat.follows = "flake-compat";
@@ -86,11 +86,11 @@
 
     # No Nixpkgs Inputs
     lupinix = {
-      url = "git+https://github.com/Michael-C-Buckley/lupinix?shallow=1&ref=noDash";
+      url = "github:Michael-C-Buckley/lupinix/noDash";
       inputs.flake-parts.follows = "flake-parts";
     };
-    impermanence.url = "git+https://github.com/nix-community/impermanence?shallow=1";
-    quadlet-nix.url = "git+https://github.com/SEIAROTg/quadlet-nix?shallow=1";
+    impermanence.url = "github:nix-community/impermanence";
+    quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
   };
 
   outputs = {flake-parts, ...} @ inputs:
