@@ -8,12 +8,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    flake-compat.url = "git+https://github.com/edolstra/flake-compat?shallow=1";
     flake-parts.url = "git+https://github.com/hercules-ci/flake-parts?shallow=1";
     systems.url = "git+https://github.com/nix-systems/default?shallow=1";
 
     nixos-wsl = {
       url = "git+https://github.com/nix-community/nixos-wsl?shallow=1&ref=main";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-compat.follows = "flake-compat";
+      };
     };
 
     hjem = {
@@ -26,6 +30,22 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         hjem.follows = "hjem";
+        ndg.inputs = {
+          flake-compat.follows = "flake-compat";
+          flake-parts.follows = "flake-parts";
+        };
+      };
+    };
+
+    home-config = {
+      url = "git+https://github.com/Michael-C-Buckley/home-config?shallow=1";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        systems.follows = "systems";
+        hjem.follows = "hjem";
+        hjem-rum.follows = "hjem-rum";
+        home-manager.follows = "";
       };
     };
 
@@ -38,6 +58,7 @@
       url = "git+https://github.com/notashelf/nvf?shallow=1";
       inputs = {
         nixpkgs.follows = "nixpkgs";
+        flake-compat.follows = "flake-compat";
         flake-parts.follows = "flake-parts";
         systems.follows = "systems";
       };
@@ -48,6 +69,7 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
+        mmsg.inputs.flake-parts.follows = "flake-parts";
       };
     };
 
@@ -55,8 +77,10 @@
       url = "git+https://github.com/schizofox/schizofox?shallow=1";
       inputs = {
         nixpkgs.follows = "nixpkgs";
+        flake-compat.follows = "flake-compat";
         flake-parts.follows = "flake-parts";
         systems.follows = "systems";
+        searx-randomizer.inputs.flake-parts.follows = "flake-parts";
       };
     };
 
