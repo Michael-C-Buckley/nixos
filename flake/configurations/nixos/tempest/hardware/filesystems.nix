@@ -1,12 +1,12 @@
 _: let
   zfsFs = name: {
-    device = "ZROOT/nixos/${name}";
+    device = "ztempest/${name}";
     fsType = "zfs";
     neededForBoot = true;
   };
 in {
   system = {
-    boot.uuid = "3A0E-2554";
+    boot.uuid = "159C-593C";
     impermanence.enable = true;
   };
 
@@ -29,9 +29,9 @@ in {
       ];
     };
 
-    # ZFS Volumes
-    "/nix" = zfsFs "nix";
-    "/cache" = zfsFs "cache";
-    "/persist" = zfsFs "persist";
+    # nixos is encryped and local is not
+    "/nix" = zfsFs "local/nix";
+    "/cache" = zfsFs "nixos/cache";
+    "/persist" = zfsFs "nixos/persist";
   };
 }
