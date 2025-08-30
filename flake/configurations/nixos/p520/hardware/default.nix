@@ -31,11 +31,4 @@
     cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
     ksm.enable = true;
   };
-
-  fileSystems = {
-    "/data" = {
-      device = "zhdd/data";
-      fsType = "zfs";
-    };
-  };
 }

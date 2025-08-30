@@ -9,7 +9,10 @@
   inherit (config.system) preset;
   inherit (pkgs) pulseaudioFull;
 in {
-  imports = [inputs.mangowc.nixosModules.mango];
+  imports = [
+    inputs.mangowc.nixosModules.mango
+    inputs.schizofox.nixosModules.default
+  ];
 
   # These are shared on my systems, laptops get everything plus more
   config = mkIf (preset
@@ -22,6 +25,7 @@ in {
       mango.enable = mkDefault true;
 
       # Programs
+      schizofox.enable = true;
       wireshark.enable = mkDefault true;
       winbox = {
         enable = mkDefault true;

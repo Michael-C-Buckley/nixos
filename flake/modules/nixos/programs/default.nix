@@ -1,16 +1,10 @@
-{
-  lib,
-  inputs,
-  ...
-}: let
+{lib, ...}: let
   inherit (lib) mkDefault;
 in {
-  imports = [inputs.schizofox.nixosModules.default];
   programs = {
     fish.enable = true;
     neovim.defaultEditor = true;
     zsh.enable = true;
-    schizofox.enable = true;
 
     nh = {
       enable = true;
