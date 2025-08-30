@@ -27,7 +27,7 @@
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  nixpkgs.hostPlatform = "x86_64-linux";
 
   # For sound
   security.rtkit.enable = true;

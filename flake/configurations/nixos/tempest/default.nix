@@ -1,17 +1,18 @@
 # Persistent USB NVMe install
-#  Uncreatively, SSK is just the name of the enclosure
 {
   inputs,
   pkgs,
   ...
 }: {
   imports = [
+    inputs.home-config.hjemConfigurations.default
     inputs.nix-secrets.nixosModules.t14
     ./hardware
   ];
 
   networking = {
     hostId = "fd78a12b";
+    hostName = "tempest";
   };
 
   programs = {
@@ -20,27 +21,12 @@
   };
 
   # Gnome for the environment
-  services.xserver.desktopManager.gnome.enable = true;
+  services.desktopManager.gnome.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    brightnessctl
-    nixos-anywhere
-
-    # Storage tools
-    parted
-    gptfdisk
-    nvme-cli
-
-    # Security
-    sops
-    ssh-to-age
-  ];
+  environment.systemPackages = import ./packages.nix {inherit pkgs;};
 
   features = {
-    michael = {
-      extendedGraphical = true;
-      hyprland.enable = true;
-    };
+    michael.extendedGraphical = true;
     autoLogin = false;
     displayManager = "greetd";
     gaming.enable = false;
