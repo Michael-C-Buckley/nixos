@@ -157,11 +157,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1756513191,
-        "narHash": "sha256-Dkl36pemdjcXdl6+NxWdkcCfjb9tswdllyAdB3cIn3k=",
+        "lastModified": 1756521786,
+        "narHash": "sha256-iogIlMP2s6XNQA2gdATIUPmY5iZkRYBzdeT5r6j7IJQ=",
         "owner": "Michael-C-Buckley",
         "repo": "home-config",
-        "rev": "d7fae18b7afaf07ebad1016b2246f7c7a854c29d",
+        "rev": "afe37c964caad02f2569bf96d53c328d3d06eb20",
         "type": "github"
       },
       "original": {
@@ -455,11 +455,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1756403599,
-        "narHash": "sha256-JxgJTc1Ixb7M/Sqj/ViLZP7h8ofp3gStQJ51v9iwXGE=",
+        "lastModified": 1756521723,
+        "narHash": "sha256-LBwGE4yv5/9XBP+j8DqpZ6sMu9JN2bDf/HYsGv+XmpQ=",
         "owner": "Michael-C-Buckley",
         "repo": "nvf-flake",
-        "rev": "e93d8c05ed58da78d8886a93778333e9493c0c38",
+        "rev": "c79aa971f80d390d4e0235033d254f51ea070bed",
         "type": "github"
       },
       "original": {
