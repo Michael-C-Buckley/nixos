@@ -44,7 +44,6 @@ in {
     ./fonts.nix
     ./network.nix
     ./options.nix
-    ./wifi.nix
   ];
 
   users.users = {

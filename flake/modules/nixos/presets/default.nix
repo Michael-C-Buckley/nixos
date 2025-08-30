@@ -4,5 +4,6 @@ _: {
     ./desktop.nix
     ./gaming.nix
     ./laptop.nix
+    ./wifi.nix
   ];
 }
