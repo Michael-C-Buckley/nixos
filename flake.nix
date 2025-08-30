@@ -12,22 +12,8 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     systems.url = "github:nix-systems/default";
 
-    hjem = {
-      url = "github:feel-co/hjem";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hjem-rum = {
-      url = "github:snugnug/hjem-rum";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        hjem.follows = "hjem";
-        ndg.inputs = {
-          flake-compat.follows = "flake-compat";
-          flake-parts.follows = "flake-parts";
-        };
-      };
-    };
+    hjem.follows = "home-config/hjem";
+    hjem-rum.follows = "home-config/hjem-rum";
 
     home-config = {
       url = "github:Michael-C-Buckley/home-config";
@@ -35,8 +21,6 @@
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
         systems.follows = "systems";
-        hjem.follows = "hjem";
-        hjem-rum.follows = "hjem-rum";
         home-manager.follows = "";
       };
     };
@@ -44,16 +28,6 @@
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nvf = {
-      url = "github:notashelf/nvf";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-compat.follows = "flake-compat";
-        flake-parts.follows = "flake-parts";
-        systems.follows = "systems";
-      };
     };
 
     mangowc = {
