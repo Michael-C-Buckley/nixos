@@ -5,6 +5,7 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkOption mkIf optionals;
+  inherit (config.system) impermanence;
   inherit (config.virtualisation) docker;
   inherit (docker) kata;
 in {
@@ -19,7 +20,10 @@ in {
 
   config = mkIf docker.enable {
     users.powerUsers.groups = ["docker"];
-    environment = mkIf kata.enable {
+    environment = {
+      persistence."/cache".directories = optionals impermanence.enable ["/var/lib/docker"];
+
+      # Kata
       systemPackages = optionals kata.enable [kata.package];
       etc = mkIf kata.enable {
         "docker/daemon.json".text = builtins.toJSON {
