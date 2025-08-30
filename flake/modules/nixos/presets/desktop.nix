@@ -32,7 +32,6 @@ in {
 
     virtualisation = {
       containerlab.enable = mkDefault true;
-      podman.enable = mkDefault true;
       libvirtd.enable = mkDefault true;
     };
 
