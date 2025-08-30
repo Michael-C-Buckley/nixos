@@ -98,7 +98,6 @@
         _module.args.pkgs = import inputs.nixpkgs {
           inherit system;
           config = {allowUnfree = true;};
-          overlays = [(import ./flake/overlays inputs)];
         };
       };
     };
