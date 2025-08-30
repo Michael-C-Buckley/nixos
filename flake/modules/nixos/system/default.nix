@@ -1,6 +1,7 @@
 _: {
   imports = [
     ./boot.nix
+    ./nix.nix
     ./options.nix
     ./relink.nix
     ./users
