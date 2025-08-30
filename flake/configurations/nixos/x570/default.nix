@@ -2,7 +2,7 @@
   inherit (inputs) home-config nix-secrets;
 in {
   imports = [
-    home-config.hjemConfigurations.minimal
+    home-config.hjemConfigurations.default
     nix-secrets.nixosModules.x570
     ./hardware
     ./networking
