@@ -2,20 +2,17 @@
   inherit (inputs) home-config;
 in {
   imports = [
-    home-config.hjemConfigurations.minimal
+    home-config.hjemConfigurations.server
     ./hardware
     ./networking
     ./systemd
   ];
 
   virtualisation = {
+    containerlab.enable = true;
     libvirtd.enable = true;
     podman.enable = true;
   };
-
-  sops.age.sshKeyPaths = [];
-
-  security.tpm2.enable = true;
 
   system = {
     impermanence.enable = true;

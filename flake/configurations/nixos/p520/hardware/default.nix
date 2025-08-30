@@ -22,10 +22,13 @@
 
   swapDevices = [];
 
+  sops.age.sshKeyPaths = [];
+
+  security.tpm2.enable = true;
+
   nixpkgs.hostPlatform = "x86_64-linux";
   hardware = {
     cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
-    nvidia.useNvidia = false; # Currently using AMD now
     ksm.enable = true;
   };
 
