@@ -1,6 +1,9 @@
-{inputs, ...}: {
+{inputs, ...}: let
+  inherit (inputs) home-config nix-secrets;
+in {
   imports = [
-    inputs.nix-secrets.nixosModules.x570
+    home-config.hjemConfigurations.minimal
+    nix-secrets.nixosModules.x570
     ./hardware
     ./networking
     ./hyprland.nix

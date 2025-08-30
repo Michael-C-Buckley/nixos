@@ -16,7 +16,7 @@ _: {
     # keep-sorted end
 
     # Blame your hjem/home/user Chimera.
-    user-hjem = import ./user/hjem.nix; # hjem
+    # user-hjem = import ./user/hjem.nix; # hjem
     # user-home = import ./user/home.nix; # home-manager
   };
 }

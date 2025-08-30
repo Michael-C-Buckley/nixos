@@ -1,6 +1,9 @@
-{inputs, ...}: {
-  imports = with inputs; [
+{inputs, ...}: let
+  inherit (inputs) nix-secrets home-config;
+in {
+  imports = [
     nix-secrets.nixosModules.oracle
+    home-config.hjemConfigurations.minimal
     ./hardware
     ./networking
   ];
