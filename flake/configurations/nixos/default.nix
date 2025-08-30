@@ -8,9 +8,9 @@ _: {
       system = "x86_64-linux";
       configuration = ./p520;
     };
-    "ssk" = {
+    "tempest" = {
       system = "x86_64-linux";
-      configuration = ./ssk;
+      configuration = ./tempest;
     };
     "t14" = {
       system = "x86_64-linux";

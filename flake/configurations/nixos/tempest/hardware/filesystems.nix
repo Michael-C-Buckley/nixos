@@ -10,8 +10,12 @@ in {
     impermanence.enable = true;
   };
 
-  # Preserve everything for root
-  environment.persistence."/persist".directories = ["/root"];
+  # Preserve everything for users
+  environment.persistence."/persist".directories = [
+    "/root"
+    "/home/michael"
+    "/home/shawn"
+  ];
 
   fileSystems = {
     # Tmpfs
