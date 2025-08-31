@@ -206,27 +206,6 @@
         "type": "github"
       }
     },
-    "lupinix": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ]
-      },
-      "locked": {
-        "lastModified": 1749050116,
-        "narHash": "sha256-5B14bzhDpKbZT0r54VfKk2judWMWkwyjNdUgCZjCtUk=",
-        "owner": "Michael-C-Buckley",
-        "repo": "lupinix",
-        "rev": "e708d1d7f0fcd6abebf542feb3e1f924616433c2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Michael-C-Buckley",
-        "ref": "noDash",
-        "repo": "lupinix",
-        "type": "github"
-      }
-    },
     "mangowc": {
       "inputs": {
         "flake-parts": [
@@ -459,7 +438,6 @@
         ],
         "home-config": "home-config",
         "impermanence": "impermanence",
-        "lupinix": "lupinix",
         "mangowc": "mangowc",
         "nix-secrets": "nix-secrets",
         "nixpkgs": "nixpkgs",

@@ -1,12 +1,6 @@
 # Persistent USB NVMe install
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
-    inputs.home-config.hjemConfigurations.default
-    inputs.nix-secrets.nixosModules.t14
     ./hardware
   ];
 
