@@ -3,7 +3,7 @@
 in {
   imports = [
     nix-secrets.nixosModules.oracle
-    home-config.hjemConfigurations.minimal
+    home-config.hjemConfigurations.minimal-arm
     ./hardware
     ./networking
   ];
