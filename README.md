@@ -1,12 +1,14 @@
 # My System Configuration
 
-This flake is the major collection of all things I use to manage my systems. It contains system and user profile configurations.
+This flake is the major collection of all things I use to manage my systems. It contains primray use systems, like desktop, laptop, and some servers.
 
-I previously had split up many of my flakes, but it was more difficult to manage instead of easier. This is the rewrite recollecting them.
+I do have some things spun off, like my home configs, and a few other servers and secrets.
 
 Caveat: I have included some custom options merged into the default Nix options namespace. Copying small sections can incur breakage this way, especially from networking (with advanced options since I am a network engineer). Private secrets are also in another repository (as a means to prevent harvest now, decrypt later).
 
 ### User configs
+
+My home configs are in [Home-Configs](https://github.com/Michael-C-Buckley/home-config) repository. It is designed to be consumable independently without too much bloat for things that don't need all the inputs for the rest of my systems.
 
 I currently have a simple recursive linker setup in `flake/configurations/usuer/michael` that pulls and links all the files there. It rebuilds the nested folder structure in my `$HOME`.
 
@@ -18,7 +20,7 @@ Where my non-cluster systems are held, such as my desktop, laptop, a few servers
 
 ## Credits & Thanks
 
-TBD section where I will be thanking the people who made my Nix journey possible.
+A few people I would like to thank, though by no means an exhaustive list.
 
 [Iynaix](https://github.com/iynaix/) - For various things including providing excellent examples for `repl.nix`, Impermanence, and ZFS, among other sane ideas like a format script over Disko
 

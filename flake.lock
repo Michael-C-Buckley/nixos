@@ -151,17 +151,17 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "nvf-flake": "nvf-flake",
+        "nvf": "nvf",
         "systems": [
           "systems"
         ]
       },
       "locked": {
-        "lastModified": 1756551579,
-        "narHash": "sha256-oSEKyeJe9U4/5KjOTY+2k5ADmhbcoB6ifX7pvjusSiM=",
+        "lastModified": 1756641342,
+        "narHash": "sha256-cz+kvMTNQfJxnKpAvT0Xtms/mU0xIiYV2WisaCmcdFs=",
         "owner": "Michael-C-Buckley",
         "repo": "home-config",
-        "rev": "22a6ea9e106f5490da1b6e4159fb19323b9a0108",
+        "rev": "2901933038d4161ed8eb4002981fe86d1147bb6a",
         "type": "github"
       },
       "original": {
@@ -400,23 +400,19 @@
       "inputs": {
         "flake-compat": [
           "home-config",
-          "nvf-flake",
           "flake-compat"
         ],
         "flake-parts": [
           "home-config",
-          "nvf-flake",
           "flake-parts"
         ],
         "mnw": "mnw",
         "nixpkgs": [
           "home-config",
-          "nvf-flake",
           "nixpkgs"
         ],
         "systems": [
           "home-config",
-          "nvf-flake",
           "systems"
         ]
       },
@@ -431,40 +427,6 @@
       "original": {
         "owner": "notashelf",
         "repo": "nvf",
-        "type": "github"
-      }
-    },
-    "nvf-flake": {
-      "inputs": {
-        "flake-compat": [
-          "home-config",
-          "flake-compat"
-        ],
-        "flake-parts": [
-          "home-config",
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "home-config",
-          "nixpkgs"
-        ],
-        "nvf": "nvf",
-        "systems": [
-          "home-config",
-          "systems"
-        ]
-      },
-      "locked": {
-        "lastModified": 1756521723,
-        "narHash": "sha256-LBwGE4yv5/9XBP+j8DqpZ6sMu9JN2bDf/HYsGv+XmpQ=",
-        "owner": "Michael-C-Buckley",
-        "repo": "nvf-flake",
-        "rev": "c79aa971f80d390d4e0235033d254f51ea070bed",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Michael-C-Buckley",
-        "repo": "nvf-flake",
         "type": "github"
       }
     },
