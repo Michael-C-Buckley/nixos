@@ -1,10 +1,6 @@
 # T14 Laptop Configuration
-{inputs, ...}: let
-  inherit (inputs) nix-secrets home-config;
-in {
+_: {
   imports = [
-    nix-secrets.nixosModules.t14
-    home-config.hjemConfigurations.default
     ./hardware
     ./networking
     ./systemd

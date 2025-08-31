@@ -51,10 +51,6 @@
     };
 
     # No Nixpkgs Inputs
-    lupinix = {
-      url = "github:Michael-C-Buckley/lupinix/noDash";
-      inputs.flake-parts.follows = "flake-parts";
-    };
     impermanence.url = "github:nix-community/impermanence";
     quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
   };
@@ -62,17 +58,13 @@
   outputs = {flake-parts, ...} @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = import inputs.systems;
-      imports = with inputs;
-        [lupinix.flakeModules.default]
-        ++ import ./flake/modules-list.nix;
 
-      debug = true;
+      flake = {
+        nixosConfigurations = import ./outputs/nixosConfigurations.nix {inherit inputs;};
+      };
 
-      perSystem = {system, ...}: {
-        _module.args.pkgs = import inputs.nixpkgs {
-          inherit system;
-          config = {allowUnfree = true;};
-        };
+      perSystem = {pkgs, ...}: {
+        devShells = import ./outputs/devShells.nix {inherit pkgs;};
       };
     };
 }

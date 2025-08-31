@@ -1,8 +1,5 @@
-{inputs, ...}: let
-  inherit (inputs) home-config;
-in {
+_: {
   imports = [
-    home-config.hjemConfigurations.server
     ./hardware
     ./networking
     ./systemd

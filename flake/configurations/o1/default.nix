@@ -1,9 +1,5 @@
-{inputs, ...}: let
-  inherit (inputs) nix-secrets home-config;
-in {
+_: {
   imports = [
-    nix-secrets.nixosModules.oracle
-    home-config.hjemConfigurations.minimal-arm
     ./hardware
     ./networking
   ];
@@ -17,10 +13,5 @@ in {
     preset = "cloud";
     zfs.enable = true;
     impermanence.enable = true;
-  };
-
-  features = {
-    graphics = false;
-    pkgs.fonts = false;
   };
 }
