@@ -40,7 +40,7 @@ in {
   };
   p520 = mkSystem {
     modules = [
-      home-config.hjemConfigurations.minimal
+      home-config.hjemConfigurations.server
       ../flake/configurations/p520
     ];
   };
@@ -59,7 +59,7 @@ in {
   };
   x570 = mkSystem {
     modules = [
-      home-config.hjemConfigurations.server
+      home-config.hjemConfigurations.default
       nix-secrets.nixosModules.x570
       ../flake/configurations/x570
     ];
