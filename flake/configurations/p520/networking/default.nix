@@ -5,6 +5,7 @@ _: {
 
   networking = {
     ospf.enable = true;
+    hostName = "p520";
     hostId = "181a3ead";
 
     loopback.ipv4 = "192.168.63.5";
