@@ -39,7 +39,15 @@ in {
       libvirtd.enable = mkDefault true;
     };
 
-    environment.systemPackages = [pulseaudioFull];
+    environment = {
+      systemPackages = [pulseaudioFull];
+
+      # Move some things out of home into cache
+      persistence."/cache".directories = [
+        "/home/michael/.config/legcord/Cache"
+        "/home/michael/.config/legcord/Code Cache"
+      ];
+    };
 
     features = {
       boot = mkDefault "systemd";
