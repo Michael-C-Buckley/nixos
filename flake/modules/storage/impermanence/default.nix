@@ -30,7 +30,9 @@ in
     environment.persistence."/cache" = {
       hideMounts = true;
       directories = [
-        "/var/lib/nixos-container"
+        "/var/lib/nixos-containers"
+        "/var/lib/machines"
+        "/var/lib/containerd"
       ];
     };
     environment.persistence."/persist" = {
@@ -39,13 +41,15 @@ in
         "/etc/ssh"
         "/etc/nixos"
         "/etc/sops"
+        "/etc/NetworkManager"
         "/etc/nix"
         "/etc/wireguard"
-        "/var/log" # systemd journal is stored in /var/log/journal
+
+        "/var/log"
         "/var/lib/bluetooth"
-        "/var/lib/nixos" # for persisting user uids and gids
+        "/var/lib/nixos"
         "/var/lib/systemd"
-        "/etc/NetworkManager"
+
         {
           directory = "/var/lib/colord";
           user = "colord";
