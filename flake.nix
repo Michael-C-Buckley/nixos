@@ -14,6 +14,7 @@
 
     hjem.follows = "home-config/hjem";
     home-manager.follows = "home-config/home-manager";
+    schizofox.follows = "home-config/schizofox";
 
     home-config = {
       url = "github:Michael-C-Buckley/home-config";
@@ -35,17 +36,6 @@
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
         mmsg.inputs.flake-parts.follows = "flake-parts";
-      };
-    };
-
-    schizofox = {
-      url = "github:schizofox/schizofox";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-compat.follows = "flake-compat";
-        flake-parts.follows = "flake-parts";
-        systems.follows = "systems";
-        searx-randomizer.inputs.flake-parts.follows = "flake-parts";
       };
     };
 
