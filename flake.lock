@@ -112,33 +112,6 @@
         "type": "github"
       }
     },
-    "hjem-rum": {
-      "inputs": {
-        "hjem": [
-          "home-config",
-          "hjem"
-        ],
-        "ndg": "ndg",
-        "nixpkgs": [
-          "home-config",
-          "nixpkgs"
-        ],
-        "treefmt-nix": "treefmt-nix"
-      },
-      "locked": {
-        "lastModified": 1756494309,
-        "narHash": "sha256-QW6npS8+CBlNQ9a2C23MzdcAT6Puy5c7N8r7L1I31r8=",
-        "owner": "snugnug",
-        "repo": "hjem-rum",
-        "rev": "397e73ca7ac236ac5209f8d1d42c682e5ee558e5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "snugnug",
-        "repo": "hjem-rum",
-        "type": "github"
-      }
-    },
     "home-config": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -146,8 +119,7 @@
           "flake-parts"
         ],
         "hjem": "hjem",
-        "hjem-rum": "hjem-rum",
-        "home-manager": [],
+        "home-manager": "home-manager",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -157,11 +129,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1756690938,
-        "narHash": "sha256-goJgSozc3TbbtARDjF6fm5APJb42BNQcIJzTFw8ctKs=",
+        "lastModified": 1756728045,
+        "narHash": "sha256-0Sy2eM5KOuTkFgPRNo86D3UFFOeBUcSeoqpIEisCjQw=",
         "owner": "Michael-C-Buckley",
         "repo": "home-config",
-        "rev": "6406962a1fa879ec1f6f63d5ee2954343f49caa1",
+        "rev": "ae7cd435b2179a287640149e6353123e6ca98362",
         "type": "github"
       },
       "original": {
@@ -171,6 +143,27 @@
       }
     },
     "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "home-config",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1756579987,
+        "narHash": "sha256-duCce8zGsaMsrqqOmLOsuaV1PVIw/vXWnKuLKZClsGg=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "99a69bdf8a3c6bf038c4121e9c4b6e99706a187a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "home-manager_2": {
       "inputs": {
         "nixpkgs": [
           "schizofox",
@@ -267,36 +260,6 @@
       "original": {
         "owner": "Gerg-L",
         "repo": "mnw",
-        "type": "github"
-      }
-    },
-    "ndg": {
-      "inputs": {
-        "flake-compat": [
-          "home-config",
-          "flake-compat"
-        ],
-        "flake-parts": [
-          "home-config",
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "home-config",
-          "hjem-rum",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1748103964,
-        "narHash": "sha256-aRFl6I3x1aKzeOBaD/OJHYv+OQ+qE+3FR9uKhIvfW+A=",
-        "owner": "feel-co",
-        "repo": "ndg",
-        "rev": "c556c4cbcba61474bf8a342a31a2d94cbefd8986",
-        "type": "github"
-      },
-      "original": {
-        "owner": "feel-co",
-        "repo": "ndg",
         "type": "github"
       }
     },
@@ -432,11 +395,11 @@
           "home-config",
           "hjem"
         ],
-        "hjem-rum": [
-          "home-config",
-          "hjem-rum"
-        ],
         "home-config": "home-config",
+        "home-manager": [
+          "home-config",
+          "home-manager"
+        ],
         "impermanence": "impermanence",
         "mangowc": "mangowc",
         "nix-secrets": "nix-secrets",
@@ -499,7 +462,7 @@
         "flake-parts": [
           "flake-parts"
         ],
-        "home-manager": "home-manager",
+        "home-manager": "home-manager_2",
         "nixpak": "nixpak",
         "nixpkgs": [
           "nixpkgs"
@@ -619,28 +582,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "treefmt-nix": {
-      "inputs": {
-        "nixpkgs": [
-          "home-config",
-          "hjem-rum",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1746216483,
-        "narHash": "sha256-4h3s1L/kKqt3gMDcVfN8/4v2jqHrgLIe4qok4ApH5x4=",
-        "owner": "numtide",
-        "repo": "treefmt-nix",
-        "rev": "29ec5026372e0dec56f890e50dbe4f45930320fd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "treefmt-nix",
         "type": "github"
       }
     }

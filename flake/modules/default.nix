@@ -1,4 +1,10 @@
-_: {
+{
+  inputs,
+  system,
+  ...
+}: let
+  inherit (inputs.home-manager.packages.${system}) home-manager;
+in {
   imports = [
     # keep-sorted start
     ./graphical
@@ -14,4 +20,7 @@ _: {
     ./virtualization
     # keep-sorted end
   ];
+
+  # Add Home-manager to the path
+  environment.systemPackages = [home-manager];
 }
