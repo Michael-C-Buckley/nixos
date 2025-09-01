@@ -13,7 +13,7 @@
     systems.url = "github:nix-systems/default";
 
     hjem.follows = "home-config/hjem";
-    hjem-rum.follows = "home-config/hjem-rum";
+    home-manager.follows = "home-config/home-manager";
 
     home-config = {
       url = "github:Michael-C-Buckley/home-config";
@@ -21,7 +21,6 @@
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
         systems.follows = "systems";
-        home-manager.follows = "";
       };
     };
 
