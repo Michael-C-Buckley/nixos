@@ -9,6 +9,7 @@
   networking = {
     ospf.enable = true;
     hostId = "8425e349";
+    hostName = "t14";
     networkmanager.enable = true;
 
     nat = {

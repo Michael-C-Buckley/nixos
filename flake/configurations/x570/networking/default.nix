@@ -8,6 +8,7 @@ _: {
 
   networking = {
     hostId = "c07fa570";
+    hostName = "x570";
     networkmanager = {
       enable = true;
     };
