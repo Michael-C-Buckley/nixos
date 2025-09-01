@@ -12,6 +12,16 @@ in {
   };
 
   fileSystems = {
+    "/" = {
+      device = "tmpfs";
+      fsType = "tmpfs";
+      options = [
+        "defaults"
+        "size=1G"
+        "mode=755"
+      ];
+    };
+
     # local datasets
     "/cache" = mkZfs "local/cache";
     "/nix" = mkZfs "local/nix";
@@ -19,7 +29,6 @@ in {
     "/media/games" = mkZfs "local/games";
 
     # ZFS Volumes
-    "/" = mkZfs "x570/nixos/root ";
     "/persist" = mkZfs "x570/nixos/persist";
     "/home" = mkZfs "x570/home";
     "/home/michael" = mkZfs "x570/home/michael";
