@@ -66,11 +66,13 @@
     "hercules-ci-effects": {
       "inputs": {
         "flake-parts": [
+          "home-config",
           "schizofox",
           "nixpak",
           "flake-parts"
         ],
         "nixpkgs": [
+          "home-config",
           "schizofox",
           "nixpak",
           "nixpkgs"
@@ -124,16 +126,17 @@
           "nixpkgs"
         ],
         "nvf": "nvf",
+        "schizofox": "schizofox",
         "systems": [
           "systems"
         ]
       },
       "locked": {
-        "lastModified": 1756728045,
-        "narHash": "sha256-0Sy2eM5KOuTkFgPRNo86D3UFFOeBUcSeoqpIEisCjQw=",
+        "lastModified": 1756736368,
+        "narHash": "sha256-POWf3+Y3+00axDVaNjU7h1T26okrVHQwTHrESBbPxRI=",
         "owner": "Michael-C-Buckley",
         "repo": "home-config",
-        "rev": "ae7cd435b2179a287640149e6353123e6ca98362",
+        "rev": "d2da5bb52034bfdc4de9268ce6786af5e3af9d82",
         "type": "github"
       },
       "original": {
@@ -155,27 +158,6 @@
         "owner": "nix-community",
         "repo": "home-manager",
         "rev": "99a69bdf8a3c6bf038c4121e9c4b6e99706a187a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "home-manager_2": {
-      "inputs": {
-        "nixpkgs": [
-          "schizofox",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1756261190,
-        "narHash": "sha256-eiy0klFK5EVJLNilutR7grsZN/7Itj9DyD75eyOf83k=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "77f348da3176dc68b20a73dab94852a417daf361",
         "type": "github"
       },
       "original": {
@@ -287,11 +269,13 @@
     "nixpak": {
       "inputs": {
         "flake-parts": [
+          "home-config",
           "schizofox",
           "flake-parts"
         ],
         "hercules-ci-effects": "hercules-ci-effects",
         "nixpkgs": [
+          "home-config",
           "schizofox",
           "nixpkgs"
         ]
@@ -405,7 +389,10 @@
         "nix-secrets": "nix-secrets",
         "nixpkgs": "nixpkgs",
         "quadlet-nix": "quadlet-nix",
-        "schizofox": "schizofox",
+        "schizofox": [
+          "home-config",
+          "schizofox"
+        ],
         "sops-nix": "sops-nix",
         "systems": "systems_2"
       }
@@ -457,18 +444,25 @@
     "schizofox": {
       "inputs": {
         "flake-compat": [
+          "home-config",
           "flake-compat"
         ],
         "flake-parts": [
+          "home-config",
           "flake-parts"
         ],
-        "home-manager": "home-manager_2",
+        "home-manager": [
+          "home-config",
+          "home-manager"
+        ],
         "nixpak": "nixpak",
         "nixpkgs": [
+          "home-config",
           "nixpkgs"
         ],
         "searx-randomizer": "searx-randomizer",
         "systems": [
+          "home-config",
           "systems"
         ]
       },
@@ -490,9 +484,11 @@
       "inputs": {
         "crane": "crane",
         "flake-parts": [
+          "home-config",
           "flake-parts"
         ],
         "nixpkgs": [
+          "home-config",
           "schizofox",
           "nixpkgs"
         ]
