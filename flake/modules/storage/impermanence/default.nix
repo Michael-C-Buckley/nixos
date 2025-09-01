@@ -33,7 +33,9 @@ in
         "/var/lib/nixos-containers"
         "/var/lib/machines"
         "/var/lib/containerd"
+        "/home/michael/.cache"
         "/home/michael/Downloads"
+        "/home/shawn/.cache"
         "/home/shawn/Downloads"
       ];
     };
