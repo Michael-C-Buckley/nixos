@@ -33,6 +33,8 @@ in
         "/var/lib/nixos-containers"
         "/var/lib/machines"
         "/var/lib/containerd"
+        "/home/michael/Downloads"
+        "/home/shawn/Downloads"
       ];
     };
     environment.persistence."/persist" = {
