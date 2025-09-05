@@ -14,9 +14,4 @@ _: {
     preset = "desktop";
     stateVersion = "25.05";
   };
-
-  virtualisation = {
-    incus.enable = true;
-    gns3.enable = false;
-  };
 }
