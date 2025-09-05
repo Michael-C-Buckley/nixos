@@ -10,7 +10,6 @@
 in {
   imports = [
     inputs.nix-secrets.nixosModules.users
-    ./updatebot.nix
   ];
 
   options.users.powerUsers = {
