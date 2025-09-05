@@ -1,5 +1,6 @@
 _: {
   systemd.services.shutdown-timer = {
+    enable = false;
     description = "Shutdown the system at night";
     wantedBy = [];
     serviceConfig = {
@@ -9,6 +10,7 @@ _: {
   };
 
   systemd.timers.shutdown-timer = {
+    enable = false;
     description = "Timer to shut down the system at a specific time";
     wantedBy = ["timers.target"];
     timerConfig = {
