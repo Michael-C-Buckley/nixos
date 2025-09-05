@@ -21,11 +21,6 @@
     rofi-wayland
     xdg-desktop-portal
 
-    # GTK Tools
-    nwg-look
-    nwg-panel
-    nwg-launchers
-
     # Clipboard
     clipse
     wl-clip-persist
