@@ -17,13 +17,10 @@
       shellcheck
       shfmt
       sops
-      ssh-to-age
-      ssh-to-pgp
       statix
       taplo
-      tig
       treefmt
-      trufflehog
+      typos
       # keep-sorted end
     ];
 

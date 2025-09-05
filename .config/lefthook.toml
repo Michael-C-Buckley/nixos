@@ -28,3 +28,7 @@ interactive = true
 name = "treefmt"
 run = "treefmt --config-file /home/michael/nixos/.config/treefmt.toml"
 stage_fixed = true
+
+[[pre-commit.jobs]]
+name = "typos"
+run = "typos {staged_files}"
