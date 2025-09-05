@@ -24,7 +24,7 @@ in {
         "net.ipv6.conf.all.forwarding" = true;
       };
 
-      kernelPackages = mkDefault pkgs.linuxPackages_6_15;
+      kernelPackages = mkDefault pkgs.linuxPackages_6_16;
 
       initrd = {
         systemd = {
