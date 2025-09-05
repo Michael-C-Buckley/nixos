@@ -29,7 +29,7 @@ in {
       ];
     };
 
-    # nixos is encryped and local is not
+    # nixos is encrypted and local is not
     "/nix" = zfsFs "local/nix";
     "/cache" = zfsFs "nixos/cache";
     "/persist" = zfsFs "nixos/persist";
