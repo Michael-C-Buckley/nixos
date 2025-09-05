@@ -31,4 +31,4 @@ stage_fixed = true
 
 [[pre-commit.jobs]]
 name = "typos"
-run = "typos {staged_files}"
+run = "typos -c .config/typos.toml {staged_files}"

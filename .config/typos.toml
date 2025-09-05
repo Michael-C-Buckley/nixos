@@ -1,0 +1,4 @@
+[type.nix]
+# Catch the UUIDs for my drives currently
+extend-glob = ["*filesystems.nix"]
+extend-words = { "BA" = "BA" }
