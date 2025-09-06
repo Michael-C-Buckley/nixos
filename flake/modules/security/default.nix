@@ -1,15 +1,11 @@
 {
   config,
-  inputs,
   lib,
   ...
 }: let
   inherit (lib) mkDefault mkForce;
 in {
-  imports = with inputs; [
-    sops-nix.nixosModules.sops
-    nix-secrets.nixosModules.ssh
-    nix-secrets.nixosModules.common
+  imports = [
     ./gpg.nix
     ./tpm2.nix
   ];

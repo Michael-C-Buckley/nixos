@@ -1,0 +1,3 @@
+[submodule "flake/secrets"]
+  path = flake/secrets
+  url = git@github.com:Michael-C-Buckley/nix-secrets.git

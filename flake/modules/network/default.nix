@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  inputs,
   ...
 }: let
   inherit (lib) mkDefault optionals;
@@ -13,7 +12,6 @@
   };
 in {
   imports = [
-    inputs.nix-secrets.nixosModules.network.hosts
     ./bgp.nix
     ./eigrp.nix
     ./options.nix

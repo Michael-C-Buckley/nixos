@@ -1,5 +1,8 @@
 assert_lefthook_installed = true
 
+[[pre-commit.exclude]]
+exclude = "flake/secrets"
+
 [[pre-commit.jobs]]
 name = "deadnix"
 glob = "*.nix"
