@@ -132,11 +132,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1757040379,
-        "narHash": "sha256-Z4qB3ZOAnS4WhtnY2uIb69hUH6DMedd3fjs6TstnUVM=",
+        "lastModified": 1757121093,
+        "narHash": "sha256-merl5buUDPSaPe+UetlrclAw2PHx9hcRsv1w6T1JBB4=",
         "owner": "Michael-C-Buckley",
         "repo": "home-config",
-        "rev": "49de77368251ab3f734f397f96da25bdbb9a7960",
+        "rev": "c4a294e6a0c5c057b52f74139fb6c96075141e92",
         "type": "github"
       },
       "original": {
@@ -193,11 +193,11 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1756951252,
-        "narHash": "sha256-gTk+gg+Va/m9n0Ci0RTjwrZj2IpOn2gk0L9Su5OjaXg=",
+        "lastModified": 1757118740,
+        "narHash": "sha256-QFgtw4aS3xJ3DlBZztSCjCZSThxQrjNtySsAN1rvw7s=",
         "owner": "DreamMaoMao",
         "repo": "mangowc",
-        "rev": "c7b0e2e6c8a837adf17f50cbf096502802fe98ec",
+        "rev": "0d83025f51e8e1d663f692d60b1883f4ebd59664",
         "type": "github"
       },
       "original": {
