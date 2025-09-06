@@ -5,7 +5,7 @@ _: {
     ./nix.nix
     ./options.nix
     ./relink.nix
-    ./users
+    ./users.nix
   ];
 
   time.timeZone = "America/New_York";

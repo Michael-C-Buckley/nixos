@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   lib,
   ...
 }: let
@@ -8,10 +7,6 @@
   inherit (types) listOf str;
   power = config.users.powerUsers;
 in {
-  imports = [
-    inputs.nix-secrets.nixosModules.users
-  ];
-
   options.users.powerUsers = {
     members = mkOption {
       type = listOf str;

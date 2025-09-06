@@ -1,23 +1,31 @@
 {inputs, ...}: let
-  inherit (inputs) nixpkgs nix-secrets home-config self;
+  inherit (inputs) nixpkgs home-config self;
 
   customLib = import ../flake/lib {inherit (nixpkgs) lib;};
 
   defaultMods = [
     inputs.sops-nix.nixosModules.sops
-    nix-secrets.nixosModules.ssh
-    nix-secrets.nixosModules.common
     ../flake/modules
   ];
 
   mkSystem = {
+    hostname,
     system ? "x86_64-linux",
     modules ? [],
+    hjem ? "default",
+    secrets ? hostname,
   }:
     nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = {inherit system inputs self;};
-      modules = modules ++ defaultMods;
+      modules =
+        modules
+        ++ defaultMods
+        ++ [
+          home-config.hjemConfigurations.${hjem}
+          ../flake/configurations/${hostname}
+          ../flake/secrets/hosts/${secrets}.nix
+        ];
 
       pkgs = import nixpkgs {
         inherit system;
@@ -32,38 +40,24 @@
 in {
   flake.nixosConfigurations = {
     o1 = mkSystem {
+      hostname = "o1";
       system = "aarch64-linux";
-      modules = [
-        home-config.hjemConfigurations.minimal-arm
-        nix-secrets.nixosModules.oracle
-        ../flake/configurations/o1
-      ];
+      hjem = "minimal-arm";
     };
     p520 = mkSystem {
-      modules = [
-        home-config.hjemConfigurations.server
-        ../flake/configurations/p520
-      ];
+      hostname = "p520";
+      hjem = "server";
+      secrets = "common";
     };
     t14 = mkSystem {
-      modules = [
-        home-config.hjemConfigurations.default
-        nix-secrets.nixosModules.t14
-        ../flake/configurations/t14
-      ];
+      hostname = "t14";
     };
     tempest = mkSystem {
-      modules = [
-        home-config.hjemConfigurations.default
-        ../flake/configurations/tempest
-      ];
+      hostname = "tempest";
+      secrets = "common";
     };
     x570 = mkSystem {
-      modules = [
-        home-config.hjemConfigurations.default
-        nix-secrets.nixosModules.x570
-        ../flake/configurations/x570
-      ];
+      hostname = "x570";
     };
   };
 }

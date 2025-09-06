@@ -1,4 +1,4 @@
-excludes = ["*.lock", ".gitignore"]
+excludes = ["*.lock", ".gitignore", "flake/secrets"]
 on-unmatched = "warn"
 
 [formatter.alejandra]

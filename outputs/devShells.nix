@@ -31,6 +31,7 @@
         if [ -d .git ]; then
           git fetch
           git status --short --branch
+          git submodule foreach --quiet 'git fetch >/dev/null 2>&1 && echo "$name: $(git rev-list --count HEAD..origin/$(git rev-parse --abbrev-ref HEAD)) commits behind"'
         fi
       '';
     };

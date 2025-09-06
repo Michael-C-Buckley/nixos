@@ -245,27 +245,6 @@
         "type": "github"
       }
     },
-    "nix-secrets": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1755967541,
-        "narHash": "sha256-tZnBXFZQefHn3cr2pIdC6GR0AslsYRRj3sN8MD1Mnwo=",
-        "ref": "refs/heads/master",
-        "rev": "fdc2fabe3a178980f33c2ae1b5f2b6ac65f67f57",
-        "shallow": true,
-        "type": "git",
-        "url": "ssh://git@github.com/michael-c-buckley/nix-secrets"
-      },
-      "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "ssh://git@github.com/michael-c-buckley/nix-secrets"
-      }
-    },
     "nixpak": {
       "inputs": {
         "flake-parts": [
@@ -386,7 +365,6 @@
         ],
         "impermanence": "impermanence",
         "mangowc": "mangowc",
-        "nix-secrets": "nix-secrets",
         "nixpkgs": "nixpkgs",
         "quadlet-nix": "quadlet-nix",
         "schizofox": [
