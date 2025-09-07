@@ -15,6 +15,7 @@ in {
     ./presets
     ./programs
     ./security
+    ./services
     ./storage
     ./system
     ./virtualization
