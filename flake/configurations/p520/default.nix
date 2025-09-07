@@ -18,15 +18,5 @@ _: {
     zfs.enable = true;
   };
 
-  environment.persistence."/persist".directories = [
-    "/var/lib/hydra"
-  ];
-
-  services.hydra = {
-    enable = true;
-    hydraURL = "http://localhost:3000";
-    notificationSender = "hydra@localhost";
-    buildMachinesFiles = [];
-    useSubstitutes = true;
-  };
+  services.hydra.enable = true;
 }
