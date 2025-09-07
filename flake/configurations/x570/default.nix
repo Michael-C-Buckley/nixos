@@ -10,6 +10,10 @@ _: {
     gaming.enable = true;
   };
 
+  nix.settings = {
+    substituters = ["http://p520:5000"];
+  };
+
   system = {
     preset = "desktop";
     stateVersion = "25.05";
