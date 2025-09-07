@@ -132,11 +132,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1757208536,
-        "narHash": "sha256-sbxBx/C1Kh1z6Rf3fUYL2no65hOZ/MZFDKxytLJVnKs=",
+        "lastModified": 1757209249,
+        "narHash": "sha256-Mrce6Yh9LSHevt1cJWY7bIri5IimWVBNUsrE3jgi0Lg=",
         "owner": "Michael-C-Buckley",
         "repo": "home-config",
-        "rev": "4157bd2b24dcf13d24cb90e2eea6e0ab7cc484c7",
+        "rev": "ea6da786ef25daa65930969051329271f2cbc7f0",
         "type": "github"
       },
       "original": {
