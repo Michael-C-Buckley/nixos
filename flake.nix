@@ -41,7 +41,11 @@
     quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
   };
 
-  outputs = {flake-parts, ...} @ inputs:
+  outputs = {
+    self,
+    flake-parts,
+    ...
+  } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = import inputs.systems;
 
@@ -49,5 +53,9 @@
         ./outputs/nixosConfigurations.nix
         ./outputs/devShells.nix
       ];
+
+      flake = {
+        hydraJobs = {inherit (self) devShells nixosConfigurations;};
+      };
     };
 }
