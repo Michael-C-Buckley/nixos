@@ -49,5 +49,6 @@ in {
   users.users = {
     michael.packages = commonPkgs;
     root.packages = commonPkgs;
+    shawn.packages = commonPkgs;
   };
 }
