@@ -17,4 +17,12 @@ _: {
     stateVersion = "25.11";
     zfs.enable = true;
   };
+
+  services.hydra = {
+    enable = true;
+    hydraURL = "http://localhost:3000";
+    notificationSender = "hydra@localhost";
+    buildMachinesFiles = [];
+    useSubstitutes = true;
+  };
 }
