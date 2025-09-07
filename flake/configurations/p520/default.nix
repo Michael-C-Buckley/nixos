@@ -18,6 +18,10 @@ _: {
     zfs.enable = true;
   };
 
+  environment.persistence."/persist".directories = [
+    "/var/lib/hydra"
+  ];
+
   services.hydra = {
     enable = true;
     hydraURL = "http://localhost:3000";
