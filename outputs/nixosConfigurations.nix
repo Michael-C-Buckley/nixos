@@ -47,7 +47,6 @@ in {
     p520 = mkSystem {
       hostname = "p520";
       hjem = "server";
-      secrets = "common";
     };
     t14 = mkSystem {
       hostname = "t14";
