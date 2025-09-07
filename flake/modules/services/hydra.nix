@@ -10,10 +10,12 @@ in {
     "/var/lib/hydra"
   ];
 
+  networking.firewall.allowedTCPPorts = mkIf hydra.enable [3000];
+
   services.hydra = {
-    hydraurl = mkDefault "http://localhost:3000";
-    notificationsender = mkDefault "hydra@localhost";
-    buildmachinesfiles = mkDefault [];
-    usesubstitutes = mkDefault true;
+    hydraURL = mkDefault "http://localhost:3000";
+    notificationSender = mkDefault "hydra@localhost";
+    buildMachinesFiles = mkDefault [];
+    useSubstitutes = mkDefault true;
   };
 }
