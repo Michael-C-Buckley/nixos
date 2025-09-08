@@ -18,6 +18,8 @@ _: {
     zfs.enable = true;
   };
 
+  sops.secrets.cache-private.owner = "hydra";
+
   services = {
     hydra.enable = true;
     nix-serve = {
