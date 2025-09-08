@@ -7,7 +7,6 @@
 }: let
   inherit (lib) mkDefault mkIf;
   inherit (config.system) preset;
-  inherit (pkgs) pulseaudioFull;
 in {
   imports = [
     inputs.mangowc.nixosModules.mango
@@ -40,7 +39,10 @@ in {
     };
 
     environment = {
-      systemPackages = [pulseaudioFull];
+      systemPackages = with pkgs; [
+        pulseaudioFull
+        hydra-cli
+      ];
 
       # Move some things out of home into cache
       persistence."/cache".directories = [

@@ -1,14 +1,18 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   inherit (lib) mkDefault mkIf;
   inherit (config.services) hydra;
 in {
-  environment.persistence."/persist".directories = mkIf hydra.enable [
-    "/var/lib/hydra"
-  ];
+  environment = mkIf hydra.enable {
+    systemPackages = [pkgs.hydra-cli];
+    persistence."/persist".directories = [
+      "/var/lib/hydra"
+    ];
+  };
 
   networking.firewall.allowedTCPPorts = mkIf hydra.enable [3000];
 
