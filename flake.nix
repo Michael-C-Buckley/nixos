@@ -2,8 +2,11 @@
   description = "Michael's System Flake";
 
   inputs = {
-    self.submodules = true;
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+    nix-secrets = {
+      url = "git+ssh://git@github.com/michael-c-buckley/nix-secrets";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     flake-compat.url = "github:edolstra/flake-compat";
     flake-parts.url = "github:hercules-ci/flake-parts";
