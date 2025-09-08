@@ -19,7 +19,12 @@ _: {
   };
 
   services = {
-    hydra.enable = true;
+    hydra = {
+      enable = true;
+      extraConfig = ''
+        allow-import-from-derivation = true
+      '';
+    };
     nix-serve = {
       enable = true;
       secretKeyFile = "/run/secrets/cache-private";
