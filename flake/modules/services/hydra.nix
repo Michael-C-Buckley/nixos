@@ -27,11 +27,6 @@ in {
       TasksMax = "8192";
       LimitNOFILE = "1048576";
     };
-
-    nix-daemon.serviceConfig = {
-      LimitNOFILE = "1048576";
-      TasksMax = "8192";
-    };
   };
 
   services.hydra = {
