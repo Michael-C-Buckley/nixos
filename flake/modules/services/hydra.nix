@@ -14,23 +14,51 @@ in {
 
   nix.settings.trusted-users = mkIf hydra.enable ["hydra" "hydra-queue-runner" "hydra-www"];
 
+  # Increase systemd limits for Hydra services
+  systemd.services = mkIf hydra.enable {
+    hydra-evaluator.serviceConfig = {
+      MemoryMax = "32G";
+      TasksMax = "8192";
+      LimitNOFILE = "1048576";
+    };
+
+    hydra-queue-runner.serviceConfig = {
+      MemoryMax = "16G";
+      TasksMax = "8192";
+      LimitNOFILE = "1048576";
+    };
+
+    nix-daemon.serviceConfig = {
+      LimitNOFILE = "1048576";
+      TasksMax = "8192";
+    };
+  };
+
   services.hydra = {
     hydraURL = mkDefault "http://localhost:3000";
     notificationSender = mkDefault "hydra@localhost";
     buildMachinesFiles = mkDefault [];
     useSubstitutes = mkDefault true;
     extraConfig = ''
+      # This slows down evaluation but I use IFD within my configs so I'm allowing it
       allow-import-from-derivation = true
 
-      # Use substituters for build dependencies
+      # Substitution
       use-substitutes = 1
-
-      # Timeout settings for substituters
       connect-timeout = 60
       stalled-download-timeout = 300
-
-      # Allow fetching from binary caches during builds
       builders-use-substitutes = true
+
+      # Evaluation
+      evaluator_workers = 4
+      evaluator_max_memory_size = 32768
+      max_concurrent_evals = 8
+
+      # Runner/DB/Timeout
+      queue_runner_metrics_address = 127.0.0.1:9199
+      max_db_connections = 50
+      build_timeout = 7200          # 2 hours max per build
+      evaluation_timeout = 3600     # 1 hour max per eval
     '';
   };
 }
