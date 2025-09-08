@@ -9,7 +9,7 @@ in {
       description = "Preset defines a set of common options by group type.";
     };
     impermanence = {
-      enable = lib.mkEnableOption "Enable Impermanence on the system's storage.";
+      enable = mkEnableOption "Enable Impermanence on the system's storage.";
     };
   };
 }
