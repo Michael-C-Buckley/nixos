@@ -1,3 +1,7 @@
+# I am a network engineer by trade so this entire family of modules will be
+#  considerably more complex than most typical NixOS/Linux users
+# I also DO NOT respect namespaces - Copy at your own risk
+# You have been warned
 {
   config,
   lib,
