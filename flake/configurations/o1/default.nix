@@ -2,7 +2,7 @@ _: {
   imports = [
     ./hardware
     ./networking
-    ./remote-building.nid
+    ./remote-building.nix
   ];
 
   environment.enableAllTerminfo = true;
