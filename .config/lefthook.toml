@@ -1,12 +1,20 @@
 assert_lefthook_installed = true
 
-[[pre-commit.exclude]]
-exclude = "flake/secrets"
-
 [[pre-commit.jobs]]
 name = "deadnix"
 glob = "*.nix"
 run = "deadnix --fail {staged_files}"
+
+[[pre-commit.jobs]]
+name = "taplo"
+glob = "*.toml"
+run = "taplo lint {staged_files}"
+
+[[pre-commit.jobs]]
+interactive = true
+name = "treefmt"
+run = "treefmt --config-file /home/michael/nixos/.config/treefmt.toml"
+stage_fixed = true
 
 [[pre-commit.jobs]]
 name = "editorconfig-checker"
@@ -20,17 +28,6 @@ run = "shellcheck {staged_files}"
 [[pre-commit.jobs]]
 name = "statix"
 run = "statix check --format errfmt"
-
-[[pre-commit.jobs]]
-name = "taplo"
-glob = "*.toml"
-run = "taplo lint {staged_files}"
-
-[[pre-commit.jobs]]
-interactive = true
-name = "treefmt"
-run = "treefmt --config-file /home/michael/nixos/.config/treefmt.toml"
-stage_fixed = true
 
 [[pre-commit.jobs]]
 name = "typos"
