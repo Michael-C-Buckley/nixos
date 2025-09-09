@@ -1,3 +1,6 @@
+# I use GPG quite a bit nowadays and here's a module for getting the components to work correctly
+#  Hardware devices are enabled on anything that isn't a cloud node
+#  My primary use are my yubikeys but I also have TPM-sealed GPG keys
 {
   config,
   lib,
