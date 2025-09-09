@@ -24,7 +24,6 @@
     autoLogin = false;
     displayManager = "greetd";
     gaming.enable = false;
-    pkgs.fonts = true;
   };
 
   system = {

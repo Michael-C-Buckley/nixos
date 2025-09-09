@@ -5,9 +5,11 @@ _: let
     neededForBoot = true;
   };
 in {
-  boot.zfs = {
-    extraPools = ["zhdd"];
-  };
+  boot.zfs.extraPools = ["zhdd"];
+
+  # Just persist all of home for simplicity
+  environment.persistence."/persist".directories = ["/home"];
+
   system = {
     boot.uuid = "BA57-3530";
     impermanence.enable = true;

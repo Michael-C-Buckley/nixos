@@ -47,8 +47,8 @@ in {
         # My lab build instance
         "michael-hydra-1:i6EiwHcLtrM6EAdpeymEWqlWs9p15HVTCjS+Cs/cgH0="
       ];
-      trusted-users = ["root" "@wheel" "hydra"];
-      allowed-users = ["root" "@wheel" "hydra"];
+      trusted-users = ["root" "@wheel" "builder"];
+      allowed-users = ["root" "@wheel" "builder"];
     };
   };
 }
