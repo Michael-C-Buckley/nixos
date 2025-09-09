@@ -32,14 +32,20 @@
     fd
     fzf
 
-    # Machine Utilities
+    # Networking
     dig
     unixtools.netstat
     unixtools.arp
     ethtool
+    inetutils
+    iperf3
+    net-tools
+
+    # Machine Utilities
     gptfdisk
     parted
     lm_sensors
-    inetutils
+    usbutils
+    pciutils
   ];
 }

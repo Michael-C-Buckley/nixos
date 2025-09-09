@@ -3,6 +3,11 @@ _: {
     ./routing.nix
   ];
 
+  services = {
+    iperf3.enable = true;
+    unbound.enable = true;
+  };
+
   networking = {
     ospf.enable = true;
     hostName = "p520";
