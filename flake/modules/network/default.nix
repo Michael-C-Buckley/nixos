@@ -29,6 +29,7 @@ in {
       zebra.options = mkDefault ["--limit-fds 2048"];
       openFilesLimit = mkDefault 2048;
     };
+    iperf3.openFirewall = config.services.iperf3.enable;
   };
 
   # Apply the loopback address if added

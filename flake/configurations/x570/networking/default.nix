@@ -4,7 +4,10 @@ _: {
     ./wireguard.nix
   ];
 
-  services.unbound.enable = true;
+  services = {
+    iperf3.enable = true;
+    unbound.enable = true;
+  };
 
   networking = {
     hostId = "c07fa570";
