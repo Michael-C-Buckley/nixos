@@ -180,17 +180,14 @@
           "nixpkgs"
         ],
         "nvf": "nvf",
-        "schizofox": "schizofox",
-        "systems": [
-          "systems"
-        ]
+        "schizofox": "schizofox"
       },
       "locked": {
-        "lastModified": 1757262693,
-        "narHash": "sha256-5VnIhqSM3U+3SASoia1Mn9HTh4o1zOiuyAMl7LyLstw=",
+        "lastModified": 1757383057,
+        "narHash": "sha256-EZNKgIy+K/fzt41wug/kfXmBkHQ4n64d97jqLuk6Z20=",
         "owner": "Michael-C-Buckley",
         "repo": "home-config",
-        "rev": "21bccc8df043452b17fc7586afc4cb34cb4df984",
+        "rev": "34e176b8e4b056631255adae88ddf35c9d354d1b",
         "type": "github"
       },
       "original": {
@@ -303,7 +300,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems_2"
+        "systems": "systems_4"
       },
       "locked": {
         "lastModified": 1757328467,
@@ -432,10 +429,7 @@
           "home-config",
           "nixpkgs"
         ],
-        "systems": [
-          "home-config",
-          "systems"
-        ]
+        "systems": "systems_2"
       },
       "locked": {
         "lastModified": 1757095994,
@@ -488,8 +482,7 @@
           "home-config",
           "schizofox"
         ],
-        "sops-nix": "sops-nix",
-        "systems": "systems_3"
+        "sops-nix": "sops-nix"
       }
     },
     "rust-overlay": {
@@ -556,10 +549,7 @@
           "nixpkgs"
         ],
         "searx-randomizer": "searx-randomizer",
-        "systems": [
-          "home-config",
-          "systems"
-        ]
+        "systems": "systems_3"
       },
       "locked": {
         "lastModified": 1756308127,
@@ -674,6 +664,21 @@
       }
     },
     "systems_3": {
+      "locked": {
+        "lastModified": 1689347949,
+        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "type": "github"
+      }
+    },
+    "systems_4": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",

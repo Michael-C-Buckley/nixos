@@ -10,7 +10,6 @@
 
     flake-compat.url = "github:edolstra/flake-compat";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    systems.url = "github:nix-systems/default";
 
     hjem.follows = "home-config/hjem";
     home-manager.follows = "home-config/home-manager";
@@ -21,7 +20,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
-        systems.follows = "systems";
       };
     };
 
@@ -45,7 +43,8 @@
 
   outputs = {flake-parts, ...} @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = import inputs.systems;
+      # These are the only systems types I support
+      systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
       imports = [./outputs];
     };
 }
