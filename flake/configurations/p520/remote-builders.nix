@@ -17,7 +17,7 @@
       speedFactor = 1;
       supportedFeatures = ["nixos-test" "benchmark" "big-parallel"];
       mandatoryFeatures = [];
-      sshUser = "hydra";
+      sshUser = "builder";
       sshKey = "/var/lib/hydra/.ssh/id_ed25519";
     }
 
@@ -29,7 +29,7 @@
     #   speedFactor = 1;
     #   supportedFeatures = ["benchmark" "big-parallel"];
     #   mandatoryFeatures = [ ];
-    #   sshUser = "hydra";
+    #   sshUser = "builder";
     #   sshKey = "/var/lib/hydra/.ssh/id_ed25519";
     # }
   ];

@@ -1,12 +1,10 @@
 {
   config,
-  inputs,
   lib,
   ...
 }: {
   imports = [
-    inputs.impermanence.nixosModules.impermanence
-    ./impermanence
+    ./impermanence.nix
     ./gluster.nix
     # ./nfs.nix
     ./zfs.nix

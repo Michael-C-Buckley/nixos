@@ -23,7 +23,6 @@ in {
 
   config = {
     users = {
-      groups.hydra = {};
       powerUsers.groups = ["networkmanager" "wheel" "video" "update"];
       groups.update = {};
       users = {
@@ -36,9 +35,8 @@ in {
           extraGroups = power.groups;
         };
         # Used for remote builds
-        hydra = {
-          isSystemUser = true;
-          group = "hydra";
+        builder = {
+          isNormalUser = true;
           packages = with pkgs; [git curl];
           openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICOjEc/vHaQ6Dj5aey5L5tSzEvp0tOTkdnRRG9z0uWCc"];
         };

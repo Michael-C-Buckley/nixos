@@ -2,11 +2,17 @@ _: {
   imports = [
     ./hardware
     ./networking
-    ./remote-building.nix
   ];
 
   environment.enableAllTerminfo = true;
   time.timeZone = "America/New_York";
+
+  # For remote building
+  #  It's a 4 vCPU server, don't overload it
+  nix.settings = {
+    cores = 2;
+    max-jobs = 2;
+  };
 
   system = {
     boot.uuid = "12CE-A600";
