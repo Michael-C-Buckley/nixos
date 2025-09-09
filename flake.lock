@@ -183,11 +183,11 @@
         "schizofox": "schizofox"
       },
       "locked": {
-        "lastModified": 1757383057,
-        "narHash": "sha256-EZNKgIy+K/fzt41wug/kfXmBkHQ4n64d97jqLuk6Z20=",
+        "lastModified": 1757411990,
+        "narHash": "sha256-c8aajkj/Mv7EZdbYp9y9Or9wGTNk/ME+OZ+kQEn2kL0=",
         "owner": "Michael-C-Buckley",
         "repo": "home-config",
-        "rev": "34e176b8e4b056631255adae88ddf35c9d354d1b",
+        "rev": "3ef243cfa99af5c5de0dc7950074a286af8d0900",
         "type": "github"
       },
       "original": {
