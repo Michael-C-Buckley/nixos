@@ -56,7 +56,6 @@ in {
       michael.extendedGraphical = mkDefault true;
       autoLogin = mkDefault true;
       displayManager = mkDefault "greetd";
-      pkgs.fonts = mkDefault true;
     };
 
     # Add Wireshark if enabled

@@ -60,7 +60,6 @@
 in {
   imports = [
     ./fonts.nix
-    ./options.nix
   ];
 
   users.users = {
