@@ -1,3 +1,5 @@
+# I split packages into groups based on usage then enable as needed
+# They are also generally only added to the paths of users who needs them as well
 {pkgs, ...}: let
   commonPkgs = with pkgs; [
     # System
@@ -38,11 +40,26 @@
     pciutils
     smartmontools
     lm_sensors
+
+    # Network
+    nmap
+    iperf
+    tcpdump
+    inetutils
+    frr
+    wireguard-tools
+    dig
+    ethtool
+    vlan
+    bridge-utils
+    lldpd
+    cdpr
+    ndisc6
+    net-tools
   ];
 in {
   imports = [
     ./fonts.nix
-    ./network.nix
     ./options.nix
   ];
 
