@@ -46,11 +46,6 @@
   outputs = {flake-parts, ...} @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = import inputs.systems;
-
-      imports = [
-        ./outputs/nixosConfigurations.nix
-        ./outputs/devShells.nix
-        ./outputs/hydraJobs.nix
-      ];
+      imports = [./outputs];
     };
 }
