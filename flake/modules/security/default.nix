@@ -1,34 +1,16 @@
-{
-  config,
-  lib,
-  ...
-}: let
-  inherit (lib) mkDefault mkForce;
+{lib, ...}: let
+  inherit (lib) mkDefault;
 in {
   imports = [
     ./gpg.nix
     ./tpm2.nix
   ];
 
-  environment = {
-    etc = {
-      "systemd/resolved.conf" = {
-        source = mkForce config.sops.secrets.dns.path; # There is a conflict default source
-        mode = "0644";
-      };
-    };
-  };
-
   security = {
-    apparmor.enable = false; # currently bugged for Incus profiles
     sudo = {
       extraConfig = "Defaults lecture=never";
       wheelNeedsPassword = mkDefault false;
     };
-  };
-
-  programs = {
-    nix-ld.enable = mkDefault true;
   };
 
   services = {
@@ -46,11 +28,10 @@ in {
   };
 
   networking = {
-    nftables.enable = true;
     firewall = {
-      enable = mkDefault true;
+      # Blocking ICMP is very dumb overall
       allowPing = mkDefault true;
-      allowedTCPPorts = [22 53 5201];
+      allowedTCPPorts = [22 53];
       allowedUDPPorts = [53];
     };
   };
