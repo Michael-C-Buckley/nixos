@@ -19,7 +19,6 @@
       mandatoryFeatures = [];
       sshUser = "hydra";
       sshKey = "/var/lib/hydra/.ssh/id_ed25519";
-      useSubstitutes = true;
     }
 
     # WIP: Coming soon, after I set this up
@@ -32,7 +31,6 @@
     #   mandatoryFeatures = [ ];
     #   sshUser = "hydra";
     #   sshKey = "/var/lib/hydra/.ssh/id_ed25519";
-    #   useSubstitutes = true;
     # }
   ];
 }
