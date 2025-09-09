@@ -1,11 +1,13 @@
-_: {
+{lib, ...}: {
   imports = [
     ./hardware
     ./networking
   ];
 
-  environment.enableAllTerminfo = true;
-  time.timeZone = "America/New_York";
+  environment = {
+    # This is not linking for some reason, attempting to force copy instead of link
+    etc."nix/nix.conf".mode = lib.mkForce "0755";
+  };
 
   # For remote building
   #  It's a 4 vCPU server, don't overload it
