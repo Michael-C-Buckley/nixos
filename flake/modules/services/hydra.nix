@@ -33,10 +33,12 @@ in {
     };
   };
 
+  # This instance is configured with remote builders
+  #  so far I am only using this on P520, see that host for
+  #  addition config like remote builders
   services.hydra = {
     hydraURL = mkDefault "http://localhost:3000";
     notificationSender = mkDefault "hydra@localhost";
-    buildMachinesFiles = mkDefault [];
     useSubstitutes = mkDefault true;
     extraConfig = ''
       # Substitution
