@@ -3,6 +3,7 @@ _: {
     ./hardware
     ./networking
     ./systemd
+    ./remote-builders.nix
   ];
 
   virtualisation = {

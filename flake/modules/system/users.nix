@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   inherit (lib) types mkOption;
@@ -32,6 +33,13 @@ in {
         shawn = {
           isNormalUser = true;
           extraGroups = power.groups;
+        };
+        # Used for remote builds
+        hydra = {
+          enable = lib.mkDefault false;
+          isNormaUser = true;
+          packages = with pkgs; [git curl];
+          openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICOjEc/vHaQ6Dj5aey5L5tSzEvp0tOTkdnRRG9z0uWCc"];
         };
       };
     };

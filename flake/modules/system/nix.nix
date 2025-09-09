@@ -47,10 +47,8 @@ in {
         # My lab build instance
         "michael-hydra-1:i6EiwHcLtrM6EAdpeymEWqlWs9p15HVTCjS+Cs/cgH0="
       ];
-      trusted-users = [
-        "@wheel"
-        "nix-ssh"
-      ];
+      trusted-users = ["root" "@wheel" "hydra"];
+      allowed-users = ["root" "@wheel" "hydra"];
     };
   };
 }
