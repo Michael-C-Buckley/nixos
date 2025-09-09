@@ -4,9 +4,11 @@
   lib,
   ...
 }: let
+  inherit (builtins) elem;
   inherit (lib) optionals;
+  inherit (config.system) preset;
 
-  useFonts = config.features.pkgs.fonts;
+  useFonts = elem preset ["desktop" "laptop"];
 
   extraFonts = with pkgs; [
     dejavu_fonts
