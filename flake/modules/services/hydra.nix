@@ -39,9 +39,6 @@ in {
     buildMachinesFiles = mkDefault [];
     useSubstitutes = mkDefault true;
     extraConfig = ''
-      # This slows down evaluation but I use IFD within my configs so I'm allowing it
-      allow-import-from-derivation = true
-
       # Substitution
       use-substitutes = 1
       connect-timeout = 60
