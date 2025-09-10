@@ -1,4 +1,4 @@
-_: let
+let
   mkZfs = device: {
     inherit device;
     fsType = "zfs";
@@ -7,9 +7,8 @@ _: let
 in {
   swapDevices = [];
 
-  boot.zfs = {
-    forceImportAll = true;
-  };
+  # Just persist all of home for simplicity
+  environment.persistence."/persist".directories = ["/home"];
 
   system = {
     boot.uuid = "A926-212B";
@@ -19,6 +18,7 @@ in {
       enable = true;
     };
   };
+
   fileSystems = {
     "/" = {
       device = "tmpfs";
@@ -31,11 +31,7 @@ in {
     };
 
     "/nix" = mkZfs "zroot/local/nix";
-
     "/cache" = mkZfs "zroot/t14/nixos/cache";
     "/persist" = mkZfs "zroot/t14/nixos/persist";
-    "/home" = mkZfs "zroot/t14/nixos/home";
-    "/home/michael" = mkZfs "zroot/t14/nixos/home/michael";
-    "/home/shawn" = mkZfs "zroot/t14/nixos/home/shawn";
   };
 }
