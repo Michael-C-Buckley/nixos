@@ -13,4 +13,6 @@ _: {
     preset = "laptop";
     stateVersion = "24.11";
   };
+
+  virtualisation.podman.enable = true;
 }
