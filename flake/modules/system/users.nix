@@ -23,8 +23,8 @@ in {
 
   config = {
     users = {
+      groups.hydra = {};
       powerUsers.groups = ["networkmanager" "wheel" "video" "update"];
-      groups.update = {};
       users = {
         michael = {
           isNormalUser = true;
