@@ -2,6 +2,7 @@ _: {
   imports = [
     ./hardware
     ./networking
+    ./services
     ./systemd
     ./remote-builders.nix
   ];
@@ -23,12 +24,4 @@ _: {
   programs.nix-ld.enable = true;
 
   sops.secrets.cache-private.owner = "hydra";
-
-  services = {
-    hydra.enable = true;
-    nix-serve = {
-      enable = true;
-      secretKeyFile = "/run/secrets/cache-private";
-    };
-  };
 }
