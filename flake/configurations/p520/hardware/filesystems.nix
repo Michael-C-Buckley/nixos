@@ -31,19 +31,9 @@ in {
     "/nix" = zfsFs "zroot/p520/nix";
     "/cache" = zfsFs "zroot/p520/cache";
     "/persist" = zfsFs "zroot/p520/persist";
-
-    "/home/michael" = {
-      device = "zroot/p520/home/michael";
-      fsType = "zfs";
-      neededForBoot = true;
-      options = ["defaults" "uid=1000" "gid=100"];
-    };
-    "/home/shawn" = {
-      device = "zroot/p520/home/shawn";
-      fsType = "zfs";
-      neededForBoot = true;
-      options = ["defaults" "uid=1001" "gid=100"];
-    };
+    "/var/lib/postgresql" = zfsFs "zroot/p520/postgres";
+    "/home/michael" = zfsFs "zroot/p520/home/michael";
+    "/home/shawn" = zfsFs "zroot/p520/home/shawn";
 
     # HDD Array
     "/data" = zfsFs "zhdd/data";
