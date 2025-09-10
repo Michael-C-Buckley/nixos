@@ -1,4 +1,4 @@
-_: let
+let
   zfsFs = device: {
     inherit device;
     fsType = "zfs";

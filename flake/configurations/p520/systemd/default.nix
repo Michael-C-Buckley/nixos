@@ -1,4 +1,4 @@
-_: {
+{
   systemd.services.shutdown-timer = {
     enable = false;
     description = "Shutdown the system at night";
