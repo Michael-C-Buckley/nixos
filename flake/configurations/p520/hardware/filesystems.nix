@@ -32,8 +32,6 @@ in {
     "/cache" = zfsFs "zroot/p520/cache";
     "/persist" = zfsFs "zroot/p520/persist";
     "/var/lib/postgresql" = zfsFs "zroot/p520/postgres";
-    "/home/michael" = zfsFs "zroot/p520/home/michael";
-    "/home/shawn" = zfsFs "zroot/p520/home/shawn";
 
     # HDD Array
     "/data" = zfsFs "zhdd/data";
