@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (config.system) preset;
-  useMod = preset == "desktop" || preset == "laptop";
+  useMod = preset == "desktop" || preset == "laptop" || preset == "wsl";
 in {
   config = lib.mkIf useMod {
     environment.systemPackages = with pkgs; [
