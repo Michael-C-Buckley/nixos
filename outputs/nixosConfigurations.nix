@@ -63,11 +63,5 @@ in {
     x570 = mkSystem {
       hostname = "x570";
     };
-    wsl = mkSystem {
-      hostname = "wsl";
-      secrets = "common";
-      hjem = "wsl";
-      modules = [inputs.nixos-wsl.nixosModules.default];
-    };
   };
 }

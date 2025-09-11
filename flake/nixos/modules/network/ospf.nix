@@ -40,5 +40,8 @@ in {
     networking.firewall.extraInputRules = ''
       ip protocol 89 accept comment "Allow OSPF"
     '';
+    networking.firewall.extraCommands = ''
+      iptables -A nixos-fw -p 89 -j ACCEPT -m comment --comment "Allow OSPF"
+    '';
   };
 }
