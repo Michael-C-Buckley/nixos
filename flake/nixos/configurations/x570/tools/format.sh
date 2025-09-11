@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # ZFS Install Script for X570
 # 2x2 TB NVMe that will be striped
 
@@ -33,7 +35,7 @@ if [[ $confirm =~ ^[Yy]$ ]]; then
   done
 
   # Format for the striped ZFS pool
-  zpool create -f $ZFS_OPTS zroot /dev/nvme0n1p2 /dev/nvme1n1p2
+  zpool create -f "$ZFS_OPTS" zroot /dev/nvme0n1p2 /dev/nvme1n1p2
 else
   echo "Skipping NVMe wipe."
 fi

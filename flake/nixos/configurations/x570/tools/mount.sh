@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # For mounting all the drives
 hostname="x570"
 

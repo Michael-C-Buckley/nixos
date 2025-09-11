@@ -9,7 +9,7 @@
 
   defaultMods = [
     inputs.sops-nix.nixosModules.sops
-    ../flake/modules
+    ../flake/nixos/modules
   ];
 
   mkSystem = {
@@ -29,7 +29,7 @@
           inputs.home-config.hjemConfigurations.${hjem}
           inputs.nix-secrets.nixosModules.${secrets}
           inputs.impermanence.nixosModules.impermanence
-          ../flake/configurations/${hostname}
+          ../flake/nixos/configurations/${hostname}
         ];
 
       pkgs = import nixpkgs {
