@@ -52,6 +52,7 @@ in {
     p520 = mkSystem {
       hostname = "p520";
       hjem = "server";
+      modules = [inputs.quadlet-nix.nixosModules.quadlet];
     };
     t14 = mkSystem {
       hostname = "t14";

@@ -1,5 +1,6 @@
 _: {
   imports = [
+    ./containers
     ./hardware
     ./networking
     ./services
