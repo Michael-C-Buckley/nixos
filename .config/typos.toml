@@ -2,3 +2,11 @@
 # Catch the UUIDs for my drives currently
 extend-glob = ["*filesystems.nix"]
 extend-words = { "BA" = "BA" }
+
+[type.png]
+extend-glob = ["*.png"]
+check-file = false
+
+[default.extend-words]
+# This is an nvim plugin
+noice = "noice"
