@@ -4,16 +4,12 @@
   lib,
   ...
 }: let
-  inherit (lib) mkDefault mkOption types optionals;
+  inherit (lib) mkDefault mkOption mkEnableOption types optionals;
   inherit (config.system) impermanence;
   inherit (config.virtualisation) libvirtd;
 in {
   options.virtualisation.libvirtd = {
-    addGUIPkgs = mkOption {
-      type = types.bool;
-      default = libvirtd.enable;
-      description = "Add graphical support packages for VMs.";
-    };
+    addGUIPkgs = mkEnableOption "Add graphical support packages for VMs.";
     # WIP: Create a config option in users for power users
     users = mkOption {
       type = types.listOf types.str;
@@ -30,7 +26,7 @@ in {
         lib.optionals libvirtd.addGUIPkgs [
           virt-viewer
           virt-manager
-          tigervnc
+          # tigervnc # Broken in nixpkgs update, removing for now
         ];
     };
 

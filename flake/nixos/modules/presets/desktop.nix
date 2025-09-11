@@ -35,7 +35,10 @@ in {
 
     virtualisation = {
       containerlab.enable = mkDefault true;
-      libvirtd.enable = mkDefault true;
+      libvirtd = {
+        enable = mkDefault true;
+        addGUIPkgs = mkDefault true;
+      };
     };
 
     environment = {
