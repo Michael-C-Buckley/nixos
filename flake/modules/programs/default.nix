@@ -1,6 +1,10 @@
 {lib, ...}: let
   inherit (lib) mkDefault;
 in {
+  imports = [
+    ./dconf.nix
+  ];
+
   programs = {
     fish.enable = true;
     neovim.defaultEditor = true;
