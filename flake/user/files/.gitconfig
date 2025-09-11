@@ -1,0 +1,35 @@
+[user]
+    name = "Michael Buckley"
+    email = "michaelcbuckley@proton.me"
+    signingKey = "483864BF916E149C4F57E2371A0163427F977C33!"
+
+[commit]
+    gpgsign = true
+
+[gpg]
+    program = "gpg"
+
+
+[core]
+    editor = "nvim"
+    pager = delta
+
+[color]
+    ui = true
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+
+[http]
+    postBuffer = 157286400
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
+
+[merge]
+    conflictstyle = zdiff3

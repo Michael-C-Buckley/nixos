@@ -1,0 +1,88 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 24,
+    "spacing": 5,
+
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["tray", "pulseaudio", "battery"],
+
+    "hyprland/workspaces": {
+    "format": "<span font='13px'>{icon}</span>",
+    "format-icons": {
+        "11": "A",
+        "12": "S",
+        "13": "D"
+        }
+    },
+
+    "clock": {
+        "format": "<span font='15px'>{:%m %d %Y   %H:%M:%S}</span>",
+        "interval": 1,
+        "calendar": {
+        "mode": "year",
+        "mode-mon-col": 3,
+        "weeks-pos": "right",
+        "on-scroll": 1,
+        "format": {
+            "months": "<span color='#ffead3'><b>{}</b></span>",
+            "days": "<span color='#ecc6d9'><b>{}</b></span>",
+            "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+            "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+            "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+        }
+        },
+        "tooltip-format": "\n<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "calendar-weeks-pos": "right",
+        "today-format": "<span color='#7645AD'><b><u>{}</u></b></span>",
+        "format-calendar": "<span color='#aeaeae'><b>{}</b></span>",
+        "format-calendar-weeks": "<span color='#aeaeae'><b>W{:%V}</b></span>",
+        "format-calendar-weekdays": "<span color='#aeaeae'><b>{}</b></span>"
+    },
+
+    "pulseaudio": {
+        "format": "<span font='15px'>{icon}</span>",
+        "format-bluetooth": "󰂰",
+        "format-muted": "",
+        "tooltip-format": "{volume}% {icon}",
+        "format-icons": {
+            "headphones": "",
+            "bluetooth": "󰥰",
+            "handsfree": "",
+            "headset": "󱡬",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["🕨", "🕩", "🕪"]
+        },
+        "scroll-step": 5,
+        "justify": "center",
+        "on-click": "amixer sset Master toggle",
+        "on-click-right": "pavucontrol",
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+    },
+
+    "battery": {
+        "interval": 1,
+        "states": {
+            "good": 75,
+            "warning": 30,
+            "critical": 15
+        },
+        "tooltip": true,
+        "format": "<span font='15px'>{icon}</span>",
+        "format-time": "{H}h {M}m",
+        "tooltip": "{capacity}% - {time}",
+        "format-charging": "<span font='15px'> {icon}</span>",
+        "format-plugged": "<span font='15px'> 󰠠 {icon}</span>",
+        // "format-alt": "{time} {icon}",
+        "format-icons": ["󰁻", "󰁼", "󰁾", "󰂀", "󰂂", "󰁹"]
+    },
+
+    "tray": {
+        "icon-size": 14,
+        "spacing": 16
+    }
+}
