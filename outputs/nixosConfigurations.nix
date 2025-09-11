@@ -1,9 +1,5 @@
 {inputs, ...}: let
-  inherit
-    (inputs)
-    self
-    nixpkgs
-    ;
+  inherit (inputs) self nixpkgs;
 
   customLib = import ../flake/lib {inherit (nixpkgs) lib;};
 
@@ -26,7 +22,7 @@
         modules
         ++ defaultMods
         ++ [
-          inputs.home-config.hjemConfigurations.${hjem}
+          self.hjemConfigurations.${hjem}
           inputs.nix-secrets.nixosModules.${secrets}
           inputs.impermanence.nixosModules.impermanence
           ../flake/nixos/configurations/${hostname}

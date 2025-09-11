@@ -1,0 +1,15 @@
+keybind = ctrl+alt+d=toggle_window_decorations
+
+theme = "Wombat"
+background = "#000000"
+window-theme = system
+window-decoration = false
+cursor-color = #44A3A3
+cursor-opacity = 0.6
+
+font-size = 11
+font-family = "Cascadia Code NF"
+
+
+# Notes for myself
+# Themes I had liked: Everblush, Everforest, Gruvbox, Tomorrow Night Bright, Peppermint
