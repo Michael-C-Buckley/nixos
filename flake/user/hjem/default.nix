@@ -4,6 +4,7 @@
   config,
   pkgs,
   lib,
+  system,
   ...
 }: let
   inherit
@@ -14,7 +15,7 @@
 
   inherit (lib) mkDefault;
 
-  myPkgs = import ../packageSets/common.nix {inherit self pkgs;};
+  myPkgs = import ../packageSets/common.nix {inherit self pkgs system;};
 in {
   imports = [../options.nix];
 

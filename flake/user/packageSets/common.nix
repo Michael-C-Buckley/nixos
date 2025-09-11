@@ -1,11 +1,11 @@
 {
   self,
   pkgs,
+  system,
   ...
-}: let
-  ns = pkgs.callPackage "${self}/flake/packages/ns.nix" {};
-in
-  with pkgs; [
+}:
+with pkgs;
+  [
     # Git/Web
     gitFull
     lazygit
@@ -46,7 +46,6 @@ in
     # Nix Tools
     nh
     nix-tree
-    ns
 
     # Machine Utilities
     dig
@@ -57,4 +56,7 @@ in
     parted
     lm_sensors
     inetutils
+  ]
+  ++ [
+    self.packages.${system}.ns
   ]
