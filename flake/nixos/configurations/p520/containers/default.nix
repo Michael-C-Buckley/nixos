@@ -7,7 +7,7 @@
       podmanArgs = ["--interface-name=br200"];
       driver = "bridge";
       disableDns = true;
-      gateways = ["192.168.53.1/26"];
+      gateways = ["192.168.53.1"];
       subnets = ["192.168.53.0/26"];
     };
   };
