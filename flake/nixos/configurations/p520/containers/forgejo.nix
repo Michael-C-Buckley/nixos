@@ -9,7 +9,7 @@
       autoStart = true;
       containerConfig = {
         image = "codeberg.org/forgejo/forgejo:${version}";
-        networks = ["${ref}:ip=192.168.52.21"];
+        networks = ["${ref}:ip=192.168.53.11"];
         environments = {
           "USER_UID" = "1000";
           "USER_GID" = "1000";
