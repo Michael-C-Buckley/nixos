@@ -2,7 +2,7 @@
   services = {
     hydra.enable = true;
     nix-serve = {
-      enable = true;
+      enable = false;
       secretKeyFile = "/run/secrets/cache-private";
     };
   };
