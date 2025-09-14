@@ -15,25 +15,6 @@
         "type": "github"
       }
     },
-    "elephant": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_2",
-        "systems": "systems_5"
-      },
-      "locked": {
-        "lastModified": 1757324547,
-        "narHash": "sha256-tF02X+iIca3/KrO6A6etU2aoAjkSFWtPjXXngncaazA=",
-        "owner": "abenz1267",
-        "repo": "elephant",
-        "rev": "8eddcd1fe46159ff25dcdf79b658bc6fa95249fc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "abenz1267",
-        "repo": "elephant",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "locked": {
         "lastModified": 1747046372,
@@ -384,19 +365,25 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/e9b51731911566bbf7e4895475a87fe06961de0b.tar.gz"
       }
     },
-    "nixpkgs_2": {
+    "noctalia": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "quickshell": "quickshell",
+        "systems": "systems_3"
+      },
       "locked": {
-        "lastModified": 1757068644,
-        "narHash": "sha256-NOrUtIhTkIIumj1E/Rsv1J37Yi3xGStISEo8tZm3KW4=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "8eb28adfa3dc4de28e792e3bf49fcf9007ca8ac9",
+        "lastModified": 1757880580,
+        "narHash": "sha256-pIFrUBWgpLmHmA0zv6P5R7SKFUT3jjx1pQIhdBOiIXo=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell",
+        "rev": "d71226c6bdd55b37fe5805582e19557a22220fb7",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell",
         "type": "github"
       }
     },
@@ -412,7 +399,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems_3"
+        "systems": "systems_4"
       },
       "locked": {
         "lastModified": 1757773905,
@@ -443,6 +430,27 @@
         "type": "github"
       }
     },
+    "quickshell": {
+      "inputs": {
+        "nixpkgs": [
+          "noctalia",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1753595452,
+        "narHash": "sha256-vqkSDvh7hWhPvNjMjEDV4KbSCv2jyl2Arh73ZXe274k=",
+        "ref": "refs/heads/master",
+        "rev": "a5431dd02dc23d9ef1680e67777fed00fe5f7cda",
+        "revCount": 665,
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      }
+    },
     "root": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -453,11 +461,11 @@
         "mangowc": "mangowc",
         "nix-secrets": "nix-secrets",
         "nixpkgs": "nixpkgs",
+        "noctalia": "noctalia",
         "nvf": "nvf",
         "quadlet-nix": "quadlet-nix",
         "schizofox": "schizofox",
-        "sops-nix": "sops-nix",
-        "walker": "walker"
+        "sops-nix": "sops-nix"
       }
     },
     "rust-overlay": {
@@ -519,7 +527,7 @@
           "nixpkgs"
         ],
         "searx-randomizer": "searx-randomizer",
-        "systems": "systems_4"
+        "systems": "systems_5"
       },
       "locked": {
         "lastModified": 1756308127,
@@ -648,16 +656,16 @@
     },
     "systems_4": {
       "locked": {
-        "lastModified": 1689347949,
-        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
         "owner": "nix-systems",
-        "repo": "default-linux",
-        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
         "type": "github"
       },
       "original": {
         "owner": "nix-systems",
-        "repo": "default-linux",
+        "repo": "default",
         "type": "github"
       }
     },
@@ -673,43 +681,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default-linux",
-        "type": "github"
-      }
-    },
-    "systems_6": {
-      "locked": {
-        "lastModified": 1689347949,
-        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
-        "owner": "nix-systems",
-        "repo": "default-linux",
-        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default-linux",
-        "type": "github"
-      }
-    },
-    "walker": {
-      "inputs": {
-        "elephant": "elephant",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "systems": "systems_6"
-      },
-      "locked": {
-        "lastModified": 1757838798,
-        "narHash": "sha256-3Tjy0N/w1XGV1yo9TwPe4Y0LNv0taG5AIAuFKeEZ/aE=",
-        "owner": "abenz1267",
-        "repo": "walker",
-        "rev": "56e8854be1e929e07f5cff80ec1792affe4575f6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "abenz1267",
-        "repo": "walker",
         "type": "github"
       }
     }

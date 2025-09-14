@@ -41,11 +41,9 @@ in {
       substituters = [
         "https://cache.nixos.org"
         "https://nix-community.cachix.org"
-        "https://walker.cachix.org"
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
         # Personal cache capable devices and keys
         "x570-1:b3fLRrQyBeUbmpS+AGi68O1L2F1kSLEVX2ePAyDPNWk="
         "michael-hydra-1:i6EiwHcLtrM6EAdpeymEWqlWs9p15HVTCjS+Cs/cgH0="
