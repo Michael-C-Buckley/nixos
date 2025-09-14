@@ -39,7 +39,7 @@ in {
         swww
         rofi
         xdg-desktop-portal
-        #inputs.walker.packages.${system}.default
+        inputs.walker.packages.${system}.default
 
         # Clipboard
         clipse
