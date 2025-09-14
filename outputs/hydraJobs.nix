@@ -1,5 +1,5 @@
 {self, ...}: let
-  inherit (builtins) attrNames;
+  inherit (builtins) mapAttrs;
   inherit (self) nixosConfigurations;
   getConfig = host: self.nixosConfigurations.${host}.config.system.build.toplevel;
 in {
@@ -8,6 +8,6 @@ in {
     devShells = self.devShells."x86_64-linux";
 
     # Find and build all systems defined
-    nixosConfigurations = map getConfig (attrNames nixosConfigurations);
+    nixosConfigurations = mapAttrs (n: _: getConfig n) nixosConfigurations;
   };
 }
