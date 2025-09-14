@@ -3,6 +3,7 @@
   lib,
   ...
 }: let
+  inherit (builtins) mapAttrs;
   inherit (inputs) self nixpkgs;
 
   customLib = import ../flake/lib {inherit (nixpkgs) lib;};
@@ -43,26 +44,23 @@
       };
     };
 in {
-  flake.nixosConfigurations = {
-    o1 = mkSystem {
-      hostname = "o1";
-      system = "aarch64-linux";
-      hjem = "minimal-arm";
+  flake.nixosConfigurations =
+    mapAttrs (
+      hostname: config:
+        mkSystem (config // {inherit hostname;})
+    ) {
+      o1 = {
+        system = "aarch64-linux";
+        hjem = "minimal-arm";
+      };
+      p520 = {
+        hjem = "server";
+        modules = [inputs.quadlet-nix.nixosModules.quadlet];
+      };
+      t14 = {};
+      tempest = {
+        secrets = "common";
+      };
+      x570 = {};
     };
-    p520 = mkSystem {
-      hostname = "p520";
-      hjem = "server";
-      modules = [inputs.quadlet-nix.nixosModules.quadlet];
-    };
-    t14 = mkSystem {
-      hostname = "t14";
-    };
-    tempest = mkSystem {
-      hostname = "tempest";
-      secrets = "common";
-    };
-    x570 = mkSystem {
-      hostname = "x570";
-    };
-  };
 }
