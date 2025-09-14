@@ -11,7 +11,7 @@
 
   # Get the packages for walker and elephant
   inherit (inputs.walker.packages.${system}) walker;
-  inherit (inputs.walker.inputs.elephant.packages.${system}) elephant;
+  inherit (inputs.walker.inputs.elephant.packages.${system}) elephant-with-providers;
 in {
   config = mkIf hyprland.enable {
     programs = {
@@ -54,7 +54,7 @@ in {
         ++ [
           # Non-nixpkgs items
           walker
-          elephant
+          elephant-with-providers
         ];
     };
   };
