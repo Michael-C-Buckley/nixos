@@ -46,8 +46,8 @@
 in {
   flake.nixosConfigurations =
     mapAttrs (
-      hostname: config:
-        mkSystem (config // {inherit hostname;})
+      hostname: params:
+        mkSystem (params // {inherit hostname;})
     ) {
       o1 = {
         system = "aarch64-linux";
