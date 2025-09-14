@@ -1,13 +1,13 @@
-{self, ...}: {
-  # The various components that should be built, which is the devShells by definitions
-  #  and the systems, by their top level reference
+{self, ...}: let
+  inherit (builtins) attrNames;
+  inherit (self) nixosConfigurations;
+  getConfig = host: self.nixosConfigurations.${host}.config.system.build.toplevel;
+in {
   flake.hydraJobs = {
-    inherit (self) devShells;
-    nixosConfigurations = {
-      # Let's start simple and build the hosts
-      x570 = self.nixosConfigurations.x570.config.system.build.toplevel;
-      p520 = self.nixosConfigurations.p520.config.system.build.toplevel;
-      t14 = self.nixosConfigurations.t14.config.system.build.toplevel;
-    };
+    # For now, only do the architectures I develop on
+    devShells = self.devShells."x86_64-linux";
+
+    # Find and build all systems defined
+    nixosConfigurations = map getConfig (attrNames nixosConfigurations);
   };
 }
