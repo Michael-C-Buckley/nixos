@@ -29,7 +29,7 @@ in {
         system = "aarch64-linux";
       };
 
-    # Bare metal servers, slightly above the stripped including a few extras
+    # Bare metal servers, slightly above the stripped version including a few extras
     server = _:
       mkHjemCfg {
         nvfVer = "nvf-minimal";
