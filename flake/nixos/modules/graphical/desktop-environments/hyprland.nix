@@ -2,6 +2,8 @@
   config,
   pkgs,
   lib,
+  #inputs,
+  #system,
   ...
 }: let
   inherit (lib) mkIf;
@@ -37,6 +39,7 @@ in {
         swww
         rofi
         xdg-desktop-portal
+        #inputs.walker.packages.${system}.default
 
         # Clipboard
         clipse

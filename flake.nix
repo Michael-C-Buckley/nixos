@@ -63,6 +63,11 @@
       };
     };
 
+    walker = {
+      url = "github:abenz1267/walker";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # No Nixpkgs Inputs
     impermanence.url = "github:nix-community/impermanence";
     quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
