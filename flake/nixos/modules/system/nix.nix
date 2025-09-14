@@ -45,8 +45,11 @@ in {
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "michael-hydra-1:i6EiwHcLtrM6EAdpeymEWqlWs9p15HVTCjS+Cs/cgH0="
         "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
+        # Personal cache capable devices and keys
+        "x570-1:b3fLRrQyBeUbmpS+AGi68O1L2F1kSLEVX2ePAyDPNWk="
+        "michael-hydra-1:i6EiwHcLtrM6EAdpeymEWqlWs9p15HVTCjS+Cs/cgH0="
+        "nix-cache.groovyreserve.com-1:DI9lyYMkvLcXbifzvjZ85nJuxEkDOxRvs7fS/5r5vyg="
       ];
       trusted-users = ["root" "@wheel" "builder"];
       allowed-users = ["root" "@wheel" "builder"];

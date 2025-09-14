@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   imports = [
     ./hardware
     ./networking
@@ -7,6 +11,11 @@
   environment = {
     # This is not linking for some reason, attempting to force copy instead of link
     etc."nix/nix.conf".mode = lib.mkForce "0755";
+  };
+
+  services.harmonia = {
+    enable = true;
+    signKeyPaths = [config.sops.secrets.cachePrivateKey.path];
   };
 
   # For remote building
