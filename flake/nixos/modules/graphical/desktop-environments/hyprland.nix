@@ -35,7 +35,7 @@ in {
         waybar
         libnotify
         swww
-        rofi-wayland
+        rofi
         xdg-desktop-portal
 
         # Clipboard
