@@ -2,8 +2,8 @@
   config,
   pkgs,
   lib,
-  #inputs,
-  #system,
+  inputs,
+  system,
   ...
 }: let
   inherit (lib) mkIf;
