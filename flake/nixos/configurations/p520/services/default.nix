@@ -1,7 +1,10 @@
 {
   imports = [
     ./harmonia.nix
-    ./hydra.nix
     ./postgres.nix
   ];
+
+  services = {
+    hydra.enable = true;
+  };
 }
