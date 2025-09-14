@@ -2,16 +2,10 @@
   config,
   pkgs,
   lib,
-  inputs,
-  system,
   ...
 }: let
   inherit (lib) mkIf;
   inherit (config.programs) hyprland;
-
-  # Get the packages for walker and elephant
-  inherit (inputs.walker.packages.${system}) walker;
-  inherit (inputs.walker.inputs.elephant.packages.${system}) elephant-with-providers;
 in {
   config = mkIf hyprland.enable {
     programs = {
@@ -31,31 +25,25 @@ in {
       };
 
       # TO DO: audit these packages to see what I use
-      systemPackages = with pkgs;
-        [
-          hyprshot
-          hyprpaper
-          hyprcursor
-          hyprsunset
-          hyprpolkitagent # Auth agent
-          dunst
-          waybar
-          libnotify
-          swww
-          rofi
-          xdg-desktop-portal
+      systemPackages = with pkgs; [
+        hyprshot
+        hyprpaper
+        hyprcursor
+        hyprsunset
+        hyprpolkitagent # Auth agent
+        dunst
+        waybar
+        libnotify
+        swww
+        rofi
+        xdg-desktop-portal
 
-          # Clipboard
-          clipse
-          wl-clip-persist
-          wl-clipboard
-          xclip
-        ]
-        ++ [
-          # Non-nixpkgs items
-          walker
-          elephant-with-providers
-        ];
+        # Clipboard
+        clipse
+        wl-clip-persist
+        wl-clipboard
+        xclip
+      ];
     };
   };
 }

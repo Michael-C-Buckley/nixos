@@ -63,8 +63,8 @@
       };
     };
 
-    walker = {
-      url = "github:abenz1267/walker";
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -59,6 +59,7 @@ in {
       michael.extendedGraphical = mkDefault true;
       autoLogin = mkDefault true;
       displayManager = mkDefault "greetd";
+      noctalia.enable = true;
     };
 
     # Add Wireshark if enabled
