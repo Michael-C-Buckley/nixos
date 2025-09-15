@@ -1,20 +1,18 @@
 let
   commonAliases = {
-    # Common aliases
-    ip = "ip --color=auto"; # Colorize IP output
-    ll = "ls -alF"; # Detailed list with classification
-    la = "ls -A"; # List all except `.` and `..`
+    ll = "eza -ala -g --icons";
+    la = "eza -A"; # List all except `.` and `..`
     l = "ls -CF"; # Simple classified list
-    ".." = "cd ..";
-    "..." = "cd ../..";
-    nv = "nvim";
+    lt = "eza --tree --level=2 --icons";
+    tree = "eza --tree";
+    cat = "bat -p";
 
     # Navigation
-    z = "zoxide";
+    ".." = "cd ..";
+    "..." = "cd ../..";
 
     # Git aliases
     gst = "git status";
-    gco = "git checkout";
     ga = "git add";
     gaa = "git add *";
     gc = "git commit";
@@ -40,7 +38,9 @@ let
     # File Management
     duz = "du -xh . | sort -hr | fzf";
 
+    # Programs
     fetch = "fastfetch --logo ~/.media/nixos.png --logo-height 20 --logo-width 40";
+    nv = "nvim";
   };
 in {
   hjem.users.michael.rum.programs = {

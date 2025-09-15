@@ -1,5 +1,10 @@
-{lib, ...}: let
-  inherit (lib) mkForce;
+{
+  pkgs,
+  lib,
+  ...
+}: let
+  inherit (lib) getExe;
+  inherit (pkgs) fd fzf fishPlugins;
 in {
   hjem.users.michael.rum.programs.fish = {
     enable = true;
@@ -19,20 +24,15 @@ in {
           source ~/.config/shells/environment.sh
       end
     '';
-    aliases = {
-      # Bat replacements
-      cat = mkForce "bat -p";
-      # Eza replacements
-      ls = mkForce "eza";
-      ll = mkForce "eza -la -g --icons";
-      lt = mkForce "eza --tree --level=2 --icons";
-      tree = mkForce "eza --tree";
+
+    plugins = {
+      inherit (fishPlugins) fzf-fish forgit;
     };
 
     functions = {
       # Use FZF to navigate to a folder matching folders or filenames
       fcd = ''
-        set -l selected_path (find . | fzf --height 40% --reverse)
+        set -l selected_path (${getExe fd} . | ${getExe fzf} --height 40% --reverse)
 
         if test -n "$selected_path"
             if test -d "$selected_path"
