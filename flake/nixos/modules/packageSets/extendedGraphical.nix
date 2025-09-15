@@ -6,9 +6,6 @@
     gparted
     wireshark
 
-    # Browser
-    vivaldi
-
     # Editors
     emacs
     meld
@@ -25,7 +22,6 @@
 
     # Productivity
     kdePackages.kalgebra # Calculator
-    gimp3
 
     # Terminals
     ghostty
