@@ -42,3 +42,4 @@ alias sshn='ssh -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile=/dev/n
 # File Management
 alias duz='du -xh . | sort -hr | fzf'
 
+alias fetch='fastfetch --logo ~/.media/nixos.png --logo-height 20 --logo-width 40'
