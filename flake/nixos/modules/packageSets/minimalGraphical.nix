@@ -10,7 +10,6 @@
     cage
 
     # Terminals
-    wezterm
     kitty
     kitty-themes
     sakura
