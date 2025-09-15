@@ -17,7 +17,10 @@
 
   myPkgs = import ../packageSets/common.nix {inherit self pkgs system;};
 in {
-  imports = [../options.nix];
+  imports = [
+    ../options.nix
+    ./configs
+  ];
 
   programs.fish.enable = mkDefault true;
 

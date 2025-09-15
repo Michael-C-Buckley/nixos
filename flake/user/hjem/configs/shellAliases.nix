@@ -1,0 +1,50 @@
+let
+  commonAliases = {
+    # Common aliases
+    ip = "ip --color=auto"; # Colorize IP output
+    ll = "ls -alF"; # Detailed list with classification
+    la = "ls -A"; # List all except `.` and `..`
+    l = "ls -CF"; # Simple classified list
+    ".." = "cd ..";
+    "..." = "cd ../..";
+    nv = "nvim";
+
+    # Navigation
+    z = "zoxide";
+
+    # Git aliases
+    gst = "git status";
+    gco = "git checkout";
+    ga = "git add";
+    gaa = "git add *";
+    gc = "git commit";
+    gcm = "git commit -m";
+    gp = "git push";
+    gf = "git fetch";
+    grv = "git remote -v";
+    lg = "lazygit";
+
+    # Kubernetes
+    k = "kubectl";
+
+    # Nu/Nushell
+    n = "nu -c";
+
+    # ZFS
+    zls = "zfs list -o name,used,compressratio,lused,avail";
+    zsls = "zfs list -t snapshot -S creation -o name,creation,used,written,refer";
+
+    # SSH bypass
+    sshn = "ssh -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile=/dev/null";
+
+    # File Management
+    duz = "du -xh . | sort -hr | fzf";
+
+    fetch = "fastfetch --logo ~/.media/nixos.png --logo-height 20 --logo-width 40";
+  };
+in {
+  hjem.users.michael.rum.programs = {
+    fish.aliases = commonAliases;
+    nushell.aliases = commonAliases;
+  };
+}

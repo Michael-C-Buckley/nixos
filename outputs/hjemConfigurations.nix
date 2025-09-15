@@ -1,5 +1,5 @@
 {inputs, ...}: let
-  inherit (inputs) self hjem;
+  inherit (inputs) self hjem hjem-rum;
   mkHjemCfg = {
     modules ? [],
     nvfVer ? "nvf",
@@ -12,7 +12,12 @@
       ]
       ++ modules;
 
-    hjem.linker = hjem.packages.${system}.smfh;
+    # I use Hjem-Rum and the SMFH linker
+    hjem = {
+      extraModules = [hjem-rum.hjemModules.default];
+      linker = hjem.packages.${system}.smfh;
+    };
+
     users.users.michael.packages = [self.packages.${system}.${nvfVer}];
   };
 in {
