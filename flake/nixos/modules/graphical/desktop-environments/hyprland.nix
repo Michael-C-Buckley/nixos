@@ -31,11 +31,6 @@ in {
         hyprcursor
         hyprsunset
         hyprpolkitagent # Auth agent
-        dunst
-        waybar
-        libnotify
-        swww
-        rofi
         xdg-desktop-portal
 
         # Clipboard

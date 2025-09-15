@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   packageSets.extendedGraphical = with pkgs; [
     # System Utilities
-    networkmanagerapplet
     pavucontrol # Pulse Volume control
     gammastep
     gparted
