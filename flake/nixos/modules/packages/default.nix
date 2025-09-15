@@ -13,6 +13,9 @@
     starship
     comma
 
+    # Editor
+    vim
+
     # Development/Management
     python3
     git

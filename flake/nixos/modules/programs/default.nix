@@ -7,6 +7,7 @@ in {
 
   programs = {
     fish.enable = true;
+    vim.enable = true;
     neovim.defaultEditor = true;
     zsh.enable = true;
 
