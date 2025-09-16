@@ -9,20 +9,8 @@ in {
   hjem.users.michael.rum.programs.fish = {
     enable = true;
     config = ''
-      if status is-interactive
-          # Remove the welcome/help greeting
-          set -U fish_greeting
-
-          # Starship
-          function starship_transient_prompt_func
-              starship module character
-          end
-          starship init fish | source
-          enable_transience
-
-          # Common other shell elements being reused
-          source ~/.config/shells/environment.sh
-      end
+      set -U fish_greeting
+      source ~/.config/shells/environment.sh
     '';
 
     plugins = {
