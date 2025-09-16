@@ -1,3 +1,5 @@
+# Plugin configs are from Nezia:
+# https://github.com/nezia1/flocon/blob/main/config/optional/programs/terminal/shell/zsh.nix
 {pkgs, ...}: {
   hjem.users.michael.rum.programs.zsh = {
     enable = true;
