@@ -30,10 +30,12 @@ in {
       ];
     };
 
-    # ZFS Volumes
+    # Essential System Volumes
     "/nix" = zfsFs "zroot/p520/nix";
     "/cache" = zfsFs "zroot/p520/cache";
     "/persist" = zfsFs "zroot/p520/persist";
+
+    # Datasets
     "/var/lib/postgresql" = zfsFs "zroot/p520/postgres";
 
     # HDD Array
