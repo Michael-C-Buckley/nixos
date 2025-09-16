@@ -1,6 +1,7 @@
 {
   perSystem = {pkgs, ...}: {
     devShells.default = pkgs.mkShellNoCC {
+      name = "default";
       buildInputs = with pkgs; [
         # keep-sorted start
         (mdformat.withPlugins (
