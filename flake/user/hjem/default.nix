@@ -44,7 +44,11 @@ in {
 
       gnupg = {
         enable = true;
-        enableSSHsupport = true;
+        agent = {
+          allowLoopbackPinentry = true;
+          enableSSHsupport = true;
+        };
+        scdaemon.disable-ccid = true;
       };
     };
   };
