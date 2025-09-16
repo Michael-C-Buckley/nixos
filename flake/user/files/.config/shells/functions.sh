@@ -8,7 +8,7 @@ show() {
 fcd() {
   # Find all files and directories in the home directory.
   local selected_path
-  selected_path=$(find . | fzf --height 40% --reverse)
+  selected_path=$(fd . | fzf --height 40% --reverse)
 
   # Proceed only if a path was selected.
   if [[ -n "$selected_path" ]]; then
