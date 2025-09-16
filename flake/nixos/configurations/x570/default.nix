@@ -1,4 +1,4 @@
-{config, ...}: {
+{lib, ...}: {
   imports = [
     ./hardware
     ./networking
@@ -11,12 +11,7 @@
   };
 
   nix.settings = {
-    substituters = ["http://p520:5000"];
-  };
-
-  services.harmonia = {
-    enable = true;
-    signKeyPaths = [config.sops.secrets.cachePrivateKey.path];
+    substituters = lib.mkBefore ["http://p520:5000"];
   };
 
   system = {
