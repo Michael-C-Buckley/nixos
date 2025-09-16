@@ -12,6 +12,9 @@ with pkgs; [
   ghostty
   kitty
   kitty-themes
+  sakura
+  kitty
+  alacritty
 
   # Communication
   bitwarden-desktop
