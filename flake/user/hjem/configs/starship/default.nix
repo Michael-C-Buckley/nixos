@@ -10,6 +10,7 @@ in {
     transience.enable = true;
     integrations = {
       fish.enable = true;
+      zsh.enable = true;
     };
 
     settings =
