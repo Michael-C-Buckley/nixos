@@ -11,6 +11,11 @@ in {
     config = ''
       set -U fish_greeting
       source ~/.config/shells/environment.sh
+
+      # Add time to the transient right prompt
+      function starship_transient_rprompt_func
+        starship module time
+      end
     '';
 
     plugins = {
