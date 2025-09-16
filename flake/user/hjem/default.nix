@@ -44,6 +44,11 @@ in {
 
       gnupg = {
         enable = true;
+        config.extraLines = ''
+          auto-key-locate local
+          auto-key-retrieve
+          personal-digest-preferences SHA256 SHA384 SHA512
+        '';
         agent = {
           allowLoopbackPinentry = true;
           enableSSHsupport = true;
