@@ -4,6 +4,6 @@
     ./git.nix
     # ./nushell.nix
     ./shellAliases.nix
-    ./starship.nix
+    ./starship
   ];
 }
