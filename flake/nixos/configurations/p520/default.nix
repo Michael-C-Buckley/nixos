@@ -6,6 +6,7 @@ _: {
     ./services
     ./systemd
     ./remote-builders.nix
+    ./users.nix
   ];
 
   virtualisation = {
