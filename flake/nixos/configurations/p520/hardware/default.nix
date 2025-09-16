@@ -22,8 +22,6 @@
 
   swapDevices = [];
 
-  sops.age.sshKeyPaths = [];
-
   security.tpm2.enable = true;
 
   nixpkgs.hostPlatform = "x86_64-linux";
