@@ -1,16 +1,15 @@
 # Plugin configs are from Nezia:
 # https://github.com/nezia1/flocon/blob/main/config/optional/programs/terminal/shell/zsh.nix
 {
-  self,
   pkgs,
-  system,
+  customPkgs,
   ...
 }: {
   hjem.users.michael.rum.programs.zsh = {
     enable = true;
     plugins = {
       geometry = {
-        source = "${self.packages.${system}.geometry}/geometry.zsh";
+        source = "${customPkgs.geometry}/geometry.zsh";
       };
       nix-zsh-completions = {
         source = "${pkgs.nix-zsh-completions}/share/zsh/plugins/nix/nix-zsh-completions.plugin.zsh";

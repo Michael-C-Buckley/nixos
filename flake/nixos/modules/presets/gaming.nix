@@ -15,7 +15,7 @@ in {
 
   config = mkIf gaming.enable {
     # Large, downloadable so remove from snapshots
-    # Any Custom Filesystem mounts will be under the host itself
+    # Any Custom Filesystem mounts will be under the host
     environment.persistence."/cache".users = mkIf impermanence.enable {
       michael = commonDir;
       shawn = commonDir;

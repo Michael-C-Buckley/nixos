@@ -25,7 +25,7 @@ in {
   };
 
   networking = mkIf config.services.unbound.enable {
-    # Use self (via Unbound) or common others if it fails
+    # Use localhost (via Unbound) or common others if it fails
     nameservers = [
       "127.0.0.1"
       "::1"
