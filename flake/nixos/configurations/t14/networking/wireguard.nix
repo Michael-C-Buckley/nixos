@@ -1,11 +1,11 @@
 {
   config,
   pkgs,
+  customLib,
   lib,
   ...
 }: let
-  # Pkgs Lib is overlaid and different than stock lib
-  inherit (pkgs.lib.wireguard) genInterface;
+  inherit (customLib.wireguard) genInterface;
   inherit (lib) mapAttrs' nameValuePair;
 
   interfaces = {

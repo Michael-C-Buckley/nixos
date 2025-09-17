@@ -1,7 +1,6 @@
 {
-  self,
+  customPkgs,
   pkgs,
-  system,
   ...
 }:
 with pkgs;
@@ -58,5 +57,5 @@ with pkgs;
     inetutils
   ]
   ++ [
-    self.packages.${system}.ns
+    customPkgs.ns
   ]
