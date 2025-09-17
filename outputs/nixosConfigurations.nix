@@ -9,7 +9,9 @@
   customLib = import ../flake/lib {inherit (nixpkgs) lib;};
 
   defaultMods = [
+    self.hjemConfigurations.root
     inputs.sops-nix.nixosModules.sops
+    inputs.impermanence.nixosModules.impermanence
     ../flake/nixos/modules
   ];
 
@@ -25,15 +27,16 @@
   in
     nixpkgs.lib.nixosSystem {
       inherit system;
+      # Special args are a better mechanism than overlays because it is significantly more
+      #  obvious what came from where without indirection
       specialArgs = {inherit self system inputs customLib customPkgs;};
+
       modules =
         modules
         ++ defaultMods
         ++ [
           self.hjemConfigurations.${hjem}
-          self.hjemConfigurations.root
           inputs.nix-secrets.nixosModules.${secrets}
-          inputs.impermanence.nixosModules.impermanence
           ../flake/nixos/configurations/${hostname}
         ];
 
@@ -44,6 +47,7 @@
     };
 in {
   flake.nixosConfigurations =
+    # Add the hostname to the params
     mapAttrs (
       hostname: params:
         mkSystem (params // {inherit hostname;})
@@ -52,14 +56,9 @@ in {
         system = "aarch64-linux";
         hjem = "minimal-arm";
       };
-      p520 = {
-        hjem = "server";
-        modules = [inputs.quadlet-nix.nixosModules.quadlet];
-      };
+      p520 = {hjem = "server";};
       t14 = {};
-      tempest = {
-        secrets = "common";
-      };
+      tempest = {secrets = "common";};
       x570 = {};
     };
 }

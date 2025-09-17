@@ -13,11 +13,14 @@
     # A slightly smaller tarball delivered from the NixOS Foundation
     #  Locks and works as it should
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+
     nix-secrets = {
       url = "git+ssh://git@github.com/michael-c-buckley/nix-secrets";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # No Nixpkgs Inputs
+    impermanence.url = "github:nix-community/impermanence";
     flake-compat.url = "github:edolstra/flake-compat";
     flake-parts.url = "github:hercules-ci/flake-parts";
 
@@ -75,9 +78,5 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # No Nixpkgs Inputs
-    impermanence.url = "github:nix-community/impermanence";
-    quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
   };
 }
