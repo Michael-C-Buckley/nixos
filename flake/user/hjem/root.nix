@@ -1,9 +1,8 @@
 # A basic Root user configuration that pulls in select aspects of my configs
 {
-  self,
   config,
   pkgs,
-  system,
+  customPkgs,
   ...
 }: let
   inherit (config.hjem.users) michael;
@@ -17,9 +16,7 @@ in {
     directory = "/root";
 
     # Gets at least NVF minimal
-    packages = [
-      self.packages.${system}."nvf-minimal"
-    ];
+    packages = [customPkgs.nvf-minimal];
 
     rum.programs = {
       fish = {

@@ -14,7 +14,7 @@
     geary # email client
     seahorse # password manager
 
-    # these should be self explanatory
+    # these should be obvious
     gnome-calculator
     gnome-calendar
     gnome-characters
