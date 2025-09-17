@@ -40,5 +40,10 @@ _: {
       key = "<leader>nt";
       action = ":Neotree toggle<CR>";
     }
+    {
+      mode = "n";
+      key = "<leader>tt";
+      action = ":TransparentToggle<CR>";
+    }
   ];
 }
