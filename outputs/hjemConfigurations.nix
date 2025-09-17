@@ -43,5 +43,9 @@ in {
 
     # As name implies
     wsl = _: mkHjemCfg {};
+
+    # A simple root user profile
+    # Requires externally defined Hjem and Hjem-Rum if used not with my configs
+    root = _: {imports = [../flake/user/hjem/root.nix];};
   };
 }

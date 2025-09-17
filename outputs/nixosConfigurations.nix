@@ -28,6 +28,7 @@
         ++ defaultMods
         ++ [
           self.hjemConfigurations.${hjem}
+          self.hjemConfigurations.root
           inputs.nix-secrets.nixosModules.${secrets}
           inputs.impermanence.nixosModules.impermanence
           ../flake/nixos/configurations/${hostname}
