@@ -74,7 +74,7 @@ in {
         + mkCfgLine gnupg.agent.enableSSHsupport "enable-ssh-support"
         + mkCfgLine gnupg.agent.allowLoopbackPinentry "allow-loopback-pinentry";
 
-      ".gnupg/scdaemon" = {
+      ".gnupg/scdaemon.conf" = {
         enable = gnupg.scdaemon.disable-ccid;
         text = ''disable-ccid'';
       };
