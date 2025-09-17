@@ -20,6 +20,7 @@
 
     nerd-fonts.meslo-lg
     nerd-fonts.symbols-only
+    nerd-fonts.lilex
   ];
 in {
   fonts.packages =
