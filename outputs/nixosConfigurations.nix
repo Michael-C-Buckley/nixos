@@ -19,10 +19,13 @@
     modules ? [],
     hjem ? "default",
     secrets ? hostname,
-  }:
+  }: let
+    # Wrapper to shim the output packages so they can be plumbed more easily elsewhere
+    customPkgs = self.packages.${system};
+  in
     nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = {inherit system inputs self;};
+      specialArgs = {inherit self system inputs customLib customPkgs;};
       modules =
         modules
         ++ defaultMods
@@ -37,11 +40,6 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = [
-          (
-            _: prev: {lib = prev.lib // customLib;}
-          )
-        ];
       };
     };
 in {

@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (lib) getExe;
-  inherit (pkgs) fd fzf fishPlugins;
+  inherit (pkgs) fd fzf;
 in {
   hjem.users.michael.rum.programs.fish = {
     enable = true;
@@ -13,9 +13,8 @@ in {
       source ~/.config/shells/environment.sh
     '';
 
-    plugins = {
-      inherit (fishPlugins) fzf-fish forgit;
-    };
+    # These apparently are IFD
+    #plugins = {inherit (pkgs.fishPlugins) fzf-fish forgit;};
 
     functions = {
       # Use FZF to navigate to a folder matching folders or filenames

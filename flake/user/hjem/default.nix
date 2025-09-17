@@ -1,10 +1,9 @@
 # Split into per-host basis
 {
-  self,
   config,
   pkgs,
   lib,
-  system,
+  customPkgs,
   ...
 }: let
   inherit
@@ -15,7 +14,7 @@
 
   inherit (lib) mkDefault;
 
-  myPkgs = import ../packageSets/common.nix {inherit self pkgs system;};
+  myPkgs = import ../packageSets/common.nix {inherit customPkgs pkgs;};
 in {
   imports = [
     ../options.nix
