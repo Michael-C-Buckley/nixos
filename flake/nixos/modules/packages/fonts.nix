@@ -18,7 +18,6 @@
     cascadia-code
     noto-fonts
 
-    nerd-fonts.meslo-lg
     nerd-fonts.symbols-only
     nerd-fonts.lilex
   ];
