@@ -11,6 +11,8 @@
 
       nvf = mkNvf [../flake/packages/nvf/extended.nix];
       nvf-minimal = mkNvf [];
+
+      geometry = pkgs.callPackage ../flake/packages/geometry {};
     };
   };
 }

@@ -21,8 +21,8 @@ in {
       self.packages.${system}."nvf-minimal"
     ];
 
-    rum = {
-      programs.fish = {
+    rum.programs = {
+      fish = {
         enable = true;
         config = ''
           set -U fish_greeting
@@ -31,6 +31,8 @@ in {
         # Mirror the functionality I give to my user
         inherit (michaelFish) aliases functions plugins;
       };
+      # Copy my Zsh exactly
+      inherit (michael.rum.programs) zsh;
     };
   };
 }
