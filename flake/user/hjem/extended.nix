@@ -8,7 +8,7 @@
   inherit (lib) concatMap;
 in {
   imports = [
-    ./config/cursor.nix
+    ./configs/cursor.nix
   ];
 
   users.users.michael = {
