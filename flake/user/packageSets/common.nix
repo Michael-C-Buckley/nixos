@@ -8,7 +8,7 @@ with pkgs;
     # Git/Web
     gitFull
     lazygit
-    delta
+    difftastic
     curl
     wget
     tig

@@ -1,4 +1,3 @@
-# Split into per-host basis
 {
   pkgs,
   lib,
@@ -11,7 +10,7 @@ in {
     ./configs/cursor.nix
   ];
 
-  users.users.michael = {
+  hjem.users.michael = {
     packages = concatMap getPkgs ["extendedGraphical" "minimalGraphical" "linuxDesktop"];
   };
 }
