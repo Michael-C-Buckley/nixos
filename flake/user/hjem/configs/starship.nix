@@ -12,8 +12,8 @@ in {
       enable = false;
       transience.enable = true;
       integrations = {
-        fish.enable = true;
-        zsh.enable = true;
+        fish.enable = false;
+        zsh.enable = false;
       };
 
       settings = {

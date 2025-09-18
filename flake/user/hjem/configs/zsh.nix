@@ -101,10 +101,8 @@
       };
     };
     initConfig = ''
-      source "$HOME/.config/shells/environment.sh"
-      source "$HOME/.config/shells/functions.sh"
-      source "$HOME/.config/shells/posix.sh"
-      source "$HOME/.config/shells/aliases.sh"
+      source "$XDG_CONFIG_HOME/shells/functions.sh"
+      source "$XDG_CONFIG_HOME/shells/posix.sh"
       alias nix="noglob nix"
 
       # -----------------------------
@@ -120,33 +118,9 @@
       setopt extended_glob     # Enable advanced globbing
 
       # Customize history behavior
-      HISTFILE="$HOME/.zsh_history"
+      HISTFILE="$XDG_CACHE_HOME/.zsh_history"
       HISTSIZE=10000
       SAVEHIST=10000
-
-      # -----------------------------
-      # Plugins and Frameworks
-      # -----------------------------
-
-      if [ -f /run/current-system/sw/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-        source /run/current-system/sw/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-      fi
-
-      if [ -f /run/current-system/sw/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-        source /run/current-system/sw/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-      fi
-
-      # -----------------------------
-      # Completion
-      # -----------------------------
-
-      # Load completion system
-      autoload -Uz compinit
-      compinit
-
-      # Fuzzy search for completions
-      zstyle ':completion:*' menu select
-      zstyle ':completion:*:default' list-colors /'/'
 
       # -----------------------------
       # Miscellaneous

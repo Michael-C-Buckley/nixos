@@ -38,6 +38,12 @@ in {
         GIT_EDITOR = "nvim";
         NIXOS_OZONE_WL = 1;
         GTK_USE_PORTAL = 1;
+        NH_FLAKE = "/home/michael/nixos";
+        GPG_TTY = "$(tty)";
+        CLICOLOR = 1;
+        LSCOLORS = "auto";
+        DIFF_COLOR = "auto";
+        IP_COLOR = "always";
       };
 
       gnupg = {
