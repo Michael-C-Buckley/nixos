@@ -28,6 +28,18 @@ in {
       # Push the existing files in to be merged
       files = import ../findFiles.nix {inherit lib;};
 
+      environment.sessionVariables = {
+        EDITOR = "nvim";
+        BROWSER = "schizofox";
+        VISUAL = "nvim";
+        PAGER = "bat";
+        MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+        DIFF = "difft";
+        GIT_EDITOR = "nvim";
+        NIXOS_OZONE_WL = 1;
+        GTK_USE_PORTAL = 1;
+      };
+
       gnupg = {
         enable = true;
         config.extraLines = ''
