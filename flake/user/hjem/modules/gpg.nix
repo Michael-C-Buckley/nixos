@@ -59,7 +59,7 @@ in {
   };
 
   config = mkIf gnupg.enable {
-    fileList = {
+    files = {
       ".gnupg/gpg.conf" = {
         # Currently only has the extra lines
         enable = gnupg.config.extraLines != '''';
@@ -79,7 +79,7 @@ in {
         text = ''disable-ccid'';
       };
     };
-    packageList = [
+    packages = [
       gnupg.package
       gnupg.pinentryPackage
     ];
