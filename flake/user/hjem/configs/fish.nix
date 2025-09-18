@@ -10,7 +10,6 @@ in {
     enable = true;
     config = ''
       set -U fish_greeting
-      source ~/.config/shells/environment.sh
     '';
 
     # These apparently are IFD
