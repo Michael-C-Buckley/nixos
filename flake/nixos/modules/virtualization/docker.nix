@@ -24,7 +24,7 @@ in {
       persistence."/cache".directories = optionals impermanence.enable ["/var/lib/docker"];
 
       # Kata
-      systemPackages = optionals kata.enable [kata.package];
+      systemPackages = [pkgs.lazydocker] ++ optionals kata.enable [kata.package];
       etc = mkIf kata.enable {
         "docker/daemon.json".text = builtins.toJSON {
           runtimes.kata-runtime.path = "${kata.package}/bin/kata-runtime";
