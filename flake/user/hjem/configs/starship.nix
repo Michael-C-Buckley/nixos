@@ -1,18 +1,11 @@
 # This config is extremely verbose and broken up to be tolerable
-{
-  config,
-  lib,
-  ...
-}: let
-  inherit (config.hjem.users.michael.rum.programs) starship;
-  inherit (lib) mkIf;
-in {
+{lib, ...}: {
   hjem.users.michael.rum.programs = {
     starship = {
-      enable = false;
+      enable = true;
       transience.enable = true;
       integrations = {
-        fish.enable = false;
+        fish.enable = true;
         zsh.enable = false;
       };
 
@@ -24,53 +17,30 @@ in {
           "$git_branch"
           "$git_state"
           "$git_status"
-          "$python"
-          "$custom"
-          "$sudo"
           "$cmd_duration"
           "$fill"
+          "$time"
           "$nix_shell"
-          "$guix_shell"
-          "$os"
           "$line_break"
           "$battery"
-          "$status"
+          "$python"
           "$character"
-        ];
-
-        right_format = lib.concatStrings [
-          "$time"
         ];
 
         time = {
           disabled = false;
-          format = "[< $time >]($style) ";
+          format = "[$time]($style) ";
+          style = "cyan";
         };
 
         cmd_duration = {
-          min_time = 100;
+          min_time = 1000;
+          format = "[$duration]($style) ";
+          style = "yellow";
         };
 
-        fill = {
-          symbol = " ";
-        };
-
-        # WIP: not yet working
-        os = {
-          format = "[\\[ \\]]($style)";
-          style = "bold blue";
-          disabled = true;
-          symbols = {
-            Alpine = "";
-            Debian = "";
-            FreeBSD = "";
-            Windows = "";
-            Ubuntu = "";
-            Macos = "󰀵";
-            NixOS = "";
-            Illumos = "";
-          };
-        };
+        directory.style = "cyan";
+        fill.symbol = " ";
 
         username = {
           style_user = "white bold";
@@ -80,36 +50,40 @@ in {
         };
 
         nix_shell = {
-          impure_msg = "[impure](bold yellow)";
-          pure_msg = "[pure](bold white)";
-          unknown_msg = "[unknown](bold red)";
-          symbol = "❄️";
-          format = "[(\($name\)$symbol$state)](bold blue)";
+          impure_msg = "[ ](yellow)";
+          pure_msg = "[ ](bold green)";
+          unknown_msg = "[ ](bold red)";
+          format = "$state";
         };
 
-        directory = {
-          format = "[$path]($style)[ $read_only]($read_only_style) ";
-          read_only = "🔒";
-          truncate_to_repo = true;
-          truncation_length = 0;
-          truncation_symbol = "";
-          repo_root_format = "[ ]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) ";
-          before_repo_root_style = "blue";
-          repo_root_style = "bold blue";
+        git_branch = {
+          # Nix interpolation apparently requires double slash for escape, since one is subtracted
+          format = "[git:\\(](blue)[$branch]($style)[\\)](blue)";
+          style = "bright-red";
+        };
+
+        git_status = {
+          format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)";
+          style = "cyan";
+          conflicted = "​;";
+          untracked = "​";
+          modified = "​";
+          staged = "​";
+          renamed = "​";
+          deleted = "​";
+          stashed = "≡";
+        };
+
+        git_state = {
+          format = "\([$state( $progress_current/$progress_total)]($style)\) ";
+          style = "bright-black";
         };
 
         python = {
-          format = "(via [\${symbol}\${pyenv_prefix}(\${version} )(\\($virtualenv\\) )]($style))";
+          format = "[$virtualenv]($style) ";
+          style = "bright-black";
         };
       };
-    };
-
-    fish = mkIf starship.enable {
-      config = mkIf starship.transience.enable ''
-        function starship_transient_rprompt_func
-          starship module time
-        end
-      '';
     };
   };
 }
