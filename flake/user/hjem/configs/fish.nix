@@ -10,6 +10,7 @@ in {
     enable = true;
     config = ''
       set -U fish_greeting
+      fish_config prompt choose arrow
     '';
 
     # These apparently are IFD
