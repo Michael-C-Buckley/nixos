@@ -6,7 +6,6 @@
       transience.enable = true;
       integrations = {
         fish.enable = true;
-        zsh.enable = false;
       };
 
       settings = {
@@ -18,12 +17,23 @@
           "$cmd_duration"
           "$fill"
           "$nix_shell"
+          "$username"
+          "$hostname"
           "$time"
           "$line_break"
           "$battery"
           "$python"
           "$character"
         ];
+
+        username.format = "[$user]($style)";
+        directory.style = "cyan";
+        fill.symbol = " ";
+
+        hostname = {
+          format = "[@$hostname]($style) ";
+          style = "bold fg:71";
+        };
 
         time = {
           disabled = false;
@@ -36,9 +46,6 @@
           format = "[$duration]($style) ";
           style = "yellow";
         };
-
-        directory.style = "cyan";
-        fill.symbol = " ";
 
         nix_shell = {
           impure_msg = "[ ](yellow)";
