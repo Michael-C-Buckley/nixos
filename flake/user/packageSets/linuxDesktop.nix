@@ -11,8 +11,13 @@ with pkgs; [
   ungoogled-chromium
 
   # File Explorer
-  mate.caja
-  mate.engrampa # Archive manager
+  kdePackages.dolphin
+  kdePackages.dolphin-plugins
+  kdePackages.ark
+  kdePackages.ffmpegthumbs
+  kdePackages.kdegraphics-thumbnailers
+  kdePackages.kompare
+  kdePackages.kdenetwork-filesharing
 
   # Productivity
   kdePackages.kalgebra # Calculator

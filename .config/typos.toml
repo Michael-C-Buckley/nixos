@@ -10,3 +10,5 @@ check-file = false
 [default.extend-words]
 # This is an nvim plugin
 noice = "noice"
+# This is a KDE package
+thumbnailers = "thumbnailers"
