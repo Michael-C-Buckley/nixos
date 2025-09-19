@@ -6,6 +6,5 @@
     # ./nushell.nix
     ./shellAliases.nix
     ./starship.nix
-    ./zsh.nix
   ];
 }
