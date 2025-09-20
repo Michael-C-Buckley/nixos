@@ -28,8 +28,8 @@ in {
         # Mirror the functionality I give to my user
         inherit (michaelFish) aliases functions plugins;
       };
-      # Copy my Zsh exactly
-      inherit (michael.rum.programs) zsh;
+      # Copy my starship exactly for now
+      inherit (michael.rum.programs) starship;
     };
   };
 }

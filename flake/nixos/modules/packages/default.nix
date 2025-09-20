@@ -7,7 +7,7 @@
     microfetch
     killall
 
-    # Shells (Zsh defined on its own)
+    # Shells
     nushell
     tmux
     starship

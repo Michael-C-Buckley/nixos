@@ -8,7 +8,6 @@
     wget
 
     # Shells/Terminals
-    zsh
     fish
     nushell
     xonsh
