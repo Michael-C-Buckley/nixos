@@ -1,4 +1,10 @@
-# This config is extremely verbose and broken up to be tolerable
+# Prompt is a fusion of a few styles:
+#  - Robby Russell: directory & git branch
+#  - Pure: git status & python virtualenv
+#  - Spaceship: starship's 2 line default
+#  - Custom: nix shell, time, etc
+# Overall I wanted to created something to show useful info but not as much or loud
+# as the default Starship prompt
 {lib, ...}: {
   hjem.users.michael.rum.programs = {
     starship = {
@@ -6,9 +12,11 @@
       transience.enable = true;
       integrations = {
         fish.enable = true;
+        #nushell.enable = true; # Does not actually work
       };
 
       settings = {
+        # Renders down to a single long string of all the components
         format = lib.concatStrings [
           "$directory"
           "$git_branch"
@@ -43,7 +51,6 @@
         };
 
         cmd_duration = {
-          min_time = 1000;
           format = "[$duration]($style) ";
           style = "yellow";
         };
@@ -57,8 +64,8 @@
 
         git_branch = {
           # Nix interpolation apparently requires double slash for escape, since one is subtracted
-          format = "[git:\\(](blue)[$branch]($style)[\\)](blue)";
-          style = "bright-red";
+          format = "[git:\\((blue)[$branch]($style)[\\)](blue)";
+          style = "fg:1";
         };
 
         git_status = {
