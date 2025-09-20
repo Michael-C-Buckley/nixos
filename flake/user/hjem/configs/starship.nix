@@ -46,7 +46,7 @@
 
         time = {
           disabled = false;
-          format = "[$time]($style) ";
+          format = " [$time]($style) ";
           style = "cyan";
         };
 
@@ -64,7 +64,7 @@
 
         git_branch = {
           # Nix interpolation apparently requires double slash for escape, since one is subtracted
-          format = "[git:\\((blue)[$branch]($style)[\\)](blue)";
+          format = "[git:\\(](blue)[$branch]($style)[\\)](blue)";
           style = "fg:1";
         };
 
