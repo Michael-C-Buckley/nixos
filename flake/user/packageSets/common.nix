@@ -21,7 +21,6 @@ with pkgs;
     helix
 
     # Shells/Terminals
-    zsh
     fish
     nushell
     xonsh

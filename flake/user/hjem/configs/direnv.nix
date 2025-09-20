@@ -6,7 +6,6 @@ in {
     integrations = {
       fish.enable = programs.fish.enable;
       nushell.enable = programs.nushelle.enable;
-      zsh.enable = programs.zsh.enable;
     };
     settings = {
       log.level = "error";

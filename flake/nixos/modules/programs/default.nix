@@ -9,7 +9,6 @@ in {
     fish.enable = true;
     vim.enable = true;
     neovim.defaultEditor = true;
-    zsh.enable = true;
 
     nh = {
       enable = true;
