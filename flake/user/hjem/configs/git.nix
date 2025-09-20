@@ -10,7 +10,10 @@
         email = "michaelcbuckley@proton.me";
         signingKey = lib.mkDefault "483864BF916E149C4F57E2371A0163427F977C33!";
       };
-      commit.program = "gpg";
+      commit = {
+        program = "gpg";
+        gpgsign = true;
+      };
       core.editor = "nvim";
       color = {
         ui = true;
