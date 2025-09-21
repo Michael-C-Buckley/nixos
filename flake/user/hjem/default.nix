@@ -48,6 +48,7 @@ in {
 
       gnupg = {
         enable = true;
+        pinentryPackage = pkgs.pinentry-gtk2;
         config.extraLines = ''
           auto-key-locate local
           auto-key-retrieve
