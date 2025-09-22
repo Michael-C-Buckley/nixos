@@ -13,6 +13,7 @@ with pkgs;
     wget
     tig
     gh
+    jujutsu
 
     # Security
     sops
