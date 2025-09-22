@@ -337,11 +337,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1758139245,
-        "narHash": "sha256-XChv0RcqUH/8ophf0EccpZvwi/9crGvCh73u8IbQcCg=",
+        "lastModified": 1758493005,
+        "narHash": "sha256-+RYXf7zoiZtMvMFduFbSPmrJlI/MnKp/RHjb029Eb+c=",
         "ref": "refs/heads/master",
-        "rev": "384db2df78e45aa8c991e5eedd79a181a803a10a",
-        "revCount": 345,
+        "rev": "13c31fb4e67a36ce834458868998e20ac0e51993",
+        "revCount": 346,
         "type": "git",
         "url": "ssh://git@github.com/michael-c-buckley/nix-secrets"
       },
@@ -470,11 +470,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1758483718,
-        "narHash": "sha256-yoVUQv9mB72DxGGOB6nQDo/vuRXwuCmvHnJnkLfZq70=",
+        "lastModified": 1758502186,
+        "narHash": "sha256-vTrGe1FrkfgLSi4lGPsno+tQCAK8HbOZZaHp6A+rxcE=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "2b8338938a4c204284d5d02a1a8074052ab47bf8",
+        "rev": "a7e3deecd3bc0e4531f2b3b7ea5e63aca831f0f5",
         "type": "github"
       },
       "original": {
