@@ -3,7 +3,7 @@
     enableTreesitter = true;
 
     bash.enable = true;
-    yaml.enable = true;
+    yaml.enable = false;
 
     nix = {
       enable = true;
