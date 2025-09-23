@@ -2,6 +2,15 @@
   inherit (pkgs) vimPlugins;
 in {
   vim = {
+    extraPlugins = {
+      ayu = {
+        package = vimPlugins.neovim-ayu;
+        setup = ''
+          require('ayu').setup{mirage = true}
+          vim.cmd.colorscheme("ayu")
+        '';
+      };
+    };
     lazy.plugins = {
       everforest.package = vimPlugins.everforest;
       "lackluster.nvim".package = vimPlugins.lackluster-nvim;
