@@ -13,12 +13,8 @@ run = "taplo lint {staged_files}"
 [[pre-commit.jobs]]
 interactive = true
 name = "treefmt"
-run = "treefmt --config-file /home/michael/nixos/.config/treefmt.toml"
+run = "treefmt --config-file /home/michael/nixos/.config/treefmt.toml {staged_files}"
 stage_fixed = true
-
-[[pre-commit.jobs]]
-name = "editorconfig-checker"
-run = "editorconfig-checker -exclude LICENSE"
 
 [[pre-commit.jobs]]
 name = "shellcheck"
@@ -27,6 +23,7 @@ run = "shellcheck {staged_files}"
 
 [[pre-commit.jobs]]
 name = "statix"
+glob = "*.nix"
 run = "statix check --format errfmt"
 
 [[pre-commit.jobs]]
