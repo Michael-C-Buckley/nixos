@@ -4,6 +4,7 @@ in {
   vim = {
     lazy.plugins = {
       everforest.package = vimPlugins.everforest;
+      "lackluster.nvim".package = vimPlugins.lackluster-nvim;
       "kanagawa.nvim".package = vimPlugins.kanagawa-nvim;
       "rose-pine".package = vimPlugins.rose-pine;
       "neovim-ayu".package = vimPlugins.neovim-ayu;
