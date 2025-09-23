@@ -20,11 +20,7 @@
     navigation.harpoon.enable = true;
     filetree.neo-tree.enable = true;
 
-    theme = {
-      enable = true;
-      name = "tokyonight";
-      style = "night";
-    };
+    theme.enable = false;
 
     ui = {
       borders.enable = true;
