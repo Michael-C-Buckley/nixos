@@ -10,7 +10,6 @@
         alejandra
         biome
         deadnix
-        editorconfig-checker
         git
         keep-sorted
         lefthook

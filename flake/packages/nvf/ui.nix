@@ -1,6 +1,9 @@
 {
   vim = {
-    options.tabstop = 4;
+    options = {
+      tabstop = 4;
+      shiftwidth = 4;
+    };
 
     dashboard.alpha = {
       enable = true;
