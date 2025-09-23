@@ -1,15 +1,55 @@
-{lib, ...}: let
-  inherit (lib) mkDefault;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  inherit (lib) concatStringsSep mkDefault;
+  inherit (config.users.users) michael shawn;
+  michaelKeys = michael.openssh.authorizedKeys.keys;
+  shawnKeys = shawn.openssh.authorizedKeys.keys;
 in {
   imports = [
     ./gpg.nix
     ./tpm2.nix
   ];
 
+  environment = {
+    etc = {
+      "ssh/sudo_authorized_keys" = {
+        mode = "0644";
+        text = concatStringsSep "\n" (michaelKeys ++ shawnKeys);
+      };
+      "pkcs11/pkcs11.conf".text = ''
+        module: ${pkgs.opensc}/lib/opensc-pkcs11.so
+        critical: yes
+        log-calls: yes
+      '';
+    };
+    systemPackages = with pkgs; [
+      pamtester
+      pam_ssh_agent_auth
+    ];
+  };
+
   security = {
+    # WIP: not yet working
+    # This is a test to get it working for doas and switch to it for my security model
+    pam.services.doas = {
+      sshAgentAuth = true;
+      text = ''
+        auth required ${pkgs.pam_ssh_agent_auth}/libexec/pam_ssh_agent_auth.so file=/etc/ssh/sudo_authorized_keys debug
+        auth include doas
+      '';
+      setEnvironment = true;
+    };
+    doas = {
+      enable = false;
+      wheelNeedsPassword = false;
+    };
     sudo = {
       extraConfig = "Defaults lecture=never";
-      wheelNeedsPassword = mkDefault false;
+      wheelNeedsPassword = false;
     };
   };
 
