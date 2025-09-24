@@ -46,6 +46,7 @@
     # Graphical
     cage
     ghostty
+    qutebrowser
     sakura
 
     # Performance
