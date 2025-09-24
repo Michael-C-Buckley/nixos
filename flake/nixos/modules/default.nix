@@ -4,7 +4,6 @@
     ./graphical
     ./hardware
     ./network
-    ./packageSets
     ./packages
     ./presets
     ./programs
