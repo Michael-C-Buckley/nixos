@@ -6,32 +6,47 @@
     fastfetch
     microfetch
     killall
+    npins
 
     # Shells
-    nushell
-    tmux
-    starship
+    # keep-sorted start
     comma
+    nushell
+    starship
+    tmux
+    xonsh
+    zellij
+    # keep-sorted end
 
     # Editor
+    helix
     vim
 
     # Development/Management
     python3
-    git
+    lazygit
+    difftastic
+    gitFull
     tig
 
     # File/Navigation
-    lsd
+    # keep-sorted start
+    bat
+    du-dust
+    duf
     eza
     fd
-    du-dust
     fzf
-    zoxide
-    bat
     ripgrep
-    wget
+    yazi
     zip
+    zoxide
+    # keep-sorted end
+
+    # Graphical
+    cage
+    ghostty
+    sakura
 
     # Performance
     atop
@@ -44,21 +59,36 @@
     smartmontools
     lm_sensors
 
+    # Machine Utilities
+    gptfdisk
+    parted
+    lm_sensors
+    usbutils
+    pciutils
+
+    # Web
+    curl
+    wget
+
     # Network
-    nmap
-    iperf
-    tcpdump
-    inetutils
-    frr
-    wireguard-tools
+    # keep-sorted start
+    bridge-utils
+    cdpr
     dig
     ethtool
-    vlan
-    bridge-utils
+    frr
+    inetutils
+    iperf3
     lldpd
-    cdpr
     ndisc6
     net-tools
+    nmap
+    tcpdump
+    unixtools.arp
+    unixtools.netstat
+    vlan
+    wireguard-tools
+    # keep-sorted end
   ];
 in {
   imports = [
