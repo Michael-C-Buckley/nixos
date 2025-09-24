@@ -6,6 +6,10 @@
 }: let
   inherit (lib) mapAttrs mapAttrsToList;
 in {
+  environment.systemPackages = with pkgs; [
+    npins
+  ];
+
   nix = {
     package = pkgs.nixVersions.latest;
     # Disable channels and add the inputs to the registry
