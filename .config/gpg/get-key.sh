@@ -29,17 +29,13 @@ for i in "${!KEYS[@]}"; do
         if echo "test" | gpg --digest-algo SHA256 --default-key "$key" --clearsign >/dev/null 2>&1; then
             echo " Using $key_type - SHA256 ($key)"
             git config user.signingkey "$key"!
-            git config commit.gpgsign true
-            # Swap for the wrapper
-            git config gpg.program /home/michael/nixos/.config/gpg/gpg-sha256-wrapper
+            git config gpg.program gpg256 
             exit 0
         fi
     else
         if echo "test" | gpg --default-key "$key" --clearsign >/dev/null 2>&1; then
             echo " Using $key_type - SHA512 ($key)"
             git config user.signingkey "$key"!
-            git config commit.gpgsign true
-            git config gpg.program gpg  # Use regular gpg
             exit 0
         fi
     fi
