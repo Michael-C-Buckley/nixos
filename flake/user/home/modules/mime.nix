@@ -2,7 +2,6 @@
   defaultBrowsers = [
     "firefox.desktop"
     "schizofox.desktop"
-    "chromium-browser.desktop"
   ];
 
   browserMimes = [
@@ -25,7 +24,7 @@
 
   removed = lib.listToAttrs (map (mimeType: {
       name = mimeType;
-      value = ["chromium-browser.desktop" "abiword.desktop"];
+      value = ["abiword.desktop"];
     })
     browserMimes);
 in {
@@ -36,7 +35,6 @@ in {
       # Browsers
       "x-scheme-handler/http" = ["firefox.desktop"];
       "x-scheme-handler/https" = ["firefox.desktop"];
-      "x-scheme-handler/chrome" = ["chromium.desktop"];
       "text/html" = ["firefox.desktop"];
       "application/x-extension-htm" = ["firefox.desktop"];
       "application/x-extension-html" = ["firefox.desktop"];
@@ -106,8 +104,6 @@ in {
       inherit removed;
       added =
         {
-          "x-scheme-handler/chrome" = ["chromium.desktop"];
-
           "x-scheme-handler/tg" = [
             "io.github.kotatogram.desktop"
             "io.github.kukuruzka165.materialgram.desktop"

@@ -8,7 +8,7 @@ with pkgs; [
   gparted
 
   # Browser
-  ungoogled-chromium
+  qutebrowser
 
   # File Explorer
   kdePackages.dolphin
