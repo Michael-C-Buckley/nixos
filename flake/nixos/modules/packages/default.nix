@@ -1,96 +1,100 @@
 # I split packages into groups based on usage then enable as needed
 # They are also generally only added to the paths of users who needs them as well
 {pkgs, ...}: let
-  commonPkgs = with pkgs; [
-    # System
-    fastfetch
-    microfetch
-    killall
-    npins
+  shellApps = import ./shellApps.nix {inherit pkgs;};
 
-    # Shells
-    # keep-sorted start
-    comma
-    nushell
-    starship
-    tmux
-    xonsh
-    zellij
-    # keep-sorted end
+  commonPkgs = with pkgs;
+    [
+      # System
+      fastfetch
+      microfetch
+      killall
+      npins
 
-    # Editor
-    helix
-    vim
+      # Shells
+      # keep-sorted start
+      comma
+      nushell
+      starship
+      tmux
+      xonsh
+      zellij
+      # keep-sorted end
 
-    # Development/Management
-    python3
-    lazygit
-    difftastic
-    gitFull
-    tig
+      # Editor
+      helix
+      vim
 
-    # File/Navigation
-    # keep-sorted start
-    bat
-    du-dust
-    duf
-    eza
-    fd
-    fzf
-    ripgrep
-    yazi
-    zip
-    zoxide
-    # keep-sorted end
+      # Development/Management
+      python3
+      lazygit
+      difftastic
+      gitFull
+      tig
 
-    # Graphical
-    cage
-    ghostty
-    qutebrowser
-    sakura
+      # File/Navigation
+      # keep-sorted start
+      bat
+      du-dust
+      duf
+      eza
+      fd
+      fzf
+      ripgrep
+      yazi
+      zip
+      zoxide
+      # keep-sorted end
 
-    # Performance
-    atop
-    btop
-    htop
+      # Graphical
+      cage
+      ghostty
+      qutebrowser
+      sakura
 
-    # Hardware
-    usbutils
-    pciutils
-    smartmontools
-    lm_sensors
+      # Performance
+      atop
+      btop
+      htop
 
-    # Machine Utilities
-    gptfdisk
-    parted
-    lm_sensors
-    usbutils
-    pciutils
+      # Hardware
+      usbutils
+      pciutils
+      smartmontools
+      lm_sensors
 
-    # Web
-    curl
-    wget
+      # Machine Utilities
+      gptfdisk
+      parted
+      lm_sensors
+      usbutils
+      pciutils
 
-    # Network
-    # keep-sorted start
-    bridge-utils
-    cdpr
-    dig
-    ethtool
-    frr
-    inetutils
-    iperf3
-    lldpd
-    ndisc6
-    net-tools
-    nmap
-    tcpdump
-    unixtools.arp
-    unixtools.netstat
-    vlan
-    wireguard-tools
-    # keep-sorted end
-  ];
+      # Web
+      curl
+      wget
+
+      # Network
+      # keep-sorted start
+      bridge-utils
+      cdpr
+      dig
+      ethtool
+      frr
+      inetutils
+      iperf3
+      lldpd
+      ndisc6
+      net-tools
+      nmap
+      tcpdump
+      unixtools.arp
+      unixtools.netstat
+      vlan
+      wireguard-tools
+      # keep-sorted end
+    ]
+    ++ shellApps;
 in {
   imports = [
     ./fonts.nix
