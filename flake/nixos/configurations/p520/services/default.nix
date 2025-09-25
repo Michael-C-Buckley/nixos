@@ -1,6 +1,7 @@
 {
   imports = [
     ./harmonia.nix
+    ./nfs.nix
     ./postgres.nix
   ];
 
