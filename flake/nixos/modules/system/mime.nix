@@ -25,7 +25,6 @@ in {
     addedAssociations = createBrowserList [
       "firefox.desktop"
       "schizofox.desktop"
-      "chromium-browser.desktop"
     ];
   };
 }
