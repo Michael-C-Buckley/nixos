@@ -18,9 +18,6 @@ with pkgs;
     # Security
     sops
 
-    # Editors
-    helix
-
     # Shells/Terminals
     fish
     nushell

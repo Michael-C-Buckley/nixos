@@ -7,7 +7,6 @@ with pkgs; [
   emacs
   meld
   vscodium-fhs
-  helix
   flow-control
 
   # Terminals
