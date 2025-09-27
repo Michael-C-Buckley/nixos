@@ -1,6 +1,6 @@
 # ADD enable options and this modules
 {
-  flake.modules.nixosModules.storage.nfs = {pkgs, ...}: {
+  flake.modules.nixos.storage.nfs = {pkgs, ...}: {
     boot = {
       supportedFilesystems = ["nfs"];
     };

@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.system.mime = {lib, ...}: let
+  flake.modules.nixos.system.mime = {lib, ...}: let
     browserMimes = [
       "x-scheme-handler/http"
       "x-scheme-handler/https"

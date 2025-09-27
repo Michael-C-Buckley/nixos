@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.display-managers.default = {
+  flake.modules.nixos.display-managers.default = {
     config,
     lib,
     ...

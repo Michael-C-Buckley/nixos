@@ -1,7 +1,7 @@
 # Currently completely broken on the FRR side
 # https://github.com/FRRouting/frr/issues/18379
 {
-  flake.modules.nixosModules.network.vrrp = {
+  flake.modules.nixos.network.vrrp = {
     config,
     lib,
     ...

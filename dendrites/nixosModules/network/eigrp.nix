@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.network.eigrp = {
+  flake.modules.nixos.network.eigrp = {
     config,
     lib,
     ...

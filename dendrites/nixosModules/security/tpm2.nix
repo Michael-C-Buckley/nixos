@@ -1,6 +1,6 @@
 # WIP MODULE
 {
-  flake.modules.nixosModules.security.tpm2 = {
+  flake.modules.nixos.security.tpm2 = {
     config,
     lib,
     pkgs,

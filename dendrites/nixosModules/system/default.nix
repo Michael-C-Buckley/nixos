@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.system.default = {lib, ...}: let
+  flake.modules.nixos.system.default = {lib, ...}: let
     inherit (lib) mkEnableOption mkOption;
     inherit (lib.types) enum;
   in {

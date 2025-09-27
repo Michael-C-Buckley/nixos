@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.hardware.bluetooth = {config, ...}: {
+  flake.modules.nixos.hardware.bluetooth = {config, ...}: {
     # Bluetooth is enabled if Wifi is enabled
     hardware.bluetooth = {
       enable = config.features.wifi;

@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.virtualisation.containerlab = {
+  flake.modules.nixos.virtualisation.containerlab = {
     config,
     lib,
     pkgs,

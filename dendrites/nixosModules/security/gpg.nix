@@ -2,7 +2,7 @@
 #  Hardware devices are enabled on anything that isn't a cloud node
 #  My primary use are my yubikeys but I also have TPM-sealed GPG keys
 {
-  flake.modules.nixosModules.security.gpg = {
+  flake.modules.nixos.security.gpg = {
     config,
     lib,
     pkgs,

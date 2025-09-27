@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.storage.gluster = {
+  flake.modules.nixos.storage.gluster = {
     config,
     lib,
     ...

@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.security.default = {
+  flake.modules.nixos.security.default = {
     config,
     lib,
     pkgs,

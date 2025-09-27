@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.presets.laptop = {
+  flake.modules.nixos.presets.laptop = {
     config,
     lib,
     pkgs,

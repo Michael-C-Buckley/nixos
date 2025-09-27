@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.services.hydra = {
+  flake.modules.nixos.services.hydra = {
     config,
     lib,
     pkgs,

@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.presets.wifi = {
+  flake.modules.nixos.presets.wifi = {
     config,
     pkgs,
     lib,

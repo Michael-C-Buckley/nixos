@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.presets.desktop = {
+  flake.modules.nixos.presets.desktop = {
     config,
     lib,
     pkgs,

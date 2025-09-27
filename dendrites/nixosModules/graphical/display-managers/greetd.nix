@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.desktop-environments.greetd = {
+  flake.modules.nixos.desktop-environments.greetd = {
     config,
     lib,
     pkgs,

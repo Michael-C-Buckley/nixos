@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.desktop-environments.cosmic = {
+  flake.modules.nixos.desktop-environments.cosmic = {
     config,
     lib,
     pkgs,

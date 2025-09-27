@@ -20,6 +20,7 @@
     };
 
     # No Nixpkgs Inputs
+    import-tree.url = "github:vic/import-tree";
     impermanence.url = "github:nix-community/impermanence";
     flake-compat.url = "github:edolstra/flake-compat";
     flake-parts.url = "github:hercules-ci/flake-parts";

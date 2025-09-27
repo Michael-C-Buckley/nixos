@@ -4,7 +4,7 @@
 # - Persist: persisted and ZFS snapshotted
 # - Cache: persisted but no snapshots
 {
-  flake.modules.nixosModules.storage.impermanence = {
+  flake.modules.nixos.storage.impermanence = {
     config,
     lib,
     ...

@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.network.unbound = {
+  flake.modules.nixos.network.unbound = {
     config,
     lib,
     ...

@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.programs.dconf = {
+  flake.modules.nixos.programs.dconf = {
     config,
     pkgs,
     lib,

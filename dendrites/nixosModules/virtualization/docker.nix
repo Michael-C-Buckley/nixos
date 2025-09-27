@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.virtualisation.docker = {
+  flake.modules.nixos.virtualisation.docker = {
     config,
     pkgs,
     lib,

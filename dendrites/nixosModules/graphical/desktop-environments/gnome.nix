@@ -1,6 +1,6 @@
 # Legacy, not currently used
 {
-  flake.modules.nixosModules.desktop-environments.gnome = {pkgs, ...}: {
+  flake.modules.nixos.desktop-environments.gnome = {pkgs, ...}: {
     # Removing bloatware from Gnome
     environment.gnome.excludePackages = with pkgs; [
       baobab # disk usage analyzer

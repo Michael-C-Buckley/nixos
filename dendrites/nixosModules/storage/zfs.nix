@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.storage.zfs = {
+  flake.modules.nixos.storage.zfs = {
     config,
     pkgs,
     lib,

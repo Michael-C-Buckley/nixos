@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.programs.default = {lib, ...}: let
+  flake.modules.nixos.programs.default = {lib, ...}: let
     inherit (lib) mkDefault;
   in {
     imports = [

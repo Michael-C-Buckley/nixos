@@ -1,6 +1,6 @@
 # Intel config
 {
-  flake.modules.nixosModules.hardware.intelGraphics = {
+  flake.modules.nixos.hardware.intelGraphics = {
     config,
     lib,
     pkgs,

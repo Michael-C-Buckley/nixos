@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.virtualisation.gns3 = {
+  flake.modules.nixos.virtualisation.gns3 = {
     config,
     lib,
     pkgs,

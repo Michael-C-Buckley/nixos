@@ -3,7 +3,7 @@
 #  HOWEVER, the changes are impermanent and next activation restores the files
 #  I created this to use with /etc/hosts with ContainerLab by Nokia
 {
-  flake.modules.nixosModules.system.relink = {
+  flake.modules.nixos.system.relink = {
     systemd.services."relink-nix" = {
       wantedBy = ["multi-user.target"];
       after = ["local-fs.target" "sysinit-reactivation.target"];
