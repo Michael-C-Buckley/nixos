@@ -6,7 +6,6 @@ with pkgs; [
   # Editors
   emacs
   meld
-  vscodium-fhs
   flow-control
 
   # Terminals
