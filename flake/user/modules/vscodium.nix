@@ -10,11 +10,14 @@
       streetsidesoftware.code-spell-checker
       formulahendry.auto-rename-tag # Matches XML tags while editing
       oderwat.indent-rainbow
+      mkhl.direnv
+      asvetliakov.vscode-neovim
 
       # DevOps/etc
       redhat.vscode-yaml
       redhat.ansible
       ms-kubernetes-tools.vscode-kubernetes-tools
+      signageos.signageos-vscode-sops
 
       # Themes
       teabyii.ayu
@@ -27,8 +30,9 @@
 
       # Languages
       ms-python.python
-      ms-python.vscode-pylance
       ms-python.debugpy
+      ms-pyright.pyright
+      detachhead.basedpyright
       golang.go
       bbenoist.nix
       rust-lang.rust-analyzer
@@ -56,8 +60,10 @@
   };
 
   wrappedInputs = with pkgs; [
-    python313Packages.jedi-language-server
-    python313Packages.pylance
+    python313
+    nil
+    basedpyright
+    neovim
   ];
 in {
   # WIP: Impermanence, since I don't have user impermanence at the moment
