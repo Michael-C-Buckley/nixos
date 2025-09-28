@@ -1,0 +1,149 @@
+{
+  "pins": {
+    "everforest-vscode": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "sainnhe",
+        "repo": "everforest-vscode"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v0.3.0",
+      "revision": "c4bfebe4571421d76781d5fc9881eea795821a88",
+      "url": "https://api.github.com/repos/sainnhe/everforest-vscode/tarball/v0.3.0",
+      "hash": "08sans4n82k84hdh6cqbzv5psg5g2hvyp1qn1fysiwsd2v9acnrn"
+    },
+    "kanagawa-vscode-theme": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "metapho-re",
+        "repo": "kanagawa-vscode-theme"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "0e86b4edeccf415ff941d1ae0a84da123bd929e6",
+      "url": "https://github.com/metapho-re/kanagawa-vscode-theme/archive/0e86b4edeccf415ff941d1ae0a84da123bd929e6.tar.gz",
+      "hash": "1cdyxj60ir53n97f4c99swa0jcc2gpnq2fz2xwng46qkpny0mlwg"
+    },
+    "lsp-routeros-ts": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "tikoci",
+        "repo": "lsp-routeros-ts"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v0.5.4",
+      "revision": "ebbc84b6f37987a7c2c232ac2b1a945e026ebab7",
+      "url": "https://api.github.com/repos/tikoci/lsp-routeros-ts/tarball/v0.5.4",
+      "hash": "05sampcb0dx3wyfdwqz7chd09h62ygwqj36xghmmb5glkn0w8akh"
+    },
+    "nixpkgs": {
+      "type": "Channel",
+      "name": "nixpkgs-unstable",
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.11pre867792.536143732685/nixexprs.tar.xz",
+      "hash": "17bf9hk8f4ccl9zqsj8srsmsq94hrrbg6bcbv2fpjlb5zmrah260"
+    },
+    "open-remote-ssh": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "jeanp413",
+        "repo": "open-remote-ssh"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v0.0.49",
+      "revision": "496c1dc1897fe3593d67cf00cf7e4f753104c7ae",
+      "url": "https://api.github.com/repos/jeanp413/open-remote-ssh/tarball/v0.0.49",
+      "hash": "116ly0ab8papplwyalz4d3cpdnya3rghsfnh09plp9g70ybwzjng"
+    },
+    "vs-code": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Serendipity-Theme",
+        "repo": "vs-code"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "e8522b00e99095d92197c9242b2f87cfc26e5415",
+      "url": "https://github.com/Serendipity-Theme/vs-code/archive/e8522b00e99095d92197c9242b2f87cfc26e5415.tar.gz",
+      "hash": "000s99vgaqkjm1prmvdhw8cvk9pb8xqks3c1casixr5dggsnp5rz"
+    },
+    "vscode-cisco-config-highlight": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Y-Ysss",
+        "repo": "vscode-cisco-config-highlight"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v0.5.0",
+      "revision": "95b57b6d9171076dccedf64daa5da837e9fddc29",
+      "url": "https://api.github.com/repos/Y-Ysss/vscode-cisco-config-highlight/tarball/v0.5.0",
+      "hash": "06ywrg17zj7bbrgj0r98w93vb3jm34sdb6anwvvz6zjk5mci7v4q"
+    },
+    "vscode-containerlab": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "srl-labs",
+        "repo": "vscode-containerlab"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v0.18.0",
+      "revision": "9f765ea46fc034269cfb3c4dccccb1127816a281",
+      "url": "https://api.github.com/repos/srl-labs/vscode-containerlab/tarball/v0.18.0",
+      "hash": "19k9p546h4jj7bw1rix3kbvlgqsxf9qh27gq6apsklyj5i2wr138"
+    },
+    "vscode-theme": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "moegi-design",
+        "repo": "vscode-theme"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v0.7.1",
+      "revision": "f3a48779e94ea32fc7030ded1a4f1fdf3b627390",
+      "url": "https://api.github.com/repos/moegi-design/vscode-theme/tarball/v0.7.1",
+      "hash": "1n9hi9id9knpsyzb2dki51wjixfz4f0zjfc6x6n2a5bhjy7n7lp1"
+    },
+    "vscode-theme-maple": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "subframe7536",
+        "repo": "vscode-theme-maple"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v0.7.16",
+      "revision": "79a85f5bb8fea166327d48502f59450ae85c113b",
+      "url": "https://api.github.com/repos/subframe7536/vscode-theme-maple/tarball/v0.7.16",
+      "hash": "0gl7v3mslgzvcnkwjy90iicicsw5kng7ckd8rxwd52y513zbspiw"
+    }
+  },
+  "version": 5
+}
