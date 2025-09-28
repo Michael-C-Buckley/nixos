@@ -10,8 +10,11 @@
 
   wrappedInputs = with pkgs; [
     python313
-    nil
     basedpyright
+    nil
+    nixd
+    go
+    gopls
     pyrefly
     sops
     (import ./nvf.nix {inherit pkgs inputs;})
