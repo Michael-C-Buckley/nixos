@@ -63,7 +63,9 @@
     python313
     nil
     basedpyright
-    neovim
+    pyrefly
+    sops
+    (import ./nvf.nix {inherit pkgs inputs;})
   ];
 in {
   # WIP: Impermanence, since I don't have user impermanence at the moment
