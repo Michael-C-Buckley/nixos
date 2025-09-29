@@ -1,4 +1,4 @@
-_: let
+let
   mkZfs = path: {
     device = "zroot/${path}";
     fsType = "zfs";
@@ -10,6 +10,10 @@ in {
     impermanence.enable = true;
     zfs.enable = true;
   };
+
+  environment.persistence."/cache".directories = [
+    "/var/lib/ipex"
+  ];
 
   fileSystems = {
     "/" = {
