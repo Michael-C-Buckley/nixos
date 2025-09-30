@@ -23,6 +23,7 @@
     impermanence.url = "github:nix-community/impermanence";
     flake-compat.url = "github:edolstra/flake-compat";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
 
     home-manager = {
       url = "github:nix-community/home-manager";

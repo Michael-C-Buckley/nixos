@@ -533,6 +533,21 @@
         "type": "github"
       }
     },
+    "quadlet-nix": {
+      "locked": {
+        "lastModified": 1758631655,
+        "narHash": "sha256-EGeZ963L7xsNAY7snvP1JHQe7LWLVCM6f49+PzWjhEE=",
+        "owner": "SEIAROTg",
+        "repo": "quadlet-nix",
+        "rev": "2ebe01b175e2e1e6de3f172d23f0c3b88713eec9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "SEIAROTg",
+        "repo": "quadlet-nix",
+        "type": "github"
+      }
+    },
     "quickshell": {
       "inputs": {
         "nixpkgs": [
@@ -568,6 +583,7 @@
         "nixpkgs": "nixpkgs",
         "noctalia": "noctalia",
         "nvf": "nvf",
+        "quadlet-nix": "quadlet-nix",
         "schizofox": "schizofox",
         "sops-nix": "sops-nix"
       }

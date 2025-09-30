@@ -1,5 +1,6 @@
 {lib, ...}: {
   imports = [
+    ./containers
     ./hardware
     ./networking
     ./hyprland.nix
