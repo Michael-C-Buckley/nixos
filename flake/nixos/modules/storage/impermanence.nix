@@ -30,6 +30,9 @@ in
     environment.persistence."/cache" = {
       hideMounts = true;
       directories = [
+        # A generic bind for caching
+        "/var/lib/cache"
+
         "/var/lib/nixos-containers"
         "/var/lib/machines"
         "/var/lib/containerd"
@@ -48,6 +51,9 @@ in
         "/etc/NetworkManager"
         "/etc/nix"
         "/etc/wireguard"
+
+        # A generic bind for persisting
+        "/var/lib/persist"
 
         "/var/log"
         "/var/lib/bluetooth"
