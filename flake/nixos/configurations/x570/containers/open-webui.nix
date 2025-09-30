@@ -6,7 +6,7 @@
       image = "ghcr.io/open-webui/open-webui:main";
       publishPorts = ["4400:8080"];
       addHosts = ["host.containers.internal:host-gateway"];
-      volumes = ["/var/lib/open-webui:/open-webui"];
+      volumes = ["/var/lib/open-webui:/app/backend/data"];
       environments = {
         OLLAMA_BASE_URL = "http://host.containers.internal:11434";
       };
