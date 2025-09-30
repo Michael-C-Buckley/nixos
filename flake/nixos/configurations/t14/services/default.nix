@@ -1,6 +1,5 @@
 {
   imports = [
-    ./hydra.nix
     ./ollama.nix
   ];
 }
