@@ -9,6 +9,9 @@ with pkgs.vscode-extensions;
     mkhl.direnv
     asvetliakov.vscode-neovim
 
+    # Tooling
+    continue.continue
+
     # DevOps/etc
     redhat.vscode-yaml
     redhat.ansible

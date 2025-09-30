@@ -6,6 +6,7 @@
 
   environment.persistence."/cache".directories = [
     "/var/lib/ipex"
+    "/var/lib/containers"
     "/var/lib/open-webui"
     "/var/tmp"
   ];
