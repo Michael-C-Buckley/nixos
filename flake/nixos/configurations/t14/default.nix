@@ -3,6 +3,7 @@ _: {
   imports = [
     ./hardware
     ./networking
+    ./services
     ./systemd
     ./hyprland.nix
   ];
