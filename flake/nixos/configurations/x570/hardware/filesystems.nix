@@ -11,10 +11,6 @@ in {
     zfs.enable = true;
   };
 
-  environment.persistence."/cache".directories = [
-    "/var/lib/ipex"
-  ];
-
   fileSystems = {
     "/" = {
       device = "tmpfs";

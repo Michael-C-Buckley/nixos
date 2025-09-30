@@ -59,6 +59,8 @@ in {
       p520 = {hjem = "server";};
       t14 = {};
       tempest = {secrets = "common";};
-      x570 = {};
+      x570 = {
+        modules = [inputs.quadlet-nix.nixosModules.quadlet];
+      };
     };
 }
