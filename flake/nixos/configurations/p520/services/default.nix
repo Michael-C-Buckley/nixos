@@ -2,6 +2,7 @@
   imports = [
     ./harmonia.nix
     ./nfs.nix
+    ./ollama.nix
     ./postgres.nix
   ];
 
