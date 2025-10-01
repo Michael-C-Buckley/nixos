@@ -11,6 +11,7 @@ with pkgs.vscode-extensions;
 
     # Tooling
     continue.continue
+    alefragnani.project-manager
 
     # DevOps/etc
     redhat.vscode-yaml
@@ -37,6 +38,9 @@ with pkgs.vscode-extensions;
     rust-lang.rust-analyzer
   ]
   ++ pkgs.nix4vscode.forVscode [
+    # Utilities
+    "tobias-z.vscode-harpoon"
+
     # Themes
     "wicked-labs.wvsc-serendipity"
     "metaphore.kanagawa-vscode-color-theme"
@@ -48,7 +52,4 @@ with pkgs.vscode-extensions;
     "jamiewoodio.cisco"
     "ispapp.mikrotik-routeros-script-tools"
     "srl-labs.vscode-containerlab"
-  ]
-  ++ pkgs.nix4vscode.forOpenVsx [
-    "jeanp413.open-remote-ssh"
   ]
