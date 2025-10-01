@@ -11,13 +11,9 @@ includes = ["*.json", "*.jsonc"]
 options = [
   "format",
   "--no-errors-on-unmatched",
-  "--use-editorconfig=true",  # This should be on by default.
+  "--use-editorconfig=true",
   "--write",
 ]
-
-[formatter.keep-sorted]
-command = "keep-sorted"
-includes = ["*"]
 
 [formatter.mdformat]
 command = "mdformat"
