@@ -1,11 +1,4 @@
 {lib, ...}: {
-  imports = [
-    ./containers
-    ./hardware
-    ./networking
-    ./hyprland.nix
-  ];
-
   features = {
     boot = "systemd";
     gaming.enable = true;

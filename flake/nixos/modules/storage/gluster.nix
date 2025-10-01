@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
-  local = config.system.gluster;
+  inherit (config.system) gluster;
 
   mgmtPorts = {
     from = 24004;
@@ -20,7 +20,7 @@ in {
     enable = mkEnableOption "Enable GlusterFS";
   };
 
-  config = mkIf local.enable {
+  config = mkIf gluster.enable {
     services.glusterfs = {
       enable = true;
     };

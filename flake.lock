@@ -205,6 +205,21 @@
         "type": "github"
       }
     },
+    "import-tree": {
+      "locked": {
+        "lastModified": 1752730890,
+        "narHash": "sha256-GES8fapSLGz36MMPRVNkSUWXUTtqvGQNXHjRmRLfJUY=",
+        "owner": "vic",
+        "repo": "import-tree",
+        "rev": "6ebb8cb87987b20264c09296166543fd3761d274",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vic",
+        "repo": "import-tree",
+        "type": "github"
+      }
+    },
     "mangowc": {
       "inputs": {
         "flake-parts": [
@@ -217,11 +232,11 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1759150642,
-        "narHash": "sha256-Q8LNqWnO/0M8IY34rYGchYNRG4iBgun9bAWTwg9yZtE=",
+        "lastModified": 1759329472,
+        "narHash": "sha256-1dcUfihTuY0hGFArDw2mf8kWxRV88mMqmlZ6HB4qmSE=",
         "owner": "DreamMaoMao",
         "repo": "mangowc",
-        "rev": "960a8ecb410986e27ad06339bfe9144242c2b47a",
+        "rev": "7c7bc6c9105041bc25a79fb77b7956715b187daa",
         "type": "github"
       },
       "original": {
@@ -431,11 +446,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1759286981,
-        "narHash": "sha256-eqRMnC87vJx2ZEFsFWb2h7MQ0rJvaWNeptipXHbuIRQ=",
+        "lastModified": 1759348021,
+        "narHash": "sha256-m3iJKVd+CyLKAlCxIYho0meq4kqnM4rm3h5FjIn1k04=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "45c8fe7782df8f970fb9cacc49600ec629be3257",
+        "rev": "88871e3fbe3ce72705b689b42cb36734a2bb5590",
         "type": "github"
       },
       "original": {
@@ -516,6 +531,7 @@
         "hjem": "hjem",
         "hjem-rum": "hjem-rum",
         "impermanence": "impermanence",
+        "import-tree": "import-tree",
         "mangowc": "mangowc",
         "nix-secrets": "nix-secrets",
         "nix4vscode": "nix4vscode",

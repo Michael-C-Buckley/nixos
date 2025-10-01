@@ -1,7 +1,7 @@
 # I split packages into groups based on usage then enable as needed
 # They are also generally only added to the paths of users who needs them as well
 {pkgs, ...}: let
-  shellApps = import ./shellApps.nix {inherit pkgs;};
+  shellApps = import ./_shellApps.nix {inherit pkgs;};
 
   commonPkgs = with pkgs;
     [
@@ -96,10 +96,6 @@
     ]
     ++ shellApps;
 in {
-  imports = [
-    ./fonts.nix
-  ];
-
   users.users = {
     michael.packages = commonPkgs;
     root.packages = commonPkgs;

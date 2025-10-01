@@ -1,9 +1,4 @@
 _: {
-  imports = [
-    ./routing.nix
-    ./wireguard.nix
-  ];
-
   networking = {
     hostId = "8c3d4e62";
     hostName = "o1";
