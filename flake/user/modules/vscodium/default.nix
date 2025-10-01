@@ -15,17 +15,27 @@
     (import ./nvf.nix {inherit pkgs inputs;})
   ];
 
+  vscodeExt = with pkgs.vscode-extensions; [
+    ms-vscode-remote.remote-ssh
+    ms-python.vscode-pylance
+  ];
+
+  vscodiumExt = pkgs.nix4vscode.forOpenVsx [
+    "jeanp413.open-remote-ssh"
+  ];
+
   mkVscodePkg = {
     name,
     vscode,
     binaryName,
+    extraExt ? [],
   }: (
     pkgs.symlinkJoin {
       inherit name;
       paths = [
         (pkgs.vscode-with-extensions.override {
           inherit vscode;
-          vscodeExtensions = import ./extensions.nix {inherit pkgs;};
+          vscodeExtensions = (import ./extensions.nix {inherit pkgs;}) ++ extraExt;
         })
       ];
       buildInputs = wrappedInputs;
@@ -52,11 +62,13 @@ in {
       name = "vscodium-michael";
       vscode = pkgs.vscodium;
       binaryName = "codium";
+      extraExt = vscodiumExt;
     })
     (mkVscodePkg {
       name = "vscode-michael";
       inherit (pkgs) vscode;
       binaryName = "code";
+      extraExt = vscodeExt;
     })
   ];
 }
