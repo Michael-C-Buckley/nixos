@@ -21,11 +21,6 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     hjem = {
       url = "github:/feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -50,7 +45,7 @@
         nixpkgs.follows = "nixpkgs";
         flake-compat.follows = "flake-compat";
         flake-parts.follows = "flake-parts";
-        home-manager.follows = "home-manager";
+        home-manager.follows = "";
       };
     };
 
