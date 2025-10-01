@@ -18,7 +18,6 @@
     nix-secrets.url = "git+ssh://git@github.com/michael-c-buckley/nix-secrets";
     import-tree.url = "github:vic/import-tree";
     impermanence.url = "github:nix-community/impermanence";
-    flake-compat.url = "github:edolstra/flake-compat";
     flake-parts.url = "github:hercules-ci/flake-parts";
     quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
 
@@ -44,7 +43,7 @@
       url = "github:schizofox/schizofox";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-compat.follows = "flake-compat";
+        flake-compat.follows = "";
         flake-parts.follows = "flake-parts";
         home-manager.follows = "";
       };
@@ -54,7 +53,7 @@
       url = "github:notashelf/nvf/v0.8";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-compat.follows = "flake-compat";
+        flake-compat.follows = "";
         flake-parts.follows = "flake-parts";
       };
     };
