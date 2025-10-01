@@ -190,26 +190,6 @@
         "type": "github"
       }
     },
-    "home-manager": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1759261733,
-        "narHash": "sha256-G104PUPKBgJmcu4NWs0LUaPpSOTD4jiq4mamLWu3Oc0=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "5a21f4819ee1be645f46d6b255d49f4271ef6723",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
     "impermanence": {
       "locked": {
         "lastModified": 1737831083,
@@ -333,11 +313,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1759197090,
-        "narHash": "sha256-nJCFeQidQ0DqopziHexWDfiZVA8yGmRlPtmvPSOuPX4=",
+        "lastModified": 1759284207,
+        "narHash": "sha256-nZMkvQYBkVFih1oqdD4ABRWpcq4n6xBCcmmdi5hA97o=",
         "owner": "nix-community",
         "repo": "nix4vscode",
-        "rev": "c16b0785af5a09e2b6a9eb4b0515a67449580c40",
+        "rev": "3bd0e91cd2673a3b2dc8b68a3cd4b0a6e126b57a",
         "type": "github"
       },
       "original": {
@@ -451,11 +431,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1759252998,
-        "narHash": "sha256-ZbG+0pk2OhuE2iJUwzSgT9QmmARX+IfJGdvf+r2Qneo=",
+        "lastModified": 1759286981,
+        "narHash": "sha256-eqRMnC87vJx2ZEFsFWb2h7MQ0rJvaWNeptipXHbuIRQ=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "32712c70527eb9ecc01a1b8f064280fceb3a2766",
+        "rev": "45c8fe7782df8f970fb9cacc49600ec629be3257",
         "type": "github"
       },
       "original": {
@@ -535,7 +515,6 @@
         "flake-parts": "flake-parts",
         "hjem": "hjem",
         "hjem-rum": "hjem-rum",
-        "home-manager": "home-manager",
         "impermanence": "impermanence",
         "mangowc": "mangowc",
         "nix-secrets": "nix-secrets",
@@ -599,9 +578,7 @@
         "flake-parts": [
           "flake-parts"
         ],
-        "home-manager": [
-          "home-manager"
-        ],
+        "home-manager": [],
         "nixpak": "nixpak",
         "nixpkgs": [
           "nixpkgs"
