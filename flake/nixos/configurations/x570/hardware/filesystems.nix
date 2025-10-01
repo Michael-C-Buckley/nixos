@@ -27,6 +27,7 @@ in {
     "/nix" = mkZfs "local/nix";
     "/crypt" = mkZfs "local/crypt";
     "/media/games" = mkZfs "local/games";
+    "/var/lib/ipex" = mkZfs "local/ollama"; # No compression, 1M record size
 
     # ZFS Volumes
     "/persist" = mkZfs "x570/nixos/persist";

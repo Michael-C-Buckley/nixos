@@ -1,7 +1,10 @@
 {
   virtualisation.quadlet = {
     pods.all = {};
-    builds.ipex-llm.buildConfig.networks = ["host"];
+    builds.ipex-llm = {
+      autoStart = true;
+      buildConfig.networks = ["host"];
+    };
     containers.ipex-llm.containerConfig = {
       image = "intelanalytics/ipex-llm-inference-cpp-xpu:latest";
       exec = "ollama/ollama serve";
