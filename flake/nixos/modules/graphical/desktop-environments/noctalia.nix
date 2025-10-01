@@ -3,11 +3,11 @@
   inputs,
   config,
   pkgs,
-  system,
   lib,
   ...
 }: let
   inherit (config.features) noctalia;
+  inherit (config.nixpkgs.hostPlatform) system;
 in {
   options.features.noctalia = {
     enable = lib.mkEnableOption "Enable Noctalia Shell";

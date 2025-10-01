@@ -1,8 +1,4 @@
-{
-  inputs,
-  lib,
-  ...
-}: let
+{inputs, ...}: let
   inherit (builtins) mapAttrs;
   inherit (inputs) self nixpkgs;
 
@@ -29,7 +25,7 @@
       inherit system;
       # Special args are a better mechanism than overlays because it is significantly more
       #  obvious what came from where without indirection
-      specialArgs = {inherit self system inputs customLib customPkgs;};
+      specialArgs = {inherit self inputs customLib customPkgs;};
 
       modules =
         modules
