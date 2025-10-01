@@ -1,9 +1,5 @@
 # Persistent USB NVMe install
 {pkgs, ...}: {
-  imports = [
-    ./hardware
-  ];
-
   networking = {
     hostId = "fd78a12b";
     hostName = "tempest";
@@ -17,7 +13,19 @@
   # Gnome for the environment
   services.desktopManager.gnome.enable = true;
 
-  environment.systemPackages = import ./packages.nix {inherit pkgs;};
+  environment.systemPackages = with pkgs; [
+    brightnessctl
+    nixos-anywhere
+
+    # Storage tools
+    parted
+    gptfdisk
+    nvme-cli
+
+    # Security
+    sops
+    ssh-to-age
+  ];
 
   features = {
     michael.extendedGraphical = true;

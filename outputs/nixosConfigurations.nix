@@ -1,6 +1,6 @@
 {inputs, ...}: let
   inherit (builtins) mapAttrs;
-  inherit (inputs) self nixpkgs;
+  inherit (inputs) self nixpkgs import-tree;
 
   customLib = import ../flake/lib {inherit (nixpkgs) lib;};
 
@@ -8,7 +8,7 @@
     self.hjemConfigurations.root
     inputs.sops-nix.nixosModules.sops
     inputs.impermanence.nixosModules.impermanence
-    ../flake/nixos/modules
+    (import-tree ../flake/nixos/modules)
   ];
 
   mkSystem = {
@@ -33,7 +33,7 @@
         ++ [
           self.hjemConfigurations.${hjem}
           inputs.nix-secrets.nixosModules.${secrets}
-          ../flake/nixos/configurations/${hostname}
+          (import-tree ../flake/nixos/configurations/${hostname})
         ];
 
       pkgs = import nixpkgs {

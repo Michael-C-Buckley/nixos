@@ -16,6 +16,7 @@
 
     # No Nixpkgs Inputs
     nix-secrets.url = "git+ssh://git@github.com/michael-c-buckley/nix-secrets";
+    import-tree.url = "github:vic/import-tree";
     impermanence.url = "github:nix-community/impermanence";
     flake-compat.url = "github:edolstra/flake-compat";
     flake-parts.url = "github:hercules-ci/flake-parts";

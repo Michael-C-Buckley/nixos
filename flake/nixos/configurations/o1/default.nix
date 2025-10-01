@@ -3,11 +3,6 @@
   lib,
   ...
 }: {
-  imports = [
-    ./hardware
-    ./networking
-  ];
-
   environment = {
     # This is not linking for some reason, attempting to force copy instead of link
     etc."nix/nix.conf".mode = lib.mkForce "0755";

@@ -5,7 +5,6 @@
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    ./filesystems.nix
   ];
 
   boot = {
