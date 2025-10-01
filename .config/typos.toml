@@ -12,3 +12,6 @@ check-file = false
 noice = "noice"
 # This is a KDE package
 thumbnailers = "thumbnailers"
+# vscode extensions
+routeros = "routeros"
+metaphore = "metaphore"

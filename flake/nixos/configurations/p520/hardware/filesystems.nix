@@ -37,6 +37,7 @@ in {
 
     # Datasets
     "/var/lib/postgresql" = zfsFs "zroot/p520/postgres";
+    "/var/lib/ollama" = zfsFs "zroot/local/ollama";
 
     # HDD Array
     "/data" = zfsFs "zhdd/data";

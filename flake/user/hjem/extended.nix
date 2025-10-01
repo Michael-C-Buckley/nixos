@@ -8,6 +8,7 @@
 in {
   imports = [
     ./configs/cursor.nix
+    ../modules/vscodium
   ];
 
   hjem.users.michael = {

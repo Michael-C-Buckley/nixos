@@ -33,5 +33,7 @@ in {
     "/nix" = mkZfs "zroot/local/nix";
     "/cache" = mkZfs "zroot/t14/nixos/cache";
     "/persist" = mkZfs "zroot/t14/nixos/persist";
+
+    "/var/lib/ollama" = mkZfs "zroot/local/ollama";
   };
 }

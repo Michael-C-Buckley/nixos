@@ -1,10 +1,5 @@
 {
   vim = {
-    options = {
-      tabstop = 4;
-      shiftwidth = 4;
-    };
-
     dashboard.alpha = {
       enable = true;
       theme = "theta";
@@ -16,9 +11,16 @@
 
     # Navigation
     projects.project-nvim.enable = true;
-    telescope.enable = true;
     navigation.harpoon.enable = true;
     filetree.neo-tree.enable = true;
+    telescope = {
+      enable = true;
+      mappings = {
+        gitBranches = "<leader>gb";
+        gitStatus = "<leader>gs";
+        liveGrep = "<leader>/";
+      };
+    };
 
     theme.enable = false;
 
