@@ -23,10 +23,10 @@
 in {
   flake.hjemConfigurations = {
     # Full Graphical Environment configs
-    default = _: mkHjemCfg {modules = [../flake/user/hjem/extended.nix];};
+    default = mkHjemCfg {modules = [../flake/user/hjem/extended.nix];};
 
     # Stripped bare, suitable for cloud or VMs
-    minimal = _: mkHjemCfg {nvfVer = "nvf-minimal";};
+    minimal = mkHjemCfg {nvfVer = "nvf-minimal";};
 
     minimal-arm = _:
       mkHjemCfg {
@@ -35,17 +35,16 @@ in {
       };
 
     # Bare metal servers, slightly above the stripped version including a few extras
-    server = _:
-      mkHjemCfg {
-        nvfVer = "nvf-minimal";
-        modules = [../flake/user/hjem/server.nix];
-      };
+    server = mkHjemCfg {
+      nvfVer = "nvf-minimal";
+      modules = [../flake/user/hjem/server.nix];
+    };
 
     # As name implies
-    wsl = _: mkHjemCfg {};
+    wsl = mkHjemCfg {};
 
     # A simple root user profile
     # Requires externally defined Hjem and Hjem-Rum if used not with my configs
-    root = _: {imports = [../flake/user/hjem/root.nix];};
+    root = ../flake/user/hjem/root.nix;
   };
 }
