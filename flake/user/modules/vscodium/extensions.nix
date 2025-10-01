@@ -39,7 +39,7 @@ with pkgs.vscode-extensions;
   ]
   ++ pkgs.nix4vscode.forVscode [
     # Utilities
-    "tobias-z.vscode-harpoon"
+    # "tobias-z.vscode-harpoon" # Causing hydra to fail
 
     # Themes
     "wicked-labs.wvsc-serendipity"
