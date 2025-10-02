@@ -1,4 +1,6 @@
 {
+  features.boot = "none";
+
   wsl = {
     enable = true;
     defaultUser = "michael";
