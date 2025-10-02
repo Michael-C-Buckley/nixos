@@ -1,8 +1,4 @@
 {
-  imports = [
-    ./routing.nix
-  ];
-
   services = {
     iperf3.enable = true;
     unbound.enable = true;

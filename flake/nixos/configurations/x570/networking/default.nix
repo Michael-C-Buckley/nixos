@@ -1,9 +1,4 @@
 _: {
-  imports = [
-    ./routing.nix
-    ./wireguard.nix
-  ];
-
   services = {
     iperf3.enable = true;
     unbound.enable = true;

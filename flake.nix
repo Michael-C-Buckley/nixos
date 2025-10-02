@@ -14,20 +14,12 @@
     #  Locks and works as it should
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
 
-    nix-secrets = {
-      url = "git+ssh://git@github.com/michael-c-buckley/nix-secrets";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # No Nixpkgs Inputs
+    nix-secrets.url = "git+ssh://git@github.com/michael-c-buckley/nix-secrets";
+    import-tree.url = "github:vic/import-tree";
     impermanence.url = "github:nix-community/impermanence";
-    flake-compat.url = "github:edolstra/flake-compat";
     flake-parts.url = "github:hercules-ci/flake-parts";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
 
     hjem = {
       url = "github:/feel-co/hjem";
@@ -46,9 +38,9 @@
       url = "github:schizofox/schizofox";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-compat.follows = "flake-compat";
+        flake-compat.follows = "";
         flake-parts.follows = "flake-parts";
-        home-manager.follows = "home-manager";
+        home-manager.follows = "";
       };
     };
 
@@ -56,7 +48,7 @@
       url = "github:notashelf/nvf/v0.8";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-compat.follows = "flake-compat";
+        flake-compat.follows = "";
         flake-parts.follows = "flake-parts";
       };
     };

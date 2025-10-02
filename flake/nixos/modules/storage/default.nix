@@ -3,13 +3,6 @@
   lib,
   ...
 }: {
-  imports = [
-    ./impermanence.nix
-    ./gluster.nix
-    # ./nfs.nix
-    ./zfs.nix
-  ];
-
   options.system.boot.uuid = lib.mkOption {
     type = lib.types.nullOr lib.types.str;
     default = null;
@@ -20,6 +13,4 @@
     device = "/dev/disk/by-uuid/${config.system.boot.uuid}";
     fsType = "vfat";
   };
-
-  # Add gluster module
 }

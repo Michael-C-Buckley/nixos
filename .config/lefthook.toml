@@ -3,6 +3,7 @@ assert_lefthook_installed = true
 [[pre-commit.jobs]]
 name = "deadnix"
 glob = "*.nix"
+exclude = ["npins/*.nix"]
 run = "deadnix --fail {staged_files}"
 
 [[pre-commit.jobs]]
@@ -24,7 +25,7 @@ run = "shellcheck {staged_files}"
 [[pre-commit.jobs]]
 name = "statix"
 glob = "*.nix"
-run = "statix check --format errfmt"
+run = "statix check -i npins"
 
 [[pre-commit.jobs]]
 name = "typos"

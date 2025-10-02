@@ -1,10 +1,6 @@
-{
-  inputs,
-  lib,
-  ...
-}: let
+{inputs, ...}: let
   inherit (builtins) mapAttrs;
-  inherit (inputs) self nixpkgs;
+  inherit (inputs) self nixpkgs import-tree;
 
   customLib = import ../flake/lib {inherit (nixpkgs) lib;};
 
@@ -12,7 +8,7 @@
     self.hjemConfigurations.root
     inputs.sops-nix.nixosModules.sops
     inputs.impermanence.nixosModules.impermanence
-    ../flake/nixos/modules
+    (import-tree ../flake/nixos/modules)
   ];
 
   mkSystem = {
@@ -29,7 +25,7 @@
       inherit system;
       # Special args are a better mechanism than overlays because it is significantly more
       #  obvious what came from where without indirection
-      specialArgs = {inherit self system inputs customLib customPkgs;};
+      specialArgs = {inherit self inputs customLib customPkgs;};
 
       modules =
         modules
@@ -37,7 +33,7 @@
         ++ [
           self.hjemConfigurations.${hjem}
           inputs.nix-secrets.nixosModules.${secrets}
-          ../flake/nixos/configurations/${hostname}
+          (import-tree ../flake/nixos/configurations/${hostname})
         ];
 
       pkgs = import nixpkgs {
@@ -59,6 +55,8 @@ in {
       p520 = {hjem = "server";};
       t14 = {};
       tempest = {secrets = "common";};
-      x570 = {};
+      x570 = {
+        modules = [inputs.quadlet-nix.nixosModules.quadlet];
+      };
     };
 }

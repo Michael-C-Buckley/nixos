@@ -9,11 +9,6 @@
   michaelKeys = michael.openssh.authorizedKeys.keys;
   shawnKeys = shawn.openssh.authorizedKeys.keys;
 in {
-  imports = [
-    ./gpg.nix
-    ./tpm2.nix
-  ];
-
   environment = {
     etc = {
       "ssh/sudo_authorized_keys" = {

@@ -1,3 +1,5 @@
+# Something lifted from previous home-manager configs
+# Retained for potential future reference
 {lib, ...}: let
   defaultBrowsers = [
     "firefox.desktop"

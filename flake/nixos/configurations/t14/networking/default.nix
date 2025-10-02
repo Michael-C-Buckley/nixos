@@ -1,9 +1,4 @@
-{...}: {
-  imports = [
-    ./routing.nix
-    ./wireguard.nix
-  ];
-
+{
   services.unbound.enable = true;
 
   networking = {

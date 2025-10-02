@@ -1,13 +1,4 @@
 _: {
-  imports = [
-    ./hardware
-    ./networking
-    ./services
-    ./systemd
-    ./remote-builders.nix
-    ./users.nix
-  ];
-
   virtualisation = {
     containerlab.enable = true;
     libvirtd.enable = true;
