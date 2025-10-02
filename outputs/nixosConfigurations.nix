@@ -1,6 +1,6 @@
 {inputs, ...}: let
   inherit (builtins) mapAttrs;
-  inherit (inputs) self nixpkgs import-tree;
+  inherit (inputs) self nixpkgs import-tree quadlet-nix nixos-wsl;
 
   customLib = import ../flake/lib {inherit (nixpkgs) lib;};
 
@@ -17,6 +17,7 @@
     modules ? [],
     hjem ? "default",
     secrets ? hostname,
+    hostPath ? ../flake/nixos/configurations,
   }: let
     # Wrapper to shim the output packages so they can be plumbed more easily elsewhere
     customPkgs = self.packages.${system};
@@ -33,7 +34,7 @@
         ++ [
           self.hjemConfigurations.${hjem}
           inputs.nix-secrets.nixosModules.${secrets}
-          (import-tree ../flake/nixos/configurations/${hostname})
+          (import-tree "${hostPath}/${hostname}")
         ];
 
       pkgs = import nixpkgs {
@@ -56,13 +57,19 @@ in {
       t14 = {};
       tempest = {secrets = "common";};
       x570 = {
-        modules = [inputs.quadlet-nix.nixosModules.quadlet];
+        modules = [quadlet-nix.nixosModules.quadlet];
       };
       wsl = {
         hjem = "wsl";
-        modules = [
-          inputs.nixos-wsl.nixosModules.wsl
-        ];
+        modules = [nixos-wsl.nixosModules.wsl];
+      };
+
+      # Improve the logic for clusters
+      uff1 = {
+        hjem = "server";
+        secrets = "uff";
+        hostPath = ../flake/nixos/clusters/uff/hosts;
+        modules = [(import-tree ../flake/nixos/clusters/uff/modules)];
       };
     };
 }
