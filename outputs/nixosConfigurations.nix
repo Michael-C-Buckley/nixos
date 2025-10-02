@@ -1,6 +1,6 @@
 {inputs, ...}: let
   inherit (builtins) mapAttrs;
-  inherit (inputs) self nixpkgs import-tree quadlet-nix nixos-wsl;
+  inherit (inputs) self nixpkgs import-tree quadlet-nix;
 
   customLib = import ../flake/lib {inherit (nixpkgs) lib;};
 
@@ -58,10 +58,6 @@ in {
       tempest = {secrets = "common";};
       x570 = {
         modules = [quadlet-nix.nixosModules.quadlet];
-      };
-      wsl = {
-        hjem = "wsl";
-        modules = [nixos-wsl.nixosModules.wsl];
       };
 
       # Improve the logic for clusters

@@ -326,27 +326,6 @@
         "type": "github"
       }
     },
-    "nixos-wsl": {
-      "inputs": {
-        "flake-compat": [],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1759348509,
-        "narHash": "sha256-at9xMhxMP65JYWlGWYJ412VKbS+tXkTM3f5t9Q8IyMA=",
-        "owner": "nix-community",
-        "repo": "nixos-wsl",
-        "rev": "d96dda76c1f1827634ddf28d386feabd2d135d21",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nixos-wsl",
-        "type": "github"
-      }
-    },
     "nixpak": {
       "inputs": {
         "flake-parts": [
@@ -538,7 +517,6 @@
         "mangowc": "mangowc",
         "nix-secrets": "nix-secrets",
         "nix4vscode": "nix4vscode",
-        "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
         "noctalia": "noctalia",
         "nvf": "nvf",
