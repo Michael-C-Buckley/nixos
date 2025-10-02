@@ -14,7 +14,7 @@ in {
     # Reimplement nixpkgs with Cuda support
     _module.args.pkgs = mkForce (
       import inputs.nixpkgs {
-        inherit (config.nixpkgs.hostPlatform) system;
+        inherit (config.nixpkgs) system;
         config = {
           allowUnfree = true;
           cudaSupport = true;
