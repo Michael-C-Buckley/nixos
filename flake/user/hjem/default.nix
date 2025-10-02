@@ -20,9 +20,6 @@ in {
       ./modules/gpg.nix
     ];
     users.michael = {
-      enable = true;
-      user = "michael";
-      directory = "/home/michael";
       packages = import ../packageSets/common.nix {inherit customPkgs pkgs;};
 
       # Push the existing files in to be merged
