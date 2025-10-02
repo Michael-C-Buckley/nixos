@@ -35,11 +35,11 @@
         "nixpkgs-lib": "nixpkgs-lib"
       },
       "locked": {
-        "lastModified": 1756770412,
-        "narHash": "sha256-+uWLQZccFHwqpGqr2Yt5VsW/PbeJVTn9Dk6SHWhNRPw=",
+        "lastModified": 1759362264,
+        "narHash": "sha256-wfG0S7pltlYyZTM+qqlhJ7GMw2fTF4mLKCIVhLii/4M=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "4524271976b625a4a605beefd893f270620fd751",
+        "rev": "758cf7296bee11f1706a574c77d072b8a7baa881",
         "type": "github"
       },
       "original": {
@@ -217,11 +217,11 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1759329472,
-        "narHash": "sha256-1dcUfihTuY0hGFArDw2mf8kWxRV88mMqmlZ6HB4qmSE=",
+        "lastModified": 1759396689,
+        "narHash": "sha256-53SaY01sqa+YT3QPTTC85nY1PiMYFaNve14TompworI=",
         "owner": "DreamMaoMao",
         "repo": "mangowc",
-        "rev": "7c7bc6c9105041bc25a79fb77b7956715b187daa",
+        "rev": "38917d9f968ef5c4e5c78470db2c721f562c92fc",
         "type": "github"
       },
       "original": {
@@ -313,11 +313,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1759284207,
-        "narHash": "sha256-nZMkvQYBkVFih1oqdD4ABRWpcq4n6xBCcmmdi5hA97o=",
+        "lastModified": 1759369869,
+        "narHash": "sha256-4X76RvMmzngRshwTDFsloxjHYdKtQoMY5Ob8+qwS+Dc=",
         "owner": "nix-community",
         "repo": "nix4vscode",
-        "rev": "3bd0e91cd2673a3b2dc8b68a3cd4b0a6e126b57a",
+        "rev": "c90d1d398e9db998b0852a339dc3dc10efbdb2ce",
         "type": "github"
       },
       "original": {
@@ -354,11 +354,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1759143120,
-        "narHash": "sha256-Lz9jvhswQu/niKVttNvOds0w+OS+2x63NivPVJng5G4=",
-        "rev": "e9f00bd893984bc8ce46c895c3bf7cac95331127",
+        "lastModified": 1759441831,
+        "narHash": "sha256-1yCvOeEMQX/0WqpVtxtKFI2rlfq9W/bxOTGJtRuQv7g=",
+        "rev": "7df7ff7d8e00218376575f0acdcc5d66741351ee",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre868392.e9f00bd89398/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre870157.7df7ff7d8e00/nixexprs.tar.xz"
       },
       "original": {
         "type": "tarball",
@@ -431,11 +431,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1759348021,
-        "narHash": "sha256-m3iJKVd+CyLKAlCxIYho0meq4kqnM4rm3h5FjIn1k04=",
+        "lastModified": 1759417590,
+        "narHash": "sha256-brc/tv8G6uCO/uGJUrmIj6+elQQq2xEkqcn4dfOacDc=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "88871e3fbe3ce72705b689b42cb36734a2bb5590",
+        "rev": "4b84e48e8eb83c49af2f89451262bfddbcce150d",
         "type": "github"
       },
       "original": {
