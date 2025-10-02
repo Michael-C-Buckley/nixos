@@ -15,10 +15,15 @@
     (import ./nvf.nix {inherit pkgs inputs;})
   ];
 
-  vscodeExt = with pkgs.vscode-extensions; [
-    ms-vscode-remote.remote-ssh
-    ms-python.vscode-pylance
-  ];
+  vscodeExt = with pkgs.vscode-extensions;
+    [
+      ms-vscode-remote.remote-ssh
+      ms-python.vscode-pylance
+    ]
+    ++ pkgs.nix4vscode.forVscode [
+      "github.copilot"
+      "github.copilot-chat"
+    ];
 
   vscodiumExt = pkgs.nix4vscode.forOpenVsx [
     "jeanp413.open-remote-ssh"
