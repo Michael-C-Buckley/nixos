@@ -59,13 +59,5 @@ in {
       x570 = {
         modules = [quadlet-nix.nixosModules.quadlet];
       };
-
-      # Improve the logic for clusters
-      uff1 = {
-        hjem = "server";
-        secrets = "uff";
-        hostPath = ../flake/nixos/clusters/uff/hosts;
-        modules = [(import-tree ../flake/nixos/clusters/uff/modules)];
-      };
     };
 }
