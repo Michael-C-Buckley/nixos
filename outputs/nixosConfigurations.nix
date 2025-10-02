@@ -58,5 +58,11 @@ in {
       x570 = {
         modules = [inputs.quadlet-nix.nixosModules.quadlet];
       };
+      wsl = {
+        hjem = "wsl";
+        modules = [
+          inputs.nixos-wsl.nixosModules.wsl
+        ];
+      };
     };
 }
