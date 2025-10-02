@@ -13,7 +13,7 @@ run = "taplo lint {staged_files}"
 [[pre-commit.jobs]]
 interactive = true
 name = "treefmt"
-run = "treefmt --config-file /home/michael/nixos/.config/treefmt.toml {staged_files}"
+run = "treefmt --config-file .config/treefmt.toml {staged_files}"
 stage_fixed = true
 
 [[pre-commit.jobs]]
