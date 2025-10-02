@@ -1,4 +1,9 @@
 {
+  hardware = {
+    intel-gpu-tools.enable = true;
+    graphics.useIntel = true;
+  };
+
   networking = {
     hostName = "wsl";
     hostId = "e07f0101";
