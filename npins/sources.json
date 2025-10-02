@@ -45,12 +45,6 @@
       "url": "https://api.github.com/repos/tikoci/lsp-routeros-ts/tarball/v0.5.4",
       "hash": "05sampcb0dx3wyfdwqz7chd09h62ygwqj36xghmmb5glkn0w8akh"
     },
-    "nixpkgs": {
-      "type": "Channel",
-      "name": "nixpkgs-unstable",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.11pre867792.536143732685/nixexprs.tar.xz",
-      "hash": "17bf9hk8f4ccl9zqsj8srsmsq94hrrbg6bcbv2fpjlb5zmrah260"
-    },
     "open-remote-ssh": {
       "type": "GitRelease",
       "repository": {
@@ -107,10 +101,10 @@
       "version_upper_bound": null,
       "release_prefix": null,
       "submodules": false,
-      "version": "v0.18.0",
-      "revision": "9f765ea46fc034269cfb3c4dccccb1127816a281",
-      "url": "https://api.github.com/repos/srl-labs/vscode-containerlab/tarball/v0.18.0",
-      "hash": "19k9p546h4jj7bw1rix3kbvlgqsxf9qh27gq6apsklyj5i2wr138"
+      "version": "v0.19.2",
+      "revision": "5ca35c0844f9a7caf0930ea029a3cc8de9e6c464",
+      "url": "https://api.github.com/repos/srl-labs/vscode-containerlab/tarball/v0.19.2",
+      "hash": "0lk692ckw839rc3h8a7qll0hfpkgjnj5681gcaklkl40ai19rxkv"
     },
     "vscode-theme": {
       "type": "GitRelease",
