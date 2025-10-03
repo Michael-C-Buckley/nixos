@@ -41,10 +41,12 @@ in {
     notificationSender = mkDefault "hydra@localhost";
     useSubstitutes = mkDefault true;
     extraConfig = ''
+      store_uri = file:///nix/store?compression=zstd&parallel-compression=true&write-nar-listing=1&ls-compression=br&log-compression=br&secret-key=/run/secrets/builderKey
+
       # Substitution
       use-substitutes = 1
       connect-timeout = 60
-      stalled-download-timeout = 300
+      stalled-download-timeout = 1000
       builders-use-substitutes = true
 
       # Evaluation
