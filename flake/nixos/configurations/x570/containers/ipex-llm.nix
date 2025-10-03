@@ -11,7 +11,7 @@
       publishPorts = ["11434:11434"];
       addHosts = ["host.containers.internal:host-gateway"];
       volumes = [
-        "/var/lib/ipex/models:/models"
+        "/var/lib/ipex/models:/root/.ollama/models"
         "/var/lib/ipex/ollama:/llm/ollama"
       ];
       shmSize = "16G";
