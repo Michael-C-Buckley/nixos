@@ -25,9 +25,13 @@
       "github.copilot-chat"
     ];
 
-  vscodiumExt = pkgs.nix4vscode.forOpenVsx [
-    "jeanp413.open-remote-ssh"
-  ];
+  vscodiumExt = with pkgs.vscode-extensions;
+    [
+      continue.continue
+    ]
+    ++ pkgs.nix4vscode.forOpenVsx [
+      "jeanp413.open-remote-ssh"
+    ];
 
   mkVscodePkg = {
     name,
