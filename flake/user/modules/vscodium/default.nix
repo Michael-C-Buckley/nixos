@@ -15,23 +15,17 @@
     (import ./nvf.nix {inherit pkgs inputs;})
   ];
 
-  vscodeExt = with pkgs.vscode-extensions;
-    [
-      ms-vscode-remote.remote-ssh
-      ms-python.vscode-pylance
-    ]
-    ++ pkgs.nix4vscode.forVscode [
-      "github.copilot"
-      "github.copilot-chat"
-    ];
+  vscodeExt = with pkgs.vscode-marketplace; [
+    ms-python.vscode-pylance
+    ms-vscode-remote.remote-ssh
+    github.copilot
+    github.copilot-chat
+  ];
 
-  vscodiumExt = with pkgs.vscode-extensions;
-    [
-      continue.continue
-    ]
-    ++ pkgs.nix4vscode.forOpenVsx [
-      "jeanp413.open-remote-ssh"
-    ];
+  vscodiumExt = with pkgs; [
+    vscode-marketplace.continue.continue
+    open-vsx.jeanp413.open-remote-ssh
+  ];
 
   mkVscodePkg = {
     name,
@@ -63,7 +57,7 @@ in {
   # ];
 
   # This overlay is only consumed in this module
-  nixpkgs.overlays = [inputs.nix4vscode.overlays.forVscode];
+  nixpkgs.overlays = [inputs.nix-vscode-extensions.overlays.default];
 
   users.users.michael.packages = [
     # For now, ship both, I'll decide which I need when using it
