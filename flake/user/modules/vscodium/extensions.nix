@@ -10,7 +10,6 @@ with pkgs.vscode-extensions;
     asvetliakov.vscode-neovim
 
     # Tooling
-    continue.continue
     alefragnani.project-manager
 
     # DevOps/etc
