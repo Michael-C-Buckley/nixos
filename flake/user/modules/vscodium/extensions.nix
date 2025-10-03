@@ -1,54 +1,52 @@
 {pkgs}:
-with pkgs.vscode-extensions;
-  [
-    # QOL/usability
-    mechatroner.rainbow-csv
-    streetsidesoftware.code-spell-checker
-    formulahendry.auto-rename-tag # Matches XML tags while editing
-    oderwat.indent-rainbow
-    mkhl.direnv
-    asvetliakov.vscode-neovim
+# All extensions come from the nix-vscode-extensions overlay
+with pkgs.vscode-marketplace; [
+  # QOL/usability
+  mechatroner.rainbow-csv
+  streetsidesoftware.code-spell-checker
+  formulahendry.auto-rename-tag # Matches XML tags while editing
+  oderwat.indent-rainbow
+  mkhl.direnv
+  asvetliakov.vscode-neovim
 
-    # Tooling
-    alefragnani.project-manager
+  # Tooling
+  alefragnani.project-manager
 
-    # DevOps/etc
-    redhat.vscode-yaml
-    redhat.ansible
-    ms-kubernetes-tools.vscode-kubernetes-tools
-    signageos.signageos-vscode-sops
+  # Language
+  ms-python.python
+  ms-python.debugpy
+  ms-pyright.pyright
+  detachhead.basedpyright
+  meta.pyrefly
+  golang.go
+  bbenoist.nix
+  rust-lang.rust-analyzer
 
-    # Themes
-    teabyii.ayu
-    huytd.nord-light
-    arcticicestudio.nord-visual-studio-code
-    enkia.tokyo-night
-    mvllow.rose-pine
-    catppuccin.catppuccin-vsc
-    jdinhlife.gruvbox
+  tobias-z.vscode-harpoon
+  signageos.signageos-vscode-sops
 
-    # Languages
-    ms-python.python
-    ms-python.debugpy
-    ms-pyright.pyright
-    detachhead.basedpyright
-    golang.go
-    bbenoist.nix
-    rust-lang.rust-analyzer
-  ]
-  ++ pkgs.nix4vscode.forVscode [
-    # Utilities
-    # "tobias-z.vscode-harpoon" # Causing hydra to fail
+  # Themes
+  wicked-labs.wvsc-serendipity
+  metaphore.kanagawa-vscode-color-theme
+  ddiu8081.moegi-theme
+  ddiu8081.moegi-theme
 
-    # Themes
-    "wicked-labs.wvsc-serendipity"
-    "metaphore.kanagawa-vscode-color-theme"
-    "ddiu8081.moegi-theme"
-    "sainnhe.everforest"
-    "subframe7536.theme-maple"
+  teabyii.ayu
+  huytd.nord-light
+  arcticicestudio.nord-visual-studio-code
+  enkia.tokyo-night
+  mvllow.rose-pine
+  catppuccin.catppuccin-vsc
+  jdinhlife.gruvbox
+]
+# Extensions I am not currently using, but have
+# Networking tools
+#"jamiewoodio.cisco"
+#"ispapp.mikrotik-routeros-script-tools"
+#"srl-labs.vscode-containerlab"
+#
+# DevOps/etc
+#redhat.vscode-yaml
+#redhat.ansible
+#ms-kubernetes-tools.vscode-kubernetes-tools
 
-    # Networking tools
-    "jamiewoodio.cisco"
-    "ispapp.mikrotik-routeros-script-tools"
-    "srl-labs.vscode-containerlab"
-  ]
