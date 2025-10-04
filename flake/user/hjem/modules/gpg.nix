@@ -59,6 +59,9 @@ in {
   };
 
   config = mkIf gnupg.enable {
+    environment.sessionVariables = mkIf gnupg.agent.enableSSHsupport {
+      SSH_AUTH_SOCKET = "/run/user/1000/gnupg/S.gpg-agent.ssh";
+    };
     files = {
       ".gnupg/gpg.conf" = {
         # Currently only has the extra lines
