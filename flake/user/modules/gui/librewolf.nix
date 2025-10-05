@@ -1,9 +1,7 @@
 {pkgs, ...}: {
   environment.persistence."/persist".users.michael.directories = [
-    ".config/Signal"
+    ".cache/librewolf"
   ];
 
-  users.users.michael = {
-    packages = [pkgs.signal-desktop];
-  };
+  users.users.michael.packages = [pkgs.librewolf];
 }

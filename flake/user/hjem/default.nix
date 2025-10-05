@@ -27,7 +27,7 @@ in {
 
       environment.sessionVariables = {
         EDITOR = "nvim";
-        BROWSER = "schizofox";
+        BROWSER = "librewolf";
         VISUAL = "nvim";
         PAGER = "bat";
         MANPAGER = "sh -c 'col -bx | bat -l man -p'";
