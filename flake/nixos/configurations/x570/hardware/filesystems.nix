@@ -31,8 +31,6 @@ in {
 
     # ZFS Volumes
     "/persist" = mkZfs "x570/nixos/persist";
-    "/home" = mkZfs "x570/home";
     "/home/michael" = mkZfs "x570/home/michael";
-    "/home/shawn" = mkZfs "x570/home/shawn";
   };
 }
