@@ -14,6 +14,7 @@
   commonUserCache = [
     "Downloads"
     ".cache"
+    ".local"
   ];
 
   commonUserPersist = [
