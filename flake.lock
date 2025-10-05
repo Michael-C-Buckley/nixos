@@ -269,11 +269,11 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1759396689,
-        "narHash": "sha256-53SaY01sqa+YT3QPTTC85nY1PiMYFaNve14TompworI=",
+        "lastModified": 1759666155,
+        "narHash": "sha256-yaRr6pr4OE/nrQpYfwrOXSpwX3OArTfGul/isFuKGsI=",
         "owner": "DreamMaoMao",
         "repo": "mangowc",
-        "rev": "38917d9f968ef5c4e5c78470db2c721f562c92fc",
+        "rev": "98d0b962807914fcecda39283de3872e64b60c6b",
         "type": "github"
       },
       "original": {
@@ -367,11 +367,11 @@
     },
     "nix-secrets": {
       "locked": {
-        "lastModified": 1759274720,
-        "narHash": "sha256-VjaF7DGrmWWXVFlG6N3pQAeZgnR0cnzkVAVVrLEHV1w=",
+        "lastModified": 1759668544,
+        "narHash": "sha256-zuRBc7ED3MnQ+cbLLhXWf8qhjzCZlBf+YVJ8v+2HSqU=",
         "ref": "refs/heads/master",
-        "rev": "dcd9caa41f795e1044787860f8b34c1b231f7835",
-        "revCount": 349,
+        "rev": "f3cf18b2e4c8959df10827a1e4bc8276a174106a",
+        "revCount": 352,
         "type": "git",
         "url": "ssh://git@github.com/michael-c-buckley/nix-secrets"
       },
@@ -388,11 +388,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759456736,
-        "narHash": "sha256-ex3cyTe8G8im2LwxWzb6894MKsQ/Eh48zIoWSm90bhM=",
+        "lastModified": 1759661755,
+        "narHash": "sha256-WlT72IpSg7vV/Dc2Ahvn64i1aPHzMJzc+bYA1D2Mss8=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "7a5ffd8bfce663427169220ea020c8046964dd31",
+        "rev": "0c2e7fd23f0bdcd9f4b431b3d729dd44a73f49d9",
         "type": "github"
       },
       "original": {
@@ -521,11 +521,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1759534397,
-        "narHash": "sha256-NlShaNjEQOWuM8AEocJU+VkfoIZB87bPiXWTLf2Bqz0=",
+        "lastModified": 1759666489,
+        "narHash": "sha256-gUUaQ6+5HMmNb3DgtWc2JILBV41aq5yhjdVT/SzdPXk=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "31abcbcbbd4ac738f11baef79eaab6429f0801a8",
+        "rev": "75c5b9aba67f6a2cecc5f3c4b6c6bd2d7f8172ed",
         "type": "github"
       },
       "original": {
@@ -739,11 +739,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759188042,
-        "narHash": "sha256-f9QC2KKiNReZDG2yyKAtDZh0rSK2Xp1wkPzKbHeQVRU=",
+        "lastModified": 1759635238,
+        "narHash": "sha256-UvzKi02LMFP74csFfwLPAZ0mrE7k6EiYaKecplyX9Qk=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "9fcfabe085281dd793589bdc770a2e577a3caa5d",
+        "rev": "6e5a38e08a2c31ae687504196a230ae00ea95133",
         "type": "github"
       },
       "original": {
