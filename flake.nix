@@ -39,16 +39,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    schizofox = {
-      url = "github:schizofox/schizofox";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-compat.follows = "";
-        flake-parts.follows = "flake-parts";
-        home-manager.follows = "";
-      };
-    };
-
     nvf = {
       url = "github:notashelf/nvf/v0.8";
       inputs = {

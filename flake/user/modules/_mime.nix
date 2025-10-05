@@ -3,7 +3,7 @@
 {lib, ...}: let
   defaultBrowsers = [
     "firefox.desktop"
-    "schizofox.desktop"
+    "librewolf.desktop"
   ];
 
   browserMimes = [

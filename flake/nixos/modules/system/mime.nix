@@ -24,7 +24,7 @@ in {
     defaultApplications = createBrowserList ["firefox.desktop"];
     addedAssociations = createBrowserList [
       "firefox.desktop"
-      "schizofox.desktop"
+      "librewolf.desktop"
     ];
   };
 }

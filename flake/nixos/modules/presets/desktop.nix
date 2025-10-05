@@ -10,7 +10,6 @@
 in {
   imports = [
     inputs.mangowc.nixosModules.mango
-    inputs.schizofox.nixosModules.default
   ];
 
   # These are shared on my systems, laptops get everything plus more
@@ -24,7 +23,6 @@ in {
       mango.enable = mkDefault true;
 
       # Programs
-      schizofox.enable = true;
       wireshark.enable = mkDefault true;
       winbox = {
         enable = mkDefault true;
