@@ -15,10 +15,4 @@ with pkgs; [
   sakura
   kitty
   alacritty
-  wezterm
-
-  # Communication
-  bitwarden-desktop
-  bitwarden-cli
-  materialgram
 ]

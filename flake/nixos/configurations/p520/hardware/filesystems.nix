@@ -7,9 +7,7 @@ let
 in {
   boot.zfs.extraPools = ["zhdd"];
 
-  # Just persist all of home for simplicity
   environment.persistence."/persist".directories = [
-    "/home"
     "/var/lib/quadlet"
   ];
 

@@ -11,6 +11,11 @@
   inherit (config.networking) hostName;
   inherit (config.system) impermanence;
 
+  commonUserCache = [
+    "Downloads"
+    ".cache"
+  ];
+
   sanoidDefaults = {
     autoprune = true;
     autosnap = true;
@@ -33,18 +38,18 @@ in
         "/var/lib/nixos-containers"
         "/var/lib/machines"
         "/var/lib/containerd"
-        "/home/michael/.cache"
-        "/home/michael/Downloads"
-        "/home/shawn/.cache"
-        "/home/shawn/Downloads"
       ];
+
+      users = {
+        michael.directories = commonUserCache;
+        shawn.directories = commonUserCache;
+      };
     };
     environment.persistence."/persist" = {
       hideMounts = true;
       directories = [
         "/etc/ssh"
         "/etc/nixos"
-        "/etc/sops"
         "/etc/NetworkManager"
         "/etc/nix"
         "/etc/wireguard"
