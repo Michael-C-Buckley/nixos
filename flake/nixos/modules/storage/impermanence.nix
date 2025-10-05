@@ -16,6 +16,19 @@
     ".cache"
   ];
 
+  commonUserPersist = [
+    "Documents"
+    "Pictures"
+    {
+      directory = ".gnupg";
+      mode = "0700";
+    }
+    {
+      directory = ".ssh";
+      mode = "0700";
+    }
+  ];
+
   sanoidDefaults = {
     autoprune = true;
     autosnap = true;
@@ -41,7 +54,7 @@ in
       ];
 
       users = {
-        michael.directories = commonUserCache;
+        michael.directories = ["flakes" "nixos"] ++ commonUserCache;
         shawn.directories = commonUserCache;
       };
     };
@@ -72,6 +85,10 @@ in
       files = [
         "/etc/machine-id"
       ];
+      users = {
+        michael.directories = commonUserPersist;
+        shawn.directories = commonUserPersist;
+      };
     };
 
     services.sanoid = {
