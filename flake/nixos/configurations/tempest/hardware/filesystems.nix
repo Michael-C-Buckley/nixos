@@ -18,6 +18,8 @@ in {
   ];
 
   fileSystems = {
+    "/etc/sops".neededForBoot = true;
+
     # Tmpfs
     "/" = {
       device = "tmpfs";

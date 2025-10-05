@@ -22,10 +22,7 @@
 in
   lib.mkIf impermanence.enable {
     # To make sure keys are available for sops decryption
-    fileSystems = {
-      "/etc/ssh".neededForBoot = true;
-      "/etc/sops".neededForBoot = true;
-    };
+    fileSystems."/etc/ssh".neededForBoot = true;
 
     environment.persistence."/cache" = {
       hideMounts = true;
@@ -77,8 +74,6 @@ in
 
       datasets = {
         "zroot/${hostName}/nixos/persist" = sanoidDefaults;
-        "zroot/${hostName}/nixos/home/michael" = sanoidDefaults;
-        "zroot/${hostName}/nixos/home/shawn" = sanoidDefaults;
       };
     };
   }
