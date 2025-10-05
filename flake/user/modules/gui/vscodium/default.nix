@@ -12,7 +12,7 @@
     gopls
     pyrefly
     sops
-    (import ./nvf.nix {inherit pkgs inputs;})
+    (import ./_nvf.nix {inherit pkgs inputs;})
   ];
 
   vscodeExt = with pkgs.vscode-marketplace; [
@@ -38,7 +38,7 @@
       paths = [
         (pkgs.vscode-with-extensions.override {
           inherit vscode;
-          vscodeExtensions = (import ./extensions.nix {inherit pkgs;}) ++ extraExt;
+          vscodeExtensions = (import ./_extensions.nix {inherit pkgs;}) ++ extraExt;
         })
       ];
       buildInputs = wrappedInputs;
@@ -50,14 +50,13 @@
     }
   );
 in {
-  # WIP: Impermanence, since I don't have user impermanence at the moment
-  # system.impermanence.userPersistDirs = optionals impermanence.enable [
-  #   "/home/michael/.config/VSCodium"
-  #   "/home/michael/.vscode-oss/extensions"
-  # ];
-
   # This overlay is only consumed in this module
   nixpkgs.overlays = [inputs.nix-vscode-extensions.overlays.default];
+
+  environment.persistence."/persist".users.michael.directories = [
+    ".config/VSCodium"
+    ".vscode-oss/extensions"
+  ];
 
   users.users.michael.packages = [
     # For now, ship both, I'll decide which I need when using it

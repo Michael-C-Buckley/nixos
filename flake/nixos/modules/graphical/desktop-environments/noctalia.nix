@@ -15,25 +15,31 @@ in {
 
   config = lib.mkIf noctalia.enable {
     # Dependencies and fonts
-    environment.systemPackages = with pkgs;
-      [
-        brightnessctl
-        cava
-        cliphist
-        coreutils
-        ddcutil
-        file
-        findutils
-        gpu-screen-recorder
-        libnotify
-        matugen
-        swww
-        wl-clipboard
-        wlsunset
-      ]
-      ++ [
-        inputs.noctalia.packages.${system}.default
+    environment = {
+      persistence."/persist".directories = [
+        "/home/michael/.config/noctalia"
       ];
+
+      systemPackages = with pkgs;
+        [
+          brightnessctl
+          cava
+          cliphist
+          coreutils
+          ddcutil
+          file
+          findutils
+          gpu-screen-recorder
+          libnotify
+          matugen
+          swww
+          wl-clipboard
+          wlsunset
+        ]
+        ++ [
+          inputs.noctalia.packages.${system}.default
+        ];
+    };
 
     fonts.packages = with pkgs; [
       roboto

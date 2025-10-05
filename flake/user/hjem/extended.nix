@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   lib,
   ...
@@ -8,7 +9,7 @@
 in {
   imports = [
     ./configs/cursor.nix
-    ../modules/vscodium
+    (inputs.import-tree ../modules/gui)
   ];
 
   hjem.users.michael = {

@@ -7,9 +7,6 @@ let
 in {
   swapDevices = [];
 
-  # Just persist all of home for simplicity
-  environment.persistence."/persist".directories = ["/home"];
-
   system = {
     boot.uuid = "A926-212B";
     impermanence.enable = true;

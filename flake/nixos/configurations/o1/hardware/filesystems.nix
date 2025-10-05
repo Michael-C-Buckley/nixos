@@ -5,9 +5,6 @@ _: let
     neededForBoot = true;
   };
 in {
-  # Just persist all of home for simplicity
-  environment.persistence."/persist".directories = ["/home"];
-
   system = {
     impermanence.enable = true;
     zfs.enable = true;
