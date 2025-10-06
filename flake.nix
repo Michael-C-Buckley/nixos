@@ -23,7 +23,10 @@
 
     hjem = {
       url = "github:/feel-co/hjem";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        ndg.follows = ""; # This is for their docs generator
+      };
     };
 
     hjem-rum = {
