@@ -20,6 +20,7 @@
   commonUserPersist = [
     "Documents"
     "Pictures"
+    "projects"
     {
       directory = ".gnupg";
       mode = "0700";
