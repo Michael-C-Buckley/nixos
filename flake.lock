@@ -176,11 +176,11 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1759666155,
-        "narHash": "sha256-yaRr6pr4OE/nrQpYfwrOXSpwX3OArTfGul/isFuKGsI=",
+        "lastModified": 1759732112,
+        "narHash": "sha256-yspofvR1X4Gs6Vbk9i0lSeK1mIT78U6IcctHX/2BPwE=",
         "owner": "DreamMaoMao",
         "repo": "mangowc",
-        "rev": "98d0b962807914fcecda39283de3872e64b60c6b",
+        "rev": "0622ab463b7a19ec605cdaa41ba10e380292e7b2",
         "type": "github"
       },
       "original": {
@@ -251,11 +251,11 @@
     },
     "nix-secrets": {
       "locked": {
-        "lastModified": 1759668544,
-        "narHash": "sha256-zuRBc7ED3MnQ+cbLLhXWf8qhjzCZlBf+YVJ8v+2HSqU=",
+        "lastModified": 1759755806,
+        "narHash": "sha256-LboFnHFUHB6ar+xS9FfI9y3l2tjk3YNP48j/weWte+Y=",
         "ref": "refs/heads/master",
-        "rev": "f3cf18b2e4c8959df10827a1e4bc8276a174106a",
-        "revCount": 352,
+        "rev": "5d8ec51f360365a9c003062cf09e450330cf1674",
+        "revCount": 353,
         "type": "git",
         "url": "ssh://git@github.com/michael-c-buckley/nix-secrets"
       },
@@ -272,11 +272,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759661755,
-        "narHash": "sha256-WlT72IpSg7vV/Dc2Ahvn64i1aPHzMJzc+bYA1D2Mss8=",
+        "lastModified": 1759715292,
+        "narHash": "sha256-x6Z+bHpF6qQuBiI8mHNo1eBZwk4encZe5eCn5OtbOMI=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "0c2e7fd23f0bdcd9f4b431b3d729dd44a73f49d9",
+        "rev": "1f6a9062a119b04c607ae291fb058011b19ac047",
         "type": "github"
       },
       "original": {
@@ -352,11 +352,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1759666489,
-        "narHash": "sha256-gUUaQ6+5HMmNb3DgtWc2JILBV41aq5yhjdVT/SzdPXk=",
+        "lastModified": 1759752249,
+        "narHash": "sha256-/P1YfNlDwBCTf28z61oaR3UBvmi6khapbJgUaQ7Uyyo=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "75c5b9aba67f6a2cecc5f3c4b6c6bd2d7f8172ed",
+        "rev": "bff0694b0263ed8d85615b08a8f1d083a638fb19",
         "type": "github"
       },
       "original": {
