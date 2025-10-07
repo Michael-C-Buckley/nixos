@@ -8,5 +8,6 @@
     virtualization-containerlab = ../flake/nixos/modules/virtualization/containerlab.nix;
     virtualization-docker = ../flake/nixos/modules/virtualization/docker.nix;
     virtualization-libvirt = ../flake/nixos/modules/virtualization/libvirt.nix;
+    virtualization-k3s = ../flake/nixos/modules/virtualization/k3s.nix;
   };
 }
