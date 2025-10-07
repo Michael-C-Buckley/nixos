@@ -15,7 +15,7 @@
     (import ./_nvf.nix {inherit pkgs inputs;})
   ];
 
-  vscodeExt = with pkgs.vscode-marketplace; [
+  vscodeExt = with pkgs.vscode-marketplace-release; [
     ms-python.vscode-pylance
     ms-vscode-remote.remote-ssh
     github.copilot
@@ -23,8 +23,8 @@
   ];
 
   vscodiumExt = with pkgs; [
-    vscode-marketplace.continue.continue
-    open-vsx.jeanp413.open-remote-ssh
+    vscode-marketplace-release.continue.continue
+    open-vsx-release.jeanp413.open-remote-ssh
   ];
 
   mkVscodePkg = {
