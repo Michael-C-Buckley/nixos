@@ -12,4 +12,6 @@
     preset = "desktop";
     stateVersion = "25.05";
   };
+
+  services.k3s.enable = true;
 }
