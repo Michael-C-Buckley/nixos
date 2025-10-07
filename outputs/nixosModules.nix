@@ -1,5 +1,6 @@
 {
   flake.nixosModules = {
+    default = ../flake/nixos/modules/_default.nix;
     network = ../flake/nixos/modules/network/_default.nix;
     security-gpg = ../flake/nixos/modules/security/gpg.nix;
     hardware-intelGraphics = ../flake/nixos/modules/hardware/intelGraphics.nix;
