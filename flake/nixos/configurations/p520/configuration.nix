@@ -16,4 +16,6 @@ _: {
   programs.nix-ld.enable = true;
 
   sops.secrets.cachePrivateKey.owner = "hydra";
+
+  services.k3s.enable = true;
 }
