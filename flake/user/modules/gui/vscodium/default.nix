@@ -3,17 +3,23 @@
   inputs,
   ...
 }: let
-  wrappedInputs = with pkgs; [
-    python313
-    basedpyright
-    nil
-    nixd
-    go
-    gopls
-    pyrefly
-    sops
-    (import ./_nvf.nix {inherit pkgs inputs;})
-  ];
+  wrappedInputs = with pkgs;
+    [
+      python313
+      basedpyright
+      nil
+      nixd
+      pyrefly
+      sops
+
+      # Go tools
+      go
+      gopls
+      delve
+      go-tools
+      golangci-lint
+    ]
+    ++ [(import ./_nvf.nix {inherit pkgs inputs;})];
 
   vscodeExt = with pkgs.vscode-marketplace-release; [
     ms-python.vscode-pylance
