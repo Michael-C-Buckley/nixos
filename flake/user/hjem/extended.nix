@@ -14,5 +14,6 @@ in {
 
   hjem.users.michael = {
     packages = concatMap getPkgs ["extendedGraphical" "minimalGraphical" "linuxDesktop"];
+    gnupg.pinentryPackage = lib.mkForce pkgs.pinentry-qt;
   };
 }

@@ -26,6 +26,7 @@
     yubikey-manager
     yubikey-personalization
     yubico-piv-tool
+    yubikey-agent
     libp11
   ];
 in {
@@ -52,7 +53,7 @@ in {
 
   services = {
     pcscd.enable = notCloud;
-    yubikey-agent.enable = false; # I'm using GPG for now
+    yubikey-agent.enable = false;
     udev.packages = optionals notCloud [pkgs.yubikey-personalization];
   };
 
