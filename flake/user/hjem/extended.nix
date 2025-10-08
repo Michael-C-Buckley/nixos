@@ -1,10 +1,11 @@
 {
+  self,
   inputs,
   pkgs,
   lib,
   ...
 }: let
-  getPkgs = file: (import ../packageSets/${file}.nix {inherit pkgs;});
+  getPkgs = file: (import ../packageSets/${file}.nix {inherit self pkgs;});
   inherit (lib) concatMap;
 in {
   imports = [

@@ -21,6 +21,8 @@
         inherit (self.packages.${pkgs.system}) gpg-find-key;
       };
 
+      helium = pkgs.callPackage ../flake/packages/helium.nix {};
+
       nvf = mkNvf [../flake/packages/nvf/extended.nix];
       nvf-minimal = mkNvf [];
 
