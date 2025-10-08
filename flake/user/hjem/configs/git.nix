@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  self,
+  pkgs,
+  ...
+}: {
   hjem.users.michael.rum.programs.git = {
     enable = true;
     integrations.difftastic = {
@@ -8,11 +12,11 @@
       user = {
         name = "Michael Buckley";
         email = "michaelcbuckley@proton.me";
-        signingKey = lib.mkDefault "483864BF916E149C4F57E2371A0163427F977C33!";
       };
       advice.defaultBranchName = false;
       commit = {
-        program = "gpg";
+        # This custom script dynamically detects and selects my signing keys
+        program = self.packages.${pkgs.system}.gpg-custom;
         gpgsign = true;
       };
       core.editor = "nvim";

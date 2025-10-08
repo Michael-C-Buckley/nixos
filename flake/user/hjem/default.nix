@@ -47,6 +47,7 @@ in {
         enable = true;
         pinentryPackage = pkgs.pinentry-curses;
         config.extraLines = ''
+          digest-algo SHA256
           auto-key-locate local
           auto-key-retrieve
         '';

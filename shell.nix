@@ -2,22 +2,27 @@
 {pkgs ? import <nixpkgs> {}}:
 pkgs.mkShellNoCC {
   name = "default";
-  buildInputs = with pkgs; [
-    # Formatting
-    mdformat
-    alejandra
-    biome
-    shfmt
-    taplo
-    treefmt
+  buildInputs = with pkgs;
+    [
+      # Formatting
+      mdformat
+      alejandra
+      biome
+      shfmt
+      taplo
+      treefmt
 
-    # Hooks
-    lefthook
-    shellcheck
-    deadnix
-    statix
-    typos
-  ];
+      # Hooks
+      lefthook
+      shellcheck
+      deadnix
+      statix
+      typos
+    ]
+    ++ [
+      # Tool to find best GPG signing key as part of my shell
+      (pkgs.callPackage ./flake/packages/gpg-find-key.nix {})
+    ];
 
   shellHook = ''
     lefthook install

@@ -15,3 +15,5 @@ thumbnailers = "thumbnailers"
 # vscode extensions
 routeros = "routeros"
 metaphore = "metaphore"
+# Shorthand used in Gnupg and my key finder
+fpr = "fpr"
