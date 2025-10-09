@@ -1,6 +1,7 @@
 # Tasks
 
 - Impermance linking upper and lower layers
+- Bluetooth
 
 ## Moves
 

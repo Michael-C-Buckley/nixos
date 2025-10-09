@@ -1,19 +1,7 @@
-# Intel config
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
-  inherit (config.hardware.graphics) useIntel;
-  inherit (lib) mkEnableOption mkIf;
-in {
-  options.hardware.graphics = {
-    useIntel = mkEnableOption "Enable and configure standard Intel Graphics options.";
-  };
-
-  config = mkIf useIntel {
+  flake.modules.nixosModules.intelGraphics = {pkgs, ...}: {
     boot.kernelModules = ["i915"];
+    environment.systemPackages = [pkgs.clinfo];
 
     hardware = {
       enableRedistributableFirmware = true;
@@ -28,9 +16,5 @@ in {
         ];
       };
     };
-
-    environment.systemPackages = with pkgs; [
-      clinfo
-    ];
   };
 }
