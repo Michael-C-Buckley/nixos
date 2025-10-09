@@ -1,14 +1,14 @@
 {
   flake.nixosModules = {
-    default = ../flake/nixos/modules/_default.nix;
-    network = ../flake/nixos/modules/network/_default.nix;
-    security-gpg = ../flake/nixos/modules/security/gpg.nix;
-    hardware-intelGraphics = ../flake/nixos/modules/hardware/intelGraphics.nix;
-    packages-default = ../flake/nixos/modules/packages/default.nix;
-    system-nix = ../flake/nixos/modules/system/nix.nix;
-    virtualization-containerlab = ../flake/nixos/modules/virtualization/containerlab.nix;
-    virtualization-docker = ../flake/nixos/modules/virtualization/docker.nix;
-    virtualization-libvirt = ../flake/nixos/modules/virtualization/libvirt.nix;
-    virtualization-k3s = ../flake/nixos/modules/virtualization/k3s.nix;
+    default = ../modules/nixos/_default.nix;
+    network = ../modules/nixos/network/_default.nix;
+    security-gpg = ../modules/nixos/security/gpg.nix;
+    hardware-intelGraphics = ../modules/nixos/hardware/intelGraphics.nix;
+    packages-default = ../modules/nixos/packages/default.nix;
+    system-nix = ../modules/nixos/system/nix.nix;
+    virtualization-containerlab = ../modules/nixos/virtualization/containerlab.nix;
+    virtualization-docker = ../modules/nixos/virtualization/docker.nix;
+    virtualization-libvirt = ../modules/nixos/virtualization/libvirt.nix;
+    virtualization-k3s = ../modules/nixos/virtualization/k3s.nix;
   };
 }
