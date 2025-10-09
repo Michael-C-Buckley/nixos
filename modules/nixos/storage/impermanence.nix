@@ -4,45 +4,27 @@
 # - Persist: persisted and ZFS snapshotted
 # - Cache: persisted but no snapshots
 {
-  config,
-  lib,
-  ...
-}: let
-  inherit (config.networking) hostName;
-  inherit (config.system) impermanence;
+  flake.modules.nixosModules.storage.impermanence = let
+    commonUserCache = [
+      "Downloads"
+      ".cache"
+      ".local"
+    ];
 
-  commonUserCache = [
-    "Downloads"
-    ".cache"
-    ".local"
-  ];
-
-  commonUserPersist = [
-    "Documents"
-    "Pictures"
-    "projects"
-    {
-      directory = ".gnupg";
-      mode = "0700";
-    }
-    {
-      directory = ".ssh";
-      mode = "0700";
-    }
-    # Helium - for now
-    ".config/net.imput.helium"
-  ];
-
-  sanoidDefaults = {
-    autoprune = true;
-    autosnap = true;
-    hourly = 12;
-    daily = 3;
-    weekly = 2;
-    monthly = 2;
-  };
-in
-  lib.mkIf impermanence.enable {
+    commonUserPersist = [
+      "Documents"
+      "Pictures"
+      "projects"
+      {
+        directory = ".gnupg";
+        mode = "0700";
+      }
+      {
+        directory = ".ssh";
+        mode = "0700";
+      }
+    ];
+  in {
     # To make sure keys are available for sops decryption
     fileSystems."/etc/ssh".neededForBoot = true;
 
@@ -94,12 +76,5 @@ in
         shawn.directories = commonUserPersist;
       };
     };
-
-    services.sanoid = {
-      inherit (config.system.zfs) enable;
-
-      datasets = {
-        "zroot/${hostName}/nixos/persist" = sanoidDefaults;
-      };
-    };
-  }
+  };
+}
