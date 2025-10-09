@@ -15,6 +15,7 @@ in {
     "/root"
     "/home/michael"
     "/home/shawn"
+    "/etc/sops"
   ];
 
   fileSystems = {
