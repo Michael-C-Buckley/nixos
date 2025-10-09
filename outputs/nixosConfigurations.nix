@@ -8,7 +8,7 @@
     self.hjemConfigurations.root
     inputs.sops-nix.nixosModules.sops
     inputs.impermanence.nixosModules.impermanence
-    (import-tree ../flake/nixos/modules)
+    (import-tree ../modules/nixos)
   ];
 
   mkSystem = {
@@ -17,7 +17,7 @@
     modules ? [],
     hjem ? "default",
     secrets ? hostname,
-    hostPath ? ../flake/nixos/configurations,
+    hostPath ? ../systems,
   }: let
     # Wrapper to shim the output packages so they can be plumbed more easily elsewhere
     customPkgs = self.packages.${system};

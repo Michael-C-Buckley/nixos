@@ -11,22 +11,22 @@
     mkNvf = extraModules:
       (inputs.nvf.lib.neovimConfiguration {
         inherit pkgs;
-        modules = [../flake/packages/nvf] ++ extraModules;
+        modules = [../packages/nvf] ++ extraModules;
       }).neovim;
   in {
     packages = {
-      ns = pkgs.callPackage ../flake/packages/shell/ns.nix {};
-      gpg-custom = pkgs.callPackage ../flake/packages/shell/gpg-custom.nix {
+      ns = pkgs.callPackage ../packages/shell/ns.nix {};
+      gpg-custom = pkgs.callPackage ../packages/shell/gpg-custom.nix {
         inherit pkgs lib;
         inherit (self.packages.${pkgs.system}) gpg-find-key;
       };
 
-      helium = pkgs.callPackage ../flake/packages/helium.nix {};
+      helium = pkgs.callPackage ../packages/helium.nix {};
 
-      nvf = mkNvf [../flake/packages/nvf/extended.nix];
+      nvf = mkNvf [../packages/nvf/extended.nix];
       nvf-minimal = mkNvf [];
 
-      gpg-find-key = pkgs.callPackage ../flake/packages/gpg-find-key.nix {};
+      gpg-find-key = pkgs.callPackage ../packages/gpg-find-key.nix {};
     };
   };
 }
