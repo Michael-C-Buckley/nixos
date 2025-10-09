@@ -1,16 +1,7 @@
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
-  options.programs.cosmic = {
-    enable = lib.mkEnableOption "Enable Cosmic Desktop on host";
-  };
-
-  config = {
+  flake.modules.nixosModules.cosmicDesktop = {pkgs, ...}: {
     services.desktopManager.cosmic = {
-      inherit (config.programs.cosmic) enable;
+      enable = true;
       showExcludedPkgsWarning = false;
     };
     environment.cosmic.excludePackages = with pkgs; [

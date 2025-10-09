@@ -1,25 +1,16 @@
 # Not technically a DE/WM but a Quickshell theme I'm just living here
 {
-  inputs,
   config,
-  pkgs,
-  lib,
+  inputs,
   ...
-}: let
-  inherit (config.features) noctalia;
-  inherit (config.nixpkgs) system;
-in {
-  options.features.noctalia = {
-    enable = lib.mkEnableOption "Enable Noctalia Shell";
-  };
+}: {
+  host.impermanence.persist.directories = [
+    "/home/michael/.config/noctalia"
+  ];
 
-  config = lib.mkIf noctalia.enable {
+  flake.modules.nixosModules.noctalia = {pkgs, ...}: {
     # Dependencies and fonts
     environment = {
-      persistence."/persist".directories = [
-        "/home/michael/.config/noctalia"
-      ];
-
       systemPackages = with pkgs;
         [
           brightnessctl
@@ -37,10 +28,11 @@ in {
           wlsunset
         ]
         ++ [
-          inputs.noctalia.packages.${system}.default
+          inputs.noctalia.packages.${config.pkgs.system}.default
         ];
     };
 
+    # These fonts are used by default
     fonts.packages = with pkgs; [
       roboto
       inter

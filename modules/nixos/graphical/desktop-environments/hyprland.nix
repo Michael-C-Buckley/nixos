@@ -1,15 +1,7 @@
 {
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
-  inherit (lib) mkIf;
-  inherit (config.programs) hyprland;
-in {
-  config = mkIf hyprland.enable {
+  flake.modules.nixosModules.hyprland = {pkgs, ...}: {
     programs = {
-      hyprland.xwayland.enable = true;
+      hyprland.enable = true;
       hyprlock.enable = true;
     };
 
