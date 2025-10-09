@@ -1,47 +1,37 @@
 {
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
-  inherit (lib) mkOption mkIf mkDefault;
-  inherit (lib.types) bool package;
-  cfg = config.system.zfs;
-in {
-  options.system.zfs = {
-    enable = mkOption {
-      type = bool;
-      default = true;
-      description = "Enable ZFS features on host.";
-    };
-    encryption = mkOption {
-      type = bool;
-      default = false;
-      description = "Request decryption credentials on boot.";
-    };
-    package = mkOption {
-      type = package;
-      default = pkgs.zfs;
-      description = "The ZFS package to use.";
-    };
-  };
-
-  config = mkIf cfg.enable {
-    boot = {
-      kernelModules = ["zfs"];
-      supportedFilesystems = ["zfs"];
-      zfs = {
-        forceImportAll = mkDefault false;
-        requestEncryptionCredentials = mkDefault cfg.encryption;
+  flake.modules.nixosModules.storage.zfs = {
+    config,
+    pkgs,
+    lib,
+    ...
+  }: let
+    inherit (config.system) zfs;
+  in {
+    options.system.zfs = {
+      encryption = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Request decryption credentials on boot.";
+      };
+      package = lib.mkOption {
+        type = lib.types.package;
+        default = pkgs.zfs;
+        description = "The ZFS package to use.";
       };
     };
 
-    environment.systemPackages = [cfg.package];
-    services.zfs.autoScrub.enable = true;
+    config = {
+      boot = {
+        kernelModules = ["zfs"];
+        supportedFilesystems = ["zfs"];
+        zfs.requestEncryptionCredentials = zfs.encryption;
+      };
 
-    systemd.services = {
+      environment.systemPackages = [zfs.package];
+      services.zfs.autoScrub.enable = true;
+
       # https://github.com/openzfs/zfs/issues/10891
-      systemd-udev-settle.enable = false;
+      systemd.services.systemd-udev-settle.enable = false;
     };
   };
 }
