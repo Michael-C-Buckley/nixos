@@ -1,10 +1,7 @@
 # I split packages into groups based on usage then enable as needed
-# They are also generally only added to the paths of users who needs them as well
-{pkgs, ...}: let
-  shellApps = import ./_shellApps.nix {inherit pkgs;};
-
-  commonPkgs = with pkgs;
-    [
+{
+  flake.modules.nixosModules.packages = {pkgs, ...}: {
+    environment.systemPackages = with pkgs; [
       # System
       fastfetch
       microfetch
@@ -93,12 +90,6 @@
       vlan
       wireguard-tools
       # keep-sorted end
-    ]
-    ++ shellApps;
-in {
-  users.users = {
-    michael.packages = commonPkgs;
-    root.packages = commonPkgs;
-    shawn.packages = commonPkgs;
+    ];
   };
 }

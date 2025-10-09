@@ -1,13 +1,5 @@
 {
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
-  inherit (config.system) preset;
-  useMod = preset == "desktop" || preset == "laptop" || preset == "wsl";
-in {
-  config = lib.mkIf useMod {
+  flake.modules.nixosModules.dconf = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       materia-theme
       gruvbox-dark-icons-gtk
