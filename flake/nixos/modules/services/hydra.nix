@@ -41,7 +41,7 @@ in {
     notificationSender = mkDefault "hydra@localhost";
     useSubstitutes = mkDefault true;
     extraConfig = ''
-      store_uri = file:///nix/store?compression=zstd&parallel-compression=true&write-nar-listing=1&ls-compression=br&log-compression=br&secret-key=/run/secrets/builderKey
+      store_uri = file:///nix/store?compression=zstd&parallel-compression=true&write-nar-listing=1&ls-compression=br&log-compression=br&secret-key=/run/secrets/cachePrivateKey
 
       # Substitution
       use-substitutes = 1
