@@ -54,8 +54,14 @@ in {
         agent = {
           allowLoopbackPinentry = true;
           enableSSHsupport = true;
+          extraLines = ''
+            card-timeout 1
+          '';
         };
-        scdaemon.disable-ccid = true;
+        scdaemon = {
+          extraLines = ''pcsc-driver'';
+          disable-ccid = true;
+        };
       };
     };
   };
