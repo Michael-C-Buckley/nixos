@@ -8,9 +8,12 @@
     etc."nix/nix.conf".mode = lib.mkForce "0755";
   };
 
-  services.harmonia = {
-    enable = true;
-    signKeyPaths = [config.sops.secrets.cachePrivateKey.path];
+  services = {
+    harmonia = {
+      enable = true;
+      signKeyPaths = [config.sops.secrets.cachePrivateKey.path];
+    };
+    k3s.enable = true;
   };
 
   # For remote building
