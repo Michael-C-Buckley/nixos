@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (lib) mkOption mkEnableOption mkIf getExe;
-  inherit (lib.types) int package lines;
+  inherit (lib.types) int package lines listOf string;
   inherit (config) gnupg;
 
   # Returns the line or empty based on the bool, used later with the agent config
@@ -40,6 +40,7 @@ in {
       extraLines = mkExtraLinesOption "gpg.conf";
     };
     agent = {
+      enable = mkEnableOption "Enable the GPG agent.";
       allowLoopbackPinentry = mkEnableOption "Allow loopback pinentry.";
       enableSSHsupport = mkEnableOption "Enable SSH support for GnuPG";
       cacheTTL = mkOption {
@@ -48,6 +49,11 @@ in {
         description = "The number of seconds to cache the authorization on the GnuPG key.";
       };
       extraLines = mkExtraLinesOption "gpg-agent.conf";
+      sshKeys = mkOption {
+        type = listOf string;
+        default = [];
+        description = "Keygrips of GPG authorization keys to add to the GPG agent for SSH. Each string is a line and can contain the keygrip as well as timeout and other per-line options that SSH control normally uses.";
+      };
     };
     scdaemon = {
       disable-ccid = mkEnableOption ''
@@ -69,17 +75,30 @@ in {
         text = gnupg.config.extraLines;
       };
 
-      ".gnupg/gpg-agent.conf".text =
-        ''
-          pinentry-program ${getExe gnupg.pinentryPackage}
-          default-cache-ttl ${builtins.toString gnupg.agent.cacheTTL}
-        ''
-        + mkCfgLine gnupg.agent.enableSSHsupport "enable-ssh-support"
-        + mkCfgLine gnupg.agent.allowLoopbackPinentry "allow-loopback-pinentry";
+      ".gnupg/gpg-agent.conf" = {
+        inherit (gnupg.agent) enable;
+        text =
+          ''
+            pinentry-program ${getExe gnupg.pinentryPackage}
+            default-cache-ttl ${builtins.toString gnupg.agent.cacheTTL}
+          ''
+          + mkCfgLine gnupg.agent.enableSSHsupport "enable-ssh-support"
+          + mkCfgLine gnupg.agent.allowLoopbackPinentry "allow-loopback-pinentry";
+      };
 
       ".gnupg/scdaemon.conf" = {
-        enable = gnupg.scdaemon.disable-ccid;
-        text = ''disable-ccid'';
+        enable = gnupg.scdaemon.disable-ccid || gnupg.scdaemon.extraLines != '''';
+        text =
+          gnupg.scdaemon.extraLines
+          + (
+            if gnupg.scdaemon.disable-ccid
+            then "\ndisable-ccid"
+            else ""
+          );
+      };
+      ".gnupg/sshcontrol" = {
+        enable = gnupg.agent.sshKeys != [];
+        text = lib.concatStringsSep "\n" gnupg.agent.sshKeys;
       };
     };
     packages = [
