@@ -1,7 +1,15 @@
 {
-  host.impermanence.persist.directories = [
-    "/var/lib/rancher/k3s"
-  ];
+  host = {
+    impermanence.persist.directories = [
+      "/var/lib/rancher/k3s"
+    ];
+    # Give the utilities to graphical hosts
+    graphicalPackages = [
+      "kubectl"
+      "helm"
+      "k9s"
+    ];
+  };
 
   flake.modules.nixosModules.k3s = {
     # Following along at: https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/cluster/k3s/docs/USAGE.md

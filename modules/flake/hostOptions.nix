@@ -1,23 +1,32 @@
 # Options used in NixOS hosts
-{lib, ...}: {
+{lib, ...}: let
+  inherit (lib) mkOption mkEnableOption;
+  inherit (lib.types) listOf string;
+in {
   options.host = {
     impermanence = {
-      enable = lib.mkEnableOption "Enable impermanence features on this host.";
+      enable = mkEnableOption "Enable impermanence features on this host.";
 
       cache = {
-        directories = lib.mkOption {
-          type = lib.types.listOf lib.types.str;
+        directories = mkOption {
+          type = listOf string;
           default = [];
           description = "List of directories to bind mount from /cache to the root filesystem for persistence without snapshots.";
         };
         persist = {
-          directories = lib.mkOption {
-            type = lib.types.listOf lib.types.str;
+          directories = mkOption {
+            type = listOf string;
             default = [];
             description = "List of directories to bind mount from /persist to the root filesystem for persistent storage with snapshots.";
           };
         };
       };
+    };
+
+    graphicalPackages = mkOption {
+      type = listOf string;
+      default = [];
+      description = "List of graphical packages to install on this host. The strings will be interpreted later into the appropriate nixpkgs namespace.";
     };
   };
 }
