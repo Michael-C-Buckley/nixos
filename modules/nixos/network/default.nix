@@ -3,41 +3,43 @@
 # I also DO NOT respect namespaces - Copy at your own risk
 # You have been warned
 {
-  config,
-  lib,
-  ...
-}: let
-  inherit (lib) mkDefault optionals;
-  inherit (config.networking) loopback;
+  flake.modules.nixosModules.network = {
+    config,
+    lib,
+    ...
+  }: let
+    inherit (config.networking) loopback;
 
-  addr = addr: prefix: {
-    address = addr;
-    prefixLength = prefix;
-  };
-in {
-  imports = [
-    ./bgp.nix
-    ./eigrp.nix
-    ./options.nix
-    ./ospf.nix
-    ./unbound.nix
-    ./vrrp.nix
-    ./vxlan.nix
-  ];
-
-  services = {
-    lldpd.enable = mkDefault true;
-    # Set sane standards on file descriptor limits for FRR daemons
-    frr = {
-      bgpd.options = mkDefault ["--limit-fds 2048"];
-      zebra.options = mkDefault ["--limit-fds 2048"];
-      openFilesLimit = mkDefault 2048;
+    addr = addr: prefix: {
+      address = addr;
+      prefixLength = prefix;
     };
-    iperf3.openFirewall = config.services.iperf3.enable;
-  };
+  in {
+    options.networking = {
+      loopback = {
+        ipv4 = lib.mkOption {
+          type = with lib.types; nullOr str;
+          default = null;
+          description = "Additional IPv4 address to add to loopback.";
+        };
+      };
+    };
+    config = {
+      services = {
+        lldpd.enable = lib.mkDefault true;
+        # Set sane standards on file descriptor limits for FRR daemons
+        frr = {
+          bgpd.options = ["--limit-fds 2048"];
+          zebra.options = ["--limit-fds 2048"];
+          openFilesLimit = 2048;
+        };
+        iperf3.openFirewall = config.services.iperf3.enable;
+      };
 
-  # Apply the loopback address if added
-  networking.interfaces.lo.ipv4.addresses = optionals (loopback.ipv4 != null) [
-    (addr loopback.ipv4 32)
-  ];
+      # Apply the loopback address if added
+      networking.interfaces.lo.ipv4.addresses = lib.optionals (loopback.ipv4 != null) [
+        (addr loopback.ipv4 32)
+      ];
+    };
+  };
 }
