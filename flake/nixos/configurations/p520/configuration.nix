@@ -14,6 +14,4 @@ _: {
 
   # Allows vscode remote connections to just work
   programs.nix-ld.enable = true;
-
-  sops.secrets.cachePrivateKey.owner = "hydra";
 }
