@@ -4,6 +4,12 @@
   inherit (lib.types) listOf string;
 in {
   options.host = {
+    bootloader = mkOption {
+      # None is used in special circumstances like WSL
+      type = enum ["systemd-boot" "grub" "limine" "none"];
+      default = "systemd";
+      description = "Which bootloader flake module to use with the host.";
+    };
     impermanence = {
       enable = mkEnableOption "Enable impermanence features on this host.";
 

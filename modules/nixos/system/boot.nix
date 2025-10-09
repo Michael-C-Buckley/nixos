@@ -1,63 +1,41 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
-  inherit (lib) mkDefault mkOption mkIf;
-  inherit (lib.types) enum;
-  loader = config.features.boot;
+{config, ...}: let
+  # To prevent shadowing from the inner module config
+  inherit (config.host) bootloader;
 in {
-  options.features = {
-    boot = mkOption {
-      # None is used in special circumstances like WSL
-      type = enum ["systemd" "grub" "limine" "none"];
-      default = "systemd";
-      description = "Which bootloader settings to use from this repository.";
-    };
-  };
-
-  config = {
+  flake.modules.nixosModules = {
     boot = {
-      kernel.sysctl = {
-        "net.ipv4.conf.all.forwarding" = true;
-        "net.ipv6.conf.all.forwarding" = true;
+      imports = [
+        input.self.nixosModules.${bootloader}
+      ];
+
+      boot.initrd.systemd.enable = true;
+    };
+
+    # This page intentionally left blank
+    none = {};
+
+    grub = {
+      boot.loader.grub = {
+        enable = true;
+        efiSupport = true;
+        efiInstallAsRemovable = true;
+        device = "nodev";
       };
+    };
 
-      kernelPackages = mkDefault pkgs.linuxPackages_6_16;
-
-      initrd = {
-        systemd = {
+    systemd-boot = {
+      boot.loader = {
+        systemd-boot = {
           enable = true;
-          emergencyAccess = config.users.users.root.hashedPassword;
-        };
-      };
-
-      loader = {
-        # Grub
-        grub = mkIf (loader == "grub") {
-          enable = true;
-          efiSupport = true;
-          efiInstallAsRemovable = true;
-          device = "nodev";
-        };
-
-        # Systemd Related options
-        systemd-boot = mkIf (loader == "systemd") {
-          enable = true;
-          configurationLimit = 15;
+          configurationLimit = 10;
           netbootxyz.enable = true;
         };
-
-        limine = mkIf (loader == "limine") {
-          enable = true;
-        };
-
-        efi.canTouchEfiVariables =
-          if loader == "systemd"
-          then true
-          else false;
+        efi.canTouchEfiVariables = true;
       };
+    };
+
+    limine = {
+      boot.loader.limine.enable = true;
     };
   };
 }
