@@ -1,16 +1,9 @@
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
-  inherit (lib) mkEnableOption mkIf;
-in {
-  options.virtualisation.containerlab = {
-    enable = mkEnableOption "Enable Nokia's ContainerLab.";
-  };
+  host.impermanence.cache.directories = [
+    "/var/lib/docker"
+  ];
 
-  config = mkIf config.virtualisation.containerlab.enable {
+  flake.modules.nixosModules.containerlab = {pkgs, ...}: {
     # For now, use docker
     virtualisation.docker.enable = true;
     environment.systemPackages = [pkgs.containerlab];
