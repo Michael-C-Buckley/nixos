@@ -25,7 +25,7 @@
           enable = true;
           options = ["--limit-fds ${fileLimitStr}"];
         };
-        openFilesLimit = bgp.fileLimit;
+        openFilesLimit = config.networking.bgp.fileLimit;
         zebra.options = ["--limit-fds ${fileLimitStr}"];
       };
     };

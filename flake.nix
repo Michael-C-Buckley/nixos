@@ -6,7 +6,11 @@
     flake-parts.lib.mkFlake {inherit inputs;} {
       # These are the only systems types I support
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
-      imports = [./outputs];
+      imports = [
+        ./modules/flake/hostOptions.nix
+        (inputs.import-tree ./modules/nixos)
+        ./outputs
+      ];
     };
 
   inputs = {

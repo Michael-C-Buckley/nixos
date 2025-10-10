@@ -36,9 +36,9 @@
         hardware.gpgSmartcards.enable = true;
 
         services = {
-          pcscd.enable = notCloud;
+          pcscd.enable = true;
           yubikey-agent.enable = false;
-          udev.packages = optionals notCloud [pkgs.yubikey-personalization];
+          udev.packages = [pkgs.yubikey-personalization];
         };
 
         # https://github.com/NixOS/nixpkgs/issues/290926

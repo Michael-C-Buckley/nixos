@@ -1,11 +1,15 @@
-{config, ...}: let
+{
+  config,
+  inputs,
+  ...
+}: let
   # To prevent shadowing from the inner module config
   inherit (config.host) bootloader;
 in {
   flake.modules.nixosModules = {
     boot = {
       imports = [
-        input.self.nixosModules.${bootloader}
+        inputs.self.nixosModules.${bootloader}
       ];
 
       boot.initrd.systemd.enable = true;

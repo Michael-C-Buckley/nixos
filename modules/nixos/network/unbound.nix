@@ -4,8 +4,8 @@
       # Keep non-sensitive settings here
       settings = {
         server = {
-          hide-identity = mkDefault "yes";
-          hide-version = mkDefault "yes";
+          hide-identity = "yes";
+          hide-version = "yes";
           verbosity = 0;
         };
         include = config.sops.secrets.unboundLocal.path;

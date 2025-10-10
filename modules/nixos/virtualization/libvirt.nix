@@ -1,5 +1,5 @@
 {
-  hosts = {
+  host = {
     impermanence.cache.directories = [
       "/var/lib/libvirt"
     ];
@@ -18,9 +18,9 @@
     users.powerUsers.groups = ["libvirt"];
 
     virtualisation.libvirtd = {
-      enable = mkDefault true;
-      allowedBridges = mkDefault ["br0"];
-      parallelShutdown = mkDefault 5;
+      enable = true;
+      allowedBridges = ["br0"];
+      parallelShutdown = 5;
       qemu = {
         package = pkgs.qemu_kvm;
         runAsRoot = true;
@@ -29,8 +29,8 @@
     };
 
     services.cockpit = {
-      enable = mkDefault config.virtualisation.libvirtd.enable;
-      openFirewall = mkDefault config.services.cockpit.enable;
+      inherit (config.virtualisation.libvirtd) enable;
+      openFirewall = config.services.cockpit.enable;
     };
   };
 }
