@@ -6,7 +6,7 @@
     graphicalPackages = [
       "virt-manager"
       "virt-viewer"
-      # "tigervnc" # Broken in nixpkgs update, removing for now
+      "tigervnc"
     ];
   };
 

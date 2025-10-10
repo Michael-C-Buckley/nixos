@@ -1,7 +1,7 @@
 # Options used in NixOS hosts
 {lib, ...}: let
   inherit (lib) mkOption mkEnableOption;
-  inherit (lib.types) attrs enum listOf string;
+  inherit (lib.types) enum listOf string;
 in {
   options.host = {
     bootloader = mkOption {
@@ -33,12 +33,6 @@ in {
       type = listOf string;
       default = [];
       description = "List of graphical packages to install on this host. The strings will be interpreted later into the appropriate nixpkgs namespace.";
-    };
-
-    pkgs = mkOption {
-      type = attrs;
-      default = {};
-      description = "The imported nixpkgs of this host.";
     };
   };
 }

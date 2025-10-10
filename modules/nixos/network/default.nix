@@ -2,7 +2,7 @@
 #  considerably more complex than most typical NixOS/Linux users
 # I also DO NOT respect namespaces - Copy at your own risk
 # You have been warned
-{
+{inputs, ...}: {
   flake.nixosModules.network = {
     config,
     lib,
@@ -25,6 +25,14 @@
       };
     };
     config = {
+      # Bring in the rest of the routing protocol modules
+      imports = with inputs.self.nixosModules; [
+        bgp
+        eigrp
+        ospf
+        vrrp
+        vxlan
+      ];
       services = {
         lldpd.enable = lib.mkDefault true;
         # Set sane standards on file descriptor limits for FRR daemons

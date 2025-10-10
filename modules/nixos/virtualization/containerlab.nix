@@ -1,10 +1,10 @@
-{config, ...}: {
+{
   host = {
     impermanence.cache.directories = [
       "/var/lib/docker"
     ];
-    graphicalPackages = with config.pkgs; [
-      containerlab
+    graphicalPackages = [
+      "containerlab"
     ];
   };
 
