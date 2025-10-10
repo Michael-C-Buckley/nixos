@@ -30,32 +30,32 @@
           p11-kit
           gnupg-pkcs11-scd
         ];
-
-        programs.gnupg.agent.enableBrowserSocket = true;
-
-        hardware.gpgSmartcards.enable = true;
-
-        services = {
-          pcscd.enable = true;
-          yubikey-agent.enable = false;
-          udev.packages = [pkgs.yubikey-personalization];
-        };
-
-        # https://github.com/NixOS/nixpkgs/issues/290926
-        security.polkit.extraConfig = ''
-          polkit.addRule(function(action, subject) {
-            if (action.id == "org.debian.pcsc-lite.access_card") {
-              return polkit.Result.YES;
-            }
-          });
-
-          polkit.addRule(function(action, subject) {
-            if (action.id == "org.debian.pcsc-lite.access_pcsc") {
-              return polkit.Result.YES;
-            }
-          });
-        '';
       };
+
+      programs.gnupg.agent.enableBrowserSocket = true;
+
+      hardware.gpgSmartcards.enable = true;
+
+      services = {
+        pcscd.enable = true;
+        yubikey-agent.enable = false;
+        udev.packages = [pkgs.yubikey-personalization];
+      };
+
+      # https://github.com/NixOS/nixpkgs/issues/290926
+      security.polkit.extraConfig = ''
+        polkit.addRule(function(action, subject) {
+          if (action.id == "org.debian.pcsc-lite.access_card") {
+            return polkit.Result.YES;
+          }
+        });
+
+        polkit.addRule(function(action, subject) {
+          if (action.id == "org.debian.pcsc-lite.access_pcsc") {
+            return polkit.Result.YES;
+          }
+        });
+      '';
     };
   };
 }

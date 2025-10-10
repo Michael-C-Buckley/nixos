@@ -24,10 +24,6 @@
   };
 
   system = {
-    boot.uuid = "12CE-A600";
     stateVersion = "25.11";
-    preset = "cloud";
-    zfs.enable = true;
-    impermanence.enable = true;
   };
 }

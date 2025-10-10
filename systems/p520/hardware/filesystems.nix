@@ -11,13 +11,12 @@ in {
     "/var/lib/quadlet"
   ];
 
-  system = {
-    boot.uuid = "BA57-3530";
-    impermanence.enable = true;
-    zfs.enable = true;
-  };
-
   fileSystems = {
+    "/boot" = {
+      device = "/dev/disk/by-uuid/BA57-3530";
+      fsType = "vfat";
+    };
+
     "/" = {
       device = "tmpfs";
       fsType = "tmpfs";

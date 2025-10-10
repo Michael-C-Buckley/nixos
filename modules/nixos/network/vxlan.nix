@@ -6,7 +6,7 @@
   }: {
     options.networking.vxlan = {
       port = lib.mkOption {
-        type = lib.int;
+        type = lib.types.int;
         default = 4789;
         description = "UDP port that VXLAN will use";
       };

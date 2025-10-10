@@ -15,6 +15,14 @@
       prefixLength = prefix;
     };
   in {
+    # Bring in the rest of the routing protocol modules
+    imports = with inputs.self.nixosModules; [
+      bgp
+      eigrp
+      ospf
+      vrrp
+      #vxlan # WIP and not included by default
+    ];
     options.networking = {
       loopback = {
         ipv4 = lib.mkOption {
@@ -25,14 +33,6 @@
       };
     };
     config = {
-      # Bring in the rest of the routing protocol modules
-      imports = with inputs.self.nixosModules; [
-        bgp
-        eigrp
-        ospf
-        vrrp
-        vxlan
-      ];
       services = {
         lldpd.enable = lib.mkDefault true;
         # Set sane standards on file descriptor limits for FRR daemons

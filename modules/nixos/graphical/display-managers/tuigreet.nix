@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.greetd = {pkgs, ...}: {
+  flake.nixosModules.tuigreet = {pkgs, ...}: {
     environment.systemPackages = [pkgs.tuigreet];
 
     hardware.graphics.enable = true;

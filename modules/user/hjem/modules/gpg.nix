@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (lib) mkOption mkEnableOption mkIf getExe;
-  inherit (lib.types) int package lines listOf string;
+  inherit (lib.types) int package lines listOf str;
   inherit (config) gnupg;
 
   # Returns the line or empty based on the bool, used later with the agent config
@@ -50,7 +50,7 @@ in {
       };
       extraLines = mkExtraLinesOption "gpg-agent.conf";
       sshKeys = mkOption {
-        type = listOf string;
+        type = listOf str;
         default = [];
         description = "Keygrips of GPG authorization keys to add to the GPG agent for SSH. Each string is a line and can contain the keygrip as well as timeout and other per-line options that SSH control normally uses.";
       };
