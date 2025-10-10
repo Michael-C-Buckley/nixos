@@ -6,15 +6,25 @@ I do have some things spun off like a few other servers, WSL, and secrets. Serve
 
 Caveat: I have included some custom options merged into the default Nix options namespace. Copying small sections can incur breakage this way, especially from networking (with advanced options since I am a network engineer). Private secrets are also in another repository (as a means to prevent harvest now, decrypt later).
 
-### User configs
+## Major Frameworks
 
-The majority of my user configs are done via [Hjem](https://github.com/feel-co/hjem), instead of Home-Manager. Modules are provided via another addon project, [Hjem-Rum](https://github.com/snugnug/hjem-rum).
+### Flake-Parts
 
-A small number are files are handled by simple recursive linker setup in `flake/user/findFiles.nix` that pulls and links all the files from `flake/user/files`. It rebuilds the nested folder structure in my `$HOME`.
+This project makes fairly heavy use of flake-parts. It allows the leaner design I've recently
 
-### Hosts
+### [Hjem](https://github.com/feel-co/hjem)
 
-Where my non-cluster systems are held, such as my desktop, laptop, a few servers.
+Hjem is a NixOS module-based user home configuration framework. It is like Home-Manager in that it allows a user's home to be declared. It is different as it follows a much leaner approach. I prefer the higher performance, more reliable codebase and mechanisms, and lack of overly opinionated defaults in my configs. It does not provide modules but another project, [Hjem-Rum](https://github.com/snugnug/hjem-rum) does.
+
+A small number are files are handled by simple recursive linker setup in `modules/user/findFiles.nix` that pulls and links all the files from `modules/user/files`. It rebuilds the nested folder structure in my `$HOME` exactly as-is. This is useful for anything that doesn't have a module without having to write declarative boilerplate.
+
+### [NVF](https://github.com/notashelf/nvf)
+
+NVF is a Neovim framework in Nix. It trivialized creating and maintaining a custom nvim setup. I never did traditional nvim configuration, and I don't think I ever will since this exists. My setup is standalone nested under `packages/nvf`. I ship a few variants depending on if its a basic config for servers or extensive for development hosts. They have similar UI but differing setups on language servers, mainly. I also have one variant for use with Vscode-Neovim plugin, which does work.
+
+### Npins (Anticipated/upcoming)
+
+I'll be moving some flake inputs to npins. The motivation is decreasing the amount of inputs and I'll be selecting inputs which do not depend on the flake metadata tree and no have inputs. The upside is increased performance from lazier evaluation and reduced dependency tree sizes, as well as not having to copy these sources to the nix store, even if they're not used.
 
 ## Credits & Thanks
 
