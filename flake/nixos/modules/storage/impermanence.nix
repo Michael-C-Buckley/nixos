@@ -29,6 +29,8 @@
       directory = ".ssh";
       mode = "0700";
     }
+    # Helium - for now
+    ".config/net.imput.helium"
   ];
 
   sanoidDefaults = {
