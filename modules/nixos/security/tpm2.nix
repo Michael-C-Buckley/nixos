@@ -11,7 +11,7 @@
       "tpm2-tools"
     ];
   };
-  flake.modules.nixosModules.tpm2 = {
+  flake.nixosModules.tpm2 = {
     # environment.etc."tpm2-tss/fapi-config.json".text = builtins.toJSON {
     #   profile_name = "pkcs11";
     #   profile_dir = "/etc/tpm2-tss/fapi-profiles";

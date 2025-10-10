@@ -8,7 +8,7 @@
     "/home/michael/.config/noctalia"
   ];
 
-  flake.modules.nixosModules.noctalia = {pkgs, ...}: {
+  flake.nixosModules.noctalia = {pkgs, ...}: {
     # Dependencies and fonts
     environment = {
       systemPackages = with pkgs;

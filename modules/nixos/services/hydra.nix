@@ -8,7 +8,7 @@
     ];
   };
 
-  flake.modules.nixosModules.hydra = {config, ...}: {
+  flake.nixosModules.hydra = {config, ...}: {
     networking.firewall.allowedTCPPorts = [config.services.hydra.port];
     nix.settings.trusted-users = ["hydra" "hydra-queue-runner" "hydra-www"];
 

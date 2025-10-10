@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.security = {lib, ...}: {
+  flake.nixosModules.security = {lib, ...}: {
     security.sudo = {
       extraConfig = "Defaults lecture=never";
       wheelNeedsPassword = false;

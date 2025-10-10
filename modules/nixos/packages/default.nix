@@ -1,6 +1,6 @@
 # I split packages into groups based on usage then enable as needed
 {
-  flake.modules.nixosModules.packages = {pkgs, ...}: {
+  flake.nixosModules.packages = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       # System
       fastfetch

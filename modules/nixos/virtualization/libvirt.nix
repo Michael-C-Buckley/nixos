@@ -10,7 +10,7 @@
     ];
   };
 
-  flake.modules.nixosModules.libvirt = {
+  flake.nixosModules.libvirt = {
     config,
     pkgs,
     ...

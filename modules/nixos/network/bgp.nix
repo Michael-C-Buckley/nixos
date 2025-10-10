@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.bgp = {
+  flake.nixosModules.bgp = {
     config,
     lib,
     ...
