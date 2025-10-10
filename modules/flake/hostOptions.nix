@@ -1,6 +1,7 @@
 # Options used in NixOS hosts
 {lib, ...}: let
   inherit (lib) mkOption mkEnableOption;
+  inherit (lib.types) attrs enum listOf string;
 in {
   options.host = {
     bootloader = mkOption {
@@ -18,24 +19,24 @@ in {
           default = [];
           description = "List of directories to bind mount from /cache to the root filesystem for persistence without snapshots.";
         };
-        persist = {
-          directories = mkOption {
-            type = listOf string;
-            default = [];
-            description = "List of directories to bind mount from /persist to the root filesystem for persistent storage with snapshots.";
-          };
+      };
+      persist = {
+        directories = mkOption {
+          type = listOf string;
+          default = [];
+          description = "List of directories to bind mount from /persist to the root filesystem for persistent storage with snapshots.";
         };
       };
     };
 
     graphicalPackages = mkOption {
-      type = with lib.types; listOf string;
+      type = listOf string;
       default = [];
       description = "List of graphical packages to install on this host. The strings will be interpreted later into the appropriate nixpkgs namespace.";
     };
 
     pkgs = mkOption {
-      type = lib.types.attrs;
+      type = attrs;
       default = {};
       description = "The imported nixpkgs of this host.";
     };

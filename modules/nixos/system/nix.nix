@@ -5,7 +5,7 @@
       inputs,
       ...
     }: {
-      nix = {
+      nix = {lib, ...}: {
         package = pkgs.nixVersions.latest;
 
         # Disable channels and add the flake inputs to the registry

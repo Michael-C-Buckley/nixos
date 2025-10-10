@@ -8,7 +8,6 @@
     self.hjemConfigurations.root
     inputs.sops-nix.nixosModules.sops
     inputs.impermanence.nixosModules.impermanence
-    (import-tree ../modules/nixos)
   ];
 
   mkSystem = {
