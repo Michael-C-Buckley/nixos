@@ -2,13 +2,18 @@
   description = "Michael's System Flake";
 
   # I live the majority of things in files matching the name of their flake output type
-  outputs = {flake-parts, ...} @ inputs:
+  outputs = {
+    flake-parts,
+    import-tree,
+    ...
+  } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
       # These are the only systems types I support
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
       imports = [
-        ./modules/flake/hostOptions.nix
-        (inputs.import-tree ./modules/nixos)
+        (import-tree ./modules/flake)
+        (import-tree ./modules/nixos)
+        (import-tree ./hosts)
         ./outputs
       ];
     };
