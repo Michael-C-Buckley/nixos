@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.ospf = {
+  flake.nixosModules.ospf = {
     config,
     lib,
     ...

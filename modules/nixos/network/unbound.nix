@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.unbound = {config, ...}: {
+  flake.nixosModules.unbound = {config, ...}: {
     services.unbound = {
       # Keep non-sensitive settings here
       settings = {

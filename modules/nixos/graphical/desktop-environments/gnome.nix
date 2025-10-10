@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules.gnomeDesktop = {pkgs, ...}: {
+  flake.nixosModules.gnomeDesktop = {pkgs, ...}: {
     services.desktopManager.gnome = {
       enable = true;
       wayland = true;

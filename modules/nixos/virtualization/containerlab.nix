@@ -8,7 +8,7 @@
     ];
   };
 
-  flake.modules.nixosModules.containerlab = {pkgs, ...}: {
+  flake.nixosModules.containerlab = {pkgs, ...}: {
     # For now, use docker
     virtualisation.docker.enable = true;
     environment.systemPackages = [pkgs.containerlab];

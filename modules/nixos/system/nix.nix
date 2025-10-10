@@ -1,5 +1,5 @@
 {
-  flake.modules.nixosModules = {
+  flake.nixosModules = {
     nix = {
       pkgs,
       inputs,

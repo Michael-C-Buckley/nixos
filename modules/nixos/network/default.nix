@@ -3,7 +3,7 @@
 # I also DO NOT respect namespaces - Copy at your own risk
 # You have been warned
 {
-  flake.modules.nixosModules.network = {
+  flake.nixosModules.network = {
     config,
     lib,
     ...

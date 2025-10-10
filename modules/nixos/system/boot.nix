@@ -6,7 +6,7 @@
   # To prevent shadowing from the inner module config
   inherit (config.host) bootloader;
 in {
-  flake.modules.nixosModules = {
+  flake.nixosModules = {
     boot = {
       imports = [
         inputs.self.nixosModules.${bootloader}

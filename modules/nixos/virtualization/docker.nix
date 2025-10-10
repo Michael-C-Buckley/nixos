@@ -3,7 +3,7 @@
     "/var/lib/docker"
   ];
 
-  flake.modules.nixosModules.docker = {pkgs, ...}: {
+  flake.nixosModules.docker = {pkgs, ...}: {
     environment.systemPackages = [pkgs.lazydocker];
     virtualisation.docker.enable = true;
     users.powerUsers.groups = ["docker"];

@@ -13,7 +13,6 @@
       imports = [
         (import-tree ./modules/flake)
         (import-tree ./modules/nixos)
-        (import-tree ./hosts)
         ./outputs
       ];
     };
