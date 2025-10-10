@@ -3,7 +3,6 @@ _: {
   security.tpm2.enable = true;
 
   system = {
-    preset = "laptop";
     stateVersion = "24.11";
   };
 

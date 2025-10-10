@@ -4,7 +4,7 @@
 # - Persist: persisted and ZFS snapshotted
 # - Cache: persisted but no snapshots
 {
-  flake.nixosModules.storage.impermanence = let
+  flake.nixosModules.impermanence = let
     commonUserCache = [
       "Downloads"
       ".cache"

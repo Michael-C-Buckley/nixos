@@ -50,15 +50,11 @@ in {
 
   networking = {
     ospf = {
-      enable = true;
       defaultRoute = {
         metricType = 1;
         metric = 550;
       };
     };
-    eigrp.enable = true;
-    bgp.enable = true;
-
     firewall.allowedUDPPorts = [3784 3785];
   };
 

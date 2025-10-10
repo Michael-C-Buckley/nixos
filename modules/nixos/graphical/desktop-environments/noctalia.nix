@@ -1,14 +1,14 @@
 # Not technically a DE/WM but a Quickshell theme I'm just living here
-{
-  config,
-  inputs,
-  ...
-}: {
+{inputs, ...}: {
   host.impermanence.persist.directories = [
     "/home/michael/.config/noctalia"
   ];
 
-  flake.nixosModules.noctalia = {pkgs, ...}: {
+  flake.nixosModules.noctalia = {
+    config,
+    pkgs,
+    ...
+  }: {
     # Dependencies and fonts
     environment = {
       systemPackages = with pkgs;
@@ -28,7 +28,7 @@
           wlsunset
         ]
         ++ [
-          inputs.noctalia.packages.${config.pkgs.system}.default
+          inputs.noctalia.packages.${config.nixpkgs.system}.default
         ];
     };
 

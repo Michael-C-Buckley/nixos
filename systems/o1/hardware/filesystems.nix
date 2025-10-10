@@ -1,16 +1,16 @@
-_: let
+let
   zfsFs = path: {
     device = "zroot/o1/${path}";
     fsType = "zfs";
     neededForBoot = true;
   };
 in {
-  system = {
-    impermanence.enable = true;
-    zfs.enable = true;
-  };
-
   fileSystems = {
+    "/boot" = {
+      device = "/dev/disk/by-uuid/12CE-A600";
+      fsType = "vfat";
+    };
+
     "/" = {
       device = "tmpfs";
       fsType = "tmpfs";

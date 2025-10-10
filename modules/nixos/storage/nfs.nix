@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.storage.nfs = {pkgs, ...}: {
+  flake.nixosModules.nfs = {pkgs, ...}: {
     boot.supportedFilesystems = ["nfs"];
 
     services = {

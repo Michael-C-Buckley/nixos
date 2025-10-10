@@ -56,7 +56,19 @@ in {
       t14 = {};
       tempest = {secrets = "common";};
       x570 = {
-        modules = [quadlet-nix.nixosModules.quadlet];
+        modules =
+          [
+            quadlet-nix.nixosModules.quadlet
+          ]
+          ++ (with self.nixosModules; [
+            linuxPreset
+            desktopPreset
+            intelGraphics
+            unbound
+            wifi
+            containerlab
+            gaming
+          ]);
       };
     };
 }

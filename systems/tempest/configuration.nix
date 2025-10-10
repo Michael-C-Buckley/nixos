@@ -35,7 +35,6 @@
   };
 
   system = {
-    preset = "laptop";
     stateVersion = "25.05";
     impermanence.enable = true;
     zfs = {

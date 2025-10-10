@@ -5,11 +5,6 @@ _: let
     neededForBoot = true;
   };
 in {
-  system = {
-    boot.uuid = "159C-593C";
-    impermanence.enable = true;
-  };
-
   # Preserve everything for users
   environment.persistence."/persist".directories = [
     "/root"
@@ -20,6 +15,11 @@ in {
 
   fileSystems = {
     "/etc/sops".neededForBoot = true;
+
+    "/boot" = {
+      device = "/dev/disk/by-uuid/159C-593C";
+      fsType = "vfat";
+    };
 
     # Tmpfs
     "/" = {

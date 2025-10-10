@@ -7,16 +7,14 @@ let
 in {
   swapDevices = [];
 
-  system = {
-    boot.uuid = "A926-212B";
-    impermanence.enable = true;
-    zfs = {
-      encryption = true;
-      enable = true;
-    };
-  };
+  system.zfs.encryption = true;
 
   fileSystems = {
+    "/boot" = {
+      device = "/dev/disk/by-uuid/A926-212B";
+      fsType = "vfat";
+    };
+
     "/" = {
       device = "tmpfs";
       fsType = "tmpfs";

@@ -4,6 +4,7 @@
     environment.systemPackages = [pkgs.clinfo];
 
     hardware = {
+      intel-gpu-tools.enable = true;
       enableRedistributableFirmware = true;
       graphics = {
         enable = true;
