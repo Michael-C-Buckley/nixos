@@ -13,6 +13,7 @@
       imports = [
         (import-tree ./modules/flake)
         (import-tree ./modules/nixos)
+        (import-tree ./systems/x570)
         ./outputs
       ];
     };
