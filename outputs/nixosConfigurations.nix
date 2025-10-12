@@ -1,6 +1,6 @@
 {inputs, ...}: let
   inherit (builtins) mapAttrs;
-  inherit (inputs) self nixpkgs import-tree quadlet-nix;
+  inherit (inputs) self nixpkgs import-tree;
 
   customLib = import ../flake/lib {inherit (nixpkgs) lib;};
 
@@ -55,20 +55,5 @@ in {
       p520 = {hjem = "server";};
       t14 = {};
       tempest = {secrets = "common";};
-      x570 = {
-        modules =
-          [
-            quadlet-nix.nixosModules.quadlet
-          ]
-          ++ (with self.nixosModules; [
-            linuxPreset
-            desktopPreset
-            intelGraphics
-            unbound
-            wifi
-            containerlab
-            gaming
-          ]);
-      };
     };
 }
