@@ -10,14 +10,17 @@ with pkgs; [
   # Browser
   qutebrowser
 
-  # File Explorer
-  kdePackages.dolphin
-  kdePackages.dolphin-plugins
-  kdePackages.ark
-  kdePackages.ffmpegthumbs
-  kdePackages.kdegraphics-thumbnailers
-  kdePackages.kompare
-  kdePackages.kdenetwork-filesharing
+  # Dolphin
+  #kdePackages.dolphin
+  #kdePackages.dolphin-plugins
+  #kdePackages.ark
+  #kdePackages.ffmpegthumbs
+  #kdePackages.kdegraphics-thumbnailers
+  #kdePackages.kompare
+  #kdePackages.kdenetwork-filesharing
+
+  # Going simple with Nemo for now; more to follow
+  nemo-with-extensions
 
   # Productivity
   kdePackages.kalgebra # Calculator
