@@ -1,11 +1,11 @@
 {inputs, ...}: {
   flake.nixosModules.desktopPreset = {pkgs, ...}: {
     imports = with inputs.self.nixosModules; [
+      linuxPreset
       hyprland
       noctalia
       tuigreet
       gpg-yubikey
-      network
       packages
       fonts
       dconf

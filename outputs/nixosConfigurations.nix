@@ -1,6 +1,6 @@
 {inputs, ...}: let
   inherit (builtins) mapAttrs;
-  inherit (inputs) self nixpkgs import-tree;
+  inherit (inputs) self nixpkgs;
 
   customLib = import ../flake/lib {inherit (nixpkgs) lib;};
 
@@ -32,6 +32,7 @@
         ++ [
           self.hjemConfigurations.${hjem}
           inputs.nix-secrets.nixosModules.${secrets}
+          self.modules.nixos.${hostname}
         ];
 
       pkgs = import nixpkgs {
@@ -49,20 +50,12 @@ in {
       o1 = {
         system = "aarch64-linux";
         hjem = "minimal-arm";
-        modules = [(import-tree ../systems/o1)];
       };
       p520 = {
         hjem = "server";
-        modules = [(import-tree ../systems/p520)];
       };
-      t14 = {modules = [(import-tree ../systems/t14)];};
-      tempest = {
-        secrets = "common";
-        modules = [(import-tree ../systems/tempest)];
-      };
-
-      x570 = {
-        modules = [self.modules.nixos.x570];
-      };
+      t14 = {};
+      tempest = {secrets = "common";};
+      x570 = {};
     };
 }
