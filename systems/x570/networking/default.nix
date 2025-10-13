@@ -1,5 +1,5 @@
 {
-  flake.nixosConfigurations.x570.networking = {
+  flake.modules.nixos.x570 = {
     services = {
       iperf3.enable = true;
       unbound.enable = true;

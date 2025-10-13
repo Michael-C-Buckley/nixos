@@ -16,7 +16,6 @@
     modules ? [],
     hjem ? "default",
     secrets ? hostname,
-    hostPath ? ../systems,
   }: let
     # Wrapper to shim the output packages so they can be plumbed more easily elsewhere
     customPkgs = self.packages.${system};
@@ -33,7 +32,6 @@
         ++ [
           self.hjemConfigurations.${hjem}
           inputs.nix-secrets.nixosModules.${secrets}
-          (import-tree "${hostPath}/${hostname}")
         ];
 
       pkgs = import nixpkgs {
@@ -51,9 +49,20 @@ in {
       o1 = {
         system = "aarch64-linux";
         hjem = "minimal-arm";
+        modules = [(import-tree ../systems/o1)];
       };
-      p520 = {hjem = "server";};
-      t14 = {};
-      tempest = {secrets = "common";};
+      p520 = {
+        hjem = "server";
+        modules = [(import-tree ../systems/p520)];
+      };
+      t14 = {modules = [(import-tree ../systems/t14)];};
+      tempest = {
+        secrets = "common";
+        modules = [(import-tree ../systems/tempest)];
+      };
+
+      x570 = {
+        modules = [self.modules.nixos.x570];
+      };
     };
 }

@@ -1,5 +1,5 @@
 {
-  flake.nixosConfigurations.x570.fileSystems = let
+  flake.modules.nixos.x570 = let
     mkZfs = path: {
       device = "zroot/${path}";
       fsType = "zfs";

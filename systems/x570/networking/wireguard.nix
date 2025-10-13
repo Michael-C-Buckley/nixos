@@ -1,5 +1,5 @@
 {
-  flake.nixosConfigurations.x570.wireguard = {
+  flake.modules.nixos.x570 = {
     config,
     pkgs,
     lib,

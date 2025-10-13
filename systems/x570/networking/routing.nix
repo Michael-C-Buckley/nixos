@@ -1,5 +1,5 @@
 {
-  flake.nixosConfigurations.x570.routing = {config, ...}: let
+  flake.modules.nixos.x570 = {config, ...}: let
     inherit (builtins) head getAttr toString;
     lo = getAttr "address" (head config.networking.interfaces.lo.ipv4.addresses);
     loPrefix = toString (getAttr "prefixLength" (head config.networking.interfaces.lo.ipv4.addresses));

@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.nixosConfigurations.x570.configuration = {lib, ...}: {
+  flake.modules.nixos.x570 = {lib, ...}: {
     imports =
       [
         inputs.quadlet-nix.nixosModules.quadlet

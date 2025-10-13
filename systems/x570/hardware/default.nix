@@ -1,5 +1,5 @@
 {
-  flake.nixosConfigurations.x570.hardware = {
+  flake.modules.nixos.x570 = {
     config,
     lib,
     modulesPath,

@@ -11,6 +11,7 @@
       # These are the only systems types I support
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
       imports = [
+        flake-parts.flakeModules.modules
         (import-tree ./modules/flake)
         (import-tree ./modules/nixos)
         (import-tree ./systems/x570)
