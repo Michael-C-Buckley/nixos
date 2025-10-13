@@ -1,6 +1,7 @@
 {
   self,
   pkgs,
+  lib,
   ...
 }: {
   hjem.users.michael.rum.programs.git = {
@@ -16,7 +17,7 @@
       advice.defaultBranchName = false;
       commit = {
         # This custom script dynamically detects and selects my signing keys
-        program = self.packages.${pkgs.system}.gpg-custom;
+        program = lib.getExe self.packages.${pkgs.system}.gpg-custom;
         gpgsign = true;
       };
       core.editor = "nvim";
