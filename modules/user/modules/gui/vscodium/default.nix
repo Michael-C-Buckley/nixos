@@ -62,6 +62,8 @@ in {
   environment.persistence."/persist".users.michael.directories = [
     ".config/VSCodium"
     ".vscode-oss"
+    ".config/Code"
+    ".vscode"
   ];
 
   users.users.michael.packages = [
