@@ -1,16 +1,7 @@
-{
-  host = {
-    impermanence.cache.directories = [
-      "/var/lib/docker"
-    ];
-    graphicalPackages = [
-      "containerlab"
-    ];
-  };
-
+{inputs, ...}: {
   flake.nixosModules.containerlab = {pkgs, ...}: {
-    # For now, use docker
-    virtualisation.docker.enable = true;
+    # Automatically pull in Docker
+    imports = [inputs.self.nixosModules.docker];
     environment.systemPackages = [pkgs.containerlab];
 
     # This makes the hosts file writeable for containerlab to use
