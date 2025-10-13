@@ -1,8 +1,16 @@
 {
   host = {
-    impermanence.persist.directories = [
-      "/var/lib/rancher/k3s"
-    ];
+    impermanence.persist = {
+      directories = [
+        "/var/lib/rancher/k3s"
+        "/var/lib/containerd"
+        "/etc/rancher/k3s"
+        "/var/lib/kubelet"
+      ];
+      files = [
+        "/var/log/k3s.log"
+      ];
+    };
     # Give the utilities to graphical hosts
     graphicalPackages = [
       "kubectl"

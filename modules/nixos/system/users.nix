@@ -1,4 +1,6 @@
 {
+  host.users = ["michael" "shawn"];
+
   flake.nixosModules.users = {
     config,
     lib,

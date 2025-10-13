@@ -11,13 +11,16 @@
   ...
 }: {
   flake.nixosModules.impermanence = let
+    inherit (config.host.impermanence) cache persist;
     commonUserCache =
       [
         "Downloads"
         ".cache"
         ".local"
+        "flakes"
+        "nixos"
       ]
-      ++ config.host.impermanence.cache.user.directories;
+      ++ cache.user.directories;
 
     commonUserPersist =
       [
@@ -32,10 +35,8 @@
           directory = ".ssh";
           mode = "0700";
         }
-        # Helium - for now
-        ".config/net.imput.helium"
       ]
-      ++ config.host.impermanence.persist.user.directories;
+      ++ persist.user.directories;
     /*
     sanoidDefaults = {
       autoprune = true;
@@ -46,6 +47,16 @@
       monthly = 2;
     };
     */
+
+    mkUserSet = {
+      directories,
+      files,
+    }:
+      builtins.listToAttrs (map (name: {
+          inherit name;
+          value = {inherit directories files;};
+        })
+        config.host.users);
   in {
     imports = [inputs.impermanence.nixosModules.impermanence];
     # To make sure keys are available for sops decryption
@@ -53,50 +64,59 @@
 
     environment.persistence."/cache" = {
       hideMounts = true;
-      directories = [
-        # A generic bind for caching
-        "/var/lib/cache"
+      directories =
+        [
+          # A generic bind for caching
+          "/var/lib/cache"
+          "/var/lib/nixos-containers"
+          "/var/lib/machines"
+        ]
+        ++ cache.directories;
 
-        "/var/lib/nixos-containers"
-        "/var/lib/machines"
-        "/var/lib/containerd"
-      ];
+      inherit (cache) files;
 
-      users = {
-        michael.directories = ["flakes" "nixos"] ++ commonUserCache;
-        shawn.directories = commonUserCache;
+      users = mkUserSet {
+        directories = commonUserCache;
+        inherit (cache.user) files;
       };
     };
+
     environment.persistence."/persist" = {
       hideMounts = true;
-      directories = [
-        "/etc/ssh"
-        "/etc/nixos"
-        "/etc/NetworkManager"
-        "/etc/nix"
-        "/etc/wireguard"
+      directories =
+        [
+          "/etc/ssh"
+          "/etc/nixos"
+          "/etc/NetworkManager"
+          "/etc/nix"
+          "/etc/wireguard"
 
-        # A generic bind for persisting
-        "/var/lib/persist"
+          # A generic bind for persisting
+          "/var/lib/persist"
 
-        "/var/log"
-        "/var/lib/bluetooth"
-        "/var/lib/nixos"
-        "/var/lib/systemd"
+          "/var/log"
+          "/var/lib/bluetooth"
+          "/var/lib/nixos"
+          "/var/lib/systemd"
 
-        {
-          directory = "/var/lib/colord";
-          user = "colord";
-          group = "colord";
-          mode = "u=rwx,g=rx,o=";
-        }
-      ];
-      files = [
-        "/etc/machine-id"
-      ];
-      users = {
-        michael.directories = commonUserPersist;
-        shawn.directories = commonUserPersist;
+          {
+            directory = "/var/lib/colord";
+            user = "colord";
+            group = "colord";
+            mode = "u=rwx,g=rx,o=";
+          }
+        ]
+        ++ persist.directories;
+
+      files =
+        [
+          "/etc/machine-id"
+        ]
+        ++ persist.files;
+
+      users = mkUserSet {
+        directories = commonUserPersist;
+        inherit (persist.user) files;
       };
     };
   };
