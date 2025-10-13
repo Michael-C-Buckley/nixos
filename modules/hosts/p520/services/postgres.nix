@@ -1,5 +1,5 @@
 {
-  flake.moduules.nixos.p520 = {
+  flake.modules.nixos.p520 = {
     # Data directory is a ZFS dataset: zroot/p520/postgres
     services.postgresql = {
       enable = true;
