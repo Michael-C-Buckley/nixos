@@ -3,7 +3,9 @@
 # Differences in mounts:
 # - Persist: persisted and ZFS snapshotted
 # - Cache: persisted but no snapshots
-{
+#
+# Flake Config mixes in the directories declared from Flake module options
+{config, ...}: {
   flake.nixosModules.impermanence = let
     commonUserCache = [
       "Downloads"
@@ -11,27 +13,31 @@
       ".local"
     ];
 
-    commonUserCache = [
-      "Downloads"
-      ".cache"
-      ".local"
-    ];
+    commonUserCache =
+      [
+        "Downloads"
+        ".cache"
+        ".local"
+      ]
+      ++ config.host.impermanence.cache.user.directories;
 
-    commonUserPersist = [
-      "Documents"
-      "Pictures"
-      "projects"
-      {
-        directory = ".gnupg";
-        mode = "0700";
-      }
-      {
-        directory = ".ssh";
-        mode = "0700";
-      }
-      # Helium - for now
-      ".config/net.imput.helium"
-    ];
+    commonUserPersist =
+      [
+        "Documents"
+        "Pictures"
+        "projects"
+        {
+          directory = ".gnupg";
+          mode = "0700";
+        }
+        {
+          directory = ".ssh";
+          mode = "0700";
+        }
+        # Helium - for now
+        ".config/net.imput.helium"
+      ]
+      ++ config.host.impermanence.persist.user.directories;
     /*
     sanoidDefaults = {
       autoprune = true;
