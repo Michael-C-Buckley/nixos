@@ -1,5 +1,5 @@
 {
-  flake.nixosConfigurations.x570.hyprland = let
+  flake.modules.nixos.x570 = let
     wpDir = "/home/michael/Pictures/wallpapers";
   in {
     hjem.users.michael.files = {

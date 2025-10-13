@@ -1,5 +1,5 @@
 {
-  flake.nixosConfigurations.x570.open-webui = {
+  flake.modules.nixos.x570 = {
     virtualisation.quadlet = {
       pods.all = {};
       builds.open-webui.buildConfig.networks = ["host"];

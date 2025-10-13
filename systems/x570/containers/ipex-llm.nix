@@ -1,5 +1,5 @@
 {
-  flake.nixosConfigurations.x570.ipex-llm = {
+  flake.modules.nixos.x570 = {
     virtualisation.quadlet = {
       pods.all = {};
       builds.ipex-llm = {
