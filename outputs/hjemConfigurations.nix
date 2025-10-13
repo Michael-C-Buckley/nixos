@@ -13,7 +13,7 @@
     imports =
       [
         hjem.nixosModules.hjem
-        ../flake/user/hjem/default.nix
+        ../modules/user/hjem/default.nix
       ]
       ++ modules;
 
@@ -28,7 +28,7 @@
 in {
   flake.hjemConfigurations = {
     # Full Graphical Environment configs
-    default = mkHjemCfg {modules = [../flake/user/hjem/extended.nix];};
+    default = mkHjemCfg {modules = [../modules/user/hjem/extended.nix];};
 
     # Stripped bare, suitable for cloud or VMs
     minimal = mkHjemCfg {nvfVer = "nvf-minimal";};
@@ -42,7 +42,7 @@ in {
     # Bare metal servers, slightly above the stripped version including a few extras
     server = mkHjemCfg {
       nvfVer = "nvf-minimal";
-      modules = [../flake/user/hjem/server.nix];
+      modules = [../modules/user/hjem/server.nix];
     };
 
     # As name implies
@@ -50,6 +50,6 @@ in {
 
     # A simple root user profile
     # Requires externally defined Hjem and Hjem-Rum if used not with my configs
-    root = ../flake/user/hjem/root.nix;
+    root = ../modules/user/hjem/root.nix;
   };
 }

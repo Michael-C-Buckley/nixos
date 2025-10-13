@@ -1,5 +1,0 @@
-{
-  services = {
-    hydra.enable = true;
-  };
-}

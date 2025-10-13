@@ -1,14 +1,12 @@
 {inputs, ...}: let
   inherit (builtins) mapAttrs;
-  inherit (inputs) self nixpkgs import-tree quadlet-nix;
+  inherit (inputs) self nixpkgs;
 
   customLib = import ../flake/lib {inherit (nixpkgs) lib;};
 
   defaultMods = [
     self.hjemConfigurations.root
     inputs.sops-nix.nixosModules.sops
-    inputs.impermanence.nixosModules.impermanence
-    (import-tree ../flake/nixos/modules)
   ];
 
   mkSystem = {
@@ -17,7 +15,6 @@
     modules ? [],
     hjem ? "default",
     secrets ? hostname,
-    hostPath ? ../flake/nixos/configurations,
   }: let
     # Wrapper to shim the output packages so they can be plumbed more easily elsewhere
     customPkgs = self.packages.${system};
@@ -34,7 +31,7 @@
         ++ [
           self.hjemConfigurations.${hjem}
           inputs.nix-secrets.nixosModules.${secrets}
-          (import-tree "${hostPath}/${hostname}")
+          self.modules.nixos.${hostname}
         ];
 
       pkgs = import nixpkgs {
@@ -53,11 +50,11 @@ in {
         system = "aarch64-linux";
         hjem = "minimal-arm";
       };
-      p520 = {hjem = "server";};
+      p520 = {
+        hjem = "server";
+      };
       t14 = {};
       tempest = {secrets = "common";};
-      x570 = {
-        modules = [quadlet-nix.nixosModules.quadlet];
-      };
+      x570 = {};
     };
 }
