@@ -1,7 +1,7 @@
 # Not technically a DE/WM but a Quickshell theme I'm just living here
 {inputs, ...}: {
-  host.impermanence.persist.directories = [
-    "/home/michael/.config/noctalia"
+  host.impermanence.persist.user.directories = [
+    ".config/noctalia"
   ];
 
   flake.nixosModules.noctalia = {

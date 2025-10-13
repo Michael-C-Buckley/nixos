@@ -1,4 +1,5 @@
 {inputs, ...}: {
+  imports = [../packages/_gui.nix]; # To make sure the GUI packages are available for evaluation
   flake.nixosModules.desktopPreset = {pkgs, ...}: {
     imports = with inputs.self.nixosModules; [
       linuxPreset
