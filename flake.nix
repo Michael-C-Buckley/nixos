@@ -14,7 +14,7 @@
         flake-parts.flakeModules.modules
         (import-tree ./modules/flake)
         (import-tree ./modules/nixos)
-        (import-tree ./systems/x570)
+        (import-tree ./modules/hosts)
         ./outputs
       ];
     };
