@@ -1,12 +1,5 @@
 - Setup up caching/remote building
-- Module import structure
-- Finish style consistency of pointers and themes
 - Nebula networking
-
-## UI
-
-- Waybar Tray to BT/Network
-- Waybar Battery
 
 ## Restructuring
 
@@ -15,13 +8,30 @@
 - Git signing keys per machine
 - Nixpak (browsers, vscodium, obsidian)
 
-## In Progress
+______________________________________________________________________
 
-- Nix Cache (Attic)
+# Tasks
 
-This was started but paused due to time constraints.
+- Add syncoid
 
-Still needs:
+## Moves
 
-- TLS
-- Push mechanism
+Move to ZFS/storage:
+
+```nix
+let     sanoidDefaults = {
+      autoprune = true;
+      autosnap = true;
+      hourly = 12;
+      daily = 3;
+      weekly = 2;
+      monthly = 2;
+    }; in
+      services.sanoid = {
+        inherit (config.system.zfs) enable;
+
+        datasets = {
+          "zroot/${hostName}/nixos/persist" = sanoidDefaults;
+        };
+      };
+```
