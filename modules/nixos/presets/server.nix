@@ -10,6 +10,7 @@
       gpg-yubikey
       hjem-default
       hjem-root
+      shawn
 
       # WIP:
       packages

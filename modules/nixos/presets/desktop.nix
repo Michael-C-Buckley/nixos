@@ -4,7 +4,6 @@ in {
   imports = [../packages/_gui.nix]; # To make sure the GUI packages are available for evaluation
   flake.nixosModules.desktopPreset = {
     imports = with nixosModules; [
-      # keep-sorted start
       linuxPreset
       hyprland
       noctalia
@@ -21,7 +20,7 @@ in {
       desktopPackages
       hjem-extended
       hjem-root
-      # keep-sorted end
+      shawn
     ];
   };
 }

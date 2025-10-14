@@ -9,6 +9,7 @@
       zfs
       hjem-default
       hjem-root
+      shawn
 
       # WIP:
       packages
