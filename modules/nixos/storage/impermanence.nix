@@ -5,14 +5,10 @@
 # - Cache: persisted but no snapshots
 #
 # Flake Config mixes in the directories declared from Flake module options
-{
-  inputs,
-  config,
-  ...
-}: let
-  inherit (config.host.impermanence) cache persist;
-in {
+{inputs, ...}: {
   flake.nixosModules.impermanence = {config, ...}: let
+    inherit (config.custom.impermanence) cache persist;
+
     commonUserCache =
       [
         "Downloads"

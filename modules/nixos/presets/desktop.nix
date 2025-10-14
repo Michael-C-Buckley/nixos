@@ -1,7 +1,6 @@
 {inputs, ...}: let
   inherit (inputs.self) nixosModules;
 in {
-  imports = [../packages/_gui.nix]; # To make sure the GUI packages are available for evaluation
   flake.nixosModules.desktopPreset = {
     imports = with nixosModules; [
       linuxPreset
@@ -18,6 +17,7 @@ in {
       boot
       users
       desktopPackages
+      guiPackages
       hjem-extended
       hjem-root
       shawn

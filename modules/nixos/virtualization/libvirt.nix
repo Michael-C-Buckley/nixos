@@ -1,20 +1,13 @@
 {
-  host = {
-    impermanence.cache.directories = [
-      "/var/lib/libvirt"
-    ];
-    graphicalPackages = [
-      "virt-manager"
-      "virt-viewer"
-      "tigervnc"
-    ];
-  };
-
   flake.nixosModules.libvirt = {
     config,
     pkgs,
     ...
   }: {
+    custom.impermanence.cache.directories = [
+      "/var/lib/libvirt"
+    ];
+
     users.powerUsers.groups = ["libvirt"];
 
     virtualisation.libvirtd = {

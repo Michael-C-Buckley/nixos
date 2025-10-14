@@ -1,14 +1,16 @@
 {
-  host = {
-    impermanence.persist.directories = [
+  flake.nixosModules.hydra = {
+    config,
+    pkgs,
+    ...
+  }: {
+    custom.impermanence.persist.directories = [
       "/var/lib/hydra"
     ];
-    graphicalPackages = [
-      "hydra-cli"
+    environment.systemPackages = [
+      pkgs.hydra-cli
     ];
-  };
 
-  flake.nixosModules.hydra = {config, ...}: {
     networking.firewall.allowedTCPPorts = [config.services.hydra.port];
     nix.settings.trusted-users = ["hydra" "hydra-queue-runner" "hydra-www"];
 

@@ -25,7 +25,10 @@
 
       config = {
         users = {
-          powerUsers.groups = ["networkmanager" "wheel" "video" "update"];
+          powerUsers = {
+            members = ["michael"];
+            groups = ["networkmanager" "wheel" "video" "update"];
+          };
           users = {
             michael = {
               isNormalUser = true;
