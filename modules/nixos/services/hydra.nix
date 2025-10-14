@@ -37,7 +37,7 @@
       notificationSender = "hydra@localhost";
       useSubstitutes = true;
       extraConfig = ''
-        store_uri = file:///nix/store?compression=zstd&parallel-compression=true&write-nar-listing=1&ls-compression=br&log-compression=br&secret-key=/run/secrets/cachePrivateKey
+        #store_uri = file:///nix/store?compression=zstd&parallel-compression=true&write-nar-listing=1&ls-compression=br&log-compression=br&secret-key=/run/secrets/cachePrivateKey
 
         # Substitution
         use-substitutes = 1
@@ -46,9 +46,9 @@
         builders-use-substitutes = true
 
         # Evaluation
-        evaluator_workers = 4
+        evaluator_workers = 8
         evaluator_max_memory_size = 32768
-        max_concurrent_evals = 8
+        max_concurrent_evals = 16
 
         # Runner/DB/Timeout
         queue_runner_metrics_address = 127.0.0.1:9199
