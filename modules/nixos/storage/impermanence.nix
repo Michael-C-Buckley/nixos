@@ -9,9 +9,10 @@
   inputs,
   config,
   ...
-}: {
-  flake.nixosModules.impermanence = let
-    inherit (config.host.impermanence) cache persist;
+}: let
+  inherit (config.host.impermanence) cache persist;
+in {
+  flake.nixosModules.impermanence = {config, ...}: let
     commonUserCache =
       [
         "Downloads"
@@ -56,7 +57,7 @@
           inherit name;
           value = {inherit directories files;};
         })
-        config.host.users);
+        config.users.powerUsers.members);
   in {
     imports = [inputs.impermanence.nixosModules.impermanence];
     # To make sure keys are available for sops decryption

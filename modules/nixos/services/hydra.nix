@@ -55,5 +55,7 @@
         evaluation_timeout = 3600     # 1 hour max per eval
       '';
     };
+
+    users.groups.hydra = {};
   };
 }

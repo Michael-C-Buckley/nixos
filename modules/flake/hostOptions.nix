@@ -49,11 +49,5 @@ in {
       default = [];
       description = "List of graphical packages to install on this host. The strings will be interpreted later into the appropriate nixpkgs namespace.";
     };
-
-    users = mkOption {
-      type = listOf str;
-      default = [];
-      description = "List of actual users to be added. This is used for features to affect declared users and not system users.";
-    };
   };
 }
