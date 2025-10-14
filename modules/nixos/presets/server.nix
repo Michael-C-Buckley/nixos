@@ -8,9 +8,12 @@
       impermanence
       zfs
       gpg-yubikey
+      hjem-default
+      hjem-root
 
       # WIP:
       packages
+      serverPackages
     ];
   };
 }

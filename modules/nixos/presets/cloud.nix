@@ -7,6 +7,8 @@
       boot
       impermanence
       zfs
+      hjem-default
+      hjem-root
 
       # WIP:
       packages

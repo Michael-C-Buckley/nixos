@@ -1,20 +1,18 @@
-{
-  self,
-  inputs,
-  pkgs,
-  lib,
-  ...
-}: let
-  getPkgs = file: (import ../packageSets/${file}.nix {inherit self pkgs;});
-  inherit (lib) concatMap;
-in {
-  imports = [
-    ./configs/cursor.nix
-    (inputs.import-tree ../modules/gui)
-  ];
+{inputs, ...}: {
+  flake.nixosModules.hjem-extended = {
+    config,
+    pkgs,
+    lib,
+    ...
+  }: {
+    imports = [
+      inputs.self.nixosModules.hjem-default
+      inputs.self.modules.nixos.hjem-cursor
+      ../modules/vscodium/_default.nix
+    ];
 
-  hjem.users.michael = {
-    packages = concatMap getPkgs ["extendedGraphical" "minimalGraphical" "linuxDesktop"];
-    gnupg.pinentryPackage = lib.mkForce pkgs.pinentry-qt;
+    users.users.michael.packages = [(lib.hiPrio inputs.self.packages.${config.nixpkgs.system}.nvf)];
+
+    hjem.users.michael.gnupg.pinentryPackage = lib.mkForce pkgs.pinentry-qt;
   };
 }

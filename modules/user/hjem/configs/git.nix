@@ -1,35 +1,37 @@
 {
-  self,
-  pkgs,
-  lib,
-  ...
-}: {
-  hjem.users.michael.rum.programs.git = {
-    enable = true;
-    integrations.difftastic = {
+  flake.modules.nixos.hjem-git = {
+    self,
+    pkgs,
+    lib,
+    ...
+  }: {
+    hjem.users.michael.rum.programs.git = {
       enable = true;
-    };
-    settings = {
-      user = {
-        name = "Michael Buckley";
-        email = "michaelcbuckley@proton.me";
+      integrations.difftastic = {
+        enable = true;
       };
-      advice.defaultBranchName = false;
-      commit = {
-        # This custom script dynamically detects and selects my signing keys
-        program = lib.getExe self.packages.${pkgs.system}.gpg-custom;
-        gpgsign = true;
+      settings = {
+        user = {
+          name = "Michael Buckley";
+          email = "michaelcbuckley@proton.me";
+        };
+        advice.defaultBranchName = false;
+        commit = {
+          # This custom script dynamically detects and selects my signing keys
+          program = lib.getExe self.packages.${pkgs.system}.gpg-custom;
+          gpgsign = true;
+        };
+        core.editor = "nvim";
+        color = {
+          ui = true;
+          diff = "auto";
+          status = "auto";
+          branch = "auto";
+          interactive = "auto";
+        };
+        http.postBuffer = 157286400;
+        merge.conflictstyle = "zdiff3";
       };
-      core.editor = "nvim";
-      color = {
-        ui = true;
-        diff = "auto";
-        status = "auto";
-        branch = "auto";
-        interactive = "auto";
-      };
-      http.postBuffer = 157286400;
-      merge.conflictstyle = "zdiff3";
     };
   };
 }

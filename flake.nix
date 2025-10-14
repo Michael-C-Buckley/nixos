@@ -12,9 +12,7 @@
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
       imports = [
         flake-parts.flakeModules.modules
-        (import-tree ./modules/flake)
-        (import-tree ./modules/nixos)
-        (import-tree ./modules/hosts)
+        (import-tree ./modules)
         ./outputs
       ];
     };

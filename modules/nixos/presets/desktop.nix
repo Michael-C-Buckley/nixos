@@ -1,7 +1,10 @@
-{inputs, ...}: {
+{inputs, ...}: let
+  inherit (inputs.self) nixosModules;
+in {
   imports = [../packages/_gui.nix]; # To make sure the GUI packages are available for evaluation
-  flake.nixosModules.desktopPreset = {pkgs, ...}: {
-    imports = with inputs.self.nixosModules; [
+  flake.nixosModules.desktopPreset = {
+    imports = with nixosModules; [
+      # keep-sorted start
       linuxPreset
       hyprland
       noctalia
@@ -15,10 +18,10 @@
       zfs
       boot
       users
-    ];
-
-    environment.systemPackages = with pkgs; [
-      winbox4
+      desktopPackages
+      hjem-extended
+      hjem-root
+      # keep-sorted end
     ];
   };
 }
