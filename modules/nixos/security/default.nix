@@ -1,5 +1,11 @@
 {
-  flake.nixosModules.security = {lib, ...}: {
+  flake.nixosModules.security = {
+    config,
+    lib,
+    ...
+  }: {
+    boot.initrd.systemd.emergencyAccess = config.users.users.root.hashedPassword;
+
     security.sudo = {
       extraConfig = "Defaults lecture=never";
       wheelNeedsPassword = false;

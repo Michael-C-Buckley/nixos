@@ -33,6 +33,11 @@
       };
     };
     config = {
+      boot.kernel.sysctl = {
+        "net.ipv4.conf.all.forwarding" = true;
+        "net.ipv6.conf.all.forwarding" = true;
+      };
+
       services = {
         lldpd.enable = lib.mkDefault true;
         # Set sane standards on file descriptor limits for FRR daemons
