@@ -6,9 +6,7 @@
         "/var/lib/containerd"
         "/etc/rancher/k3s"
         "/var/lib/kubelet"
-      ];
-      files = [
-        "/var/log/k3s.log"
+        "/var/log/k3s"
       ];
     };
     # Give the utilities to graphical hosts
@@ -29,6 +27,7 @@
     services.k3s = {
       enable = true;
       role = "server";
+      extraFlags = "--log /var/lib/rancher/k3s/k3s.log";
     };
   };
 }

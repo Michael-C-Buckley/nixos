@@ -59,7 +59,7 @@ in {
           '';
         };
         scdaemon = {
-          extraLines = ''pcsc-driver'';
+          #extraLines = ''pcsc-driver'';
           disable-ccid = true;
         };
       };
