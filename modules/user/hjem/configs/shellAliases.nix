@@ -1,50 +1,52 @@
-let
-  commonAliases = {
-    ll = "eza -ala -g --icons";
-    la = "eza -A"; # List all except `.` and `..`
-    l = "ls -CF"; # Simple classified list
-    lt = "eza --tree --level=2 --icons";
-    tree = "eza --tree";
-    cat = "bat -p";
+{
+  flake.modules.nixos.hjem-shellAliases = let
+    commonAliases = {
+      ll = "eza -ala -g --icons";
+      la = "eza -A"; # List all except `.` and `..`
+      l = "ls -CF"; # Simple classified list
+      lt = "eza --tree --level=2 --icons";
+      tree = "eza --tree";
+      cat = "bat -p";
 
-    # Navigation
-    ".." = "cd ..";
-    "..." = "cd ../..";
+      # Navigation
+      ".." = "cd ..";
+      "..." = "cd ../..";
 
-    # Git aliases
-    gst = "git status";
-    ga = "git add";
-    gaa = "git add *";
-    gc = "git commit";
-    gcm = "git commit -m";
-    gp = "git push";
-    gf = "git fetch";
-    grv = "git remote -v";
-    lg = "lazygit";
+      # Git aliases
+      gst = "git status";
+      ga = "git add";
+      gaa = "git add *";
+      gc = "git commit";
+      gcm = "git commit -m";
+      gp = "git push";
+      gf = "git fetch";
+      grv = "git remote -v";
+      lg = "lazygit";
 
-    # Kubernetes
-    k = "kubectl";
+      # Kubernetes
+      k = "kubectl";
 
-    # Nu/Nushell
-    n = "nu -c";
+      # Nu/Nushell
+      n = "nu -c";
 
-    # ZFS
-    zls = "zfs list -o name,used,compressratio,lused,avail";
-    zsls = "zfs list -t snapshot -S creation -o name,creation,used,written,refer";
+      # ZFS
+      zls = "zfs list -o name,used,compressratio,lused,avail";
+      zsls = "zfs list -t snapshot -S creation -o name,creation,used,written,refer";
 
-    # SSH bypass
-    sshn = "ssh -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile=/dev/null";
+      # SSH bypass
+      sshn = "ssh -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile=/dev/null";
 
-    # File Management
-    duz = "du -xh . | sort -hr | fzf";
+      # File Management
+      duz = "du -xh . | sort -hr | fzf";
 
-    # Programs
-    fetch = "fastfetch --logo ~/.media/nixos.png --logo-height 20 --logo-width 40";
-    nv = "nvim";
-  };
-in {
-  hjem.users.michael.rum.programs = {
-    fish.aliases = commonAliases;
-    nushell.aliases = commonAliases;
+      # Programs
+      fetch = "fastfetch --logo ~/.media/nixos.png --logo-height 20 --logo-width 40";
+      nv = "nvim";
+    };
+  in {
+    hjem.users.michael.rum.programs = {
+      fish.aliases = commonAliases;
+      nushell.aliases = commonAliases;
+    };
   };
 }

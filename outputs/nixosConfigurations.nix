@@ -4,16 +4,10 @@
 
   customLib = import ../flake/lib {inherit (nixpkgs) lib;};
 
-  defaultMods = [
-    self.hjemConfigurations.root
-    inputs.sops-nix.nixosModules.sops
-  ];
-
   mkSystem = {
     hostname,
     system ? "x86_64-linux",
     modules ? [],
-    hjem ? "default",
     secrets ? hostname,
   }: let
     # Wrapper to shim the output packages so they can be plumbed more easily elsewhere
@@ -27,9 +21,7 @@
 
       modules =
         modules
-        ++ defaultMods
         ++ [
-          self.hjemConfigurations.${hjem}
           inputs.nix-secrets.nixosModules.${secrets}
           self.modules.nixos.${hostname}
         ];
@@ -48,11 +40,8 @@ in {
     ) {
       o1 = {
         system = "aarch64-linux";
-        hjem = "minimal-arm";
       };
-      p520 = {
-        hjem = "server";
-      };
+      p520 = {};
       t14 = {};
       tempest = {secrets = "common";};
       x570 = {};

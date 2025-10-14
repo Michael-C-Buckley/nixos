@@ -17,7 +17,6 @@
         nushell
         starship
         tmux
-        xonsh
         zellij
         # keep-sorted end
 
@@ -31,6 +30,9 @@
         difftastic
         gitFull
         tig
+        jujutsu
+        gh
+        nix-tree
 
         # File/Navigation
         # keep-sorted start
@@ -69,6 +71,7 @@
         lm_sensors
         usbutils
         pciutils
+        sops
 
         # Web
         curl
