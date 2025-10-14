@@ -21,7 +21,7 @@ pkgs.mkShellNoCC {
     ]
     ++ [
       # Tool to find best GPG signing key as part of my shell
-      (pkgs.callPackage ./flake/packages/gpg-find-key.nix {})
+      (pkgs.callPackage ./packages/gpg-find-key.nix {})
     ];
 
   shellHook = ''
