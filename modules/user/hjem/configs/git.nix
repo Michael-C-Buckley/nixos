@@ -15,6 +15,7 @@
           name = "Michael Buckley";
           email = "michaelcbuckley@proton.me";
         };
+        diff.sops.textconv = "${lib.getExe pkgs.sops} -d";
         advice.defaultBranchName = false;
         commit = {
           # This custom script dynamically detects and selects my signing keys

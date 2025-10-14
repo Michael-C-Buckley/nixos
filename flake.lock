@@ -121,11 +121,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1758241930,
-        "narHash": "sha256-OTmC/wDxW+2aTC93xAJK3jmBJyTwNfc+irLmD6kPEPc=",
+        "lastModified": 1760438204,
+        "narHash": "sha256-5IG9Jr4DyMQEQam2XIBephCZlPgPnjON5A51gdo6ePQ=",
         "owner": "snugnug",
         "repo": "hjem-rum",
-        "rev": "7c931af837c79d03275188e874e03ede10ce6183",
+        "rev": "9bacfa32baf24255a01944b33f3aa4ece1145bea",
         "type": "github"
       },
       "original": {
@@ -176,11 +176,11 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1760273133,
-        "narHash": "sha256-aXKEGRmh/Y9/d2AtejHkXJmj6iarOAhXWN0n5Yb/ODk=",
+        "lastModified": 1760412567,
+        "narHash": "sha256-fBo9EYWg/+aeUBM3awERfixxefWtAG8ZpBqQIFNUi8M=",
         "owner": "DreamMaoMao",
         "repo": "mangowc",
-        "rev": "ae53a314f10174e2dc9016bf6de74db2bb3a41b5",
+        "rev": "52ef8c62ff077cd07b7ccc2b5e2878e052daf884",
         "type": "github"
       },
       "original": {
@@ -251,11 +251,11 @@
     },
     "nix-secrets": {
       "locked": {
-        "lastModified": 1760310344,
-        "narHash": "sha256-IjHdv+GvRb7AH2tpo6OPb74Z133jm0OHclODoDz4RAs=",
+        "lastModified": 1760474565,
+        "narHash": "sha256-gyM1qSMAM/+M9k6+6KefQy+k51K0i87gtlMBm5HYEYY=",
         "ref": "refs/heads/master",
-        "rev": "2f4e79c86269da0eeaaf3604f7a112b28f6120f9",
-        "revCount": 361,
+        "rev": "c09d62a47d1c9b906a1a2c885ed8181a550d97c8",
+        "revCount": 362,
         "type": "git",
         "url": "ssh://git@github.com/michael-c-buckley/nix-secrets"
       },
@@ -272,11 +272,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1760320782,
-        "narHash": "sha256-1ycwVgQbDxEc4/zf8OxvnwJJwZ4wNIqgigOv/R/KdW8=",
+        "lastModified": 1760406799,
+        "narHash": "sha256-vK61Z2DhBMp3Y+FcqRqf1ZYkmcePXOQGJ0NGBzN7ys8=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "b227991f119ccaf404e9236d527c1d0e7412fe95",
+        "rev": "979e203b85cb5f15228c7fe3dfaf1964d6e50b9d",
         "type": "github"
       },
       "original": {
@@ -293,11 +293,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1760401123,
-        "narHash": "sha256-+SqngIVSellamVTFUnSVn+tGEGJZ4OSmbQvd7MxpGwQ=",
+        "lastModified": 1760454217,
+        "narHash": "sha256-qG4cQaYRKrAMj4OjISYYoWqJc+xcoJnLx2jsws7EdGg=",
         "owner": "nix-community",
         "repo": "nixos-wsl",
-        "rev": "59bf0375c5db92ef19456e7a659b627adb675fe2",
+        "rev": "a8209ae46721f2a70214d0a70388a812ec7740da",
         "type": "github"
       },
       "original": {
@@ -373,11 +373,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1760402019,
-        "narHash": "sha256-RwTZAQ7ffzgWcyd7em148unloQ/OAkWZg+kOH8jnQ8Q=",
+        "lastModified": 1760470340,
+        "narHash": "sha256-MQc6OCJkG6VWVud11H3Jn+uJEJ7KqUP0tbKQvfLjFXM=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "331a4d403271d11467111a3d449fd50b93572080",
+        "rev": "c336387a1830b708ca28dd3e1af1c2236d1c9acd",
         "type": "github"
       },
       "original": {
