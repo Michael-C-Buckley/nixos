@@ -14,7 +14,7 @@
       directory = "/root";
 
       # Gets at least NVF minimal
-      packages = [inputs.self.packages.${config.nixpkgs.hostSystem}.nvf-minimal];
+      packages = [inputs.self.packages.${config.nixpkgs.system}.nvf-minimal];
 
       rum.programs = {
         fish = {

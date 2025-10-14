@@ -1,6 +1,6 @@
 {
-  flake.nixosModules.serverPackages = {pkgs, ...}:
-    with pkgs; [
+  flake.nixosModules.serverPackages = {pkgs, ...}: {
+    environment.systemPackages = with pkgs; [
       # Clipboard
       wl-clipboard
       xclip
@@ -14,4 +14,5 @@
       ghostty
       sakura
     ];
+  };
 }
