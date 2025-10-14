@@ -9,15 +9,12 @@
     system ? "x86_64-linux",
     modules ? [],
     secrets ? hostname,
-  }: let
-    # Wrapper to shim the output packages so they can be plumbed more easily elsewhere
-    customPkgs = self.packages.${system};
-  in
+  }:
     nixpkgs.lib.nixosSystem {
       inherit system;
       # Special args are a better mechanism than overlays because it is significantly more
       #  obvious what came from where without indirection
-      specialArgs = {inherit self inputs customLib customPkgs;};
+      specialArgs = {inherit self inputs customLib;};
 
       modules =
         modules
@@ -38,12 +35,11 @@ in {
       hostname: params:
         mkSystem (params // {inherit hostname;})
     ) {
-      o1 = {
-        system = "aarch64-linux";
-      };
+      o1 = {system = "aarch64-linux";};
       p520 = {};
       t14 = {};
       tempest = {secrets = "common";};
       x570 = {};
+      wsl = {};
     };
 }
