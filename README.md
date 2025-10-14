@@ -2,15 +2,21 @@
 
 This flake is the major collection of all things I use to manage my systems. It contains primary use systems, like desktop, laptop, and some servers.
 
-I do have some things spun off like a few other servers, WSL, and secrets. Servers will be coming after some more flake-parts build-out on my part.
+I do have some things spun off like a few other servers and secrets. Servers will be coming after some more flake-parts build-out on my part.
 
 Caveat: I have included some custom options merged into the default Nix options namespace. Copying small sections can incur breakage this way, especially from networking (with advanced options since I am a network engineer). Private secrets are also in another repository (as a means to prevent harvest now, decrypt later).
 
 ## Major Frameworks
 
-### Flake-Parts
+### [Dendritic Pattern](https://vic.github.io/dendrix/Dendritic.html)
 
-This project makes fairly heavy use of flake-parts. It allows the leaner design I've recently
+The flake is nearly a full dendritic implementation. Everything within `/modules` are flake-parts modules and collected with `import-tree`, per the usual layout. I still have some elements scattered around that are not in the pattern.
+
+This is a new addition to me and I am still exploring and integrating the possibilities. The point is to streamline the flow and it may not ever fully comply with the pattern.
+
+### [Flake-Parts](https://flake.parts/)
+
+This project makes fairly heavy use of flake-parts. It is the required supporting library for Dendritic patterns.
 
 ### [Hjem](https://github.com/feel-co/hjem)
 
