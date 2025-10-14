@@ -1,9 +1,7 @@
 {
-  host.impermanence.cache.user.directories = [".local/share/Steam"];
-
   flake.nixosModules.gaming = {
-    # Large, downloadable so remove from snapshots
-    # Any Custom Filesystem mounts will be under the host
+    custom.impermanence.cache.user.directories = [".local/share/Steam"];
+
     hardware.steam-hardware.enable = true;
 
     programs.steam = {

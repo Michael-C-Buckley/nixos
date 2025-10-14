@@ -59,7 +59,7 @@ in {
   # This overlay is only consumed in this module
   nixpkgs.overlays = [inputs.nix-vscode-extensions.overlays.default];
 
-  environment.persistence."/persist".users.michael.directories = [
+  custom.impermanence.persist.user.directories = [
     ".config/VSCodium"
     ".vscode-oss"
     ".config/Code"

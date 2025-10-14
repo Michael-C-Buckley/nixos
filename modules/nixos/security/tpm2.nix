@@ -1,17 +1,17 @@
 # WIP MODULE
 {
-  host = {
-    impermanence.persist.directories = [
+  flake.nixosModules.tpm2 = {pkgs, ...}: {
+    custom.impermanence.persist.directories = [
       "/var/lib/tpm2-pkcs11"
       "/var/lib/tpm2-tss/system/keystore"
       "/etc/tpm2-tss"
     ];
-    graphicalPackages = [
-      "ssh-tpm-agent"
-      "tpm2-tools"
+
+    environment.systemPackages = with pkgs; [
+      ssh-tpm-agent
+      tpm2-tools
     ];
-  };
-  flake.nixosModules.tpm2 = {
+
     # environment.etc."tpm2-tss/fapi-config.json".text = builtins.toJSON {
     #   profile_name = "pkcs11";
     #   profile_dir = "/etc/tpm2-tss/fapi-profiles";

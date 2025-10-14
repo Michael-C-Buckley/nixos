@@ -7,6 +7,7 @@
         security
         gpg
         nix
+        options
       ]
       ++ (with inputs; [
         sops-nix.nixosModules.sops

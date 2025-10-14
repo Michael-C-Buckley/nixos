@@ -26,5 +26,17 @@ in
         value = flake.nixosConfigurations.${name}.config.hjem.users.michael;
       })
       hosts);
+
+    # Aliases for impermance
+    cip = builtins.listToAttrs (map (name: {
+        inherit name;
+        value = flake.nixosConfigurations.${name}.config.environment.persistence."/persist";
+      })
+      hosts);
+    cic = builtins.listToAttrs (map (name: {
+        inherit name;
+        value = flake.nixosConfigurations.${name}.config.environment.persistence."/cache";
+      })
+      hosts);
   }
   // flake
