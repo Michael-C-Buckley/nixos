@@ -1,5 +1,11 @@
 {
   flake.nixosModules.k3s = {pkgs, ...}: {
+    # The local machine has my kube config set
+    hjem.users.michael.rum.programs.fish.config = ''
+      set -x KUBECONFIG /etc/rancher/k3s/k3s.yaml
+      kubectl completion fish | source
+    '';
+
     custom.impermanence.persist.directories = [
       "/var/lib/rancher/k3s"
       "/var/lib/containerd"
@@ -9,6 +15,7 @@
     ];
 
     environment.systemPackages = with pkgs; [
+      k9s
       kubectl
       kubernetes-helm
     ];

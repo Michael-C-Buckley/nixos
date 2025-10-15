@@ -25,6 +25,9 @@
 
       # Kubernetes
       k = "kubectl";
+      kgp = "kubectl get pods";
+      kgs = "kubectl get svc";
+      kgn = "kubectl get nodes";
 
       # Nu/Nushell
       n = "nu -c";
