@@ -1,8 +1,6 @@
-{inputs, ...}: let
-  inherit (inputs.self) nixosModules;
-in {
-  flake.nixosModules.desktopPreset = {
-    imports = with nixosModules; [
+{inputs, ...}: {
+  flake.modules.nixos.desktopPreset = {
+    imports = with inputs.self.modules.nixos; [
       linuxPreset
       hyprland
       noctalia

@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.nixosModules.desktopPackages = {pkgs, ...}: {
+  flake.modules.nixos.desktopPackages = {pkgs, ...}: {
     environment.systemPackages = with pkgs;
       [
         # System Utilities

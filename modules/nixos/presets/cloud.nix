@@ -1,6 +1,6 @@
 {inputs, ...}: {
-  flake.nixosModules.cloudPreset = {
-    imports = with inputs.self.nixosModules; [
+  flake.modules.nixos.cloudPreset = {
+    imports = with inputs.self.modules.nixos; [
       linuxPreset
       network
       users

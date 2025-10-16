@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.intelGraphics = {pkgs, ...}: {
+  flake.modules.nixos.intelGraphics = {pkgs, ...}: {
     boot.kernelModules = ["i915"];
     environment.systemPackages = [pkgs.clinfo];
 

@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.eigrp = {
+  flake.modules.nixos.eigrp = {
     services.frr.eigrpd.enable = true;
 
     # These commands are for each implementation of the firewall

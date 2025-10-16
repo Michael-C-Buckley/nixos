@@ -1,10 +1,10 @@
 {inputs, ...}: {
-  flake.nixosModules.laptopPreset = {
+  flake.modules.nixos.laptopPreset = {
     pkgs,
     lib,
     ...
   }: {
-    imports = with inputs.self.nixosModules; [
+    imports = with inputs.self.modules.nixos; [
       desktopPreset
       network
       wifi

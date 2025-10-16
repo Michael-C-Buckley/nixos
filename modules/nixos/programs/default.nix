@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.programs = {
+  flake.modules.nixos.programs = {
     programs = {
       fish.enable = true;
       vim.enable = true;

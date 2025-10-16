@@ -4,7 +4,7 @@
       [
         inputs.quadlet-nix.nixosModules.quadlet
       ]
-      ++ (with inputs.self.nixosModules; [
+      ++ (with inputs.self.modules.nixos; [
         desktopPreset
         intelGraphics
         network

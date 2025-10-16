@@ -2,7 +2,7 @@
 #  Hardware devices are enabled on anything that isn't a cloud node
 #  My primary use are my yubikeys but I also have TPM-sealed GPG keys
 {inputs, ...}: {
-  flake.nixosModules = {
+  flake.modules.nixos = {
     gpg = {pkgs, ...}: {
       environment.systemPackages = [pkgs.gnupg];
 
@@ -13,7 +13,7 @@
     };
 
     gpg-yubikey = {pkgs, ...}: {
-      imports = [inputs.self.nixosModules.gpg];
+      imports = [inputs.self.modules.nixos.gpg];
       environment = {
         etc."pkcs11/pkcs11.conf".text = ''
           module: ${pkgs.opensc}/lib/opensc-pkcs11.so

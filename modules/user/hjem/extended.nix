@@ -1,12 +1,12 @@
 {inputs, ...}: {
-  flake.nixosModules.hjem-extended = {
+  flake.modules.nixos.hjem-extended = {
     config,
     pkgs,
     lib,
     ...
   }: {
     imports = [
-      inputs.self.nixosModules.hjem-default
+      inputs.self.modules.nixos.hjem-default
       inputs.self.modules.nixos.hjem-cursor
       ../modules/vscodium/_default.nix
     ];

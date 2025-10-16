@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.nixosModules.hjem-default = {
+  flake.modules.nixos.hjem-default = {
     config,
     pkgs,
     lib,

@@ -2,7 +2,7 @@
 # This is a test to get it working for doas and switch to it for my security model
 # Note to self: services.pam_pkcs11
 {
-  flake.nixosModules.pam = {pkgs, ...}: {
+  flake.modules.nixos.pam = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       pamtester
       pam_ssh_agent_auth

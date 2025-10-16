@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.docker = {pkgs, ...}: {
+  flake.modules.nixos.docker = {pkgs, ...}: {
     custom.impermanence.cache.directories = [
       "/var/lib/docker"
     ];

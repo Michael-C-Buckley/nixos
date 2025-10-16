@@ -1,6 +1,6 @@
 # Not technically a DE/WM but a Quickshell theme I'm just living here
 {inputs, ...}: {
-  flake.nixosModules.noctalia = {
+  flake.modules.nixos.noctalia = {
     config,
     pkgs,
     ...

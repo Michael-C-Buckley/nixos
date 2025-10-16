@@ -1,6 +1,6 @@
 {inputs, ...}: {
   flake.modules.nixos.p520 = {config, ...}: {
-    imports = with inputs.self.nixosModules; [
+    imports = with inputs.self.modules.nixos; [
       hydra
     ];
 

@@ -1,6 +1,6 @@
 # WIP MODULE
 {
-  flake.nixosModules.tpm2 = {pkgs, ...}: {
+  flake.modules.nixos.tpm2 = {pkgs, ...}: {
     custom.impermanence.persist.directories = [
       "/var/lib/tpm2-pkcs11"
       "/var/lib/tpm2-tss/system/keystore"
