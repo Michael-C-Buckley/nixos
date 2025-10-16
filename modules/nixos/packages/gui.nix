@@ -1,6 +1,6 @@
 # A collection of GUI apps without strong declarations
 {
-  flake.nixosModules.guiPackages = {pkgs, ...}: {
+  flake.modules.nixos.guiPackages = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       materialgram
       signal-desktop

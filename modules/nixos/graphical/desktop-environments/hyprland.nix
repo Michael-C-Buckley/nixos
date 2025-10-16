@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.hyprland = {pkgs, ...}: {
+  flake.modules.nixos.hyprland = {pkgs, ...}: {
     programs = {
       hyprland.enable = true;
       hyprlock.enable = true;

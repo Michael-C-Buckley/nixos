@@ -4,7 +4,7 @@
     lib,
     ...
   }: {
-    imports = with inputs.self.nixosModules; [
+    imports = with inputs.self.modules.nixos; [
       laptopPreset
       wifi
       cosmicDesktop

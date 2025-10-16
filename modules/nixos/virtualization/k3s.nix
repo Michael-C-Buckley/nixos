@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.k3s = {pkgs, ...}: {
+  flake.modules.nixos.k3s = {pkgs, ...}: {
     # The local machine has my kube config set
     hjem.users.michael.rum.programs.fish.config = ''
       set -x KUBECONFIG /etc/rancher/k3s/k3s.yaml

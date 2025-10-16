@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.dconf = {pkgs, ...}: {
+  flake.modules.nixos.dconf = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       materia-theme
       gruvbox-dark-icons-gtk

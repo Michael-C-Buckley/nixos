@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.libvirt = {
+  flake.modules.nixos.libvirt = {
     config,
     pkgs,
     ...

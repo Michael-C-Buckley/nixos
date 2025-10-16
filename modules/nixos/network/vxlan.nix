@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.vxlan = {
+  flake.modules.nixos.vxlan = {
     config,
     lib,
     ...

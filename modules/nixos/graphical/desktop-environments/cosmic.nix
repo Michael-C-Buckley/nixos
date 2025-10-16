@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.cosmicDesktop = {pkgs, ...}: {
+  flake.modules.nixos.cosmicDesktop = {pkgs, ...}: {
     services.desktopManager.cosmic = {
       enable = true;
       showExcludedPkgsWarning = false;

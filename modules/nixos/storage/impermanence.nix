@@ -6,7 +6,7 @@
 #
 # Flake Config mixes in the directories declared from Flake module options
 {inputs, ...}: {
-  flake.nixosModules.impermanence = {config, ...}: let
+  flake.modules.nixos.impermanence = {config, ...}: let
     inherit (config.custom.impermanence) cache persist;
 
     commonUserCache =

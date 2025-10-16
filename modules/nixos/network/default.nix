@@ -3,7 +3,7 @@
 # I also DO NOT respect namespaces - Copy at your own risk
 # You have been warned
 {inputs, ...}: {
-  flake.nixosModules.network = {
+  flake.modules.nixos.network = {
     config,
     lib,
     ...
@@ -16,7 +16,7 @@
     };
   in {
     # Bring in the rest of the routing protocol modules
-    imports = with inputs.self.nixosModules; [
+    imports = with inputs.self.modules.nixos; [
       bgp
       eigrp
       ospf

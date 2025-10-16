@@ -1,7 +1,7 @@
 # The base I gave to all linux hosts
 {inputs, ...}: {
-  flake.nixosModules.linuxPreset = {
-    imports = with inputs.self.nixosModules;
+  flake.modules.nixos.linuxPreset = {
+    imports = with inputs.self.modules.nixos;
       [
         programs
         security

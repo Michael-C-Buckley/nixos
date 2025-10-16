@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.wifi = {pkgs, ...}: {
+  flake.modules.nixos.wifi = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       blueman
       wavemon

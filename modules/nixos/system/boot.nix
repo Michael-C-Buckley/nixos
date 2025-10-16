@@ -6,10 +6,10 @@
   # To prevent shadowing from the inner module config
   inherit (config.host) bootloader;
 in {
-  flake.nixosModules = {
+  flake.modules.nixos = {
     boot = {
       imports = [
-        inputs.self.nixosModules.${bootloader}
+        inputs.self.modules.nixos.${bootloader}
       ];
 
       boot.initrd.systemd.enable = true;
