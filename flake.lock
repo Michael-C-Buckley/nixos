@@ -251,11 +251,11 @@
     },
     "nix-secrets": {
       "locked": {
-        "lastModified": 1760474565,
-        "narHash": "sha256-gyM1qSMAM/+M9k6+6KefQy+k51K0i87gtlMBm5HYEYY=",
+        "lastModified": 1760523153,
+        "narHash": "sha256-xA0rKikNUtOzwRBOwbLx533+pZdTS/LbXLpYkoI3sq4=",
         "ref": "refs/heads/master",
-        "rev": "c09d62a47d1c9b906a1a2c885ed8181a550d97c8",
-        "revCount": 362,
+        "rev": "de25eee9c88ea949b0b1ab35a0f8e8a52cbe424b",
+        "revCount": 363,
         "type": "git",
         "url": "ssh://git@github.com/michael-c-buckley/nix-secrets"
       },
@@ -293,11 +293,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1760454217,
-        "narHash": "sha256-qG4cQaYRKrAMj4OjISYYoWqJc+xcoJnLx2jsws7EdGg=",
+        "lastModified": 1760536587,
+        "narHash": "sha256-wfWqt+igns/VazjPLkyb4Z/wpn4v+XIjUeI3xY/1ENg=",
         "owner": "nix-community",
         "repo": "nixos-wsl",
-        "rev": "a8209ae46721f2a70214d0a70388a812ec7740da",
+        "rev": "f98ee1de1fa36eca63c67b600f5d617e184e82ea",
         "type": "github"
       },
       "original": {
@@ -308,11 +308,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1760375057,
-        "narHash": "sha256-YW++h8MBX+fDBm9uaZaFi6HoUDNdqUpvOeq1AfF1490=",
-        "rev": "cf3f5c4def3c7b5f1fc012b3d839575dbe552d43",
+        "lastModified": 1760573772,
+        "narHash": "sha256-RoIm6fgfvnkNQldHrbBhtAaFyiWJV5KF4D0dI41Fr90=",
+        "rev": "544961dfcce86422ba200ed9a0b00dd4b1486ec5",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre876718.cf3f5c4def3c/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre878042.544961dfcce8/nixexprs.tar.xz"
       },
       "original": {
         "type": "tarball",
