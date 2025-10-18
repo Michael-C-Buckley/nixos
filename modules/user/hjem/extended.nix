@@ -8,6 +8,7 @@
     imports = [
       inputs.self.modules.nixos.hjem-default
       inputs.self.modules.nixos.hjem-cursor
+      inputs.self.modules.nixos.hjem-ghostty
       ../modules/vscodium/_default.nix
     ];
 
