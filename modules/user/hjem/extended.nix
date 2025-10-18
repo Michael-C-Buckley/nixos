@@ -5,10 +5,11 @@
     lib,
     ...
   }: {
-    imports = [
-      inputs.self.modules.nixos.hjem-default
-      inputs.self.modules.nixos.hjem-cursor
-      inputs.self.modules.nixos.hjem-ghostty
+    imports = with inputs.self.modules.nixos; [
+      hjem-default
+      hjem-cursor
+      hjem-kitty
+      hjem-ghostty
       ../modules/vscodium/_default.nix
     ];
 
