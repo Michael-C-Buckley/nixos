@@ -17,6 +17,7 @@
         hjem-helix
         hjem-shellAliases
         hjem-starship
+        hjem-fastfetch
       ]
       ++ [
         inputs.hjem.nixosModules.hjem
