@@ -3,7 +3,7 @@
   inherit (inputs) self nixpkgs;
 
   # WIP: convert to dendrite
-  customLib = import ../lib {inherit (nixpkgs) lib;};
+  customLib = import ../lib/_default.nix {inherit (nixpkgs) lib;};
 
   mkSystem = {
     hostname,
