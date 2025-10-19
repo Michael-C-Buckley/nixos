@@ -1,4 +1,4 @@
-{lib}: {
+{lib, ...}: {
   genInterface = {
     cfgPath ? config.sops.secrets."wireguard-${name}".path,
     config,

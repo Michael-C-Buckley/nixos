@@ -1,4 +1,4 @@
-{lib}: {
+{lib, ...}: {
   parseCIDR = cidr: let
     parts = builtins.split "/" cidr;
   in {
