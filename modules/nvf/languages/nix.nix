@@ -1,6 +1,6 @@
 {
   flake.modules.nvf.nix = {
-    nix = {
+    vim.languages.nix = {
       enable = true;
       extraDiagnostics = {
         enable = true;
