@@ -3,7 +3,7 @@
     hjem.users.michael.rum.programs.ghostty = {
       enable = true;
       settings = {
-        theme = "wombat";
+        theme = "Wombat";
         background = "#000000";
         font-size = "11";
         font-family = "Cascadia Code NF";
