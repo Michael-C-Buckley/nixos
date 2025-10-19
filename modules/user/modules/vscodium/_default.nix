@@ -1,4 +1,5 @@
 {
+  self,
   pkgs,
   inputs,
   ...
@@ -19,7 +20,7 @@
       go-tools
       golangci-lint
     ]
-    ++ [(import ./_nvf.nix {inherit pkgs inputs;})];
+    ++ [self.packages.${pkgs.system}.nvf-vscode];
 
   vscodeExt = with pkgs.vscode-marketplace-release; [
     ms-python.vscode-pylance

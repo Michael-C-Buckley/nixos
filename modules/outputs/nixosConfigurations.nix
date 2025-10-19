@@ -2,7 +2,8 @@
   inherit (builtins) mapAttrs;
   inherit (inputs) self nixpkgs;
 
-  customLib = import ../flake/lib {inherit (nixpkgs) lib;};
+  # WIP: convert to dendrite
+  customLib = import ../lib {inherit (nixpkgs) lib;};
 
   mkSystem = {
     hostname,
