@@ -1,4 +1,4 @@
 {lib, ...}: {
-  ips = import ./ips.nix {inherit lib;};
-  wireguard = import ./wireguard.nix {inherit lib;};
+  ips = import ./_ips.nix {inherit lib;};
+  wireguard = import ./_wireguard.nix {inherit lib;};
 }
