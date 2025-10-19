@@ -10,11 +10,14 @@
       hjem-cursor
       hjem-kitty
       hjem-ghostty
-      ../modules/vscodium/_default.nix
+      hjem-vscodium
     ];
 
-    users.users.michael.packages = [(lib.hiPrio inputs.self.packages.${config.nixpkgs.system}.nvf)];
-
-    hjem.users.michael.gnupg.pinentryPackage = lib.mkForce pkgs.pinentry-qt;
+    hjem.users.michael = {
+      gnupg.pinentryPackage = lib.mkForce pkgs.pinentry-qt;
+      packages = [
+        (lib.hiPrio inputs.self.packages.${config.nixpkgs.system}.nvf)
+      ];
+    };
   };
 }
