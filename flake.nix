@@ -31,10 +31,11 @@
     quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
 
     hjem = {
-      url = "github:/feel-co/hjem";
+      url = "github:feel-co/hjem/31f969f69f02b62e417bcc39571a605977cb89fa"; # Pinned due to linking issue
       inputs = {
         nixpkgs.follows = "nixpkgs";
         ndg.follows = ""; # This is for their docs generator
+        smfh.follows = ""; # I use the nixpkgs version
       };
     };
 
@@ -43,6 +44,7 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         hjem.follows = "hjem";
+        ndg.follows = "";
       };
     };
 

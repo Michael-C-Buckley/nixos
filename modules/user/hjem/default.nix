@@ -27,7 +27,7 @@
     users.users.michael.shell = pkgs.fish;
 
     hjem = {
-      linker = inputs.hjem.packages.${system}.smfh;
+      linker = pkgs.smfh;
       extraModules = [
         inputs.self.hjemModules.gnupg
         inputs.hjem-rum.hjemModules.default
