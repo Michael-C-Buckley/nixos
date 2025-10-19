@@ -3,6 +3,7 @@
     imports = with self.modules.nvf; [
       keymaps
       languages
+      nix
       plugins
       themes
       ui
