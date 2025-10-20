@@ -6,7 +6,7 @@
         network
         users
         gpg-yubikey
-        hjem-default
+        hjem-wsl
         hjem-root
         unbound
       ]
