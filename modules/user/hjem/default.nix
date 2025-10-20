@@ -18,6 +18,8 @@
         hjem-shellAliases
         hjem-starship
         hjem-fastfetch
+        hjem-yazi
+        hjem-zoxide
       ]
       ++ [
         inputs.hjem.nixosModules.hjem
