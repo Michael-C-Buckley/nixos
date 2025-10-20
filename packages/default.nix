@@ -1,0 +1,5 @@
+{
+  imports = [
+    ./nvf/outputs.nix
+  ];
+}
