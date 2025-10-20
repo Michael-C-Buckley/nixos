@@ -35,12 +35,12 @@
       };
   in {
     packages = {
+      # Does not current work with Github Copilot extension
       vscodium = mkVscode {
         name = "codium";
         vscode = pkgs.vscodium;
       };
 
-      # Only because GHCP still doesn't work yet
       vscode = mkVscode {
         name = "code";
         inherit (pkgs') vscode;
