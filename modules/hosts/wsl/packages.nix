@@ -23,6 +23,7 @@
       starship
 
       # File/Navigation
+      bat
       fd
       dust
       fzf
@@ -35,6 +36,10 @@
       # Hardware
       usbutils
       pciutils
+
+      # Security
+      rage
+      sops
 
       # Network
       dig

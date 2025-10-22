@@ -7,6 +7,10 @@
       killall
       npins
 
+      # Security
+      sops
+      rage
+
       # Shells
       # keep-sorted start
       comma
