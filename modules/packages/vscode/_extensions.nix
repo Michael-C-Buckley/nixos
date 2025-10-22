@@ -22,10 +22,11 @@ with pkgs'.vscode-marketplace-release; [
   bbenoist.nix
 
   # Themes
-  metaphore.kanagawa-vscode-color-theme
-  ddiu8081.moegi-theme
+  ms-vscode.theme-predawnkit
+  mvllow.rose-pine
+  catppuccin.catppuccin-vsc
+  github.github-vscode-theme
   teabyii.ayu
-  enkia.tokyo-night
 ]
 # Extensions I am not currently using
 #srl-labs.vscode-containerlab
