@@ -53,7 +53,8 @@
     };
 
     nvf = {
-      url = "github:notashelf/nvf/v0.8";
+      # An update broke my config
+      url = "github:notashelf/nvf/ea3ee477fa1814352b30d114f31bf4895eed053e";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-compat.follows = "";
@@ -64,14 +65,6 @@
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    mangowc = {
-      url = "github:DreamMaoMao/mangowc";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
     };
 
     noctalia = {

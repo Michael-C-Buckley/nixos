@@ -24,7 +24,10 @@
       boot = {
         kernelModules = ["zfs"];
         supportedFilesystems = ["zfs"];
-        zfs.requestEncryptionCredentials = zfs.encryption;
+        zfs = {
+          inherit (zfs) package;
+          requestEncryptionCredentials = zfs.encryption;
+        };
       };
 
       environment.systemPackages = [zfs.package];
