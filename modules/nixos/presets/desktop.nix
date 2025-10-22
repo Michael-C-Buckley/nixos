@@ -19,6 +19,9 @@
       hjem-extended
       hjem-root
       shawn
+
+      # Applications
+      app-jan
     ];
   };
 }
