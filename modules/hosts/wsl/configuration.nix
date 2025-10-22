@@ -29,6 +29,8 @@
       };
     };
 
+    programs.nix-ld.enable = true;
+
     services.unbound.enable = true;
     system.stateVersion = "24.11";
   };
