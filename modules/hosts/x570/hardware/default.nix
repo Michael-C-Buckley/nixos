@@ -38,5 +38,6 @@
     };
 
     swapDevices = [];
+    system.zfs.package = pkgs.zfs_unstable;
   };
 }

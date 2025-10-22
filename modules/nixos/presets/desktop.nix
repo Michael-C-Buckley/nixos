@@ -19,7 +19,6 @@
       hjem-extended
       hjem-root
       shawn
-      zed
     ];
   };
 }
