@@ -15,13 +15,21 @@
       boot
       users
       desktopPackages
-      guiPackages
       hjem-extended
       hjem-root
       shawn
 
       # Applications
+      app-bitwarden
+      app-helium
       app-jan
+      app-legcord
+      app-librewolf
+      app-materialgram
+      app-obsidian
+      app-signal
+      app-vscode
+      app-zed
     ];
   };
 }

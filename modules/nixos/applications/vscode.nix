@@ -1,11 +1,11 @@
 {self, ...}: {
-  flake.modules.nixos.hjem-vscode = {pkgs, ...}: {
+  flake.modules.nixos.app-vscode = {pkgs, ...}: {
     custom.impermanence.persist.user.directories = [
       ".config/Code"
       ".vscode"
     ];
 
-    hjem.users.michael.packages = [
+    environment.systemPackages = [
       self.packages.${pkgs.system}.vscode
     ];
   };
