@@ -1,20 +1,12 @@
 {self, ...}: {
-  flake.modules.nixos.hjem-vscodium = {pkgs, ...}: let
-    inherit (self.packages.${pkgs.system}) vscode;
-  in {
+  flake.modules.nixos.hjem-vscode = {pkgs, ...}: {
     custom.impermanence.persist.user.directories = [
-      # Vscodium
-      #".config/VSCodium"
-      #".vscode-oss"
-
-      # Vscode
       ".config/Code"
       ".vscode"
     ];
 
     hjem.users.michael.packages = [
-      #vscodium
-      vscode
+      self.packages.${pkgs.system}.vscode
     ];
   };
 }

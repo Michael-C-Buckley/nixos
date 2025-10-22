@@ -10,7 +10,7 @@
       hjem-cursor
       hjem-kitty
       hjem-ghostty
-      hjem-vscodium
+      hjem-vscode
     ];
 
     hjem.users.michael = {

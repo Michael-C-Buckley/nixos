@@ -4,6 +4,7 @@
     pkgs,
     ...
   }: let
+    # Allow unfree and extend with the extensions overlay
     pkgs' =
       (import inputs.nixpkgs {
         inherit (pkgs) system;
@@ -11,40 +12,22 @@
       }).extend
       inputs.nix-vscode-extensions.overlays.default;
 
+    name = "code";
     wrappedInputs = import ./_build-inputs.nix {inherit self' pkgs';};
-
-    vscodeExtensions = import ./_extensions.nix {inherit pkgs';};
-
-    mkVscode = {
-      name,
-      vscode,
-    }:
-      pkgs.symlinkJoin {
-        inherit name;
-        paths = [
-          (pkgs'.vscode-with-extensions.override {
-            inherit vscode vscodeExtensions;
-          })
-        ];
-        buildInputs = wrappedInputs;
-        nativeBuildInputs = [pkgs.makeWrapper];
-        postBuild = ''
-          wrapProgram $out/bin/${name} \
-          --prefix PATH : ${pkgs.lib.makeBinPath wrappedInputs}
-        '';
-      };
   in {
-    packages = {
-      # Does not current work with Github Copilot extension
-      vscodium = mkVscode {
-        name = "codium";
-        vscode = pkgs.vscodium;
-      };
-
-      vscode = mkVscode {
-        name = "code";
-        inherit (pkgs') vscode;
-      };
+    packages.vscode = pkgs.symlinkJoin {
+      inherit name;
+      paths = [
+        (pkgs'.vscode-with-extensions.override {
+          vscodeExtensions = import ./_extensions.nix {inherit pkgs';};
+        })
+      ];
+      buildInputs = wrappedInputs;
+      nativeBuildInputs = [pkgs.makeWrapper];
+      postBuild = ''
+        wrapProgram $out/bin/${name} \
+        --prefix PATH : ${pkgs.lib.makeBinPath wrappedInputs}
+      '';
     };
   };
 }

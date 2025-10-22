@@ -1,56 +1,34 @@
 {pkgs'}:
-with pkgs'.vscode-marketplace-release;
-  [
-    # AI Tools
-    github.copilot
-    github.copilot-chat
-    rjmacarthy.twinny
+with pkgs'.vscode-marketplace-release; [
+  # Microsoft Official Only
+  ms-vscode-remote.remote-ssh-edit
+  ms-python.vscode-pylance
 
-    # QOL/usability
-    mechatroner.rainbow-csv
-    streetsidesoftware.code-spell-checker
-    formulahendry.auto-rename-tag # Matches XML tags while editing
-    oderwat.indent-rainbow
-    mkhl.direnv
-    asvetliakov.vscode-neovim
+  # AI Tools
+  github.copilot
+  github.copilot-chat
 
-    # Language
-    ms-python.python
-    ms-python.debugpy
-    ms-pyright.pyright
-    detachhead.basedpyright
-    meta.pyrefly
-    golang.go
-    bbenoist.nix
-    rust-lang.rust-analyzer
+  # QOL/usability
+  mechatroner.rainbow-csv
+  streetsidesoftware.code-spell-checker
+  oderwat.indent-rainbow
+  mkhl.direnv
+  asvetliakov.vscode-neovim
 
-    # Utility
-    signageos.signageos-vscode-sops
+  # Language
+  ms-python.python
+  ms-python.debugpy
+  golang.go
+  bbenoist.nix
 
-    # Themes
-    wicked-labs.wvsc-serendipity
-    metaphore.kanagawa-vscode-color-theme
-    ddiu8081.moegi-theme
-    ddiu8081.moegi-theme
-    teabyii.ayu
-    huytd.nord-light
-    arcticicestudio.nord-visual-studio-code
-    enkia.tokyo-night
-    mvllow.rose-pine
-    catppuccin.catppuccin-vsc
-    jdinhlife.gruvbox
-  ]
-  ++ [
-    # Open Remote
-    pkgs'.open-vsx-release.jeanp413.open-remote-ssh
-  ]
-# Extensions I am not currently using, but have
-# Networking tools
-#"jamiewoodio.cisco"
-#"ispapp.mikrotik-routeros-script-tools"
-#"srl-labs.vscode-containerlab"
-#
-# DevOps/etc
+  # Themes
+  metaphore.kanagawa-vscode-color-theme
+  ddiu8081.moegi-theme
+  teabyii.ayu
+  enkia.tokyo-night
+]
+# Extensions I am not currently using
+#srl-labs.vscode-containerlab
 #redhat.vscode-yaml
 #redhat.ansible
 #ms-kubernetes-tools.vscode-kubernetes-tools
