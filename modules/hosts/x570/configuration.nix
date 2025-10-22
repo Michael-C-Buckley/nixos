@@ -18,7 +18,7 @@
     nix.settings.substituters = lib.mkBefore ["http://p520:5000"];
     system.stateVersion = "25.05";
 
-    # Containers
+    # Containers (existing data but current disabled)
     environment.persistence."/cache".directories = [
       "/var/lib/containers"
       "/var/lib/open-webui"
