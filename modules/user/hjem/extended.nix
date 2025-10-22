@@ -11,6 +11,7 @@
       hjem-kitty
       hjem-ghostty
       hjem-vscode
+      hjem-zed
     ];
 
     hjem.users.michael = {
