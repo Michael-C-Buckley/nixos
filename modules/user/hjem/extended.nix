@@ -9,6 +9,7 @@
       hjem-cursor
       hjem-kitty
       hjem-ghostty
+      hjem-zed
     ];
 
     hjem.users.michael = {
