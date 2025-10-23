@@ -1,10 +1,12 @@
-{inputs, ...}: {
+{config, ...}: let
+  inherit (config.flake.modules) nixos;
+in {
   flake.modules.nixos.o1 = {
     config,
     lib,
     ...
   }: {
-    imports = with inputs.self.modules.nixos; [
+    imports = with nixos; [
       cloudPreset
     ];
     environment = {

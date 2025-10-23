@@ -1,12 +1,10 @@
-{self, ...}: {
+{config, ...}: {
   flake.modules.nixos.hjem-zed = {pkgs, ...}: {
     hjem.users.michael.rum.programs.zed = {
       enable = true;
-      package = self.packages.${pkgs.system}.zeditor;
-      settings = {
-        auto_update = false;
-        close_on_file_delete = true;
+      package = config.flake.packages.${pkgs.system}.zeditor;
 
+      settings = {
         base_keymap = "vscode";
 
         load_direnv = "shell_hook";
@@ -64,6 +62,7 @@
           };
         };
       };
+      # End of settings
     };
   };
 }

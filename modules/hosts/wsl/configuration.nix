@@ -1,6 +1,10 @@
-{inputs, ...}: {
+{
+  inputs,
+  config,
+  ...
+}: {
   flake.modules.nixos.wsl = {
-    imports = with inputs.self.modules.nixos;
+    imports = with config.flake.modules.nixos;
       [
         linuxPreset
         network

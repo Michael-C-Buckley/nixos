@@ -1,9 +1,12 @@
-{inputs, ...}: {
-  perSystem = {
-    self',
-    pkgs,
-    ...
-  }: let
+{
+  inputs,
+  config,
+  ...
+}: let
+  inherit (config.flake) packages;
+in {
+  perSystem = {pkgs, ...}: let
+    inherit (packages.${pkgs.system}) nvf-vscode;
     # Allow unfree and extend with the extensions overlay
     pkgs' =
       (import inputs.nixpkgs {
@@ -13,7 +16,7 @@
       inputs.nix-vscode-extensions.overlays.default;
 
     name = "code";
-    wrappedInputs = import ./_build-inputs.nix {inherit self' pkgs';};
+    wrappedInputs = import ./_build-inputs.nix {inherit nvf-vscode pkgs';};
   in {
     packages.vscode = pkgs.symlinkJoin {
       inherit name;

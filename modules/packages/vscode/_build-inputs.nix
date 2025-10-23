@@ -1,5 +1,5 @@
 {
-  self',
+  nvf-vscode,
   pkgs',
 }:
 with pkgs';
@@ -19,5 +19,5 @@ with pkgs';
     golangci-lint
   ]
   ++ [
-    self'.packages.nvf-vscode
+    nvf-vscode
   ]

@@ -1,10 +1,14 @@
-{inputs, ...}: {
+{
+  inputs,
+  config,
+  ...
+}: {
   flake.modules.nixos.x570 = {lib, ...}: {
     imports =
       [
         inputs.quadlet-nix.nixosModules.quadlet
       ]
-      ++ (with inputs.self.modules.nixos; [
+      ++ (with config.flake.modules.nixos; [
         desktopPreset
         intelGraphics
         network

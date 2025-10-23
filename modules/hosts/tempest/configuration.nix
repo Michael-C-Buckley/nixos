@@ -1,10 +1,10 @@
-{inputs, ...}: {
+{config, ...}: {
   flake.modules.nixos.tempest = {
     pkgs,
     lib,
     ...
   }: {
-    imports = with inputs.self.modules.nixos; [
+    imports = with config.flake.modules.nixos; [
       laptopPreset
       wifi
       cosmicDesktop

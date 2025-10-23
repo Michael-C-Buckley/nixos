@@ -1,6 +1,6 @@
-{inputs, ...}: {
+{config, ...}: {
   flake.modules.nixos.p520 = {
-    imports = with inputs.self.modules.nixos; [
+    imports = with config.flake.modules.nixos; [
       serverPreset
       containerlab
     ];

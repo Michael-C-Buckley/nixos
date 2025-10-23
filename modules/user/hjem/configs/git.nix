@@ -1,6 +1,5 @@
-{
+{config, ...}: {
   flake.modules.nixos.hjem-git = {
-    self,
     pkgs,
     lib,
     ...
@@ -19,7 +18,7 @@
         advice.defaultBranchName = false;
         commit = {
           # This custom script dynamically detects and selects my signing keys
-          program = lib.getExe self.packages.${pkgs.system}.gpg-custom;
+          program = lib.getExe config.flake.packages.${pkgs.system}.gpg-custom;
           gpgsign = true;
         };
         core.editor = "nvim";

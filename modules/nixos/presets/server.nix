@@ -1,6 +1,6 @@
-{inputs, ...}: {
+{config, ...}: {
   flake.modules.nixos.serverPreset = {
-    imports = with inputs.self.modules.nixos; [
+    imports = with config.flake.modules.nixos; [
       linuxPreset
       network
       users
