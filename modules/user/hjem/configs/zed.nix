@@ -5,7 +5,7 @@
       package = config.flake.packages.${pkgs.system}.zeditor;
 
       settings = {
-        base_keymap = "vscode";
+        base_keymap = "VSCode";
 
         load_direnv = "shell_hook";
 
@@ -53,12 +53,18 @@
         };
 
         languages = {
-          nix = {
+          Nix = {
             formatter.external = {
               command = "alejandra";
-              arguments = ["--quiet" "--"];
+              arguments = [
+                "--quiet"
+                "--"
+              ];
             };
-            language_servers = ["nixd" "nil"];
+            language_servers = [
+              "nixd"
+              "nil"
+            ];
           };
         };
       };
