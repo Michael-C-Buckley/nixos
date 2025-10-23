@@ -4,6 +4,9 @@ with pkgs'.vscode-marketplace-release; [
   ms-vscode-remote.remote-ssh-edit
   ms-python.vscode-pylance
 
+  # Devops
+  ms-kubernetes-tools.vscode-kubernetes-tools
+
   # AI Tools
   github.copilot
   github.copilot-chat
@@ -11,7 +14,6 @@ with pkgs'.vscode-marketplace-release; [
   # QOL/usability
   mechatroner.rainbow-csv
   streetsidesoftware.code-spell-checker
-  oderwat.indent-rainbow
   mkhl.direnv
   asvetliakov.vscode-neovim
 
@@ -23,8 +25,6 @@ with pkgs'.vscode-marketplace-release; [
 
   # Themes
   ms-vscode.theme-predawnkit
-  mvllow.rose-pine
-  catppuccin.catppuccin-vsc
   github.github-vscode-theme
   teabyii.ayu
 ]
@@ -32,5 +32,4 @@ with pkgs'.vscode-marketplace-release; [
 #srl-labs.vscode-containerlab
 #redhat.vscode-yaml
 #redhat.ansible
-#ms-kubernetes-tools.vscode-kubernetes-tools
 
