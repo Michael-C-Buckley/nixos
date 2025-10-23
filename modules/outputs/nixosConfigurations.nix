@@ -13,8 +13,6 @@
   }:
     nixpkgs.lib.nixosSystem {
       inherit system;
-      # Special args are a better mechanism than overlays because it is significantly more
-      #  obvious what came from where without indirection
       specialArgs = {inherit self inputs customLib;};
 
       modules =

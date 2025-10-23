@@ -1,7 +1,7 @@
-{inputs, ...}: {
+{config, ...}: {
   flake.modules.nixos.containerlab = {pkgs, ...}: {
     # Automatically pull in Docker
-    imports = [inputs.self.modules.nixos.docker];
+    imports = [config.flake.modules.nixos.docker];
     environment.systemPackages = [pkgs.containerlab];
 
     # This makes the hosts file writeable for containerlab to use

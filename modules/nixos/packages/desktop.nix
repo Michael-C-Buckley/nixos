@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{config, ...}: {
   flake.modules.nixos.desktopPackages = {pkgs, ...}: {
     environment.systemPackages = with pkgs;
       [
@@ -34,7 +34,7 @@
         winbox4
       ]
       ++ [
-        inputs.self.packages.${pkgs.system}.helium
+        config.flake.packages.${pkgs.system}.helium
       ];
   };
 }

@@ -2,7 +2,9 @@
 #  considerably more complex than most typical NixOS/Linux users
 # I also DO NOT respect namespaces - Copy at your own risk
 # You have been warned
-{inputs, ...}: {
+{config, ...}: let
+  inherit (config.flake.modules) nixos;
+in {
   flake.modules.nixos.network = {
     config,
     lib,
@@ -16,7 +18,7 @@
     };
   in {
     # Bring in the rest of the routing protocol modules
-    imports = with inputs.self.modules.nixos; [
+    imports = with nixos; [
       bgp
       eigrp
       ospf

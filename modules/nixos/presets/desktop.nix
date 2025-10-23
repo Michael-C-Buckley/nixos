@@ -1,6 +1,6 @@
-{inputs, ...}: {
+{config, ...}: {
   flake.modules.nixos.desktopPreset = {
-    imports = with inputs.self.modules.nixos; [
+    imports = with config.flake.modules.nixos; [
       linuxPreset
       hyprland
       noctalia

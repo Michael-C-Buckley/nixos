@@ -1,7 +1,7 @@
 # T14 Laptop Configuration
-{inputs, ...}: {
+{config, ...}: {
   flake.modules.nixos.t14 = {
-    imports = with inputs.self.modules.nixos; [
+    imports = with config.flake.modules.nixos; [
       laptopPreset
       unbound
     ];

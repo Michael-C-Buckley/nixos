@@ -1,6 +1,8 @@
-{inputs, ...}: {
+{config, ...}: let
+  inherit (config.flake.modules.nixos) hydra;
+in {
   flake.modules.nixos.p520 = {config, ...}: {
-    imports = with inputs.self.modules.nixos; [
+    imports = [
       hydra
     ];
 

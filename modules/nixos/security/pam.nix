@@ -1,6 +1,6 @@
 # WIP: not yet working
 # This is a test to get it working for doas and switch to it for my security model
-# Note to self: services.pam_pkcs11
+# Note to me: services.pam_pkcs11
 {
   flake.modules.nixos.pam = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [

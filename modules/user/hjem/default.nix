@@ -1,15 +1,17 @@
-{inputs, ...}: {
+{
+  config,
+  inputs,
+  ...
+}: {
   flake.modules.nixos.hjem-default = {
-    config,
     pkgs,
     lib,
     ...
   }: let
     inherit (lib) mkDefault;
-    inherit (config.nixpkgs) system;
-    inherit (inputs.self.packages.${system}) nvf-minimal ns;
+    inherit (config.flake.packages.${pkgs.system}) nvf-minimal ns;
   in {
-    imports = with inputs.self.modules.nixos;
+    imports = with config.flake.modules.nixos;
       [
         hjem-direnv
         hjem-fish

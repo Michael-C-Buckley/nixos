@@ -1,17 +1,19 @@
-{inputs, ...}: {
+{config, ...}: let
+  inherit (config) flake;
+in {
   flake.modules.nixos.hjem-wsl = {
-    config,
+    pkgs,
     lib,
     ...
   }: {
-    imports = with inputs.self.modules.nixos; [
+    imports = with flake.modules.nixos; [
       hjem-default
       hjem-cursor
     ];
 
     hjem.users.michael = {
       packages = [
-        (lib.hiPrio inputs.self.packages.${config.nixpkgs.system}.nvf)
+        (lib.hiPrio flake.packages.${pkgs.system}.nvf)
       ];
     };
   };

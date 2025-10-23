@@ -1,10 +1,10 @@
-{inputs, ...}: {
+{config, ...}: {
   flake.modules.nixos.hjem-extended = {
     pkgs,
     lib,
     ...
   }: {
-    imports = with inputs.self.modules.nixos; [
+    imports = with config.flake.modules.nixos; [
       hjem-default
       hjem-cursor
       hjem-kitty
@@ -14,7 +14,7 @@
 
     hjem.users.michael = {
       gnupg.pinentryPackage = lib.mkForce pkgs.pinentry-qt;
-      packages = [(lib.hiPrio inputs.self.packages.${pkgs.system}.nvf)];
+      packages = [(lib.hiPrio config.flake.packages.${pkgs.system}.nvf)];
     };
   };
 }

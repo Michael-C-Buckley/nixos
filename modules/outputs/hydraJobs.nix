@@ -1,7 +1,7 @@
-{self, ...}: let
+{config, ...}: let
   inherit (builtins) mapAttrs;
-  inherit (self) nixosConfigurations;
-  getConfig = host: self.nixosConfigurations.${host}.config.system.build.toplevel;
+  inherit (config.flake) nixosConfigurations;
+  getConfig = host: nixosConfigurations.${host}.config.system.build.toplevel;
 in {
   flake.hydraJobs = {
     # Find and build all systems defined
