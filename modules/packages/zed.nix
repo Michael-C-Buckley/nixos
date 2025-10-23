@@ -2,19 +2,23 @@
 {
   perSystem = {pkgs, ...}: let
     zedInputs = with pkgs; [
+      # Nix
+      alejandra
       nil
       nixd
-      pyright
-      gopls
+      statix
 
-      # Formatters
-      alejandra
-      black
+      # Go
+      go
+      gopls
       gofumpt
 
-      # Build tools
+      # Python
       python3
-      go
+      ruff
+      pyrefly
+      pyright
+      basedpyright
     ];
   in {
     packages.zeditor = pkgs.symlinkJoin {
