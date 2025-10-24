@@ -18,7 +18,7 @@
   }:
     nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = {inherit customLib;};
+      specialArgs = {inherit inputs customLib;};
 
       modules =
         modules
