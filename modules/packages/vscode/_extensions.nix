@@ -12,8 +12,6 @@ with pkgs'.vscode-marketplace-release; [
   github.copilot-chat
 
   # QOL/usability
-  mechatroner.rainbow-csv
-  streetsidesoftware.code-spell-checker
   mkhl.direnv
   asvetliakov.vscode-neovim
 
@@ -26,7 +24,6 @@ with pkgs'.vscode-marketplace-release; [
   # Themes
   ms-vscode.theme-predawnkit
   github.github-vscode-theme
-  teabyii.ayu
 ]
 # Extensions I am not currently using
 #srl-labs.vscode-containerlab
