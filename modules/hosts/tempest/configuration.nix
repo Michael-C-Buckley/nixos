@@ -38,9 +38,6 @@
     # Remove autologin
     services.greetd.settings.initial_session = lib.mkForce {};
 
-    system = {
-      stateVersion = "25.05";
-      zfs.encryption = true;
-    };
+    system.stateVersion = "25.05";
   };
 }

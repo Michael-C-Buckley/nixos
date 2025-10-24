@@ -9,6 +9,10 @@
     boot.zfs.package = pkgs.zfs_unstable;
     swapDevices = [];
 
+    custom.zfs.snapshotDatasets = [
+      "zroot/x570/nixos/persist"
+    ];
+
     fileSystems = {
       "/boot" = {
         device = "/dev/disk/by-uuid/26BA-7AD8";

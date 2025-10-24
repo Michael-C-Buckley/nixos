@@ -14,6 +14,8 @@
       "/etc/sops"
     ];
 
+    boot.zfs.requestEncryptionCredentials = true;
+
     fileSystems = {
       "/etc/sops".neededForBoot = true;
 
