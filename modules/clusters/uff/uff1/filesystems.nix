@@ -6,13 +6,12 @@
       neededForBoot = true;
     };
   in {
-    system = {
-      impermanence.enable = true;
-      gluster.enable = true;
-      zfs.enable = true;
-    };
-
     fileSystems = {
+      "/boot" = {
+        device = "/dev/disk/by-uuid/6B03-5772";
+        fsType = "vfat";
+      };
+
       # Tmpfs
       "/" = {
         device = "tmpfs";
@@ -28,7 +27,6 @@
       "/nix" = zfsFs "nix";
       "/cache" = zfsFs "cache";
       "/persist" = zfsFs "persist";
-      "/data/gluster" = zfsFs "gluster";
     };
   };
 }

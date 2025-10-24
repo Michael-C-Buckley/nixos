@@ -20,5 +20,8 @@
 
     nixpkgs.hostPlatform = "x86_64-linux";
     hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
+
+    # WIP: Move to nodes
+    system.stateVersion = "25.11";
   };
 }
