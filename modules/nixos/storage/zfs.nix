@@ -1,40 +1,18 @@
 {
-  flake.modules.nixos.zfs = {
-    config,
-    pkgs,
-    lib,
-    ...
-  }: let
-    inherit (config.system) zfs;
-  in {
-    options.system.zfs = {
-      encryption = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Request decryption credentials on boot.";
-      };
-      package = lib.mkOption {
-        type = lib.types.package;
-        default = pkgs.zfs;
-        description = "The ZFS package to use.";
-      };
+  flake.modules.nixos.zfs = {config, ...}: {
+    boot = {
+      kernelModules = ["zfs"];
+      supportedFilesystems = ["zfs"];
     };
 
-    config = {
-      boot = {
-        kernelModules = ["zfs"];
-        supportedFilesystems = ["zfs"];
-        zfs = {
-          inherit (zfs) package;
-          requestEncryptionCredentials = zfs.encryption;
-        };
-      };
+    # I don't know if this is necessary, but just in case
+    environment.systemPackages = [config.boot.zfs.package];
 
-      environment.systemPackages = [zfs.package];
-      services.zfs.autoScrub.enable = true;
+    services.zfs.autoScrub.enable = true;
 
-      # https://github.com/openzfs/zfs/issues/10891
-      systemd.services.systemd-udev-settle.enable = false;
-    };
+    # https://github.com/openzfs/zfs/issues/10891
+    systemd.services.systemd-udev-settle.enable = false;
+
+    # Sanoid
   };
 }

@@ -1,11 +1,14 @@
 {
-  flake.modules.nixos.x570 = let
+  flake.modules.nixos.x570 = {pkgs, ...}: let
     mkZfs = path: {
       device = "zroot/${path}";
       fsType = "zfs";
       neededForBoot = true;
     };
   in {
+    boot.zfs.package = pkgs.zfs_unstable;
+    swapDevices = [];
+
     fileSystems = {
       "/boot" = {
         device = "/dev/disk/by-uuid/26BA-7AD8";
