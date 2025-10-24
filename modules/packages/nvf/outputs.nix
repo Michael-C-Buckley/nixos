@@ -16,6 +16,11 @@ in {
         nvf.default
         nvf.extended
       ];
+      nvf-copilot = mkNvf [
+        nvf.copilot
+        nvf.default
+        nvf.extended
+      ];
       nvf-minimal = mkNvf [
         nvf.default
       ];

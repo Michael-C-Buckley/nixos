@@ -54,9 +54,12 @@
         formatOnSave = true;
       };
 
-      autocomplete.blink-cmp = {
-        enable = true;
-        friendly-snippets.enable = true;
+      autocomplete = {
+        enableSharedCmpSources = true;
+        blink-cmp = {
+          enable = true;
+          friendly-snippets.enable = true;
+        };
       };
     };
   };
