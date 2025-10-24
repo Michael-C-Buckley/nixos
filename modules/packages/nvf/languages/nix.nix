@@ -1,0 +1,18 @@
+{
+  flake.modules.nvf.nix = {
+    vim.languages.nix = {
+      enable = true;
+      extraDiagnostics = {
+        enable = true;
+        types = [
+          "statix"
+          "deadnix"
+        ];
+      };
+      format = {
+        enable = true;
+        type = "alejandra";
+      };
+    };
+  };
+}

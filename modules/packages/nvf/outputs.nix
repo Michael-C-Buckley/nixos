@@ -1,5 +1,10 @@
-# Transform my NVF modules into packages
-{inputs, ...}: {
+{
+  config,
+  inputs,
+  ...
+}: let
+  inherit (config.flake.modules) nvf;
+in {
   perSystem = {pkgs, ...}: let
     mkNvf = modules:
       (inputs.nvf.lib.neovimConfiguration {
@@ -8,14 +13,14 @@
   in {
     packages = {
       nvf = mkNvf [
-        ./default.nix
-        ./extended.nix
+        nvf.default
+        nvf.extended
       ];
       nvf-minimal = mkNvf [
-        ./default.nix
+        nvf.default
       ];
       nvf-vscode = mkNvf [
-        ./vscode.nix
+        nvf.vscode
       ];
     };
   };
