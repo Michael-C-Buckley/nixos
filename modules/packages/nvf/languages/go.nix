@@ -1,6 +1,6 @@
 {
-  vim.languages = {
-    python = {
+  flake.modules.nvf.go = {
+    vim.languages.go = {
       enable = true;
       dap.enable = true;
       format.enable = true;

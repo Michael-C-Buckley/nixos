@@ -13,7 +13,6 @@
       imports = [
         flake-parts.flakeModules.modules
         (import-tree ./modules)
-        ./packages
       ];
     };
 
