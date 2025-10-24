@@ -52,11 +52,11 @@
         "treefmt-nix": []
       },
       "locked": {
-        "lastModified": 1760438204,
-        "narHash": "sha256-5IG9Jr4DyMQEQam2XIBephCZlPgPnjON5A51gdo6ePQ=",
+        "lastModified": 1761322149,
+        "narHash": "sha256-eTcrmAj2taajqY6MYvMVBRGI1vWxAKz7TOHoE96MFQ4=",
         "owner": "snugnug",
         "repo": "hjem-rum",
-        "rev": "9bacfa32baf24255a01944b33f3aa4ece1145bea",
+        "rev": "e47b2448451291803c019b797279a14c7639c37f",
         "type": "github"
       },
       "original": {
