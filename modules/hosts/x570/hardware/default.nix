@@ -36,8 +36,5 @@
       rtkit.enable = true;
       tpm2.enable = true;
     };
-
-    swapDevices = [];
-    system.zfs.package = pkgs.zfs_unstable;
   };
 }
