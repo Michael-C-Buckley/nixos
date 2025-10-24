@@ -8,6 +8,10 @@
   in {
     swapDevices = [];
 
+    custom.zfs.snapshotDatasets = [
+      "zroot/t14/nixos/persist"
+    ];
+
     boot.zfs = {
       requestEncryptionCredentials = true;
       package = pkgs.zfs_unstable;

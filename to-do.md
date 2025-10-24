@@ -13,25 +13,3 @@ ______________________________________________________________________
 # Tasks
 
 - Add syncoid
-
-## Moves
-
-Move to ZFS/storage:
-
-```nix
-let     sanoidDefaults = {
-      autoprune = true;
-      autosnap = true;
-      hourly = 12;
-      daily = 3;
-      weekly = 2;
-      monthly = 2;
-    }; in
-      services.sanoid = {
-        inherit (config.system.zfs) enable;
-
-        datasets = {
-          "zroot/${hostName}/nixos/persist" = sanoidDefaults;
-        };
-      };
-```
