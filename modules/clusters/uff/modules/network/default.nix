@@ -1,5 +1,5 @@
 {
-  flake.modules.uff.networking = {
+  flake.modules.nixos.uff-networking = {
     networking = {
       useNetworkd = true;
       networkmanager = {

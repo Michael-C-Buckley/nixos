@@ -1,5 +1,5 @@
 {
-  flake.modules.uff.uff2 = let
+  flake.modules.nixos.uff2 = let
     zfsFs = path: {
       device = "zroot/uff2/${path}";
       fsType = "zfs";

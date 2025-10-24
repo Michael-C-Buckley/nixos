@@ -1,5 +1,5 @@
 {
-  flake.modules.uff.networking = {
+  flake.modules.nixos.uff-networking = {
     config,
     lib,
     ...
@@ -44,9 +44,6 @@
         ]);
   in {
     networking = {
-      bgp.enable = true;
-      ospf.enable = true;
-
       firewall.allowedUDPPorts = [3784 3785 4784];
     };
 

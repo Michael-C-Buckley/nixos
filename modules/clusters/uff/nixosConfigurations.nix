@@ -1,5 +1,10 @@
-{inputs, ...}: let
-  inherit (inputs) self nixpkgs;
+{
+  config,
+  inputs,
+  ...
+}: let
+  inherit (inputs) nixpkgs;
+  inherit (config.flake.modules) nixos;
 
   # These hosts are all X86
   system = "x86_64-linux";
@@ -13,14 +18,19 @@
   }:
     nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = {inherit self inputs customLib;};
+      specialArgs = {inherit customLib;};
 
       modules =
         modules
         ++ [
           inputs.nix-secrets.nixosModules.uff
-          self.modules.uff.${hostname}
-        ];
+          config.flake.modules.nixos.${hostname}
+        ]
+        ++ (with nixos; [
+          uff-networking
+          uff-shared
+          serverPreset
+        ]);
 
       pkgs = import nixpkgs {
         inherit system;

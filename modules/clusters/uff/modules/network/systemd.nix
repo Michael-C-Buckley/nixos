@@ -1,5 +1,5 @@
 {
-  flake.modules.uff.networking = {config, ...}: let
+  flake.modules.nixos.uff-networking = {config, ...}: let
     inherit (config.networkd) enusb1 eno1;
   in {
     systemd.network = {
