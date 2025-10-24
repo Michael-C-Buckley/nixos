@@ -1,0 +1,36 @@
+{inputs, ...}: let
+  inherit (inputs) self nixpkgs;
+
+  # These hosts are all X86
+  system = "x86_64-linux";
+
+  # WIP: convert to dendrite
+  customLib = import ../lib/_default.nix {inherit (nixpkgs) lib;};
+
+  mkSystem = {
+    hostname,
+    modules ? [],
+  }:
+    nixpkgs.lib.nixosSystem {
+      inherit system;
+      specialArgs = {inherit self inputs customLib;};
+
+      modules =
+        modules
+        ++ [
+          inputs.nix-secrets.nixosModules.uff
+          self.modules.uff.${hostname}
+        ];
+
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+    };
+in {
+  flake.nixosConfigurations = {
+    uff1 = mkSystem {hostname = "uff1";};
+    uff2 = mkSystem {hostname = "uff2";};
+    uff3 = mkSystem {hostname = "uff3";};
+  };
+}
