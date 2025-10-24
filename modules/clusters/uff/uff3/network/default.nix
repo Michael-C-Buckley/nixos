@@ -1,5 +1,5 @@
 {
-  flake.modules.uff.uff3 = {
+  flake.modules.nixos.uff3 = {
     networkd = {
       eno1.addresses.ipv4 = ["192.168.48.33/24"];
       enusb1 = {
