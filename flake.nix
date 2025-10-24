@@ -29,10 +29,9 @@
     quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
 
     hjem = {
-      url = "github:feel-co/hjem/31f969f69f02b62e417bcc39571a605977cb89fa"; # Pinned due to linking issue
+      url = "github:feel-co/hjem/2426d6ad20e767895e936ed0c9563cc4e2b6c96f"; # Pinned due to linking issue
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        ndg.follows = ""; # This is for their docs generator
         smfh.follows = ""; # I use the nixpkgs version
       };
     };
@@ -43,6 +42,7 @@
         nixpkgs.follows = "nixpkgs";
         hjem.follows = "hjem";
         ndg.follows = "";
+        treefmt-nix.follows = ""; #  I don't need their formatter
       };
     };
 
