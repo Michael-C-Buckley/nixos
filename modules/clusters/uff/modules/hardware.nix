@@ -2,6 +2,7 @@
 {
   flake.modules.nixos.uff-shared = {
     config,
+    pkgs,
     modulesPath,
     ...
   }: {
@@ -14,6 +15,7 @@
         availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "uas" "sd_mod"];
         kernelModules = ["dm-snapshot"];
       };
+      kernelPackages = pkgs.linuxKernel.packages.linux_6_16;
       kernelModules = ["kvm-intel" "virtiofs" "9p" "9pnet_virtio"];
       extraModulePackages = [];
     };
