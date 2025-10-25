@@ -27,8 +27,6 @@
           yubico-piv-tool
           yubikey-agent
           libp11
-          age-plugin-fido2-hmac
-          age-plugin-openpgp-card
           age-plugin-yubikey
           # TPM
           p11-kit
