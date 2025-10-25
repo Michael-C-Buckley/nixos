@@ -11,6 +11,7 @@
     networking = {
       loopback.ipv4 = "192.168.61.2";
       hostId = "072294f5";
+      hostName = "uff2";
 
       ospf.defaultRoute = {
         metricType = 1;
