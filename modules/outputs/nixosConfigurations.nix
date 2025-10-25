@@ -1,4 +1,8 @@
-{inputs, ...}: let
+{
+  inputs,
+  config,
+  ...
+}: let
   inherit (builtins) mapAttrs;
   inherit (inputs) self nixpkgs;
 
@@ -8,19 +12,16 @@
   mkSystem = {
     hostname,
     system ? "x86_64-linux",
-    modules ? [],
     secrets ? hostname,
   }:
     nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = {inherit self inputs customLib;};
 
-      modules =
-        modules
-        ++ [
-          inputs.nix-secrets.nixosModules.${secrets}
-          self.modules.nixos.${hostname}
-        ];
+      modules = [
+        inputs.nix-secrets.nixosModules.${secrets}
+        config.flake.modules.nixos.${hostname}
+      ];
 
       pkgs = import nixpkgs {
         inherit system;
