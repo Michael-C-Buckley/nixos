@@ -10,12 +10,11 @@ in {
     imports = [k3s];
 
     services.k3s = {
-      tokenFile = "/run/secrets/K3S-TOKEN";
+      tokenFile = config.sops.secrets.k3s_token.path;
 
       extraFlags = [
         "--node-name ${networking.hostName}"
         "--node-ip ${loopback.address}"
-        "--token-file ${config.sops.secrets.k3s_token.path}"
         "--server https://192.168.61.1:6443"
         "--server https://192.168.61.2:6443"
         "--server https://192.168.61.3:6443"
