@@ -8,7 +8,7 @@
   in {
     fileSystems = {
       "/boot" = {
-        device = "/dev/disk/by-uuid/AB12-CDEF";
+        device = "/dev/disk/by-uuid/1555-62FA";
         fsType = "vfat";
       };
       # Tmpfs
