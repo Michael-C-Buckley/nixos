@@ -45,6 +45,15 @@
       # Programs
       fetch = "fastfetch --logo ~/.media/nixos.png --logo-height 20 --logo-width 40";
       nv = "nvim";
+
+      # Calculate the evaluation time of the current host
+      nht = ''
+        time nix eval \
+          "$NH_FLAKE"#nixosConfigurations."$hostname".config.system.build.toplevel \
+          --substituters " " \
+          --option eval-cache false \
+          --raw --read-only
+      '';
     };
   in {
     hjem.users.michael.rum.programs = {
