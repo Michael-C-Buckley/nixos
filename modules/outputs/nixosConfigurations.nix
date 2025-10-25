@@ -4,10 +4,7 @@
   ...
 }: let
   inherit (builtins) mapAttrs;
-  inherit (inputs) self nixpkgs;
-
-  # WIP: convert to dendrite
-  customLib = import ../lib/_default.nix {inherit (nixpkgs) lib;};
+  inherit (inputs) nixpkgs;
 
   mkSystem = {
     hostname,
@@ -16,7 +13,8 @@
   }:
     nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = {inherit self inputs customLib;};
+      # WIP: Restructure and remove
+      specialArgs = {customLib = import ../lib/_default.nix {inherit (nixpkgs) lib;};};
 
       modules = [
         inputs.nix-secrets.nixosModules.${secrets}

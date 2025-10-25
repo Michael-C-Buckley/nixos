@@ -7,11 +7,11 @@
     '';
 
     custom.impermanence.persist.directories = [
-      "/var/lib/rancher/k3s"
-      "/var/lib/containerd"
-      "/etc/rancher/k3s"
-      "/var/lib/kubelet"
-      "/var/log/k3s"
+      "/var/lib/rancher/k3s" # ← etcd + server state
+      "/var/lib/containerd" # ← image layers, runtime state
+      "/etc/rancher/k3s" # ← kubeconfig, TLS assets
+      "/var/lib/kubelet" # ← pod volumes, certs, plugins
+      "/var/log/k3s" # ← logs
     ];
 
     environment.systemPackages = with pkgs; [
@@ -21,8 +21,15 @@
     ];
     # Following along at: https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/cluster/k3s/docs/USAGE.md
     networking.firewall = {
-      allowedTCPPorts = [6443 2379 2380];
-      allowedUDPPorts = [8472];
+      allowedTCPPorts = [
+        2379
+        2380
+        6443 # Kubernetes API
+        10250 # Kubelet API
+      ];
+      allowedUDPPorts = [
+        8472 # Flannel VXLAN
+      ];
     };
 
     services.k3s = {

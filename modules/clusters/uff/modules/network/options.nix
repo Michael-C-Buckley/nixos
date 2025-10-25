@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.uff-networking = {lib, ...}: let
+  flake.modules.nixos.uff = {lib, ...}: let
     inherit (lib) mkOption;
     inherit (lib.types) listOf str;
 
