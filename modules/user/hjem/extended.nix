@@ -14,7 +14,7 @@
 
     hjem.users.michael = {
       gnupg.pinentryPackage = lib.mkForce pkgs.pinentry-qt;
-      packages = [(lib.hiPrio config.flake.packages.${pkgs.system}.nvf)];
+      packages = with pkgs; [nvf];
     };
   };
 }

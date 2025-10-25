@@ -1,8 +1,6 @@
 # A basic Root user configuration that pulls in select aspects of my configs
 # *This does depend on importing my hjem configs
-{config, ...}: let
-  inherit (config.flake) packages;
-in {
+{
   flake.modules.nixos.hjem-root = {
     config,
     pkgs,
@@ -14,9 +12,6 @@ in {
       enable = true;
       user = "root";
       directory = "/root";
-
-      # Gets at least NVF minimal
-      packages = [packages.${pkgs.system}.nvf-minimal];
 
       rum.programs = {
         fish = {

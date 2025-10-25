@@ -4,9 +4,7 @@
 ## Restructuring
 
 - Remove files for my user configs
-- Integrate *some* Nix management of specific dots
-- Git signing keys per machine
-- Nixpak (browsers, vscodium, obsidian)
+- Nixpak & Isolation
 
 ______________________________________________________________________
 

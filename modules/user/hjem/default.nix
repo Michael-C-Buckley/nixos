@@ -7,10 +7,7 @@
     pkgs,
     lib,
     ...
-  }: let
-    inherit (lib) mkDefault;
-    inherit (config.flake.packages.${pkgs.system}) nvf-minimal ns;
-  in {
+  }: {
     imports = with config.flake.modules.nixos;
       [
         hjem-direnv
@@ -27,20 +24,18 @@
         inputs.hjem.nixosModules.hjem
       ];
 
-    programs.fish.enable = mkDefault true;
+    programs.fish.enable = true;
     users.users.michael.shell = pkgs.fish;
 
     hjem = {
       linker = pkgs.smfh;
       extraModules = [
-        inputs.self.hjemModules.gnupg
+        config.flake.hjemModules.gnupg
         inputs.hjem-rum.hjemModules.default
       ];
       users.michael = {
         # Push the existing files in to be merged
         files = import ../_findFiles.nix {inherit lib;};
-
-        packages = [ns nvf-minimal];
 
         environment.sessionVariables = {
           EDITOR = "nvim";

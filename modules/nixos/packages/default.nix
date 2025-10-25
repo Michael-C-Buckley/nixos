@@ -1,6 +1,10 @@
-{
+{config, ...}: {
   flake.modules.nixos.packages = {pkgs, ...}: {
+    nixpkgs.overlays = [config.flake.overlays.default];
     environment.systemPackages = with pkgs; [
+      # Overlaid
+      ns
+
       # System
       fastfetch
       microfetch
