@@ -1,6 +1,6 @@
 # The common hardware of the cluster
 {
-  flake.modules.nixos.uff-shared = {
+  flake.modules.nixos.uff = {
     config,
     pkgs,
     modulesPath,
