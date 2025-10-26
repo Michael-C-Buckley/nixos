@@ -34,16 +34,6 @@
         }
       ]
       ++ persist.user.directories;
-    /*
-    sanoidDefaults = {
-      autoprune = true;
-      autosnap = true;
-      hourly = 12;
-      daily = 3;
-      weekly = 2;
-      monthly = 2;
-    };
-    */
 
     mkUserSet = {
       directories,
@@ -67,6 +57,7 @@
           "/var/lib/cache"
           "/var/lib/nixos-containers"
           "/var/lib/machines"
+          "/var/log"
         ]
         ++ cache.directories;
 
@@ -91,7 +82,6 @@
           # A generic bind for persisting
           "/var/lib/persist"
 
-          "/var/log"
           "/var/lib/bluetooth"
           "/var/lib/nixos"
           "/var/lib/systemd"

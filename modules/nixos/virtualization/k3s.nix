@@ -7,11 +7,10 @@
     '';
 
     custom.impermanence.persist.directories = [
-      "/var/lib/rancher/k3s" # ← etcd + server state
+      "/var/lib/rancher" # ← etcd + server state
       "/var/lib/containerd" # ← image layers, runtime state
-      "/etc/rancher/k3s" # ← kubeconfig, TLS assets
+      "/etc/rancher" # ← kubeconfig, TLS assets
       "/var/lib/kubelet" # ← pod volumes, certs, plugins
-      "/var/log/k3s" # ← logs
     ];
 
     environment.systemPackages = with pkgs; [
@@ -36,7 +35,6 @@
       enable = true;
       role = "server";
       extraFlags = [
-        "--log /var/lib/rancher/k3s/k3s.log"
         "--write-kubeconfig-group wheel"
         "--write-kubeconfig-mode \"0640\""
       ];
