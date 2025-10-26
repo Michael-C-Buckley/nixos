@@ -1,5 +1,5 @@
 {config, ...}: let
-  inherit (config.flake.modules.nixos) k3s;
+  inherit (config.flake.modules) nixos;
 in {
   flake.modules.nixos.uff = {config, ...}: let
     inherit (builtins) head split;
@@ -8,7 +8,10 @@ in {
     # loopback severely complicated L3 routing, so fallback to best common interface for now
     enusb = head (split "/" (head config.networkd.enusb1.addresses.ipv4));
   in {
-    imports = [k3s];
+    imports = with nixos; [
+      k3s
+      k3s-longhorn
+    ];
 
     networking.hosts = {
       "192.168.254.1" = ["uff1s"];
