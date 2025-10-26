@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.k3s-longhorn = {config, ...}: let
+  flake.modules.nixos.kube-longhorn = {config, ...}: let
     inherit (config.system) stateVersion;
     inherit (config.networking) hostName;
   in {
