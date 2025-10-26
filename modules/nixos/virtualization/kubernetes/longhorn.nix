@@ -1,5 +1,9 @@
 {
-  flake.modules.nixos.kube-longhorn = {config, ...}: let
+  flake.modules.nixos.kube-longhorn = {
+    config,
+    pkgs,
+    ...
+  }: let
     inherit (config.system) stateVersion;
     inherit (config.networking) hostName;
   in {
@@ -8,5 +12,8 @@
       enable = true;
       name = "iqn.nixos-${stateVersion}-${hostName}";
     };
+    environment.systemPackages = with pkgs; [
+      openiscsi
+    ];
   };
 }
