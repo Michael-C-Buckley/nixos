@@ -38,7 +38,6 @@
         flake-registry = "";
 
         substituters = [
-          "https://cache.nixos.org"
           "https://nix-community.cachix.org"
         ];
         trusted-public-keys = [

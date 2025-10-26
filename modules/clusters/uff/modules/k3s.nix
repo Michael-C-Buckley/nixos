@@ -10,7 +10,7 @@ in {
   in {
     imports = with nixos; [
       k3s
-      k3s-longhorn
+      kube-longhorn
     ];
 
     networking.hosts = {
