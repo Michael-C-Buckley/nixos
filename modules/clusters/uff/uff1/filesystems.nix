@@ -27,6 +27,7 @@
       "/nix" = zfsFs "nix";
       "/cache" = zfsFs "cache";
       "/persist" = zfsFs "persist";
+      "/var/lib/longhorn" = zfsFs "longhorn";
     };
   };
 }
