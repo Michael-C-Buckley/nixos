@@ -10,13 +10,9 @@
       podman.enable = true;
     };
 
-    system = {
-      stateVersion = "25.11";
-    };
+    system.stateVersion = "25.11";
 
     # Allows vscode remote connections to just work
     programs.nix-ld.enable = true;
-
-    hjem.users.michael.rum.programs.git.settings.user.signingKey = "6F749AA097DC10EA46FE0ECD22CDD3676227046F!";
   };
 }
