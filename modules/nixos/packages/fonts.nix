@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.fonts = {pkgs, ...}: {
+  flake.modules.nixos.packages-fonts = {pkgs, ...}: {
     fonts.packages = with pkgs; [
       jetbrains-mono
       dejavu_fonts

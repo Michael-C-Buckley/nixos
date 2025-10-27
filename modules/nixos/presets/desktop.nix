@@ -6,7 +6,6 @@
       noctalia
       tuigreet
       gpg-yubikey
-      fonts
       dconf
       tpm2
       impermanence
@@ -19,6 +18,9 @@
 
       packages
       packages-desktop
+      packages-development
+      packages-fonts
+      packages-network
 
       # Applications
       app-bitwarden
