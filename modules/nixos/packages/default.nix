@@ -77,6 +77,7 @@
       # Network
       bridge-utils
       cdpr
+      dhcpcd
       dig
       ethtool
       frr
