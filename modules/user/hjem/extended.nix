@@ -15,6 +15,12 @@
     hjem.users.michael = {
       gnupg.pinentryPackage = lib.mkForce pkgs.pinentry-qt;
       packages = with pkgs; [nvf];
+
+      environment.sessionVariables = {
+        BROWSER = "helium";
+        NIXOS_OZONE_WL = 1;
+        GTK_USE_PORTAL = 1;
+      };
     };
   };
 }

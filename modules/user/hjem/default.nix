@@ -39,15 +39,12 @@
 
         environment.sessionVariables = {
           EDITOR = "nvim";
-          BROWSER = "helium";
           VISUAL = "nvim";
           PAGER = "bat";
           MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+          NH_FLAKE = "/home/michael/nixos";
           DIFF = "difft";
           GIT_EDITOR = "nvim";
-          NIXOS_OZONE_WL = 1;
-          GTK_USE_PORTAL = 1;
-          NH_FLAKE = "/home/michael/nixos";
           GPG_TTY = "$(tty)";
           CLICOLOR = 1;
           LSCOLORS = "auto";
@@ -59,7 +56,6 @@
           enable = true;
           pinentryPackage = pkgs.pinentry-curses;
           config.extraLines = ''
-            digest-algo SHA256
             auto-key-locate local
             auto-key-retrieve
           '';

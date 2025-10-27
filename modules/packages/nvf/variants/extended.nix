@@ -12,6 +12,19 @@
       runner.run-nvim = {
         enable = true;
       };
+
+      lsp = {
+        enable = true;
+        formatOnSave = true;
+      };
+
+      autocomplete = {
+        enableSharedCmpSources = true;
+        blink-cmp = {
+          enable = true;
+          friendly-snippets.enable = true;
+        };
+      };
     };
   };
 }
