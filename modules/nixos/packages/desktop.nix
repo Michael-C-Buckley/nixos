@@ -1,40 +1,37 @@
-{config, ...}: {
-  flake.modules.nixos.desktopPackages = {pkgs, ...}: {
-    environment.systemPackages = with pkgs;
-      [
-        # System Utilities
-        networkmanagerapplet
-        pavucontrol # Pulse Volume control
-        gammastep
-        gparted
+{
+  flake.modules.nixos.packages-desktop = {pkgs, ...}: {
+    environment.systemPackages = with pkgs; [
+      # System Utilities
+      networkmanagerapplet
+      pavucontrol # Pulse Volume control
+      gammastep
+      gparted
 
-        # Going simple with Nemo for now; more to follow
-        nemo-with-extensions
+      # Going simple with Nemo for now; more to follow
+      nemo-with-extensions
 
-        # Productivity
-        kdePackages.kalgebra # Calculator
-        meld
+      # Productivity
+      kdePackages.kalgebra # Calculator
+      meld
+      helix
 
-        # Terminal
-        ghostty
+      # Terminal
+      ghostty
 
-        # Media
-        mpv
-        imv
-        zathura # PDF Viewer
-        kdePackages.koko # Photo Viewer
-        foliate # Ebook Reader
+      # Media
+      mpv
+      imv
+      zathura # PDF Viewer
+      kdePackages.koko # Photo Viewer
+      foliate # Ebook Reader
 
-        # Office
-        abiword
-        gnumeric
+      # Office
+      abiword
+      gnumeric
 
-        # Utility
-        wireshark
-        winbox4
-      ]
-      ++ [
-        config.flake.packages.${pkgs.system}.helium
-      ];
+      # Utility
+      wireshark
+      winbox4
+    ];
   };
 }

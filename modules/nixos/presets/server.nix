@@ -14,7 +14,7 @@
 
       # WIP:
       packages
-      serverPackages
+      packages-server
     ];
   };
 }
