@@ -1,19 +1,18 @@
-{config, ...}: let
-  inherit (config) flake;
-in {
+{config, ...}: {
   flake.modules.nixos.hjem-wsl = {
     pkgs,
     lib,
     ...
   }: {
-    imports = with flake.modules.nixos; [
+    imports = with config.flake.modules.nixos; [
       hjem-default
       hjem-cursor
+      hjem-helix
     ];
 
     hjem.users.michael = {
       packages = [
-        (lib.hiPrio flake.packages.${pkgs.system}.nvf)
+        (lib.hiPrio pkgs.nvf)
       ];
     };
   };

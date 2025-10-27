@@ -7,6 +7,7 @@
     imports = with config.flake.modules.nixos; [
       hjem-default
       hjem-cursor
+      hjem-helix
       hjem-kitty
       hjem-ghostty
       hjem-zed
