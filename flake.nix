@@ -52,8 +52,7 @@
     };
 
     nvf = {
-      # An update broke my config
-      url = "github:notashelf/nvf/ea3ee477fa1814352b30d114f31bf4895eed053e";
+      url = "github:notashelf/nvf/v0.8";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-compat.follows = "";
