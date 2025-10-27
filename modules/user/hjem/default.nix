@@ -51,6 +51,7 @@
           IP_COLOR = "always";
         };
 
+        # Basic GPG, more advanced settings in hjem-gpg
         gnupg = {
           enable = true;
           pinentryPackage = pkgs.pinentry-curses;
@@ -58,17 +59,6 @@
             auto-key-locate local
             auto-key-retrieve
           '';
-          agent = {
-            allowLoopbackPinentry = true;
-            enableSSHsupport = true;
-            extraLines = ''
-              card-timeout 1
-            '';
-          };
-          scdaemon = {
-            #extraLines = ''pcsc-driver'';
-            disable-ccid = true;
-          };
         };
       };
     };
