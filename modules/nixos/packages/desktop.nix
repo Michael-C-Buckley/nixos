@@ -13,7 +13,6 @@
       # Productivity
       kdePackages.kalgebra # Calculator
       meld
-      helix
 
       # Terminal
       ghostty
