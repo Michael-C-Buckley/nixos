@@ -13,7 +13,6 @@
         hjem-direnv
         hjem-fish
         hjem-git
-        hjem-helix
         hjem-shellAliases
         hjem-starship
         hjem-fastfetch
