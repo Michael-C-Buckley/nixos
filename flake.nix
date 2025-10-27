@@ -29,10 +29,10 @@
     quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
 
     hjem = {
-      url = "github:feel-co/hjem/2426d6ad20e767895e936ed0c9563cc4e2b6c96f"; # Pinned due to linking issue
+      url = "github:feel-co/hjem";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        smfh.follows = ""; # I use the nixpkgs version
+        ndg.follows = ""; # Documentation generator
       };
     };
 
