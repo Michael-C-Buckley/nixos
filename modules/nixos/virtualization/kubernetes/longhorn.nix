@@ -15,5 +15,11 @@
     environment.systemPackages = with pkgs; [
       openiscsi
     ];
+
+    # Compatibility since Longhorn uses hardcoded FHS paths
+    systemd.tmpfiles.rules = [
+      "L+ /usr/bin/iscsiadm - - - - ${pkgs.openiscsi}/bin/iscsiadm"
+      "L+ /usr/sbin/iscsid  - - - - ${pkgs.openiscsi}/sbin/iscsid"
+    ];
   };
 }
