@@ -13,6 +13,7 @@
         hjem-wsl
         hjem-root
         unbound
+        packages
       ]
       ++ [
         inputs.nixos-wsl.nixosModules.default
