@@ -24,6 +24,8 @@ with pkgs'.vscode-marketplace-release; [
   # Themes
   ms-vscode.theme-predawnkit
   github.github-vscode-theme
+  yummygum.city-lights-theme
+  teabyii.ayu
 ]
 # Extensions I am not currently using
 #srl-labs.vscode-containerlab

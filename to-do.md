@@ -3,6 +3,7 @@
 
 ## Restructuring
 
+- Break packages into various sets
 - Remove files for my user configs
 - Nixpak & Isolation
 
