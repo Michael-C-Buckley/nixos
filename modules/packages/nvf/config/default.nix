@@ -2,8 +2,6 @@
   flake.modules.nvf.default = {
     imports = with config.flake.modules.nvf; [
       keymaps
-      languages
-      nix
       plugins
       themes
       ui
@@ -28,12 +26,6 @@
         nix-develop.enable = true;
         oil-nvim.enable = true;
         motion.leap.enable = true;
-      };
-
-      treesitter = {
-        enable = true;
-        context.enable = true;
-        fold = true;
       };
 
       git = {

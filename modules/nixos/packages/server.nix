@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.serverPackages = {pkgs, ...}: {
+  flake.modules.nixos.packages-server = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       # Clipboard
       wl-clipboard

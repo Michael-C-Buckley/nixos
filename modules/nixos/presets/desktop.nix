@@ -6,7 +6,6 @@
       noctalia
       tuigreet
       gpg-yubikey
-      packages
       fonts
       dconf
       tpm2
@@ -14,10 +13,12 @@
       zfs
       boot
       users
-      desktopPackages
       hjem-extended
       hjem-root
       shawn
+
+      packages
+      packages-desktop
 
       # Applications
       app-bitwarden

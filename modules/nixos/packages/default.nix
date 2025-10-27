@@ -2,8 +2,9 @@
   flake.modules.nixos.packages = {pkgs, ...}: {
     nixpkgs.overlays = [config.flake.overlays.default];
     environment.systemPackages = with pkgs; [
-      # Overlaid
+      # Overlaid local packages
       ns
+      nvf-minimal
 
       # System
       fastfetch
@@ -16,17 +17,11 @@
       rage
 
       # Shells
-      # keep-sorted start
       comma
       nushell
       starship
       tmux
       zellij
-      # keep-sorted end
-
-      # Editor
-      helix
-      vim
 
       # Development/Management
       python3
@@ -39,7 +34,6 @@
       nix-tree
 
       # File/Navigation
-      # keep-sorted start
       bat
       du-dust
       duf
@@ -50,7 +44,6 @@
       yazi
       zip
       zoxide
-      # keep-sorted end
 
       # Graphical
       cage
@@ -82,7 +75,6 @@
       wget
 
       # Network
-      # keep-sorted start
       bridge-utils
       cdpr
       dig
@@ -99,7 +91,6 @@
       unixtools.netstat
       vlan
       wireguard-tools
-      # keep-sorted end
     ];
   };
 }

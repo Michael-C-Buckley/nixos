@@ -4,6 +4,8 @@
     imports = with config.flake.modules.nvf; [
       go
       python
+      nix
+      languages
     ];
 
     vim = {
