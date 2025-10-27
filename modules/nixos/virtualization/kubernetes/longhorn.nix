@@ -16,10 +16,10 @@
       openiscsi
     ];
 
-    # Compatibility since Longhorn uses hardcoded FHS paths
-    systemd.tmpfiles.rules = [
-      "L+ /usr/bin/iscsiadm - - - - ${pkgs.openiscsi}/bin/iscsiadm"
-      "L+ /usr/sbin/iscsid  - - - - ${pkgs.openiscsi}/sbin/iscsid"
-    ];
+    # https://github.com/longhorn/longhorn/issues/2166#issuecomment-3315367546
+    systemd.services.iscsid.serviceConfig = {
+      PrivateMounts = "yes";
+      BindPaths = "/run/current-system/sw/bin:/bin";
+    };
   };
 }
