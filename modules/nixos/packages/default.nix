@@ -3,7 +3,6 @@
     nixpkgs.overlays = [config.flake.overlays.default];
     environment.systemPackages = with pkgs; [
       # Overlaid local packages
-      ns
       nvf-minimal
 
       # System
@@ -15,23 +14,6 @@
       # Security
       sops
       rage
-
-      # Shells
-      comma
-      nushell
-      starship
-      tmux
-      zellij
-
-      # Development/Management
-      python3
-      lazygit
-      difftastic
-      gitFull
-      tig
-      jujutsu
-      gh
-      nix-tree
 
       # File/Navigation
       bat
@@ -45,12 +27,6 @@
       zip
       zoxide
 
-      # Graphical
-      cage
-      ghostty
-      qutebrowser
-      sakura
-
       # Performance
       atop
       btop
@@ -59,39 +35,12 @@
       # Hardware
       usbutils
       pciutils
-      smartmontools
-      lm_sensors
 
       # Machine Utilities
       gptfdisk
       parted
-      lm_sensors
       usbutils
       pciutils
-      sops
-
-      # Web
-      curl
-      wget
-
-      # Network
-      bridge-utils
-      cdpr
-      dhcpcd
-      dig
-      ethtool
-      frr
-      inetutils
-      iperf3
-      lldpd
-      ndisc6
-      net-tools
-      nmap
-      tcpdump
-      unixtools.arp
-      unixtools.netstat
-      vlan
-      wireguard-tools
     ];
   };
 }

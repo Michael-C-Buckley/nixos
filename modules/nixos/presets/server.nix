@@ -15,6 +15,8 @@
       # WIP:
       packages
       packages-server
+      packages-physical
+      packages-network
     ];
   };
 }

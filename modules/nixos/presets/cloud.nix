@@ -11,8 +11,8 @@
       hjem-root
       shawn
 
-      # WIP:
       packages
+      packages-network
     ];
   };
 }
