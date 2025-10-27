@@ -4,15 +4,13 @@
       enable = true;
       extraDiagnostics = {
         enable = true;
-        types = [
-          "statix"
-          "deadnix"
-        ];
+        types = ["deadnix" "statix"];
       };
       format = {
         enable = true;
         type = "alejandra";
       };
+      lsp.servers = ["nil" "nixd"];
     };
   };
 }
