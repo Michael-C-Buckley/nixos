@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.hjem-ghostty = {
+  flake.modules.nixos.hjem-ghostty = {lib, ...}: {
     hjem.users.michael.rum.programs.ghostty = {
       enable = true;
       settings = {
@@ -8,7 +8,7 @@
         font-size = "11";
         font-family = "Cascadia Code NF";
 
-        background-opacity = "0.5";
+        background-opacity = lib.mkDefault "0.5";
         cursor-opacity = "0.6";
         cursor-color = "#44A3A3";
 
