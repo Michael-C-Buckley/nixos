@@ -4,8 +4,11 @@
   flake.modules.nixos.hjem-root = {
     config,
     pkgs,
+    lib,
     ...
-  }: {
+  }: let
+    inherit (config.hjem.users.michael.rum) programs;
+  in {
     users.users.root.shell = pkgs.fish;
 
     hjem.users.root = {
@@ -21,10 +24,15 @@
             fish_config prompt choose arrow
           '';
           # Mirror the functionality I give to my user
-          inherit (config.hjem.users.michael.rum.programs.fish) aliases functions plugins;
+          inherit (programs.fish) aliases functions plugins;
         };
         # Copy my starship exactly for now
-        inherit (config.hjem.users.michael.rum.programs) starship;
+        starship = lib.recursiveUpdate programs.starship {
+          settings.character = {
+            success_symbol = "[▼](bold red)";
+            error_symbol = "[▽](bold red)";
+          };
+        };
       };
     };
   };
