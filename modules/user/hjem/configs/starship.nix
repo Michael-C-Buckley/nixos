@@ -19,6 +19,7 @@
         settings = {
           # Renders down to a single long string of all the components
           format = lib.concatStrings [
+            "$hostname"
             "$directory"
             "$git_branch"
             "$git_state"
@@ -26,8 +27,6 @@
             "$cmd_duration"
             "$fill"
             "$nix_shell"
-            "$username"
-            "$hostname"
             "$time"
             "$line_break"
             "$battery"
@@ -36,13 +35,12 @@
             "$character"
           ];
 
-          username.format = "[$user]($style)";
           directory.style = "cyan";
           fill.symbol = " ";
 
           hostname = {
-            format = "[@$hostname]($style) ";
-            style = "bold fg:71";
+            format = "[$hostname:]($style)";
+            style = "fg:71";
           };
 
           time = {
@@ -57,9 +55,9 @@
           };
 
           nix_shell = {
-            impure_msg = "[ ](yellow)";
-            pure_msg = "[ ](green)";
-            unknown_msg = "[ ](red)";
+            impure_msg = "[✱ ](yellow)";
+            pure_msg = "[✱ ](green)";
+            unknown_msg = "[✱ ](red)";
             format = "$state";
           };
 
