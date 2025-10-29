@@ -2,8 +2,6 @@
   flake.modules.nixos.p520 = {
     services = {
       iperf3.enable = true;
-      unbound.enable = false;
-      resolved.enable = false;
     };
 
     networking = {
