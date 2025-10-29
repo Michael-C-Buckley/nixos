@@ -4,7 +4,7 @@
       {
         mode = "n";
         key = "<leader>cs";
-        action = ":Telescope colorscheme<CR>";
+        action = ":Telescope colorscheme enable_preview=true<CR>";
         silent = true;
       }
       {
