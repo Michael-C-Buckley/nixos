@@ -1,14 +1,18 @@
 {
   flake.modules.nixos.unbound = {config, ...}: {
-    services.unbound = {
-      # Keep non-sensitive settings here
-      settings = {
-        server = {
-          hide-identity = "yes";
-          hide-version = "yes";
-          verbosity = 0;
+    services = {
+      resolved.enable = false;
+      unbound = {
+        enable = true;
+        # Keep non-sensitive settings here
+        settings = {
+          server = {
+            hide-identity = "yes";
+            hide-version = "yes";
+            verbosity = 0;
+          };
+          include = config.sops.secrets.unboundLocal.path;
         };
-        include = config.sops.secrets.unboundLocal.path;
       };
     };
 

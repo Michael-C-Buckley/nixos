@@ -12,11 +12,11 @@
         desktopPreset
         intelGraphics
         network
-        unbound
         wifi
         containerlab
         gaming
         k3s
+        resolved
       ]);
 
     nix.settings.substituters = lib.mkBefore ["http://p520:5000"];
