@@ -4,7 +4,7 @@
   config,
   ...
 }: {
-  flake.modules.nixos.linuxPreset = {
+  flake.modules.nixos.linuxPreset = {lib, ...}: {
     imports = with config.flake.modules.nixos;
       [
         programs
@@ -17,7 +17,8 @@
         sops-nix.nixosModules.sops
       ]);
 
-    time.timeZone = "America/New_York";
+    time.timeZone = lib.mkDefault "America/New_York";
     environment.enableAllTerminfo = true;
+    networking.nftables.enable = lib.mkDefault true;
   };
 }

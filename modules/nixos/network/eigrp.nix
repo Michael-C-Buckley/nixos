@@ -1,13 +1,18 @@
 {
-  flake.modules.nixos.eigrp = {
+  flake.modules.nixos.eigrp = {config, ...}: {
     services.frr.eigrpd.enable = true;
 
-    # These commands are for each implementation of the firewall
-    networking.firewall.extraInputRules = ''
-      ip protocol 88 accept comment "Allow EIGRP"
-    '';
-    networking.firewall.extraCommands = ''
-      iptables -A nixos-fw -p 88 -j ACCEPT -m comment --comment "Allow EIGRP"
-    '';
+    networking.firewall =
+      if config.networking.nftables.enable
+      then {
+        extraInputRules = ''
+          ip protocol 88 accept comment "Allow EIGRP"
+        '';
+      }
+      else {
+        extraCommands = ''
+          iptables -A nixos-fw -p 88 -j ACCEPT -m comment --comment "Allow EIGRP"
+        '';
+      };
   };
 }
