@@ -39,9 +39,6 @@
       # SSH bypass
       sshn = "ssh -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile=/dev/null";
 
-      # File Management
-      duz = "du -xh . | sort -hr | fzf";
-
       # Programs
       fetch = "fastfetch --logo ~/.media/nixos.png --logo-height 20 --logo-width 40";
       nv = "nvim";
@@ -55,9 +52,14 @@
           --raw --read-only
       '';
     };
+
+    fishAliases = {
+      # File Management
+      duz = "du -xh . | sort -hr | fzf";
+    };
   in {
     hjem.users.michael.rum.programs = {
-      fish.aliases = commonAliases;
+      fish.aliases = commonAliases // fishAliases;
       nushell.aliases = commonAliases;
     };
   };

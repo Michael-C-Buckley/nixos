@@ -20,8 +20,8 @@
 
       environment.sessionVariables = {
         BROWSER = "helium";
-        NIXOS_OZONE_WL = 1;
-        GTK_USE_PORTAL = 1;
+        NIXOS_OZONE_WL = "1";
+        GTK_USE_PORTAL = "1";
       };
     };
   };
