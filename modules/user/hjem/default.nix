@@ -16,6 +16,7 @@
         hjem-shellAliases
         hjem-starship
         hjem-fastfetch
+        hjem-nushell
         hjem-yazi
         hjem-zoxide
       ]
@@ -45,7 +46,7 @@
           DIFF = "difft";
           GIT_EDITOR = "nvim";
           GPG_TTY = "$(tty)";
-          CLICOLOR = 1;
+          CLICOLOR = "1";
           LSCOLORS = "auto";
           DIFF_COLOR = "auto";
           IP_COLOR = "always";
