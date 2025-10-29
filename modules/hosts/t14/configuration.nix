@@ -3,7 +3,7 @@
   flake.modules.nixos.t14 = {
     imports = with config.flake.modules.nixos; [
       laptopPreset
-      unbound
+      resolved
     ];
 
     security.tpm2.enable = true;
