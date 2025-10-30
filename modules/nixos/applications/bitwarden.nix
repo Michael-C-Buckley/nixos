@@ -1,7 +1,7 @@
 {
   flake.modules.nixos.app-bitwarden = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
-      bitwarden
+      bitwarden-desktop
       bitwarden-cli
     ];
 

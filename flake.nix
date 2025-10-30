@@ -66,7 +66,7 @@
     };
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
+      url = "github:michael-c-buckley/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
