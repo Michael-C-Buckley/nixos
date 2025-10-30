@@ -66,8 +66,11 @@
     };
 
     noctalia = {
-      url = "github:michael-c-buckley/noctalia-shell/nixpkgs";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:noctalia-dev/noctalia-shell/";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        quickshell.follows = ""; # I am using the nixpkgs version
+      };
     };
 
     nixos-wsl = {
