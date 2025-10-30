@@ -198,19 +198,19 @@
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
-        ],
-        "systems": "systems_2"
+        ]
       },
       "locked": {
-        "lastModified": 1761824384,
-        "narHash": "sha256-gD7FMput033n27r1n0LofkhKGX1zbgcj3UhiLW6qTX8=",
+        "lastModified": 1761854591,
+        "narHash": "sha256-vL7/6lA11pKX58dqjXaM/68ceuj5VRoMPVImSbfC2Ws=",
         "owner": "michael-c-buckley",
         "repo": "noctalia-shell",
-        "rev": "6034b981843e4227d188dc95f742732e73b74e9e",
+        "rev": "b92f1cd2b1a18fe4d6915496d6dd0af7aba95b86",
         "type": "github"
       },
       "original": {
         "owner": "michael-c-buckley",
+        "ref": "nixpkgs",
         "repo": "noctalia-shell",
         "type": "github"
       }
@@ -225,7 +225,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems_3"
+        "systems": "systems_2"
       },
       "locked": {
         "lastModified": 1761514959,
@@ -355,21 +355,6 @@
       }
     },
     "systems_2": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_3": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
