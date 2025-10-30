@@ -17,7 +17,7 @@
 
       # File/Navigation
       bat
-      du-dust
+      dust
       duf
       eza
       fd
