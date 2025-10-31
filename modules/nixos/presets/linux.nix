@@ -12,9 +12,6 @@
         gpg
         nix
         options
-
-        # Temporary option
-        stable
       ]
       ++ (with inputs; [
         sops-nix.nixosModules.sops
