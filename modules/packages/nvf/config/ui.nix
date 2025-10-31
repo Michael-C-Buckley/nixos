@@ -19,7 +19,6 @@
         mappings = {
           gitBranches = "<leader>gb";
           gitStatus = "<leader>gs";
-          liveGrep = "<leader>/";
         };
       };
 

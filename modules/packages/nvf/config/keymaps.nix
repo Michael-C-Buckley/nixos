@@ -16,7 +16,7 @@
       }
       {
         mode = "n";
-        key = "<leader>fa";
+        key = "<leader>lf";
         action = ":lua vim.lsp.buf.format()<CR>";
         silent = true;
       }
