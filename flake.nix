@@ -20,6 +20,7 @@
     # A slightly smaller tarball delivered from the NixOS Foundation
     #  Locks and works as it should
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+    nixpkgs-stable.url = "https://channels.nixos.org/nixos-25.05/nixexprs.tar.xz";
 
     # No Nixpkgs Inputs
     nix-secrets.url = "git+ssh://git@github.com/michael-c-buckley/nix-secrets";
