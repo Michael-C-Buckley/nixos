@@ -17,6 +17,10 @@
     ];
 
     systemd.services = {
+      systemd-resolved = {
+        wantedBy = ["multi-user.target"];
+      };
+
       write-resolved-conf = {
         description = "Write systemd-resolved configuration";
         wantedBy = ["multi-user.target"];
