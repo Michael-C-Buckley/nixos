@@ -1,6 +1,10 @@
 {
   flake.modules.nixos.packages-desktop = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
+      # AI/Assistant tooling
+      gh-copilot
+      gemini-cli
+
       # System Utilities
       networkmanagerapplet
       pavucontrol # Pulse Volume control
