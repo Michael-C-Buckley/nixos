@@ -30,6 +30,7 @@
       app-librewolf
       app-materialgram
       app-obsidian
+      app-qutebrowser
       app-signal
       app-vscode
       app-zed
