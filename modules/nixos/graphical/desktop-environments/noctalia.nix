@@ -26,7 +26,10 @@
         wlsunset
       ];
     };
-    services.noctalia-shell.package = inputs.noctalia.packages.${pkgs.system}.default.override {inherit (pkgs) quickshell;};
+    services.noctalia-shell = {
+      enable = true;
+      package = inputs.noctalia.packages.${pkgs.system}.default.override {inherit (pkgs) quickshell;};
+    };
 
     # These fonts are used by default
     fonts.packages = with pkgs; [
