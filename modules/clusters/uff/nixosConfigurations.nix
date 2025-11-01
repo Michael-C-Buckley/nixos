@@ -12,14 +12,13 @@
   mkSystem = hostname:
     nixpkgs.lib.nixosSystem {
       inherit system;
-      # WIP: Restructure and remove
-      specialArgs = {customLib = import ../lib/_default.nix {inherit (nixpkgs) lib;};};
 
       modules = [
         inputs.nix-secrets.nixosModules.uff
         config.flake.modules.nixos.${hostname}
         nixos.uff
         nixos.serverPreset
+        nixos.dnscrypt-proxy
       ];
 
       pkgs = import nixpkgs {
