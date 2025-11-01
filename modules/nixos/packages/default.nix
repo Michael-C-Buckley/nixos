@@ -14,6 +14,7 @@
       # Security
       sops
       rage
+      gnupg
 
       # File/Navigation
       bat

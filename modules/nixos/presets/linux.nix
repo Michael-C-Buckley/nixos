@@ -9,7 +9,6 @@
       [
         programs
         security
-        gpg
         nix
         options
       ]
@@ -17,6 +16,7 @@
         sops-nix.nixosModules.sops
       ]);
 
+    programs.gnupg.agent.enable = true;
     time.timeZone = lib.mkDefault "America/New_York";
     environment.enableAllTerminfo = true;
     networking.nftables.enable = lib.mkDefault true;

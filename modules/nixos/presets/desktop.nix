@@ -6,6 +6,7 @@
       noctalia
       tuigreet
       gpg-yubikey
+      ssh-agent
       dconf
       tpm2
       impermanence
@@ -22,7 +23,6 @@
       packages-fonts
       packages-network
 
-      # Applications
       app-bitwarden
       app-helium
       app-jan

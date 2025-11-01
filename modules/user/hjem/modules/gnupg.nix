@@ -67,6 +67,7 @@
 
     config = mkIf gnupg.enable {
       environment.sessionVariables = mkIf gnupg.agent.enableSSHsupport {
+        # Figure out a better way of dealing with UIDs
         SSH_AUTH_SOCKET = "/run/user/1000/gnupg/S.gpg-agent.ssh";
       };
       files = {
