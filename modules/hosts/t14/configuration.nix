@@ -3,7 +3,7 @@
   flake.modules.nixos.t14 = {
     imports = with config.flake.modules.nixos; [
       laptopPreset
-      resolved
+      dnscrypt-proxy
     ];
 
     security.tpm2.enable = true;

@@ -46,6 +46,10 @@
         config.users.powerUsers.members);
   in {
     imports = [inputs.impermanence.nixosModules.impermanence];
+
+    # Trigger the various logical elements that rely on this
+    custom.impermanence.enable = true;
+
     # To make sure keys are available for sops decryption
     fileSystems."/etc/ssh".neededForBoot = true;
 
