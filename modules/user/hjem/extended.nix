@@ -16,7 +16,6 @@
 
     hjem.users.michael = {
       gnupg.pinentryPackage = lib.mkForce pkgs.pinentry-qt;
-      packages = with pkgs; [nvf];
 
       environment.sessionVariables = {
         BROWSER = "helium";

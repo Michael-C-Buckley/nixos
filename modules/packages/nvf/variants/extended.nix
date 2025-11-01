@@ -2,6 +2,7 @@
 {config, ...}: {
   flake.modules.nvf.extended = {
     imports = with config.flake.modules.nvf; [
+      default
       go
       python
       nix

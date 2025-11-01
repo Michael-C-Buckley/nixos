@@ -1,6 +1,8 @@
-{config, ...}: {
+{config, ...}: let
+  inherit (config.flake.modules) nixos nvf;
+in {
   flake.modules.nixos.desktopPreset = {
-    imports = with config.flake.modules.nixos; [
+    imports = with nixos; [
       linuxPreset
       hyprland
       noctalia
@@ -35,5 +37,7 @@
       app-vscode
       app-zed
     ];
+
+    programs.nvf.settings.imports = [nvf.extended];
   };
 }

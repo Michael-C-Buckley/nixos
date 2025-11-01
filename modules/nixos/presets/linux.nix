@@ -14,9 +14,13 @@
       ]
       ++ (with inputs; [
         sops-nix.nixosModules.sops
+        nvf.nixosModules.default
       ]);
 
-    programs.gnupg.agent.enable = true;
+    programs = {
+      gnupg.agent.enable = true;
+      nvf.enable = true;
+    };
     time.timeZone = lib.mkDefault "America/New_York";
     environment.enableAllTerminfo = true;
     networking.nftables.enable = lib.mkDefault true;
