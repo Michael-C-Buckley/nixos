@@ -1,6 +1,6 @@
 # Common system options for all NixOS machines
 {lib, ...}: let
-  inherit (lib) mkOption;
+  inherit (lib) mkEnableOption mkOption;
   inherit (lib.types) listOf str;
 
   mkDirectoryOption = mkOption {
@@ -19,6 +19,7 @@ in {
     options.custom = {
       # Impermanence options separate from the flake input so systems can be agnostic to it
       impermanence = {
+        enable = mkEnableOption "Set various flags for impermance options within the config.";
         cache = {
           directories = mkDirectoryOption;
           files = mkFileOption;
