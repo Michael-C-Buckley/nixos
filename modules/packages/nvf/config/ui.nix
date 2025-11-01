@@ -26,7 +26,6 @@
 
       ui = {
         borders.enable = true;
-        colorizer.enable = true;
         illuminate.enable = true;
         fastaction.enable = true;
         smartcolumn = {
@@ -35,6 +34,19 @@
             nix = "110";
             go = ["90" "130"];
             python = ["80" "120"];
+          };
+        };
+
+        colorizer = {
+          enable = true;
+          setupOpts.filetypes = {
+            "*" = {
+              mode = "background";
+              tailwind = true;
+              names = true;
+              RGB = true;
+              RRGGBB = true;
+            };
           };
         };
 
