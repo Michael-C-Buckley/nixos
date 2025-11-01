@@ -14,15 +14,11 @@
       projects.project-nvim.enable = true;
       navigation.harpoon.enable = true;
       filetree.neo-tree.enable = true;
-      telescope = {
-        enable = true;
-        mappings = {
-          gitBranches = "<leader>gb";
-          gitStatus = "<leader>gs";
-        };
-      };
 
-      theme.enable = false;
+      # See keymaps for the binds
+      fzf-lua.enable = true;
+
+      theme.enable = false; # I set ayu-dark manually
 
       ui = {
         borders.enable = true;
