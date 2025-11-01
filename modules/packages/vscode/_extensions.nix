@@ -1,10 +1,9 @@
 {pkgs'}:
 with pkgs'.vscode-marketplace-release; [
-  # Microsoft Official Only
+  # Microsoft Official
   ms-vscode-remote.remote-ssh-edit
   ms-python.vscode-pylance
-
-  # Devops
+  ms-vsliveshare.vsliveshare
   ms-kubernetes-tools.vscode-kubernetes-tools
 
   # AI Tools
