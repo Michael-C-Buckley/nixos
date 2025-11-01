@@ -4,6 +4,7 @@
       # AI/Assistant tooling
       gh-copilot
       gemini-cli
+      goose-cli
 
       # System Utilities
       networkmanagerapplet
