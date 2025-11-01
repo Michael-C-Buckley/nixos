@@ -1,6 +1,8 @@
-{config, ...}: {
+{config, ...}: let
+  inherit (config.flake.modules) nixos nvf;
+in {
   flake.modules.nixos.serverPreset = {
-    imports = with config.flake.modules.nixos; [
+    imports = with nixos; [
       linuxPreset
       network
       users
@@ -18,5 +20,7 @@
       packages-physical
       packages-network
     ];
+
+    programs.nvf.settings.imports = with nvf; [default];
   };
 }

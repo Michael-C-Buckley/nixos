@@ -2,9 +2,6 @@
   flake.modules.nixos.packages = {pkgs, ...}: {
     nixpkgs.overlays = [config.flake.overlays.default];
     environment.systemPackages = with pkgs; [
-      # Overlaid local packages
-      nvf-minimal
-
       # System
       fastfetch
       microfetch

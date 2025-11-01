@@ -3,7 +3,13 @@
   inputs,
   ...
 }: let
-  inherit (config.flake.modules) nvf;
+  inherit
+    (config.flake.modules.nvf)
+    copilot
+    default
+    extended
+    vscode
+    ;
 in {
   perSystem = {pkgs, ...}: let
     mkNvf = modules:
@@ -12,21 +18,10 @@ in {
       }).neovim;
   in {
     packages = {
-      nvf = mkNvf [
-        nvf.default
-        nvf.extended
-      ];
-      nvf-copilot = mkNvf [
-        nvf.copilot
-        nvf.default
-        nvf.extended
-      ];
-      nvf-minimal = mkNvf [
-        nvf.default
-      ];
-      nvf-vscode = mkNvf [
-        nvf.vscode
-      ];
+      nvf = mkNvf [extended];
+      nvf-copilot = mkNvf [copilot extended];
+      nvf-minimal = mkNvf [default];
+      nvf-vscode = mkNvf [vscode];
     };
   };
 }

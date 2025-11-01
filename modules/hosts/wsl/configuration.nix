@@ -2,9 +2,11 @@
   inputs,
   config,
   ...
-}: {
+}: let
+  inherit (config.flake.modules) nixos nvf;
+in {
   flake.modules.nixos.wsl = {
-    imports = with config.flake.modules.nixos;
+    imports = with nixos;
       [
         linuxPreset
         network
@@ -34,7 +36,10 @@
       };
     };
 
-    programs.nix-ld.enable = true;
+    programs = {
+      nix-ld.enable = true;
+      nvf.settings.imports = [nvf.extended];
+    };
 
     system.stateVersion = "24.11";
   };
