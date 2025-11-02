@@ -2,7 +2,7 @@
   flake.modules.nixos.hjem-zed = {pkgs, ...}: {
     hjem.users.michael.rum.programs.zed = {
       enable = true;
-      package = config.flake.packages.${pkgs.system}.zeditor;
+      package = config.flake.packages.${pkgs.stdenv.hostPlatform.system}.zeditor;
 
       settings = {
         base_keymap = "VSCode";

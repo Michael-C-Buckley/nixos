@@ -5,6 +5,6 @@
       ".local/share/jan/ai/app"
     ];
 
-    environment.systemPackages = [config.flake.packages.${pkgs.system}.jan];
+    environment.systemPackages = [config.flake.packages.${pkgs.stdenv.hostPlatform.system}.jan];
   };
 }

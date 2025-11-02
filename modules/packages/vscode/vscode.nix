@@ -6,7 +6,7 @@
   inherit (config.flake) packages;
 in {
   perSystem = {pkgs, ...}: let
-    inherit (packages.${pkgs.system}) nvf-vscode;
+    inherit (packages.${pkgs.stdenv.hostPlatform.system}) nvf-vscode;
     # Allow unfree and extend with the extensions overlay
     pkgs' =
       (import inputs.nixpkgs {

@@ -13,6 +13,7 @@ in {
         modules = [config.flake.modules.nixos.devbox];
         pkgs = import inputs.nixpkgs {
           inherit system;
+          config.allowUnfree = true;
         };
       };
     };

@@ -6,7 +6,7 @@
     ];
 
     hjem.users.michael.packages = [
-      config.flake.packages.${pkgs.system}.vscode
+      config.flake.packages.${pkgs.stdenv.hostPlatform.system}.vscode
     ];
   };
 }

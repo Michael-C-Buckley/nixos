@@ -8,10 +8,10 @@ in {
   }: {
     packages.gpg-custom = pkgs.writeShellApplication {
       name = "gpg-custom";
-      runtimeInputs = [pkgs.gnupg packages.${pkgs.system}.gpg-find-key];
+      runtimeInputs = [pkgs.gnupg packages.${pkgs.stdenv.hostPlatform.system}.gpg-find-key];
       checkPhase = "";
       text = ''
-        exec ${lib.getExe pkgs.gnupg} -u $(${lib.getExe packages.${pkgs.system}.gpg-find-key})! "$@"
+        exec ${lib.getExe pkgs.gnupg} -u $(${lib.getExe packages.${pkgs.stdenv.hostPlatform.system}.gpg-find-key})! "$@"
       '';
     };
   };
