@@ -1,9 +1,15 @@
 {config, ...}: let
+  inherit (config.flake.modules) nixos;
   interface = "enp0s2";
   projectDir = "/home/michael/projects/devbox";
+  mac = "02:00:00:00:00:01";
 in {
-  flake.modules.nixos.devbox = {pkgs, ...}: {
-    imports = with config.flake.modules.nixos; [
+  flake.modules.nixos.devbox = {
+    config,
+    pkgs,
+    ...
+  }: {
+    imports = with nixos; [
       microvmPreset
       hjem-default
       hjem-root
@@ -12,16 +18,23 @@ in {
     ];
 
     microvm = {
-      hypervisor = "crosvm";
+      hypervisor = "qemu";
       socket = "control.socket";
       vcpu = 4;
       mem = 8192;
+
+      qemu.extraArgs = [
+        "-cpu"
+        "host"
+        "-smp"
+        "${toString config.microvm.vcpu}"
+      ];
 
       interfaces = [
         {
           type = "tap";
           id = "vm-devbox";
-          mac = "02:00:00:00:00:01";
+          inherit mac;
         }
       ];
 
@@ -41,9 +54,20 @@ in {
       ];
     };
 
+    systemd.network.links."20-eth0" = {
+      matchConfig.MACAddress = mac;
+      linkConfig.Name = "eth0";
+    };
+
     networking = {
       firewall.enable = false;
       hostName = "devbox";
+      useNetworkd = true;
+
+      nameservers = with config.networking; [
+        defaultGateway.address
+        defaultGateway6.address
+      ];
 
       # Configure static networking for simplicity
       defaultGateway = {
@@ -55,15 +79,19 @@ in {
         inherit interface;
       };
 
-      interfaces.enp0s2 = {
-        ipv4 = {
-          addresses = [
-            {
-              address = "192.168.254.255";
-              prefixLength = 31;
-            }
-          ];
-        };
+      interfaces.eth0 = {
+        ipv4.addresses = [
+          {
+            address = "192.168.254.255";
+            prefixLength = 31;
+          }
+        ];
+        ipv6.addresses = [
+          {
+            address = "fe80::100";
+            prefixLength = 64;
+          }
+        ];
       };
     };
 
@@ -72,9 +100,9 @@ in {
       goose-cli
       gemini-cli
       github-copilot-cli
-      #claude-code
     ];
 
     services.openssh.enable = true;
+    boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
   };
 }
