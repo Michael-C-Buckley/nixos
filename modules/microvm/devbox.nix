@@ -4,11 +4,7 @@
   projectDir = "/home/michael/projects/devbox";
   mac = "02:00:00:00:00:01";
 in {
-  flake.modules.nixos.devbox = {
-    config,
-    pkgs,
-    ...
-  }: {
+  flake.modules.nixos.devbox = {pkgs, ...}: {
     imports = with nixos; [
       microvmPreset
       hjem-default
@@ -18,17 +14,8 @@ in {
     ];
 
     microvm = {
-      hypervisor = "qemu";
-      socket = "control.socket";
       vcpu = 4;
       mem = 8192;
-
-      qemu.extraArgs = [
-        "-cpu"
-        "host"
-        "-smp"
-        "${toString config.microvm.vcpu}"
-      ];
 
       interfaces = [
         {
@@ -39,12 +26,6 @@ in {
       ];
 
       shares = [
-        {
-          proto = "virtiofs";
-          tag = "ro-store";
-          source = "/nix/store";
-          mountPoint = "/nix/.ro-store";
-        }
         {
           proto = "virtiofs";
           tag = "devbox";
@@ -60,14 +41,8 @@ in {
     };
 
     networking = {
-      firewall.enable = false;
+      firewall.enable = false; # WIP: find out what I want to forward
       hostName = "devbox";
-      useNetworkd = true;
-
-      nameservers = with config.networking; [
-        defaultGateway.address
-        defaultGateway6.address
-      ];
 
       # Configure static networking for simplicity
       defaultGateway = {
@@ -102,7 +77,8 @@ in {
       github-copilot-cli
     ];
 
-    services.openssh.enable = true;
+    programs.nix-ld.enable = true;
+
     boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
   };
 }
