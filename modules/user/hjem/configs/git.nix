@@ -18,7 +18,7 @@
         advice.defaultBranchName = false;
         commit = {
           # This custom script dynamically detects and selects my signing keys
-          program = lib.getExe config.flake.packages.${pkgs.system}.gpg-custom;
+          program = lib.getExe config.flake.packages.${pkgs.stdenv.hostPlatform.system}.gpg-custom;
           gpgsign = true;
         };
         core.editor = "nvim";

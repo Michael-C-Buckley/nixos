@@ -28,7 +28,7 @@
     };
     services.noctalia-shell = {
       enable = true;
-      package = inputs.noctalia.packages.${pkgs.system}.default.override {inherit (pkgs) quickshell;};
+      package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.override {inherit (pkgs) quickshell;};
     };
 
     # These fonts are used by default

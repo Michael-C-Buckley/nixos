@@ -1,6 +1,6 @@
 {config, ...}: {
   flake.modules.nixos.app-helium = {pkgs, ...}: {
-    hjem.users.michael.packages = [config.flake.packages.${pkgs.system}.helium];
+    hjem.users.michael.packages = [config.flake.packages.${pkgs.stdenv.hostPlatform.system}.helium];
 
     custom.impermanence = {
       persist.user.directories = [".config/net.imput.helium"];

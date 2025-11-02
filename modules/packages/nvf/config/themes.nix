@@ -16,8 +16,8 @@ in {
       };
       lazy.plugins = {
         # Custom packages I added and overlaid
-        "kanso-nvim".package = packages.${pkgs.system}.kanso-nvim;
-        "thorn-nvim".package = packages.${pkgs.system}.thorn-nvim;
+        "kanso-nvim".package = packages.${pkgs.stdenv.hostPlatform.system}.kanso-nvim;
+        "thorn-nvim".package = packages.${pkgs.stdenv.hostPlatform.system}.thorn-nvim;
         # Nixpkgs items
         everforest.package = vimPlugins.everforest;
         "lackluster.nvim".package = vimPlugins.lackluster-nvim;

@@ -28,7 +28,7 @@
     users.users.michael.shell = pkgs.fish;
 
     hjem = {
-      linker = inputs.hjem.packages.${pkgs.system}.smfh;
+      linker = inputs.hjem.packages.${pkgs.stdenv.hostPlatform.system}.smfh;
       extraModules = [
         config.flake.hjemModules.gnupg
         inputs.hjem-rum.hjemModules.default
