@@ -10,7 +10,7 @@
       networkmanager = {
         enable = true;
       };
-      useNetworkd = false;
+      useNetworkd = true;
 
       # Virtual only bridge
       bridges.br0 = {
