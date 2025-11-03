@@ -31,5 +31,6 @@
     ];
 
     virtualisation.podman.enable = true;
+    microvm.vms.devbox.config = config.flake.modules.nixos.devbox;
   };
 }
