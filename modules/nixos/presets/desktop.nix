@@ -51,16 +51,14 @@ in {
     # MicroVM Devbox
     custom.impermanence.cache.directories = ["/var/lib/microvms"];
 
-    # WIP: Attach the VM's tap
-
     # Host bridge configuration
     networking = {
       bridges.br0.interfaces = ["vm-devbox"];
       interfaces.br0 = {
         ipv4.addresses = [
           {
-            address = "192.168.254.254";
-            prefixLength = 31;
+            address = "192.168.254.193";
+            prefixLength = 26;
           }
         ];
         ipv6.addresses = [

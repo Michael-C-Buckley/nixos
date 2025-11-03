@@ -18,6 +18,7 @@
         k3s
         #resolved
         dnscrypt-proxy
+        devSpawn
       ]);
 
     nix.settings.substituters = lib.mkBefore ["http://p520:5000"];
@@ -31,6 +32,9 @@
     ];
 
     virtualisation.podman.enable = true;
-    microvm.vms.devbox.config = config.flake.modules.nixos.devbox;
+    microvm = {
+      host.enable = false;
+      vms.devbox.config = config.flake.modules.nixos.devbox;
+    };
   };
 }
