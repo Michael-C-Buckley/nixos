@@ -8,6 +8,7 @@
       hjem-default
       hjem-cursor
       hjem-helix
+      hjem-gpgAgent
       hjem-kitty
       hjem-ghostty
       hjem-zed
