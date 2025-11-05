@@ -52,7 +52,7 @@
           IP_COLOR = "always";
         };
 
-        # Basic GPG, more advanced settings in hjem-gpg
+        # Basic GPG, more advanced settings in hjem-gpgAgent
         gnupg = {
           enable = true;
           pinentryPackage = pkgs.pinentry-curses;
