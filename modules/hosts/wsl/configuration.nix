@@ -14,6 +14,7 @@ in {
         gpg-yubikey
         hjem-wsl
         hjem-root
+        hjem-gpgAgent
         unbound
         packages
         packages-development
