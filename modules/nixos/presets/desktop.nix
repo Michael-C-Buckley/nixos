@@ -1,50 +1,42 @@
-{
-  config,
-  inputs,
-  ...
-}: let
+{config, ...}: let
   inherit (config.flake.modules) nixos nvf;
 in {
   flake.modules.nixos.desktopPreset = {
-    imports = with nixos;
-      [
-        linuxPreset
-        hyprland
-        noctalia
-        tuigreet
-        gpg-yubikey
-        ssh-agent
-        dconf
-        tpm2
-        impermanence
-        zfs
-        boot
-        users
-        hjem-extended
-        hjem-root
-        shawn
+    imports = with nixos; [
+      linuxPreset
+      hyprland
+      noctalia
+      tuigreet
+      gpg-yubikey
+      ssh-agent
+      dconf
+      tpm2
+      impermanence
+      zfs
+      boot
+      users
+      hjem-extended
+      hjem-root
+      shawn
 
-        packages
-        packages-desktop
-        packages-development
-        packages-fonts
-        packages-network
+      packages
+      packages-desktop
+      packages-development
+      packages-fonts
+      packages-network
 
-        app-bitwarden
-        app-helium
-        app-jan
-        app-legcord
-        app-librewolf
-        app-materialgram
-        app-obsidian
-        app-qutebrowser
-        app-signal
-        app-vscode
-        app-zed
-      ]
-      ++ [
-        inputs.microvm.nixosModules.host
-      ];
+      app-bitwarden
+      app-helium
+      app-jan
+      app-legcord
+      app-librewolf
+      app-materialgram
+      app-obsidian
+      app-qutebrowser
+      app-signal
+      app-vscode
+      app-zed
+    ];
 
     programs.nvf.settings.imports = [nvf.extended];
 
@@ -53,7 +45,7 @@ in {
 
     # Host bridge configuration
     networking = {
-      bridges.br0.interfaces = ["vm-devbox"];
+      bridges.br0.interfaces = [];
       interfaces.br0 = {
         ipv4.addresses = [
           {
