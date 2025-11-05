@@ -16,6 +16,9 @@ in {
         hjem-root
         unbound
         packages
+        packages-development
+        packages-network
+        devSpawn
       ]
       ++ [
         inputs.nixos-wsl.nixosModules.default
