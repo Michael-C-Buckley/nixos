@@ -12,7 +12,6 @@
       hjem-kitty
       hjem-ghostty
       hjem-zed
-      hjem-gpg
     ];
 
     hjem.users.michael = {

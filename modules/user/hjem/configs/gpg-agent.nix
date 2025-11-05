@@ -1,10 +1,18 @@
 {
   flake.modules.nixos.hjem-gpgAgent = {
     hjem.users.michael = {
-      gnupg.agent = {
-        enable = true;
-        allowLoopbackPinentry = true;
-        enableSSHsupport = true;
+      gnupg = {
+        agent = {
+          enable = true;
+          allowLoopbackPinentry = true;
+          enableSSHsupport = true;
+          extraLines = ''
+            card-timeout 1
+          '';
+        };
+        scdaemon = {
+          disable-ccid = true;
+        };
       };
     };
   };
