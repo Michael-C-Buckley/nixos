@@ -32,6 +32,7 @@ in {
       app-librewolf
       app-materialgram
       app-obsidian
+      app-opencode
       app-qutebrowser
       app-signal
       app-vscode
