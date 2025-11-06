@@ -1,8 +1,13 @@
-{config, ...}: {
-  flake.modules.nixos.devSpawn = {
+{config, ...}: let
+  inherit (config) flake;
+in {
+  flake.modules.nixos.devSpawn = {config, ...}: {
     containers.dev = {
       autoStart = true;
-      specialArgs = {inherit (config) flake;};
+      specialArgs = {
+        inherit flake;
+        parentConfig = config;
+      };
 
       privateNetwork = true;
       hostBridge = "br0";
@@ -17,8 +22,19 @@
       config = {
         pkgs,
         flake,
+        parentConfig,
         ...
       }: {
+        imports = with flake.modules.nixos; [
+          hjem-default
+          users
+          packages
+        ];
+
+        system = {
+          inherit (parentConfig.system) stateVersion;
+        };
+
         networking = {
           nameservers = ["192.168.254.193"];
           defaultGateway = {
@@ -32,11 +48,6 @@
             }
           ];
         };
-        imports = with flake.modules.nixos; [
-          hjem-default
-          users
-          packages
-        ];
 
         environment.systemPackages = with pkgs; [
           neovim
