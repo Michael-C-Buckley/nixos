@@ -55,6 +55,7 @@ in {
           goose-cli
           copilot-cli
           gemini-cli
+          opencode
         ];
       };
     };
