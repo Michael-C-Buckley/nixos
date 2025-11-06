@@ -12,14 +12,12 @@
 
       systemPackages = with pkgs; [
         yubikey-manager
+        libfido2
         yubikey-personalization
         yubico-piv-tool
-        yubikey-agent
         libp11
         age-plugin-yubikey
         # TPM
-        p11-kit
-        gnupg-pkcs11-scd
       ];
     };
 
@@ -33,7 +31,6 @@
 
     services = {
       pcscd.enable = true;
-      yubikey-agent.enable = false;
       udev.packages = [pkgs.yubikey-personalization];
     };
 
