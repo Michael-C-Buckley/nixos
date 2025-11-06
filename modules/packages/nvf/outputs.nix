@@ -8,7 +8,6 @@
     copilot
     default
     extended
-    vscode
     ;
 in {
   perSystem = {pkgs, ...}: let
@@ -21,7 +20,6 @@ in {
       nvf = mkNvf [extended];
       nvf-copilot = mkNvf [copilot extended];
       nvf-minimal = mkNvf [default];
-      nvf-vscode = mkNvf [vscode];
     };
   };
 }

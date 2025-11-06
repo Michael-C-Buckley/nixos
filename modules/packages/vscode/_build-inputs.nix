@@ -1,23 +1,18 @@
-{
-  nvf-vscode,
-  pkgs',
-}:
-with pkgs';
-  [
-    python313
-    basedpyright
-    nil
-    nixd
-    pyrefly
-    sops
+{pkgs'}:
+with pkgs'; [
+  neovim
 
-    # Go tools
-    go
-    gopls
-    delve
-    go-tools
-    golangci-lint
-  ]
-  ++ [
-    nvf-vscode
-  ]
+  python313
+  basedpyright
+  nil
+  nixd
+  pyrefly
+  sops
+
+  # Go tools
+  go
+  gopls
+  delve
+  go-tools
+  golangci-lint
+]
