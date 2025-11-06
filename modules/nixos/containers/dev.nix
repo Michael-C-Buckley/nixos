@@ -11,6 +11,7 @@ in {
 
       privateNetwork = true;
       hostBridge = "br0";
+      ephemeral = true;
 
       bindMounts = {
         "/home/michael/projects" = {
