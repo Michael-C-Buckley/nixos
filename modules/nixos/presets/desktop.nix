@@ -50,6 +50,7 @@ in {
       interfaces.br0 = {
         ipv4.addresses = [
           {
+            # Non-routable within my network, local to the host-only
             address = "192.168.254.193";
             prefixLength = 26;
           }
