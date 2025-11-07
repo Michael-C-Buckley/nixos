@@ -20,6 +20,8 @@ in {
         packages-development
         packages-network
         devSpawn
+
+        app-opencode
       ]
       ++ [
         inputs.nixos-wsl.nixosModules.default
