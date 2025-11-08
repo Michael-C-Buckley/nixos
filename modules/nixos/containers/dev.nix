@@ -56,6 +56,7 @@ in {
           copilot-cli
           gemini-cli
           opencode
+          amp-cli
         ];
       };
     };
