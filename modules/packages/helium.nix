@@ -1,11 +1,11 @@
 {
   perSystem = {pkgs, ...}: let
     pname = "helium";
-    version = "0.4.12.1";
+    version = "0.6.3.1";
 
     src = pkgs.fetchurl {
       url = "https://github.com/imputnet/helium-linux/releases/download/${version}/${pname}-${version}-x86_64.AppImage";
-      sha256 = "sha256-Za1erduSuuWvfrV/oggSz3ttj79SVV5g1CdXtlWfanU=";
+      hash = "sha256-N7JpLLOdsnYuzYreN1iaHI992MR2SuXTmXHfa6fd1UU=";
     };
 
     contents = pkgs.appimageTools.extract {inherit pname version src;};
