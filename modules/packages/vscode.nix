@@ -3,7 +3,7 @@
     # Allow unfree and extend with the extensions overlay
     pkgs' =
       (import inputs.nixpkgs {
-        inherit (pkgs) system;
+        localSystem = pkgs.stdenv.hostPlatform;
         config.allowUnfree = true;
       }).extend
       inputs.nix-vscode-extensions.overlays.default;
