@@ -34,6 +34,8 @@
       ms-vsliveshare.vsliveshare
       ms-kubernetes-tools.vscode-kubernetes-tools
       ms-toolsai.jupyter
+      ms-azuretools.vscode-containers
+      ms-vscode-remote.remote-containers
 
       # AI Tools
       github.copilot
@@ -48,6 +50,9 @@
       ms-python.debugpy
       golang.go
       bbenoist.nix
+      redhat.vscode-yaml
+      redhat.vscode-xml
+      redhat.ansible
 
       # Themes
       ms-vscode.theme-predawnkit
