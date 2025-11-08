@@ -29,9 +29,11 @@
     vscodeExtensions = with pkgs'.vscode-marketplace-release; [
       # Microsoft Official
       ms-vscode-remote.remote-ssh-edit
+      ms-vscode-remote.remote-ssh
       ms-python.vscode-pylance
       ms-vsliveshare.vsliveshare
       ms-kubernetes-tools.vscode-kubernetes-tools
+      ms-toolsai.jupyter
 
       # AI Tools
       github.copilot
