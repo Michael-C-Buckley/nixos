@@ -27,6 +27,8 @@
     ];
 
     vscodeExtensions = with pkgs'.vscode-marketplace-release; [
+      # Trusted Sources
+
       # Microsoft Official
       ms-vscode-remote.remote-ssh-edit
       ms-vscode-remote.remote-ssh
@@ -37,28 +39,37 @@
       ms-azuretools.vscode-containers
       ms-vscode-remote.remote-containers
 
-      # AI Tools
+      # Github Tools
       github.copilot
       github.copilot-chat
-
-      # QOL/usability
-      mkhl.direnv
-      asvetliakov.vscode-neovim
+      github.vscode-github-actions
 
       # Language
       ms-python.python
       ms-python.debugpy
-      golang.go
-      bbenoist.nix
       redhat.vscode-yaml
       redhat.vscode-xml
       redhat.ansible
+      golang.go
 
       # Themes
       ms-vscode.theme-predawnkit
       github.github-vscode-theme
+
+      sourcegraph.amp
+
+      # Unofficial Sources
+
+      # Themes
       yummygum.city-lights-theme
       teabyii.ayu
+
+      # Languages
+      bbenoist.nix
+
+      # QOL/usability
+      mkhl.direnv
+      asvetliakov.vscode-neovim
     ];
   in {
     packages.vscode = pkgs.symlinkJoin {
