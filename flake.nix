@@ -31,7 +31,6 @@
       url = "github:feel-co/hjem";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        ndg.follows = ""; # Documentation generator
       };
     };
 
