@@ -1,11 +1,12 @@
 {
-  flake.modules.nixos.o1 = let
+  flake.modules.nixos.o1 = {pkgs, ...}: let
     zfsFs = path: {
       device = "zroot/o1/${path}";
       fsType = "zfs";
       neededForBoot = true;
     };
   in {
+    boot.zfs.package = pkgs.zfs_unstable;
     fileSystems = {
       "/boot" = {
         device = "/dev/disk/by-uuid/12CE-A600";

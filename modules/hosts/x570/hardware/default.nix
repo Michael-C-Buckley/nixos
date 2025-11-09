@@ -1,4 +1,6 @@
-{
+{config, ...}: let
+  inherit (config) flake;
+in {
   flake.modules.nixos.x570 = {
     config,
     lib,
@@ -12,7 +14,7 @@
 
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
-      kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
+      kernelPackages = pkgs.linuxKernel.packagesFor flake.packages.${pkgs.stdenv.hostPlatform.system}.jet-kernel-performance;
       kernelModules = ["kvm" "kvm-amd" "virtiofs" "9p" "9pnet_virtio"];
       kernelParams = [
         "amd_pstate=active" # AMD Power efficiency on Linux 6.3+
