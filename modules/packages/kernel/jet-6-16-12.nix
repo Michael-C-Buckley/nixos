@@ -13,8 +13,10 @@
 #
 # I only have that architecture among my systems, so it works for me,
 #  check your CPUs before using this as-is
-{
-  perSystem = {pkgs, ...}: let
+{inputs, ...}: let
+  pkgs = import inputs.nixpkgs {system = "x86_64-linux";};
+in {
+  flake = let
     # Build a custom Xanmod kernel with the given profile
     # Profiles: "server", "workstation", "performance"
     buildCustomKernel = {
@@ -220,7 +222,7 @@
   in {
     # TODO:
     # Make this more customizable and properly add to packagesFor under linux
-    packages = {
+    packages.x86_64-linux = {
       jet-kernel-server = buildCustomKernel {
         profile = "server";
         customSuffix = "jet1";
