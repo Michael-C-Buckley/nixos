@@ -1,4 +1,6 @@
-{
+{config, ...}: let
+  inherit (config) flake;
+in {
   flake.modules.nixos.t14 = {
     config,
     lib,
@@ -11,7 +13,7 @@
     ];
 
     boot = {
-      kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
+      kernelPackages = pkgs.linuxKernel.packagesFor flake.packages.${pkgs.stdenv.hostPlatform.system}.jet-kernel-balanced;
       initrd = {
         availableKernelModules = ["nvme" "xhci_pci" "uas" "sd_mod" "sdhci_pci"];
         kernelModules = ["dm-snapshot"];
