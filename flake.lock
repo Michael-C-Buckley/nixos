@@ -150,16 +150,25 @@
       }
     },
     "nix-secrets": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "import-tree": [
+          "import-tree"
+        ]
+      },
       "locked": {
-        "lastModified": 1762025913,
-        "narHash": "sha256-AonHaHC+74uWSWDZcNzrSrkNHw7l4MBKcV+1AwtbagA=",
+        "lastModified": 1762806135,
+        "narHash": "sha256-UhgZ7Ta5NcxZAUWwgvOmF25pD2qVJ0Zy1Ny+S6OLqyA=",
         "ref": "refs/heads/master",
-        "rev": "9fc947f32e5ce0c49d559b28a73fca3bfedfe395",
-        "revCount": 393,
+        "rev": "983d78f2c152c67fec9d653ffc26f70fafbaf8f1",
+        "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/michael-c-buckley/nix-secrets"
       },
       "original": {
+        "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/michael-c-buckley/nix-secrets"
       }
