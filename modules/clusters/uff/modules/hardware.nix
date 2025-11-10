@@ -17,7 +17,7 @@ in {
         availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "uas" "sd_mod"];
         kernelModules = ["dm-snapshot"];
       };
-      kernelPackages = pkgs.linuxKernel.packagesFor flake.packages.${pkgs.stdenv.hostPlatform.system}.jet-kernel-server;
+      kernelPackages = pkgs.linuxKernel.packagesFor flake.packages.${pkgs.stdenv.hostPlatform.system}.jet-kernel-server_6_16;
       kernelModules = ["kvm-intel" "virtiofs" "9p" "9pnet_virtio"];
       extraModulePackages = [];
     };

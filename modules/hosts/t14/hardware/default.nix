@@ -13,7 +13,7 @@ in {
     ];
 
     boot = {
-      kernelPackages = pkgs.linuxKernel.packagesFor flake.packages.${pkgs.stdenv.hostPlatform.system}.jet-kernel-balanced;
+      kernelPackages = pkgs.linuxKernel.packagesFor flake.packages.${pkgs.stdenv.hostPlatform.system}.jet-kernel-balanced_6_17;
       initrd = {
         availableKernelModules = ["nvme" "xhci_pci" "uas" "sd_mod" "sdhci_pci"];
         kernelModules = ["dm-snapshot"];

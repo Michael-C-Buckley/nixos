@@ -12,7 +12,7 @@ in {
     ];
 
     boot = {
-      kernelPackages = pkgs.linuxKernel.packagesFor flake.packages.${pkgs.stdenv.hostPlatform.system}.jet-kernel-server;
+      kernelPackages = pkgs.linuxKernel.packagesFor flake.packages.${pkgs.stdenv.hostPlatform.system}.jet-kernel-server_6_16;
       binfmt.emulatedSystems = ["aarch64-linux"];
       initrd = {
         availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
