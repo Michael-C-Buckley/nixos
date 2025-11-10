@@ -20,6 +20,8 @@ in {
     # Build a custom Xanmod kernel with the given profile
     # Profiles: "server", "workstation", "performance"
     buildCustomKernel = {
+      version,
+      hash,
       profile ? "server",
       hostname ? "",
       customSuffix ? "jet",
@@ -30,7 +32,6 @@ in {
       inherit (lib.kernel) yes no freeform;
       inherit (lib.versions) pad majorMinor;
 
-      version = "6.16.12";
       vendorSuffix = "xanmod1";
 
       pname = "linux-xanmod";
@@ -72,7 +73,7 @@ in {
             owner = "xanmod";
             repo = "linux";
             rev = "refs/tags/${version}-${vendorSuffix}";
-            hash = "sha256-m2aepV++9RwobXOTxiLJaUV8TnPvBkZzNooKQR4nRtA=";
+            inherit hash;
           };
 
           kernelPatches = [
@@ -193,6 +194,13 @@ in {
             DEBUG_INFO_DWARF4 = mkForce no;
             DEBUG_INFO_BTF = mkForce no;
             DEBUG_INFO_REDUCED = mkForce no;
+
+            ### SELinux Support (optional, runtime configurable)
+            SECURITY_SELINUX = yes;
+            SECURITY_SELINUX_BOOTPARAM = yes; # Allow boot-time enable/disable
+            SECURITY_SELINUX_DEVELOP = yes; # Development support
+            SECURITY_SELINUX_AVC_STATS = yes; # Statistics
+            DEFAULT_SECURITY_SELINUX = no; # Don't enable by default
           };
 
           extraMeta = {
@@ -220,20 +228,49 @@ in {
     in
       xanmod_custom;
   in {
-    # TODO:
-    # Make this more customizable and properly add to packagesFor under linux
-    packages.x86_64-linux = {
-      jet-kernel-server = buildCustomKernel {
+    # TODO: Make this more customizable and properly add to packagesFor under linux
+    # TODO: make these into better functions
+    packages.x86_64-linux = let
+      buildCustomKernel_6_16 = {
+        customSuffix,
+        profile,
+      }:
+        buildCustomKernel {
+          version = "6.16.12";
+          inherit customSuffix profile;
+          hash = "sha256-m2aepV++9RwobXOTxiLJaUV8TnPvBkZzNooKQR4nRtA=";
+        };
+      buildCustomKernel_6_17 = {
+        customSuffix,
+        profile,
+      }:
+        buildCustomKernel {
+          version = "6.17.7";
+          inherit customSuffix profile;
+          hash = "sha256-MEAKPUcUmWJCvEf5DNG8JA4jJfQtitMVv/Fc/KNEz2Y=";
+        };
+    in {
+      jet-kernel-server_6_16 = buildCustomKernel_6_16 {
         profile = "server";
         customSuffix = "jet1";
       };
 
-      jet-kernel-balanced = buildCustomKernel {
+      jet-kernel-balanced_6_16 = buildCustomKernel_6_16 {
         profile = "balanced";
         customSuffix = "jet2";
       };
 
-      jet-kernel-performance = buildCustomKernel {
+      jet-kernel-performance_6_16 = buildCustomKernel_6_16 {
+        profile = "performance";
+        customSuffix = "jet3";
+      };
+
+      # 6.17 Kernels - So far no servers since not using it because ZFS
+      jet-kernel-balanced_6_17 = buildCustomKernel_6_17 {
+        profile = "balanced";
+        customSuffix = "jet2";
+      };
+      jet-kernel-performance_6_17 = buildCustomKernel_6_17 {
         profile = "performance";
         customSuffix = "jet3";
       };
