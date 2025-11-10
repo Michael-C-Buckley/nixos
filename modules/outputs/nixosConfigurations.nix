@@ -36,7 +36,7 @@ in {
       o1 = {system = "aarch64-linux";};
       p520 = {};
       t14 = {};
-      tempest = {secrets = "common";};
+      tempest = {};
       x570 = {};
       wsl = {};
     };

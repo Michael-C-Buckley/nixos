@@ -20,8 +20,15 @@
     # A slightly smaller tarball delivered from the NixOS Foundation
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"; # Pinned due to issues
 
+    nix-secrets = {
+      url = "git+ssh://git@github.com/michael-c-buckley/nix-secrets?shallow=1";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        import-tree.follows = "import-tree";
+      };
+    };
+
     # No Nixpkgs Inputs
-    nix-secrets.url = "git+ssh://git@github.com/michael-c-buckley/nix-secrets";
     import-tree.url = "github:vic/import-tree";
     impermanence.url = "github:nix-community/impermanence";
     flake-parts.url = "github:hercules-ci/flake-parts";
