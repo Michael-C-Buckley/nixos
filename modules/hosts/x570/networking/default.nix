@@ -4,6 +4,9 @@
       iperf3.enable = true;
     };
 
+    # Don't wait for DHCP since I often have all static IPs
+    systemd.network.wait-online.anyInterface = true;
+
     networking = {
       hostId = "c07fa570";
       hostName = "x570";
