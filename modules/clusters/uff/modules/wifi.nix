@@ -10,7 +10,7 @@
           connection = {
             id = "Home-Wifi";
             type = "wifi";
-            interface-name = "wlp5s0";
+            interface-name = "wlp2s0";
             autoconnect-priority = 10;
           };
           wifi = {
