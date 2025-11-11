@@ -9,6 +9,17 @@
     };
 
     networking = {
+      networkmanager.ensureProfiles.profiles = {
+        home = {
+          ipv4.address = "172.16.248.32/16";
+          ipv6.address = "fe80::1002/64";
+        };
+        home2 = {
+          ipv4.address = "172.30.248.32/16";
+          ipv6.address = "fe80::1002/64";
+        };
+      };
+
       loopback.ipv4 = "192.168.61.2";
       hostId = "072294f5";
       hostName = "uff2";
