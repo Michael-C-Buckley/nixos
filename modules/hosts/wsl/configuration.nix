@@ -15,12 +15,10 @@ in {
         hjem-wsl
         hjem-root
         hjem-gpgAgent
-        unbound
+        dnscrypt-proxy
         packages
         packages-development
         packages-network
-        devSpawn
-
         app-opencode
       ]
       ++ [
@@ -43,7 +41,7 @@ in {
     };
 
     programs = {
-      nix-ld.enable = true;
+      nix-ld.enable = true; # Allows seamless vscode WSL (and also remote) to just work
       nvf.settings.imports = [nvf.extended];
     };
 
