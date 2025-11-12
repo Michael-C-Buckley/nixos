@@ -1,6 +1,4 @@
-{config, ...}: let
-  inherit (config.flake) packages;
-in {
+{
   flake.modules.nvf.themes = {pkgs, ...}: let
     inherit (pkgs) vimPlugins;
   in {
@@ -15,14 +13,10 @@ in {
         };
       };
       lazy.plugins = {
-        # Custom packages I added and overlaid
-        "kanso-nvim".package = packages.${pkgs.stdenv.hostPlatform.system}.kanso-nvim;
-        "thorn-nvim".package = packages.${pkgs.stdenv.hostPlatform.system}.thorn-nvim;
-        # Nixpkgs items
+        "kanso.nvim".package = vimPlugins.kanso-nvim;
         everforest.package = vimPlugins.everforest;
         "lackluster.nvim".package = vimPlugins.lackluster-nvim;
         "kanagawa.nvim".package = vimPlugins.kanagawa-nvim;
-        "neovim-ayu".package = vimPlugins.neovim-ayu;
         "catppuccin-nvim".package = vimPlugins.catppuccin-nvim;
         "gruvbox.nvim".package = vimPlugins.gruvbox-nvim;
       };
