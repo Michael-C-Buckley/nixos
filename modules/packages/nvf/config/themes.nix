@@ -15,7 +15,7 @@
       lazy.plugins = {
         "kanso.nvim".package = vimPlugins.kanso-nvim;
         everforest.package = vimPlugins.everforest;
-        "lackluster.nvim".package = vimPlugins.lackluster-nvim;
+        "bamboo.nvim".package = vimPlugins.bamboo-nvim;
         "kanagawa.nvim".package = vimPlugins.kanagawa-nvim;
         "catppuccin-nvim".package = vimPlugins.catppuccin-nvim;
         "gruvbox.nvim".package = vimPlugins.gruvbox-nvim;
