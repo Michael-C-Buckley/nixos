@@ -14,6 +14,12 @@
         enable = true;
       };
 
+      notes = {
+        # To test out
+        obsidian.enable = true;
+        orgmode.enable = true;
+      };
+
       lsp = {
         enable = true;
         formatOnSave = true;

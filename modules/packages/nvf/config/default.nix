@@ -9,11 +9,10 @@
     ];
 
     vim = {
-      autopairs.nvim-autopairs.enable = true;
+      # They get kind of annoying
+      autopairs.nvim-autopairs.enable = false;
 
-      notes = {
-        todo-comments.enable = true;
-      };
+      notes.todo-comments.enable = true;
 
       clipboard = {
         enable = true;
