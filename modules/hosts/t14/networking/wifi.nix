@@ -1,10 +1,14 @@
+# My laptop has the most wifi since I have a handful of profiles declared
 let
+  # These functions just make the logic below way more organized by moving them out
+  # The basic wifi setup is quite plain, just setup the boilerplate with this function
   mkWifi = {
+    name,
     ssid,
     psk,
   }: {
     connection = {
-      id = "T14-Home-Wifi";
+      id = name;
       type = "wifi";
       interface-name = "wlp3s0";
     };
@@ -19,6 +23,16 @@ let
     ipv4.method = "auto";
     ipv6.method = "auto";
   };
+
+  # Name-value pair for use with listToAttrs
+  nameWifi = name: {
+    inherit name;
+    value = mkWifi {
+      inherit name;
+      ssid = "\$${name}_SSID";
+      psk = "\$${name}_PSK";
+    };
+  };
 in
   {config, ...}: let
     inherit (config) flake;
@@ -32,41 +46,39 @@ in
           r2-wifi.path
         ];
 
-        profiles = {
-          home = {
-            connection.interface-name = "wlp3s0";
-            ipv4 = {
-              address = "172.16.248.14/16";
-              route2 = "192.168.48.0/20,172.16.248.30,50";
+        profiles =
+          builtins.listToAttrs (map nameWifi ["SHAWN" "R11" "R12" "R2"])
+          // {
+            # Additional static routes exist to connect to my home lab
+            # The `/20` is the local prefix
+            # The `/32` routes are the UFF cluster members with static loopback routes
+            #  because VRRP otherwise interferes with routing to them directly
+            Home = {
+              connection.interface-name = "wlp3s0";
+              ipv4 = {
+                address = "172.16.248.14/16";
+                route2 = "192.168.48.0/20,172.16.248.30,50";
+                # Statics to get around routing issues from VRRP
+                route3 = "192.168.61.1/32,172.16.248.31";
+                route4 = "192.168.61.2/32,172.16.248.32";
+                route5 = "192.168.61.3/32,172.16.248.33";
+              };
+              ipv6.address = "fe80::a14/64";
             };
-            ipv6.address = "fe80::a14/64";
-          };
 
-          home2 = {
-            connection.interface-name = "wlp3s0";
-            ipv4 = {
-              address = "172.30.248.14/16";
-              route2 = "192.168.48.0/20,172.30.248.30,50";
+            Home2 = {
+              connection.interface-name = "wlp3s0";
+              ipv4 = {
+                address = "172.30.248.14/16";
+                route2 = "192.168.48.0/20,172.30.248.30,50";
+                # Statics to get around routing issues from VRRP
+                route3 = "192.168.61.1/32,172.30.248.31";
+                route4 = "192.168.61.2/32,172.30.248.32";
+                route5 = "192.168.61.3/32,172.30.248.33";
+              };
+              ipv6.address = "fe80::a14/64";
             };
-            ipv6.address = "fe80::a14/64";
           };
-          shawn = mkWifi {
-            ssid = "$SHAWN_SSID";
-            psk = "$SHAWN_PSK";
-          };
-          r11 = mkWifi {
-            ssid = "$R11_SSID";
-            psk = "$R11_PSK";
-          };
-          r12 = mkWifi {
-            ssid = "$R12_SSID";
-            psk = "$R12_PSK";
-          };
-          r2 = mkWifi {
-            ssid = "$R2_SSID";
-            psk = "$R2_PSK";
-          };
-        };
       };
     };
   }
