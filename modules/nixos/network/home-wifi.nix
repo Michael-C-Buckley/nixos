@@ -1,16 +1,15 @@
+# I share the basic home network among multiple hosts, this is the blanket common components of it
+# Individual needs like addresses settings are done per-host
 {
-  flake.modules.nixos.uff = {config, ...}: {
+  flake.modules.nixos.home-wifi = {config, ...}: {
     networking.networkmanager.ensureProfiles = {
       environmentFiles = [config.sops.secrets.michael-wifi.path];
 
-      # Common aspects for the cluster
-      # Addresses are defined individually
       profiles = {
         home = {
           connection = {
             id = "Home-Wifi";
             type = "wifi";
-            interface-name = "wlp2s0";
             autoconnect-priority = 10;
           };
           wifi = {
@@ -37,7 +36,6 @@
           connection = {
             id = "Home-Wifi2";
             type = "wifi";
-            interface-name = "wlp5s0";
             autoconnect-priority = 5;
           };
           wifi = {
