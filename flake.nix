@@ -57,7 +57,7 @@
     };
 
     nvf = {
-      url = "github:notashelf/nvf/v0.8";
+      url = "github:michael-c-buckley/nvf/v0.8";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-compat.follows = "";

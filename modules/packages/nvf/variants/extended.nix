@@ -14,9 +14,9 @@
         enable = true;
       };
 
+      # To try out
       notes = {
-        # To test out
-        obsidian.enable = true;
+        obsidian.enable = false; # Currently bugged
         orgmode.enable = true;
       };
 
