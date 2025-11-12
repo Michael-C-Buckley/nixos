@@ -1,7 +1,8 @@
 {config, ...}: {
   flake.modules.nixos.uff = {lib, ...}: {
-    imports = [
-      config.flake.modules.nixos.wifi
+    imports = with config.flake.modules.nixos; [
+      wifi
+      home-wifi
     ];
 
     # Try my local cache first
