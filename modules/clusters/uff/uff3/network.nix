@@ -30,9 +30,15 @@
       };
     };
 
-    services.keepalived.vrrpInstances.wan = {
-      priority = 130;
-      state = "MASTER";
+    services.keepalived.vrrpInstances = {
+      wan = {
+        priority = 130;
+        state = "MASTER";
+      };
+      wifi = {
+        priority = 130;
+        state = "MASTER";
+      };
     };
   };
 }

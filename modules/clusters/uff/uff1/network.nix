@@ -30,8 +30,9 @@
       };
     };
 
-    services.keepalived.vrrpInstances.wan = {
-      priority = 110;
+    services.keepalived.vrrpInstances = {
+      wan.priority = 110;
+      wifi.priority = 110;
     };
   };
 }
