@@ -28,6 +28,8 @@
     };
     services.noctalia-shell = {
       enable = true;
+      # This overrides and allows me to use the nixpkgs version of Quickshell instead of the official QS flake
+      # I actually deleted the input for their quickshell, if you check my `flake.nix`
       package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.override {inherit (pkgs) quickshell;};
     };
 
