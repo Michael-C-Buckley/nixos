@@ -1,15 +1,14 @@
 - Setup up caching/remote building
+- Setup CI to potentially replace hydra
 - Nebula networking
 
 ## Restructuring
 
-- Break packages into various sets
-- Remove files for my user configs
 - Nixpak & Isolation
+- Security overall
 
 ______________________________________________________________________
 
 # Tasks
 
 - Add syncoid
-- Composable user environment
