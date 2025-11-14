@@ -16,9 +16,7 @@
         containerlab
         gaming
         k3s
-        #resolved
         dnscrypt-proxy
-        devSpawn
       ]);
 
     nix.settings.substituters = lib.mkBefore ["http://p520:5000"];
