@@ -1,17 +1,10 @@
 {
-  flake.modules.nixos.p520 = {config, ...}: let
-    inherit (config.networking) loopback;
-  in {
+  flake.modules.nixos.p520 = {
     services.frr = {
       bfdd.enable = true;
 
       config = ''
         ip forwarding
-
-        router eigrp 1
-          network 192.168.50.32/27
-          network ${loopback.ipv4}
-          variance 1
 
         int lo
           ip ospf passive
