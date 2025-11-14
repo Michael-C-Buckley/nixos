@@ -4,6 +4,7 @@
     imports = with config.flake.modules.nixos; [
       laptopPreset
       dnscrypt-proxy
+      containerlab
     ];
 
     security.tpm2.enable = true;
