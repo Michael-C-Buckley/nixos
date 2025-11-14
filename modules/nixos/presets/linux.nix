@@ -34,6 +34,8 @@
       extraSystemBuilderCmds = "ln -s ${self.sourceInfo.outPath} $out/src";
     };
 
+    environment.enableAllTerminfo = true;
+
     programs = {
       gnupg.agent.enable = true;
       nvf.enable = true;
