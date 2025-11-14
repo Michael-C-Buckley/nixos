@@ -28,7 +28,5 @@
       "/var/lib/open-webui"
       "/var/tmp"
     ];
-
-    virtualisation.podman.enable = true;
   };
 }

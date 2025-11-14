@@ -7,7 +7,6 @@
 
     virtualisation = {
       libvirtd.enable = true;
-      podman.enable = true;
     };
 
     system.stateVersion = "25.11";
