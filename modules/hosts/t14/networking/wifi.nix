@@ -53,7 +53,7 @@ in
             # The `/20` is the local prefix
             # The `/32` routes are the UFF cluster members with static loopback routes
             #  because VRRP otherwise interferes with routing to them directly
-            Home = {
+            home = {
               connection.interface-name = "wlp3s0";
               ipv4 = {
                 address = "172.16.248.14/16";
@@ -66,7 +66,7 @@ in
               ipv6.address = "fe80::a14/64";
             };
 
-            Home2 = {
+            home2 = {
               connection.interface-name = "wlp3s0";
               ipv4 = {
                 address = "172.30.248.14/16";
