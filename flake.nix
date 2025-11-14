@@ -51,11 +51,6 @@
       };
     };
 
-    nix-vscode-extensions = {
-      url = "github:nix-community/nix-vscode-extensions";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nvf = {
       url = "github:michael-c-buckley/nvf/v0.8";
       inputs = {
