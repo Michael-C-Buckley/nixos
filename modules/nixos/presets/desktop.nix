@@ -19,6 +19,8 @@ in {
       hjem-root
       shawn
 
+      cosmicDesktop
+
       packages
       packages-desktop
       packages-development
