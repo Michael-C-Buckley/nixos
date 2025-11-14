@@ -28,12 +28,13 @@
     versionKey,
     profile,
     customSuffix,
+    x86version ? "3", # Default to v3, but allow override
   }: let
     versionInfo = versions.${versionKey};
   in
     buildCustomKernel {
       inherit (versionInfo) version hash;
-      inherit profile customSuffix;
+      inherit profile customSuffix x86version;
     };
 in {
   flake = {
@@ -80,6 +81,13 @@ in {
         versionKey = "6.17.8";
         profile = "performance";
         customSuffix = "jet3";
+      };
+
+      # An attempt to also now build WSL kernels
+      jet-wsl-kernel_6_17_8 = buildVersion {
+        versionKey = "6.17.8";
+        profile = "server";
+        customSuffix = "jet-wsl";
       };
     };
   };
