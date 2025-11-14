@@ -1,6 +1,7 @@
-# TODO:
-# I use regular vscode and across multiple systems, so use the official sync
-# Dealing with declarative extensions has been a large pain
+# I do use vscode occasionally, when I'm not using NVF (nix-based nvim distro) or Zed
+# Since I do, I use the official Microsoft version and use their settings sync to push
+# my various configs and extensions between machines, to include Windows ones
+# I previously used various nix-managed solutions for it, but it was always a pain
 {inputs, ...}: {
   perSystem = {pkgs, ...}: let
     # Allow unfree and extend with the extensions overlay
@@ -14,10 +15,10 @@
       neovim
 
       python313
-      basedpyright
+      uv
+
       nil
       nixd
-      pyrefly
       sops
 
       go
@@ -26,51 +27,6 @@
       go-tools
       golangci-lint
     ];
-    # vscodeExtensions = with pkgs'.vscode-marketplace-release; [
-    #   # Trusted Sources
-    #
-    #   # Microsoft Official
-    #   ms-vscode-remote.remote-ssh-edit
-    #   ms-vscode-remote.remote-ssh
-    #   ms-python.vscode-pylance
-    #   ms-vsliveshare.vsliveshare
-    #   ms-kubernetes-tools.vscode-kubernetes-tools
-    #   ms-toolsai.jupyter
-    #   ms-azuretools.vscode-containers
-    #   ms-vscode-remote.remote-containers
-    #
-    #   # Github Tools
-    #   github.copilot
-    #   github.copilot-chat
-    #   github.vscode-github-actions
-    #
-    #   # Language
-    #   ms-python.python
-    #   ms-python.debugpy
-    #   redhat.vscode-yaml
-    #   redhat.vscode-xml
-    #   redhat.ansible
-    #   golang.go
-    #
-    #   # Themes
-    #   ms-vscode.theme-predawnkit
-    #   github.github-vscode-theme
-    #
-    #   sourcegraph.amp
-    #
-    #   # Unofficial Sources
-    #
-    #   # Themes
-    #   yummygum.city-lights-theme
-    #   teabyii.ayu
-    #
-    #   # Languages
-    #   bbenoist.nix
-    #
-    #   # QOL/usability
-    #   mkhl.direnv
-    #   asvetliakov.vscode-neovim
-    # ];
   in {
     packages.vscode = pkgs.symlinkJoin {
       name = "code";
