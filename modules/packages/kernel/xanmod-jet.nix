@@ -15,262 +15,69 @@
 #  check your CPUs before using this as-is
 {inputs, ...}: let
   pkgs = import inputs.nixpkgs {system = "x86_64-linux";};
+
+  # Import modular components
+  profileConfigs = import ./_profiles.nix;
+  versions = import ./_versions.nix;
+  buildCustomKernel = import ./_builder.nix {
+    inherit pkgs profileConfigs;
+  };
+
+  # Helper to build a specific version with a profile
+  buildVersion = {
+    versionKey,
+    profile,
+    customSuffix,
+  }: let
+    versionInfo = versions.${versionKey};
+  in
+    buildCustomKernel {
+      inherit (versionInfo) version hash;
+      inherit profile customSuffix;
+    };
 in {
-  flake = let
-    # Build a custom Xanmod kernel with the given profile
-    # Profiles: "server", "workstation", "performance"
-    buildCustomKernel = {
-      version,
-      hash,
-      profile ? "server",
-      hostname ? "",
-      customSuffix ? "jet",
-      x86version ? "3",
-    }: let
-      inherit (pkgs) lib stdenv gccStdenv buildLinux kernelPatches;
-      inherit (lib.modules) mkForce mkOverride;
-      inherit (lib.kernel) yes no freeform;
-      inherit (lib.versions) pad majorMinor;
-
-      vendorSuffix = "xanmod1";
-
-      pname = "linux-xanmod";
-      modDirVersion = pad 3 "${version}-${customSuffix}";
-
-      # Profile-specific settings
-      profileConfig = {
-        # Profiles approximate the workload they'll be experiencing
-        # - Server: throughput and efficiency focused
-        # - Balanced: mix of responsiveness and throughput
-        # - Performance: maximum responsiveness
-        # Balanced is used on my laptop and performance on my desktop, servers use server (obviously)
-        server = {
-          cpuGovernor = "schedutil";
-          preemptModel = "voluntary"; # Lower overhead, better throughput
-          hz = 300; # Good balance for server workloads
-        };
-        balanced = {
-          cpuGovernor = "schedutil";
-          preemptModel = "dynamic"; # Runtime tunable preemption
-          hz = 500; # Good compromise
-        };
-        performance = {
-          cpuGovernor = "performance"; # Maximum frequency always
-          preemptModel = "full"; # Full preemption for low latency
-          hz = 1000; # Maximum timer frequency
-        };
-      };
-
-      cfg = profileConfig.${profile};
-
-      xanmod_custom =
-        (buildLinux {
-          inherit pname version modDirVersion;
-
-          stdenv = gccStdenv;
-
-          src = pkgs.fetchFromGitLab {
-            owner = "xanmod";
-            repo = "linux";
-            rev = "refs/tags/${version}-${vendorSuffix}";
-            inherit hash;
-          };
-
-          kernelPatches = [
-            kernelPatches.bridge_stp_helper
-            kernelPatches.request_key_helper
-          ];
-
-          ignoreConfigErrors = true;
-          enableCommonConfig = true;
-
-          # after booting to the new kernel
-          # use zcat /proc/config.gz | grep -i "<value>"
-          # to check if the kernel options are set correctly
-          # Do note that values set in config/*.nix will override
-          # those values in most cases.
-          structuredExtraConfig = {
-            ### Profile-based CPU Frequency Governor
-            CPU_FREQ_DEFAULT_GOV_PERFORMANCE = mkOverride 60 (
-              if cfg.cpuGovernor == "performance"
-              then yes
-              else no
-            );
-            CPU_FREQ_DEFAULT_GOV_SCHEDUTIL = mkOverride 60 (
-              if cfg.cpuGovernor == "schedutil"
-              then yes
-              else no
-            );
-
-            ### Profile-based Preemption Model
-            # Note: PREEMPT_DYNAMIC allows runtime switching via kernel cmdline
-            PREEMPT = mkOverride 60 (
-              if cfg.preemptModel == "full"
-              then yes
-              else no
-            );
-            PREEMPT_VOLUNTARY = mkOverride 60 (
-              if cfg.preemptModel == "voluntary"
-              then yes
-              else no
-            );
-            PREEMPT_DYNAMIC = mkOverride 60 (
-              if cfg.preemptModel == "dynamic"
-              then yes
-              else no
-            );
-
-            ### Profile-based Timer Frequency
-            HZ_250 =
-              if cfg.hz == 250
-              then yes
-              else no;
-            HZ_300 =
-              if cfg.hz == 300
-              then yes
-              else no;
-            HZ_500 =
-              if cfg.hz == 500
-              then yes
-              else no;
-            HZ_1000 =
-              if cfg.hz == 1000
-              then yes
-              else no;
-            HZ = freeform (toString cfg.hz);
-
-            ### Tickless Configuration
-            NO_HZ_FULL = mkForce no;
-            NO_HZ_IDLE = mkForce yes;
-
-            ### Profile-based CPU Architecture Optimization
-            # v2 = 2009+ (CMPXCHG16B, POPCNT, SSE4.2)
-            # v3 = 2015+ (AVX2, BMI1/2, F16C, FMA, MOVBE)
-            # v4 = 2017+ (AVX512)
-            X86_64_VERSION = freeform x86version; # I only have x86-64v3 CPUs
-
-            ### RCU Configuration (tuned for responsiveness)
-            RCU_EXPERT = yes;
-            RCU_FANOUT = freeform "64";
-            RCU_FANOUT_LEAF = freeform "16";
-            RCU_BOOST = yes;
-            RCU_BOOST_DELAY = freeform "0";
-            RCU_EXP_KTHREAD = yes;
-
-            ### Basic Options
-            DEFAULT_HOSTNAME = freeform (
-              if hostname != ""
-              then hostname
-              else "(none)"
-            );
-            EXPERT = yes;
-            DEBUG_KERNEL = mkForce no;
-            WERROR = no;
-
-            ### Security Hardening (enabled for all profiles)
-            GCC_PLUGINS = yes;
-            BUG_ON_DATA_CORRUPTION = yes;
-            INIT_ON_FREE_DEFAULT_ON = yes; # Zero memory on free
-            INIT_STACK_ALL_ZERO = yes; # Zero stack on allocation
-            RANDOMIZE_KSTACK_OFFSET_DEFAULT = yes; # KASLR for stacks
-            STACKPROTECTOR = yes;
-            STACKPROTECTOR_STRONG = yes;
-
-            ### Memory and Compression Optimizations
-            ZSWAP_COMPRESSOR_DEFAULT_LZ4 = yes;
-            ZSWAP_COMPRESSOR_DEFAULT = freeform "lz4";
-            COMPACT_UNEVICTABLE_DEFAULT = freeform "1";
-
-            ### Scheduler Optimizations
-            SCHED_AUTOGROUP = yes; # Improves desktop interactivity, minimal server impact
-            CFS_BANDWIDTH = yes; # CPU bandwidth control for cgroups
-
-            ### I/O and Hardware Optimizations
-            BLK_CGROUP_IOCOST = yes; # I/O cost-based scheduling
-            NVME_MULTIPATH = yes; # NVMe multipath support
-
-            ### Disable Debugging for Production Performance
-            DEBUG_INFO = mkForce no;
-            DEBUG_INFO_DWARF4 = mkForce no;
-            DEBUG_INFO_BTF = mkForce no;
-            DEBUG_INFO_REDUCED = mkForce no;
-
-            ### SELinux Support (optional, runtime configurable)
-            SECURITY_SELINUX = yes;
-            SECURITY_SELINUX_BOOTPARAM = yes; # Allow boot-time enable/disable
-            SECURITY_SELINUX_DEVELOP = yes; # Development support
-            SECURITY_SELINUX_AVC_STATS = yes; # Statistics
-            DEFAULT_SECURITY_SELINUX = no; # Don't enable by default
-          };
-
-          extraMeta = {
-            broken = stdenv.isAarch64; # Aarch64 is a stretch goal, X64 was a priority
-            branch = majorMinor version;
-            description = ''
-              Custom Xanmod Kernel (${profile} profile)
-              - CPU Governor: ${cfg.cpuGovernor}
-              - Preemption: ${cfg.preemptModel}
-              - Timer Hz: ${toString cfg.hz}
-              - x86-64 level: v${toString cfg.x86Version}
-            '';
-          };
-        })
-    .overrideAttrs (oa: {
-          prePatch =
-            (oa.prePatch or "")
-            + ''
-              # A gem from Raf on renaming your kernel
-              echo "Replacing localversion with custom suffix"
-              substituteInPlace localversion \
-                --replace-fail "xanmod1" "${customSuffix}"
-            '';
-        });
-    in
-      xanmod_custom;
-  in {
-    # TODO: Make this more customizable and properly add to packagesFor under linux
-    # TODO: make these into better functions
-    packages.x86_64-linux = let
-      buildCustomKernel_6_16 = {
-        customSuffix,
-        profile,
-      }:
-        buildCustomKernel {
-          version = "6.16.12";
-          inherit customSuffix profile;
-          hash = "sha256-m2aepV++9RwobXOTxiLJaUV8TnPvBkZzNooKQR4nRtA=";
-        };
-      buildCustomKernel_6_17 = {
-        customSuffix,
-        profile,
-      }:
-        buildCustomKernel {
-          version = "6.17.7";
-          inherit customSuffix profile;
-          hash = "sha256-MEAKPUcUmWJCvEf5DNG8JA4jJfQtitMVv/Fc/KNEz2Y=";
-        };
-    in {
-      jet-kernel-server_6_16 = buildCustomKernel_6_16 {
+  flake = {
+    packages.x86_64-linux = {
+      # 6.16 Kernels
+      jet1-kernel_6_16 = buildVersion {
+        versionKey = "6.16.12";
         profile = "server";
         customSuffix = "jet1";
       };
 
-      jet-kernel-balanced_6_16 = buildCustomKernel_6_16 {
+      jet2-kernel_6_16 = buildVersion {
+        versionKey = "6.16.12";
         profile = "balanced";
         customSuffix = "jet2";
       };
 
-      jet-kernel-performance_6_16 = buildCustomKernel_6_16 {
+      jet3-kernel_6_16 = buildVersion {
+        versionKey = "6.16.12";
         profile = "performance";
         customSuffix = "jet3";
       };
 
       # 6.17 Kernels - So far no servers since not using it because ZFS
-      jet-kernel-balanced_6_17 = buildCustomKernel_6_17 {
+      jet2-kernel_6_17_7 = buildVersion {
+        versionKey = "6.17.7";
         profile = "balanced";
         customSuffix = "jet2";
       };
-      jet-kernel-performance_6_17 = buildCustomKernel_6_17 {
+
+      jet3-kernel_6_17_7 = buildVersion {
+        versionKey = "6.17.7";
+        profile = "performance";
+        customSuffix = "jet3";
+      };
+
+      jet2-kernel_6_17_8 = buildVersion {
+        versionKey = "6.17.8";
+        profile = "balanced";
+        customSuffix = "jet2";
+      };
+
+      jet3-kernel_6_17_8 = buildVersion {
+        versionKey = "6.17.8";
         profile = "performance";
         customSuffix = "jet3";
       };
