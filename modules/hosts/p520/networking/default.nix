@@ -10,6 +10,15 @@
       hostName = "p520";
       hostId = "181a3ead";
 
+      # I would like to learn default routes with routing but container
+      # networking is a massive thorn as it creates endless unwanted
+      # default routes that I absolutely did not ask for;
+      # So for now, use my VRRP address within the LAN
+      defaultGateway = {
+        address = "192.168.48.30";
+        interface = "br0";
+      };
+
       loopback.ipv4 = "192.168.63.5";
 
       firewall.trustedInterfaces = ["br0" "br200"];
