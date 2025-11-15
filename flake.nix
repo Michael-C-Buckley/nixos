@@ -20,6 +20,12 @@
     # A slightly smaller tarball delivered from the NixOS Foundation
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"; # Pinned due to issues
 
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin";
+      # Nix-darwin uses the `nixpkgs-unstable` branch, but I'm using the `nixos-unstable` one to de-duplicate
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-secrets = {
       url = "git+ssh://git@github.com/michael-c-buckley/nix-secrets?shallow=1";
       inputs = {
@@ -35,7 +41,7 @@
     quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
 
     hjem = {
-      url = "github:feel-co/hjem";
+      url = "github:feel-co/hjem/refactor-3"; # Hjem-Darwnin testing
       inputs = {
         nixpkgs.follows = "nixpkgs";
       };
