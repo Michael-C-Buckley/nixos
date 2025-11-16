@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.hjem-ghostty = {lib, ...}: {
+  flake.hjemConfig.ghostty = {lib, ...}: {
     hjem.users.michael.rum.programs.ghostty = {
       enable = true;
       settings = {

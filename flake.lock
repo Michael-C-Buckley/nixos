@@ -45,16 +45,16 @@
         "smfh": "smfh"
       },
       "locked": {
-        "lastModified": 1762884141,
-        "narHash": "sha256-T0+9feH63JZVaWsYOkNfSKL/DAuLFfwl/vX8nNcyqWk=",
-        "owner": "feel-co",
+        "lastModified": 1763244727,
+        "narHash": "sha256-fURtGfZQvQh/xKNKW7oxoyBYftcC4Q9hnnR/7eYSlds=",
+        "owner": "michael-c-buckley",
         "repo": "hjem",
-        "rev": "8e0eeddb5c644008acdf9123ab4073e188a92be3",
+        "rev": "d9892c85a6fb30264eb7fabff44d965306eedab0",
         "type": "github"
       },
       "original": {
-        "owner": "feel-co",
-        "ref": "refactor-3",
+        "owner": "michael-c-buckley",
+        "ref": "darwin",
         "repo": "hjem",
         "type": "github"
       }

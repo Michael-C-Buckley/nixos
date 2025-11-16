@@ -1,5 +1,5 @@
 {config, ...}: {
-  flake.modules.nixos.hjem-git = {
+  flake.hjemConfig.git = {
     pkgs,
     lib,
     ...

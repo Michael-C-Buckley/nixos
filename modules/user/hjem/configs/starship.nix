@@ -6,7 +6,7 @@
 # Overall I wanted to created something to show useful info but not as much or loud
 # as the default Starship prompt
 {
-  flake.modules.nixos.hjem-starship = {lib, ...}: {
+  flake.hjemConfig.starship = {lib, ...}: {
     hjem.users.michael.rum.programs = {
       starship = {
         enable = true;

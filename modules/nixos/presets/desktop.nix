@@ -1,5 +1,6 @@
 {config, ...}: let
   inherit (config.flake.modules) nixos nvf;
+  inherit (config.flake) hjemConfig;
 in {
   flake.modules.nixos.desktopPreset = {
     imports = with nixos; [
@@ -15,8 +16,8 @@ in {
       zfs
       boot
       users
-      hjem-extended
-      hjem-root
+      hjemConfig.extended
+      hjemConfig.root
       shawn
 
       cosmicDesktop

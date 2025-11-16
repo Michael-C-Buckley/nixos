@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.hjem-direnv = {
+  flake.hjemConfig.direnv = {
     hjem.users.michael.rum.programs.direnv = {
       enable = true;
       integrations = {

@@ -4,6 +4,7 @@
   ...
 }: let
   inherit (config.flake.modules) nixos nvf;
+  inherit (config.flake) hjemConfig;
 in {
   flake.modules.nixos.wsl = {
     imports = with nixos;
@@ -12,9 +13,9 @@ in {
         network
         users
         gpg-yubikey
-        hjem-wsl
-        hjem-root
-        hjem-gpgAgent
+        hjemConfig.wsl
+        hjemConfig.root
+        hjemConfig.gpgAgent
         dnscrypt-proxy
         packages
         packages-development

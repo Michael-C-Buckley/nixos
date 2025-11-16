@@ -1,5 +1,6 @@
 {config, ...}: let
   inherit (config.flake.modules) nixos nvf;
+  inherit (config.flake) hjemConfig;
 in {
   flake.modules.nixos.serverPreset = {
     imports = with nixos; [
@@ -10,8 +11,8 @@ in {
       impermanence
       zfs
       gpg-yubikey
-      hjem-default
-      hjem-root
+      hjemConfig.default
+      hjemConfig.root
       shawn
 
       # WIP:

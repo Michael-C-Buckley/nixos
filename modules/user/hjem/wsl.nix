@@ -1,9 +1,9 @@
 {config, ...}: {
-  flake.modules.nixos.hjem-wsl = {
-    imports = with config.flake.modules.nixos; [
-      hjem-default
-      hjem-cursor
-      hjem-helix
+  flake.hjemConfig.wsl = {
+    imports = with config.flake.hjemConfig; [
+      default
+      cursor
+      helix
     ];
   };
 }

@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.hjem-fish = {
+  flake.hjemConfig.fish = {
     pkgs,
     lib,
     ...

@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.hjem-helix = {pkgs, ...}: {
+  flake.hjemConfig.helix = {pkgs, ...}: {
     hjem.users.michael = {
       packages = [pkgs.evil-helix];
       rum.programs.helix = {

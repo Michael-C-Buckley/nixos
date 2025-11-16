@@ -1,17 +1,17 @@
 {config, ...}: {
-  flake.modules.nixos.hjem-extended = {
+  flake.hjemConfig.extended = {
     pkgs,
     lib,
     ...
   }: {
-    imports = with config.flake.modules.nixos; [
-      hjem-default
-      hjem-cursor
-      hjem-helix
-      hjem-gpgAgent
-      hjem-kitty
-      hjem-ghostty
-      hjem-zed
+    imports = with config.flake.hjemConfig; [
+      default
+      cursor
+      helix
+      gpgAgent
+      kitty
+      ghostty
+      zed
     ];
 
     hjem.users.michael = {

@@ -3,29 +3,24 @@
   inputs,
   ...
 }: {
-  flake.modules.nixos.hjem-default = {
+  flake.hjemConfig.default = {
     pkgs,
     lib,
     ...
   }: {
-    imports = with config.flake.modules.nixos;
-      [
-        hjem-direnv
-        hjem-fish
-        hjem-git
-        hjem-shellAliases
-        hjem-starship
-        hjem-fastfetch
-        hjem-nushell
-        hjem-yazi
-        hjem-zoxide
-      ]
-      ++ [
-        inputs.hjem.nixosModules.hjem
-      ];
+    imports = with config.flake.hjemConfig; [
+      direnv
+      fish
+      git
+      shellAliases
+      starship
+      fastfetch
+      nushell
+      yazi
+      zoxide
+    ];
 
     programs.fish.enable = true;
-    users.users.michael.shell = pkgs.fish;
 
     hjem = {
       linker = inputs.hjem.packages.${pkgs.stdenv.hostPlatform.system}.smfh;
@@ -36,6 +31,11 @@
       users.michael = {
         # Push the existing files in to be merged
         files = import ../_findFiles.nix {inherit lib;};
+
+        packages = with pkgs; [
+          bat
+          neovim
+        ];
 
         environment.sessionVariables = {
           EDITOR = "nvim";
