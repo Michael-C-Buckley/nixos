@@ -16,6 +16,8 @@ in {
       flake.hjemConfig.default
     ];
 
+    users.users.michael.shell = pkgs.fish;
+
     hjem.users.michael = {
       packages = [
         (pkgs.writeShellApplication {
