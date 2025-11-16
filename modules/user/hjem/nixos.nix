@@ -19,7 +19,12 @@ in {
     users.users.michael.shell = pkgs.fish;
 
     hjem.users.michael = {
+      sessionVariables = {
+        IP_COLOR = "always";
+        NH_FLAKE = "/home/michael/nixos";
+      };
       packages = [
+        # Makes `nvf` work as a command, disambiguating from `nvim`
         (pkgs.writeShellApplication {
           name = "nvf";
           text = ''

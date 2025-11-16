@@ -35,6 +35,7 @@
         packages = with pkgs; [
           bat
           eza
+          npins
         ];
 
         environment.sessionVariables = {
@@ -42,14 +43,11 @@
           VISUAL = "nvf";
           PAGER = "bat";
           MANPAGER = "sh -c 'col -bx | bat -l man -p'";
-          NH_FLAKE = "/home/michael/nixos";
           DIFF = "difft";
           GIT_EDITOR = "nvf";
           GPG_TTY = "$(tty)";
           CLICOLOR = "1";
-          LSCOLORS = "auto";
           DIFF_COLOR = "auto";
-          IP_COLOR = "always";
         };
 
         # Basic GPG, more advanced settings in hjem-gpgAgent
