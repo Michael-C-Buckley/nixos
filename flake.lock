@@ -178,9 +178,7 @@
         "flake-parts": [
           "flake-parts"
         ],
-        "import-tree": [
-          "import-tree"
-        ]
+        "import-tree": "import-tree"
       },
       "locked": {
         "lastModified": 1762911866,
@@ -301,7 +299,6 @@
         "hjem": "hjem",
         "hjem-rum": "hjem-rum",
         "impermanence": "impermanence",
-        "import-tree": "import-tree",
         "microvm": "microvm",
         "nix-darwin": "nix-darwin",
         "nix-secrets": "nix-secrets",
