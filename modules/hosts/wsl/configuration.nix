@@ -3,25 +3,29 @@
   config,
   ...
 }: let
-  inherit (config.flake.modules) nixos nvf;
+  inherit (config.flake) modules;
   inherit (config.flake) hjemConfig;
 in {
   flake.modules.nixos.wsl = {
-    imports = with nixos;
+    imports = with modules.nixos;
       [
         linuxPreset
         network
         users
         gpg-yubikey
-        hjemConfig.wsl
-        hjemConfig.root
-        hjemConfig.gpgAgent
         dnscrypt-proxy
         packages
         packages-development
         packages-network
         app-opencode
       ]
+      ++ (with hjemConfig; [
+        nixos
+        root
+        gpgAgent
+        cursor
+        helix
+      ])
       ++ [
         inputs.nixos-wsl.nixosModules.default
       ];
@@ -43,7 +47,7 @@ in {
 
     programs = {
       nix-ld.enable = true; # Allows seamless vscode WSL (and also remote) to just work
-      nvf.settings.imports = [nvf.extended];
+      nvf.settings.imports = [modules.nvf.extended];
     };
 
     system.stateVersion = "24.11";

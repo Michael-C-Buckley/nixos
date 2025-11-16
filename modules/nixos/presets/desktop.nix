@@ -16,8 +16,6 @@ in {
       zfs
       boot
       users
-      hjemConfig.extended
-      hjemConfig.root
       shawn
 
       cosmicDesktop
