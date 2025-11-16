@@ -19,7 +19,7 @@ in {
     users.users.michael.shell = pkgs.fish;
 
     hjem.users.michael = {
-      sessionVariables = {
+      environment.sessionVariables = {
         IP_COLOR = "always";
         NH_FLAKE = "/home/michael/nixos";
       };
