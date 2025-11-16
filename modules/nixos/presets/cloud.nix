@@ -1,5 +1,6 @@
 {config, ...}: let
   inherit (config.flake.modules) nixos nvf;
+  inherit (config.flake) hjemConfig;
 in {
   flake.modules.nixos.cloudPreset = {
     imports = with nixos; [
@@ -9,8 +10,8 @@ in {
       boot
       impermanence
       zfs
-      hjem-default
-      hjem-root
+      hjemConfig.default
+      hjemConfig.root
       shawn
 
       packages

@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.hjem-shellAliases = let
+  flake.hjemConfig.shellAliases = let
     commonAliases = {
       ll = "eza -ala -g --icons";
       la = "eza -A"; # List all except `.` and `..`

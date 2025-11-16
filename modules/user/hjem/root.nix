@@ -1,7 +1,7 @@
 # A basic Root user configuration that pulls in select aspects of my configs
 # *This does depend on importing my hjem configs
 {
-  flake.modules.nixos.hjem-root = {
+  flake.hjemConfig.root = {
     config,
     pkgs,
     lib,

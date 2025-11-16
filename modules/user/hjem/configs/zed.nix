@@ -1,5 +1,5 @@
 {config, ...}: {
-  flake.modules.nixos.hjem-zed = {pkgs, ...}: {
+  flake.hjemConfig.zed = {pkgs, ...}: {
     hjem.users.michael.rum.programs.zed = {
       enable = true;
       package = config.flake.packages.${pkgs.stdenv.hostPlatform.system}.zeditor;
