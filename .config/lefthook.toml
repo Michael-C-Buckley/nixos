@@ -2,7 +2,7 @@ assert_lefthook_installed = true
 
 [[pre-commit.jobs]]
 name = "deadnix"
-exclude = "npins/"
+exclude = "_sources/"
 glob = "*.nix"
 run = "deadnix --fail {staged_files}"
 
