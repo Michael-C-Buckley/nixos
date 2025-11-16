@@ -1,9 +1,9 @@
 {config, ...}: let
-  inherit (config.flake.modules) nixos nvf;
-  inherit (config.flake) hjemConfig;
+  inherit (config.flake) modules;
+  inherit (config.flake.hjemConfig) nixos root extended;
 in {
   flake.modules.nixos.desktopPreset = {
-    imports = with nixos; [
+    imports = with modules.nixos; [
       linuxPreset
       hyprland
       noctalia
@@ -39,9 +39,14 @@ in {
       app-signal
       app-vscode
       app-zed
+
+      # Hjem
+      nixos
+      root
+      extended
     ];
 
-    programs.nvf.settings.imports = [nvf.extended];
+    programs.nvf.settings.imports = [modules.nvf.extended];
 
     # MicroVM Devbox
     custom.impermanence.cache.directories = ["/var/lib/microvms"];
