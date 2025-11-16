@@ -1,7 +1,6 @@
 {
   flake.modules.nixos.security = {
     config,
-    pkgs,
     lib,
     ...
   }: {
@@ -18,7 +17,6 @@
       printing.enable = false;
       openssh = with lib; {
         enable = mkDefault true;
-        package = pkgs.openssh_10_2; # Fixes control socket issue: https://www.openssh.org/releasenotes.html#10.2p1
         openFirewall = mkDefault true;
         settings = {
           PasswordAuthentication = mkDefault false;
@@ -27,11 +25,6 @@
         };
       };
     };
-
-    # For getting around the socket issues
-    environment.systemPackages = [pkgs.openssh_10_2];
-
-    # Blocking ICMP is very dumb overall
     networking.firewall.allowPing = true;
   };
 }
