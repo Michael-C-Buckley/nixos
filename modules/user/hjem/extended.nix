@@ -1,9 +1,5 @@
 {config, ...}: {
-  flake.hjemConfig.extended = {
-    pkgs,
-    lib,
-    ...
-  }: {
+  flake.hjemConfig.extended = {pkgs, ...}: {
     imports = with config.flake.hjemConfig; [
       cursor
       helix
@@ -14,7 +10,7 @@
     ];
 
     hjem.users.michael = {
-      gnupg.pinentryPackage = lib.mkForce pkgs.pinentry-qt;
+      gnupg.pinentryPackage = pkgs.pinentry-qt;
 
       environment.sessionVariables = {
         BROWSER = "helium";
