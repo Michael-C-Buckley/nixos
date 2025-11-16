@@ -55,7 +55,7 @@
         # Basic GPG, more advanced settings in hjem-gpgAgent
         gnupg = {
           enable = true;
-          pinentryPackage = pkgs.pinentry-curses;
+          pinentryPackage = lib.mkDefault pkgs.pinentry-curses;
           config.extraLines = ''
             auto-key-locate local
             auto-key-retrieve
