@@ -8,7 +8,7 @@ in {
   flake.modules.nixos.devbox = {pkgs, ...}: {
     imports = with nixos; [
       microvmPreset
-      hjemConfig.default
+      hjemConfig.nixos
       hjemConfig.root
       packages
       packages-server

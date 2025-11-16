@@ -5,7 +5,6 @@
     ...
   }: {
     imports = with config.flake.hjemConfig; [
-      default
       cursor
       helix
       gpgAgent
