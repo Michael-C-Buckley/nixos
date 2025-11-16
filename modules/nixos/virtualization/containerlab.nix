@@ -1,8 +1,21 @@
 {config, ...}: {
-  flake.modules.nixos.containerlab = {pkgs, ...}: {
+  flake.modules.nixos.containerlab = {
+    pkgs,
+    lib,
+    ...
+  }: {
     # Automatically pull in Docker
     imports = [config.flake.modules.nixos.docker];
     environment.systemPackages = [pkgs.containerlab];
+
+    # Set SUID bit on containerlab so it runs as root without sudo
+    # Useful for restricting new privileges such as using vscode sandboxed
+    security.wrappers.containerlab = {
+      owner = "root";
+      group = "root";
+      setuid = true;
+      source = lib.getExe pkgs.containerlab;
+    };
 
     # This makes the hosts file writeable for containerlab to use
     systemd.services."relink-hosts" = {
