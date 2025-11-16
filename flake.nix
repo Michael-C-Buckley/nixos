@@ -18,11 +18,10 @@
 
   inputs = {
     # A slightly smaller tarball delivered from the NixOS Foundation
-    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"; # Pinned due to issues
+    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
 
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin";
-      # Nix-darwin uses the `nixpkgs-unstable` branch, but I'm using the `nixos-unstable` one to de-duplicate
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -42,6 +41,7 @@
     hjem = {
       url = "github:michael-c-buckley/hjem/darwin"; # Hjem-Darwnin testing
       inputs = {
+        nix-darwin.follows = "nix-darwin";
         nixpkgs.follows = "nixpkgs";
       };
     };

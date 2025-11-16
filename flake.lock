@@ -38,7 +38,9 @@
     },
     "hjem": {
       "inputs": {
-        "nix-darwin": "nix-darwin",
+        "nix-darwin": [
+          "nix-darwin"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -152,27 +154,6 @@
       }
     },
     "nix-darwin": {
-      "inputs": {
-        "nixpkgs": [
-          "hjem",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1762627886,
-        "narHash": "sha256-/QLk1bzmbcqJt9sU43+y/3tHtXhAy0l8Ck0MoO2+evQ=",
-        "owner": "nix-darwin",
-        "repo": "nix-darwin",
-        "rev": "5125a3cd414dc98bbe2c528227aa6b62ee61f733",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-darwin",
-        "repo": "nix-darwin",
-        "type": "github"
-      }
-    },
-    "nix-darwin_2": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
@@ -322,7 +303,7 @@
         "impermanence": "impermanence",
         "import-tree": "import-tree",
         "microvm": "microvm",
-        "nix-darwin": "nix-darwin_2",
+        "nix-darwin": "nix-darwin",
         "nix-secrets": "nix-secrets",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
