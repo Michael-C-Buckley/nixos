@@ -22,6 +22,9 @@ in {
           exec ${lib.getExe localPkgs.nvf} "$@"
         '';
       })
+
+      # Standard edition for use with vscode
+      pkgs.neovim
     ];
 
     # This is a Determinate system

@@ -38,7 +38,10 @@
 
     programs = {
       gnupg.agent.enable = true;
-      nvf.enable = true;
+      nvf = {
+        enable = true;
+        defaultEditor = true;
+      };
     };
     time.timeZone = lib.mkDefault "America/New_York";
     networking.nftables.enable = lib.mkDefault true;
