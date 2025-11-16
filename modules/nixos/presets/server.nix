@@ -1,9 +1,9 @@
 {config, ...}: let
-  inherit (config.flake.modules) nixos nvf;
-  inherit (config.flake) hjemConfig;
+  inherit (config.flake) modules;
+  inherit (config.flake.hjemConfig) nixos root;
 in {
   flake.modules.nixos.serverPreset = {
-    imports = with nixos; [
+    imports = with modules.nixos; [
       linuxPreset
       network
       users
@@ -11,9 +11,11 @@ in {
       impermanence
       zfs
       gpg-yubikey
-      hjemConfig.default
-      hjemConfig.root
       shawn
+
+      # Hjem
+      nixos
+      root
 
       # WIP:
       packages
@@ -22,6 +24,6 @@ in {
       packages-network
     ];
 
-    programs.nvf.settings.imports = with nvf; [default];
+    programs.nvf.settings.imports = [modules.nvf.default];
   };
 }
