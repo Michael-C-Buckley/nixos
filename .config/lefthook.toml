@@ -26,7 +26,7 @@ run = "shellcheck {staged_files}"
 name = "statix"
 exclude = "npins/"
 glob = "*.nix"
-run = "statix check --format errfmt {staged_files}"
+run = "statix check -c .config/statix.toml --format errfmt"
 
 [[pre-commit.jobs]]
 name = "typos"

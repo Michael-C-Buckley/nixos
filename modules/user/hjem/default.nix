@@ -34,17 +34,17 @@
 
         packages = with pkgs; [
           bat
-          neovim
+          eza
         ];
 
         environment.sessionVariables = {
-          EDITOR = "nvim";
-          VISUAL = "nvim";
+          EDITOR = "nvf";
+          VISUAL = "nvf";
           PAGER = "bat";
           MANPAGER = "sh -c 'col -bx | bat -l man -p'";
           NH_FLAKE = "/home/michael/nixos";
           DIFF = "difft";
-          GIT_EDITOR = "nvim";
+          GIT_EDITOR = "nvf";
           GPG_TTY = "$(tty)";
           CLICOLOR = "1";
           LSCOLORS = "auto";
