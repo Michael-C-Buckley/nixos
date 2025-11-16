@@ -12,8 +12,23 @@ in {
     lib,
     ...
   }: {
+    imports = [
+      inputs.hjem.darwinModules.hjem
+    ];
+
+    hjem = {
+      extraModules = [
+        inputs.hjem-rum.hjemModules.default
+      ];
+      #linker = inputs.hjem.packages.aarch64-darwin.smfh;
+      users.michael = {
+        directory = lib.mkForce "/Users/michael";
+      };
+    };
+
     environment.systemPackages = [
       inputs.nix-darwin.packages.aarch64-darwin.default
+      localPkgs.ns
 
       # Adds my NVF under the nvf command
       (pkgs.writeShellApplication {
@@ -22,6 +37,7 @@ in {
           exec ${lib.getExe localPkgs.nvf} "$@"
         '';
       })
+      pkgs.evil-helix
     ];
 
     # This is a Determinate system
@@ -38,6 +54,7 @@ in {
 
     # Set Git commit hash for darwin-version.
     system = {
+      #primaryUser = "michael";
       configurationRevision = self.rev or self.dirtyRev or null;
       stateVersion = 6;
     };

@@ -1,6 +1,6 @@
 # WIP: Basic nushell config
 {
-  flake.modules.nixos.hjem-nushell = {pkgs, ...}: {
+  flake.modules.hjem.nushell = {pkgs, ...}: {
     hjem.users.michael = {
       packages = [pkgs.nushell];
 

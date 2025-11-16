@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.hjem-gpgAgent = {
+  flake.modules.hjem.gpgAgent = {
     hjem.users.michael = {
       gnupg = {
         agent = {

@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.hjem-zoxide = {
+  flake.modules.hjem.zoxide = {
     hjem.users.michael.rum.programs.zoxide = {
       enable = true;
     };

@@ -1,17 +1,20 @@
 {config, ...}: let
-  inherit (config.flake.modules) nixos;
+  inherit (config.flake) modules hjemParts;
   interface = "enp0s2";
   projectDir = "/home/michael/projects/devbox";
   mac = "02:00:00:00:00:01";
 in {
   flake.modules.nixos.devbox = {pkgs, ...}: {
-    imports = with nixos; [
-      microvmPreset
-      hjem-default
-      hjem-root
-      packages
-      packages-server
-    ];
+    imports = with modules.nixos;
+      [
+        microvmPreset
+        packages
+        packages-server
+      ]
+      ++ [
+        hjemParts.root
+        hjemParts.default
+      ];
 
     microvm = {
       vcpu = 4;

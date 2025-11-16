@@ -1,5 +1,5 @@
 {
-  flake.hjemModules.gnupg = {
+  flake.modules.hjem.gnupg = {
     config,
     lib,
     pkgs,

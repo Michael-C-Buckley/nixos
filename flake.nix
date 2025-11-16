@@ -41,7 +41,7 @@
     quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
 
     hjem = {
-      url = "github:feel-co/hjem/refactor-3"; # Hjem-Darwnin testing
+      url = "github:michael-c-buckley/hjem/darwin"; # Hjem-Darwnin testing
       inputs = {
         nixpkgs.follows = "nixpkgs";
       };

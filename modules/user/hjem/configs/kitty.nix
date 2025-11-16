@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.hjem-kitty = {
+  flake.modules.hjem.kitty = {
     hjem.users.michael.rum.programs.kitty = {
       enable = true;
       settings = {

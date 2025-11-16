@@ -3,26 +3,23 @@
   inputs,
   ...
 }: {
-  flake.modules.nixos.hjem-default = {
+  flake.modules.hjem.default = {
     pkgs,
     lib,
     ...
   }: {
-    imports = with config.flake.modules.nixos;
-      [
-        hjem-direnv
-        hjem-fish
-        hjem-git
-        hjem-shellAliases
-        hjem-starship
-        hjem-fastfetch
-        hjem-nushell
-        hjem-yazi
-        hjem-zoxide
-      ]
-      ++ [
-        inputs.hjem.nixosModules.hjem
-      ];
+    imports = with config.flake.modules.hjem; [
+      direnv
+      fish
+      git
+      shellAliases
+      starship
+      fastfetch
+      nushell
+      yazi
+      zoxide
+      inputs.hjem.nixosModules.hjem
+    ];
 
     programs.fish.enable = true;
     users.users.michael.shell = pkgs.fish;
@@ -30,8 +27,8 @@
     hjem = {
       linker = inputs.hjem.packages.${pkgs.stdenv.hostPlatform.system}.smfh;
       extraModules = [
-        config.flake.hjemModules.gnupg
-        inputs.hjem-rum.hjemModules.default
+        config.flake.modules.hjem.gnupg
+        inputs.rum.hjemModules.default
       ];
       users.michael = {
         # Push the existing files in to be merged
@@ -52,7 +49,7 @@
           IP_COLOR = "always";
         };
 
-        # Basic GPG, more advanced settings in hjem-gpgAgent
+        # Basic GPG, more advanced settings in gpgAgent
         gnupg = {
           enable = true;
           pinentryPackage = pkgs.pinentry-curses;

@@ -12,9 +12,6 @@ in {
         network
         users
         gpg-yubikey
-        hjem-wsl
-        hjem-root
-        hjem-gpgAgent
         dnscrypt-proxy
         packages
         packages-development

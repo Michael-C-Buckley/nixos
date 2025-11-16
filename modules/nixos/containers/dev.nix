@@ -26,11 +26,12 @@ in {
         parentConfig,
         ...
       }: {
-        imports = with flake.modules.nixos; [
-          hjem-default
-          users
-          packages
-        ];
+        imports = with flake.modules.nixos;
+          [
+            users
+            packages
+          ]
+          ++ [flake.hjemConfigurations.default];
 
         system = {
           inherit (parentConfig.system) stateVersion;

@@ -7,6 +7,10 @@
     modules = with config.flake.modules.darwin; [
       default
       vscode
+      hjem-default
     ];
+    #  ++ [
+    #   config.flake.hjemModules.default
+    # ];
   };
 }
