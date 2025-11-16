@@ -2,17 +2,15 @@
   description = "Michael's System Flake";
 
   # I live the majority of things in files matching the name of their flake output type
-  outputs = {
-    flake-parts,
-    import-tree,
-    ...
-  } @ inputs:
+  outputs = {flake-parts, ...} @ inputs: let
+    npins = import ./npins;
+  in
     flake-parts.lib.mkFlake {inherit inputs;} {
       # These are the only systems types I support
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
       imports = [
         flake-parts.flakeModules.modules
-        (import-tree ./modules)
+        ((import npins.import-tree) ./modules)
       ];
     };
 
@@ -29,12 +27,10 @@
       url = "git+ssh://git@github.com/michael-c-buckley/nix-secrets?shallow=1";
       inputs = {
         flake-parts.follows = "flake-parts";
-        import-tree.follows = "import-tree";
       };
     };
 
     # No Nixpkgs Inputs
-    import-tree.url = "github:vic/import-tree";
     impermanence.url = "github:nix-community/impermanence";
     flake-parts.url = "github:hercules-ci/flake-parts";
 
