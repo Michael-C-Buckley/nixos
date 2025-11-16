@@ -32,7 +32,6 @@ in {
 
     programs = {
       direnv.enable = true;
-      fish.enable = true;
     };
 
     fonts.packages = with pkgs; [

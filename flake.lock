@@ -103,11 +103,11 @@
     },
     "import-tree": {
       "locked": {
-        "lastModified": 1763263999,
-        "narHash": "sha256-AZ4UkBJQKfaL9sX+/mzc1xBtcJk8hDQGkhjWX0Py5hU=",
+        "lastModified": 1762327901,
+        "narHash": "sha256-AJ96FNj50DU0bTyIzAPkPOjCZTHqjURVjok8qoXvmqM=",
         "owner": "vic",
         "repo": "import-tree",
-        "rev": "058bd03ac818ea349946323ae3c2837b4cab7f22",
+        "rev": "90fa129798be99cde036b78658e89475710966a1",
         "type": "github"
       },
       "original": {
@@ -253,11 +253,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1763261960,
-        "narHash": "sha256-TCdxHiMFRq2aT7jsiVtklKVdBvPZrKPnuoKUgcqJqT8=",
+        "lastModified": 1763295523,
+        "narHash": "sha256-Zcaa9W4JjWfBgb3EQSJTRNf3i0ES06MKkg0NnMtE9Fo=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "6494aec955532018156c733c9130258ba640307d",
+        "rev": "9d3dbd33b248955e06c3d2db3fe525efb39df4aa",
         "type": "github"
       },
       "original": {
