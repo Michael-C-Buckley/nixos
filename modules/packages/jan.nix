@@ -7,10 +7,10 @@
     ...
   }: let
     pname = "Jan";
-    version = "0.7.2";
+    version = "0.7.3";
     src = pkgs.fetchurl {
       url = "https://github.com/janhq/jan/releases/download/v${version}/jan_${version}_amd64.AppImage";
-      hash = "sha256-tz0it9NYT+HOjJ0xxsxfTh0Vw0p+Mfp1SZbT5M5DM+0=";
+      hash = "sha256-HU6oOWgXz8ssD6PVNAd2n/7urpc0ppQQT518hF4mt1c=";
     };
 
     appimageContents = pkgs.appimageTools.extractType2 {inherit pname version src;};
