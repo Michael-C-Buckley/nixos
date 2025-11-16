@@ -38,7 +38,6 @@
     import-tree.url = "github:vic/import-tree";
     impermanence.url = "github:nix-community/impermanence";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
 
     hjem = {
       url = "github:michael-c-buckley/hjem/darwin"; # Hjem-Darwnin testing
