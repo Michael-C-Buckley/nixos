@@ -103,11 +103,11 @@
     },
     "import-tree": {
       "locked": {
-        "lastModified": 1762327901,
-        "narHash": "sha256-AJ96FNj50DU0bTyIzAPkPOjCZTHqjURVjok8qoXvmqM=",
+        "lastModified": 1763263999,
+        "narHash": "sha256-AZ4UkBJQKfaL9sX+/mzc1xBtcJk8hDQGkhjWX0Py5hU=",
         "owner": "vic",
         "repo": "import-tree",
-        "rev": "90fa129798be99cde036b78658e89475710966a1",
+        "rev": "058bd03ac818ea349946323ae3c2837b4cab7f22",
         "type": "github"
       },
       "original": {
@@ -178,7 +178,9 @@
         "flake-parts": [
           "flake-parts"
         ],
-        "import-tree": "import-tree"
+        "import-tree": [
+          "import-tree"
+        ]
       },
       "locked": {
         "lastModified": 1762911866,
@@ -253,11 +255,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1763295523,
-        "narHash": "sha256-Zcaa9W4JjWfBgb3EQSJTRNf3i0ES06MKkg0NnMtE9Fo=",
+        "lastModified": 1763316024,
+        "narHash": "sha256-8Z5znDxt5mv7xHyW4rSgZ7L/0mTmfJCxFw+kfqsTc3Q=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "9d3dbd33b248955e06c3d2db3fe525efb39df4aa",
+        "rev": "c09bf13c58df62a79276bd277f6cc7e719dfddba",
         "type": "github"
       },
       "original": {
@@ -299,6 +301,7 @@
         "hjem": "hjem",
         "hjem-rum": "hjem-rum",
         "impermanence": "impermanence",
+        "import-tree": "import-tree",
         "microvm": "microvm",
         "nix-darwin": "nix-darwin",
         "nix-secrets": "nix-secrets",
