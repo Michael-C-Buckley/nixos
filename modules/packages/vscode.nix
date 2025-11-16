@@ -30,7 +30,7 @@
   in {
     packages.vscode = pkgs.symlinkJoin {
       name = "code";
-      paths = [pkgs'.vscode-fhs];
+      paths = [pkgs'.vscode];
       buildInputs = wrappedInputs;
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''
