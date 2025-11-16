@@ -1,17 +1,11 @@
-{
+{self, ...}: {
   perSystem = {pkgs, ...}: let
-    pname = "helium";
-    version = "0.6.4.1";
-
-    src = pkgs.fetchurl {
-      url = "https://github.com/imputnet/helium-linux/releases/download/${version}/${pname}-${version}-x86_64.AppImage";
-      hash = "sha256-DlEFuFwx2Qjr9eb6uiSYzM/F3r2hdtkMW5drJyJt/YE=";
-    };
-
-    contents = pkgs.appimageTools.extract {inherit pname version src;};
+    source = (pkgs.callPackage "${self}/_sources/generated.nix" {}).helium;
+    contents = pkgs.appimageTools.extract source;
+    inherit (source) pname version src;
   in {
     packages.helium = pkgs.appimageTools.wrapType2 {
-      inherit pname src version;
+      inherit pname version src;
 
       extraInstallCommands = ''
         install -m 444 -D ${contents}/${pname}.desktop -t $out/share/applications

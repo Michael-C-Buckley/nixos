@@ -12,6 +12,11 @@
     hjem.users.michael = {
       gnupg.pinentryPackage = pkgs.pinentry-qt;
 
+      packages = with pkgs; [
+        nvfetcher
+        npins
+      ];
+
       environment.sessionVariables = {
         BROWSER = "helium";
         NIXOS_OZONE_WL = "1";

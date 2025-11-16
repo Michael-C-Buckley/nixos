@@ -35,7 +35,6 @@
         packages = with pkgs; [
           bat
           eza
-          npins
         ];
 
         environment.sessionVariables = {

@@ -1,0 +1,9 @@
+[helium]
+src.github_tag = "imputnet/helium-linux"
+fetch.url = "https://github.com/imputnet/helium-linux/releases/download/$ver/helium-$ver-x86_64.AppImage"
+
+[jan]
+# Leading `v` is stripped from the tag
+src.github_tag = "janhq/jan"
+src.prefix = "v"
+fetch.url = "https://github.com/janhq/jan/releases/download/v$ver/Jan_$ver_amd64.AppImage"

@@ -1,0 +1,32 @@
+{
+  "helium": {
+    "cargoLocks": null,
+    "date": null,
+    "extract": null,
+    "name": "helium",
+    "passthru": null,
+    "pinned": false,
+    "src": {
+      "name": null,
+      "sha256": "sha256-EHhIwNnLm7sTlbm5+OTWQl2FGnb1iaAD8S7P5RtIPu4=",
+      "type": "url",
+      "url": "https://github.com/imputnet/helium-linux/releases/download/0.6.5.1/helium-0.6.5.1-x86_64.AppImage"
+    },
+    "version": "0.6.5.1"
+  },
+  "jan": {
+    "cargoLocks": null,
+    "date": null,
+    "extract": null,
+    "name": "jan",
+    "passthru": null,
+    "pinned": false,
+    "src": {
+      "name": null,
+      "sha256": "sha256-HU6oOWgXz8ssD6PVNAd2n/7urpc0ppQQT518hF4mt1c=",
+      "type": "url",
+      "url": "https://github.com/janhq/jan/releases/download/v0.7.3/Jan_0.7.3_amd64.AppImage"
+    },
+    "version": "0.7.3"
+  }
+}
