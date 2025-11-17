@@ -31,7 +31,7 @@
       '';
 
       # make a symlink of flake within the generation (e.g. /run/current-system/src)
-      extraSystemBuilderCmds = "ln -s ${self.sourceInfo.outPath} $out/src";
+      systemBuilderCommands = "ln -s ${self.sourceInfo.outPath} $out/src";
     };
 
     environment.enableAllTerminfo = true;
