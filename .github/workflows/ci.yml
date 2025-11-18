@@ -21,12 +21,27 @@ jobs:
     - name: Install Nix
       uses: cachix/install-nix-action@v27
       with:
-        nix_path: nixpkgs=channel:nixos-unstable
+        nix_path: nixpkgs=flake:nixpkgs
 
-    - name: Configure binary caches
-      run: |
-        nix-channel --add https://nixos.org/channels/nixos-unstable nixpkgs
-        nix-channel --update
+    - name: Build devShell and populate Nix store
+      run: nix develop --command echo "DevShell built successfully"
 
     - name: Check flake
-      run: nix flake check
+      id: flake-check
+      run: |
+        if ! nix flake check; then
+          echo "::error title=Flake Evaluation Failed::Critical failure - flake does not evaluate."
+          exit 1
+        fi
+
+    - name: Check for dead code with deadnix
+      run: nix develop --command deadnix --fail --exclude _sources/ .
+
+    - name: Check for antipatterns with statix
+      run: nix develop --command statix check -c .config/statix.toml .
+
+    - name: Check spelling with typos
+      run: nix develop --command typos -c .config/typos.toml .
+
+    - name: Check formatting with treefmt
+      run: nix develop --command treefmt --config-file .config/treefmt.toml --fail-on-change .
