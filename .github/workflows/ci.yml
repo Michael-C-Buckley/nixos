@@ -35,7 +35,10 @@ jobs:
       run: nix run nixpkgs#deadnix -- --fail .
 
     - name: Check for antipatterns with statix
-      run: nix run nixpkgs#statix -- check -c config/statix.toml .
+      run: nix run nixpkgs#statix -- check -c .config/statix.toml .
 
     - name: Check spelling with typos
       run: nix run nixpkgs#typos -- -c .config/typos.toml .
+
+    - name: Check formatting with treefmt
+      run: nix run nixpkgs#treefmt -- --config-file .config/treefmt.toml --fail-on-change .
