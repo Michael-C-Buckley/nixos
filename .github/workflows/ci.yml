@@ -21,22 +21,19 @@ jobs:
     - name: Install Nix
       uses: cachix/install-nix-action@v27
       with:
-        nix_path: nixpkgs=channel:nixos-unstable
-
-    - name: Enter Project DevShell
-      run: nix develop 
+        nix_path: nixpkgs=flake:nixpkgs
 
     - name: Check flake
       run: nix flake check
 
     - name: Check for dead code with deadnix
-      run: deadnix --fail .
+      run: nix run nixpkgs#deadnix -- --fail .
 
     - name: Check for antipatterns with statix
-      run: statix check -c .config/statix.toml .
+      run: nix run nixpkgs#statix -- check -c .config/statix.toml .
 
     - name: Check spelling with typos
-      run: typos -c .config/typos.toml .
+      run: nix run nixpkgs#typos -- -c .config/typos.toml .
 
     - name: Check formatting with treefmt
-      run: treefmt --config-file .config/treefmt.toml --fail-on-change .
+      run: nix run nixpkgs#treefmt -- --config-file .config/treefmt.toml --fail-on-change .
