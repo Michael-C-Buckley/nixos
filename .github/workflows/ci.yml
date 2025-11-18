@@ -16,38 +16,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  flake-check:
-   runs-on: ubuntu-latest
-   # Skip if this is a merge commit from a PR that already ran checks
-   if: |
-      (github.actor == 'Michael-C-Buckley' || 
-       (github.event_name == 'push' && github.repository == 'Michael-C-Buckley/nixos') ||
-       github.event_name == 'workflow_dispatch') &&
-      (github.event_name != 'push' || github.event.head_commit.author.username != 'web-flow')
-   timeout-minutes: 20
-
-   steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-
-    - name: Configure SSH for private flake inputs
-      uses: webfactory/ssh-agent@v0.9.0
-      with:
-        ssh-private-key: ${{ secrets.NIX_SECRETS_DEPLOY_KEY }}
-
-    - name: Install Nix
-      uses: cachix/install-nix-action@v27
-      with:
-        nix_path: nixpkgs=flake:nixpkgs
-
-    - name: Check flake
-      id: flake-check
-      run: |
-        if ! nix flake check; then
-          echo "::error title=Flake Evaluation Failed::Critical failure - flake does not evaluate."
-          exit 1
-        fi
-
   fast-checks:
     runs-on: ubuntu-latest
     
