@@ -8,14 +8,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  check:
-    runs-on: ubuntu-latest
-    if: |
+  flake-check:
+   runs-on: ubuntu-latest
+   if: |
       github.actor == 'Michael-C-Buckley' || 
       (github.event_name == 'push' && github.repository == 'Michael-C-Buckley/nixos') ||
       github.event_name == 'workflow_dispatch'
-    timeout-minutes: 20
-    steps:
+   timeout-minutes: 20
+
+   steps:
     - name: Checkout
       uses: actions/checkout@v4
 
@@ -29,9 +30,6 @@ jobs:
       with:
         nix_path: nixpkgs=flake:nixpkgs
 
-    - name: Build devShell and populate Nix store
-      run: nix develop --command echo "DevShell built successfully"
-
     - name: Check flake
       id: flake-check
       run: |
@@ -40,14 +38,28 @@ jobs:
           exit 1
         fi
 
+  fast-checks:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Install Nix
+      uses: cachix/install-nix-action@v27
+      with:
+        nix_path: nixpkgs=flake:nixpkgs
+
     - name: Check for dead code with deadnix
-      run: nix develop --command deadnix --fail --exclude _sources/ .
+      run: nix run nixpkgs#deadnix -- --fail --exclude _sources/ .
 
     - name: Check for antipatterns with statix
-      run: nix develop --command statix check -c .config/statix.toml .
+      run: nix run nixpkgs#statix -- check -c .config/statix.toml .
 
     - name: Check spelling with typos
-      run: nix develop --command typos -c .config/typos.toml .
+      run: nix run nixpkgs#typos -- -c .config/typos.toml .
 
     - name: Check formatting with treefmt
-      run: nix develop --command treefmt --config-file .config/treefmt.toml --fail-on-change .
+      run: |
+        nix-shell -p treefmt alejandra biome mdformat taplo --run \
+          "treefmt --config-file .config/treefmt.toml --fail-on-change ."
