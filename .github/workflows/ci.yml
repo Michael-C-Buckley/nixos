@@ -30,3 +30,12 @@ jobs:
 
     - name: Check flake
       run: nix flake check
+
+    - name: Check for dead code with deadnix
+      run: nix run nixpkgs#deadnix -- --fail .
+
+    - name: Check for antipatterns with statix
+      run: nix run nixpkgs#statix -- check -c config/statix.toml .
+
+    - name: Check spelling with typos
+      run: nix run nixpkgs#typos -- -c .config/typos.toml .
