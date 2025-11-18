@@ -24,6 +24,7 @@
     nix-secrets = {
       url = "git+ssh://git@github.com/michael-c-buckley/nix-secrets?shallow=1";
       inputs = {
+        nixpkgs.follows = "nixpkgs";
         import-tree.follows = "import-tree";
         flake-parts.follows = "flake-parts";
       };
@@ -39,6 +40,7 @@
       inputs = {
         nix-darwin.follows = "nix-darwin";
         nixpkgs.follows = "nixpkgs";
+        #smfh.follows = ""; # Use nixpkgs version after it gets to unstable
       };
     };
 
