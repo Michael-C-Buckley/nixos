@@ -27,7 +27,12 @@ jobs:
       run: nix develop --command echo "DevShell built successfully"
 
     - name: Check flake
-      run: nix flake check
+      id: flake-check
+      run: |
+        if ! nix flake check; then
+          echo "::error title=Flake Evaluation Failed::Critical failure - flake does not evaluate."
+          exit 1
+        fi
 
     - name: Check for dead code with deadnix
       run: nix develop --command deadnix --fail --exclude _sources/ .
