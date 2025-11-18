@@ -23,8 +23,16 @@ jobs:
       with:
         nix_path: nixpkgs=flake:nixpkgs
 
+    - name: Setup deadnix cache
+      uses: cachix/cachix-action@v15
+      with:
+        name: deadnix
+
     - name: Check for dead code with deadnix
-      run: nix run nixpkgs#deadnix -- --fail .
+      uses: astro/deadnix-action@main
+      with:
+        flags: '--fail --exclude _sources/'
+        create_pr: 'false'
 
     - name: Check for antipatterns with statix
       run: nix run nixpkgs#statix -- check -c .config/statix.toml .
