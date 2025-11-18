@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.p520 = {
+  flake.modules.nixos.p520 = {lib, ...}: {
     # Data directory is a ZFS dataset: zroot/p520/postgres
     services.postgresql = {
       enable = true;
@@ -21,7 +21,7 @@
       ];
       # Allow connections from pods (K3s default pod network)
       settings = {
-        listen_addresses = "'localhost,192.168.63.5'";
+        listen_addresses = lib.mkForce "0.0.0.0";
       };
       authentication = ''
         host forgejo forgejo 10.42.0.0/16 trust
