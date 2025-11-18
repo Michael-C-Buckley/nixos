@@ -23,25 +23,20 @@ jobs:
       with:
         nix_path: nixpkgs=flake:nixpkgs
 
-    - name: Setup deadnix cache
-      uses: cachix/cachix-action@v15
-      with:
-        name: deadnix
-
-    - name: Check for dead code with deadnix
-      uses: astro/deadnix-action@main
-      with:
-        flags: '--fail --exclude _sources/'
-        create_pr: 'false'
-
-    - name: Check for antipatterns with statix
-      run: nix run nixpkgs#statix -- check -c .config/statix.toml .
-
-    - name: Check spelling with typos
-      run: nix run nixpkgs#typos -- -c .config/typos.toml .
-
-    - name: Check formatting with treefmt
-      run: nix run nixpkgs#treefmt -- --config-file .config/treefmt.toml --fail-on-change .
+    - name: Build devShell and populate Nix store
+      run: nix develop --command echo "DevShell built successfully"
 
     - name: Check flake
       run: nix flake check
+
+    - name: Check for dead code with deadnix
+      run: nix develop --command deadnix --fail --exclude _sources/ .
+
+    - name: Check for antipatterns with statix
+      run: nix develop --command statix check -c .config/statix.toml .
+
+    - name: Check spelling with typos
+      run: nix develop --command typos -c .config/typos.toml .
+
+    - name: Check formatting with treefmt
+      run: nix develop --command treefmt --config-file .config/treefmt.toml --fail-on-change .
