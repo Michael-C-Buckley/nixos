@@ -5,10 +5,16 @@ on:
     branches: [ master, main ]
   pull_request:
     branches: [ master, main ]
+  workflow_dispatch:
 
 jobs:
   check:
     runs-on: ubuntu-latest
+    if: |
+      github.actor == 'Michael-C-Buckley' || 
+      (github.event_name == 'push' && github.repository == 'Michael-C-Buckley/nixos') ||
+      github.event_name == 'workflow_dispatch'
+    timeout-minutes: 20
     steps:
     - name: Checkout
       uses: actions/checkout@v4
