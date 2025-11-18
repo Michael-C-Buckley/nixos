@@ -3,6 +3,7 @@
     imports = with config.flake.modules.nixos; [
       serverPreset
       containerlab
+      k3s
     ];
 
     virtualisation = {
