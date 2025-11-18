@@ -13,6 +13,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
+    - name: Configure SSH for private flake inputs
+      uses: webfactory/ssh-agent@v0.9.0
+      with:
+        ssh-private-key: ${{ secrets.NIX_SECRETS_DEPLOY_KEY }}
+
     - name: Install Nix
       uses: cachix/install-nix-action@v27
       with:
