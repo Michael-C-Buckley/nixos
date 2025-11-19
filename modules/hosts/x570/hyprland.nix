@@ -9,7 +9,7 @@
         monitor=DP-1,3440x1440@144.00,0x0,1
 
         # Side 24" Monitor
-        monitor=HDMI-A-3,2560x1440@59.95,3440x-500,1,transform,3
+        monitor=HDMI-A-3,2560x1440@74.60,3440x-500,1,transform,3
 
         # Assign some sane workspace default to known monitors
         workspace=1, monitor:DP-1, default:true
