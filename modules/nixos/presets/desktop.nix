@@ -20,6 +20,8 @@ in {
 
       cosmicDesktop
 
+      pam-yubikey
+
       packages
       packages-desktop
       packages-development
