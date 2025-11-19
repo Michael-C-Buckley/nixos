@@ -11,7 +11,7 @@
       nemo-with-extensions
 
       # Productivity
-      kdePackages.kalgebra # Calculator
+      qalculate-qt
       meld
 
       # Terminal
@@ -21,7 +21,7 @@
       mpv
       imv
       zathura # PDF Viewer
-      kdePackages.koko # Photo Viewer
+      photoqt # Photo Viewer
       foliate # Ebook Reader
 
       # Office

@@ -116,7 +116,7 @@ in {
             "neovim.desktop"
             "vim.desktop"
           ];
-          "image/png" = ["koko.desktop"];
+          "image/png" = ["photoqt.desktop"];
         }
         // browserAssociations;
     };
