@@ -22,6 +22,8 @@
     # Deploy external service for bare-metal PostgreSQL
     services.k3s.manifests = {
       postgres-external-service.source = ./postgres-external-service.yaml;
+      open-webui.source = ./open-webui/kustomization.yaml;
+      forgejo.source = ./forgejo/kustomization.yaml;
     };
   };
 }
