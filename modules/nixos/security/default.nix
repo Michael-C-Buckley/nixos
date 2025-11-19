@@ -6,10 +6,7 @@
   }: {
     boot.initrd.systemd.emergencyAccess = config.users.users.root.hashedPassword;
 
-    security.sudo = {
-      extraConfig = "Defaults lecture=never";
-      wheelNeedsPassword = false;
-    };
+    security.sudo.extraConfig = "Defaults lecture=never";
 
     services = {
       # Farewell printing, read this article if you didn't know you could print with just netcat
