@@ -23,7 +23,7 @@ spec:
           name: http
         env:
         - name: DATABASE_URL
-          value: "postgresql://openwebui:openwebui@host.k3s.internal:5432/openwebui"
+          value: "postgresql://openwebui:openwebui@postgres.default.svc.cluster.local:5432/openwebui"
         - name: WEBUI_AUTH
           value: "True"
         volumeMounts:

@@ -18,5 +18,10 @@
       30222 # Forgejo SSH
       30800 # Open WebUI HTTP
     ];
+
+    # Deploy external service for bare-metal PostgreSQL
+    services.k3s.manifests = {
+      postgres-external-service.source = ./postgres-external-service.yaml;
+    };
   };
 }
