@@ -8,7 +8,15 @@
     custom.impermanence = {
       persist.directories = [
         "/var/lib/forgejo"
+        "/var/lib/openwebui"
       ];
     };
+
+    # TODO: get ingress more robustly established
+    networking.firewall.allowedTCPPorts = [
+      30300 # Forgejo HTTP
+      30222 # Forgejo SSH
+      30800 # Open WebUI HTTP
+    ];
   };
 }
