@@ -28,7 +28,6 @@ in {
 
       app-bitwarden
       app-helium
-      app-jan
       app-legcord
       app-librewolf
       app-materialgram
