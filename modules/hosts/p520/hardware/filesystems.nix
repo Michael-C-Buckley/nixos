@@ -23,7 +23,7 @@
         fsType = "tmpfs";
         options = [
           "defaults"
-          "size=1G"
+          "size=40G"
           "mode=755"
         ];
       };
@@ -35,7 +35,6 @@
 
       # Datasets
       "/var/lib/postgresql" = zfsFs "zroot/p520/postgres";
-      "/var/lib/ollama" = zfsFs "zroot/local/ollama";
       "/var/lib/attic" = zfsFs "zroot/local/attic";
 
       # HDD Array
