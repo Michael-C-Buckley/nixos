@@ -75,10 +75,7 @@
 
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell/";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        quickshell.follows = ""; # I am using the nixpkgs version
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-wsl = {
