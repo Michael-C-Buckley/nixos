@@ -3,6 +3,7 @@
     imports = with config.flake.modules.nixos; [
       serverPreset
       containerlab
+      clamav
     ];
 
     virtualisation = {
