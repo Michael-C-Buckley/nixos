@@ -14,7 +14,7 @@ in {
 
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
-      kernelPackages = pkgs.linuxKernel.packagesFor flake.packages.${pkgs.stdenv.hostPlatform.system}.jet3-kernel_6_17_8;
+      kernelPackages = pkgs.linuxKernel.packagesFor flake.packages.${pkgs.stdenv.hostPlatform.system}.jet2-kernel_6_17_8;
       kernelModules = ["kvm" "kvm-amd" "virtiofs" "9p" "9pnet_virtio"];
       kernelParams = [
         "amd_pstate=active" # AMD Power efficiency on Linux 6.3+
