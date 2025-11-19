@@ -33,6 +33,16 @@ let
       psk = "\$${name}_PSK";
     };
   };
+
+  mkIpv4Info = octet: {
+    address = "172.${octet}.248.14/16";
+    # Statics to get around routing issues from VRRP
+    route2 = "192.168.48.0/20,172.${octet}.248.30,50";
+    route3 = "192.168.61.1/32,172.${octet}.248.31";
+    route4 = "192.168.61.2/32,172.${octet}.248.32";
+    route5 = "192.168.61.3/32,172.${octet}.248.33";
+    route6 = "192.168.63.10/32,172.${octet}.248.10";
+  };
 in
   {config, ...}: let
     inherit (config) flake;
@@ -55,27 +65,13 @@ in
             #  because VRRP otherwise interferes with routing to them directly
             home = {
               connection.interface-name = "wlp3s0";
-              ipv4 = {
-                address = "172.16.248.14/16";
-                route2 = "192.168.48.0/20,172.16.248.30,50";
-                # Statics to get around routing issues from VRRP
-                route3 = "192.168.61.1/32,172.16.248.31";
-                route4 = "192.168.61.2/32,172.16.248.32";
-                route5 = "192.168.61.3/32,172.16.248.33";
-              };
+              ipv4 = mkIpv4Info "16";
               ipv6.address = "fe80::a14/64";
             };
 
             home2 = {
               connection.interface-name = "wlp3s0";
-              ipv4 = {
-                address = "172.30.248.14/16";
-                route2 = "192.168.48.0/20,172.30.248.30,50";
-                # Statics to get around routing issues from VRRP
-                route3 = "192.168.61.1/32,172.30.248.31";
-                route4 = "192.168.61.2/32,172.30.248.32";
-                route5 = "192.168.61.3/32,172.30.248.33";
-              };
+              ipv4 = mkIpv4Info "30";
               ipv6.address = "fe80::a14/64";
             };
           };
