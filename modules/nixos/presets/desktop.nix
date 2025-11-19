@@ -6,6 +6,7 @@ in {
     imports = with modules.nixos; [
       linuxPreset
       hyprland
+      clamav
       noctalia
       tuigreet
       gpg-yubikey
