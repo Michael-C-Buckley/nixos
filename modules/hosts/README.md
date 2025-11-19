@@ -36,4 +36,4 @@ My desktop, which I use often when at home and sometimes game with. I do some vi
 
 - CPU: AMD Ryzen 5950X
 - RAM: 64G
-- GPU: Intel A770
+- GPU: Intel B570
