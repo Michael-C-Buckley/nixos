@@ -36,7 +36,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     hjem = {
-      url = "github:michael-c-buckley/hjem/darwin"; # Hjem-Darwnin testing
+      url = "github:feel-co/hjem/refactor-3"; # Hjem-Darwnin testing
       inputs = {
         nix-darwin.follows = "nix-darwin";
         nixpkgs.follows = "nixpkgs";
