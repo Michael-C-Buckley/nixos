@@ -78,12 +78,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-wsl = {
-      url = "github:nix-community/nixos-wsl";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-compat.follows = "";
-      };
-    };
+    # nixos-wsl = {
+    #   url = "github:nix-community/nixos-wsl";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-compat.follows = "";
+    #   };
+    # };
   };
 }
