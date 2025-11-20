@@ -35,6 +35,11 @@
     impermanence.url = "github:nix-community/impermanence";
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hjem = {
       url = "github:feel-co/hjem/refactor-3"; # Hjem-Darwnin testing
       inputs = {
