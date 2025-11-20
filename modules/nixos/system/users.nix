@@ -52,9 +52,8 @@
       inherit (config.hjem.users) michael;
     in {
       hjem.users.shawn = {
-        rum.programs.fish = {
-          enable = true;
-          inherit (michael.rum.programs.fish) functions config;
+        rum.programs = {
+          inherit (michael.rum.programs) fish starship;
         };
       };
       users = {
