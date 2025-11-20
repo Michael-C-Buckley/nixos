@@ -20,7 +20,6 @@
     ];
 
     services.k3s.manifests = {
-      postgres-external-service.source = ./external/postgres-external-service.yaml;
       open-webui.source = ./open-webui/kustomization.yaml;
       forgejo.source = ./forgejo/kustomization.yaml;
     };
