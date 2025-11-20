@@ -44,10 +44,23 @@
         };
       };
     };
-    shawn = {config, ...}: {
+    shawn = {
+      config,
+      pkgs,
+      ...
+    }: let
+      inherit (config.hjem.users) michael;
+    in {
+      hjem.users.shawn = {
+        rum.programs.fish = {
+          enable = true;
+          inherit (michael.rum.programs.fish) functions config;
+        };
+      };
       users = {
         powerUsers.members = ["shawn"];
         users.shawn = {
+          shell = pkgs.fish;
           isNormalUser = true;
           extraGroups = config.users.powerUsers.groups;
         };
