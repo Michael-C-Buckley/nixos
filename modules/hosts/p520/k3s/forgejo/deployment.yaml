@@ -53,5 +53,5 @@ spec:
             cpu: 4
       volumes:
       - name: data
-        persistentVolumeClaim:
-          claimName: forgejo-data
+        hostPath:
+          path: /var/lib/forgejo
