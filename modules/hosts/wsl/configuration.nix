@@ -50,6 +50,8 @@ in {
       nvf.settings.imports = [modules.nvf.extended];
     };
 
+    security.sudo.wheelNeedsPassword = false;
+
     system.stateVersion = "24.11";
   };
 }
