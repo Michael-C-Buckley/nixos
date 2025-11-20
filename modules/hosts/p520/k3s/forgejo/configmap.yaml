@@ -12,10 +12,10 @@ data:
   # Note: Using trust auth from postgres config, no password needed
   
   # Server settings
-  FORGEJO__server__DOMAIN: "forgejo.michael.lan"
+  FORGEJO__server__DOMAIN: "forgejo.p520.michael.lan"
   FORGEJO__server__HTTP_PORT: "3000"
-  FORGEJO__server__ROOT_URL: "http://forgejo.michael.lan:3000/"
-  FORGEJO__server__SSH_DOMAIN: "forgejo.michael.lan"
+  FORGEJO__server__ROOT_URL: "http://forgejo.p520.michael.lan:3000/"
+  FORGEJO__server__SSH_DOMAIN: "forgejo.p520.michael.lan"
   FORGEJO__server__SSH_PORT: "2222"
   
   # Service settings
