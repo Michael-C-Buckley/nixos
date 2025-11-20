@@ -1,8 +1,7 @@
 {
   flake.modules.nixos.x570 = {config, ...}: let
-    inherit (builtins) head getAttr toString;
+    inherit (builtins) head getAttr;
     lo = getAttr "address" (head config.networking.interfaces.lo.ipv4.addresses);
-    loPrefix = toString (getAttr "prefixLength" (head config.networking.interfaces.lo.ipv4.addresses));
   in {
     # Default Nixos will have standard priority, force to override
     # environment.etc."frr/frr.conf".source = lib.mkForce config.age.secrets.frr.path;
@@ -11,21 +10,15 @@
       ip forwarding
       ipv6 forwarding
 
-      ip route 192.168.48.0/20 blackhole 250
-
       router ospf
         router-id ${lo}
-
-      router eigrp 1
-        network 192.168.50.32/27
-        network ${lo}/${loPrefix}
 
       router bgp 65100
         no bgp ebgp-requires-policy
         neighbor 192.168.240.241 remote-as 64800
 
         address-family ipv4
-          network 192.168.48.0/20
+          network ${lo}/32
           neighbor 192.168.240.241 activate
         exit
 
