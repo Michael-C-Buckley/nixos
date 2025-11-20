@@ -38,6 +38,6 @@ in {
       t14 = {};
       tempest = {};
       x570 = {};
-      wsl = {};
+      #wsl = {}; # Temporarily suspended - not currently being used
     };
 }
