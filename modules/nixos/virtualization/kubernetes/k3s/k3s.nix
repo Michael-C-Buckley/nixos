@@ -5,13 +5,18 @@
     ];
 
     # The local machine has my kube config set
-    hjem.users.michael.rum.programs.fish.config = ''
-      set -x KUBECONFIG /etc/rancher/k3s/k3s.yaml
-    '';
+    hjem.users = {
+      michael.rum.programs.fish.config = ''
+        set -x KUBECONFIG /etc/rancher/k3s/k3s.yaml
+      '';
+      shawn.rum.programs.fish.config = ''
+        set -x KUBECONFIG /etc/rancher/k3s/k3s.yaml
+      '';
+    };
 
     custom.impermanence.persist.directories = [
-      "/var/lib/rancher" # ← etcd + server state
-      "/etc/rancher" # ← kubeconfig, TLS assets
+      "/var/lib/rancher" # etcd + server state
+      "/etc/rancher" # kubeconfig, TLS assets
     ];
 
     # Following along at: https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/cluster/k3s/docs/USAGE.md
@@ -27,13 +32,18 @@
       ];
     };
 
-    services.k3s = {
-      enable = true;
-      role = "server";
-      extraFlags = [
-        "--write-kubeconfig-group wheel"
-        "--write-kubeconfig-mode \"0640\""
-      ];
+    services = {
+      # This exists chiefly to collide and stop eval if both are enabled
+      kubernetes.kubelet.enable = false;
+
+      k3s = {
+        enable = true;
+        role = "server";
+        extraFlags = [
+          "--write-kubeconfig-group wheel"
+          "--write-kubeconfig-mode \"0640\""
+        ];
+      };
     };
   };
 }
