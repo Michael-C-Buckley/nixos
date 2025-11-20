@@ -53,5 +53,5 @@ spec:
             cpu: "2000m"
       volumes:
       - name: data
-        persistentVolumeClaim:
-          claimName: open-webui-data
+        hostPath:
+          path: /var/lib/openwebui
