@@ -28,9 +28,11 @@ A small number are files are handled by simple recursive linker setup in `module
 
 NVF is a Neovim framework in Nix. It trivialized creating and maintaining a custom nvim setup. I never did traditional nvim configuration, and I don't think I ever will since this exists. My setup is standalone nested under `packages/nvf`. I ship a few variants depending on if its a basic config for servers or extensive for development hosts. They have similar UI but differing setups on language servers, mainly. I also have one variant for use with Vscode-Neovim plugin, which does work.
 
-### Npins (Anticipated/upcoming)
+### Nvfetcher
 
-I'll be moving some flake inputs to npins. The motivation is decreasing the amount of inputs and I'll be selecting inputs which do not depend on the flake metadata tree and no have inputs. The upside is increased performance from lazier evaluation and reduced dependency tree sizes, as well as not having to copy these sources to the nix store, even if they're not used.
+I recently picked up Nvfetcher as a means to pull down dependencies that aren't flakes. So far, I am just using it in package derivations, like Helium, but I expect to grow this as it is useful to not have to flake input everything.
+
+The motivation is decreasing the amount of inputs and I'll be selecting inputs which do not depend on the flake metadata tree and no have inputs. The upside is increased performance from lazier evaluation and reduced dependency tree sizes, as well as not having to copy these sources to the nix store, even if they're not used.
 
 ## Credits & Thanks
 
