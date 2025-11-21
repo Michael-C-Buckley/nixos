@@ -11,7 +11,6 @@ in {
       [
         linuxPreset
         network
-        users
         gpg-yubikey
         dnscrypt-proxy
         packages
