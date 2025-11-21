@@ -16,7 +16,6 @@ in {
       impermanence
       zfs
       boot
-      users
       shawn
 
       cosmicDesktop
