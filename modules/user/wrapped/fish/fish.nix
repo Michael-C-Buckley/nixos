@@ -12,7 +12,11 @@
     packages.fish = pkgs.symlinkJoin {
       name = "fish";
       paths = [pkgs.fish];
-      buildInputs = [pkgs.starship];
+      buildInputs = with pkgs; [
+        eza
+        bat
+        starship
+      ];
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''
         wrapProgram $out/bin/fish \
