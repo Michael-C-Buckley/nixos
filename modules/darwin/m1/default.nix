@@ -29,6 +29,9 @@ in {
       # TODO: Check out the `programs.fish` options in nix-darwin
       localPkgs.fish
       localPkgs.starship
+
+      # Mac's builtin SSH does not support SK keys
+      pkgs.openssh
     ];
 
     # This is a Determinate system
