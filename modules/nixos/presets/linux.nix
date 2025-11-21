@@ -8,10 +8,12 @@
   flake.modules.nixos.linuxPreset = {lib, ...}: {
     imports = with config.flake.modules.nixos;
       [
+        michael
         programs
         security
         nix
         options
+        users
       ]
       ++ (with inputs; [
         sops-nix.nixosModules.sops
