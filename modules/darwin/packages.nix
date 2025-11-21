@@ -4,23 +4,31 @@
   ...
 }: {
   flake.modules.darwin.packages = {pkgs, ...}: let
-    inherit (config.flake.packages.aarch64-darwin) fish starship nvf vscode;
+    inherit (config.flake.packages.aarch64-darwin) fish starship nvf vscode ns;
   in {
-    environment.systemPackages = [
-      # Ensure we can rebuild
-      inputs.nix-darwin.packages.aarch64-darwin.default
+    environment.systemPackages =
+      [
+        # Ensure we can rebuild
+        inputs.nix-darwin.packages.aarch64-darwin.default
 
-      # TODO: Check out the `programs.fish` options in nix-darwin
-      fish
-      starship
-      nvf
-      vscode
+        # TODO: Check out the `programs.fish` options in nix-darwin
+        fish
+        starship
+        ns
+        nvf
+        vscode
+      ]
+      ++ (with pkgs; [
+        # Mac's builtin SSH does not support SK keys
+        openssh
+        gnupg
+        orbstack
+        obsidian
+        tig
+        lazygit
+      ]);
 
-      # Mac's builtin SSH does not support SK keys
-      pkgs.openssh
-    ];
-
-    font.packages = with pkgs; [
+    fonts.packages = with pkgs; [
       cascadia-code
     ];
   };
