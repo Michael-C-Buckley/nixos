@@ -23,6 +23,11 @@ in {
         '';
       })
 
+      # Add my wrapped packages
+      # TODO: Check out the `programs.fish` options in nix-darwin
+      localPkgs.fish
+      localPkgs.starship
+
       # Standard edition for use with vscode
       pkgs.neovim
     ];
