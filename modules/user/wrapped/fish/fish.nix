@@ -13,8 +13,10 @@
       name = "fish";
       paths = [pkgs.fish];
       buildInputs = with pkgs; [
-        eza
         bat
+        eza
+        fd
+        fzf
         starship
       ];
       nativeBuildInputs = [pkgs.makeWrapper];
