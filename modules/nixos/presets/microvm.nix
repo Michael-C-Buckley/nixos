@@ -9,7 +9,6 @@ in {
     imports = with modules.nixos;
       [
         linuxPreset
-        users
       ]
       ++ [
         inputs.microvm.nixosModules.microvm
