@@ -2,6 +2,8 @@
   pkgs,
   lib,
 }: let
+  inherit (lib) getExe;
+  inherit (pkgs) starship fd fzf;
   starshipConfig = import ../starship/_config.nix {inherit pkgs;};
   aliases = import ../resources/shells/_aliases.nix;
   allAliases = aliases.common // aliases.fish;
@@ -20,8 +22,8 @@ in
 
     # Initialize starship with custom config and explicit path
     set -x STARSHIP_CONFIG ${starshipConfig}
-    set -x PATH ${pkgs.starship}/bin $PATH
-    ${lib.getExe pkgs.starship} init fish | source
+    set -x PATH ${starship}/bin $PATH
+    ${getExe starship} init fish | source
 
     # Aliases
     ${aliasCommands}
@@ -29,5 +31,17 @@ in
     # Functions
     function show
       vtysh -c "show $argv"
+    end
+
+    function fcd
+      set -l selected_path (${getExe fd} . | ${getExe fzf} --height 40% --reverse)
+
+      if test -n "$selected_path"
+          if test -d "$selected_path"
+              cd "$selected_path"
+          else
+              cd (dirname "$selected_path")
+          end
+      end
     end
   ''
