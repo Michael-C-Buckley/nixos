@@ -2,7 +2,6 @@
   pkgs,
   lib,
 }: let
-  inherit (lib) getExe;
   inherit (pkgs) starship fd fzf;
   starshipConfig = import ../starship/_config.nix {inherit pkgs;};
   aliases = import ../resources/shells/_aliases.nix;
@@ -23,7 +22,7 @@ in
     # Initialize starship with custom config and explicit path
     set -x STARSHIP_CONFIG ${starshipConfig}
     set -x PATH ${starship}/bin $PATH
-    ${getExe starship} init fish | source
+    ${starship}/bin/starship init fish | source
 
     # Aliases
     ${aliasCommands}
@@ -34,7 +33,7 @@ in
     end
 
     function fcd
-      set -l selected_path (${getExe fd} . | ${getExe fzf} --height 40% --reverse)
+      set -l selected_path (${fd}/bin/fd . | ${fzf}/bin/fzf --height 40% --reverse)
 
       if test -n "$selected_path"
           if test -d "$selected_path"
