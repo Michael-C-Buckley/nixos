@@ -47,11 +47,11 @@
         "smfh": "smfh"
       },
       "locked": {
-        "lastModified": 1763561911,
-        "narHash": "sha256-1RWIT2Qjr70c1ZBL7m/FRPAQ1/sXghxyFtBlcL50R1E=",
+        "lastModified": 1763688987,
+        "narHash": "sha256-Uwbst/BabmvAnzYB1fcooPBJ30dyjkj7/bNGHBjgVh0=",
         "owner": "feel-co",
         "repo": "hjem",
-        "rev": "9235a085fcc93d6d01ee46d850dbd0a5fbd8b8ff",
+        "rev": "26a35ecc6acdabb3dfeac2cce39dafac2ace8517",
         "type": "github"
       },
       "original": {
@@ -206,10 +206,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1763639241,
-        "narHash": "sha256-WbrviCFtbnnYuL0uAyorSxYGAnQN4cyUoyC2GKe6Sv8=",
+        "lastModified": 1763725311,
+        "narHash": "sha256-f3F/4JC0AdfEM15oSYDXOuhmWwnsFNHb5CxPol5jFq0=",
         "ref": "refs/heads/master",
-        "rev": "8ad1c31f81f6a06832fa9a305d809866498c3828",
+        "rev": "9c1fb17eaa33713da855b2db24b2ef660d999581",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/michael-c-buckley/nix-secrets"
