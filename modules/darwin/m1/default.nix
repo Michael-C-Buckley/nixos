@@ -4,6 +4,8 @@
     # This is a Determinate system
     nix.enable = false;
 
+    nixpkgs.config.allowUnfree = true;
+
     programs = {
       direnv.enable = true;
     };
