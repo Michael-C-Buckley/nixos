@@ -3,12 +3,24 @@ kind: Ingress
 metadata:
   name: open-webui
   namespace: open-webui
-  annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   ingressClassName: traefik
+  tls:
+    - hosts:
+      - owi.cs.groovyreserve.com
+      - owi.groovyreserve.com
   rules:
-  - host: owi.p520.michael.lan
+  - host: owi.cs.groovyreserve.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: open-webui
+            port:
+              number: 80
+  - host: owi.groovyreserve.com
     http:
       paths:
       - path: /
