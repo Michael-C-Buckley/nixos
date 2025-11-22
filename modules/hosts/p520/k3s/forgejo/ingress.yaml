@@ -3,16 +3,24 @@ kind: Ingress
 metadata:
   name: forgejo
   namespace: forgejo
-  annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   ingressClassName: traefik
   tls:
-  - hosts:
-    - open-webui.local
-    secretName: open-webui-tls
+    - hosts:
+      - git.cs.groovyreserve.com
+      - git.groovyreserve.com
   rules:
-  - host: git.p520.michael.lan
+  - host: git.cs.groovyreserve.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: forgejo
+            port:
+              number: 80
+  - host: git.groovyreserve.com
     http:
       paths:
       - path: /
