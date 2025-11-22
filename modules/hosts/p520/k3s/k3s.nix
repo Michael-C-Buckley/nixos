@@ -9,8 +9,7 @@ in {
   }: let
     buildManifest = path:
       pkgs.runCommand "${path}-manifests" {} ''
-        mkdir -p $out
-        ${pkgs.kustomize}/bin/kustomize build ${./${path}} > $out/manifest.yaml
+        ${pkgs.kustomize}/bin/kustomize build ${./${path}} > $out
       '';
   in {
     imports = [
