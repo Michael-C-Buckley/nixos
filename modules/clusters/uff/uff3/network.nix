@@ -1,7 +1,7 @@
 {
   flake.modules.nixos.uff3 = {
     networkd = {
-      eno1.addresses.ipv4 = ["192.168.48.33/24"];
+      eno1.addresses.ipv4 = ["192.168.49.33/24"];
       enusb1 = {
         mac = "6c:1f:f7:06:13:8f";
         addresses.ipv4 = ["192.168.254.3/27"];
@@ -31,10 +31,6 @@
     };
 
     services.keepalived.vrrpInstances = {
-      wan = {
-        priority = 130;
-        state = "MASTER";
-      };
       wifi = {
         priority = 130;
         state = "MASTER";

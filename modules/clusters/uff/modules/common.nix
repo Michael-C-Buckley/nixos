@@ -7,7 +7,7 @@
 
     # Try my local cache first
     nix.settings.substituters = lib.mkBefore [
-      "http://192.168.48.5:5000"
+      "http://p520:5000"
     ];
   };
 }
