@@ -12,7 +12,7 @@
 
         int br0
           ip ospf area 0
-          ip ospf cost 100
+          ip ospf cost 1000
       '';
     };
   };
