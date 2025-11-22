@@ -35,6 +35,7 @@ in {
       cloudflare.source = config.sops.templates.k3s-cloudflare-secret.path;
       lets-encrypt.source = ./manifests/lets-encrypt.yaml;
       traefik-config.source = ./manifests/traefik-config.yaml;
+      certificate.source = ./manifests/certificate.yaml;
       open-webui.source = buildManifest "open-webui";
       forgejo.source = buildManifest "forgejo";
     };
