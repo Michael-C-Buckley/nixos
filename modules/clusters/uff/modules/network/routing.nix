@@ -78,7 +78,7 @@
         int enusb1
          ip ospf bfd
          ip ospf area 0
-         ip ospf cost 100
+         ip ospf cost 1000
         !
         router bgp 65101
          bgp router-id ${lo}
