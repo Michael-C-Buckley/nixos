@@ -5,12 +5,10 @@ in {
   flake.modules.nixos.p520 = {
     config,
     pkgs,
+    customLib,
     ...
   }: let
-    buildManifest = path:
-      pkgs.runCommand "${path}-manifests" {} ''
-        ${pkgs.kustomize}/bin/kustomize build ${./${path}} > $out
-      '';
+    buildManifest = customLib.k8s.buildManifest pkgs;
   in {
     imports = [
       flake.modules.nixos.k3s
@@ -36,8 +34,8 @@ in {
       lets-encrypt.source = ./manifests/lets-encrypt.yaml;
       traefik-config.source = ./manifests/traefik-config.yaml;
       certificate.source = ./manifests/certificate.yaml;
-      open-webui.source = buildManifest "open-webui";
-      forgejo.source = buildManifest "forgejo";
+      open-webui.source = buildManifest ./open-webui;
+      forgejo.source = buildManifest ./forgejo;
     };
   };
 }
