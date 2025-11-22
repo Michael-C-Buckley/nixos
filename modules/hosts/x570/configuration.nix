@@ -17,7 +17,6 @@
     # Containers (existing data but current disabled)
     environment.persistence."/cache".directories = [
       "/var/lib/containers"
-      "/var/lib/open-webui"
       "/var/tmp"
     ];
   };
