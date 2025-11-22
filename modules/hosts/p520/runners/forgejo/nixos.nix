@@ -7,7 +7,7 @@
       enable = true;
       name = config.networking.hostName;
       labels = ["native:host"];
-      url = "http://192.168.48.5:30300/michael/nixos.git";
+      url = "https://git.groovyreserve.com/michael/nixos.git";
       tokenFile = config.sops.secrets.forgejoRunnerToken.path;
     };
   };
