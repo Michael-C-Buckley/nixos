@@ -4,7 +4,7 @@
       iperf3.enable = true;
     };
 
-    # Don't wait for DHCP since I often have all static IPs
+    # Don't wait for DHCP as I use static IPs
     systemd.network.wait-online.anyInterface = true;
 
     networking = {
@@ -28,7 +28,7 @@
       interfaces = {
         enp7s0.ipv4.addresses = [
           {
-            address = "192.168.48.10";
+            address = "192.168.49.10";
             prefixLength = 24;
           }
         ];

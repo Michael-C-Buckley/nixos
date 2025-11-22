@@ -31,16 +31,16 @@
             !(hasPrefix n (head eno1)) && !(hasPrefix n (head enusb1))
         ) [
           # UFF interfaces
-          "192.168.48.31"
-          "192.168.48.32"
-          "192.168.48.33"
+          "192.168.49.31"
+          "192.168.49.32"
+          "192.168.49.33"
           "192.168.254.1"
           "192.168.254.2"
           "192.168.254.3"
 
           # Other Hosts
-          "192.168.48.2" # Cisco
-          "192.168.48.10" # X570
+          "192.168.49.2" # Cisco
+          "192.168.49.10" # X570
         ]);
   in {
     networking = {
@@ -58,6 +58,7 @@
         ip prefix-list 65102-OUT seq 5 permit 192.168.48.0/20
         ip prefix-list 65102-OUT seq 10 deny 0.0.0.0/0
         ip prefix-list 65102-IN seq 5 permit 192.168.64.0/20
+        ip prefix-list 65102-IN seq 10 deny 0.0.0.0/0
         !
         ip forwarding
         ipv6 forwarding
@@ -77,7 +78,7 @@
         int enusb1
          ip ospf bfd
          ip ospf area 0
-         ip ospf cost 100
+         ip ospf cost 1000
         !
         router bgp 65101
          bgp router-id ${lo}
@@ -90,12 +91,6 @@
          neighbor 192.168.48.1 remote-as 65101
          neighbor 192.168.48.1 bfd
 
-         neighbor 192.168.52.11 remote-as 65102
-         neighbor 192.168.52.11 update-source ${lo}
-         neighbor 192.168.52.11 next-hop-self
-         neighbor 192.168.52.11 ebgp-multihop 3
-         neighbor 192.168.52.11 bfd
-
          address-family l2vpn evpn
           neighbor fabric activate
           advertise-all-vni
@@ -105,19 +100,11 @@
           neighbor 192.168.48.1 prefix-list MT3 in
           neighbor 192.168.48.1 activate
 
-          neighbor 192.168.52.11 prefix-list 65102-OUT out
-          neighbor 192.168.52.11 prefix-list 65102-IN in
-          neighbor 192.168.52.11 activate
-
          exit-address-family
         exit
         !
         bfd
          ${bfdPeers}
-         peer 192.168.52.11 multihop local-address ${lo}
-           transmit-interval 1000
-           receive-interval 1000
-           minimum-ttl 5
          peer 192.168.48.1
           transmit-interval 1000
           receive-interval 2000
