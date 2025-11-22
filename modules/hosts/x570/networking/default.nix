@@ -4,7 +4,7 @@
       iperf3.enable = true;
     };
 
-    # Don't wait for DHCP since I often static IPs
+    # Don't wait for DHCP as I use static IPs
     systemd.network.wait-online.anyInterface = true;
 
     networking = {
