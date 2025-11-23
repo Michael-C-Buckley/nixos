@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: attic-config
+  namespace: attic
+data:
+  ATTIC_LISTEN: "[::]:8080"
+  ATTIC_ALLOWED_HOSTS: "192.168.0.0/16"
+  ATTIC_DATABASE_URL: "postgresql://atticd@p520.lan/atticd"
+  ATTIC_STORAGE_TYPE: "local"
+  ATTIC_STORAGE_PATH: "/var/lib/attic"
