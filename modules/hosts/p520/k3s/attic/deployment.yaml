@@ -17,7 +17,12 @@ spec:
     spec:
       containers:
       - name: attic
-        image: localhost/attic:latest
+        # Self-produced images auto-imported have the improper prefix
+        # so the workaround is to just it what it expects, even if it's
+        # not technically accurate
+        # This reference will pick up the local image named "attic:latest"
+        # that I use later on
+        image: docker.io/library/attic:latest
         imagePullPolicy: Never 
         ports:
         - containerPort: 8080
