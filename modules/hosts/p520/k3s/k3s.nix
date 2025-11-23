@@ -32,7 +32,7 @@ in {
       ];
 
       # Load the Nix-built container images into K3s
-      services.k3s.images = [
+      images = [
         flake.packages.${pkgs.stdenv.hostPlatform.system}.attic
       ];
 

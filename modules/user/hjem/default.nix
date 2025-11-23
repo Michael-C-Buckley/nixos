@@ -2,13 +2,15 @@
   config,
   inputs,
   ...
-}: {
+}: let
+  inherit (config) flake;
+in {
   flake.hjemConfig.default = {
     pkgs,
     lib,
     ...
   }: {
-    imports = with config.flake.hjemConfig; [
+    imports = with flake.hjemConfig; [
       direnv
       git
       shellAliases
@@ -18,15 +20,12 @@
       zoxide
     ];
 
-    programs.fish = {
-      enable = true;
-      package = config.flake.packages.${pkgs.stdenv.hostPlatform.system}.fish;
-    };
+    programs.fish.enable = true;
 
     hjem = {
       linker = inputs.hjem.packages.${pkgs.stdenv.hostPlatform.system}.smfh;
       extraModules = [
-        config.flake.hjemModules.gnupg
+        flake.hjemModules.gnupg
         inputs.hjem-rum.hjemModules.default
       ];
       users.michael = {
@@ -35,10 +34,13 @@
 
         packages = [
           # add this to stop the shell error from my wrapped fish since something touched it after creation
-          config.flake.packages.${pkgs.stdenv.hostPlatform.system}.starship
+          flake.packages.${pkgs.stdenv.hostPlatform.system}.starship
           pkgs.bat
           pkgs.eza
         ];
+
+        # I reuse these elsewhere, so don't warn me
+        rum.environment.hideWarning = true;
 
         environment.sessionVariables = {
           EDITOR = "nvf";
