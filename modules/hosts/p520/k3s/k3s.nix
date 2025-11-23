@@ -5,12 +5,10 @@ in {
   flake.modules.nixos.p520 = {
     config,
     pkgs,
+    customLib,
     ...
   }: let
-    buildManifest = path:
-      pkgs.runCommand "${path}-manifests" {} ''
-        ${pkgs.kustomize}/bin/kustomize build ${./${path}} > $out
-      '';
+    buildManifest = customLib.kube.buildManifest pkgs;
   in {
     imports = [
       flake.modules.nixos.k3s
@@ -32,6 +30,12 @@ in {
       extraFlags = [
         "--flannel-backend host-gw"
       ];
+
+      # Load the Nix-built container images into K3s
+      services.k3s.images = [
+        flake.packages.${pkgs.stdenv.hostPlatform.system}.attic
+      ];
+
       # This section merges and flattens the components into a single manifest per app
       # for example, to view it run:
       # nix build --no-link --print-out-paths '.#nixosConfigurations.p520.config.services.k3s.manifests.forgejo.source' 2>&1 | tail -1 | read -l output; and cat $output/manifest.yaml

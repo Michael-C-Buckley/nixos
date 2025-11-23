@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: attic
+  namespace: attic
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: attic
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: attic
+    spec:
+      containers:
+      - name: attic
+        # Self-produced images auto-imported have the improper prefix
+        # so the workaround is to just it what it expects, even if it's
+        # not technically accurate
+        # This reference will pick up the local image named "attic:latest"
+        # that I use later on
+        image: docker.io/library/attic:latest
+        imagePullPolicy: Never 
+        ports:
+        - containerPort: 8080
+          name: http
+        envFrom:
+        - configMapRef:
+            name: attic-config
+        - secretRef:
+            name: attic-secrets
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/attic
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: 2Gi
+            cpu: 2
+      volumes:
+      - name: data
+        hostPath:
+          path: /var/lib/attic
