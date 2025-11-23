@@ -14,12 +14,14 @@
   flake.wrappers.mkFish = {
     pkgs,
     env,
+    extraConfig ? "",
+    extraAliases ? {},
     extraRuntimeInputs ? [],
-    extraFlags ? {"--init-command" = "source ${import ./_config.nix {inherit pkgs;}}";},
+    extraFlags ? {},
     extraWrapperArgs ? {},
   }:
     inputs.wrappers.lib.wrapPackage (pkgs.lib.recursiveUpdate {
-        inherit pkgs env;
+        inherit pkgs;
         package = pkgs.fish;
         flagSeparator = "=";
         runtimeInputs = with pkgs;
@@ -35,10 +37,14 @@
           ++ extraRuntimeInputs;
         flags =
           {
-            "--init-command" = "source ${import ./_config.nix {inherit pkgs;}}";
+            "--init-command" = "source ${import ./_config.nix {inherit pkgs env extraConfig extraAliases;}}";
           }
           // extraFlags;
-        passthru = {shellPath = "/bin/fish";};
+        passthru = {
+          shellPath = "/bin/fish";
+          # Make NixOS recognize this as a valid shell
+          meta = pkgs.fish.meta or {};
+        };
       }
       extraWrapperArgs);
 }

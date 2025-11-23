@@ -20,8 +20,6 @@ in {
       zoxide
     ];
 
-    programs.fish.enable = true;
-
     hjem = {
       linker = inputs.hjem.packages.${pkgs.stdenv.hostPlatform.system}.smfh;
       extraModules = [
@@ -49,7 +47,6 @@ in {
           MANPAGER = "sh -c 'col -bx | bat -l man -p'";
           DIFF = "difft";
           GIT_EDITOR = "nvf";
-          GPG_TTY = "$(tty)";
           CLICOLOR = "1";
           DIFF_COLOR = "auto";
         };

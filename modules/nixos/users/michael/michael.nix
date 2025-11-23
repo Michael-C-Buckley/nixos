@@ -9,19 +9,21 @@ in {
     config,
     pkgs,
     ...
-  }: {
+  }: let
+    shell = flake.wrappers.mkFish {
+      inherit pkgs;
+      env =
+        config.custom.shell.environmentVariables
+        // config.hjem.users.michael.environment.sessionVariables
+        // envars;
+    };
+  in {
     users = {
       powerUsers.members = ["michael"];
       users.michael = {
         isNormalUser = true;
         extraGroups = config.users.powerUsers.groups;
-        shell = flake.wrappers.mkFish {
-          inherit pkgs;
-          env =
-            config.custom.shell.environmentVariables
-            // config.hjem.users.michael.environment.sessionVariables
-            // envars;
-        };
+        shell = "${shell}${shell.shellPath}";
       };
     };
   };
