@@ -1,17 +1,20 @@
-{
-  flake.modules.nixos.shawn = {config, ...}: let
-    inherit (config.hjem.users) michael;
-  in {
-    hjem.users.shawn = {
-      rum.programs = {
-        inherit (michael.rum.programs) fish starship;
-      };
-    };
+{config, ...}: let
+  inherit (config) flake;
+in {
+  flake.modules.nixos.shawn = {
+    config,
+    pkgs,
+    ...
+  }: {
     users = {
       powerUsers.members = ["shawn"];
       users.shawn = {
         isNormalUser = true;
         extraGroups = config.users.powerUsers.groups;
+        shell = flake.wrappers.mkFish {
+          inherit pkgs;
+          env = config.custom.shell.environmentVariables;
+        };
       };
     };
   };

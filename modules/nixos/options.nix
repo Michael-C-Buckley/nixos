@@ -1,7 +1,7 @@
 # Common system options for all NixOS machines
 {lib, ...}: let
   inherit (lib) mkEnableOption mkOption;
-  inherit (lib.types) listOf str;
+  inherit (lib.types) attrsOf listOf str;
 
   mkDirectoryOption = mkOption {
     type = listOf str;
@@ -37,7 +37,13 @@ in {
           };
         };
       };
-      # End impermanence
+      shell = {
+        environmentVariables = mkOption {
+          type = attrsOf str;
+          default = {};
+          description = "Environment variables to pass to the wrapped shell.";
+        };
+      };
     };
   };
 }

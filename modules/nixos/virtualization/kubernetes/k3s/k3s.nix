@@ -4,20 +4,15 @@
       kube-common
     ];
 
-    # The local machine has my kube config set
-    hjem.users = {
-      michael.rum.programs.fish.config = ''
-        set -x KUBECONFIG /etc/rancher/k3s/k3s.yaml
-      '';
-      shawn.rum.programs.fish.config = ''
-        set -x KUBECONFIG /etc/rancher/k3s/k3s.yaml
-      '';
+    custom = {
+      shell.environmentVariables = {
+        KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
+      };
+      impermanence.persist.directories = [
+        "/var/lib/rancher" # etcd + server state
+        "/etc/rancher" # kubeconfig, TLS assets
+      ];
     };
-
-    custom.impermanence.persist.directories = [
-      "/var/lib/rancher" # etcd + server state
-      "/etc/rancher" # kubeconfig, TLS assets
-    ];
 
     # Following along at: https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/cluster/k3s/docs/USAGE.md
     networking.firewall = {
