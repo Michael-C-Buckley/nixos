@@ -1,15 +1,12 @@
-{
-  pkgs,
-  lib,
-}: let
+{pkgs}: let
   inherit (pkgs) starship fd fzf;
   starshipConfig = import ../starship/_config.nix {inherit pkgs;};
   aliases = import ../resources/shells/_aliases.nix;
   allAliases = aliases.common // aliases.fish;
 
   # Generate fish alias commands
-  aliasCommands = lib.concatStringsSep "\n" (
-    lib.mapAttrsToList (name: value: "    alias ${name}='${value}'") allAliases
+  aliasCommands = pkgs.lib.concatStringsSep "\n" (
+    pkgs.lib.mapAttrsToList (name: value: "    alias ${name}='${value}'") allAliases
   );
 in
   pkgs.writeText "fish-init.fish" ''
