@@ -12,11 +12,7 @@
 
         int br0
           ip ospf area 0
-          ip ospf cost 100
-
-        int br200
-          ip ospf area 0
-          ip ospf passive
+          ip ospf cost 1000
       '';
     };
   };

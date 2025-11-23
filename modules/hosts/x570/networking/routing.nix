@@ -10,6 +10,11 @@
       ip forwarding
       ipv6 forwarding
 
+      ip prefix-list 64800-IN seq 5 permit 192.168.64.0/20
+      ip prefix-list 64800-IN seq 10 deny 0.0.0.0/0
+      ip prefix-list 64800-OUT seq 5 permit ${lo}
+      ip prefix-list 64800-OUT seq 10 deny 0.0.0.0/0
+
       router ospf
         router-id ${lo}
 
@@ -32,7 +37,7 @@
         ip ospf bfd
 
       int enp8s0
-        ip ospf cost 100
+        ip ospf cost 1000
         ip ospf area 0
         ip ospf bfd
 
