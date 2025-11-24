@@ -13,7 +13,7 @@
 
   flake.wrappers.mkFish = {
     pkgs,
-    env,
+    env ? {},
     extraConfig ? "",
     extraAliases ? {},
     extraRuntimeInputs ? [],
