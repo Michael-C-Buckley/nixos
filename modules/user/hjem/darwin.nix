@@ -3,13 +3,15 @@
   inputs,
   ...
 }: let
-  inherit (config.flake) packages;
+  inherit (config) flake;
 in {
   flake.hjemConfig.darwin = {
     pkgs,
     lib,
     ...
-  }: {
+  }: let
+    inherit (flake.packages.${pkgs.stdenv.hostPlatform.system}) nvf;
+  in {
     imports = [
       inputs.hjem.darwinModules.default
       config.flake.hjemConfig.default
@@ -17,7 +19,7 @@ in {
 
     hjem.users.michael = {
       directory = "/Users/michael";
-      gnupg.pinentryPackage = pkgs.pinentry_mac; # Underscore unlike all other pinentry
+      gnupg.pinentryPackage = pkgs.pinentry_mac; # Underscore unlike all other pinentry packages
 
       packages = [
         # iproute2 on mac and with an override for color
@@ -31,7 +33,7 @@ in {
         (pkgs.writeShellApplication {
           name = "nvf";
           text = ''
-            exec ${lib.getExe packages.${pkgs.stdenv.hostPlatform.system}.nvf} "$@"
+            exec ${lib.getExe nvf} "$@"
           '';
         })
       ];
