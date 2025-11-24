@@ -3,16 +3,30 @@
 # copy it, I suggest looking elsewhere for home-manager inspiration
 # as I will be attempting crazy madness and doing things which probably
 # will break, and break a lot
-{config, ...}: {
+{config, ...}: let
+  inherit (config) flake;
+in {
   flake.modules.homeManager.default = {
     pkgs,
     lib,
     ...
   }: let
     inherit (pkgs.stdenv.hostPlatform) system;
-    inherit (config.flake.packages.${system}) fish starship;
+
+    # My shell
+    shell = flake.wrappers.mkFish {
+      inherit pkgs;
+      env = {NH_FLAKE = "/home/michael/nixos";};
+    };
   in {
-    programs.home-manager.enable = true;
+    programs = {
+      # Generates completions but also uses my wrapped one, best of both worlds
+      fish = {
+        enable = true;
+        package = shell;
+      };
+      home-manager.enable = true;
+    };
 
     home = {
       username = "michael";
@@ -20,9 +34,8 @@
 
       stateVersion = lib.mkDefault "25.11";
 
-      packages = [
-        fish
-        starship
+      packages = with pkgs; [
+        nh # limited on non-NixOS systems but still useful
       ];
     };
   };

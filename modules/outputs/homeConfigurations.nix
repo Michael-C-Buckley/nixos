@@ -10,6 +10,7 @@
         config.allowUnfree = true;
       };
       modules = with config.flake.modules.homeManager; [
+        alpine
         default
       ];
     };
