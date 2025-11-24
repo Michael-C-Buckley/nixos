@@ -13,9 +13,6 @@
   }:
     nixpkgs.lib.nixosSystem {
       inherit system;
-      # WIP: Restructure and remove
-      specialArgs = {customLib = import ../lib/_default.nix {inherit (nixpkgs) lib;};};
-
       modules = [
         inputs.nix-secrets.nixosModules.${secrets}
         config.flake.modules.nixos.${hostname}

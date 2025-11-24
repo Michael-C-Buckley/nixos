@@ -1,11 +1,12 @@
-{
+{config, ...}: let
+  inherit (config) flake;
+in {
   flake.modules.nixos.o1 = {
     config,
-    customLib,
     pkgs,
     ...
   }: let
-    inherit (customLib.wireguard) genInterface;
+    inherit (flake.lib.wireguard) genInterface;
   in {
     systemd.services = {
       "wireguard-clients" = genInterface {

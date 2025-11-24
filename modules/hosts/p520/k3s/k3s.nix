@@ -5,10 +5,9 @@ in {
   flake.modules.nixos.p520 = {
     config,
     pkgs,
-    customLib,
     ...
   }: let
-    buildManifest = customLib.kube.buildManifest pkgs;
+    buildManifest = flake.lib.buildManifest pkgs;
   in {
     imports = [
       flake.modules.nixos.k3s
