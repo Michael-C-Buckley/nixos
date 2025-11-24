@@ -2,13 +2,10 @@
 {config, ...}: let
   inherit (config) flake;
 in {
-  flake.modules.homeManager.alpine = {
-    config,
-    pkgs,
-    ...
-  }: let
+  flake.modules.homeManager.alpine = {pkgs, ...}: let
     inherit (pkgs.stdenv.hostPlatform) system;
     pkgsFromNix = with pkgs; [
+      bash # Ensure that bash is available
       iproute2 # better than busybox's limited ip tool
       lazygit
     ];
