@@ -4,7 +4,7 @@
   ...
 }: {
   flake.modules.darwin.packages = {pkgs, ...}: let
-    inherit (config.flake.packages.aarch64-darwin) ghostty-dmg ns nvf vscode;
+    inherit (config.flake.packages.${pkgs.stdenv.hostPlatform.system}) ghostty-dmg ns nvf vscode;
   in {
     environment.systemPackages =
       [
