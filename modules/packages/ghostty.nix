@@ -9,12 +9,23 @@
     packages.ghostty-dmg = pkgs.stdenv.mkDerivation {
       inherit pname version src;
 
+      unpackPhase = ''
+        undmg "$src" || 7zz x -snld "$src"
+      '';
+
       installPhase = ''
         mkdir -p $out/Applications
         cp -r Ghostty.app $out/Applications/
+
+        mkdir -p $out/bin
+        makeWrapper $out/Applications/Ghostty.app/Contents/MacOS/ghostty $out/bin/ghostty-dmg
       '';
 
-      nativeBuildInputs = [pkgs.undmg];
+      nativeBuildInputs = with pkgs; [
+        _7zz
+        makeWrapper
+        undmg
+      ];
 
       sourceRoot = ".";
     };
