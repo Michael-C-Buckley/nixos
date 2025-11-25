@@ -5,20 +5,20 @@
   fetchFromGitHub,
   dockerTools,
 }: {
-  helium = {
-    pname = "helium";
-    version = "0.6.5.1";
+  ghostty-dmg = {
+    pname = "ghostty-dmg";
+    version = "1.2.3";
     src = fetchurl {
-      url = "https://github.com/imputnet/helium-linux/releases/download/0.6.5.1/helium-0.6.5.1-x86_64.AppImage";
-      sha256 = "sha256-EHhIwNnLm7sTlbm5+OTWQl2FGnb1iaAD8S7P5RtIPu4=";
+      url = "https://release.files.ghostty.org/1.2.3/Ghostty.dmg";
+      sha256 = "sha256-817pHxFuKAJ6ufje9FCYx1dbRLQH/4g6Lc0phcSDIGs=";
     };
   };
-  jan = {
-    pname = "jan";
-    version = "0.7.3";
+  helium = {
+    pname = "helium";
+    version = "0.6.7.1";
     src = fetchurl {
-      url = "https://github.com/janhq/jan/releases/download/v0.7.3/Jan_0.7.3_amd64.AppImage";
-      sha256 = "sha256-HU6oOWgXz8ssD6PVNAd2n/7urpc0ppQQT518hF4mt1c=";
+      url = "https://github.com/imputnet/helium-linux/releases/download/0.6.7.1/helium-0.6.7.1-x86_64.AppImage";
+      sha256 = "sha256-fZTBNhaDk5EeYcxZDJ83tweMZqtEhd7ws8AFUcHjFLs=";
     };
   };
 }
