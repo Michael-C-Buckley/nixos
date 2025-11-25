@@ -2,7 +2,7 @@
   inherit (config) flake;
 in {
   flake.modules.darwin.default = {pkgs, ...}: let
-    inherit (flake.package.${pkgs.stdenv.hostPlatform.system}) fish;
+    inherit (flake.packages.${pkgs.stdenv.hostPlatform.system}) fish;
   in {
     programs = {
       direnv.enable = true;
