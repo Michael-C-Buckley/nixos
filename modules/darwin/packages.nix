@@ -4,16 +4,13 @@
   ...
 }: {
   flake.modules.darwin.packages = {pkgs, ...}: let
-    inherit (config.flake.packages.aarch64-darwin) fish starship nvf vscode ns;
+    inherit (config.flake.packages.${pkgs.stdenv.hostPlatform.system}) ghostty-dmg ns nvf vscode;
   in {
     environment.systemPackages =
       [
         # Ensure we can rebuild
-        inputs.nix-darwin.packages.aarch64-darwin.default
-
-        # TODO: Check out the `programs.fish` options in nix-darwin
-        fish
-        starship
+        inputs.nix-darwin.packages.${pkgs.stdenv.hostPlatform.system}.default
+        ghostty-dmg
         ns
         nvf
         vscode
