@@ -1,4 +1,4 @@
-# Add Ghostty's official MacOS binary since the nixpkgs source-based version is currently broken
+# Add Ghostty's official macOS binary since the nixpkgs source-based version is currently broken
 {self, ...}: {
   perSystem = {
     pkgs,
