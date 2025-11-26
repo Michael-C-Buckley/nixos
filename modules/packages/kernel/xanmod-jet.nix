@@ -13,8 +13,10 @@
 #
 # I only have that architecture among my systems, so it works for me,
 #  check your CPUs before using this as-is
-{inputs, ...}: let
-  pkgs = import inputs.nixpkgs {system = "x86_64-linux";};
+{self, ...}: let
+  # Use the npins nixpkgs to prevent unnecessary rebuilds because of dependency and
+  # tool changes that otherwise do not affect the kernel build itself
+  pkgs = import (import "${self}/npins").nixpkgs {system = "x86_64-linux";};
 
   # Import modular components
   profileConfigs = import ./_profiles.nix;
