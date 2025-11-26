@@ -40,11 +40,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    wrappers = {
-      url = "github:lassulus/wrappers";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     hjem = {
       url = "github:feel-co/hjem/refactor-3"; # Hjem-Darwnin testing
       inputs = {
@@ -87,13 +82,5 @@
       url = "github:noctalia-dev/noctalia-shell/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # nixos-wsl = {
-    #   url = "github:nix-community/nixos-wsl";
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     flake-compat.follows = "";
-    #   };
-    # };
   };
 }

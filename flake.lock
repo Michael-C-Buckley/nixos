@@ -310,8 +310,7 @@
         "nixpkgs": "nixpkgs",
         "noctalia": "noctalia",
         "nvf": "nvf",
-        "sops-nix": "sops-nix",
-        "wrappers": "wrappers"
+        "sops-nix": "sops-nix"
       }
     },
     "rust-overlay": {
@@ -452,26 +451,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "wrappers": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1763526891,
-        "narHash": "sha256-7BJv2Sg4XunqYpUgT1ktw2cXCRz7J7UeTY24lFkIBeo=",
-        "owner": "lassulus",
-        "repo": "wrappers",
-        "rev": "58bc6dbd30d885d23d812b3c519c6768b72aa232",
-        "type": "github"
-      },
-      "original": {
-        "owner": "lassulus",
-        "repo": "wrappers",
         "type": "github"
       }
     }
