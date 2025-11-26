@@ -8,7 +8,7 @@
       };
       format = {
         enable = true;
-        type = "alejandra";
+        type = ["alejandra"];
       };
       lsp.servers = ["nil" "nixd"];
     };
