@@ -20,7 +20,7 @@
       # default routes that I absolutely did not ask for;
       # So for now, use my core switch within the LAN
       defaultGateway = {
-        address = "192.168.49.2";
+        address = "192.168.49.1";
         interface = "br0";
       };
 
