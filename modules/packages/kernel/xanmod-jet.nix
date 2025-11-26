@@ -60,26 +60,19 @@ in {
         customSuffix = "jet3";
       };
 
-      # 6.17 Kernels - So far no servers since not using it because ZFS
-      jet2-kernel_6_17_7 = buildVersion {
-        versionKey = "6.17.7";
-        profile = "balanced";
-        customSuffix = "jet2";
+      jet1_latest = buildVersion {
+        versionKey = "6.17.8";
+        profile = "server";
+        customSuffix = "jet1";
       };
 
-      jet3-kernel_6_17_7 = buildVersion {
-        versionKey = "6.17.7";
-        profile = "performance";
-        customSuffix = "jet3";
-      };
-
-      jet2-kernel_6_17_8 = buildVersion {
+      jet2_latest = buildVersion {
         versionKey = "6.17.8";
         profile = "balanced";
         customSuffix = "jet2";
       };
 
-      jet3-kernel_6_17_8 = buildVersion {
+      jet3_latest = buildVersion {
         versionKey = "6.17.8";
         profile = "performance";
         customSuffix = "jet3";
