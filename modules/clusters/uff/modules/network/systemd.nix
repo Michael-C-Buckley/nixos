@@ -30,7 +30,7 @@
           matchConfig.MACAddress = enusb1.mac;
           linkConfig = {
             Name = "enusb1";
-            MTUBytes = 1500;
+            MTUBytes = 9000;
           };
         };
       };
