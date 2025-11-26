@@ -10,8 +10,16 @@
     networking = {
       hostId = "c07fa570";
       hostName = "x570";
+
+      # I use networkmanager for wifi
       networkmanager = {
         enable = true;
+        unmanaged = [
+          "enp6s0"
+          "enp7s0"
+          "enp15s0f0"
+          "enp15s0f1"
+        ];
       };
       useNetworkd = true;
 
