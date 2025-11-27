@@ -26,8 +26,6 @@ in {
         interface = "br0";
       };
 
-      loopback.ipv4 = interfaces.lo.ipv4;
-
       firewall.trustedInterfaces = ["br0"];
 
       bridges = {
