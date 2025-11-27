@@ -1,17 +1,19 @@
-{
+{config, ...}: let
+  inherit (config.flake.hosts.uff1.interfaces) lo eno1 enusb1;
+in {
   flake.modules.nixos.uff1 = {
     custom.enusb1.mac = "6c:1f:f7:06:27:8e";
     networking = {
       interfaces = {
         enusb1.ipv4.addresses = [
           {
-            address = "192.168.61.145";
+            address = enusb1.ipv4;
             prefixLength = 28;
           }
         ];
         eno1.ipv4.addresses = [
           {
-            address = "192.168.49.31";
+            address = eno1.ipv4;
             prefixLength = 24;
           }
         ];
@@ -28,7 +30,7 @@
         };
       };
 
-      loopback.ipv4 = "192.168.61.1";
+      loopback.ipv4 = lo.ipv4;
       hostId = "ab0406ca";
       hostName = "uff1";
 
