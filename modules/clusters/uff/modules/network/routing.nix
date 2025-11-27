@@ -1,48 +1,42 @@
 {config, ...}: let
   inherit (config.flake) hosts;
-  inherit (hosts) uff1 uff2 uff3;
 in {
   flake.modules.nixos.uff = {
     config,
     lib,
     ...
   }: let
-    inherit (lib) filter hasPrefix;
     inherit (lib.strings) concatMapStringsSep;
-    inherit (hosts.${config.networking.hostName}.interfaces) lo eno1 enusb1;
+    inherit (hosts.${config.networking.hostName}.interfaces) lo;
+
+    uffHosts = ["uff1" "uff2" "uff3"];
 
     # Exclude the current host from the neighbors
-    neighbors =
-      concatMapStringsSep "\n" (
-        n: "neighbor ${n} peer-group fabric"
-      ) (filter (n: n != lo.ipv4) [
-        # UFFs
-        uff1.interfaces.lo.ipv4
-        uff2.interfaces.lo.ipv4
-        uff3.interfaces.lo.ipv4
-      ]);
+    neighbors = concatMapStringsSep "\n" (
+      hostname: "neighbor ${hosts.${hostname}.interfaces.lo.ipv4} peer-group fabric"
+    ) (lib.filter (h: h != config.networking.hostName) uffHosts);
 
-    # exclude current host from BFD peers
-    bfdPeers =
-      concatMapStringsSep "\n" (
-        n: "peer ${n}"
-      ) (filter (
-          n:
-            !(hasPrefix eno1.ipv4 n) && !(hasPrefix enusb1.ipv4 n)
-        ) [
-          # UFF interfaces
-          uff1.interfaces.eno1.ipv4
-          uff1.interfaces.enusb1.ipv4
-          uff2.interfaces.eno1.ipv4
-          uff2.interfaces.enusb1.ipv4
-          uff3.interfaces.eno1.ipv4
-          uff3.interfaces.enusb1.ipv4
-
-          # Other Hosts
-          hosts.x570.interfaces.enp6s0.ipv4
-          hosts.x570.interfaces.enp7s0.ipv4
-          "192.168.49.2" # Cisco
-        ]);
+    # Exclude current host from BFD peers
+    bfdPeers = let
+      uffInterfaces =
+        lib.concatMap (
+          hostname:
+            if hostname == config.networking.hostName
+            then []
+            else [
+              hosts.${hostname}.interfaces.eno1.ipv4
+              hosts.${hostname}.interfaces.enusb1.ipv4
+            ]
+        )
+        uffHosts;
+      otherPeers = [
+        # Other Hosts
+        hosts.x570.interfaces.enp6s0.ipv4
+        hosts.x570.interfaces.enp7s0.ipv4
+        "192.168.49.2" # Cisco
+      ];
+    in
+      concatMapStringsSep "\n" (n: "peer ${n}") (uffInterfaces ++ otherPeers);
   in {
     networking = {
       firewall.allowedUDPPorts = [3784 3785 4784];
