@@ -39,7 +39,7 @@ in {
       };
 
       # Apply the loopback address if added
-      networking.interfaces.lo.ipv4.addresses = lib.optionals (lo.ipv4 != null || lo.ipv4 != "") [
+      networking.interfaces.lo.ipv4.addresses = lib.optionals (lo.ipv4 != null) [
         {
           address = lo.ipv4;
           prefixLength = 32;

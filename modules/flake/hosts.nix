@@ -1,5 +1,5 @@
 # Host IP definitions for hosts file generation and routing configs
-# These are reused anywhere the IPs need to referenced and serve
+# These are reused anywhere the IPs need to be referenced and serve
 # as the single source of truth
 {
   flake.hosts = {
@@ -45,15 +45,15 @@
     };
 
     t14.interfaces = {
-      lo.ipv4 = "";
+      lo.ipv4 = null;
     };
 
     o1.interfaces = {
-      lo.ipv4 = "";
+      lo.ipv4 = null;
     };
 
     tempest.interfaces = {
-      lo.ipv4 = "";
+      lo.ipv4 = null;
     };
   };
 }
