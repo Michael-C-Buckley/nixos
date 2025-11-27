@@ -15,7 +15,7 @@ in {
     neighbors =
       concatMapStringsSep "\n" (
         n: "neighbor ${n} peer-group fabric"
-      ) (filter (n: n != lo) [
+      ) (filter (n: n != lo.ipv4) [
         # UFFs
         uff1.interfaces.lo.ipv4
         uff2.interfaces.lo.ipv4
@@ -28,7 +28,7 @@ in {
         n: "peer ${n}"
       ) (filter (
           n:
-            !(hasPrefix n eno1.ipv4) && !(hasPrefix n enusb1.ipv4)
+            !(hasPrefix eno1.ipv4 n) && !(hasPrefix enusb1.ipv4 n)
         ) [
           # UFF interfaces
           uff1.interfaces.eno1.ipv4
