@@ -1,4 +1,6 @@
-{
+{config, ...}: let
+  inherit (config.flake.hosts.x570) interfaces;
+in {
   flake.modules.nixos.x570 = {
     services = {
       iperf3.enable = true;
@@ -37,7 +39,7 @@
       interfaces = {
         enp6s0.ipv4.addresses = [
           {
-            address = "192.168.49.10";
+            address = interfaces.enp6s0.ipv4;
             prefixLength = 24;
           }
         ];
@@ -45,7 +47,7 @@
           mtu = 9000;
           ipv4.addresses = [
             {
-              address = "192.168.61.149";
+              address = interfaces.enp7s0.ipv4;
               prefixLength = 28;
             }
           ];
@@ -54,14 +56,14 @@
           mtu = 9000;
           ipv4.addresses = [
             {
-              address = "192.168.61.129";
+              address = interfaces.enp15s0f0.ipv4;
               prefixLength = 28;
             }
           ];
         };
         lo.ipv4.addresses = [
           {
-            address = "192.168.63.10";
+            address = interfaces.lo.ipv4;
             prefixLength = 32;
           }
         ];
