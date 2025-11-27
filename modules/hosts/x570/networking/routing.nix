@@ -1,8 +1,7 @@
-{
-  flake.modules.nixos.x570 = {config, ...}: let
-    inherit (builtins) head getAttr;
-    lo = getAttr "address" (head config.networking.interfaces.lo.ipv4.addresses);
-  in {
+{config, ...}: let
+  inherit (config.flake.hosts.x570.interfaces) lo;
+in {
+  flake.modules.nixos.x570 = {
     # Default Nixos will have standard priority, force to override
     # environment.etc."frr/frr.conf".source = lib.mkForce config.age.secrets.frr.path;
 
@@ -12,18 +11,18 @@
 
       ip prefix-list 64800-IN seq 5 permit 192.168.64.0/20
       ip prefix-list 64800-IN seq 10 deny 0.0.0.0/0
-      ip prefix-list 64800-OUT seq 5 permit ${lo}
+      ip prefix-list 64800-OUT seq 5 permit ${lo.ipv4}
       ip prefix-list 64800-OUT seq 10 deny 0.0.0.0/0
 
       router ospf
-        router-id ${lo}
+        router-id ${lo.ipv4}
 
       router bgp 65100
         no bgp ebgp-requires-policy
         neighbor 192.168.240.241 remote-as 64800
 
         address-family ipv4
-          network ${lo}/32
+          network ${lo.ipv4}/32
           neighbor 192.168.240.241 activate
         exit
 
@@ -42,11 +41,6 @@
       int enp15s0f0
         ip ospf cost 100
         ip ospf area 0
-
-      bfd
-       peer 192.168.48.31
-       peer 192.168.48.32
-       peer 192.168.48.33
     '';
 
     networking = {

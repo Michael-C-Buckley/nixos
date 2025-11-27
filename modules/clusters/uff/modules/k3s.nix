@@ -1,11 +1,12 @@
 {config, ...}: let
-  inherit (config.flake.modules) nixos;
+  inherit (config.flake) modules hosts;
 in {
   flake.modules.nixos.uff = {config, ...}: let
     inherit (builtins) head;
+    # This IP is the locally evaluated host's
     enusb = (head config.networking.interfaces.enusb1.ipv4.addresses).address;
   in {
-    imports = with nixos; [
+    imports = with modules.nixos; [
       k3s
       kube-longhorn
     ];
@@ -17,7 +18,7 @@ in {
         "--node-name ${config.networking.hostName}s"
         "--node-ip ${enusb}"
         "--advertise-address ${enusb}"
-        "--server https://192.168.61.145:6443" # Serves as the bootstrapper
+        "--server https://${hosts.uff1.interfaces.enusb1.ipv4}:6443" # Serves as the bootstrapper
       ];
     };
   };
