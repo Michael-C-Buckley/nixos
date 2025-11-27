@@ -38,6 +38,18 @@
             prefixLength = 24;
           }
         ];
+        ens1f0.ipv4.addresses = [
+          {
+            address = "192.168.61.130";
+            prefixLength = 28;
+          }
+        ];
+        ens1f1.ipv4.addresses = [
+          {
+            address = "192.168.61.131";
+            prefixLength = 28;
+          }
+        ];
       };
     };
   };
