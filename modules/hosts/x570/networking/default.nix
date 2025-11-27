@@ -41,18 +41,24 @@
             prefixLength = 24;
           }
         ];
-        enp7s0.ipv4.addresses = [
-          {
-            address = "192.168.61.149";
-            prefixLength = 28;
-          }
-        ];
-        enp15s0f0.ipv4.addresses = [
-          {
-            address = "192.168.61.129";
-            prefixLength = 28;
-          }
-        ];
+        enp7s0 = {
+          mtu = 9000;
+          ipv4.addresses = [
+            {
+              address = "192.168.61.149";
+              prefixLength = 28;
+            }
+          ];
+        };
+        enp15s0f0 = {
+          mtu = 9000;
+          ipv4.addresses = [
+            {
+              address = "192.168.61.129";
+              prefixLength = 28;
+            }
+          ];
+        };
         lo.ipv4.addresses = [
           {
             address = "192.168.63.10";
