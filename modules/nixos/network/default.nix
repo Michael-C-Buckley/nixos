@@ -3,37 +3,24 @@
 # I also DO NOT respect namespaces - Copy at your own risk
 # You have been warned
 {config, ...}: let
-  inherit (config.flake.modules) nixos;
+  inherit (config.flake) hosts modules;
 in {
   flake.modules.nixos.network = {
     config,
     lib,
     ...
   }: let
-    inherit (config.networking) loopback;
-
-    addr = addr: prefix: {
-      address = addr;
-      prefixLength = prefix;
-    };
+    inherit (hosts.${config.networking.hostName}.interfaces) lo;
   in {
     # Bring in the rest of the routing protocol modules
-    imports = with nixos; [
+    imports = with modules.nixos; [
       bgp
       eigrp
       ospf
       vrrp
       #vxlan # WIP and not included by default
     ];
-    options.networking = {
-      loopback = {
-        ipv4 = lib.mkOption {
-          type = with lib.types; nullOr str;
-          default = null;
-          description = "Additional IPv4 address to add to loopback.";
-        };
-      };
-    };
+
     config = {
       boot.kernel.sysctl = {
         "net.ipv4.conf.all.forwarding" = true;
@@ -52,8 +39,11 @@ in {
       };
 
       # Apply the loopback address if added
-      networking.interfaces.lo.ipv4.addresses = lib.optionals (loopback.ipv4 != null) [
-        (addr loopback.ipv4 32)
+      networking.interfaces.lo.ipv4.addresses = lib.optionals (lo.ipv4 != null || lo.ipv4 != "") [
+        {
+          address = lo.ipv4;
+          prefixLength = 32;
+        }
       ];
     };
   };

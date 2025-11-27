@@ -43,5 +43,17 @@
       #enp15s0f1.ipv4 = ""; # Not currently used
       wlp5s0.ipv4 = "172.16.248.10";
     };
+
+    t14.interfaces = {
+      lo.ipv4 = "";
+    };
+
+    o1.interfaces = {
+      lo.ipv4 = "";
+    };
+
+    tempest.interfaces = {
+      lo.ipv4 = "";
+    };
   };
 }
