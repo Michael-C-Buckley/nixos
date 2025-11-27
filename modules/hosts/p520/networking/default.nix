@@ -1,4 +1,6 @@
-{
+{config, ...}: let
+  inherit (config.flake.hosts.p520) interfaces;
+in {
   flake.modules.nixos.p520 = {
     services = {
       iperf3.enable = true;
@@ -24,7 +26,7 @@
         interface = "br0";
       };
 
-      loopback.ipv4 = "192.168.63.5";
+      loopback.ipv4 = interfaces.lo.ipv4;
 
       firewall.trustedInterfaces = ["br0"];
 
@@ -34,7 +36,7 @@
       interfaces = {
         br0.ipv4.addresses = [
           {
-            address = "192.168.49.5";
+            address = interfaces.br0.ipv4;
             prefixLength = 24;
           }
         ];
@@ -42,7 +44,7 @@
           mtu = 9000;
           ipv4.addresses = [
             {
-              address = "192.168.61.130";
+              address = interfaces.ens1f0.ipv4;
               prefixLength = 28;
             }
           ];
@@ -51,7 +53,7 @@
           mtu = 9000;
           ipv4.addresses = [
             {
-              address = "192.168.61.131";
+              address = interfaces.ens1f1.ipv4;
               prefixLength = 28;
             }
           ];
