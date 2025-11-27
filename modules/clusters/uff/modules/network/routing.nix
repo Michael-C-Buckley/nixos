@@ -8,8 +8,8 @@
     inherit (lib) filter hasPrefix;
     inherit (lib.strings) concatMapStringsSep;
     lo = config.networking.loopback.ipv4;
-    eno1 = config.networkd.eno1.addresses.ipv4;
-    enusb1 = config.networkd.enusb1.addresses.ipv4;
+    eno1 = (head config.networking.interfaces.eno1.ipv4.addresses).address;
+    enusb1 = (head config.networking.interfaces.enusb1.ipv4.addresses).address;
 
     # Exclude the current host from the neighbors
     neighbors =
@@ -28,15 +28,15 @@
         n: "peer ${n}"
       ) (filter (
           n:
-            !(hasPrefix n (head eno1)) && !(hasPrefix n (head enusb1))
+            !(hasPrefix n eno1) && !(hasPrefix n enusb1)
         ) [
           # UFF interfaces
           "192.168.49.31"
           "192.168.49.32"
           "192.168.49.33"
-          "192.168.254.1"
-          "192.168.254.2"
-          "192.168.254.3"
+          "192.168.61.145"
+          "192.168.61.146"
+          "192.168.61.147"
 
           # Other Hosts
           "192.168.49.2" # Cisco
