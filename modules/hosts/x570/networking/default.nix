@@ -12,6 +12,7 @@
       hostName = "x570";
 
       # I use networkmanager for wifi
+      # Wired interfaces will be on networkd
       networkmanager = {
         enable = true;
         unmanaged = [
@@ -34,10 +35,22 @@
       };
 
       interfaces = {
-        enp7s0.ipv4.addresses = [
+        enp6s0.ipv4.addresses = [
           {
             address = "192.168.49.10";
             prefixLength = 24;
+          }
+        ];
+        enp7s0.ipv4.addresses = [
+          {
+            address = "192.168.61.149";
+            prefixLength = 28;
+          }
+        ];
+        enp15s0f0.ipv4.addresses = [
+          {
+            address = "192.168.61.129";
+            prefixLength = 28;
           }
         ];
         lo.ipv4.addresses = [

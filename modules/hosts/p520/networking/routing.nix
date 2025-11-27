@@ -13,6 +13,14 @@
         int br0
           ip ospf area 0
           ip ospf cost 1000
+
+        int ens1f0
+          ip ospf area 0
+          ip ospf cost 100
+
+        int ens1f1
+          ip ospf area 0
+          ip ospf cost 100
       '';
     };
   };
