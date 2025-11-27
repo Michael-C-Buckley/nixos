@@ -1,6 +1,7 @@
 {
   flake.modules.nixos.uff = {
     networking = {
+      interfaces.enusb1.mtu = 9000;
       useDHCP = false;
       useNetworkd = true;
       networkmanager = {

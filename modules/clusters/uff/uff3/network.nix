@@ -1,14 +1,22 @@
 {
   flake.modules.nixos.uff3 = {
-    networkd = {
-      eno1.addresses.ipv4 = ["192.168.49.33/24"];
-      enusb1 = {
-        mac = "6c:1f:f7:06:13:8f";
-        addresses.ipv4 = ["192.168.61.147/28"];
-      };
-    };
-
+    custom.enusb1.mac = "6c:1f:f7:06:13:8f";
     networking = {
+      interfaces = {
+        enusb1.ipv4.addresses = [
+          {
+            address = "192.168.61.147";
+            prefixLength = 28;
+          }
+        ];
+        eno1.ipv4.addresses = [
+          {
+            address = "192.168.49.33";
+            prefixLength = 24;
+          }
+        ];
+      };
+
       networkmanager.ensureProfiles.profiles = {
         home = {
           ipv4.address = "172.16.248.33/16";

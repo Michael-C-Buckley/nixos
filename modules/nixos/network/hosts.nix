@@ -14,6 +14,12 @@
         "owi.p520.michael.lan"
       ];
 
+      # 2.5GbE
+      "192.168.61.145" = ["uff1s"];
+      "192.168.61.146" = ["uff2s"];
+      "192.168.61.147" = ["uff3s"];
+
+      # Loopbacks
       "192.168.61.0" = ["uff" "uff.michael.lan"];
       "192.168.61.1" = ["uff1" "uff1.michael.lan"];
       "192.168.61.2" = ["uff2" "uff2.michael.lan"];
