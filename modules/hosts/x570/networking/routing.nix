@@ -31,15 +31,17 @@
         ip ospf passive
         ip ospf area 0
 
+      int enp6s0
+        ip ospf cost 1000
+        ip ospf area 0
+
       int enp7s0
         ip ospf cost 400
         ip ospf area 0
-        ip ospf bfd
 
-      int enp8s0
-        ip ospf cost 1000
+      int enp15s0f0
+        ip ospf cost 100
         ip ospf area 0
-        ip ospf bfd
 
       bfd
        peer 192.168.48.31

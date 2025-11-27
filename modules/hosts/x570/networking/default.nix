@@ -47,6 +47,12 @@
             prefixLength = 28;
           }
         ];
+        enp15s0f0.ipv4.addresses = [
+          {
+            address = "192.168.61.129";
+            prefixLength = 28;
+          }
+        ];
         lo.ipv4.addresses = [
           {
             address = "192.168.63.10";
