@@ -1,15 +1,15 @@
-{
+{config, ...}: let
+  inherit (config.flake) hosts;
+  inherit (hosts) uff1 uff2 uff3;
+in {
   flake.modules.nixos.uff = {
     config,
     lib,
     ...
   }: let
-    inherit (builtins) head;
     inherit (lib) filter hasPrefix;
     inherit (lib.strings) concatMapStringsSep;
-    lo = config.networking.loopback.ipv4;
-    eno1 = (head config.networking.interfaces.eno1.ipv4.addresses).address;
-    enusb1 = (head config.networking.interfaces.enusb1.ipv4.addresses).address;
+    inherit (hosts.${config.networking.hostName}.interfaces) lo eno1 enusb1;
 
     # Exclude the current host from the neighbors
     neighbors =
@@ -17,9 +17,9 @@
         n: "neighbor ${n} peer-group fabric"
       ) (filter (n: n != lo) [
         # UFFs
-        "192.168.61.1"
-        "192.168.61.2"
-        "192.168.61.3"
+        uff1.interfaces.lo.ipv4
+        uff2.interfaces.lo.ipv4
+        uff3.interfaces.lo.ipv4
       ]);
 
     # exclude current host from BFD peers
@@ -28,19 +28,20 @@
         n: "peer ${n}"
       ) (filter (
           n:
-            !(hasPrefix n eno1) && !(hasPrefix n enusb1)
+            !(hasPrefix n eno1.ipv4) && !(hasPrefix n enusb1.ipv4)
         ) [
           # UFF interfaces
-          "192.168.49.31"
-          "192.168.49.32"
-          "192.168.49.33"
-          "192.168.61.145"
-          "192.168.61.146"
-          "192.168.61.147"
+          uff1.interfaces.eno1.ipv4
+          uff1.interfaces.enusb1.ipv4
+          uff2.interfaces.eno1.ipv4
+          uff2.interfaces.enusb1.ipv4
+          uff3.interfaces.eno1.ipv4
+          uff3.interfaces.enusb1.ipv4
 
           # Other Hosts
+          hosts.x570.interfaces.enp6s0.ipv4
+          hosts.x570.interfaces.enp7s0.ipv4
           "192.168.49.2" # Cisco
-          "192.168.49.10" # X570
         ]);
   in {
     networking = {
@@ -64,7 +65,7 @@
         ipv6 forwarding
         !
         router ospf
-         router-id ${lo}
+         router-id ${lo.ipv4}
         int lo
          ip ospf area 0
          ip ospf passive
@@ -81,15 +82,15 @@
          ip ospf cost 1000
         !
         router bgp 65101
-         bgp router-id ${lo}
+         bgp router-id ${lo.ipv4}
          no bgp default ipv4-unicast
 
          neighbor fabric peer-group
-         neighbor fabric update-source ${lo}
+         neighbor fabric update-source ${lo.ipv4}
          neighbor fabric remote-as 65101
          ${neighbors}
-         neighbor 192.168.48.1 remote-as 65101
-         neighbor 192.168.48.1 bfd
+         neighbor 192.168.49.1 remote-as 65101
+         neighbor 192.168.49.1 bfd
 
          address-family l2vpn evpn
           neighbor fabric activate
@@ -97,15 +98,15 @@
          exit-address-family
 
          address-family ipv4 unicast
-          neighbor 192.168.48.1 prefix-list MT3 in
-          neighbor 192.168.48.1 activate
+          neighbor 192.168.49.1 prefix-list MT3 in
+          neighbor 192.168.49.1 activate
 
          exit-address-family
         exit
         !
         bfd
          ${bfdPeers}
-         peer 192.168.48.1
+         peer 192.168.49.1
           transmit-interval 1000
           receive-interval 2000
       '';
