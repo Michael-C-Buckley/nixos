@@ -4,7 +4,7 @@
       eno1.addresses.ipv4 = ["192.168.49.32/24"];
       enusb1 = {
         mac = "6c:1f:f7:06:27:ae";
-        addresses.ipv4 = ["192.168.254.2/27"];
+        addresses.ipv4 = ["192.168.61.146/28"];
       };
     };
 
