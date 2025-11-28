@@ -14,6 +14,7 @@ in {
       direnv
       git
       shellAliases
+      ssh-pubkeys
       fastfetch
       nushell
       yazi
