@@ -82,6 +82,7 @@
           "/etc/NetworkManager"
           "/etc/nix"
           "/etc/wireguard"
+          "/etc/secrets"
 
           # A generic bind for persisting
           "/var/lib/persist"
