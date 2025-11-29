@@ -21,7 +21,7 @@ in {
     ];
 
     hjem = {
-      linker = inputs.hjem.packages.${pkgs.stdenv.hostPlatform.system}.smfh;
+      linker = pkgs.smfh;
       extraModules = [
         flake.hjemModules.gnupg
         inputs.hjem-rum.hjemModules.default
