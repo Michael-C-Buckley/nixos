@@ -6,7 +6,7 @@
 # Conveniently, I use Sops-nix to declare those files and then just read the path in
 # NetworkManager is run under root so the `path` attr is sufficient and need not be linked anywhere or chown
 {
-  flake.modules.nixos.home-wifi = {config, ...}: {
+  flake.modules.nixos.wifi-home = {config, ...}: {
     networking.networkmanager.ensureProfiles = {
       environmentFiles = [config.sops.secrets.michael-wifi.path];
 

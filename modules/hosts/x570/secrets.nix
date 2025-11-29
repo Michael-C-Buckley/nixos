@@ -7,8 +7,6 @@
   in {
     sops.secrets =
       {
-        # TODO: Not sure if I still want to keep using this
-        # Public -- x570-1:b3fLRrQyBeUbmpS+AGi68O1L2F1kSLEVX2ePAyDPNWk=
         cachePrivateKey.sopsFile = "/etc/secrets/x570.yaml";
         pam_u2f_auth.sopsFile = "/etc/secrets/x570.yaml";
       }
