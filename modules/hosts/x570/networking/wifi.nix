@@ -1,6 +1,6 @@
 {config, ...}: {
   flake.modules.nixos.x570 = {
-    imports = [config.flake.modules.nixos.home-wifi];
+    imports = [config.flake.modules.nixos.wifi-home];
     networking.networkmanager.ensureProfiles.profiles = {
       home = {
         connection.interface-name = "wlp5s0";
