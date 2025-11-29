@@ -19,7 +19,5 @@
     environment.etc = {
       "wireguard/k1.conf".source = config.sops.secrets.wireguard-k1.path;
     };
-
-    security.pam.u2f.settings.authfile = config.sops.secrets.pam_u2f_auth.path;
   };
 }
