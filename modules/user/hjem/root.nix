@@ -13,7 +13,10 @@ in {
       env = config.custom.shell.environmentVariables;
     };
   in {
-    users.users.root.shell = "${shell}${shell.shellPath}";
+    users.users.root = {
+      hashedPasswordFile = "/etc/secrets/root/hashedPassword";
+      shell = "${shell}${shell.shellPath}";
+    };
 
     hjem.users.root = {
       enable = true;
