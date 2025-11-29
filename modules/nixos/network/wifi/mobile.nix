@@ -9,8 +9,8 @@ in {
   flake.modules.nixos.wifi-mobile = {
     sops.secrets = {
       shawn-wifi = mkWifi "shawn";
-      r1-wiki = mkWifi "r1";
-      r2-wiki = mkWifi "r2";
+      r1-wifi = mkWifi "r1";
+      r2-wifi = mkWifi "r2";
     };
   };
 }
