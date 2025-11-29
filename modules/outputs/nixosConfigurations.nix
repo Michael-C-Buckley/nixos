@@ -9,12 +9,10 @@
   mkSystem = {
     hostname,
     system ? "x86_64-linux",
-    secrets ? hostname,
   }:
     nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
-        inputs.nix-secrets.nixosModules.${secrets}
         config.flake.modules.nixos.${hostname}
       ];
 
@@ -35,6 +33,5 @@ in {
       t14 = {};
       tempest = {};
       x570 = {};
-      #wsl = {}; # Temporarily suspended - not currently being used
     };
 }

@@ -193,33 +193,6 @@
         "type": "github"
       }
     },
-    "nix-secrets": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "import-tree": [
-          "import-tree"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1764219644,
-        "narHash": "sha256-FiYipnY0rsGPfPDhOOJcfB/HWjLsn/LAyqNhn1QfJ9I=",
-        "ref": "refs/heads/master",
-        "rev": "c05ccf17d8e8b834fb2d4d95c08efa38bb3bdb7a",
-        "shallow": true,
-        "type": "git",
-        "url": "ssh://git@github.com/michael-c-buckley/nix-secrets"
-      },
-      "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "ssh://git@github.com/michael-c-buckley/nix-secrets"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1763966396,
@@ -308,7 +281,6 @@
         "import-tree": "import-tree",
         "microvm": "microvm",
         "nix-darwin": "nix-darwin",
-        "nix-secrets": "nix-secrets",
         "nixpkgs": "nixpkgs",
         "noctalia": "noctalia",
         "nvf": "nvf",

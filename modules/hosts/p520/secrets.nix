@@ -1,0 +1,16 @@
+{
+  flake.modules.nixos.p520 = {
+    sops = {
+      defaultSopsFile = "/etc/secrets/p520.yaml";
+      secrets = {
+        cachePrivateKey.mode = "0755"; # Public -- michaelcbuckley.dev-1:i6EiwHcLtrM6EAdpeymEWqlWs9p15HVTCjS+Cs/cgH0=
+        k3s-cloudflare-secret = {};
+        forgejoRunnerToken = {};
+        atticEnv = {
+          sopsFile = "/etc/secrets/attic.sops";
+          format = "binary";
+        };
+      };
+    };
+  };
+}

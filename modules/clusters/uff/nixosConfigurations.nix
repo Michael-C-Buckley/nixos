@@ -14,7 +14,6 @@
       inherit system;
 
       modules = [
-        inputs.nix-secrets.nixosModules.uff
         config.flake.modules.nixos.${hostname}
         nixos.uff
         nixos.serverPreset

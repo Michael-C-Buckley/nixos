@@ -48,7 +48,10 @@ in
     inherit (config) flake;
   in {
     flake.modules.nixos.t14 = {config, ...}: {
-      imports = [flake.modules.nixos.home-wifi];
+      imports = with flake.modules.nixos; [
+        wifi-home
+        wifi-mobile
+      ];
       networking.networkmanager.ensureProfiles = {
         environmentFiles = with config.sops.secrets; [
           shawn-wifi.path

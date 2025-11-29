@@ -9,10 +9,10 @@ in {
     imports = with modules.nixos;
       [
         linuxPreset
+        shawn
       ]
       ++ [
         inputs.microvm.nixosModules.microvm
-        inputs.nix-secrets.nixosModules.michael
       ];
 
     microvm = {

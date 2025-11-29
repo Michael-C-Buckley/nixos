@@ -20,15 +20,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-secrets = {
-      url = "git+ssh://git@github.com/michael-c-buckley/nix-secrets?shallow=1";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        import-tree.follows = "import-tree";
-        flake-parts.follows = "flake-parts";
-      };
-    };
-
     # No Nixpkgs Inputs
     import-tree.url = "github:vic/import-tree";
     impermanence.url = "github:nix-community/impermanence";
