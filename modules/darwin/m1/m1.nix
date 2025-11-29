@@ -8,7 +8,6 @@
 in {
   flake.darwinConfigurations.m1 = inputs.nix-darwin.lib.darwinSystem {
     modules = [
-      inputs.nix-secrets.darwinModules.michael
       default
       packages
       hjemConfig.darwin
