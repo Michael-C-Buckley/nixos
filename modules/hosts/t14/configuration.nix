@@ -10,8 +10,5 @@
     security.tpm2.enable = true;
     system.stateVersion = "24.11";
     nix.settings.substituters = ["http://p520:5000"];
-
-    # Decrease Ghostty transparency a bit
-    hjem.users.michael.rum.programs.ghostty.settings.background-opacity = "0.7";
   };
 }
