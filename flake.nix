@@ -35,7 +35,7 @@
       inputs = {
         nix-darwin.follows = "nix-darwin";
         nixpkgs.follows = "nixpkgs";
-        #smfh.follows = ""; # Use nixpkgs version after it gets to unstable
+        smfh.follows = ""; # Use nixpkgs version
       };
     };
 
