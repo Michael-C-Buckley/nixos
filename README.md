@@ -2,9 +2,7 @@
 
 This flake is the major collection of all things I use to manage my systems. It contains primary use systems, like desktop, laptop, and some servers.
 
-I do have some things spun off like a few other servers and secrets. Servers will be coming after some more flake-parts build-out on my part.
-
-Caveat: I have included some custom options merged into the default Nix options namespace. Copying small sections can incur breakage this way, especially from networking (with advanced options since I am a network engineer). Private secrets are also in another repository (as a means to prevent harvest now, decrypt later).
+Caveat: I have included some custom options merged into the default Nix options namespace. Copying small sections can incur breakage this way, especially from networking (with advanced options since I am a network engineer). Secrets are protected by sops-nix and deployed manually on the hosts, using absolute paths (as a means to prevent harvest now, decrypt later).
 
 ## Major Frameworks
 
@@ -28,11 +26,13 @@ A small number are files are handled by simple recursive linker setup in `module
 
 NVF is a Neovim framework in Nix. It trivialized creating and maintaining a custom nvim setup. I never did traditional nvim configuration, and I don't think I ever will since this exists. My setup is standalone nested under `packages/nvf`. I ship a few variants depending on if its a basic config for servers or extensive for development hosts. They have similar UI but differing setups on language servers, mainly. I also have one variant for use with Vscode-Neovim plugin, which does work.
 
-### Nvfetcher
+### Non-Flake Inputs (Nvfetcher & Npins)
 
-I recently picked up Nvfetcher as a means to pull down dependencies that aren't flakes. So far, I am just using it in package derivations, like Helium, but I expect to grow this as it is useful to not have to flake input everything.
+I recently picked up Nvfetcher and Npins as means to pull down dependencies that aren't flakes. The motivation is decreasing the amount of inputs and I'll be selecting inputs which do not depend on the flake metadata tree and no have inputs. The upside is increased performance from lazier evaluation and reduced dependency tree sizes, as well as not having to copy these sources to the nix store, even if they're not used.
 
-The motivation is decreasing the amount of inputs and I'll be selecting inputs which do not depend on the flake metadata tree and no have inputs. The upside is increased performance from lazier evaluation and reduced dependency tree sizes, as well as not having to copy these sources to the nix store, even if they're not used.
+Npins currently pins nixpkgs for my kernel builds, so I don't have to rebuild constantly when nixpkgs updates but the kernels don't.
+
+Nvfetcher is used to get appImage files, as Npins cannot do that.
 
 ## Credits & Thanks
 
