@@ -51,7 +51,10 @@
     custom.impermanence.enable = true;
 
     # To make sure keys are available for sops decryption
-    fileSystems."/etc/ssh".neededForBoot = true;
+    fileSystems = {
+      "/etc/ssh".neededForBoot = true;
+      "/etc/secrets".neededForBoot = true;
+    };
 
     environment.persistence."/cache" = {
       hideMounts = true;
