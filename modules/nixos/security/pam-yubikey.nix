@@ -1,9 +1,5 @@
 {
-  flake.modules.nixos.pam-yubikey = {
-    config,
-    pkgs,
-    ...
-  }: {
+  flake.modules.nixos.pam-yubikey = {pkgs, ...}: {
     environment.systemPackages = [pkgs.pam_u2f];
     security.pam = {
       services.sudo.u2fAuth = true;
@@ -11,7 +7,8 @@
         enable = true;
         control = "sufficient";
         settings = {
-          authfile = config.sops.secrets.pam_u2f_auth.path;
+          # Any host using it will have their secrets here
+          authfile = "/run/secrets/pam_u2f_auth";
           cue = true;
         };
       };
