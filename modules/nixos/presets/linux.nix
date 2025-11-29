@@ -38,6 +38,9 @@
 
     environment.enableAllTerminfo = true;
 
+    # Lets impure paths be used
+    sops.validateSopsFiles = false;
+
     programs = {
       gnupg.agent.enable = true;
       nvf = {
