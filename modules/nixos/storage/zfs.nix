@@ -35,6 +35,23 @@
       # Sanoid
       services.sanoid = {
         enable = true;
+        # Define some reused templates
+        templates = {
+          short = {
+            autoprune = true;
+            autosnap = true;
+            hourly = 6;
+            daily = 1;
+          };
+          normal = {
+            autoprune = true;
+            autosnap = true;
+            hourly = 12;
+            daily = 3;
+            weekly = 2;
+            monthly = 2;
+          };
+        };
         datasets = builtins.listToAttrs (map (dataset: {
             name = dataset;
             value = {
