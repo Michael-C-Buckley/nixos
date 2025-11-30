@@ -1,0 +1,21 @@
+# What I used previously to install this
+virt-install \
+  --connect qemu+ssh://michael@p520/system \
+  --name cml \
+  --memory 131072 \
+  --vcpus 18,sockets=1,cores=9,threads=2 \
+  --cpuset 0-8,18-26 \
+  --cpu host-passthrough,cache.mode=passthrough \
+  --numatune 0 \
+  --disk path=/dev/zvol/zroot/local/vm/cml,bus=scsi,cache=none,io=native,discard=unmap \
+  --controller type=scsi,model=virtio-scsi \
+  --network bridge=br0,model=virtio \
+  --graphics vnc \
+  --os-variant ubuntu24.04 \
+  --import \
+  --disk path=/data/iso/cml2.9/cml2_2.9.1-7_amd64-7.iso,device=cdrom \
+  --disk path=/data/iso/cml2.9/refplat-20250616-fcs.iso,device=cdrom,bus=sata \
+  --disk path=/data/iso/cml2.9/refplat-20250718-ise.iso,device=cdrom,bus=sata \
+  --disk path=/data/iso/cml2.9/refplat-20250718-supplemental.iso,device=cdrom,bus=sata \
+  --boot uefi \
+  --noautoconsole
