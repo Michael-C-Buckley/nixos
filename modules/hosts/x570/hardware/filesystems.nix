@@ -9,9 +9,9 @@
     boot.zfs.package = pkgs.zfs_unstable;
     swapDevices = [];
 
-    custom.zfs.snapshotDatasets = [
-      "zroot/x570/nixos/persist"
-    ];
+    services.sanoid.datasets = {
+      "zroot/x570/nixos/persist".use_template = ["normal"];
+    };
 
     fileSystems = {
       "/boot" = {
