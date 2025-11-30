@@ -16,7 +16,7 @@
         tigervnc
       ];
 
-    users.powerUsers.groups = ["libvirt"];
+    users.powerUsers.groups = ["libvirtd"];
 
     virtualisation.libvirtd = {
       enable = true;
