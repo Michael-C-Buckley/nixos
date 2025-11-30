@@ -3,12 +3,9 @@
     imports = with config.flake.modules.nixos; [
       desktopPreset
       intelGraphics
-      network
       wifi
-      containerlab
       gaming
       k3s
-      dnscrypt-proxy
     ];
 
     nix.settings.substituters = lib.mkBefore ["http://p520:5000"];
