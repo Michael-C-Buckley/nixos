@@ -1,12 +1,20 @@
 {
   flake.modules.nixos.libvirt = {
     config,
+    lib,
     pkgs,
     ...
   }: {
     custom.impermanence.cache.directories = [
       "/var/lib/libvirt"
     ];
+
+    environment.systemPackages = with pkgs;
+      lib.optionals config.hardware.graphics.enable [
+        virt-manager
+        virt-viewer
+        tigervnc
+      ];
 
     users.powerUsers.groups = ["libvirt"];
 
@@ -19,11 +27,6 @@
         runAsRoot = true;
         swtpm.enable = true;
       };
-    };
-
-    services.cockpit = {
-      inherit (config.virtualisation.libvirtd) enable;
-      openFirewall = config.services.cockpit.enable;
     };
   };
 }
