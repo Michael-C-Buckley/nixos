@@ -29,12 +29,18 @@ in {
       firewall.trustedInterfaces = ["br0"];
 
       bridges = {
-        br0.interfaces = ["eno1"];
+        br0.interfaces = [];
       };
       interfaces = {
         br0.ipv4.addresses = [
           {
             address = interfaces.br0.ipv4;
+            prefixLength = 27;
+          }
+        ];
+        eno1.ipv4.addresses = [
+          {
+            address = interfaces.eno1.ipv4;
             prefixLength = 24;
           }
         ];
