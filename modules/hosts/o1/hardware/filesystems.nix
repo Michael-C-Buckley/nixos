@@ -7,6 +7,11 @@
     };
   in {
     boot.zfs.package = pkgs.zfs_unstable;
+
+    services.sanoid.datasets = {
+      "zroot/o1/persist".use_template = ["normal"];
+    };
+
     fileSystems = {
       "/boot" = {
         device = "/dev/disk/by-uuid/12CE-A600";
