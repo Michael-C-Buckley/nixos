@@ -5,21 +5,31 @@ in {
   flake.modules.nixos.desktopPreset = {
     imports = with modules.nixos; [
       linuxPreset
+      boot
+      impermanence
+      shawn
+      zfs
+
+      # Network
+      network
+      dnscrypt-proxy
+
+      # Virtualization
+      containerlab
+      libvirt
+
+      # Userspace
+      cosmicDesktop
+      dconf
       hyprland
-      clamav
-      noctalia
       tuigreet
+      noctalia
+
+      # Security
+      clamav
       gpg-yubikey
       ssh-agent
-      dconf
       tpm2
-      impermanence
-      zfs
-      boot
-      shawn
-
-      cosmicDesktop
-
       pam-yubikey
 
       packages

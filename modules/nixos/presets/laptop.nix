@@ -6,7 +6,6 @@
   }: {
     imports = with config.flake.modules.nixos; [
       desktopPreset
-      network
       wifi
     ];
 
