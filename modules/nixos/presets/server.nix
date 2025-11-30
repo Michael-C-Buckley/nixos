@@ -9,14 +9,16 @@ in {
       boot
       impermanence
       zfs
-      gpg-yubikey
       shawn
+
+      # Security
+      clamav
+      gpg-yubikey
 
       # Hjem
       nixos
       root
 
-      # WIP:
       packages
       packages-server
       packages-physical
