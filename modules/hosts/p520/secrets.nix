@@ -7,7 +7,7 @@
         k3s-cloudflare-secret = {};
         forgejoRunnerToken = {};
         atticEnv = {
-          sopsFile = "/etc/secrets/attic.sops";
+          sopsFile = "/etc/secrets/hosts/p520/attic.sops";
           format = "binary";
         };
       };
