@@ -1,6 +1,14 @@
-{config, ...}: {
+{config, ...}: let
+  inherit (config) flake;
+in {
   flake.modules.nixos.k3s = {
-    imports = with config.flake.modules.nixos; [
+    config,
+    lib,
+    ...
+  }: let
+    inherit (config.custom) k3s;
+  in {
+    imports = with flake.modules.nixos; [
       kube-common
     ];
 
@@ -8,10 +16,15 @@
       shell.environmentVariables = {
         KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
       };
-      impermanence.persist.directories = [
-        "/var/lib/rancher" # etcd + server state
-        "/etc/rancher" # kubeconfig, TLS assets
-      ];
+      impermanence = {
+        persist.directories = lib.optionals k3s.impermanence.use_persist [
+          "/var/lib/rancher/server"
+          "/etc/rancher"
+        ];
+        cache.directories = lib.optionals k3s.impermanence.use_cache [
+          "/var/lib/rancher/k3s/agent"
+        ];
+      };
     };
 
     # Following along at: https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/cluster/k3s/docs/USAGE.md
