@@ -15,10 +15,10 @@ in {
 
     services = {
       sanoid.datasets = {
-        "zroot/p520/persist".useTemplate = ["short"];
-        "zroot/p520/postgres".useTemplate = ["short"];
-        "zhdd/backup/p520/persist".useTemplate = ["normal"];
-        "zhdd/backup/p520/postgres".useTemplate = ["normal"];
+        "zroot/p520/persist".use_template = ["short"];
+        "zroot/p520/postgres".use_template = ["short"];
+        "zhdd/backup/p520/persist".use_template = ["normal"];
+        "zhdd/backup/p520/postgres".use_template = ["normal"];
       };
       syncoid = {
         enable = true;

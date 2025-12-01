@@ -4,8 +4,8 @@
   flake.modules.nixos.p520 = {
     services = {
       sanoid.datasets = {
-        "zroot/local/vm/cml".useTemplate = ["short"];
-        "zhdd/vm/cml".useTemplate = ["normal"];
+        "zroot/local/vm/cml".use_template = ["short"];
+        "zhdd/vm/cml".use_template = ["normal"];
       };
 
       # Replicate snapshots to HDD pool
