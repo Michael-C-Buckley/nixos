@@ -8,9 +8,9 @@
   in {
     swapDevices = [];
 
-    custom.zfs.snapshotDatasets = [
-      "zroot/t14/nixos/persist"
-    ];
+    services.sanoid.datasets = {
+      "zroot/t14/nixos/persist".use_template = ["normal"];
+    };
 
     boot.zfs = {
       requestEncryptionCredentials = true;
@@ -37,6 +37,7 @@
       "/cache" = mkZfs "zroot/t14/nixos/cache";
       "/persist" = mkZfs "zroot/t14/nixos/persist";
 
+      # Awaiting deprecation
       "/var/lib/ollama" = mkZfs "zroot/local/ollama";
     };
   };
