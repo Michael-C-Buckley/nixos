@@ -1,10 +1,6 @@
 {
-  flake.modules.nixos.security = {
-    config,
-    lib,
-    ...
-  }: {
-    boot.initrd.systemd.emergencyAccess = config.users.users.root.hashedPassword;
+  flake.modules.nixos.security = {lib, ...}: {
+    boot.initrd.systemd.emergencyAccess = true;
 
     security.sudo.extraConfig = "Defaults lecture=never";
 
@@ -16,7 +12,6 @@
         enable = mkDefault true;
         openFirewall = mkDefault true;
         settings = {
-          PasswordAuthentication = mkDefault false;
           KbdInteractiveAuthentication = mkDefault false;
           streamLocalBindUnlink = mkDefault true;
         };

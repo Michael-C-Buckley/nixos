@@ -14,7 +14,8 @@ in {
   in {
     imports = [
       inputs.hjem.darwinModules.default
-      config.flake.hjemConfig.default
+      flake.hjemConfig.default
+      flake.hjemConfig.secrets
     ];
 
     hjem.users.michael = {
