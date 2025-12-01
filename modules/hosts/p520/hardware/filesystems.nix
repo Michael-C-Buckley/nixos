@@ -13,6 +13,10 @@ in {
   flake.modules.nixos.p520 = {
     boot.zfs.extraPools = ["zhdd"];
 
+    custom.k3s.impermanence = {
+      use_cache = false;
+    };
+
     services = {
       sanoid.datasets = {
         "zroot/p520/persist".use_template = ["short"];
@@ -56,6 +60,7 @@ in {
 
       # HDD Array
       "/data" = zfsFs "zhdd/data";
+      "/var/lib/rancher/k3s/agent" = zfsFs "zhdd/k3s/agent";
     };
   };
 }
