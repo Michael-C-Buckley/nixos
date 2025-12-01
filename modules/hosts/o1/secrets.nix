@@ -1,12 +1,12 @@
 let
   wgSecret = name: {
-    sopsFile = "/etc/secrets/wireguard/${name}.sops";
+    sopsFile = "/etc/secrets/hosts/o1/wireguard/${name}.sops";
     format = "binary";
   };
 in {
   flake.modules.nixos.o1 = {
     sops = {
-      defaultSopsFile = "/etc/secrets/o1.yaml";
+      defaultSopsFile = "/etc/secrets/hosts/o1/o1.yaml";
       secrets =
         {
           cachePrivateKey = {};

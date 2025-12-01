@@ -1,12 +1,12 @@
 let
   wgSecret = name: {
-    sopsFile = "/etc/secrets/wireguard/${name}.sops";
+    sopsFile = "/etc/secrets/hosts/t14/wireguard/${name}.sops";
     format = "binary";
   };
 in {
   flake.modules.nixos.t14 = {config, ...}: {
     sops = {
-      defaultSopsFile = "/etc/secrets/t14.yaml";
+      defaultSopsFile = "/etc/secrets/hosts/t14/t14.yaml";
       secrets =
         {
           pam_u2f_auth = {};

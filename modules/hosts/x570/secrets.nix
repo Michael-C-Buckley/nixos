@@ -1,12 +1,12 @@
 {
   flake.modules.nixos.x570 = {config, ...}: let
     wgSecret = name: {
-      sopsFile = "/etc/secrets/wireguard/${name}.sops";
+      sopsFile = "/etc/secrets/hosts/x570/wireguard/${name}.sops";
       format = "binary";
     };
   in {
     sops = {
-      defaultSopsFile = "/etc/secrets/x570.yaml";
+      defaultSopsFile = "/etc/secrets/hosts/x570/x570.yaml";
       secrets =
         {
           cachePrivateKey = {};
