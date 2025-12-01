@@ -14,7 +14,7 @@ in {
     };
   in {
     users.users.root = {
-      hashedPasswordFile = "/etc/secrets/root/hashedPassword";
+      hashedPasswordFile = "/etc/secrets/users/root/hashedPassword";
       shell = "${shell}${shell.shellPath}";
     };
 

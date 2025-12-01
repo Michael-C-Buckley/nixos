@@ -7,7 +7,7 @@
 
     sops.secrets = {
       michael_ssh_pubkeys = {
-        sopsFile = "/etc/secrets/michael/ssh_pubkeys.sops";
+        sopsFile = "/etc/secrets/users/michael/ssh_pubkeys.sops";
         mode = "0644";
         owner = "michael";
         format = "binary";
