@@ -18,7 +18,7 @@ in {
       };
       impermanence = {
         persist.directories = lib.optionals k3s.impermanence.use_persist [
-          "/var/lib/rancher/server"
+          "/var/lib/rancher/k3s/server"
           "/etc/rancher"
         ];
         cache.directories = lib.optionals k3s.impermanence.use_cache [
