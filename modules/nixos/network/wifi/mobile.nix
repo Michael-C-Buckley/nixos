@@ -1,7 +1,7 @@
 # For laptops and mobile devices
 let
   mkWifi = name: {
-    sopsFile = "/etc/secrets/wifi/${name}.env";
+    sopsFile = "/etc/secrets/common/wifi/${name}.env";
     format = "dotenv";
     key = "";
   };
