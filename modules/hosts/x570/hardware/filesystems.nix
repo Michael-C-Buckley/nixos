@@ -1,12 +1,11 @@
 {
-  flake.modules.nixos.x570 = {pkgs, ...}: let
+  flake.modules.nixos.x570 = let
     mkZfs = path: {
       device = "zroot/${path}";
       fsType = "zfs";
       neededForBoot = true;
     };
   in {
-    boot.zfs.package = pkgs.zfs_unstable;
     swapDevices = [];
 
     services.sanoid.datasets = {
