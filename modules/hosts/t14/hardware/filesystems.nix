@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.t14 = {pkgs, ...}: let
+  flake.modules.nixos.t14 = let
     mkZfs = device: {
       inherit device;
       fsType = "zfs";
@@ -14,7 +14,6 @@
 
     boot.zfs = {
       requestEncryptionCredentials = true;
-      package = pkgs.zfs_unstable;
     };
 
     fileSystems = {
