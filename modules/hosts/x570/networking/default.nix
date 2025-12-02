@@ -4,6 +4,12 @@ in {
   flake.modules.nixos.x570 = {
     services = {
       iperf3.enable = true;
+
+      # Make the 10GbE NIC static
+      udev.extraRules = ''
+        SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="90:e2:ba:60:01:b8", NAME="enx10p1"
+        SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="90:e2:ba:60:01:b9", NAME="enx10p2"
+      '';
     };
 
     # Don't wait for DHCP as I use static IPs
@@ -20,8 +26,8 @@ in {
         unmanaged = [
           "enp6s0"
           "enp7s0"
-          "enp15s0f0"
-          "enp15s0f1"
+          "enx10p1"
+          "enx10p2"
         ];
       };
       useNetworkd = true;
@@ -52,11 +58,11 @@ in {
             }
           ];
         };
-        enp15s0f0 = {
+        enx10p1 = {
           mtu = 9000;
           ipv4.addresses = [
             {
-              address = interfaces.enp15s0f0.ipv4;
+              address = interfaces.enx10p1.ipv4;
               prefixLength = 28;
             }
           ];
