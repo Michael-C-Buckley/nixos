@@ -38,7 +38,7 @@ in {
         ip ospf cost 400
         ip ospf area 0
 
-      int enp15s0f0
+      int enx10p1
         ip ospf cost 100
         ip ospf area 0
     '';
