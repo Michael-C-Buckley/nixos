@@ -7,7 +7,7 @@
         #X570 Host-Specific
         # Main Ultrawide Monitor
         # monitor=DP-1,3440x1440@144.00,0x0,1 # B570
-        monitor=DP-3,3440x1440@144.00,0x0,1 # 6700XT
+        monitor=DP-3,3440x1440@165.00,0x0,1 # 6700XT
 
         # Side 24" Monitor
         #monitor=HDMI-A-3,2560x1440@74.60,3440x-500,1,transform,3 # B570
