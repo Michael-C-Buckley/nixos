@@ -18,6 +18,10 @@ in {
         availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
         kernelModules = ["dm-snapshot"];
       };
+      kernelParams = [
+        "zfs.zfs_arc_max=34359738368" # 32GB max
+        "zfs.zfs_arc_min=8589934592" # 8GB min
+      ];
       extraModprobeConfig = "options kvm_intel nested=1";
       kernelModules = ["kvm-intel" "virtiofs" "9p" "9pnet_virtio"];
       extraModulePackages = [];
