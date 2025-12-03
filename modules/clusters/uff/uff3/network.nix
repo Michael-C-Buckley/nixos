@@ -27,6 +27,10 @@
         priority = 130;
         state = "MASTER";
       };
+      lan = {
+        priority = 130;
+        state = "MASTER";
+      };
     };
   };
 }

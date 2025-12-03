@@ -24,6 +24,7 @@
 
     services.keepalived.vrrpInstances = {
       wifi.priority = 110;
+      lan.priority = 110;
     };
   };
 }
