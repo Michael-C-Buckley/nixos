@@ -41,6 +41,11 @@
 
         settings = {
           static_map.network = lib.mkDefault "ip4";
+
+          punchy = {
+            punch = true;
+            respond = true;
+          };
         };
 
         staticHostMap = lib.mkIf (!main.isLighthouse) {
