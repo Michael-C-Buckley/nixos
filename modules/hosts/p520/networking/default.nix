@@ -29,12 +29,19 @@ in {
       firewall.trustedInterfaces = ["br0"];
 
       bridges = {
-        br0.interfaces = [];
+        br0.interfaces = []; # General use bridge, typically for VMs
+        br1.interfaces = []; # k3s CNI bridge; see `cni.nix` for more
       };
       interfaces = {
         br0.ipv4.addresses = [
           {
             address = interfaces.br0.ipv4;
+            prefixLength = 27;
+          }
+        ];
+        br1.ipv4.addresses = [
+          {
+            address = interfaces.br1.ipv4;
             prefixLength = 27;
           }
         ];

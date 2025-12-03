@@ -26,7 +26,9 @@ in {
 
     services.k3s = {
       extraFlags = [
-        "--flannel-iface=br0" # to remove the silly default route to nowhere that outranks OSPF
+        "--flannel-backend=none"
+        "--cluster-cidr=192.168.56.32/27"
+        "--node-ip=${flake.hosts.p520.interfaces.br1.ipv4}"
       ];
 
       # Load the Nix-built container images into K3s
