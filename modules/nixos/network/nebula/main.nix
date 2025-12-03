@@ -46,6 +46,8 @@
             punch = true;
             respond = true;
           };
+
+          tun.use_system_route_table = true;
         };
 
         staticHostMap = lib.mkIf (!main.isLighthouse) {
