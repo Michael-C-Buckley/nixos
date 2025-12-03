@@ -52,6 +52,10 @@
           "100.127.0.1" = ["o1.groovyreserve.com:4242"];
         };
 
+        relays = lib.optionals (!main.isLighthouse) [
+          "100.127.0.1"
+        ];
+
         # Allow all traffic for now
         firewall = {
           inbound = [
