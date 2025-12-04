@@ -13,6 +13,7 @@ in {
       # Network
       network
       dnscrypt-proxy
+      netbird
 
       # Virtualization
       containerlab

@@ -1,12 +1,12 @@
 {config, ...}: {
-  flake.modules.nixos.uff = {lib, ...}: {
+  flake.modules.nixos.uff = {
     imports = with config.flake.modules.nixos; [
+      netbird
       wifi
       wifi-home
     ];
 
-    # Try my local cache first
-    nix.settings.substituters = lib.mkBefore [
+    nix.settings.substituters = [
       "http://p520:5000"
     ];
   };

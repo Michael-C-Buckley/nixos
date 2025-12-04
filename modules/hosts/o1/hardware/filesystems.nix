@@ -1,13 +1,11 @@
 {
-  flake.modules.nixos.o1 = {pkgs, ...}: let
+  flake.modules.nixos.o1 = let
     zfsFs = path: {
       device = "zroot/o1/${path}";
       fsType = "zfs";
       neededForBoot = true;
     };
   in {
-    boot.zfs.package = pkgs.zfs_unstable;
-
     services.sanoid.datasets = {
       "zroot/o1/persist".use_template = ["normal"];
     };
@@ -23,7 +21,7 @@
         fsType = "tmpfs";
         options = [
           "defaults"
-          "size=500M"
+          "size=4G"
           "mode=755"
         ];
       };
