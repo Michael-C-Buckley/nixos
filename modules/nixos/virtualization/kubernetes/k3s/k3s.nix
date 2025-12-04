@@ -27,19 +27,21 @@ in {
       };
     };
 
-    networking.firewall = {
+    networking = {
       # Does not currently stably support nftables
       nftables.enable = false;
 
-      allowedTCPPorts = [
-        2379
-        2380
-        6443 # Kubernetes API
-        10250 # Kubelet API
-      ];
-      allowedUDPPorts = [
-        8472 # Flannel VXLAN
-      ];
+      firewall = {
+        allowedTCPPorts = [
+          2379
+          2380
+          6443 # Kubernetes API
+          10250 # Kubelet API
+        ];
+        allowedUDPPorts = [
+          8472 # Flannel VXLAN
+        ];
+      };
     };
 
     services = {
