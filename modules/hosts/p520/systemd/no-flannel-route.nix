@@ -10,7 +10,7 @@
           ExecStart = "${pkgs.iproute2}/bin/ip route delete || true";
         };
       };
-      timers.remove-flannel-route = {
+      timers.remove-static-default-route = {
         description = "Constantly scan for static default routes and remove them";
         wantedBy = ["timers.target"];
         timerConfig = {
