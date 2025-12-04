@@ -18,6 +18,8 @@ in {
         // envars;
     };
   in {
+    environment.etc."ssh/authorized_keys.d/michael".source = config.sops.secrets.michael_ssh_pubkeys.path;
+
     users = {
       powerUsers.members = ["michael"];
       users.michael = {

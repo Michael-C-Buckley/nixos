@@ -14,6 +14,7 @@ in {
       # Security
       clamav
       gpg-yubikey
+      secrets
 
       # Hjem
       nixos

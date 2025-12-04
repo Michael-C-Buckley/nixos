@@ -1,11 +1,32 @@
-{
-  flake.modules.nixos.secrets = {
+let
+  key = name: {
+    sopsFile = "/etc/secrets/users/${name}/ssh_pubkeys.sops";
+    mode = "0644";
+    format = "binary";
+  };
+in {
+  flake.modules.nixos.secrets = {pkgs, ...}: {
+    sops.secrets = {
+      michael_ssh_pubkeys = key "michael";
+      shawn_ssh_pubkeys = key "shawn";
+    };
+
     # Updates my local private secrets
-    # Impure and imperative, I cannot say I recommend this approach
-    # but it is one I'm testing out
-    system.activationScripts.pullSecretsRepo = {
-      deps = [];
-      text = ''
+    # Impure and imperative, attempt with caution
+    systemd.services.secrets-update = {
+      description = "Update secrets repository from remote";
+      wantedBy = ["multi-user.target"];
+      after = ["network-online.target"];
+      wants = ["network-online.target"];
+
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+      };
+
+      path = with pkgs; [git openssh];
+
+      script = ''
         echo "[secrets-update] Checking for secrets repo in /etc/secrets"
         if [ ! -d /etc/secrets/.git ]; then
           echo "No git repo found in /etc/secrets; skipping pull"
@@ -13,13 +34,12 @@
         fi
         cd /etc/secrets/
         if [ -d .git ]; then
-          git pull --ff-only
-        fi
-        if git pull --ff-only; then
-          echo "[secrets-update] Pull successful"
-        else
-          echo "[secrets-update] Pull failed"
-          exit 0
+          if git pull --ff-only; then
+            echo "[secrets-update] Pull successful"
+          else
+            echo "[secrets-update] Pull failed"
+            exit 0
+          fi
         fi
       '';
     };
