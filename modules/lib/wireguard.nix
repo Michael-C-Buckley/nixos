@@ -5,9 +5,11 @@
       config,
       ipAddresses ? [],
       mtu ? 1420,
+      enable ? true,
       name,
       pkgs,
     }: {
+      inherit enable;
       description = "WireGuard: ${name}";
       wantedBy = ["multi-user.target"];
       serviceConfig = {
