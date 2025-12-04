@@ -32,6 +32,7 @@ in {
       ssh-agent
       tpm2
       pam-yubikey
+      secrets
 
       packages
       packages-desktop

@@ -87,6 +87,9 @@
           "/etc/wireguard"
           "/etc/secrets"
 
+          # Explicitly cover root's keys
+          "/root/.ssh"
+
           # A generic bind for persisting
           "/var/lib/persist"
 
