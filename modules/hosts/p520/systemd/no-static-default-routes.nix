@@ -1,13 +1,14 @@
 {
-  # Delete flannel's default route
+  # Delete junk default routes
   flake.modules.nixos.p520 = {pkgs, ...}: {
     systemd = {
       services.remove-static-default-route = {
         description = "Remove default routes created ";
         after = ["network.target"];
+        wants = ["network.target"];
         serviceConfig = {
           Type = "oneshot";
-          ExecStart = "${pkgs.iproute2}/bin/ip route delete || true";
+          ExecStart = "${pkgs.bash}/bin/bash -c 'while ${pkgs.iproute2}/bin/ip route delete default; do :; done'";
         };
       };
       timers.remove-static-default-route = {
