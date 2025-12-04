@@ -32,7 +32,7 @@
       postBuild = ''
         wrapProgram $out/bin/fish \
           --add-flags "--init-command 'source ${import ./_config.nix {inherit pkgs env extraConfig extraAliases;}}'" \
-          --prefix PATH : ${pkgs.lib.makeBinPath [pkgs.starship]}
+          --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
       '';
       passthru.shellPath = "/bin/fish";
     };
