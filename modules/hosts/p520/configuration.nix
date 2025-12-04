@@ -4,6 +4,7 @@
       serverPreset
       containerlab
       libvirt
+      netbird
     ];
 
     virtualisation = {
