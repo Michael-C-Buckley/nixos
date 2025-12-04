@@ -15,13 +15,11 @@ in {
     # Impure and imperative, attempt with caution
     systemd.services.secrets-update = {
       description = "Update secrets repository from remote";
-      wantedBy = ["multi-user.target"];
       after = ["network-online.target"];
       wants = ["network-online.target"];
 
       serviceConfig = {
         Type = "oneshot";
-        RemainAfterExit = true;
       };
 
       path = with pkgs; [git openssh];
@@ -42,6 +40,17 @@ in {
           fi
         fi
       '';
+    };
+
+    systemd.timers.secrets-update = {
+      description = "Timer for secrets repository updates";
+      wantedBy = ["timers.target"];
+
+      timerConfig = {
+        OnBootSec = "5min";
+        OnUnitActiveSec = "3h";
+        Persistent = true;
+      };
     };
   };
 }
