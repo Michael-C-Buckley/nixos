@@ -13,7 +13,7 @@
     };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # still pinned to unstable 25.11 from before the release
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin";
@@ -26,7 +26,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11"; # Not yet updated my lock to 26.05 unstable
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
