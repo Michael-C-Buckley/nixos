@@ -5,7 +5,11 @@
   config,
   ...
 }: {
-  flake.modules.nixos.linuxPreset = {lib, ...}: {
+  flake.modules.nixos.linuxPreset = {
+    pkgs,
+    lib,
+    ...
+  }: {
     imports = with config.flake.modules.nixos;
       [
         michael
@@ -36,7 +40,16 @@
       systemBuilderCommands = "ln -s ${self.sourceInfo.outPath} $out/src";
     };
 
-    environment.enableAllTerminfo = true;
+    environment = {
+      enableAllTerminfo = false;
+      # Selective terminfo only for what I actually use
+      systemPackages = map (x: x.terminfo) (with pkgs; [
+        alacritty # Zed's built-in uses alacritty
+        kitty
+        ghostty
+        tmux
+      ]);
+    };
 
     # Lets impure paths be used
     sops.validateSopsFiles = false;
