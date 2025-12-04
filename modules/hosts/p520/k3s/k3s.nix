@@ -30,6 +30,10 @@ in {
         flake.packages.${pkgs.stdenv.hostPlatform.system}.attic
       ];
 
+      extraFlags = [
+        "--datastore-endpoint=sqlite"
+      ];
+
       # This section merges and flattens the components into a single manifest per app
       manifests = {
         cert-manager.source = ./manifests/cert-manager.yaml;
