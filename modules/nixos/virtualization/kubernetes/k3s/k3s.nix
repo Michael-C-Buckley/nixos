@@ -27,8 +27,10 @@ in {
       };
     };
 
-    # Following along at: https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/cluster/k3s/docs/USAGE.md
     networking.firewall = {
+      # Does not currently stably support nftables
+      nftables.enable = false;
+
       allowedTCPPorts = [
         2379
         2380
