@@ -5,6 +5,10 @@ metadata:
   namespace: kube-system
 spec:
   valuesContent: |-
+    service:
+      spec:
+        externalIPs:
+          - 100.64.128.82  # Netbird interface
     tlsStore:
       default:
         defaultCertificate:
