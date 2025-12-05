@@ -21,6 +21,8 @@ in {
     };
 
     networking.firewall.allowedTCPPorts = [
+      80
+      443
       30222 # Forgejo SSH
     ];
 
