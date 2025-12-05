@@ -46,25 +46,6 @@
 in {
   flake = {
     packages.x86_64-linux = {
-      # 6.16 Kernels
-      jet1_6_16 = buildVersion {
-        versionKey = "6.16.12";
-        profile = "server";
-        customSuffix = "jet1";
-      };
-
-      jet2_6_16 = buildVersion {
-        versionKey = "6.16.12";
-        profile = "balanced";
-        customSuffix = "jet2";
-      };
-
-      jet3_6_16 = buildVersion {
-        versionKey = "6.16.12";
-        profile = "performance";
-        customSuffix = "jet3";
-      };
-
       jet1_latest = buildVersion {
         versionKey = "6.17.8";
         profile = "server";
