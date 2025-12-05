@@ -15,7 +15,7 @@ This is a Lenovo P520 workstation I use as a virtualization heavy server.
 
 - CPU: Xeon W-2195
 - RAM: 256G
-- GPU: AMD Vega-56
+- GPU: Nvidia GTX-970
 
 ## t14
 
