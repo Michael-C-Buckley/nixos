@@ -1,0 +1,12 @@
+# Small testing VM on Alpine
+virt-install \
+  --name alpine1 \
+  --memory 4096 \
+  --vcpus 2 \
+  --disk  path=/dev/zvol/zroot/local/vm/alpine1,bus=virtio \
+  --cdrom /data/iso/linux/alpine-extended-3.23.0-x86_64.iso \
+  --os-variant alpinelinux3.21 \
+  --network bridge=br0 \
+  --graphics spice \
+  --video virtio \
+  --console pty,target_type=serial
