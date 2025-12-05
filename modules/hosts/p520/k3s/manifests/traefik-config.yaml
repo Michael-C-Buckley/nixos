@@ -5,6 +5,30 @@ metadata:
   namespace: kube-system
 spec:
   valuesContent: |-
+    # Use host network mode to bind directly to host ports 80/443 on all interfaces
+    # This bypasses klipper-lb and allows binding to all interfaces including Netbird
+    hostNetwork: true
+    updateStrategy:
+      type: Recreate
+    podSecurityContext:
+      runAsUser: 0
+      runAsGroup: 0
+      runAsNonRoot: false
+    securityContext:
+      capabilities:
+        add:
+          - NET_BIND_SERVICE
+        drop:
+          - ALL
+    service:
+      type: ClusterIP
+    ports:
+      web:
+        port: 80
+      websecure:
+        port: 443
+
+    # Set a default TLS certificate for Traefik to use
     tlsStore:
       default:
         defaultCertificate:
