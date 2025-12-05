@@ -5,6 +5,7 @@
       containerlab
       libvirt
       netbird
+      nvidia
     ];
 
     virtualisation = {
