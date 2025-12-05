@@ -1,6 +1,7 @@
 {config, ...}: {
   flake.modules.nixos.uff = {
     imports = with config.flake.modules.nixos; [
+      bfd
       bgp
       ospf
       vrrp
