@@ -3,22 +3,26 @@
   config,
   ...
 }: let
+  inherit (config) flake;
   inherit (builtins) mapAttrs;
   inherit (inputs) nixpkgs;
 
   mkSystem = {
     hostname,
     system ? "x86_64-linux",
+    extraCfg ? {},
   }:
     nixpkgs.lib.nixosSystem {
       inherit system;
-      modules = [
-        config.flake.modules.nixos.${hostname}
-      ];
+      modules = [flake.modules.nixos.${hostname}];
 
       pkgs = import nixpkgs {
         inherit system;
-        config.allowUnfree = true;
+        config =
+          {
+            allowUnfree = true;
+          }
+          // extraCfg;
       };
     };
 in {
@@ -29,7 +33,7 @@ in {
         mkSystem (params // {inherit hostname;})
     ) {
       o1 = {system = "aarch64-linux";};
-      p520 = {};
+      p520 = {extraCfg = {cudaSupport = true;};};
       t14 = {};
       tempest = {};
       x570 = {};
