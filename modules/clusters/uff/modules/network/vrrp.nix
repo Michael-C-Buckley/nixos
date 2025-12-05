@@ -9,9 +9,9 @@
       };
       lan = {
         state = lib.mkDefault "BACKUP";
-        interface = "wlp2s0";
+        interface = "eno1";
         virtualRouterId = 3;
-        virtualIps = [{addr = "192.168.48.30/24";}];
+        virtualIps = [{addr = "192.168.49.30/24";}];
       };
     };
   };

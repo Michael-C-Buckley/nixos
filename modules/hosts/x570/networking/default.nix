@@ -2,6 +2,11 @@
   inherit (config.flake.hosts.x570) interfaces;
 in {
   flake.modules.nixos.x570 = {
+    imports = with config.flake.modules.nixos; [
+      bgp
+      ospf
+    ];
+
     services = {
       iperf3.enable = true;
 

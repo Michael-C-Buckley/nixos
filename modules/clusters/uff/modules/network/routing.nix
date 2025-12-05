@@ -44,8 +44,6 @@ in {
 
     services.frr = {
       bfdd.enable = true;
-      bgpd.enable = true;
-      ospf6d.enable = true;
 
       config = ''
         ip prefix-list MT3 seq 5 permit 192.168.48.0/20

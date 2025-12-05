@@ -1,5 +1,10 @@
-{
+{config, ...}: {
   flake.modules.nixos.t14 = {
+    imports = with config.flake.modules.nixos; [
+      bgp
+      ospf
+    ];
+
     networking = {
       hostId = "8425e349";
       hostName = "t14";

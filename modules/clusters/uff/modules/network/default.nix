@@ -1,5 +1,11 @@
-{
+{config, ...}: {
   flake.modules.nixos.uff = {
+    imports = with config.flake.modules.nixos; [
+      bgp
+      ospf
+      vrrp
+    ];
+
     networking = {
       interfaces.enusb1.mtu = 9000;
       useDHCP = false;
