@@ -3,8 +3,9 @@
 in {
   flake.modules.nixos.p520 = {
     imports = with config.flake.modules.nixos; [
-      ospf
+      bfd
       bgp
+      ospf
     ];
     services = {
       iperf3.enable = true;

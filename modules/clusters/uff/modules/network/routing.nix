@@ -38,70 +38,62 @@ in {
     in
       concatMapStringsSep "\n" (n: "peer ${n}") (uffInterfaces ++ otherPeers);
   in {
-    networking = {
-      firewall.allowedUDPPorts = [3784 3785 4784];
-    };
+    services.frr.config = ''
+      ip prefix-list MT3 seq 5 permit 192.168.48.0/20
+      ip prefix-list MT3 seq 10 permit 192.168.64.0/20
+      ip prefix-list 65102-OUT seq 5 permit 192.168.48.0/20
+      ip prefix-list 65102-OUT seq 10 deny 0.0.0.0/0
+      ip prefix-list 65102-IN seq 5 permit 192.168.64.0/20
+      ip prefix-list 65102-IN seq 10 deny 0.0.0.0/0
+      !
+      ip forwarding
+      ipv6 forwarding
+      !
+      router ospf
+       router-id ${lo.ipv4}
+      int lo
+       ip ospf area 0
+       ip ospf passive
+      int eno1
+       ip ospf bfd
+       ip ospf area 0
+       ip ospf cost 400
+      int br100
+       ip ospf passive
+       ip ospf area 0
+      int enusb1
+       ip ospf bfd
+       ip ospf area 0
+       ip ospf cost 1000
+      !
+      router bgp 65101
+       bgp router-id ${lo.ipv4}
+       no bgp default ipv4-unicast
 
-    services.frr = {
-      bfdd.enable = true;
+       neighbor fabric peer-group
+       neighbor fabric update-source ${lo.ipv4}
+       neighbor fabric remote-as 65101
+       ${neighbors}
+       neighbor 192.168.49.1 remote-as 65101
+       neighbor 192.168.49.1 bfd
 
-      config = ''
-        ip prefix-list MT3 seq 5 permit 192.168.48.0/20
-        ip prefix-list MT3 seq 10 permit 192.168.64.0/20
-        ip prefix-list 65102-OUT seq 5 permit 192.168.48.0/20
-        ip prefix-list 65102-OUT seq 10 deny 0.0.0.0/0
-        ip prefix-list 65102-IN seq 5 permit 192.168.64.0/20
-        ip prefix-list 65102-IN seq 10 deny 0.0.0.0/0
-        !
-        ip forwarding
-        ipv6 forwarding
-        !
-        router ospf
-         router-id ${lo.ipv4}
-        int lo
-         ip ospf area 0
-         ip ospf passive
-        int eno1
-         ip ospf bfd
-         ip ospf area 0
-         ip ospf cost 400
-        int br100
-         ip ospf passive
-         ip ospf area 0
-        int enusb1
-         ip ospf bfd
-         ip ospf area 0
-         ip ospf cost 1000
-        !
-        router bgp 65101
-         bgp router-id ${lo.ipv4}
-         no bgp default ipv4-unicast
+       address-family l2vpn evpn
+        neighbor fabric activate
+        advertise-all-vni
+       exit-address-family
 
-         neighbor fabric peer-group
-         neighbor fabric update-source ${lo.ipv4}
-         neighbor fabric remote-as 65101
-         ${neighbors}
-         neighbor 192.168.49.1 remote-as 65101
-         neighbor 192.168.49.1 bfd
+       address-family ipv4 unicast
+        neighbor 192.168.49.1 prefix-list MT3 in
+        neighbor 192.168.49.1 activate
 
-         address-family l2vpn evpn
-          neighbor fabric activate
-          advertise-all-vni
-         exit-address-family
-
-         address-family ipv4 unicast
-          neighbor 192.168.49.1 prefix-list MT3 in
-          neighbor 192.168.49.1 activate
-
-         exit-address-family
-        exit
-        !
-        bfd
-         ${bfdPeers}
-         peer 192.168.49.1
-          transmit-interval 1000
-          receive-interval 2000
-      '';
-    };
+       exit-address-family
+      exit
+      !
+      bfd
+       ${bfdPeers}
+       peer 192.168.49.1
+        transmit-interval 1000
+        receive-interval 2000
+    '';
   };
 }

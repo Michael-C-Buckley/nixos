@@ -2,9 +2,6 @@
   inherit (config.flake.hosts.x570.interfaces) lo;
 in {
   flake.modules.nixos.x570 = {
-    # Default Nixos will have standard priority, force to override
-    # environment.etc."frr/frr.conf".source = lib.mkForce config.age.secrets.frr.path;
-
     services.frr.config = ''
       ip forwarding
       ipv6 forwarding
@@ -43,18 +40,11 @@ in {
         ip ospf area 0
     '';
 
-    networking = {
-      ospf = {
-        defaultRoute = {
-          metricType = 1;
-          metric = 550;
-        };
+    networking.ospf = {
+      defaultRoute = {
+        metricType = 1;
+        metric = 550;
       };
-      firewall.allowedUDPPorts = [3784 3785];
-    };
-
-    services.frr = {
-      bfdd.enable = true;
     };
   };
 }
