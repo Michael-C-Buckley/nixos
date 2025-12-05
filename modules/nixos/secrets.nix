@@ -9,6 +9,7 @@ in {
     sops.secrets = {
       michael_ssh_pubkeys = key "michael";
       shawn_ssh_pubkeys = key "shawn";
+      root_ssh_pubkeys = key "root";
     };
 
     # Updates my local private secrets
