@@ -16,7 +16,12 @@
 {self, ...}: let
   # Use the npins nixpkgs to prevent unnecessary rebuilds because of dependency and
   # tool changes that otherwise do not affect the kernel build itself
-  pkgs = import (import "${self}/npins").nixpkgs {system = "x86_64-linux";};
+  # IMPORTANT: unfree is set here to be compatible with drivers such as Nvidia, since it will not be
+  # used from the system pkgs
+  pkgs = import (import "${self}/npins").nixpkgs {
+    system = "x86_64-linux";
+    config.allowUnfree = true;
+  };
 
   # Import modular components
   profileConfigs = import ./_profiles.nix;
@@ -42,19 +47,19 @@ in {
   flake = {
     packages.x86_64-linux = {
       # 6.16 Kernels
-      jet1-kernel_6_16 = buildVersion {
+      jet1_6_16 = buildVersion {
         versionKey = "6.16.12";
         profile = "server";
         customSuffix = "jet1";
       };
 
-      jet2-kernel_6_16 = buildVersion {
+      jet2_6_16 = buildVersion {
         versionKey = "6.16.12";
         profile = "balanced";
         customSuffix = "jet2";
       };
 
-      jet3-kernel_6_16 = buildVersion {
+      jet3_6_16 = buildVersion {
         versionKey = "6.16.12";
         profile = "performance";
         customSuffix = "jet3";
@@ -76,13 +81,6 @@ in {
         versionKey = "6.17.8";
         profile = "performance";
         customSuffix = "jet3";
-      };
-
-      # An attempt to also now build WSL kernels
-      jet-wsl-kernel_6_17_8 = buildVersion {
-        versionKey = "6.17.8";
-        profile = "server";
-        customSuffix = "jet-wsl";
       };
     };
   };
