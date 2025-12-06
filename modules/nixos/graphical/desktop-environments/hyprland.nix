@@ -16,10 +16,9 @@
         _JAVA_AWT_WM_NONREPARENTING = "1";
       };
 
-      # TO DO: audit these packages to see what I use
+      # TODO: audit these packages to see what I use
       systemPackages = with pkgs; [
         hyprshot
-        hyprpaper
         hyprcursor
         hyprsunset
         hyprpolkitagent # Auth agent

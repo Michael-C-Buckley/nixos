@@ -1,8 +1,5 @@
 {
-  flake.modules.nixos.t14 = let
-    wpDir = "/home/michael/Pictures/wallpapers";
-    paper1 = "${wpDir}/deviant/sky_light_by_bisbiswas_de3r7zn.jpg";
-  in {
+  flake.modules.nixos.t14 = {
     hjem.users.michael.files = {
       ".config/hypr/host.conf".text = ''
         # T14 Host-specific
@@ -11,13 +8,6 @@
         # Portable Monitor, sometimes used
         monitor=DP-1,1920x1080@60.00Hz,-1920x0,1
       '';
-
-      ".config/hypr/hyprpaper.conf".text = ''
-        preload = ${paper1}
-        wallpaper = , ${paper1}
-      '';
-
-      ".current_wallpaper".source = paper1;
     };
   };
 }
