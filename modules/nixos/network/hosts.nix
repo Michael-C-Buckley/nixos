@@ -13,8 +13,6 @@ in {
       "${hosts.p520.interfaces.lo.ipv4}" = [
         "p520"
         "p520.michael.lan"
-        "git.p520.michael.lan"
-        "owi.p520.michael.lan"
       ];
 
       # 2.5GbE
@@ -27,6 +25,7 @@ in {
       "${hosts.uff1.interfaces.lo.ipv4}" = ["uff1" "uff1.michael.lan"];
       "${hosts.uff2.interfaces.lo.ipv4}" = ["uff2" "uff2.michael.lan"];
       "${hosts.uff3.interfaces.lo.ipv4}" = ["uff3" "uff3.michael.lan"];
+      "${hosts.b550.interfaces.enp2.ipv4}" = ["b550" "b550.michael.lan"];
     };
   };
 }
