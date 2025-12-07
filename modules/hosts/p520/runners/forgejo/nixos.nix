@@ -4,7 +4,7 @@
   # TODO: containerize this runner
   flake.modules.nixos.p520 = {config, ...}: {
     services.gitea-actions-runner.instances.nixos = {
-      enable = true;
+      enable = false;
       name = config.networking.hostName;
       labels = ["native:host"];
       url = "https://git.groovyreserve.com/michael/nixos.git";
