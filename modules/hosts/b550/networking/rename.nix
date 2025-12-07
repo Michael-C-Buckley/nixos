@@ -10,11 +10,10 @@ let
 in {
   flake.modules.nixos.b550 = {config, ...}: {
     environment.etc = {
-      "udev/rules.d/10-rename-nics.rules" = config.sops.templates.udev-rename.path;
       "systemd/network/10-eno1.link".source = config.sops.templates."link-eno1".path;
       "systemd/network/10-enp2.link".source = config.sops.templates."link-enp2".path;
-      "systemd/network/10-enp3.link".source = config.sops.templates."link-enp3".path;
-      "systemd/network/10-enp4.link".source = config.sops.templates."link-enp4".path;
+      "systemd/network/10-enx3.link".source = config.sops.templates."link-enx3".path;
+      "systemd/network/10-enx4.link".source = config.sops.templates."link-enx4".path;
     };
 
     sops = {
