@@ -39,7 +39,7 @@ in {
             prefixLength = 24;
           }
         ];
-        ens1f0 = {
+        enx2 = {
           mtu = 9000;
           ipv4.addresses = [
             {
@@ -48,7 +48,7 @@ in {
             }
           ];
         };
-        ens1f1 = {
+        enx3 = {
           mtu = 9000;
           ipv4.addresses = [
             {
