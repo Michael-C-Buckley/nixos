@@ -2,6 +2,10 @@
 
 These consists of individual non-groups NixOS hosts. The naming is generally based on model/chassis/etc.
 
+## B550
+
+2U racked-mounted general-purpose server. Currently the main host for my kube instance and various other self-host/homelab things.
+
 ## O1
 
 Oracle Cloud free-tier ARM server.
@@ -11,7 +15,7 @@ Oracle Cloud free-tier ARM server.
 
 ## p520
 
-This is a Lenovo P520 workstation I use as a virtualization heavy server.
+This is a Lenovo P520 workstation I use as a virtualization and build server. I use it with Cisco Modeling Labs, ContainerLab, and other tools.
 
 - CPU: Xeon W-2195
 - RAM: 256G
