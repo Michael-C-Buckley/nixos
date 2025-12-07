@@ -1,5 +1,5 @@
 {config, ...}: let
-  inherit (config.flake.hosts.x570) interfaces;
+  inherit (config.flake.hosts.x570.interfaces) lo eno1 eno2 enx3;
 in {
   flake.modules.nixos.x570 = {
     imports = with config.flake.modules.nixos; [
@@ -9,12 +9,6 @@ in {
 
     services = {
       iperf3.enable = true;
-
-      # Make the 10GbE NIC static
-      udev.extraRules = ''
-        SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="90:e2:ba:60:01:b8", NAME="enx10p1"
-        SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="90:e2:ba:60:01:b9", NAME="enx10p2"
-      '';
     };
 
     # Don't wait for DHCP as I use static IPs
@@ -29,10 +23,10 @@ in {
       networkmanager = {
         enable = true;
         unmanaged = [
-          "enp6s0"
-          "enp7s0"
-          "enx10p1"
-          "enx10p2"
+          "eno1"
+          "eno2"
+          "enx3"
+          "enx4"
         ];
       };
       useNetworkd = true;
@@ -48,33 +42,33 @@ in {
       };
 
       interfaces = {
-        enp6s0.ipv4.addresses = [
+        eno1.ipv4.addresses = [
           {
-            address = interfaces.enp6s0.ipv4;
+            address = eno1.ipv4;
             prefixLength = 24;
           }
         ];
-        enp7s0 = {
+        eno2 = {
           mtu = 9000;
           ipv4.addresses = [
             {
-              address = interfaces.enp7s0.ipv4;
+              address = eno2.ipv4;
               prefixLength = 28;
             }
           ];
         };
-        enx10p1 = {
+        enx3 = {
           mtu = 9000;
           ipv4.addresses = [
             {
-              address = interfaces.enx10p1.ipv4;
+              address = enx3.ipv4;
               prefixLength = 28;
             }
           ];
         };
         lo.ipv4.addresses = [
           {
-            address = interfaces.lo.ipv4;
+            address = lo.ipv4;
             prefixLength = 32;
           }
         ];
