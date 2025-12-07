@@ -1,6 +1,16 @@
 {config, ...}: let
   hostName = "b550";
-  inherit (config.flake.hosts.${hostName}) interfaces;
+  inherit (config.flake.hosts.${hostName}.interfaces) lo br0 eno1 enp2 enx3 enx4;
+
+  mkIntf = address: {
+    mtu = 9000;
+    addresses = [
+      {
+        inherit address;
+        prefixLength = 28;
+      }
+    ];
+  };
 in {
   flake.modules.nixos.${hostName} = {
     imports = with config.flake.modules.nixos; [
@@ -29,36 +39,27 @@ in {
       };
 
       interfaces = {
+        lo.ipv4.addresses = [
+          {
+            address = lo.ipv4;
+            prefixLength = 32;
+          }
+        ];
         br0.ipv4.addresses = [
           {
-            address = interfaces.br0.ipv4;
+            address = br0.ipv4;
             prefixLength = 27;
           }
         ];
         eno1.ipv4.addresses = [
           {
-            address = interfaces.eno1.ipv4;
+            address = eno1.ipv4;
             prefixLength = 24;
           }
         ];
-        enp3s0f0 = {
-          mtu = 9000;
-          ipv4.addresses = [
-            {
-              address = interfaces.enp3s0f0.ipv4;
-              prefixLength = 28;
-            }
-          ];
-        };
-        enp3s0f1 = {
-          mtu = 9000;
-          ipv4.addresses = [
-            {
-              address = interfaces.enp3s0f1.ipv4;
-              prefixLength = 28;
-            }
-          ];
-        };
+        enp2.ipv4 = mkIntf enp2.ipv4;
+        enx3.ipv4 = mkIntf enx3.ipv4;
+        enx4.ipv4 = mkIntf enx4.ipv4;
       };
     };
   };
