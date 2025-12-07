@@ -27,15 +27,15 @@ in {
         ip ospf passive
         ip ospf area 0
 
-      int enp6s0
+      int eno1
         ip ospf cost 1000
         ip ospf area 0
 
-      int enp7s0
+      int eno2
         ip ospf cost 400
         ip ospf area 0
 
-      int enx10p1
+      int enx3
         ip ospf cost 100
         ip ospf area 0
     '';

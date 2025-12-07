@@ -2,14 +2,14 @@
   inherit (config.flake) hosts;
 in {
   flake.modules.nixos.uff = {config, ...}: let
-    inherit (hosts.${config.networking.hostName}.interfaces) lo eno1 enusb1;
+    inherit (hosts.${config.networking.hostName}.interfaces) lo eno1 enu2;
   in {
     networking.interfaces = {
-      enusb1 = {
+      enu2 = {
         mtu = 9000;
         ipv4.addresses = [
           {
-            address = enusb1.ipv4;
+            address = enu2.ipv4;
             prefixLength = 28;
           }
         ];

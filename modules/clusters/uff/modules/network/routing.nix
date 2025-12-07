@@ -61,7 +61,7 @@ in {
       int br100
        ip ospf passive
        ip ospf area 0
-      int enusb1
+      int enu2
        ip ospf bfd
        ip ospf area 0
        ip ospf cost 1000

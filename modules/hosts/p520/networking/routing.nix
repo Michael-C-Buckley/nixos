@@ -1,5 +1,5 @@
 {config, ...}: let
-  inherit (config.flake.hosts.p520.interfaces) lo eno1 ens1f0 ens1f1 br0;
+  inherit (config.flake.hosts.p520.interfaces) lo eno1 enx2 enx3 br0;
 in {
   # This host uses network statements since I also use ContainerLab and advertise
   # the IPs to reach the nodes, which creates an emphereal bridge with a changing
@@ -17,17 +17,17 @@ in {
       int eno1
         ip ospf cost 1000
 
-      int ens1f0
+      int enx2
         ip ospf cost 100
 
-      int ens1f1
+      int enx3
         ip ospf cost 100
 
       router ospf
         network ${lo.ipv4}/32 area 0
         network ${eno1.ipv4}/32 area 0
-        network ${ens1f0.ipv4}/32 area 0
-        network ${ens1f1.ipv4}/32 area 0
+        network ${enx2.ipv4}/32 area 0
+        network ${enx3.ipv4}/32 area 0
         network ${br0.ipv4}/32 area 0
         network 172.20.20.0/24 area 0
     '';
