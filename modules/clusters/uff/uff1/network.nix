@@ -1,6 +1,5 @@
 {
   flake.modules.nixos.uff1 = {
-    custom.enusb1.mac = "6c:1f:f7:06:27:8e";
     networking = {
       networkmanager.ensureProfiles.profiles = {
         home = {

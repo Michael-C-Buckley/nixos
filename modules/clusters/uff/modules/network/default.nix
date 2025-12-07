@@ -13,10 +13,10 @@
       useNetworkd = true;
       networkmanager = {
         enable = true;
-        unmanaged = ["eno1" "enusb1" "br100"];
+        unmanaged = ["eno1" "enu2" "br100"];
         ensureProfiles.profiles = {
-          home.connection.interface-name = "wlp2s0";
-          home2.connection.interface-name = "wlp2s0";
+          home.connection.interface-name = "wlan1";
+          home2.connection.interface-name = "wlan1";
         };
       };
     };
