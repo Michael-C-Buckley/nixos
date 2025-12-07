@@ -16,16 +16,16 @@ in {
       ];
 
       # 2.5GbE
-      "${hosts.uff1.interfaces.enusb1.ipv4}" = ["uff1s"];
-      "${hosts.uff2.interfaces.enusb1.ipv4}" = ["uff2s"];
-      "${hosts.uff3.interfaces.enusb1.ipv4}" = ["uff3s"];
+      "${hosts.uff1.interfaces.enu2.ipv4}" = ["uff1s"];
+      "${hosts.uff2.interfaces.enu2.ipv4}" = ["uff2s"];
+      "${hosts.uff3.interfaces.enu2.ipv4}" = ["uff3s"];
 
       # Loopbacks
       "192.168.61.0" = ["uff" "uff.michael.lan"];
       "${hosts.uff1.interfaces.lo.ipv4}" = ["uff1" "uff1.michael.lan"];
       "${hosts.uff2.interfaces.lo.ipv4}" = ["uff2" "uff2.michael.lan"];
       "${hosts.uff3.interfaces.lo.ipv4}" = ["uff3" "uff3.michael.lan"];
-      "${hosts.b550.interfaces.enp2.ipv4}" = ["b550" "b550.michael.lan"];
+      "${hosts.b550.interfaces.lo.ipv4}" = ["b550" "b550.michael.lan"];
     };
   };
 }

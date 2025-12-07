@@ -25,14 +25,14 @@ in {
             then []
             else [
               hosts.${hostname}.interfaces.eno1.ipv4
-              hosts.${hostname}.interfaces.enusb1.ipv4
+              hosts.${hostname}.interfaces.enu2.ipv4
             ]
         )
         uffHosts;
       otherPeers = [
         # Other Hosts
-        hosts.x570.interfaces.enp6s0.ipv4
-        hosts.x570.interfaces.enp7s0.ipv4
+        hosts.x570.interfaces.eno1.ipv4
+        hosts.x570.interfaces.eno2.ipv4
         "192.168.49.2" # Cisco
       ];
     in

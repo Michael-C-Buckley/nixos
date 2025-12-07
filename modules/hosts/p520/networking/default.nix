@@ -43,7 +43,7 @@ in {
           mtu = 9000;
           ipv4.addresses = [
             {
-              address = interfaces.ens1f0.ipv4;
+              address = interfaces.enx2.ipv4;
               prefixLength = 28;
             }
           ];
@@ -52,7 +52,7 @@ in {
           mtu = 9000;
           ipv4.addresses = [
             {
-              address = interfaces.ens1f1.ipv4;
+              address = interfaces.enx3.ipv4;
               prefixLength = 28;
             }
           ];
