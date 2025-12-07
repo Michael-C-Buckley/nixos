@@ -32,6 +32,7 @@ in {
       hostname: params:
         mkSystem (params // {inherit hostname;})
     ) {
+      b550 = {};
       o1 = {system = "aarch64-linux";};
       p520 = {extraCfg = {cudaSupport = true;};};
       t14 = {};
