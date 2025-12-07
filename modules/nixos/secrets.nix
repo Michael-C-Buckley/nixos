@@ -23,6 +23,12 @@ in {
         Type = "oneshot";
       };
 
+      environment = {
+        GIT_CONFIG_COUNT = "1";
+        GIT_CONFIG_KEY_0 = "safe.directory";
+        GIT_CONFIG_VALUE_0 = "/etc/secrets";
+      };
+
       path = with pkgs; [git openssh];
 
       script = ''
