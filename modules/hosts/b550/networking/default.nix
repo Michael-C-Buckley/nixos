@@ -4,7 +4,7 @@
 
   mkIntf = address: {
     mtu = 9000;
-    addresses = [
+    ipv4.addresses = [
       {
         inherit address;
         prefixLength = 28;
@@ -57,9 +57,9 @@ in {
             prefixLength = 24;
           }
         ];
-        enp2.ipv4 = mkIntf enp2.ipv4;
-        enx3.ipv4 = mkIntf enx3.ipv4;
-        enx4.ipv4 = mkIntf enx4.ipv4;
+        enp2 = mkIntf enp2.ipv4;
+        enx3 = mkIntf enx3.ipv4;
+        enx4 = mkIntf enx4.ipv4;
       };
     };
   };
