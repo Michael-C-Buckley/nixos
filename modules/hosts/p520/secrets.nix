@@ -4,12 +4,7 @@
       defaultSopsFile = "/etc/secrets/hosts/p520/p520.yaml";
       secrets = {
         cachePrivateKey.mode = "0755"; # Public -- michaelcbuckley.dev-1:i6EiwHcLtrM6EAdpeymEWqlWs9p15HVTCjS+Cs/cgH0=
-        k3s-cloudflare-secret = {};
         forgejoRunnerToken = {};
-        atticEnv = {
-          sopsFile = "/etc/secrets/hosts/p520/attic.sops";
-          format = "binary";
-        };
       };
     };
   };
