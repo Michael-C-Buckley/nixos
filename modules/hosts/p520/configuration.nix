@@ -2,6 +2,7 @@
   flake.modules.nixos.p520 = {
     imports = with config.flake.modules.nixos; [
       serverPreset
+      network-no-static-default
       containerlab
       libvirt
       netbird

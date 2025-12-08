@@ -1,6 +1,6 @@
 {
   # Delete junk default routes
-  flake.modules.nixos.p520 = {pkgs, ...}: {
+  flake.modules.nixos.network-no-static-default = {pkgs, ...}: {
     systemd = {
       services.remove-static-default-route = {
         description = "Remove default routes created ";
