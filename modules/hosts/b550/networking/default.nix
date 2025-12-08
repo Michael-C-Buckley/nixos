@@ -25,6 +25,7 @@ in {
     networking = {
       inherit hostName;
       hostId = "272a6fae";
+      useNetworkd = true;
 
       # TODO: switch to using internal DNS server once set up
       nameservers = [
