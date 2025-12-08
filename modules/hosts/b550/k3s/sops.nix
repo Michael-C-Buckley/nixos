@@ -4,7 +4,7 @@
       secrets = {
         "k3s/cloudflare" = {};
         atticEnv = {
-          sopsFile = "/etc/secrets/hosts/p520/attic.sops";
+          sopsFile = "/etc/secrets/hosts/b550/attic.sops";
           format = "binary";
         };
       };
