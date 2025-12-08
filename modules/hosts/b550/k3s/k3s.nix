@@ -2,7 +2,7 @@
 {config, ...}: let
   inherit (config) flake;
 in {
-  flake.modules.nixos.p520 = {
+  flake.modules.nixos.b550 = {
     config,
     pkgs,
     ...
