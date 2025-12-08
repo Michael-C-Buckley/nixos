@@ -4,7 +4,6 @@
       serverPreset
       network-no-static-default
       containerlab
-      k3s
       libvirt
       netbird
     ];
