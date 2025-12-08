@@ -12,6 +12,8 @@ in {
     };
 
     networking = {
+      useNetworkd = true;
+
       # TODO: switch to using internal DNS server once set up
       nameservers = [
         "1.1.1.1"
