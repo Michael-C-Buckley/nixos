@@ -14,7 +14,9 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nix-kernels.url = "github:michael-c-buckley/nix-kernels";
+
+    # Use a separately pinned input to prevent unnecessary custom kernel rebuilds
+    kernel-nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
 
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin";
