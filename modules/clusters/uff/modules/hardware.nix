@@ -1,5 +1,5 @@
 # The common hardware of the cluster
-{inputs, ...}: {
+{self, ...}: {
   flake.modules.nixos.uff = {
     config,
     pkgs,
@@ -15,7 +15,7 @@
         availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "uas" "sd_mod"];
         kernelModules = ["dm-snapshot"];
       };
-      kernelPackages = pkgs.linuxKernel.packagesFor inputs.nix-kernels.packages.${pkgs.stdenv.hostPlatform.system}.jet1;
+      kernelPackages = pkgs.linuxKernel.packagesFor self.packages.${pkgs.stdenv.hostPlatform.system}.jet1;
       kernelModules = ["kvm-intel" "virtiofs" "9p" "9pnet_virtio"];
       extraModulePackages = [];
     };
