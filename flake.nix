@@ -14,6 +14,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nix-kernels.url = "github:michael-c-buckley/nix-kernels";
 
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin";
