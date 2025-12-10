@@ -10,6 +10,7 @@ in {
       impermanence
       zfs
       shawn
+      pam-ssh
 
       packages
       packages-network

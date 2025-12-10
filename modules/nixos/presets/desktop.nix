@@ -31,6 +31,7 @@ in {
       gpg-yubikey
       ssh-agent
       tpm2
+      pam-ssh
       pam-yubikey
       secrets
 

@@ -1,6 +1,7 @@
 {
   # Common aliases shared across shells
   common = {
+    aa = "echo $(whoami)@$(hostname)";
     ll = "eza -ala -g --icons";
     la = "eza -A";
     l = "ls -CF";
