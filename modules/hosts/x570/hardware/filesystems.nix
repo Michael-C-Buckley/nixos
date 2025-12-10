@@ -1,9 +1,8 @@
 {
   flake.modules.nixos.x570 = let
-    mkZfs = path: {
-      device = "zroot/${path}";
+    mkZfs = device: neededForBoot: {
+      inherit device neededForBoot;
       fsType = "zfs";
-      neededForBoot = true;
     };
   in {
     swapDevices = [];
@@ -29,14 +28,12 @@
       };
 
       # local datasets
-      "/cache" = mkZfs "local/cache";
-      "/nix" = mkZfs "local/nix";
-      "/crypt" = mkZfs "local/crypt";
-      "/media/games" = mkZfs "local/games";
-      "/var/lib/ipex" = mkZfs "local/ollama"; # No compression, 1M record size
+      "/cache" = mkZfs "zroot/local/cache" true;
+      "/nix" = mkZfs "zroot/local/nix" true;
+      "/media/games" = mkZfs "zroot/local/games" false;
 
       # ZFS Volumes
-      "/persist" = mkZfs "x570/nixos/persist";
+      "/persist" = mkZfs "zroot/x570/nixos/persist" true;
     };
   };
 }
