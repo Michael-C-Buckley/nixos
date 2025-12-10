@@ -22,6 +22,8 @@ in {
 
     networking.firewall.allowedTCPPorts = [
       30222 # Forgejo SSH
+      80
+      443
     ];
 
     services.k3s = {
