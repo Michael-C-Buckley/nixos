@@ -15,6 +15,7 @@ in {
       clamav
       gpg-yubikey
       secrets
+      pam-ssh
 
       # Hjem
       nixos
