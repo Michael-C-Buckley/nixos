@@ -1,7 +1,7 @@
 {
   flake.modules.nixos.b550 = let
-    mkZfs = path: {
-      device = "zroot/${path}";
+    mkZfs = device: {
+      inherit device;
       fsType = "zfs";
       neededForBoot = true;
     };
@@ -29,11 +29,12 @@
       };
 
       # local datasets
-      "/cache" = mkZfs "local/cache";
-      "/nix" = mkZfs "local/nix";
+      "/cache" = mkZfs "zroot/local/cache";
+      "/nix" = mkZfs "zroot/local/nix";
 
       # ZFS Volumes
-      "/persist" = mkZfs "b550/nixos/persist";
+      "/persist" = mkZfs "zroot/b550/nixos/persist";
+      "/var/lib/attic" = mkZfs "zroot/local/attic";
     };
   };
 }
