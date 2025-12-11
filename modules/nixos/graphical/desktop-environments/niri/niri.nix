@@ -1,19 +1,23 @@
 # First draft at using Niri
 {
   flake.modules.nixos.niri = {pkgs, ...}: let
-    # wrapperScript = pkgs.writeShellScript "noctalia-wrapper" ''
-    #   #!/usr/bin/env bash
-    #   exec $(cat ~/.local/share/noctalia_path) "$@"
-    # '';
-    pathScript = pkgs.writeShellScript "noctalia-path" ''
+    noctaliaWrapper = pkgs.writeShellScript "noctalia-wrapper" ''
+      #!/usr/bin/env bash
+      exec $(cat ~/.local/share/noctalia_path) "$@"
+    '';
+    noctaliaPath = pkgs.writeShellScript "noctalia-path" ''
       #!/usr/bin/env bash
       mkdir -p ~/.local/share
       echo $(whereis noctalia-shell | awk '{print $2}') > ~/.local/share/noctalia_path
     '';
   in {
     programs.niri.enable = true;
-    environment.systemPackages = [
-      pkgs.xwayland-satellite
+    environment.systemPackages = with pkgs; [
+      xwayland-satellite
+      wpctl
+      playerctl
+      ghostty
+      hyprlock
     ];
 
     hjem.users.michael = {
@@ -23,6 +27,8 @@
           focus-follows-mouse
           touchpad {
             tap
+            dwt // disable while typing
+
           }
         }
 
@@ -31,10 +37,12 @@
           center-focused-column "never"
           default-column-width { proportion 0.75; }
 
+          // Mod+R to switch between layouts
           preset-column-widths {
             proportion 0.33333
             proportion 0.5
             proportion 0.66667
+            proportion 0.9
           }
 
           focus-ring {
@@ -46,7 +54,7 @@
         }
 
         spawn-sh-at-startup "systemctl --user start noctalia-shell.service"
-        spawn-sh-at-startup "${pathScript}"
+        spawn-sh-at-startup "${noctaliaPath}"
 
         cursor {
           // TODO: integrate as option
@@ -60,7 +68,43 @@
           clip-to-geometry true
         }
 
-        include "binds.kdl"
+        binds {
+          ${import ./binds/_windows.nix}
+          ${import ./binds/_workspace.nix}
+          ${import ./binds/_media.nix}
+          ${import ./binds/_system.nix}
+
+          // Most actions that you can bind here can also be invoked programmatically with
+          // `niri msg action do-something`.
+          // Mod-Shift-/, which is usually the same as Mod-?,
+          // shows a list of important hotkeys.
+          Mod+Shift+Slash { show-hotkey-overlay; }
+
+          // Suggested binds for running programs: terminal, app launcher, screen locker.
+          Super+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
+          Super+L hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "hyprlock"; }
+
+          // Noctalia Functions
+          Super+space hotkey-overlay-title="Noctalia: Launcher" { spawn "${noctaliaWrapper} ipc call launcher toggle"; }
+          Super+Ctrl+space hotkey-overlay-title="Noctalia: Toggle Bar" { spawn "${noctaliaWrapper} ipc call bar toggle"; }
+          Mod+Ctrl+M hotkey-overlay-title="Noctalia: Toggle Dark Mode" { spawn "${noctaliaWrapper} ipc call darkMode toggle"; }
+          Mod+Ctrl+N hotkey-overlay-title="Noctalia: Toggle Notifications Do Not Disturb" { spawn "${noctaliaWrapper} ipc call notifications toggleDND"; }
+
+          XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
+          XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+          XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+          XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+          XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+          XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
+          XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
+          XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
+          XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
+          XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+
+          Print { screenshot; }
+          Ctrl+Print { screenshot-screen; }
+          Alt+Print { screenshot-window; }
+        }
       '';
     };
   };
