@@ -29,6 +29,7 @@
       gnumeric
 
       # Utility
+      attic-client
       wireshark
       winbox4
     ];

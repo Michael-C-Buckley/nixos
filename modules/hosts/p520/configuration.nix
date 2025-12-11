@@ -1,5 +1,5 @@
 {config, ...}: {
-  flake.modules.nixos.p520 = {
+  flake.modules.nixos.p520 = {pkgs, ...}: {
     imports = with config.flake.modules.nixos; [
       serverPreset
       network-no-static-default
@@ -7,6 +7,10 @@
       libvirt
       netbird
       nvidia
+    ];
+
+    environment.systemPackages = with pkgs; [
+      attic-client
     ];
 
     virtualisation = {
