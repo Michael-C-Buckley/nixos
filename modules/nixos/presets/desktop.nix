@@ -23,6 +23,7 @@ in {
       # Userspace
       dconf
       hyprland
+      niri
       tuigreet
       noctalia
 

@@ -8,7 +8,7 @@
     options.custom.tuigreet = {
       defaultCommand = lib.mkOption {
         type = lib.types.str;
-        default = "hyprland";
+        default = "niri-session";
         description = "The default session command for tuigreet and auto-login";
       };
     };
