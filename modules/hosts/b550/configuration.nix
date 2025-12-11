@@ -6,6 +6,7 @@
       containerlab
       libvirt
       netbird
+      attic
     ];
 
     nix.settings.substituters = ["http://p520:5000"];
