@@ -2,6 +2,7 @@
   flake.modules.nixos.x570 = {lib, ...}: {
     imports = with config.flake.modules.nixos; [
       desktopPreset
+      homelabPreset
       intelGraphics
       wifi
       gaming
