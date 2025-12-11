@@ -37,12 +37,17 @@
         flake-registry = "";
 
         substituters = [
+          "https://cache.nixos-cuda.org"
           "https://nix-community.cachix.org"
         ];
         trusted-public-keys = [
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+          "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+
+          # Personal Caches
           "michael-hydra-1:i6EiwHcLtrM6EAdpeymEWqlWs9p15HVTCjS+Cs/cgH0="
           "michaelcbuckley.dev-1:i6EiwHcLtrM6EAdpeymEWqlWs9p15HVTCjS+Cs/cgH0="
+          "default:lZU6Kss/ByDVwjPUGAbYXMLht9Zuq4e7hxubfLehxOw" # B550 attic
         ];
         trusted-users = ["root" "@wheel" "builder"];
         allowed-users = ["root" "@wheel" "builder"];
