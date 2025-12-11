@@ -1,5 +1,7 @@
 {
   flake.modules.nixos.attic = {config, ...}: {
+    networking.firewall.allowedTCPPorts = [3080];
+
     services.atticd = {
       enable = true;
       environmentFile = config.sops.secrets.attic.path;
