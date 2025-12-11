@@ -70,6 +70,13 @@
           clip-to-geometry true
         }
 
+        // They are created in inverted order
+        workspace "N5"
+        workspace "N4"
+        workspace "N3"
+        workspace "N2"
+        workspace "N1"
+
         binds {
           ${import ./binds/_system.nix}
           ${import ./binds/_windows.nix}
