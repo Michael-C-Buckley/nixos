@@ -1,17 +1,23 @@
 # First draft at using Niri
 {
-  flake.modules.nixos.niri = {
-    config,
-    pkgs,
-    ...
-  }: {
+  flake.modules.nixos.niri = {pkgs, ...}: let
+    # wrapperScript = pkgs.writeShellScript "noctalia-wrapper" ''
+    #   #!/usr/bin/env bash
+    #   exec $(cat ~/.local/share/noctalia_path) "$@"
+    # '';
+    pathScript = pkgs.writeShellScript "noctalia-path" ''
+      #!/usr/bin/env bash
+      mkdir -p ~/.local/share
+      echo $(whereis noctalia-shell | awk '{print $2}') > ~/.local/share/noctalia_path
+    '';
+  in {
     programs.niri.enable = true;
     environment.systemPackages = [
       pkgs.xwayland-satellite
     ];
 
     hjem.users.michael = {
-      files.".config/niri/config.kdl".source = ''
+      files.".config/niri/config.kdl".text = ''
           input {
             warp-mouse-to-focus
             focus-follows-mouse
@@ -42,7 +48,7 @@
           }
 
           spawn-sh-at-startup "systemctl --user start noctalia-shell.service"
-          spawn-sh-at-startup "${config.custom.noctalia.pathScript}"
+          spawn-sh-at-startup "${pathScript}"
 
           cursor {
             // TODO: integrate as option
