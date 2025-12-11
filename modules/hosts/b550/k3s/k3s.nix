@@ -34,8 +34,6 @@ in {
 
       # This section merges and flattens the components into a single manifest per app
       manifests = {
-        attic.source = buildManifest ./attic;
-        attic-secret.source = config.sops.templates.k3s-attic-secret.path;
         cert-manager.source = ./manifests/cert-manager.yaml;
         cloudflare.source = config.sops.templates.k3s-cloudflare-secret.path;
         lets-encrypt.source = ./manifests/lets-encrypt.yaml;
