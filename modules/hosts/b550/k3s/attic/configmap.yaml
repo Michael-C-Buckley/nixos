@@ -4,7 +4,26 @@ metadata:
   name: attic-config
   namespace: attic
 data:
-  ATTIC_LISTEN: "[::]:8080"
-  ATTIC_ALLOWED_HOSTS: "0.0.0.0/0"
-  ATTIC_STORAGE_TYPE: "local"
-  ATTIC_STORAGE_PATH: "/var/lib/attic"
+  server.toml: |
+    listen = "[::]:8080"
+    allowed-hosts = []
+
+    [database]
+    url = "sqlite:///var/lib/attic/server.db"
+
+    [storage]
+    type = "local"
+    path = "/var/lib/attic/storage"
+
+    [chunking]
+    nar-size-threshold = 65536
+    min-size = 16384
+    avg-size = 65536
+    max-size = 262144
+
+    # Do not compress, I use a compressed dataset already
+    [compression]
+    type = "none"
+
+    [garbage-collection]
+    interval = "12 hours"

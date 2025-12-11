@@ -3,10 +3,7 @@
     sops = {
       secrets = {
         "k3s/cloudflare" = {};
-        atticEnv = {
-          sopsFile = "/etc/secrets/hosts/b550/attic.sops";
-          format = "binary";
-        };
+        "k3s/attic" = {};
       };
 
       templates = {
@@ -29,7 +26,7 @@
             namespace: attic
           type: Opaque
           stringData:
-            atticEnv: ${config.sops.placeholder.atticEnv}
+            ATTIC_SERVER_TOKEN_RS256_SECRET_BASE64: ${config.sops.placeholder."k3s/attic"}
         '';
       };
     };
