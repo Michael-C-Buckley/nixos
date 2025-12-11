@@ -53,6 +53,8 @@
           border { off; }
         }
 
+        hotkey-overlay { skip-at-startup; }
+
         spawn-sh-at-startup "systemctl --user start noctalia-shell.service"
         spawn-sh-at-startup "${noctaliaPath}"
 
