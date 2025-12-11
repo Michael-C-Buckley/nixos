@@ -69,10 +69,9 @@
         }
 
         binds {
+          ${import ./binds/_system.nix}
           ${import ./binds/_windows.nix}
           ${import ./binds/_workspace.nix}
-          ${import ./binds/_media.nix}
-          ${import ./binds/_system.nix}
 
           // Most actions that you can bind here can also be invoked programmatically with
           // `niri msg action do-something`.
@@ -81,14 +80,14 @@
           Mod+Shift+Slash { show-hotkey-overlay; }
 
           // Suggested binds for running programs: terminal, app launcher, screen locker.
-          Super+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-          Super+L hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "hyprlock"; }
+          Super+Return hotkey-overlay-title="Terminal: ghostty" { spawn "ghostty"; }
+          Super+Shift+A hotkey-overlay-title="Screen Lock: hyprlock" { spawn "hyprlock"; }
 
           // Noctalia Functions
-          Super+space hotkey-overlay-title="Noctalia: Launcher" { spawn "${noctaliaWrapper} ipc call launcher toggle"; }
-          Super+Ctrl+space hotkey-overlay-title="Noctalia: Toggle Bar" { spawn "${noctaliaWrapper} ipc call bar toggle"; }
-          Mod+Ctrl+M hotkey-overlay-title="Noctalia: Toggle Dark Mode" { spawn "${noctaliaWrapper} ipc call darkMode toggle"; }
-          Mod+Ctrl+N hotkey-overlay-title="Noctalia: Toggle Notifications Do Not Disturb" { spawn "${noctaliaWrapper} ipc call notifications toggleDND"; }
+          Super+space hotkey-overlay-title="Noctalia: Launcher" { spawn-sh "${noctaliaWrapper} ipc call launcher toggle"; }
+          Super+Ctrl+space hotkey-overlay-title="Noctalia: Toggle Bar" { spawn-sh "${noctaliaWrapper} ipc call bar toggle"; }
+          Mod+Ctrl+M hotkey-overlay-title="Noctalia: Toggle Dark Mode" { spawn-sh "${noctaliaWrapper} ipc call darkMode toggle"; }
+          Mod+Ctrl+N hotkey-overlay-title="Noctalia: Toggle Notifications Do Not Disturb" { spawn-sh "${noctaliaWrapper} ipc call notifications toggleDND"; }
 
           XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
           XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
