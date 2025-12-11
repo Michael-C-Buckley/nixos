@@ -17,6 +17,7 @@ in {
 
       # Virtualization
       containerlab
+      incus
       libvirt
 
       # Userspace
