@@ -42,8 +42,6 @@
               active-color "#2d6981ab"
               inactive-color "#595959aa"
             }
-
-            # Uses focus ring instead
             border { off; }
           }
 
@@ -82,9 +80,9 @@
             Mod+Shift+Slash { show-hotkey-overlay; }
 
             // Suggested binds for running programs: terminal, app launcher, screen locker.
-            Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
-            Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-            Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+            Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+            Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+            Super+Alt+L hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "hyprlock"; }
 
             // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
             // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
