@@ -42,7 +42,7 @@ fi
 
 # Create local datasets
 zfs create -o mountpoint=none zroot/local
-for set in "crypt" "cache" "games"; do
+for set in "crypt" "cache" "games" "incus"; do
   zfs create -o mountpoint=legacy zroot/local/$set
 done
 # Nix store gets higher compression
@@ -50,24 +50,18 @@ zfs create -o mountpoint=legacy -o compression=zstd zroot/local/nix
 
 # Create hostnamed sets
 zfs create -o mountpoint=none zroot/$hostname
-for set in "home" "home/michael" "home/shawn" "nixos" "nixos/root" "nixos/persist"; do
+for set in "nixos" "nixos/root" "nixos/persist"; do
   zfs create -o mountpoint=legacy zroot/$hostname/$set
   mount -t zfs zroot/$hostname/$set /mnt/$set
 done
 
 # Mount system directories
-for dir in "cache" "crypt" "nix"; do
+for dir in "cache" "nix" "incus"; do
   mkdir -p /mnt/$dir
   mount -t zfs zroot/local/$dir /mnt/$dir
 done
 mkdir -p /mnt/persist
 mount -t zfs zroot/$hostname/nixos/persist
-
-# Mount user homes
-for user in "michael" "shawn"; do
-  mkdir -p /mnt/home/$user
-  mount -t zfs zroot/$hostname/home/$user /mnt/home/$user
-done
 
 # Mount boot
 mkdir -p /mnt/boot
