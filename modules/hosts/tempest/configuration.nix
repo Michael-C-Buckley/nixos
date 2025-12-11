@@ -24,6 +24,7 @@
 
     environment.systemPackages = with pkgs; [
       nixos-anywhere
+      attic-client
 
       # Storage tools
       parted
