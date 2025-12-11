@@ -1,8 +1,6 @@
 let
-  # Center Monitor, 34" ultrawide
-  mon1 = "DP-1";
-  # Right side monitor, vertical 24"
-  mon2 = "HDMI-A-3";
+  mon1 = "DP-1"; # Center Monitor, 34" ultrawide
+  mon2 = "HDMI-A-3"; # Right side monitor, vertical 24"
 in {
   flake.modules.nixos.x570 = {
     hjem.users.michael.files = {

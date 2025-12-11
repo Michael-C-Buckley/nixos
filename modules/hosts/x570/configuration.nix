@@ -1,5 +1,5 @@
 {config, ...}: {
-  flake.modules.nixos.x570 = {lib, ...}: {
+  flake.modules.nixos.x570 = {
     imports = with config.flake.modules.nixos; [
       desktopPreset
       homelabPreset
@@ -9,7 +9,6 @@
       k3s
     ];
 
-    nix.settings.substituters = lib.mkBefore ["http://p520:5000"];
     system.stateVersion = "25.05";
 
     # Containers (existing data but current disabled)
