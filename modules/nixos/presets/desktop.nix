@@ -21,7 +21,6 @@ in {
       libvirt
 
       # Userspace
-      cosmicDesktop
       dconf
       hyprland
       tuigreet
