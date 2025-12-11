@@ -2,6 +2,7 @@
   flake.modules.nixos.p520 = {pkgs, ...}: {
     imports = with config.flake.modules.nixos; [
       serverPreset
+      homelabPreset
       network-no-static-default
       containerlab
       libvirt

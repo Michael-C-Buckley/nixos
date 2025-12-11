@@ -2,6 +2,7 @@
   flake.modules.nixos.b550 = {pkgs, ...}: {
     imports = with config.flake.modules.nixos; [
       serverPreset
+      homelabPreset
       network-no-static-default
       containerlab
       libvirt
