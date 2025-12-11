@@ -14,7 +14,7 @@
     programs.niri.enable = true;
     environment.systemPackages = with pkgs; [
       xwayland-satellite
-      wpctl
+      wireplumber
       playerctl
       ghostty
       hyprlock
