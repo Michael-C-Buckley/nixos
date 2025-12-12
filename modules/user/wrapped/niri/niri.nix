@@ -11,7 +11,16 @@
     extraConfig ? "",
     extraRuntimeInputs ? [],
   }: let
-    buildInputs = [pkgs.makeWrapper] ++ extraRuntimeInputs;
+    inherit (pkgs.stdenv.hostPlatform) system;
+    # Add the necessary packages for a functional as-is experience
+    # For me, this means Noctalia and Kitty
+    buildInputs =
+      [
+        pkgs.makeWrapper
+        config.inputs.noctalia.packages.${system}.default # TODO: add wrapper for noctalia and it's deps
+        config.flake.packages.${system}.kitty
+      ]
+      ++ extraRuntimeInputs;
   in
     pkgs.symlinkJoin {
       name = "niri";
