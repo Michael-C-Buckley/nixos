@@ -14,7 +14,7 @@
     niri ? pkgs.niri,
     extraConfig ? "",
     extraRuntimeInputs ? [],
-    noctaliaNoSpawn ? false,
+    spawnNoctalia ? true,
   }: let
     inherit (pkgs.stdenv.hostPlatform) system;
     # Add the necessary packages for a functional as-is experience
@@ -31,9 +31,10 @@
       name = "niri";
       paths = [niri];
       inherit buildInputs;
+      passthru.providedSessions = ["niri"];
       postBuild = ''
         wrapProgram $out/bin/niri \
-          --add-flags "-c ${import ./_config.nix {inherit pkgs extraConfig noctaliaNoSpawn;}} --session" \
+          --add-flags "--session -c ${import ./_config.nix {inherit pkgs extraConfig spawnNoctalia;}}" \
           --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
       '';
     };

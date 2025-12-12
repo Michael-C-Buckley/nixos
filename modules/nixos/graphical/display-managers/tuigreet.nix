@@ -8,7 +8,9 @@
     options.custom.tuigreet = {
       defaultCommand = lib.mkOption {
         type = lib.types.str;
-        default = "niri-session";
+        # This `niri` command is specifically for my wrapped niri, which includes session
+        # and settings info, it is likely not appropriate in other contexts
+        default = "niri";
         description = "The default session command for tuigreet and auto-login";
       };
     };

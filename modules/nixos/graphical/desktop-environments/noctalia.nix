@@ -26,7 +26,7 @@
     ];
 
     services.noctalia-shell = {
-      enable = true;
+      enable = false;
     };
 
     # These fonts are used by default

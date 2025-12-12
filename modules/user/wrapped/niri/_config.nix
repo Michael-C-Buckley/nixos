@@ -1,7 +1,7 @@
 {
   pkgs,
   extraConfig,
-  noctaliaNoSpawn,
+  spawnNoctalia,
 }: let
   noctaliaWrapper = pkgs.writeShellScript "noctalia-wrapper" ''
     #!/usr/bin/env bash
@@ -14,11 +14,11 @@
   '';
 
   noctaliaSpawnCommand =
-    if noctaliaNoSpawn
-    then ''''
-    else ''
+    if spawnNoctalia
+    then ''
       spawn-at-startup "noctalia-shell"
-    '';
+    ''
+    else '''';
 in
   pkgs.writeText "niri-wrapped-config.kdl" ''
     ${noctaliaSpawnCommand}
