@@ -1,7 +1,7 @@
 {
   pkgs,
   extraConfig,
-  spawnViaSystemd,
+  noctaliaNoSpawn,
 }: let
   noctaliaWrapper = pkgs.writeShellScript "noctalia-wrapper" ''
     #!/usr/bin/env bash
@@ -14,10 +14,8 @@
   '';
 
   noctaliaSpawnCommand =
-    if spawnViaSystemd
-    then ''
-      spawn-sh-at-startup "systemctl" "--user" "start" "noctalia-shell.service"
-    ''
+    if noctaliaNoSpawn
+    then ''''
     else ''
       spawn-at-startup "noctalia-shell"
     '';

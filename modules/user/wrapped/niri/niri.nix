@@ -14,7 +14,7 @@
     niri ? pkgs.niri,
     extraConfig ? "",
     extraRuntimeInputs ? [],
-    spawnViaSystemd ? true,
+    noctaliaNoSpawn ? false,
   }: let
     inherit (pkgs.stdenv.hostPlatform) system;
     # Add the necessary packages for a functional as-is experience
@@ -33,7 +33,7 @@
       inherit buildInputs;
       postBuild = ''
         wrapProgram $out/bin/niri \
-          --add-flags "-c ${import ./_config.nix {inherit pkgs extraConfig spawnViaSystemd;}} --session" \
+          --add-flags "-c ${import ./_config.nix {inherit pkgs extraConfig noctaliaNoSpawn;}} --session" \
           --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
       '';
     };
