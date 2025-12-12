@@ -1,19 +1,14 @@
 ''
-  // Open/close the Overview: a zoomed-out view of workspaces and windows.
-
-  // You can also move the mouse into the top-left hot corner,
-  // or do a four-finger swipe up on a touchpad.
   Mod+O repeat=false { toggle-overview; }
-
   Mod+Q repeat=false { close-window; }
 
   Mod+Left  { focus-column-left; }
-  Mod+Down  { focus-window-down; }
-  Mod+Up    { focus-window-up; }
+  Mod+Down  { focus-window-or-workspace-down; }
+  Mod+Up    { focus-window-or-workspace-down; }
   Mod+Right { focus-column-right; }
   Mod+H     { focus-column-left; }
-  Mod+J     { focus-window-down; }
-  Mod+K     { focus-window-up; }
+  Mod+J     { focus-window-or-workspace-down; }
+  Mod+K     { focus-window-or-workspace-up; }
   Mod+L     { focus-column-right; }
 
   Mod+Ctrl+Left  { move-column-left; }
@@ -24,13 +19,6 @@
   Mod+Ctrl+J     { move-window-down; }
   Mod+Ctrl+K     { move-window-up; }
   Mod+Ctrl+L     { move-column-right; }
-
-  // Alternative commands that move across workspaces when reaching
-  // the first or last window in a column.
-  // Mod+J     { focus-window-or-workspace-down; }
-  // Mod+K     { focus-window-or-workspace-up; }
-  // Mod+Ctrl+J     { move-window-down-or-to-workspace-down; }
-  // Mod+Ctrl+K     { move-window-up-or-to-workspace-up; }
 
   Mod+Home { focus-column-first; }
   Mod+End  { focus-column-last; }
@@ -152,14 +140,10 @@
   Mod+BracketLeft  { consume-or-expel-window-left; }
   Mod+BracketRight { consume-or-expel-window-right; }
 
-  // Consume one window from the right to the bottom of the focused column.
   Mod+Comma  { consume-window-into-column; }
-  // Expel the bottom window from the focused column to the right.
   Mod+Period { expel-window-from-column; }
 
   Mod+R { switch-preset-column-width; }
-  // Cycling through the presets in reverse order is also possible.
-  // Mod+R { switch-preset-column-width-back; }
   Mod+Shift+R { switch-preset-window-height; }
   Mod+Ctrl+R { reset-window-height; }
   Mod+F { maximize-column; }
@@ -174,14 +158,6 @@
   // Center all fully visible columns on screen.
   Mod+Ctrl+C { center-visible-columns; }
 
-  // Finer width adjustments.
-  // This command can also:
-  // * set width in pixels: "1000"
-  // * adjust width in pixels: "-5" or "+5"
-  // * set width as a percentage of screen width: "25%"
-  // * adjust width as a percentage of screen width: "-10%" or "+10%"
-  // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
-  // set-column-width "100" will make the column occupy 200 physical screen pixels.
   Mod+Minus { set-column-width "-10%"; }
   Mod+Equal { set-column-width "+10%"; }
 ''
