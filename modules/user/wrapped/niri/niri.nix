@@ -10,6 +10,7 @@
     niri ? pkgs.niri,
     extraConfig ? "",
     extraRuntimeInputs ? [],
+    spawnViaSystemd ? true,
   }: let
     inherit (pkgs.stdenv.hostPlatform) system;
     # Add the necessary packages for a functional as-is experience
@@ -28,7 +29,7 @@
       inherit buildInputs;
       postBuild = ''
         wrapProgram $out/bin/niri \
-          --add-flags "-c ${import ./_config.nix {inherit pkgs extraConfig;}} --session" \
+          --add-flags "-c ${import ./_config.nix {inherit pkgs extraConfig spawnViaSystemd;}} --session" \
           --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
       '';
     };

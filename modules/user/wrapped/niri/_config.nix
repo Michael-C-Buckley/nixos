@@ -1,6 +1,7 @@
 {
   pkgs,
   extraConfig,
+  spawnViaSystemd,
 }: let
   noctaliaWrapper = pkgs.writeShellScript "noctalia-wrapper" ''
     #!/usr/bin/env bash
@@ -11,7 +12,15 @@
     mkdir -p ~/.local/share
     echo $(whereis noctalia-shell | awk '{print $2}') > ~/.local/share/noctalia_path
   '';
+
+  spawnCommand =
+    if spawnViaSystemd
+    then "systemctl --user start noctalia-shell.service"
+    else "noctalia-shell";
 in ''
+  spawn-sh-at-startup "${spawnCommand}"
+  spawn-sh-at-startup "${noctaliaPath}"
+
   input {
     disable-power-key-handling
     touchpad {
@@ -51,9 +60,6 @@ in ''
   }
 
   hotkey-overlay { skip-at-startup; }
-
-  spawn-sh-at-startup "systemctl --user start noctalia-shell.service"
-  spawn-sh-at-startup "${noctaliaPath}"
 
   cursor {
     xcursor-theme "Nordzy-cursors-white"
