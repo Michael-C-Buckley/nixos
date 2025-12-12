@@ -1,4 +1,3 @@
-# First draft at using Niri
 {
   flake.modules.nixos.niri = {
     pkgs,
@@ -20,7 +19,7 @@
       xwayland-satellite
       wireplumber
       playerctl
-      ghostty
+      kitty
       hyprlock
     ];
 
@@ -33,7 +32,7 @@
             disable-power-key-handling
             touchpad {
               tap
-              dwt // disable while typing
+              dwt
             }
           }
 
@@ -93,14 +92,21 @@
             Mod+Shift+Slash { show-hotkey-overlay; }
 
             // Suggested binds for running programs: terminal, app launcher, screen locker.
-            Super+Return hotkey-overlay-title="Terminal: kitty" { spawn "kitty"; }
-            Super+Shift+A hotkey-overlay-title="Screen Lock: hyprlock" { spawn "hyprlock"; }
+            Mod+Return hotkey-overlay-title="Terminal: kitty" { spawn "kitty"; }
+            Mod+Shift+A hotkey-overlay-title="Screen Lock: hyprlock" { spawn "hyprlock"; }
 
             // Noctalia Functions
-            Super+space hotkey-overlay-title="Noctalia: Launcher" { spawn-sh "${noctaliaWrapper} ipc call launcher toggle"; }
-            Super+Ctrl+space hotkey-overlay-title="Noctalia: Toggle Bar" { spawn-sh "${noctaliaWrapper} ipc call bar toggle"; }
+            Mod+space hotkey-overlay-title="Noctalia: Launcher" { spawn-sh "${noctaliaWrapper} ipc call launcher toggle"; }
+            Mod+Ctrl+space hotkey-overlay-title="Noctalia: Toggle Bar" { spawn-sh "${noctaliaWrapper} ipc call bar toggle"; }
             Mod+Ctrl+M hotkey-overlay-title="Noctalia: Toggle Dark Mode" { spawn-sh "${noctaliaWrapper} ipc call darkMode toggle"; }
             Mod+Ctrl+N hotkey-overlay-title="Noctalia: Toggle Notifications Do Not Disturb" { spawn-sh "${noctaliaWrapper} ipc call notifications toggleDND"; }
+
+            // Launch Commands
+            Mod+B hotkey-overlay-title="Browser: Helium" { spawn "helium"; }
+            Mod+Ctrl+B { spawn "librewolf"; }
+            Mod+Ctrl+Alt+B { spawn "qutebrowser"; }
+            Mod+N hotkey-overlay-title="Launch Zed Editor" { spawn "zeditor"; }
+            Mod+Ctrl+N {spawn "vscode"; }
 
             XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
             XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
