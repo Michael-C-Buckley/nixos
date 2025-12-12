@@ -45,6 +45,8 @@
             hot-corners { off; }
           }
 
+          prefer-no-csd
+
           layout {
             gaps 16
             center-focused-column "never"
@@ -91,7 +93,7 @@
             Mod+Shift+Slash { show-hotkey-overlay; }
 
             // Suggested binds for running programs: terminal, app launcher, screen locker.
-            Super+Return hotkey-overlay-title="Terminal: ghostty" { spawn "ghostty"; }
+            Super+Return hotkey-overlay-title="Terminal: kitty" { spawn "kitty"; }
             Super+Shift+A hotkey-overlay-title="Screen Lock: hyprlock" { spawn "hyprlock"; }
 
             // Noctalia Functions
