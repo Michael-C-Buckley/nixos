@@ -4,7 +4,6 @@
       cursor
       helix
       gpgAgent
-      kitty
       ghostty
       zed
     ];
@@ -12,9 +11,10 @@
     hjem.users.michael = {
       gnupg.pinentryPackage = pkgs.pinentry-qt;
 
-      packages = with pkgs; [
-        nvfetcher
-        npins
+      packages = [
+        pkgs.nvfetcher
+        pkgs.npins
+        config.flake.packages.${pkgs.stdenv.hostPlatform.system}.kitty
       ];
 
       environment.sessionVariables = {
