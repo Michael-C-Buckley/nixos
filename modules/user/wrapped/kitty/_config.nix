@@ -25,4 +25,15 @@ pkgs.writeText "wrapped-kitty.conf" ''
   url_style single
   visual_bell_duration 0.1
   window_padding_width 10
+  map ctrl+shift+alt+t set_tab_title
+  map ctrl+shift+enter new_window_with_cwd
+  map ctrl+shift+left previous_window
+  map ctrl+shift+n new_os_window
+  map ctrl+shift+o open_url_with_hints
+  map ctrl+shift+page_down next_tab
+  map ctrl+shift+page_up previous_tab
+  map ctrl+shift+q close_tab
+  map ctrl+shift+right next_window
+  map ctrl+shift+t new_tab_with_cwd
+  map ctrl+shift+w close_window
 ''
