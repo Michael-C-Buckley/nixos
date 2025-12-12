@@ -53,11 +53,12 @@
     };
 
     nvf = {
-      url = "github:notashelf/nvf/v0.8";
+      url = "github:notashelf/nvf";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-compat.follows = "";
         flake-parts.follows = "flake-parts";
+        ndg.follows = ""; # Documentation generator
       };
     };
 
