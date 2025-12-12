@@ -1,9 +1,10 @@
-let
+{config, ...}: let
   mon1 = "eDP-1";
 in {
-  flake.modules.nixos.t14 = {
-    hjem.users.michael = {
-      files.".config/niri/host.kdl".text = ''
+  flake.modules.nixos.t14 = {pkgs, ...}: {
+    programs.niri.package = config.flake.wrappers.mkNiri {
+      inherit pkgs;
+      extraConfig = ''
         workspace "N1" { open-on-output "${mon1}"; }
         workspace "N2" { open-on-output "${mon1}"; }
         workspace "N3" { open-on-output "${mon1}"; }
