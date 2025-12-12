@@ -105,8 +105,8 @@
             Mod+B hotkey-overlay-title="Browser: Helium" { spawn "helium"; }
             Mod+Ctrl+B { spawn "librewolf"; }
             Mod+Ctrl+Alt+B { spawn "qutebrowser"; }
-            Mod+N hotkey-overlay-title="Launch Zed Editor" { spawn "zeditor"; }
-            Mod+Ctrl+N {spawn "vscode"; }
+            Mod+E hotkey-overlay-title="Launch Zed Editor" { spawn "zeditor"; }
+            Mod+Ctrl+E {spawn "vscode"; }
 
             XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
             XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
