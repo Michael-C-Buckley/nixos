@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  inputs,
+  ...
+}: {
   perSystem = {pkgs, ...}: {
     packages.niri = config.flake.wrappers.mkNiri {
       inherit pkgs;
@@ -18,7 +22,7 @@
     buildInputs =
       [
         pkgs.makeWrapper
-        config.inputs.noctalia.packages.${system}.default # TODO: add wrapper for noctalia and it's deps
+        inputs.noctalia.packages.${system}.default # TODO: add wrapper for noctalia and it's deps
         config.flake.packages.${system}.kitty
       ]
       ++ extraRuntimeInputs;
