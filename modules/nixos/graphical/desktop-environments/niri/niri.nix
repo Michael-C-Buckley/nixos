@@ -41,6 +41,10 @@
             horizontal-view-movement { off; }
           }
 
+          gestures {
+            hot-corners { off; }
+          }
+
           layout {
             gaps 16
             center-focused-column "never"
