@@ -22,6 +22,10 @@
     buildInputs =
       [
         pkgs.makeWrapper
+        pkgs.hyprlock
+        pkgs.wireplumber
+        pkgs.playerctl
+        pkgs.xwayland-satellite
         inputs.noctalia.packages.${system}.default # TODO: add wrapper for noctalia and it's deps
         config.flake.packages.${system}.kitty
       ]
