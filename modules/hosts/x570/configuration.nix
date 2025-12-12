@@ -6,7 +6,6 @@
       intelGraphics
       wifi
       gaming
-      k3s
     ];
 
     system.stateVersion = "25.05";
