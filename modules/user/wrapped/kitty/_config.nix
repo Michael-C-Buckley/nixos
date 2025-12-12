@@ -1,4 +1,7 @@
-{pkgs}:
+{
+  pkgs,
+  extraConfig,
+}:
 pkgs.writeText "wrapped-kitty.conf" ''
   allow_remote_control yes
   bold_font auto
@@ -37,3 +40,4 @@ pkgs.writeText "wrapped-kitty.conf" ''
   map ctrl+shift+t new_tab_with_cwd
   map ctrl+shift+w close_window
 ''
++ extraConfig
