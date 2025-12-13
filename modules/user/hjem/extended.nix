@@ -1,6 +1,6 @@
 {config, ...}: {
   flake.hjemConfig.extended = {pkgs, ...}: let
-    inherit (config.flake.packages.${pkgs.stdenv.hostPlatform.system}) ghostty kitty;
+    inherit (config.flake.packages.${pkgs.stdenv.hostPlatform.system}) ghostty helix kitty;
   in {
     imports = with config.flake.hjemConfig; [
       cursor
@@ -14,8 +14,9 @@
       packages = [
         pkgs.nvfetcher
         pkgs.npins
-        kitty
         ghostty
+        kitty
+        helix
       ];
 
       environment.sessionVariables = {
