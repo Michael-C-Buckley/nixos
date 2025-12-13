@@ -1,8 +1,4 @@
-{
-  config,
-  inputs,
-  ...
-}: {
+{config, ...}: {
   perSystem = {pkgs, ...}: {
     packages.niri = config.flake.wrappers.mkNiri {
       inherit pkgs;
@@ -17,17 +13,20 @@
     spawnNoctalia ? true,
   }: let
     inherit (pkgs.stdenv.hostPlatform) system;
+    inherit (config.flake.packages.${system}) kitty noctalia;
     # Add the necessary packages for a functional as-is experience
     # For me, this means Noctalia and Kitty
-    buildInputs =
+    buildInputs = with pkgs;
       [
-        pkgs.makeWrapper
-        pkgs.hyprlock
-        pkgs.wireplumber
-        pkgs.playerctl
-        pkgs.xwayland-satellite
-        inputs.noctalia.packages.${system}.default # TODO: add wrapper for noctalia and it's deps
-        config.flake.packages.${system}.kitty
+        makeWrapper
+        hyprlock
+        wireplumber
+        playerctl
+        xwayland-satellite
+      ]
+      ++ [
+        kitty
+        noctalia
       ]
       ++ extraRuntimeInputs;
   in
