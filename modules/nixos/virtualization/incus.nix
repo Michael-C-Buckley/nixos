@@ -11,7 +11,6 @@
       enable = true;
       package = pkgs.incus; # Stable version is old
       ui.enable = true;
-      agent.enable = true;
     };
   };
 }
