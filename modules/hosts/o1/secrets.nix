@@ -9,7 +9,10 @@ in {
       defaultSopsFile = "/etc/secrets/hosts/o1/o1.yaml";
       secrets =
         {
-          attic = {};
+          attic = {
+            sopsFile = "/etc/secrets/hosts/o1/attic.sops";
+            format = "binary";
+          };
           cachePrivateKey = {};
           groovyreserveToken = {};
         }
