@@ -9,6 +9,7 @@ in {
       defaultSopsFile = "/etc/secrets/hosts/o1/o1.yaml";
       secrets =
         {
+          attic = {};
           cachePrivateKey = {};
           groovyreserveToken = {};
         }
