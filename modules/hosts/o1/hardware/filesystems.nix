@@ -30,6 +30,11 @@
       "/nix" = zfsFs "nix";
       "/cache" = zfsFs "cache";
       "/persist" = zfsFs "persist";
+
+      "/var/lib/attic" = {
+        device = "zroot/local/attic";
+        fsType = "zfs";
+      };
     };
   };
 }
