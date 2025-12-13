@@ -10,7 +10,7 @@ in {
     lib,
     ...
   }: let
-    inherit (flake.packages.${pkgs.stdenv.hostPlatform.system}) nvf;
+    inherit (flake.packages.${pkgs.stdenv.hostPlatform.system}) ghosttyMac nvf;
   in {
     imports = [
       inputs.hjem.darwinModules.default
@@ -23,6 +23,7 @@ in {
       gnupg.pinentryPackage = pkgs.pinentry_mac; # Underscore unlike all other pinentry packages
 
       packages = [
+        ghosttyMac
         # iproute2 on mac and with an override for color
         (pkgs.writeShellApplication {
           name = "iproute2mac";
