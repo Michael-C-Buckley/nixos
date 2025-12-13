@@ -1,39 +1,20 @@
 # Not technically a DE/WM but a Quickshell theme I'm just living here
+# Currently largely handled by my wrapped package for the actual package needs
+# This exists for the system integrations as needed
 {inputs, ...}: {
   flake.modules.nixos.noctalia = {pkgs, ...}: {
-    imports = [
-      inputs.noctalia.nixosModules.default
-    ];
+    imports = [inputs.noctalia.nixosModules.default];
 
     custom.impermanence.persist.user.directories = [
       ".config/noctalia"
     ];
-    # Dependencies and fonts
-    environment.systemPackages = with pkgs; [
-      brightnessctl
-      cava
-      cliphist
-      coreutils
-      ddcutil
-      file
-      findutils
-      gpu-screen-recorder
-      libnotify
-      matugen
-      swww
-      wl-clipboard
-      wlsunset
-    ];
 
+    # TODO: manage the shell via systemd user
+    # current wrapped version is spawned imperatively
+    # by niri on launch
     services.noctalia-shell = {
       enable = false;
+      package = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia;
     };
-
-    # These fonts are used by default
-    fonts.packages = with pkgs; [
-      roboto
-      inter
-      material-symbols
-    ];
   };
 }
