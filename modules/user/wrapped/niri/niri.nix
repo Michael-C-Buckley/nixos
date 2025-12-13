@@ -7,7 +7,7 @@
 
   flake.wrappers.mkNiri = {
     pkgs,
-    niri ? pkgs.niri,
+    pkg ? pkgs.niri,
     extraConfig ? "",
     extraRuntimeInputs ? [],
     spawnNoctalia ? true,
@@ -18,6 +18,7 @@
     # For me, this means Noctalia and Kitty
     buildInputs = with pkgs;
       [
+        niri # include unwrapped for msg/ipc/etc
         makeWrapper
         hyprlock
         wireplumber
@@ -31,12 +32,13 @@
       ++ extraRuntimeInputs;
   in
     pkgs.symlinkJoin {
-      name = "niri";
-      paths = [niri];
+      name = "niri-wrapped";
+      paths = [pkg];
       inherit buildInputs;
       passthru.providedSessions = ["niri"];
       postBuild = ''
-        wrapProgram $out/bin/niri \
+        mv $out/bin/niri $out/bin/niri-wrapped
+        wrapProgram $out/bin/niri-wrapped \
           --add-flags "--session -c ${import ./_config.nix {inherit pkgs extraConfig spawnNoctalia;}}" \
           --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
       '';
