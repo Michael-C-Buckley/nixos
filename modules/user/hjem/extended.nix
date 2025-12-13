@@ -4,7 +4,6 @@
   in {
     imports = with config.flake.hjemConfig; [
       cursor
-      helix
       gpgAgent
       zed
     ];
