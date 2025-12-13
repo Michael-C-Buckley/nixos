@@ -15,10 +15,12 @@
     buildInputs = with pkgs;
       [
         bat
+        direnv
         eza
         fd
         fzf
         jq
+        nix-direnv
         starship
         ripgrep
       ]

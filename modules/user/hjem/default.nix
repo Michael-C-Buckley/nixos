@@ -11,7 +11,6 @@ in {
     ...
   }: {
     imports = with flake.hjemConfig; [
-      direnv
       git
       fastfetch
     ];
