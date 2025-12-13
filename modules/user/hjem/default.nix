@@ -13,9 +13,7 @@ in {
     imports = with flake.hjemConfig; [
       direnv
       git
-      shellAliases
       fastfetch
-      nushell
     ];
 
     hjem = {
@@ -33,6 +31,7 @@ in {
           flake.packages.${pkgs.stdenv.hostPlatform.system}.starship
           pkgs.bat
           pkgs.eza
+          pkgs.nushell
         ];
 
         # I reuse these elsewhere, so don't warn me
