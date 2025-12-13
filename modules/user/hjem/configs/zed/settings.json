@@ -1,0 +1,28 @@
+{
+  "agent": {
+    "default_model": { "model": "gpt-4.1", "provider": "copilot_chat" },
+    "default_profile": "write",
+    "single_file_review": true
+  },
+  "base_keymap": "VSCode",
+  "buffer_font_size": 15,
+  "buffer_font_weight": 400,
+  "diagnostics": { "inline": { "enabled": true, "min_column": 80 } },
+  "git": { "git_gutter": "tracked_files" },
+  "languages": {
+    "Nix": {
+      "formatter": {
+        "external": { "arguments": ["--quiet", "--"], "command": "alejandra" }
+      },
+      "language_servers": ["nixd", "nil"]
+    }
+  },
+  "load_direnv": "shell_hook",
+  "relative_line_numbers": "enabled",
+  "tabs": { "file_icons": true, "git_status": true, "show_diagnostics": "all" },
+  "telemetry": { "diagnostics": false, "metrics": false },
+  "theme": "Ayu Dark",
+  "toolbar": { "code_actions": true },
+  "ui_font_size": 16,
+  "vim_mode": true
+}
