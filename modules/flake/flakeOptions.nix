@@ -1,15 +1,23 @@
-{lib, ...}: {
+{lib, ...}: let
+  inherit (lib) mkOption;
+  inherit (lib.types) attrs attrsOf deferredModule;
+in {
   options.flake = {
-    hjemConfig = lib.mkOption {
-      type = lib.types.attrsOf lib.types.deferredModule;
+    hjemConfig = mkOption {
+      type = attrsOf deferredModule;
       default = {};
       description = "Hjem configuration modules to be included in the hjem user configuration.";
     };
-    wrappers = lib.mkOption {
+    wrappers = mkOption {
       description = "Modules that can be called to created wrapped packages from this flake.";
     };
-    lib = lib.mkOption {
-      type = lib.types.attrs;
+    hjemModules = mkOption {
+      type = attrsOf deferredModule;
+      default = {};
+      description = "Hjem modules to be included in the hjem user configuration.";
+    };
+    lib = mkOption {
+      type = attrs;
       default = {};
       description = "Library functions to be made available in this flake.";
     };
