@@ -59,6 +59,8 @@ in
       end
     end
 
+    direnv hook fish | source
+
     # Set GPG_TTY for GPG agent
     set -x GPG_TTY (tty)
 
