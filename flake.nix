@@ -42,16 +42,6 @@
       };
     };
 
-    hjem-rum = {
-      url = "github:snugnug/hjem-rum";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        hjem.follows = "hjem";
-        ndg.follows = "";
-        treefmt-nix.follows = ""; #  I don't need their formatter
-      };
-    };
-
     nvf = {
       url = "github:notashelf/nvf";
       inputs = {
