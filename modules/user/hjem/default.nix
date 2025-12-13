@@ -16,7 +16,6 @@ in {
       shellAliases
       fastfetch
       nushell
-      yazi
       zoxide
     ];
 
