@@ -8,7 +8,6 @@
   flake.wrappers.mkHelix = {
     pkgs,
     pkg ? pkgs.helix,
-    extraConfig ? "",
     extraRuntimeInputs ? [],
   }: let
     buildInputs = with pkgs;
@@ -26,7 +25,6 @@
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''
         wrapProgram $out/bin/hx \
-          --add-flags "-c ${import ./_config.nix {inherit pkgs extraConfig;}}" \
           --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
       '';
     };

@@ -1,10 +1,11 @@
 {config, ...}: {
   flake.hjemConfig.extended = {pkgs, ...}: let
-    inherit (config.flake.packages.${pkgs.stdenv.hostPlatform.system}) ghostty helix kitty;
+    inherit (config.flake.packages.${pkgs.stdenv.hostPlatform.system}) ghostty kitty;
   in {
     imports = with config.flake.hjemConfig; [
       cursor
       gpgAgent
+      helix
       zed
     ];
 
@@ -16,7 +17,6 @@
         pkgs.npins
         ghostty
         kitty
-        helix
       ];
 
       environment.sessionVariables = {
