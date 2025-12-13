@@ -1,9 +1,5 @@
 {
   flake.modules.nixos.kube-common = {pkgs, ...}: {
-    hjem.users.michael.rum.programs.fish.config = ''
-      kubectl completion fish | source
-    '';
-
     environment.systemPackages = with pkgs; [
       k9s
       kubectl

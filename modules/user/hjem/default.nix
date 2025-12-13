@@ -1,8 +1,4 @@
-{
-  config,
-  inputs,
-  ...
-}: let
+{config, ...}: let
   inherit (config) flake;
 in {
   flake.hjemConfig.default = {
@@ -20,7 +16,6 @@ in {
       extraModules = [
         flake.hjemModules.gnupg
         flake.hjemModules.localOptions
-        inputs.hjem-rum.hjemModules.default
       ];
       users.michael = {
         # Push the existing files in to be merged
@@ -40,9 +35,6 @@ in {
             inherit (config.hjem.users.michael.git) signingKey;
           })
         ];
-
-        # I reuse these elsewhere, so don't warn me
-        rum.environment.hideWarning = true;
 
         environment.sessionVariables = {
           EDITOR = "nvf";
