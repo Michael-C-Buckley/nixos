@@ -6,8 +6,6 @@
       ns # local overlay
       python3
       lazygit
-      difftastic
-      gitFull
       tig
       jujutsu
       gh

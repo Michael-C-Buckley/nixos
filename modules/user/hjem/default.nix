@@ -6,12 +6,12 @@
   inherit (config) flake;
 in {
   flake.hjemConfig.default = {
+    config,
     pkgs,
     lib,
     ...
   }: {
     imports = with flake.hjemConfig; [
-      git
       fastfetch
     ];
 
@@ -19,6 +19,7 @@ in {
       linker = pkgs.smfh;
       extraModules = [
         flake.hjemModules.gnupg
+        flake.hjemModules.localOptions
         inputs.hjem-rum.hjemModules.default
       ];
       users.michael = {
@@ -26,11 +27,18 @@ in {
         files = import ../_findFiles.nix {inherit lib;};
 
         packages = [
-          # add this to stop the shell error from my wrapped fish since something touched it after creation
-          flake.packages.${pkgs.stdenv.hostPlatform.system}.starship
           pkgs.bat
           pkgs.eza
           pkgs.nushell
+
+          # add this to stop the shell error from my wrapped fish since something touched it after creation
+          flake.packages.${pkgs.stdenv.hostPlatform.system}.starship
+
+          # Add the appropriate wrapped git for the system
+          (flake.wrappers.mkGit {
+            inherit pkgs;
+            inherit (config.hjem.users.michael.git) signingKey;
+          })
         ];
 
         # I reuse these elsewhere, so don't warn me
