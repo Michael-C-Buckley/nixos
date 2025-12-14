@@ -28,7 +28,7 @@
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''
         wrapProgram $out/bin/ghostty \
-          --add-flags "-c ${import ./_config.nix {inherit pkgs extraConfig;}}" \
+          --add-flags "--config-file=${import ./_config.nix {inherit pkgs extraConfig;}}" \
           --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
       '';
     };
