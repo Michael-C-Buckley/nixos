@@ -27,10 +27,8 @@
         $noctalia=${noctaliaWrapper}
         $launcher=$noctalia ipc call launcher toggle
         $mod=SUPER
-        $terminal=ghostty
-        $terminal2=sakura
-        $terminal3=kitty
-        $terminal4=alacritty
+        $terminal=kitty
+        $terminal2=ghostty
 
         master {
           new_status=master
@@ -54,9 +52,6 @@
 
         exec-once=${noctaliaPathScript}
         exec-once=gammastep -l 36:-78 -t 6500k:1800k
-        exec-once=[workspace 11 silent] $terminal
-        exec-once=[workspace 12 silent] signal-desktop
-        exec-once=[workspace 12 silent] materialgram
         exec-once=systemctl --user start hyprpolkitagent
 
         source = ~/.config/hypr/binds.conf
