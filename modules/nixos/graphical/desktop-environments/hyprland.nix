@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   flake.modules.nixos.hyprland = {pkgs, ...}: {
     programs = {
       hyprland.enable = true;
@@ -17,19 +17,21 @@
       };
 
       # TODO: audit these packages to see what I use
-      systemPackages = with pkgs; [
-        hyprshot
-        hyprcursor
-        hyprsunset
-        hyprpolkitagent # Auth agent
-        xdg-desktop-portal
+      systemPackages = with pkgs;
+        [
+          hyprshot
+          hyprcursor
+          hyprsunset
+          hyprpolkitagent # Auth agent
+          xdg-desktop-portal
 
-        # Clipboard
-        clipse
-        wl-clip-persist
-        wl-clipboard
-        xclip
-      ];
+          # Clipboard
+          clipse
+          wl-clip-persist
+          wl-clipboard
+          xclip
+        ] # include my noctalia so that it actually runs now
+        ++ [config.flake.packages.${pkgs.stdenv.hostPlatform.system}.noctalia];
     };
   };
 }

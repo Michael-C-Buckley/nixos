@@ -48,7 +48,10 @@
         env=XCURSOR_SIZE,28
         env=HYPRCURSOR_SIZE,28
 
-        exec-once=systemctl --user start noctalia-shell.service
+        # TODO: fix the systemd service in the wrapper
+        #exec-once=systemctl --user start noctalia-shell.service
+        exec-once=noctalia-shell
+
         exec-once=${noctaliaPathScript}
         exec-once=gammastep -l 36:-78 -t 6500k:1800k
         exec-once=[workspace 11 silent] $terminal
