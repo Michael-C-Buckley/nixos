@@ -8,6 +8,7 @@ includes = ["*.nix"]
 [formatter.biome]
 command = "biome"
 includes = ["*.json", "*.jsonc"]
+excludes = ["modules/user/hjem/configs/zed/keymap.json"] # False positive
 options = [
   "format",
   "--no-errors-on-unmatched",
