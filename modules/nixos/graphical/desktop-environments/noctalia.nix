@@ -1,7 +1,13 @@
 # Not technically a DE/WM but a Quickshell theme I'm just living here
 # Currently largely handled by my wrapped package for the actual package needs
 # This exists for the system integrations as needed
-{inputs, ...}: {
+{
+  config,
+  inputs,
+  ...
+}: let
+  inherit (config) flake;
+in {
   flake.modules.nixos.noctalia = {pkgs, ...}: {
     imports = [inputs.noctalia.nixosModules.default];
 
@@ -14,7 +20,7 @@
     # by niri on launch
     services.noctalia-shell = {
       enable = false;
-      package = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia;
+      package = flake.packages.${pkgs.stdenv.hostPlatform.system}.noctalia;
     };
   };
 }
