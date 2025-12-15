@@ -1,12 +1,12 @@
 # Add Ghostty's official macOS binary since the nixpkgs source-based version is currently broken
-{self, ...}: {
+{
   perSystem = {
     pkgs,
     system,
     lib,
     ...
   }: let
-    source = (pkgs.callPackage "${self}/_sources/generated.nix" {}).ghostty-dmg;
+    source = (pkgs.callPackage ../_sources/generated.nix {}).ghostty-dmg;
     inherit (source) pname version src;
   in
     lib.optionalAttrs (!lib.hasSuffix "linux" system) {
