@@ -1,11 +1,11 @@
-{self, ...}: {
+{
   perSystem = {
     pkgs,
     system,
     lib,
     ...
   }: let
-    source = (pkgs.callPackage "${self}/_sources/generated.nix" {}).helium;
+    source = (pkgs.callPackage ../_sources/generated.nix {}).helium;
     contents = pkgs.appimageTools.extract source;
     inherit (source) pname version src;
   in
