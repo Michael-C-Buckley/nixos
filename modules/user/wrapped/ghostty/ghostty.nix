@@ -33,6 +33,11 @@
     extraRuntimeInputs ? [],
   }: let
     buildInputs = [pkgs.cascadia-code] ++ extraRuntimeInputs;
+    # The MacOS ghostty comes from the official dmg and is in a different location
+    ghosttyBinary =
+      if pkgs.stdenv.isDarwin
+      then "$out/Applications/Ghostty.app/Contents/MacOS/ghostty"
+      else "$out/bin/ghostty";
   in
     pkgs.symlinkJoin {
       name = "ghostty";
@@ -40,7 +45,7 @@
       inherit buildInputs;
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''
-        wrapProgram $out/bin/ghostty \
+        wrapProgram ${ghosttyBinary} \
           --add-flags "--config-file=${import ./_config.nix {inherit pkgs extraConfig;}}" \
           --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
       '';
