@@ -26,7 +26,7 @@ in {
         ghostty
         # iproute2 on mac and with an override for color
         (pkgs.writeShellApplication {
-          name = "iproute2mac";
+          name = "ip";
           text = ''
             exec ${pkgs.iproute2mac}/bin/ip -c "$@"
           '';
