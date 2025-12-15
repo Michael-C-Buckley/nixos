@@ -4,25 +4,29 @@
   ...
 }: {
   flake.modules.darwin.packages = {pkgs, ...}: let
-    inherit (config.flake.packages.${pkgs.stdenv.hostPlatform.system}) ghostty-dmg ns nvf vscode;
+    inherit (config.flake.packages.${pkgs.stdenv.hostPlatform.system}) ns nvf vscode;
   in {
     environment.systemPackages =
       [
         # Ensure we can rebuild
         inputs.nix-darwin.packages.${pkgs.stdenv.hostPlatform.system}.default
-        ghostty-dmg
         ns
         nvf
         vscode
+
+        # iproute2 on mac and with an override for color
+        (pkgs.writeShellApplication {
+          name = "ip";
+          text = ''
+            exec ${pkgs.iproute2mac}/bin/ip -c "$@"
+          '';
+        })
       ]
       ++ (with pkgs; [
-        # Mac's builtin SSH does not support SK keys
-        openssh
+        openssh # Mac's builtin SSH does not support SK keys
         gnupg
         orbstack
         obsidian
-        tig
-        lazygit
       ]);
 
     fonts.packages = with pkgs; [
