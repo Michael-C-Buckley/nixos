@@ -1,14 +1,27 @@
 {config, ...}: {
-  perSystem = {pkgs, ...}: {
+  perSystem = {
+    pkgs,
+    system,
+    lib,
+    ...
+  }: let
+    # Separate logic is needed for linux or mac
+    # One goes to linux; Two goes to Mac
+    # I have a few things different on the MacOS side
+    separate = one: two:
+      if (lib.hasSuffix "linux" system)
+      then one
+      else two;
+    pkg = separate pkgs.ghostty config.flake.packages.${system}.ghostty-dmg;
+    extraConfig = separate "" ''
+      command = fish
+      window-decoration = false
+    '';
+    extraRuntimeInputs = separate [] [config.flake.packages.${system}.fish];
+  in {
     packages = {
       ghostty = config.flake.wrappers.mkGhostty {
-        inherit pkgs;
-        extraConfig = ''
-          window-decoration = false
-        '';
-      };
-      ghosttyMac = config.flake.wrappers.mkGhostty {
-        inherit pkgs;
+        inherit pkg pkgs extraConfig extraRuntimeInputs;
       };
     };
   };
