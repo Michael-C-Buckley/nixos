@@ -11,7 +11,12 @@
     gpgProgram ? null,
     signingKey ? null,
   }: let
-    buildInputs = [pkgs.difftastic];
+    buildInputs = with pkgs; [
+      gh
+      tig
+      lazygit
+      difftastic
+    ];
   in
     pkgs.symlinkJoin {
       name = "git";
