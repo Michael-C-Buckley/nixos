@@ -1,7 +1,7 @@
 # Include my Zed plus the persisted directories
-{self, ...}: {
+{config, ...}: {
   flake.modules.nixos.app-zed = {pkgs, ...}: {
-    hjem.users.michael.packages = [self.packages.${pkgs.stdenv.hostPlatform.system}.zeditor];
+    hjem.users.michael.packages = [config.flake.packages.${pkgs.stdenv.hostPlatform.system}.zeditor];
 
     custom.impermanence = {
       persist.user.directories = [
