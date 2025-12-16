@@ -12,18 +12,27 @@
     inherit (source) pname version src;
 
     jail = inputs.jail.lib.init pkgs;
-    inherit (jail.combinators) network gui readonly rw-bind noescape;
-    homeBind = path: (rw-bind (noescape path) (noescape path));
+    homeBind = with jail.combinators; path: (rw-bind (noescape path) (noescape path));
 
-    features = [
-      network
-      gui
-      (readonly "/nix/store")
-      (homeBind "~/.local/share/applications/")
-      (homeBind "~/Downloads")
-      (homeBind "~/.cache/net.imput.helium/")
-      (homeBind "~/.config/net.imput.helium/")
-    ];
+    features = with jail.combinators;
+      [
+        network
+        gui
+        (readonly "/nix/store")
+        (dbus {
+          talk = [
+            "org.freedesktop.portal.*"
+            "org.freedesktop.Notifications"
+            "org.freedesktop.FileManager1"
+          ];
+        })
+      ]
+      ++ [
+        (homeBind "~/.local/share/applications/")
+        (homeBind "~/Downloads")
+        (homeBind "~/.cache/net.imput.helium/")
+        (homeBind "~/.config/net.imput.helium/")
+      ];
 
     extraInstallCommands = ''
       install -m 444 -D ${contents}/${pname}.desktop -t $out/share/applications
@@ -38,6 +47,9 @@
   in
     # Helium is only available on linux and bwrap is a linux only utility
     lib.optionalAttrs (lib.hasSuffix "linux" system) {
-      packages.helium = jail "helium" localPkg features;
+      packages = {
+        helium = localPkg;
+        helium-jailed = jail "helium" localPkg features;
+      };
     };
 }
