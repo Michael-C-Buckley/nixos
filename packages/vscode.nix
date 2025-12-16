@@ -58,9 +58,13 @@
       '';
     };
   in {
-    packages.vscode =
-      if (lib.hasSuffix "linux" system)
-      then (jail "code" localPkg bwrapFeatures)
-      else localPkg;
+    packages =
+      {
+        vscode = localPkg;
+      }
+      # Bwrap only exists on Linux
+      // lib.optionalAttrs (lib.hasSuffix "linux" system) {
+        vscode-jailed = jail "code" localPkg bwrapFeatures;
+      };
   };
 }
