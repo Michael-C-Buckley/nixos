@@ -4,18 +4,25 @@
   # I live the majority of things in files matching the name of their flake output type
   outputs = {
     flake-parts,
-    import-tree,
+    nixpkgs,
     ...
-  } @ inputs:
+  } @ inputs: let
+    # Replacement for import-tree
+    inherit (nixpkgs.lib.fileset) toList fileFilter;
+    mkImport = path:
+      toList (fileFilter (file: file.hasExt "nix" && !(nixpkgs.lib.hasPrefix "_" file.name)) path);
+  in
     flake-parts.lib.mkFlake {inherit inputs;} {
       # These are the only systems types I support
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
-      imports = [
-        flake-parts.flakeModules.modules
-        (import-tree ./modules)
-        (import-tree ./packages)
-      ];
+      imports =
+        [
+          flake-parts.flakeModules.modules
+        ]
+        # Currently the function returns a list of the paths per invocation
+        ++ (mkImport ./modules) ++ (mkImport ./packages);
 
+      # The shell is available as either a devshell or traditional nix-shell
       perSystem = {pkgs, ...}: {
         devShells.default = import ./shell.nix {inherit pkgs;};
       };
@@ -33,7 +40,6 @@
     };
 
     # No Nixpkgs Inputs
-    import-tree.url = "github:vic/import-tree";
     impermanence.url = "github:nix-community/impermanence";
     flake-parts.url = "github:hercules-ci/flake-parts";
     jail.url = "sourcehut:~alexdavid/jail.nix";
