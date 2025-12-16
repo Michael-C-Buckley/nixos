@@ -54,11 +54,12 @@
       (homeBind "~/.local/share/zed")
     ];
   in {
-    # Split handling so that the linux packages can be bwrapped
-    packages.zeditor =
-      if (lib.hasSuffix "linux" system)
-      then (jail "zeditor" localPkg bwrapFeatures)
-      # Untouched for anything not linux
-      else localPkg;
+    packages =
+      {
+        zeditor = localPkg;
+      }
+      // lib.optionalAttrs (lib.hasSuffix "linux" system) {
+        zeditor-jailed = jail "zeditor" localPkg bwrapFeatures;
+      };
   };
 }
