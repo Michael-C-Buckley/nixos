@@ -3,15 +3,19 @@
 # my various configs and extensions between machines, to include Windows ones
 # I previously used various nix-managed solutions for it, but it was always a pain
 {inputs, ...}: {
-  perSystem = {pkgs, ...}: let
-    # Allow unfree and extend with the extensions overlay
-    pkgs' = import inputs.nixpkgs {
-      localSystem = pkgs.stdenv.hostPlatform;
+  perSystem = {
+    system,
+    lib,
+    ...
+  }: let
+    # Allow unfree since vscode needs it
+    pkgs = import inputs.nixpkgs {
+      inherit system;
       config.allowUnfree = true;
     };
 
     # These are placed in the path of the program
-    wrappedInputs = with pkgs'; [
+    wrappedInputs = with pkgs; [
       neovim
 
       python313
@@ -27,10 +31,25 @@
       go-tools
       golangci-lint
     ];
-  in {
-    packages.vscode = pkgs.symlinkJoin {
+
+    jail = inputs.jail.lib.init pkgs;
+    inherit (jail.combinators) gui network readonly rw-bind noescape;
+    homeBind = path: (rw-bind (noescape path) (noescape path));
+
+    # These are my directories I use, you likely want to adjust this
+    bwrapFeatures = [
+      gui
+      network
+      (readonly "/nix/store")
+      (homeBind "~/nixos") # where I keep my system flake
+      (homeBind "~/projects") # The rest of where I usually keep projects
+      (homeBind "~/.config/Code")
+      (homeBind "~/.vscode")
+    ];
+
+    localPkg = pkgs.symlinkJoin {
       name = "code";
-      paths = [pkgs'.vscode];
+      paths = [pkgs.vscode];
       buildInputs = wrappedInputs;
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''
@@ -38,5 +57,10 @@
         --prefix PATH : ${pkgs.lib.makeBinPath wrappedInputs}
       '';
     };
+  in {
+    packages.vscode =
+      if (lib.hasSuffix "linux" system)
+      then (jail "code" localPkg bwrapFeatures)
+      else localPkg;
   };
 }
