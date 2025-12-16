@@ -1,7 +1,11 @@
 {inputs, ...}: {
-  perSystem = {pkgs, ...}: let
-    inherit (pkgs.stdenv.hostPlatform) system;
-    buildInputs = with pkgs; [
+  perSystem = {
+    pkgs,
+    lib,
+    system,
+    ...
+  }: let
+    allInputs = with pkgs; [
       # Packages
       brightnessctl
       cava
@@ -10,7 +14,6 @@
       ddcutil
       file
       findutils
-      gpu-screen-recorder
       libnotify
       matugen
       swww
@@ -22,16 +25,21 @@
       material-symbols
       roboto
     ];
-  in {
-    packages.noctalia = pkgs.symlinkJoin {
-      name = "noctalia-shell";
-      paths = [inputs.noctalia.packages.${system}.default];
-      inherit buildInputs;
-      nativeBuildInputs = [pkgs.makeWrapper];
-      postBuild = ''
-        wrapProgram $out/bin/noctalia-shell \
-          --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
-      '';
+
+    x86Inputs = with pkgs; [gpu-screen-recorder];
+
+    buildInputs = allInputs ++ lib.optionals (lib.hasPrefix "x86" system) x86Inputs;
+  in
+    lib.optionalAttrs (lib.hasSuffix "linux" system) {
+      packages.noctalia = pkgs.symlinkJoin {
+        name = "noctalia-shell";
+        paths = [inputs.noctalia.packages.${system}.default];
+        inherit buildInputs;
+        nativeBuildInputs = [pkgs.makeWrapper];
+        postBuild = ''
+          wrapProgram $out/bin/noctalia-shell \
+            --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
+        '';
+      };
     };
-  };
 }
