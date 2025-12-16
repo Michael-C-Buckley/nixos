@@ -36,6 +36,7 @@
     import-tree.url = "github:vic/import-tree";
     impermanence.url = "github:nix-community/impermanence";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    jail.url = "sourcehut:~alexdavid/jail.nix";
 
     home-manager = {
       url = "github:nix-community/home-manager";
