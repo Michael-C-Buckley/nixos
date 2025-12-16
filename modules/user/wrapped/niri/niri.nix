@@ -1,9 +1,15 @@
 {config, ...}: {
-  perSystem = {pkgs, ...}: {
-    packages.niri = config.flake.wrappers.mkNiri {
-      inherit pkgs;
+  perSystem = {
+    pkgs,
+    lib,
+    system,
+    ...
+  }:
+    lib.optionalAttrs (lib.hasSuffix "linux" system) {
+      packages.niri = config.flake.wrappers.mkNiri {
+        inherit pkgs;
+      };
     };
-  };
 
   flake.wrappers.mkNiri = {
     pkgs,
