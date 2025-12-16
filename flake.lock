@@ -93,6 +93,21 @@
         "type": "github"
       }
     },
+    "jail": {
+      "locked": {
+        "lastModified": 1764535788,
+        "narHash": "sha256-QGjXRCmsMxSayEyail0wEpSiRCUaZaejCv2uKpcNH0E=",
+        "owner": "~alexdavid",
+        "repo": "jail.nix",
+        "rev": "8f61c140858daf8ec21e6355b250cca6f5bf86fb",
+        "type": "sourcehut"
+      },
+      "original": {
+        "owner": "~alexdavid",
+        "repo": "jail.nix",
+        "type": "sourcehut"
+      }
+    },
     "kernel-nixpkgs": {
       "locked": {
         "lastModified": 1765183668,
@@ -229,6 +244,7 @@
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "import-tree": "import-tree",
+        "jail": "jail",
         "kernel-nixpkgs": "kernel-nixpkgs",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
