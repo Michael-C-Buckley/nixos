@@ -42,6 +42,7 @@ in {
       packages-network
 
       app-bitwarden
+      app-element
       app-helium
       app-legcord
       app-librewolf
