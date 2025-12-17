@@ -43,6 +43,7 @@
           no_update_news=true
         }
 
+        # TODO: set env when wrapping
         env=XCURSOR_SIZE,28
         env=HYPRCURSOR_SIZE,28
 
@@ -51,7 +52,6 @@
         exec-once=noctalia-shell
 
         exec-once=${noctaliaPathScript}
-        exec-once=gammastep -l 36:-78 -t 6500k:1800k
         exec-once=systemctl --user start hyprpolkitagent
 
         source = ~/.config/hypr/binds.conf
@@ -59,7 +59,6 @@
         source = ~/.config/hypr/host.conf
 
         # https://wiki.hyprland.org/Configuring/Variables/#input
-
         device {
           name=epic-mouse-v1
           sensitivity=-0.500000
