@@ -109,8 +109,8 @@ in
         Ctrl+Alt+Delete { quit skip-confirmation=true; }
         Mod+Shift+P { power-off-monitors; }
 
-        Ctrl+Mod+semicolon { spawn-sh "systemctl poweroff"; }
-        Ctrl+Alt+Mod+semicolon { spawn-sh "systemctl reboot"; }
+        Ctrl+Mod+semicolon { spawn-sh "loginctl terminate-user $USER && systemctl poweroff"; }
+        Ctrl+Alt+Mod+semicolon { spawn-sh "loginctl terminate-user $USER && systemctl reboot"; }
 
         // WINDOW
         Mod+Shift+Minus { set-window-height "-10%"; }
