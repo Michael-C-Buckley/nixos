@@ -206,7 +206,9 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems"
+        "systems": [
+          "systems"
+        ]
       },
       "locked": {
         "lastModified": 1765802822,
@@ -234,7 +236,8 @@
         "nixpkgs": "nixpkgs",
         "noctalia": "noctalia",
         "nvf": "nvf",
-        "sops-nix": "sops-nix"
+        "sops-nix": "sops-nix",
+        "systems": "systems"
       }
     },
     "sops-nix": {
@@ -258,19 +261,16 @@
       }
     },
     "systems": {
+      "flake": false,
       "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
+        "path": "./systems.nix",
+        "type": "path"
       },
       "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
+        "path": "./systems.nix",
+        "type": "path"
+      },
+      "parent": []
     }
   },
   "root": "root",
