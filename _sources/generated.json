@@ -1,19 +1,4 @@
 {
-  "ghostty-dmg": {
-    "cargoLocks": null,
-    "date": null,
-    "extract": null,
-    "name": "ghostty-dmg",
-    "passthru": null,
-    "pinned": false,
-    "src": {
-      "name": null,
-      "sha256": "sha256-817pHxFuKAJ6ufje9FCYx1dbRLQH/4g6Lc0phcSDIGs=",
-      "type": "url",
-      "url": "https://release.files.ghostty.org/1.2.3/Ghostty.dmg"
-    },
-    "version": "1.2.3"
-  },
   "helium": {
     "cargoLocks": null,
     "date": null,
@@ -23,10 +8,10 @@
     "pinned": false,
     "src": {
       "name": null,
-      "sha256": "sha256-PwXgpmauBN6EXoZE6HnpgrisrO5a9VzQEDv3T2OsPnc=",
+      "sha256": "sha256-SUpXcyQXUjZR57pNabVR/cSrGOMKvgzW0PSCLdB8d+E=",
       "type": "url",
-      "url": "https://github.com/imputnet/helium-linux/releases/download/0.7.2.1/helium-0.7.2.1-x86_64.AppImage"
+      "url": "https://github.com/imputnet/helium-linux/releases/download/0.7.6.1/helium-0.7.6.1-x86_64.AppImage"
     },
-    "version": "0.7.2.1"
+    "version": "0.7.6.1"
   }
 }
