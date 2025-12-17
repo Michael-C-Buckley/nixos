@@ -18,6 +18,12 @@ in {
       hostId = "c07fa570";
       hostName = "x570";
 
+      defaultGateway = {
+        address = "192.168.48.30";
+        interface = "eno1";
+        metric = 20;
+      };
+
       # I use networkmanager for wifi
       # Wired interfaces will be on networkd
       networkmanager = {
