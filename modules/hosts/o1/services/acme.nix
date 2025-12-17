@@ -11,6 +11,8 @@
       certs."groovyreserve.com" = {
         dnsPropagationCheck = true;
         domain = "groovyreserve.com";
+        extraDomainNames = ["attic.groovyreserve.com"];
+        group = "nginx";
       };
     };
   };
