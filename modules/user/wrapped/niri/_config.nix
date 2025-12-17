@@ -73,23 +73,22 @@ in
       binds {
         Mod+Shift+Slash { show-hotkey-overlay; }
 
-        // Suggested binds for running programs: terminal, app launcher, screen locker.
-        Mod+Return hotkey-overlay-title="Terminal: kitty" { spawn "kitty"; }
-        Mod+Shift+A hotkey-overlay-title="Screen Lock: hyprlock" { spawn "hyprlock"; }
-
-        // Noctalia Functions
+        // NOCTALIA
         Mod+space hotkey-overlay-title="Noctalia: Launcher" { spawn-sh "${noctaliaWrapper} ipc call launcher toggle"; }
         Mod+Ctrl+space hotkey-overlay-title="Noctalia: Toggle Bar" { spawn-sh "${noctaliaWrapper} ipc call bar toggle"; }
         Mod+Ctrl+M hotkey-overlay-title="Noctalia: Toggle Dark Mode" { spawn-sh "${noctaliaWrapper} ipc call darkMode toggle"; }
         Mod+Ctrl+N hotkey-overlay-title="Noctalia: Toggle Notifications Do Not Disturb" { spawn-sh "${noctaliaWrapper} ipc call notifications toggleDND"; }
 
-        // Launch Commands
+        // LAUNCH
+        Mod+Return hotkey-overlay-title="Terminal: kitty" { spawn "kitty"; }
+        Mod+Shift+A hotkey-overlay-title="Screen Lock: hyprlock" { spawn "hyprlock"; }
         Mod+B hotkey-overlay-title="Browser: Helium" { spawn "helium"; }
         Mod+Ctrl+B { spawn "librewolf"; }
         Mod+Ctrl+Alt+B { spawn "qutebrowser"; }
         Mod+E hotkey-overlay-title="Editor: Zed" { spawn "zeditor"; }
-        Mod+Ctrl+E {spawn "vscode"; }
+        Mod+Ctrl+E {spawn "code"; }
 
+        // MEDIA
         XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
         XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
         XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
@@ -101,9 +100,9 @@ in
         XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
         XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
 
-        Print { screenshot; }
-        Ctrl+Print { screenshot-screen; }
-        Alt+Print { screenshot-window; }
+        Mod+S hotkey-overlay-title="Screenshot" { screenshot; }
+        Mod+Shift+S { screenshot-screen; }
+        Mod+Ctrl+S { screenshot-window; }
 
         // SYSTEM
         Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
