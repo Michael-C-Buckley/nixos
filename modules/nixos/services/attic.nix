@@ -15,6 +15,9 @@
     config = {
       networking.firewall.allowedTCPPorts = [listenPort];
 
+      # Disable systemd dynamic users if impernance is used, due to incompatibilities
+      systemd.services.atticd.serviceConfig.DynamicUser = lib.mkForce (!config.custom.impermanence.enable);
+
       services.atticd = {
         enable = true;
         environmentFile = config.sops.secrets.attic.path;
