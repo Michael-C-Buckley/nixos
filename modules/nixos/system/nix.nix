@@ -13,8 +13,6 @@
       nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
 
       extraOptions = ''
-        accept-flake-config      = true
-
         # Optimizing cache requests with faster failing
         connect-timeout          = 5
         stalled-download-timeout = 30
@@ -39,6 +37,7 @@
         substituters = [
           "https://cache.nixos-cuda.org"
           "https://nix-community.cachix.org"
+          "https://attic.groovyreserve.com/o1-main" # Public attic via O1 from this flake
         ];
         trusted-public-keys = [
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
@@ -48,6 +47,7 @@
           "michael-hydra-1:i6EiwHcLtrM6EAdpeymEWqlWs9p15HVTCjS+Cs/cgH0="
           "michaelcbuckley.dev-1:i6EiwHcLtrM6EAdpeymEWqlWs9p15HVTCjS+Cs/cgH0="
           "default:lZU6Kss/ByDVwjPUGAbYXMLht9Zuq4e7hxubfLehxOw" # B550 attic
+          "o1-main:RT0aWqBwuR4ybMj+tM5wZjkQK/Z7OI2wKuHHiIeBuMk=" # O1's Public Attic
         ];
         trusted-users = ["root" "@wheel" "builder"];
         allowed-users = ["root" "@wheel" "builder"];
