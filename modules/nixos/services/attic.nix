@@ -25,7 +25,7 @@
 
           storage = {
             type = "local";
-            path = "/var/lib/attic";
+            path = "/var/lib/atticd";
           };
           # I provide compression via ZFS
           compression.type = "none";
