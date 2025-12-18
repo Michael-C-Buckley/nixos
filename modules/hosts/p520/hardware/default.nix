@@ -1,6 +1,4 @@
-{config, ...}: let
-  inherit (config) flake;
-in {
+{
   flake.modules.nixos.p520 = {
     config,
     pkgs,
@@ -12,7 +10,7 @@ in {
     ];
 
     boot = {
-      kernelPackages = pkgs.linuxKernel.packagesFor flake.packages.${pkgs.stdenv.hostPlatform.system}.jet1;
+      kernelPackages = pkgs.linuxPackages_6_17;
       binfmt.emulatedSystems = ["aarch64-linux"];
       initrd = {
         availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];

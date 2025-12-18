@@ -1,6 +1,4 @@
-{config, ...}: let
-  inherit (config) flake;
-in {
+{
   flake.modules.nixos.x570 = {
     config,
     lib,
@@ -14,12 +12,13 @@ in {
 
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
-      kernelPackages = pkgs.linuxKernel.packagesFor flake.packages.${pkgs.stdenv.hostPlatform.system}.jet3;
+      kernelPackages = pkgs.linuxPackages_xanmod_latest;
       kernelModules = ["kvm" "kvm-amd" "virtiofs" "9p" "9pnet_virtio"];
       kernelParams = [
         "amd_pstate=active" # AMD Power efficiency on Linux 6.3+
         "zfs.zfs_arc_max=17179869184" # 16GB max
         "zfs.zfs_arc_min=4294967296" # 4GB min
+        "pcie_aspm=off"
       ];
       extraModulePackages = [];
       initrd = {
