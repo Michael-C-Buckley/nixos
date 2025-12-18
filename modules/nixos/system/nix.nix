@@ -47,7 +47,7 @@
           "michael-hydra-1:i6EiwHcLtrM6EAdpeymEWqlWs9p15HVTCjS+Cs/cgH0="
           "michaelcbuckley.dev-1:i6EiwHcLtrM6EAdpeymEWqlWs9p15HVTCjS+Cs/cgH0="
           "default:lZU6Kss/ByDVwjPUGAbYXMLht9Zuq4e7hxubfLehxOw" # B550 attic
-          "o1-main:RT0aWqBwuR4ybMj+tM5wZjkQK/Z7OI2wKuHHiIeBuMk=" # O1's Public Attic
+          "o1-main:/zeUOc/YOcwKNGBd3B4/VxdmSbny82USmFFvJAbtVJw=" # O1's Public Attic
         ];
         trusted-users = ["root" "@wheel" "builder"];
         allowed-users = ["root" "@wheel" "builder"];
