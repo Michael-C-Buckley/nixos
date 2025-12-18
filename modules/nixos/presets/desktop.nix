@@ -53,6 +53,9 @@ in {
       app-vscode
       app-zed
 
+      # Users
+      michael-attic
+
       # Hjem
       nixos
       root

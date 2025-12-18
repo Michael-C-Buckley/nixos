@@ -15,6 +15,9 @@ in {
       packages
       packages-network
 
+      # Users
+      michael-attic
+
       # Hjem
       nixos
       root
