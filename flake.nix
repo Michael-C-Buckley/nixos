@@ -13,7 +13,7 @@
       toList (fileFilter (file: file.hasExt "nix" && !(nixpkgs.lib.hasPrefix "_" file.name)) path);
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = import inputs.systems;
+      systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
       imports =
         [
           flake-parts.flakeModules.modules
@@ -64,13 +64,7 @@
         flake-compat.follows = "";
         flake-parts.follows = "flake-parts";
         ndg.follows = ""; # Documentation generator
-        systems.follows = "systems";
       };
-    };
-
-    systems = {
-      url = "path:./systems.nix";
-      flake = false;
     };
 
     sops-nix = {
