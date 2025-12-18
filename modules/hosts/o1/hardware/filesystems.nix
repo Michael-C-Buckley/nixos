@@ -31,7 +31,7 @@
       "/cache" = zfsFs "cache";
       "/persist" = zfsFs "persist";
 
-      "/var/lib/attic" = {
+      "/var/lib/atticd" = {
         device = "zroot/local/attic";
         fsType = "zfs";
       };
