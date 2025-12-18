@@ -17,6 +17,9 @@ in {
       secrets
       pam-ssh
 
+      # Users
+      michael-attic
+
       # Hjem
       nixos
       root
