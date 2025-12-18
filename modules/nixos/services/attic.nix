@@ -15,8 +15,22 @@
     config = {
       networking.firewall.allowedTCPPorts = [listenPort];
 
-      # Disable systemd dynamic users if impernance is used, due to incompatibilities
-      systemd.services.atticd.serviceConfig.DynamicUser = lib.mkForce (!config.custom.impermanence.enable);
+      # Completely static users and self-managed state directory
+      systemd.services.atticd = {
+        serviceConfig = {
+          DynamicUser = lib.mkForce false;
+          User = "atticd";
+          Group = "atticd";
+        };
+      };
+
+      users = {
+        users.atticd = {
+          isSystemUser = true;
+          group = "atticd";
+        };
+        groups.atticd = {};
+      };
 
       services.atticd = {
         enable = true;
