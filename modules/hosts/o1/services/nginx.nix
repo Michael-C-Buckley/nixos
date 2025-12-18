@@ -6,6 +6,8 @@
   }: {
     environment.systemPackages = [pkgs.nginx];
 
+    networking.firewall.allowedTCPPorts = [80 443];
+
     services.nginx = {
       enable = true;
       recommendedProxySettings = true;
