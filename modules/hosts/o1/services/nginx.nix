@@ -11,6 +11,8 @@
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
 
+      clientMaxBodySize = "500m";
+
       # Cloudflare proxy will handle TLS
       virtualHosts."attic.groovyreserve.com" = {
         forceSSL = false;
