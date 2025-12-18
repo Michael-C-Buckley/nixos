@@ -1,6 +1,4 @@
-{config, ...}: let
-  inherit (config) flake;
-in {
+{
   flake.modules.nixos.b550 = {
     config,
     lib,
@@ -13,7 +11,7 @@ in {
     ];
 
     boot = {
-      kernelPackages = pkgs.linuxKernel.packagesFor flake.packages.${pkgs.stdenv.hostPlatform.system}.jet1;
+      kernelPackages = pkgs.linuxPackages_6_17;
       kernelModules = ["kvm" "kvm-amd" "virtiofs" "9p" "9pnet_virtio"];
       kernelParams = [
         "amd_pstate=active" # AMD Power efficiency on Linux 6.3+
