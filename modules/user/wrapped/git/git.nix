@@ -12,10 +12,8 @@
     signingKey ? null,
   }: let
     buildInputs = with pkgs; [
-      gh
       tig
-      lazygit
-      difftastic
+      delta
     ];
   in
     pkgs.symlinkJoin {
