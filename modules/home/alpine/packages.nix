@@ -7,8 +7,11 @@ in {
     pkgsFromNix = with pkgs; [
       bash # Ensure that bash is available
       iproute2 # better than busybox's limited ip tool
-      lazygit
       unixtools.whereis
+
+      # Nix tools
+      nh
+      nix-tree
     ];
 
     localPkgs = with flake.packages.${system}; [
