@@ -17,3 +17,6 @@ routeros = "routeros"
 metaphore = "metaphore"
 # Shorthand used in Gnupg and my key finder
 fpr = "fpr"
+
+[default]
+extend-ignore-identifiers-re = ['LESS_TERMCAP_\w+$']
