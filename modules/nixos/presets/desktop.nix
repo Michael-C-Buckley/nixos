@@ -28,8 +28,7 @@ in {
 
       # Security
       clamav
-      gpg-yubikey
-      ssh-agent
+      yubikey
       tpm2
       pam-ssh
       pam-yubikey

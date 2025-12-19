@@ -2,7 +2,11 @@
 #  Hardware devices are enabled on anything that isn't a cloud node
 #  My primary use are my yubikeys but I also have TPM-sealed GPG keys
 {
-  flake.modules.nixos.gpg-yubikey = {pkgs, ...}: {
+  flake.modules.nixos.yubikey = {
+    pkgs,
+    lib,
+    ...
+  }: {
     environment = {
       etc."pkcs11/pkcs11.conf".text = ''
         module: ${pkgs.opensc}/lib/opensc-pkcs11.so
@@ -17,19 +21,27 @@
         yubico-piv-tool
         libp11
         age-plugin-yubikey
-        # TPM
       ];
     };
 
-    programs.gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-      enableBrowserSocket = true;
+    programs = {
+      ssh = {
+        startAgent = true;
+        extraConfig = ''
+          PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
+        '';
+      };
+      gnupg.agent = {
+        enable = true;
+        enableSSHSupport = false;
+        enableBrowserSocket = true;
+      };
     };
 
     hardware.gpgSmartcards.enable = true;
 
     services = {
+      gnome.gnome-keyring.enable = lib.mkForce false;
       pcscd.enable = true;
       udev.packages = [pkgs.yubikey-personalization];
     };
