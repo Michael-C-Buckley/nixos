@@ -28,19 +28,21 @@ pkgs.writeText "git-wrapped-config" (''
 
     [core]
       editor = "nvim"
+      pager = delta
 
-    [diff]
-      external = "${pkgs.difftastic}/bin/difft"
-      tool = "difftastic"
+    [interactive]
+      diffFilter = delta --color-only
 
-    [difftool "difftastic"]
-      cmd = "${pkgs.difftastic}/bin/difft $LOCAL $REMOTE"
+    [delta]
+      side-by-side = true
+      line-numbers = true
+      navigate = true
+
+    [merge]
+      conflictStyle = zdiff3
 
     [http]
       postBuffer = 157286400
-
-    [merge]
-      conflictstyle = "zdiff3"
 
     [user]
       email = "michaelcbuckley@proton.me"
