@@ -23,6 +23,13 @@
         nix-direnv
         starship
         ripgrep
+        neovim
+
+        # Git tools
+        git
+        delta
+        tig
+        lazygit
       ]
       ++ extraRuntimeInputs;
   in
