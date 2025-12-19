@@ -8,9 +8,6 @@ in {
       default = {};
       description = "Hjem configuration modules to be included in the hjem user configuration.";
     };
-    wrappers = mkOption {
-      description = "Modules that can be called to created wrapped packages from this flake.";
-    };
     hjemModules = mkOption {
       type = attrsOf deferredModule;
       default = {};
@@ -20,6 +17,12 @@ in {
       type = attrs;
       default = {};
       description = "Library functions to be made available in this flake.";
+    };
+    packageLists = mkOption {
+      description = "Commonly reused package lists, they are lists of strings found in nixpkgs that will be transformed given `pkgs` reference.";
+    };
+    wrappers = mkOption {
+      description = "Modules that can be called to created wrapped packages from this flake.";
     };
   };
 }
