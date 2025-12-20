@@ -2,7 +2,7 @@
   inherit (config.flake) modules;
   inherit (config.flake.hjemConfig) nixos root;
 in {
-  flake.modules.nixos.serverPreset = {
+  flake.modules.nixos.serverPreset = {pkgs, ...}: {
     imports = with modules.nixos; [
       linuxPreset
       network
@@ -13,7 +13,7 @@ in {
 
       # Security
       clamav
-      gpg-yubikey
+      yubikey
       secrets
       pam-ssh
 
@@ -26,9 +26,10 @@ in {
 
       packages
       packages-server
-      packages-physical
       packages-network
     ];
+
+    environment.systemPackages = [pkgs.python3];
 
     programs.nvf.settings.imports = [modules.nvf.default];
   };

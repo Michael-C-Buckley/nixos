@@ -1,8 +1,8 @@
 {config, ...}: let
-  inherit (config.flake) modules;
+  inherit (config.flake) modules packageLists lib;
   inherit (config.flake.hjemConfig) nixos root;
 in {
-  flake.modules.nixos.cloudPreset = {
+  flake.modules.nixos.cloudPreset = {pkgs, ...}: {
     imports = with modules.nixos; [
       linuxPreset
       network
@@ -11,9 +11,7 @@ in {
       zfs
       shawn
       pam-ssh
-
       packages
-      packages-network
 
       # Users
       michael-attic
@@ -22,6 +20,10 @@ in {
       nixos
       root
     ];
+
+    environment.systemPackages = lib.packageLists.combinePkgLists pkgs (with packageLists; [
+      network
+    ]);
 
     programs.nvf.settings.imports = [modules.nvf.default];
   };

@@ -1,29 +1,21 @@
 {config, ...}: {
-  flake.modules.nixos.packages = {pkgs, ...}: {
-    nixpkgs.overlays = [config.flake.overlays.default];
-    environment.systemPackages = with pkgs; [
+  flake.modules.nixos.packages = {pkgs, ...}: let
+    inherit (config.flake) packages packageLists lib;
+
+    pkgList = lib.packageLists.combinePkgLists pkgs (with packageLists; [
+      cli
+    ]);
+
+    flakePkgs = with packages.${pkgs.stdenv.hostPlatform.system}; [
+      ns
+    ];
+
+    localPkgs = with pkgs; [
       # System
       fastfetch
       microfetch
       killall
       npins
-
-      # Security
-      sops
-      rage
-      gnupg
-
-      # File/Navigation
-      bat
-      dust
-      duf
-      eza
-      fd
-      fzf
-      ripgrep
-      yazi
-      zip
-      zoxide
 
       # Performance
       atop
@@ -40,5 +32,7 @@
       usbutils
       pciutils
     ];
+  in {
+    environment.systemPackages = localPkgs ++ flakePkgs ++ pkgList;
   };
 }
