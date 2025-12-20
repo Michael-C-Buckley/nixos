@@ -36,6 +36,8 @@ in {
 
       packages
       packages-desktop
+      packages-development
+      packages-network
       packages-fonts
 
       app-bitwarden
