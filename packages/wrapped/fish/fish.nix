@@ -3,6 +3,7 @@
     packages.fish = config.flake.wrappers.mkFish {
       inherit pkgs;
       env = {NH_FLAKE = "/home/michael/nixos";};
+      extraRuntimeInputs = with pkgs; [git neovim];
     };
   };
   flake.wrappers.mkFish = {
@@ -23,10 +24,8 @@
         nix-direnv
         starship
         ripgrep
-        neovim
 
         # Git tools
-        git
         delta
         tig
         lazygit
