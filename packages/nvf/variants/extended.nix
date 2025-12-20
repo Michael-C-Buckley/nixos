@@ -7,6 +7,7 @@
       go
       python
       nix
+      themes
       languages
     ];
 
