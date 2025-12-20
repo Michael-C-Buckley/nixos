@@ -4,7 +4,7 @@
       startPlugins = with pkgs.vimPlugins; [
         transparent-nvim
       ];
-      keymap = [
+      keymaps = [
         {
           mode = "n";
           key = "<leader>tt";
