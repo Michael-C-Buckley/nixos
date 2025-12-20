@@ -5,7 +5,7 @@
       default
       blink
       themes
-
+      transparent
       languages
       go
       python

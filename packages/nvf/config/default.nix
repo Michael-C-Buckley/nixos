@@ -3,7 +3,6 @@
     imports = with config.flake.modules.nvf; [
       fzflua
       keymaps
-      plugins
       ui
       vim
       dashboard-alpha
