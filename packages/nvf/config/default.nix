@@ -5,7 +5,6 @@
       plugins
       ui
       vim
-
       dashboard-alpha
     ];
 
@@ -34,11 +33,9 @@
         gitsigns.enable = true;
       };
 
-      terminal = {
-        toggleterm = {
-          enable = true;
-          lazygit.enable = true;
-        };
+      terminal.toggleterm = {
+        enable = true;
+        lazygit.enable = true;
       };
     };
   };
