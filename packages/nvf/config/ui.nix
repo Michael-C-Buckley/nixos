@@ -8,10 +8,6 @@
       # Navigation
       projects.project-nvim.enable = true;
       navigation.harpoon.enable = true;
-      filetree.neo-tree.enable = true;
-
-      # See keymaps for the binds
-      fzf-lua.enable = true;
 
       theme.enable = false; # I set ayu-dark manually
 

@@ -6,6 +6,7 @@
       blink
       themes
       transparent
+      neotree
       languages
       go
       python
