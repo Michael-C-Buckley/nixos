@@ -3,6 +3,7 @@
   flake.modules.nvf.extended = {
     imports = with config.flake.modules.nvf; [
       default
+      blink
       go
       python
       nix
@@ -14,23 +15,9 @@
         enable = true;
       };
 
-      # To try out
-      notes = {
-        obsidian.enable = false; # Currently bugged
-        orgmode.enable = true;
-      };
-
       lsp = {
         enable = true;
         formatOnSave = true;
-      };
-
-      autocomplete = {
-        enableSharedCmpSources = true;
-        blink-cmp = {
-          enable = true;
-          friendly-snippets.enable = true;
-        };
       };
     };
   };
