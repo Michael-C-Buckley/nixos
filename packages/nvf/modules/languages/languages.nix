@@ -1,6 +1,10 @@
 {
   flake.modules.nvf.languages = {
     vim = {
+      lsp = {
+        enable = true;
+        formatOnSave = true;
+      };
       languages = {
         enableFormat = true;
         enableTreesitter = true;
