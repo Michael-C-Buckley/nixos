@@ -1,11 +1,6 @@
 {
   flake.modules.nvf.ui = {
     vim = {
-      dashboard.alpha = {
-        enable = true;
-        theme = "theta";
-      };
-
       comments.comment-nvim.enable = true;
       statusline.lualine.enable = true;
       tabline.nvimBufferline.enable = true;

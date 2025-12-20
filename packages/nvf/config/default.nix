@@ -5,6 +5,8 @@
       plugins
       ui
       vim
+
+      dashboard-alpha
     ];
 
     vim = {
