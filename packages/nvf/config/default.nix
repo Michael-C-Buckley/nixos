@@ -2,7 +2,6 @@
   flake.modules.nvf.default = {
     imports = with config.flake.modules.nvf; [
       fzflua
-      keymaps
       ui
       vim
       dashboard-alpha
