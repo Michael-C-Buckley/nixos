@@ -5,7 +5,6 @@
 }: let
   inherit
     (config.flake.modules.nvf)
-    copilot
     default
     extended
     ;
@@ -18,7 +17,6 @@ in {
   in {
     packages = {
       nvf = mkNvf [extended];
-      nvf-copilot = mkNvf [copilot extended];
       nvf-minimal = mkNvf [default];
     };
   };
