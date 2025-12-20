@@ -3,7 +3,6 @@
     imports = with config.flake.modules.nvf; [
       keymaps
       plugins
-      themes
       ui
       vim
     ];
