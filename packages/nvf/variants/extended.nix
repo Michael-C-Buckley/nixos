@@ -4,22 +4,12 @@
     imports = with config.flake.modules.nvf; [
       default
       blink
+      themes
+
+      languages
       go
       python
       nix
-      themes
-      languages
     ];
-
-    vim = {
-      runner.run-nvim = {
-        enable = true;
-      };
-
-      lsp = {
-        enable = true;
-        formatOnSave = true;
-      };
-    };
   };
 }
