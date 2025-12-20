@@ -19,9 +19,6 @@
       hyprland.enable = true;
     };
 
-    # Gnome for the environment
-    services.desktopManager.gnome.enable = true;
-
     environment.systemPackages = with pkgs; [
       nixos-anywhere
       attic-client
