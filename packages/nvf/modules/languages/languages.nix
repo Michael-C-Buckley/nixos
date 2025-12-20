@@ -16,6 +16,14 @@
         context.enable = true;
         fold = true;
       };
+      keymaps = [
+        {
+          mode = "n";
+          key = "<leader>lf";
+          action = ":lua vim.lsp.buf.format()<CR>";
+          silent = true;
+        }
+      ];
     };
   };
 }

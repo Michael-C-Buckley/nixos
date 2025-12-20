@@ -1,17 +1,11 @@
 {
-  flake.modules.nvf.keymaps = {
+  flake.modules.nvf.default = {
     vim.keymaps = [
       {
         # Close buffer
         mode = "n";
         key = "<leader>bd";
         action = ":bd<CR>";
-        silent = true;
-      }
-      {
-        mode = "n";
-        key = "<leader>lf";
-        action = ":lua vim.lsp.buf.format()<CR>";
         silent = true;
       }
     ];
