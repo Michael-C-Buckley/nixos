@@ -14,11 +14,6 @@
         action = ":lua vim.lsp.buf.format()<CR>";
         silent = true;
       }
-      {
-        mode = "n";
-        key = "<leader>nt";
-        action = ":Neotree toggle<CR>";
-      }
     ];
   };
 }
