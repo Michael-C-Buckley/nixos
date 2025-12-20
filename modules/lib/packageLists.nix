@@ -8,6 +8,6 @@ in {
       map (x: pkgs.lib.attrByPath (pkgs.lib.splitString "." x) null pkgs) pkgList;
 
     # Take in a list of package lists as `a`, flatten, and get the derivations
-    combinePkgLists = pkgs: a: makePkgList (pkgs.lib.lists.flatten a);
+    combinePkgLists = pkgs: a: makePkgList pkgs (pkgs.lib.lists.flatten a);
   };
 }
