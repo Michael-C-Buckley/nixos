@@ -1,5 +1,8 @@
 # This is a simple set of tools that doesn't require pinning, just get them from the host
-{pkgs ? import <nixpkgs> {}}:
+{
+  pkgs ? import <nixpkgs> {},
+  extraPkgs ? [],
+}:
 pkgs.mkShellNoCC {
   name = "default";
   buildInputs = with pkgs;
@@ -22,7 +25,8 @@ pkgs.mkShellNoCC {
     ++ [
       # Tool to find best GPG signing key as part of my shell
       (pkgs.callPackage ./packages/gpg-find-key/_derivation.nix {})
-    ];
+    ]
+    ++ extraPkgs;
 
   shellHook = ''
     lefthook install
