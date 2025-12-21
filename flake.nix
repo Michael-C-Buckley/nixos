@@ -22,8 +22,16 @@
         ++ (mkImport ./modules) ++ (mkImport ./packages);
 
       # The shell is available as either a devshell or traditional nix-shell
-      perSystem = {pkgs, ...}: {
-        devShells.default = import ./shell.nix {inherit pkgs;};
+      perSystem = {
+        self',
+        pkgs,
+        ...
+      }: {
+        # The devshell includes a jailed opencode instance
+        devShells.default = import ./shell.nix {
+          inherit pkgs;
+          extraPkgs = [self'.packages.opencode];
+        };
       };
     };
 
