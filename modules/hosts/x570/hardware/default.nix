@@ -16,9 +16,9 @@
       kernelModules = ["kvm" "kvm-amd" "virtiofs" "9p" "9pnet_virtio"];
       kernelParams = [
         "amd_pstate=active" # AMD Power efficiency on Linux 6.3+
-        "zfs.zfs_arc_max=17179869184" # 16GB max
-        "zfs.zfs_arc_min=4294967296" # 4GB min
-        "pcie_aspm=off"
+        #"zfs.zfs_arc_max=17179869184" # 16GB max
+        #"zfs.zfs_arc_min=4294967296" # 4GB min
+        #"pcie_aspm=off"
       ];
       extraModulePackages = [];
       initrd = {
