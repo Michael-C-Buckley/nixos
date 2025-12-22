@@ -18,10 +18,6 @@ in {
       hostId = "c07fa570";
       hostName = "x570";
       interfaces = {
-        eno1.mtu = 9000;
-        eno2.mtu = 9000;
-        enx3.mtu = 9000;
-        enx4.mtu = 9000;
         lo.ipv4.addresses = mkLink interfaces.lo.ipv4 32;
       };
     };
