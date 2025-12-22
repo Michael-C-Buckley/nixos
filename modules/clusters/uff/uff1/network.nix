@@ -23,7 +23,8 @@
 
     services.keepalived.vrrpInstances = {
       wifi.priority = 110;
-      lan.priority = 110;
+      lan1.priority = 110;
+      lan2.priority = 110;
     };
   };
 }
