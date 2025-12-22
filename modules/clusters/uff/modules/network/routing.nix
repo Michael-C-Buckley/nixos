@@ -39,11 +39,23 @@ in {
       int eno1
        ip ospf bfd
        ip ospf area 0
-       ip ospf cost 400
+       ip ospf cost 1000
       int enu2
        ip ospf bfd
        ip ospf area 0
+       ip ospf cost 400
+      int eno1.3
+       ip ospf area 0
+       ip ospf cost 1001
+      int eno1.4
+       ip ospf area 0
        ip ospf cost 1000
+      int enu2.5
+       ip ospf area 0
+       ip ospf cost 400
+      int enu2.6
+       ip ospf area 0
+       ip ospf cost 401
       !
       bfd
        ${bfdPeers}
