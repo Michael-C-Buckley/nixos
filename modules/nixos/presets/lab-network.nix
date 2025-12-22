@@ -49,6 +49,7 @@ in {
         ip prefix-list 65102-OUT seq 10 deny 0.0.0.0/0
         ip prefix-list 65102-IN seq 5 permit 192.168.64.0/20
         ip prefix-list 65102-IN seq 10 deny 0.0.0.0/0
+        ip prefix-list BLOCK-DEFAULT seq 10 permit 0.0.0.0/0 ge 1 le 32
         !
         ip forwarding
         ipv6 forwarding
