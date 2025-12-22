@@ -4,16 +4,11 @@
 # as I will be attempting crazy madness and doing things which probably
 # will break, and break a lot
 {
-  flake.modules.homeManager.default = {pkgs, ...}: {
+  flake.modules.homeManager.default = {
     home = {
       username = "michael";
       homeDirectory = "/home/michael";
-
-      packages = with pkgs; [
-        nh # limited on non-NixOS systems but still useful
-      ];
     };
-
     programs.home-manager.enable = true;
   };
 }
