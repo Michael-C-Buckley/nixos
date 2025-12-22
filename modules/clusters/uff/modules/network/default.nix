@@ -6,7 +6,10 @@
     ];
 
     networking = {
-      interfaces.enusb1.mtu = 9000;
+      interfaces = {
+        eno1.mtu = 1500;
+        enu2.mtu = 9000;
+      };
       useDHCP = false;
       networkmanager = {
         ensureProfiles.profiles = {

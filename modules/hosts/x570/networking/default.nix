@@ -30,7 +30,7 @@ in {
       };
 
       interfaces = {
-        eno1.ipv4.addresses = mkLink interfaces.eno1.ipv4 24;
+        eno1 = mkLanLink interfaces.eno1.ipv4 24;
         eno2 = mkLanLink interfaces.eno2.ipv4 28;
         enx3 = mkLanLink interfaces.enx3.ipv4 28;
         lo.ipv4.addresses = mkLink interfaces.lo.ipv4 32;
