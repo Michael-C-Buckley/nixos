@@ -18,7 +18,7 @@
     # Template for the VLAN schema I use
     # converts from subinterface in the format `eno1.100`
     # where the decimal separates the interface and VLAN ID
-    mkVlanNetdev = vlanName: let
+    mkVlanNetdev = vlanName: mtu: let
       parts = builtins.split "\\." vlanName;
       vlanId = builtins.elemAt parts 2;
     in {
@@ -27,6 +27,7 @@
         netdevConfig = {
           Kind = "vlan";
           Name = vlanName;
+          MTUBytes = mtu;
         };
         vlanConfig.Id = builtins.fromJSON vlanId;
       };

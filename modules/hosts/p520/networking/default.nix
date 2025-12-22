@@ -19,12 +19,15 @@ in {
             prefixLength = 27;
           }
         ];
-        eno1.ipv4.addresses = [
-          {
-            address = interfaces.eno1.ipv4;
-            prefixLength = 24;
-          }
-        ];
+        eno1 = {
+          mtu = 9000;
+          ipv4.addresses = [
+            {
+              address = interfaces.eno1.ipv4;
+              prefixLength = 24;
+            }
+          ];
+        };
         enx2 = {
           mtu = 9000;
           ipv4.addresses = [

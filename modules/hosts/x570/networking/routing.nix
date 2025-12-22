@@ -13,6 +13,10 @@ in {
 
       router ospf
         router-id ${lo.ipv4}
+        distribute-list BLOCK-DEFAULT eno1.4
+        distribute-list BLOCK-DEFAULT eno2.6
+        distribute-list BLOCK-DEFAULT enx3.8
+        distribute-list BLOCK-DEFAULT enx4.8
 
       router bgp 65100
         no bgp ebgp-requires-policy
@@ -26,18 +30,39 @@ in {
       int lo
         ip ospf passive
         ip ospf area 0
-
       int eno1
         ip ospf cost 1000
         ip ospf area 0
-
       int eno2
         ip ospf cost 400
         ip ospf area 0
-
       int enx3
         ip ospf cost 100
         ip ospf area 0
+      int eno1.3
+       ip ospf cost 1010
+       ip ospf area 0
+      int eno1.4
+       ip ospf cost 1000
+       ip ospf area 0
+      int eno2.5
+       ip ospf cost 410
+       ip ospf area 0
+      int eno2.6
+       ip ospf cost 400
+       ip ospf area 0
+      int enx3.7
+       ip ospf cost 110
+       ip ospf area 0
+      int enx3.8
+       ip ospf cost 100
+       ip ospf area 0
+      int enx4.7
+       ip ospf cost 110
+       ip ospf area 0
+      int enx4.8
+       ip ospf cost 100
+       ip ospf area 0
     '';
 
     networking.ospf = {
