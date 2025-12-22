@@ -40,25 +40,25 @@ in {
         ip ospf cost 100
         ip ospf area 0
       int eno1.3
-       ip ospf cost 1000
+       ip ospf cost 1010
        ip ospf area 0
       int eno1.4
        ip ospf cost 1000
        ip ospf area 0
       int eno2.5
-       ip ospf cost 400
+       ip ospf cost 410
        ip ospf area 0
       int enu2.6
        ip ospf cost 400
        ip ospf area 0
       int enx3.7
-       ip ospf cost 100
+       ip ospf cost 110
        ip ospf area 0
       int enx3.8
        ip ospf cost 100
        ip ospf area 0
       int enx4.7
-       ip ospf cost 100
+       ip ospf cost 110
        ip ospf area 0
       int enx4.8
        ip ospf cost 100
