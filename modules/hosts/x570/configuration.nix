@@ -6,6 +6,7 @@
       intelGraphics
       wifi
       gaming
+      lab-network
     ];
 
     system.stateVersion = "25.05";
