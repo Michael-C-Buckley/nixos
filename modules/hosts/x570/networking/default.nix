@@ -1,18 +1,23 @@
 {config, ...}: let
-  inherit (config.flake.hosts.x570.interfaces) lo eno1 eno2 enx3;
+  inherit (config.flake.hosts.x570) interfaces;
+
+  # De-duplicate link spam
+  mkLink = address: prefixLength: [
+    {
+      inherit address prefixLength;
+    }
+  ];
+
+  mkLanLink = address: prefixLength: {
+    mtu = 9000;
+    ipv4.addresses = mkLink address prefixLength;
+  };
 in {
   flake.modules.nixos.x570 = {
-    imports = with config.flake.modules.nixos; [
-      bgp
-      ospf
-    ];
-
-    services = {
-      iperf3.enable = true;
+    systemd.network = {
+      # Don't wait for DHCP as I use static IPs
+      wait-online.anyInterface = true;
     };
-
-    # Don't wait for DHCP as I use static IPs
-    systemd.network.wait-online.anyInterface = true;
 
     networking = {
       hostId = "c07fa570";
@@ -24,60 +29,11 @@ in {
         metric = 20;
       };
 
-      # I use networkmanager for wifi
-      # Wired interfaces will be on networkd
-      networkmanager = {
-        enable = true;
-        unmanaged = [
-          "eno1"
-          "eno2"
-          "enx3"
-          "enx4"
-        ];
-      };
-      useNetworkd = true;
-
-      # Virtual only bridge
-      bridges.br0 = {
-        interfaces = [];
-      };
-
-      firewall = {
-        allowedUDPPorts = [33401];
-        trustedInterfaces = ["br0"];
-      };
-
       interfaces = {
-        eno1.ipv4.addresses = [
-          {
-            address = eno1.ipv4;
-            prefixLength = 24;
-          }
-        ];
-        eno2 = {
-          mtu = 9000;
-          ipv4.addresses = [
-            {
-              address = eno2.ipv4;
-              prefixLength = 28;
-            }
-          ];
-        };
-        enx3 = {
-          mtu = 9000;
-          ipv4.addresses = [
-            {
-              address = enx3.ipv4;
-              prefixLength = 28;
-            }
-          ];
-        };
-        lo.ipv4.addresses = [
-          {
-            address = lo.ipv4;
-            prefixLength = 32;
-          }
-        ];
+        eno1.ipv4.addresses = mkLink interfaces.eno1.ipv4 24;
+        eno2 = mkLanLink interfaces.eno2.ipv4 28;
+        enx3 = mkLanLink interfaces.enx3.ipv4 28;
+        lo.ipv4.addresses = mkLink interfaces.lo.ipv4 32;
       };
     };
   };
