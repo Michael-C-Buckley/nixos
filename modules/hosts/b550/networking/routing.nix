@@ -26,25 +26,25 @@
        ip ospf cost 100
       int eno1.3
        ip ospf area 0
-       ip ospf cost 1000
+       ip ospf cost 1010
       int eno1.4
        ip ospf area 0
        ip ospf cost 1000
       int enp2.5
        ip ospf area 0
-       ip ospf cost 400
+       ip ospf cost 410
       int enp2.6
        ip ospf area 0
        ip ospf cost 400
       int enx3.7
        ip ospf area 0
-       ip ospf cost 100
+       ip ospf cost 110
       int enx3.8
        ip ospf area 0
        ip ospf cost 100
       int enx4.7
        ip ospf area 0
-       ip opsf cost 100
+       ip opsf cost 110
       int enx4.8
        ip ospf area 0
        ip ospf cost 100
