@@ -5,6 +5,7 @@
       homelabPreset
       network-no-static-default
       containerlab
+      lab-network
       libvirt
       netbird
       nvidia

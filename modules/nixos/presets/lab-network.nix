@@ -18,6 +18,7 @@ in {
     inherit (flake.hosts.${hostName}) interfaces;
   in {
     imports = with flake.modules.nixos; [
+      bfd
       bgp
       ospf
     ];
@@ -36,7 +37,7 @@ in {
       useNetworkd = true;
       # I use networkmanager for wifi
       networkmanager = {
-        enable = true;
+        enable = lib.mkDefault true;
         # `wl` will match against both my custom and linux default device naming for wifi
         unmanaged = lib.filter (name: !(lib.hasPrefix "wl" name)) (builtins.attrNames interfaces);
       };
