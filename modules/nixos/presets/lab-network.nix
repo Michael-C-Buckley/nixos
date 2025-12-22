@@ -51,10 +51,11 @@ in {
             then "27"
             else "28";
         in {
-          name = "10-${fixedName}.network";
+          name = "10-${interface}";
           value = {
-            matchConfig.name = fixedName;
+            matchConfig.Name = fixedName;
             networkConfig.Address = ["${interfaces.${interface}.ipv4}/${cidr}"];
+            vlan = builtins.filter (lib.hasPrefix interface) vlanList;
           };
         })
         networkdInterfaces
