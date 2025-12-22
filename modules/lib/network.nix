@@ -10,7 +10,6 @@
     # Takes a host's interface list from the flake host file
     # and parses out the VLANs and returns a list in the string format
     # such as `eth1.100` where it's name and ID
-    #getVlanList = interfaces: map (a: builtins.replaceStrings ["-"] ["."] a) (builtins.filter (builtins.attrNames interfaces));
     getVlanList = interfaces:
       map
       config.flake.lib.network.fixVlanName
@@ -18,10 +17,9 @@
 
     # Template for the VLAN schema I use
     # converts from subinterface in the format `eno1.100`
-    # where the decimal separate interface and VLAN ID
+    # where the decimal separates the interface and VLAN ID
     mkVlanNetdev = vlanName: let
       parts = builtins.split "\\." vlanName;
-      #iface = builtins.elemAt parts 0;
       vlanId = builtins.elemAt parts 2;
     in {
       name = "10-${vlanName}";
