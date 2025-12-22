@@ -27,6 +27,13 @@ in {
 
     vlanList = getVlanList interfaces;
 
+    # Get the MTU size based on the VLAN ID
+    # Odd is 1500 and even is 9000
+    getMtu = name:
+      if (builtins.match ".*[468]" name != null)
+      then "9000"
+      else "1500";
+
     # Remove wifi interfaces
     networkdInterfaces = builtins.filter (name: builtins.match "wl.*" name == null) (builtins.attrNames interfaces);
   in {
@@ -78,7 +85,7 @@ in {
     };
 
     systemd.network = {
-      netdevs = builtins.listToAttrs (map mkVlanNetdev vlanList);
+      netdevs = builtins.listToAttrs (map (name: mkVlanNetdev name (getMtu name)) vlanList);
 
       networks = builtins.listToAttrs (
         map
