@@ -15,6 +15,7 @@ in {
     lib,
     ...
   }: let
+    inherit (builtins) attrNames head filter match split listToAttrs;
     inherit (config.networking) hostName;
     inherit (flake.hosts.${hostName}) interfaces;
 
@@ -30,12 +31,18 @@ in {
     # Get the MTU size based on the VLAN ID
     # Odd is 1500 and even is 9000, within the scope of my VLAN IDs
     getMtu = name:
-      if (builtins.match ".*[468]" name != null)
+      if (match ".*[468]" name != null)
       then "9000"
       else "1500";
 
     # Remove wifi interfaces
-    networkdInterfaces = builtins.filter (name: builtins.match "wl.*" name == null) (builtins.attrNames interfaces);
+    networkdInterfaces = filter (name: !(lib.hasPrefix "wl" name)) (attrNames interfaces);
+
+    physicalInterfaces = lib.unique (
+      map
+      (a: head (split "-" a))
+      (filter (lib.hasPrefix "en") (attrNames interfaces))
+    );
   in {
     imports = with flake.modules.nixos; [
       bfd
@@ -85,28 +92,39 @@ in {
     };
 
     systemd.network = {
-      netdevs = builtins.listToAttrs (map (name: mkVlanNetdev name (getMtu name)) vlanList);
+      netdevs = listToAttrs (map (name: mkVlanNetdev name (getMtu name)) vlanList);
 
-      networks = builtins.listToAttrs (
-        map
-        (interface: let
-          fixedName = fixVlanName interface;
-          # The current network has fixed logic on what the masks will be
-          cidr =
-            if interface == "eno1"
-            then "24"
-            else if lib.hasInfix "-" interface
-            then "27"
-            else "28";
-        in {
-          name = "10-${interface}";
-          value = {
-            matchConfig.Name = fixedName;
-            networkConfig.Address = ["${interfaces.${interface}.ipv4}/${cidr}"];
-            vlan = builtins.filter (lib.hasPrefix interface) vlanList;
-          };
-        })
-        networkdInterfaces
+      networks = listToAttrs (
+        # Create the phytsical interface files
+        (map (interface: {
+            name = "10-${interface}";
+            value = {
+              matchConfig.Name = interface;
+              vlan = filter (lib.hasPrefix interface) vlanList;
+            };
+          })
+          physicalInterfaces)
+        ++
+        # Create the vlan interfaces
+        (
+          map (interface: let
+            # The current network has fixed logic on what the masks will be
+            cidr =
+              if interface == "eno1"
+              then "24"
+              else if lib.hasInfix "-" interface
+              then "27"
+              else "28";
+          in {
+            # Other interfaces will have address info
+            name = "30-${interface}";
+            value = {
+              matchConfig.Name = fixVlanName interface;
+              networkConfig.Address = ["${interfaces.${interface}.ipv4}/${cidr}"];
+            };
+            # Exclude the already accounted for physical addresses
+          }) (filter (a: !(builtins.elem a physicalInterfaces)) networkdInterfaces)
+        )
       );
     };
     networking = {
@@ -116,7 +134,7 @@ in {
       networkmanager = {
         enable = lib.mkDefault true;
         # `wl` will match against both my custom and linux default device naming for wifi
-        unmanaged = lib.filter (name: !(lib.hasPrefix "wl" name)) (builtins.attrNames interfaces);
+        unmanaged = networkdInterfaces ++ physicalInterfaces;
       };
 
       # Virtual only bridge

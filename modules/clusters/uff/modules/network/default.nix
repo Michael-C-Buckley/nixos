@@ -9,8 +9,6 @@ in {
 
     networking = {
       interfaces = {
-        eno1.mtu = 9000;
-        enu2.mtu = 9000;
         lo.ipv4.addresses = [
           {
             address = flake.hosts.${config.networking.hostName}.interfaces.lo.ipv4;

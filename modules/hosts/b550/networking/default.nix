@@ -26,10 +26,6 @@ in {
             prefixLength = 27;
           }
         ];
-        eno1.mtu = 9000;
-        enp2.mtu = 9000;
-        enx3.mtu = 9000;
-        enx4.mtu = 9000;
       };
     };
   };
