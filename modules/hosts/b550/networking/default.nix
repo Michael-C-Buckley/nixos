@@ -13,31 +13,15 @@
   };
 in {
   flake.modules.nixos.${hostName} = {
-    imports = with config.flake.modules.nixos; [
-      bfd
-      bgp
-      ospf
-    ];
-    services = {
-      iperf3.enable = true;
-    };
-
     networking = {
       inherit hostName;
       hostId = "272a6fae";
-      useNetworkd = true;
 
       # TODO: switch to using internal DNS server once set up
       nameservers = [
         "1.1.1.1"
         "8.8.8.8"
       ];
-
-      firewall.trustedInterfaces = ["br0"];
-
-      bridges = {
-        br0.interfaces = []; # General use bridge, typically for VMs
-      };
 
       interfaces = {
         lo.ipv4.addresses = [
