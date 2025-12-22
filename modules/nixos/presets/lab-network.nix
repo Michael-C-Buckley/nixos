@@ -1,5 +1,5 @@
 # Networking specific to my home lab
-# Include heavily opinionation for the servers present in the complex
+# Include heavy opinionation for the servers present in the complex
 # networking environment
 {config, ...}: let
   inherit (config) flake;
