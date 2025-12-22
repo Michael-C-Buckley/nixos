@@ -18,6 +18,13 @@ in {
     inherit (config.networking) hostName;
     inherit (flake.hosts.${hostName}) interfaces;
 
+    labHosts = ["uff1" "uff2" "uff3" "b550" "p520" "x570"];
+
+    # Exclude the current host from the neighbors
+    neighbors = lib.strings.concatMapStringsSep "\n" (
+      hostname: " neighbor ${flake.hosts.${hostname}.interfaces.lo.ipv4} peer-group fabric"
+    ) (lib.filter (h: h != config.networking.hostName) labHosts);
+
     vlanList = getVlanList interfaces;
 
     # Remove wifi interfaces
@@ -34,6 +41,39 @@ in {
         enable = true;
         openFirewall = true;
       };
+
+      frr.config = ''
+        ip prefix-list MT3 seq 5 permit 192.168.48.0/20
+        ip prefix-list MT3 seq 10 permit 192.168.64.0/20
+        ip prefix-list 65102-OUT seq 5 permit 192.168.48.0/20
+        ip prefix-list 65102-OUT seq 10 deny 0.0.0.0/0
+        ip prefix-list 65102-IN seq 5 permit 192.168.64.0/20
+        ip prefix-list 65102-IN seq 10 deny 0.0.0.0/0
+        !
+        ip forwarding
+        ipv6 forwarding
+        !
+        router bgp 65101
+          bgp router-id ${interfaces.lo.ipv4}
+          no bgp default ipv4-unicast
+
+          neighbor fabric peer-group
+          neighbor fabric update-source ${interfaces.lo.ipv4}
+          neighbor fabric remote-as 65101
+          ${neighbors}
+          neighbor 192.168.49.1 remote-as 65101
+          neighbor 192.168.49.1 bfd
+
+          address-family l2vpn evpn
+            neighbor fabric activate
+            advertise-all-vni
+          exit-address-family
+
+          address-family ipv4 unicast
+            neighbor 192.168.49.1 prefix-list MT3 in
+            neighbor 192.168.49.1 activate
+          exit-address-family
+      '';
     };
 
     systemd.network = {
