@@ -5,6 +5,7 @@
   inherit (config) flake;
   inherit
     (config.flake.lib.network)
+    fixVlanName
     getVlanList
     mkVlanNetdev
     ;
@@ -16,6 +17,11 @@ in {
   }: let
     inherit (config.networking) hostName;
     inherit (flake.hosts.${hostName}) interfaces;
+
+    vlanList = getVlanList interfaces;
+
+    # Remove wifi interfaces
+    networkdInterfaces = builtins.filter (name: builtins.match "wl.*" name == null) (builtins.attrNames interfaces);
   in {
     imports = with flake.modules.nixos; [
       bfd
@@ -31,8 +37,27 @@ in {
     };
 
     systemd.network = {
-      netdevs = builtins.listToAttrs (
-        map mkVlanNetdev (getVlanList interfaces)
+      netdevs = builtins.listToAttrs (map mkVlanNetdev vlanList);
+
+      networks = builtins.listToAttrs (
+        map
+        (interface: let
+          fixedName = fixVlanName interface;
+          # The current network has fixed logic on what the masks will be
+          cidr =
+            if interface == "eno1"
+            then "24"
+            else if lib.hasInfix "-" interface
+            then "27"
+            else "28";
+        in {
+          name = "10-${fixedName}.network";
+          value = {
+            matchConfig.name = fixedName;
+            networkConfig.Address = ["${interfaces.${interface}.ipv4}/${cidr}"];
+          };
+        })
+        networkdInterfaces
       );
     };
     networking = {
