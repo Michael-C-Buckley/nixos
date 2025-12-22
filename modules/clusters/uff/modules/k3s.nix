@@ -2,9 +2,9 @@
   inherit (config.flake) modules hosts;
 in {
   flake.modules.nixos.uff = {config, ...}: let
-    inherit (builtins) head;
+    inherit (config.networking) hostName;
     # This IP is the locally evaluated host's
-    enusb = (head config.networking.interfaces.enu2.ipv4.addresses).address;
+    enu2 = hosts.${hostName}.interfaces.enu2-6.ipv4;
   in {
     imports = with modules.nixos; [
       k3s
@@ -13,12 +13,12 @@ in {
 
     services.k3s = {
       tokenFile = config.sops.secrets.k3s_token.path;
-      serverAddr = enusb;
+      serverAddr = enu2;
       extraFlags = [
-        "--node-name ${config.networking.hostName}s"
-        "--node-ip ${enusb}"
-        "--advertise-address ${enusb}"
-        "--server https://${hosts.uff1.interfaces.enu2.ipv4}:6443" # Serves as the bootstrapper
+        "--node-name ${hostName}s"
+        "--node-ip ${enu2}"
+        "--advertise-address ${enu2}"
+        "--server https://${hosts.uff1.interfaces.enu2-6.ipv4}:6443" # Serves as the bootstrapper
       ];
     };
   };

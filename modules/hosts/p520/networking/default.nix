@@ -19,33 +19,9 @@ in {
             prefixLength = 27;
           }
         ];
-        eno1 = {
-          mtu = 9000;
-          ipv4.addresses = [
-            {
-              address = interfaces.eno1.ipv4;
-              prefixLength = 24;
-            }
-          ];
-        };
-        enx2 = {
-          mtu = 9000;
-          ipv4.addresses = [
-            {
-              address = interfaces.enx2.ipv4;
-              prefixLength = 28;
-            }
-          ];
-        };
-        enx3 = {
-          mtu = 9000;
-          ipv4.addresses = [
-            {
-              address = interfaces.enx3.ipv4;
-              prefixLength = 28;
-            }
-          ];
-        };
+        eno1.mtu = 9000;
+        enx2.mtu = 9000;
+        enx3.mtu = 9000;
       };
     };
   };
