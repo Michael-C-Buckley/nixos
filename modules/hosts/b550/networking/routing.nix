@@ -2,10 +2,10 @@
   flake.modules.nixos.b550 = {
     services.frr.config = ''
       router ospf
-       distribute-list NO-DEFAULT eno1.4
-       distribute-list NO-DEFAULT eno2.6
-       distribute-list NO-DEFAULT enx3.8
-       distribute-list NO-DEFAULT enx4.8
+       distribute-list BLOCK-DEFAULT eno1.4
+       distribute-list BLOCK-DEFAULT eno2.6
+       distribute-list BLOCK-DEFAULT enx3.8
+       distribute-list BLOCK-DEFAULT enx4.8
       int lo
        ip ospf area 0
        ip ospf passive
@@ -44,7 +44,7 @@
        ip ospf cost 100
       int enx4.7
        ip ospf area 0
-       ip opsf cost 110
+       ip ospf cost 110
       int enx4.8
        ip ospf area 0
        ip ospf cost 100
