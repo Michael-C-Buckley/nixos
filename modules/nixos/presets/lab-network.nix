@@ -28,7 +28,7 @@ in {
     vlanList = getVlanList interfaces;
 
     # Get the MTU size based on the VLAN ID
-    # Odd is 1500 and even is 9000
+    # Odd is 1500 and even is 9000, within the scope of my VLAN IDs
     getMtu = name:
       if (builtins.match ".*[468]" name != null)
       then "9000"

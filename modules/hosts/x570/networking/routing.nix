@@ -48,7 +48,7 @@ in {
       int eno2.5
        ip ospf cost 410
        ip ospf area 0
-      int enu2.6
+      int eno2.6
        ip ospf cost 400
        ip ospf area 0
       int enx3.7
