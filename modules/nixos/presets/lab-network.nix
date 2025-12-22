@@ -24,7 +24,10 @@ in {
     ];
 
     services = {
-      iperf3.enable = true;
+      iperf3 = {
+        enable = true;
+        openFirewall = true;
+      };
     };
 
     systemd.network = {
