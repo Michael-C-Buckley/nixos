@@ -107,20 +107,12 @@ in {
         ++
         # Create the vlan interfaces
         (
-          map (interface: let
-            # The current network has fixed logic on what the masks will be
-            cidr =
-              if interface == "eno1"
-              then "24"
-              else if lib.hasInfix "-" interface
-              then "27"
-              else "28";
-          in {
+          map (interface: {
             # Other interfaces will have address info
             name = "30-${interface}";
             value = {
               matchConfig.Name = fixVlanName interface;
-              networkConfig.Address = ["${interfaces.${interface}.ipv4}/${cidr}"];
+              networkConfig.Address = ["${interfaces.${interface}.ipv4}"];
             };
             # Exclude the already accounted for physical addresses
           }) (filter (a: !(builtins.elem a physicalInterfaces)) networkdInterfaces)
