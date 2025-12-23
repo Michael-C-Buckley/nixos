@@ -2,7 +2,6 @@
   flake.modules.nixos.o1 = {
     imports = with config.flake.modules.nixos; [
       bgp
-      ospf
     ];
 
     networking = {
