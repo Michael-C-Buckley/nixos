@@ -57,7 +57,7 @@
     };
 
     hjem = {
-      url = "github:feel-co/hjem/refactor-3"; # Hjem-Darwnin testing
+      url = "github:feel-co/hjem";
       inputs = {
         nix-darwin.follows = "nix-darwin";
         nixpkgs.follows = "nixpkgs";

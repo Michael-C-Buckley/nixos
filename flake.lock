@@ -29,16 +29,15 @@
         "smfh": []
       },
       "locked": {
-        "lastModified": 1765433460,
-        "narHash": "sha256-MljkMrST5PoeVGNuKWLYwBiXmPmPBLjmUPCe+11Foa4=",
+        "lastModified": 1766511129,
+        "narHash": "sha256-NpMe6qDe6PVJQvFltug0OHijMF5aUwIgjdvCbyyrf30=",
         "owner": "feel-co",
         "repo": "hjem",
-        "rev": "2a213e273f1804eb4451824d4d6710be099f4fac",
+        "rev": "64d92d3ed0c292c070e730e83857d5ba4fd0bfa0",
         "type": "github"
       },
       "original": {
         "owner": "feel-co",
-        "ref": "refactor-3",
         "repo": "hjem",
         "type": "github"
       }
