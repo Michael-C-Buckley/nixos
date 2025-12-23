@@ -12,9 +12,9 @@ in {
       "${hosts.p520.interfaces.lo.ipv4}" = ["p520" "p520.michael.lan"];
 
       # 2.5GbE
-      "${hosts.uff1.interfaces.enu2-6.ipv4}" = ["uff1s"];
-      "${hosts.uff2.interfaces.enu2-6.ipv4}" = ["uff2s"];
-      "${hosts.uff3.interfaces.enu2-6.ipv4}" = ["uff3s"];
+      "${hosts.uff1.interfaces.enu2.ipv4}" = ["uff1s"];
+      "${hosts.uff2.interfaces.enu2.ipv4}" = ["uff2s"];
+      "${hosts.uff3.interfaces.enu2.ipv4}" = ["uff3s"];
 
       # Loopbacks
       "192.168.61.0" = ["uff" "uff.michael.lan"];
