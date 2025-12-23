@@ -1,22 +1,15 @@
-{config, ...}: let
-  inherit (config) flake;
-in {
-  flake.modules.nixos.uff = {config, ...}: {
-    imports = with flake.modules.nixos; [
+{config, ...}: {
+  flake.modules.nixos.uff = {
+    imports = with config.flake.modules.nixos; [
       lab-network
       vrrp
     ];
 
     networking = {
       interfaces = {
-        eno1.mtu = 9000;
-        enu2.mtu = 9000;
         lo.ipv4.addresses = [
           {
-            address = flake.hosts.${config.networking.hostName}.interfaces.lo.ipv4;
-            prefixLength = 32;
-          }
-          {
+            #Cluster anycast gateway, individual loopbacks defined in lab-network
             address = "192.168.61.0";
             prefixLength = 32;
           }

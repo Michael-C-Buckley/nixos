@@ -5,9 +5,7 @@
   inherit (config) flake;
   inherit
     (config.flake.lib.network)
-    fixVlanName
-    getVlanList
-    mkVlanNetdev
+    getAddress
     ;
 in {
   flake.modules.nixos.lab-network = {
@@ -15,27 +13,25 @@ in {
     lib,
     ...
   }: let
+    inherit (builtins) attrNames filter listToAttrs;
     inherit (config.networking) hostName;
     inherit (flake.hosts.${hostName}) interfaces;
+
+    lo = getAddress interfaces.lo.ipv4;
 
     labHosts = ["uff1" "uff2" "uff3" "b550" "p520" "x570"];
 
     # Exclude the current host from the neighbors
     neighbors = lib.strings.concatMapStringsSep "\n" (
-      hostname: " neighbor ${flake.hosts.${hostname}.interfaces.lo.ipv4} peer-group fabric"
+      hostname: " neighbor ${getAddress flake.hosts.${hostname}.interfaces.lo.ipv4} peer-group fabric"
     ) (lib.filter (h: h != config.networking.hostName) labHosts);
 
-    vlanList = getVlanList interfaces;
-
-    # Get the MTU size based on the VLAN ID
-    # Odd is 1500 and even is 9000, within the scope of my VLAN IDs
-    getMtu = name:
-      if (builtins.match ".*[468]" name != null)
-      then "9000"
-      else "1500";
-
     # Remove wifi interfaces
-    networkdInterfaces = builtins.filter (name: builtins.match "wl.*" name == null) (builtins.attrNames interfaces);
+    networkdInterfaces = filter (name: !(lib.hasPrefix "wl" name)) (attrNames interfaces);
+
+    physicalInterfaces = lib.unique (
+      filter (lib.hasPrefix "en") (attrNames interfaces)
+    );
   in {
     imports = with flake.modules.nixos; [
       bfd
@@ -62,11 +58,11 @@ in {
         ipv6 forwarding
         !
         router bgp 65101
-          bgp router-id ${interfaces.lo.ipv4}
+          bgp router-id ${lo}
           no bgp default ipv4-unicast
 
           neighbor fabric peer-group
-          neighbor fabric update-source ${interfaces.lo.ipv4}
+          neighbor fabric update-source ${lo}
           neighbor fabric remote-as 65101
           ${neighbors}
           neighbor 192.168.49.1 remote-as 65101
@@ -85,30 +81,21 @@ in {
     };
 
     systemd.network = {
-      netdevs = builtins.listToAttrs (map (name: mkVlanNetdev name (getMtu name)) vlanList);
+      # All statically set
+      wait-online.anyInterface = true;
 
-      networks = builtins.listToAttrs (
-        map
-        (interface: let
-          fixedName = fixVlanName interface;
-          # The current network has fixed logic on what the masks will be
-          cidr =
-            if interface == "eno1"
-            then "24"
-            else if lib.hasInfix "-" interface
-            then "27"
-            else "28";
-        in {
-          name = "10-${interface}";
-          value = {
-            matchConfig.Name = fixedName;
-            networkConfig.Address = ["${interfaces.${interface}.ipv4}/${cidr}"];
-            vlan = builtins.filter (lib.hasPrefix interface) vlanList;
-          };
-        })
-        networkdInterfaces
-      );
+      networks =
+        listToAttrs
+        (map (interface: {
+            name = "20-${interface}";
+            value = {
+              matchConfig.Name = interface;
+              networkConfig.Address = ["${interfaces.${interface}.ipv4}"];
+            };
+          })
+          physicalInterfaces);
     };
+
     networking = {
       # Wired interfaces will be on systemd-networkd
       useNetworkd = true;
@@ -116,7 +103,7 @@ in {
       networkmanager = {
         enable = lib.mkDefault true;
         # `wl` will match against both my custom and linux default device naming for wifi
-        unmanaged = lib.filter (name: !(lib.hasPrefix "wl" name)) (builtins.attrNames interfaces);
+        unmanaged = networkdInterfaces ++ physicalInterfaces;
       };
 
       # Virtual only bridge
