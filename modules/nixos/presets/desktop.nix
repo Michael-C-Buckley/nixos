@@ -16,8 +16,6 @@ in {
       netbird
 
       # Virtualization
-      containerlab
-      incus
       libvirt
 
       # Userspace
