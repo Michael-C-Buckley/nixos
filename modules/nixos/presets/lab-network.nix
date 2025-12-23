@@ -7,6 +7,8 @@
     (config.flake.lib.network)
     fixVlanName
     getVlanList
+    getAddress
+    getAddressAttrs
     mkVlanNetdev
     ;
 in {
@@ -19,11 +21,13 @@ in {
     inherit (config.networking) hostName;
     inherit (flake.hosts.${hostName}) interfaces;
 
+    lo = getAddress interfaces.lo.ipv4;
+
     labHosts = ["uff1" "uff2" "uff3" "b550" "p520" "x570"];
 
     # Exclude the current host from the neighbors
     neighbors = lib.strings.concatMapStringsSep "\n" (
-      hostname: " neighbor ${flake.hosts.${hostname}.interfaces.lo.ipv4} peer-group fabric"
+      hostname: " neighbor ${getAddress flake.hosts.${hostname}.interfaces.lo.ipv4} peer-group fabric"
     ) (lib.filter (h: h != config.networking.hostName) labHosts);
 
     vlanList = getVlanList interfaces;
@@ -69,11 +73,11 @@ in {
         ipv6 forwarding
         !
         router bgp 65101
-          bgp router-id ${interfaces.lo.ipv4}
+          bgp router-id ${lo}
           no bgp default ipv4-unicast
 
           neighbor fabric peer-group
-          neighbor fabric update-source ${interfaces.lo.ipv4}
+          neighbor fabric update-source ${lo}
           neighbor fabric remote-as 65101
           ${neighbors}
           neighbor 192.168.49.1 remote-as 65101
@@ -92,6 +96,9 @@ in {
     };
 
     systemd.network = {
+      # All statically set
+      wait-online.anyInterface = true;
+
       netdevs = listToAttrs (map (name: mkVlanNetdev name (getMtu name)) vlanList);
 
       networks = listToAttrs (
@@ -128,6 +135,9 @@ in {
         # `wl` will match against both my custom and linux default device naming for wifi
         unmanaged = networkdInterfaces ++ physicalInterfaces;
       };
+
+      # All hosts have at least 1 loopback defined
+      interfaces.lo.ipv4.addresses = [(getAddressAttrs interfaces.lo.ipv4)];
 
       # Virtual only bridge
       bridges.br0 = {

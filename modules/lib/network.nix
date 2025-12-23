@@ -15,7 +15,7 @@ in
         parts = split "/" ip;
       in {
         address = head parts;
-        prefixLength = elemAt parts 2;
+        prefixLength = lib.toInt (elemAt parts 2);
       };
 
       # Simple helper to change the VLAN names

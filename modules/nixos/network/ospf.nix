@@ -1,5 +1,6 @@
 {config, ...}: let
   inherit (config.flake) hosts;
+  inherit (config.flake.lib.network) getAddress;
 in {
   flake.modules.nixos.ospf = {
     config,
@@ -7,7 +8,7 @@ in {
     ...
   }: let
     inherit (config.networking) ospf hostName;
-    inherit (hosts.${hostName}.interfaces) lo;
+    lo = getAddress hosts.${hostName}.interfaces.lo.ipv4;
 
     originate =
       if ospf.defaultRoute.metric != null
@@ -15,8 +16,8 @@ in {
       else "";
 
     routerId =
-      if lo.ipv4 != null
-      then "router-id ${lo.ipv4}\n"
+      if lo != null
+      then "router-id ${lo}\n"
       else "";
   in {
     options.networking.ospf = {

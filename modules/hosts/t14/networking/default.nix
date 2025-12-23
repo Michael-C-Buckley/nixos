@@ -2,7 +2,6 @@
   flake.modules.nixos.t14 = {
     imports = with config.flake.modules.nixos; [
       bgp
-      ospf
     ];
 
     networking = {
