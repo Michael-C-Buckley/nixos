@@ -8,7 +8,6 @@
     fixVlanName
     getVlanList
     getAddress
-    getAddressAttrs
     mkVlanNetdev
     ;
 in {
@@ -135,9 +134,6 @@ in {
         # `wl` will match against both my custom and linux default device naming for wifi
         unmanaged = networkdInterfaces ++ physicalInterfaces;
       };
-
-      # All hosts have at least 1 loopback defined
-      interfaces.lo.ipv4.addresses = [(getAddressAttrs interfaces.lo.ipv4)];
 
       # Virtual only bridge
       bridges.br0 = {

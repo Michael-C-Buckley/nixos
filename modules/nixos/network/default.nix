@@ -4,6 +4,7 @@
 # You have been warned
 {config, ...}: let
   inherit (config.flake) hosts;
+  inherit (config.flake.lib.network) getAddressAttrs;
 in {
   flake.modules.nixos.network = {
     config,
@@ -30,10 +31,7 @@ in {
 
     # Apply the loopback address if added
     networking.interfaces.lo.ipv4.addresses = lib.optionals (lo.ipv4 != null) [
-      {
-        address = lo.ipv4;
-        prefixLength = 32;
-      }
+      (getAddressAttrs lo.ipv4)
     ];
   };
 }
