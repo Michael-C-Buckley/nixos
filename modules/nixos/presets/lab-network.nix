@@ -5,10 +5,7 @@
   inherit (config) flake;
   inherit
     (config.flake.lib.network)
-    fixVlanName
-    getVlanList
     getAddress
-    mkVlanNetdev
     ;
 in {
   flake.modules.nixos.lab-network = {
@@ -16,7 +13,7 @@ in {
     lib,
     ...
   }: let
-    inherit (builtins) attrNames head filter match split listToAttrs;
+    inherit (builtins) attrNames filter listToAttrs;
     inherit (config.networking) hostName;
     inherit (flake.hosts.${hostName}) interfaces;
 
@@ -29,22 +26,11 @@ in {
       hostname: " neighbor ${getAddress flake.hosts.${hostname}.interfaces.lo.ipv4} peer-group fabric"
     ) (lib.filter (h: h != config.networking.hostName) labHosts);
 
-    vlanList = getVlanList interfaces;
-
-    # Get the MTU size based on the VLAN ID
-    # Odd is 1500 and even is 9000, within the scope of my VLAN IDs
-    getMtu = name:
-      if (match ".*[468]" name != null)
-      then "9000"
-      else "1500";
-
     # Remove wifi interfaces
     networkdInterfaces = filter (name: !(lib.hasPrefix "wl" name)) (attrNames interfaces);
 
     physicalInterfaces = lib.unique (
-      map
-      (a: head (split "-" a))
-      (filter (lib.hasPrefix "en") (attrNames interfaces))
+      filter (lib.hasPrefix "en") (attrNames interfaces)
     );
   in {
     imports = with flake.modules.nixos; [
@@ -98,33 +84,18 @@ in {
       # All statically set
       wait-online.anyInterface = true;
 
-      netdevs = listToAttrs (map (name: mkVlanNetdev name (getMtu name)) vlanList);
-
-      networks = listToAttrs (
-        # Create the phytsical interface files
+      networks =
+        listToAttrs
         (map (interface: {
-            name = "10-${interface}";
+            name = "20-${interface}";
             value = {
               matchConfig.Name = interface;
-              vlan = filter (lib.hasPrefix interface) vlanList;
-            };
-          })
-          physicalInterfaces)
-        ++
-        # Create the vlan interfaces
-        (
-          map (interface: {
-            # Other interfaces will have address info
-            name = "30-${interface}";
-            value = {
-              matchConfig.Name = fixVlanName interface;
               networkConfig.Address = ["${interfaces.${interface}.ipv4}"];
             };
-            # Exclude the already accounted for physical addresses
-          }) (filter (a: !(builtins.elem a physicalInterfaces)) networkdInterfaces)
-        )
-      );
+          })
+          physicalInterfaces);
     };
+
     networking = {
       # Wired interfaces will be on systemd-networkd
       useNetworkd = true;
