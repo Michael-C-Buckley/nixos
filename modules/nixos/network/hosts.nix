@@ -24,6 +24,10 @@ in {
       "${a "b550" "lo"}" = ["b550" "b550.michael.lan"];
       "${a "x570" "lo"}" = ["x570" "x570.michael.lan"];
       "${a "p520" "lo"}" = ["p520" "p520.michael.lan"];
+
+      # VMs and other services
+      "192.168.56.2" = ["cml" "cml.michael.lan"];
+      "192.168.56.34" = ["cs9800" "wlc.michael.lan"];
     };
   };
 }
