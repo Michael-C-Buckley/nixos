@@ -13,12 +13,11 @@ in {
           workspace "N3" { open-on-output "${mon1}"; }
           workspace "N4" { open-on-output "${mon1}"; }
           workspace "N5" { open-on-output "${mon1}"; }
-
-          workspace "S1"  { open-on-output "${mon2}"; }
-          workspace "S2"  { open-on-output "${mon2}"; }
-          workspace "S3"  { open-on-output "${mon2}"; }
-          workspace "S4"  { open-on-output "${mon2}"; }
-          workspace "S5"  { open-on-output "${mon2}"; }
+          workspace "N6" { open-on-output "${mon1}"; }
+          workspace "N7" { open-on-output "${mon1}"; }
+          workspace "N8" { open-on-output "${mon1}"; }
+          workspace "N9" { open-on-output "${mon2}"; }
+          workspace "N0" { open-on-output "${mon2}"; }
 
           output "${mon1}" {
             mode "3440x1440@165.000"
