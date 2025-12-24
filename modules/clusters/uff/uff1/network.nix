@@ -3,11 +3,11 @@
     networking = {
       networkmanager.ensureProfiles.profiles = {
         home = {
-          ipv4.address = "172.16.248.31/16";
+          ipv4.address = "172.16.166.31/16";
           ipv6.address = "fe80::1001/64";
         };
         home2 = {
-          ipv4.address = "172.30.248.31/16";
+          ipv4.address = "172.30.166.31/16";
           ipv6.address = "fe80::1001/64";
         };
       };
