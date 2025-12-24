@@ -24,12 +24,12 @@
     # For me, this means Noctalia and Kitty
     buildInputs = with pkgs;
       [
-        niri # include unwrapped for msg/ipc/etc
         makeWrapper
         hyprlock
         wireplumber
         playerctl
         xwayland-satellite
+        nordzy-cursor-theme
       ]
       ++ [
         kitty
@@ -38,13 +38,12 @@
       ++ extraRuntimeInputs;
   in
     pkgs.symlinkJoin {
-      name = "niri-wrapped";
+      name = "niri";
       paths = [pkg];
       inherit buildInputs;
       passthru.providedSessions = ["niri"];
       postBuild = ''
-        mv $out/bin/niri $out/bin/niri-wrapped
-        wrapProgram $out/bin/niri-wrapped \
+        wrapProgram $out/bin/niri \
           --add-flags "--session -c ${import ./_config.nix {inherit pkgs extraConfig spawnNoctalia;}}" \
           --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
       '';
