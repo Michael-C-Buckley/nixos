@@ -22,6 +22,7 @@ in {
           output "${mon1}" {
             mode "1920x1080@60.008"
             scale 1.0
+            layout { default-column-width { proportion 1.0; }; }
           }
         '';
       };
