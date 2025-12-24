@@ -12,6 +12,12 @@ in {
           workspace "N3" { open-on-output "${mon1}"; }
           workspace "N4" { open-on-output "${mon1}"; }
           workspace "N5" { open-on-output "${mon1}"; }
+          workspace "N6" { open-on-output "${mon1}"; }
+          workspace "N7" { open-on-output "${mon1}"; }
+          workspace "N8" { open-on-output "${mon1}"; }
+          workspace "N9" { open-on-output "${mon1}"; }
+          workspace "N0" { open-on-output "${mon1}"; }
+
 
           output "${mon1}" {
             mode "1920x1080@60.008"
