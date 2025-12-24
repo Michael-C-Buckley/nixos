@@ -5,7 +5,7 @@
         state = lib.mkDefault "BACKUP";
         interface = "wlan1";
         virtualRouterId = 2;
-        virtualIps = [{addr = "172.16.248.30/16";}];
+        virtualIps = [{addr = "172.16.166.30/16";}];
       };
       lan1 = {
         state = lib.mkDefault "BACKUP";

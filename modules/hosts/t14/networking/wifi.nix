@@ -35,13 +35,13 @@ let
   };
 
   mkIpv4Info = octet: {
-    address = "172.${octet}.248.14/16";
+    address = "172.${octet}.166.14/16";
     # Statics to get around routing issues from VRRP
-    route2 = "192.168.48.0/20,172.${octet}.248.30,50";
-    route3 = "192.168.61.1/32,172.${octet}.248.31";
-    route4 = "192.168.61.2/32,172.${octet}.248.32";
-    route5 = "192.168.61.3/32,172.${octet}.248.33";
-    route6 = "192.168.63.10/32,172.${octet}.248.10";
+    route2 = "192.168.48.0/20,172.${octet}.166.30,50";
+    route3 = "192.168.61.1/32,172.${octet}.166.31";
+    route4 = "192.168.61.2/32,172.${octet}.166.32";
+    route5 = "192.168.61.3/32,172.${octet}.166.33";
+    route6 = "192.168.63.10/32,172.${octet}.166.10";
   };
 in
   {config, ...}: let
