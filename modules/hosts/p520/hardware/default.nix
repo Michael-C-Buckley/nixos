@@ -10,7 +10,7 @@
     ];
 
     boot = {
-      kernelPackages = pkgs.linuxPackages_6_17;
+      kernelPackages = pkgs.linuxPackages_6_18;
       binfmt.emulatedSystems = ["aarch64-linux"];
       initrd = {
         availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
