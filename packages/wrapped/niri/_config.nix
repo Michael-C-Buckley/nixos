@@ -2,6 +2,7 @@
   pkgs,
   extraConfig,
   spawnNoctalia,
+  options ? {},
 }: let
   noctaliaWrapper = pkgs.writeShellScript "noctalia-wrapper" ''
     #!/usr/bin/env bash
@@ -49,12 +50,11 @@ in
       layout {
         gaps 16
         center-focused-column "never"
-        default-column-width { proportion 0.75; }
+        default-column-width { proportion ${options.defaultWidth or "0.75"}; }
 
         preset-column-widths {
             proportion 0.5
             proportion 0.75
-            proportion 1.0
         }
 
         border { off; }
