@@ -11,7 +11,7 @@
     ];
 
     boot = {
-      kernelPackages = pkgs.linuxPackages_xanmod_latest;
+      kernelPackages = pkgs.linuxPackages_zen;
       initrd = {
         availableKernelModules = ["nvme" "xhci_pci" "uas" "sd_mod" "sdhci_pci"];
         kernelModules = ["dm-snapshot"];
