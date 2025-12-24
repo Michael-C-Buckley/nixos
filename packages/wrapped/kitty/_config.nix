@@ -33,8 +33,8 @@ pkgs.writeText "wrapped-kitty.conf" ''
   map ctrl+shift+left previous_window
   map ctrl+shift+n new_os_window
   map ctrl+shift+o open_url_with_hints
-  map ctrl+shift+page_down next_tab
-  map ctrl+shift+page_up previous_tab
+  map ctrl+shift+l next_tab
+  map ctrl+shift+h previous_tab
   map ctrl+shift+q close_tab
   map ctrl+shift+right next_window
   map ctrl+shift+t new_tab_with_cwd
