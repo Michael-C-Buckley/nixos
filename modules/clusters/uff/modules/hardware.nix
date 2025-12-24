@@ -15,7 +15,7 @@
         availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "uas" "sd_mod"];
         kernelModules = ["dm-snapshot"];
       };
-      kernelPackages = pkgs.linuxPackages_6_17;
+      kernelPackages = pkgs.linuxPackages_6_18;
       kernelModules = ["kvm-intel" "virtiofs" "9p" "9pnet_virtio"];
       extraModulePackages = [];
     };
