@@ -19,18 +19,21 @@
       hardware.graphics.enable = true;
       services.xserver.enable = true;
 
-      services.greetd = {
-        enable = true;
-        settings = {
-          # Session on first login which would use auto-login
-          initial_session = {
-            user = "michael";
-            command = config.custom.tuigreet.defaultCommand;
-          };
-          # All other sessions
-          default_session = {
-            command = "tuigreet --cmd " + config.custom.tuigreet.defaultCommand;
-            user = "greeter";
+      services = {
+        displayManager.ly.enable = false; # Intentionally collide
+        greetd = {
+          enable = true;
+          settings = {
+            # Session on first login which would use auto-login
+            initial_session = {
+              user = "michael";
+              command = config.custom.tuigreet.defaultCommand;
+            };
+            # All other sessions
+            default_session = {
+              command = "tuigreet --cmd " + config.custom.tuigreet.defaultCommand;
+              user = "greeter";
+            };
           };
         };
       };
