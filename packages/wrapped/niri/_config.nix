@@ -19,6 +19,14 @@
       spawn-at-startup "noctalia-shell"
     ''
     else '''';
+
+  mkQuitScript = command:
+    pkgs.writeShellScript "niri-${command}" ''
+      #/usr/bin/env bash
+      niri msg action quit --skip-confirmation
+      sleep 2
+      systemctl ${command}
+    '';
 in
   pkgs.writeText "niri-wrapped-config.kdl" ''
     ${noctaliaSpawnCommand}
@@ -109,8 +117,8 @@ in
         Ctrl+Alt+Delete { quit skip-confirmation=true; }
         Mod+Shift+P { power-off-monitors; }
 
-        Ctrl+Mod+semicolon { spawn-sh "loginctl terminate-user $USER && systemctl poweroff"; }
-        Ctrl+Alt+Mod+semicolon { spawn-sh "loginctl terminate-user $USER && systemctl reboot"; }
+        Ctrl+Mod+semicolon { spawn-sh "${mkQuitScript "poweroff"}"; }
+        Ctrl+Alt+Mod+semicolon { spawn-sh "${mkQuitScript "reboot"}"; }
 
         // WINDOW
         Mod+Shift+Minus { set-window-height "-10%"; }
