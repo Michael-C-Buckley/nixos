@@ -30,7 +30,7 @@ in {
     networkdInterfaces = filter (name: !(lib.hasPrefix "wl" name)) (attrNames interfaces);
 
     physicalInterfaces = lib.unique (
-      filter (lib.hasPrefix "en") (attrNames interfaces)
+      filter (a: (lib.hasPrefix "en" a) || (lib.hasPrefix "br" a)) (attrNames interfaces)
     );
   in {
     imports = with flake.modules.nixos; [
