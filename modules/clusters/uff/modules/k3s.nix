@@ -1,10 +1,10 @@
 {config, ...}: let
-  inherit (config.flake) modules hosts;
+  inherit (config.flake) modules hosts lib;
 in {
   flake.modules.nixos.uff = {config, ...}: let
     inherit (config.networking) hostName;
     # This IP is the locally evaluated host's
-    enu2 = hosts.${hostName}.interfaces.enu2.ipv4;
+    enu2 = lib.network.getAddress hosts.${hostName}.interfaces.enu2.ipv4;
   in {
     imports = with modules.nixos; [
       k3s
@@ -18,7 +18,7 @@ in {
         "--node-name ${hostName}s"
         "--node-ip ${enu2}"
         "--advertise-address ${enu2}"
-        "--server https://${hosts.uff1.interfaces.enu2.ipv4}:6443" # Serves as the bootstrapper
+        "--server https://${lib.network.getAddress hosts.uff1.interfaces.enu2.ipv4}:6443" # Serves as the bootstrapper
       ];
     };
   };
