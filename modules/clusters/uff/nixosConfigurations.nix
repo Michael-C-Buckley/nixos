@@ -13,12 +13,14 @@
     nixpkgs.lib.nixosSystem {
       inherit system;
 
-      modules = [
-        config.flake.modules.nixos.${hostname}
-        nixos.uff
-        nixos.serverPreset
-        nixos.dnscrypt-proxy
-      ];
+      modules = with nixos;
+        [
+          uff
+          serverPreset
+          dnscrypt-proxy
+          ntp
+        ]
+        ++ [nixos.${hostname}];
 
       pkgs = import nixpkgs {
         inherit system;
@@ -26,9 +28,9 @@
       };
     };
 in {
-  flake.nixosConfigurations = {
-    uff1 = mkSystem "uff1";
-    uff2 = mkSystem "uff2";
-    uff3 = mkSystem "uff3";
-  };
+  flake.nixosConfigurations = builtins.listToAttrs (map (name: {
+      inherit name;
+      value = mkSystem name;
+    })
+    ["uff1" "uff2" "uff3"]);
 }
