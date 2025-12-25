@@ -5,6 +5,8 @@
       vrrp
     ];
 
+    services.dnscrypt-proxy.settings.listen_addresses = ["0.0.0.0" "::"];
+
     networking = {
       interfaces = {
         lo.ipv4.addresses = [
@@ -14,6 +16,10 @@
             prefixLength = 32;
           }
         ];
+      };
+      firewall = {
+        allowedTCPPorts = [53];
+        allowedUDPPorts = [53];
       };
       useDHCP = false;
       networkmanager = {
