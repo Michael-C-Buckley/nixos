@@ -5,7 +5,7 @@
       vrrp
     ];
 
-    services.dnscrypt-proxy.settings.listen_addresses = ["0.0.0.0" "::"];
+    services.dnscrypt-proxy.settings.listen_addresses = ["0.0.0.0:53" "[::]:53"];
 
     networking = {
       interfaces = {
