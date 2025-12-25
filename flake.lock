@@ -92,22 +92,6 @@
         "type": "sourcehut"
       }
     },
-    "kernel-nixpkgs": {
-      "locked": {
-        "lastModified": 1765183668,
-        "narHash": "sha256-TBA7CE44IHYfvOPBWcyLncpVrrKEiXWPdOrF8CD6W84=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "fc2de1563f89f0843eba27f14576d261df0e3b80",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "fc2de1563f89f0843eba27f14576d261df0e3b80",
-        "type": "github"
-      }
-    },
     "mnw": {
       "locked": {
         "lastModified": 1758834834,
@@ -145,18 +129,15 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1766309749,
-        "narHash": "sha256-3xY8CZ4rSnQ0NqGhMKAy5vgC+2IVK0NoVEzDoOh4DA4=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
-        "type": "github"
+        "lastModified": 1766624085,
+        "narHash": "sha256-/sHiG+1kABVjYWxMX+zIGG/czcb0j/FSbWxcD3sNiAc=",
+        "rev": "b72f284b1be41575c3e36cd777a191c29a7adf6a",
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.05pre916309.b72f284b1be4/nixexprs.tar.xz"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz"
       }
     },
     "nixpkgs-lib": {
@@ -228,7 +209,6 @@
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "jail": "jail",
-        "kernel-nixpkgs": "kernel-nixpkgs",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
         "noctalia": "noctalia",
