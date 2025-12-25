@@ -36,10 +36,7 @@
     };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    # Use a separately pinned input to prevent unnecessary custom kernel rebuilds - pinned against unstable-small
-    kernel-nixpkgs.url = "github:NixOS/nixpkgs/fc2de1563f89f0843eba27f14576d261df0e3b80";
+    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
 
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin";
