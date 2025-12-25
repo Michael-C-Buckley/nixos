@@ -28,6 +28,10 @@
       "/cache" = zfsFs "cache";
       "/persist" = zfsFs "persist";
       "/var/lib/longhorn" = zfsFs "longhorn";
+      "/var/lib/postgres" = {
+        device = "zroot/local/postgres";
+        type = "zfs";
+      };
     };
   };
 }
