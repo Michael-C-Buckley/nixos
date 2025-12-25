@@ -4,13 +4,19 @@
     lib,
     pkgs,
     ...
-  }: {
-    custom.impermanence.cache.directories = [
-      "/var/lib/libvirt"
-    ];
+  }: let
+    inherit (lib) optionals;
+    gfx = config.hardware.graphics.enable;
+  in {
+    custom.impermanence = {
+      cache = {
+        directories = ["/var/lib/libvirt"];
+        user.directories = optionals gfx [".cache/virt-manager"];
+      };
+    };
 
     environment.systemPackages = with pkgs;
-      lib.optionals config.hardware.graphics.enable [
+      optionals gfx [
         virt-manager
         virt-viewer
         tigervnc
