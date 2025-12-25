@@ -1,11 +1,20 @@
-{config, ...}: {
-  flake.modules.nixos.uff = {
-    imports = with config.flake.modules.nixos; [
+{config, ...}: let
+  inherit (config) flake;
+in {
+  flake.modules.nixos.uff = {config, ...}: let
+    inherit (config.networking) hostName;
+    lo = flake.lib.network.getAddress flake.hosts.${hostName}.interfaces.lo.ipv4;
+  in {
+    imports = with flake.modules.nixos; [
       lab-network
       vrrp
     ];
 
-    services.dnscrypt-proxy.settings.listen_addresses = ["0.0.0.0:53" "[::]:53"];
+    services.dnscrypt-proxy.settings.listen_addresses = [
+      "192.168.61.0:53"
+      "${lo}:53"
+      "127.0.0.153:53"
+    ];
 
     networking = {
       interfaces = {

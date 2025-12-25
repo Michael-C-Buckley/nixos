@@ -7,7 +7,8 @@ in {
     ...
   }: {
     custom.impermanence.persist.directories = [dnsDir];
-    networking.nameservers = ["127.0.0.1" "::1"];
+    # Move the address as networkd uncontrollably launches resolved
+    networking.nameservers = ["127.0.0.153"];
 
     # Remove for impermanence due to incompatible hard-linking requirements
     systemd.services.dnscrypt-proxy.serviceConfig = lib.mkIf config.custom.impermanence.enable {
@@ -17,8 +18,8 @@ in {
     services.dnscrypt-proxy = {
       enable = true;
       settings = {
-        # Listen on localhost for DNS queries
-        listen_addresses = ["127.0.0.1:53" "[::1]:53"];
+        # Move the default to prevent collisions
+        listen_addresses = ["127.0.0.153:53"];
 
         # Use servers that support DNSCrypt, DOH, and Anonymized DNS
         server_names = ["cloudflare" "quad9-dnscrypt-ip4-filter-pri"];
