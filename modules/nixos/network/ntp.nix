@@ -14,7 +14,7 @@ in {
 
       extraConfig = ''
         allow 192.168.0.0/16
-        bindaddress ${lib.network.getAddress lo}"
+        bindaddress ${lib.network.getAddress lo}
         cmdport 0
         noclientlog
         makestep 1.0 3
