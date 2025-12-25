@@ -28,9 +28,12 @@
         ...
       }: {
         # The devshell includes a jailed opencode instance
-        devShells.default = import ./shell.nix {
-          inherit pkgs;
-          extraPkgs = [self'.packages.opencode];
+        devShells = {
+          default = import ./shell.nix {inherit pkgs;};
+          opencode = import ./shell.nix {
+            inherit pkgs;
+            extraPkgs = [self'.packages.opencode];
+          };
         };
       };
     };
