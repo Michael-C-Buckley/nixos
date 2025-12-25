@@ -4,8 +4,8 @@
       hostName = "b550";
       hostId = "272a6fae";
 
-      # TODO: switch to using internal DNS server once set up
       nameservers = [
+        "192.168.61.0"
         "1.1.1.1"
         "8.8.8.8"
       ];
