@@ -22,10 +22,6 @@ pkgs.mkShellNoCC {
       statix
       typos
     ]
-    ++ [
-      # Tool to find best GPG signing key as part of my shell
-      (pkgs.callPackage ./packages/gpg-find-key/_derivation.nix {})
-    ]
     ++ extraPkgs;
 
   shellHook = ''
