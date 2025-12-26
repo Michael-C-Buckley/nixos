@@ -3,11 +3,7 @@
   inputs,
   ...
 }: let
-  inherit
-    (config.flake.modules.nvf)
-    default
-    extended
-    ;
+  inherit (config.flake.modules.nvf) default full;
 in {
   perSystem = {pkgs, ...}: let
     mkNvf = modules:
@@ -16,7 +12,7 @@ in {
       }).neovim;
   in {
     packages = {
-      nvf = mkNvf [extended];
+      nvf = mkNvf [full];
       nvf-minimal = mkNvf [default];
     };
   };
