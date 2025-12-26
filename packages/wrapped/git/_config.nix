@@ -1,58 +1,57 @@
 {
-  pkgs,
   extraConfig,
   gpgProgram,
   signingKey,
 }:
-pkgs.writeText "git-wrapped-config" (''
-    [advice]
-        defaultBranchName = false
+''
+  [advice]
+      defaultBranchName = false
 
-    [color]
-      diff = "auto"
-      interactive = "auto"
-      status = "auto"
-      ui = true
+  [color]
+    diff = "auto"
+    interactive = "auto"
+    status = "auto"
+    ui = true
 
-    [commit]
-      gpgsign = true
+  [commit]
+    gpgsign = true
+''
++ (
+  if gpgProgram != null
+  then ''
+    program = "${gpgProgram}
   ''
-  + (
-    if gpgProgram != null
-    then ''
-      program = "${gpgProgram}
-    ''
-    else ''''
-  )
-  + ''
+  else ''''
+)
++ ''
 
-    [core]
-      editor = "nvim"
-      pager = delta
+  [core]
+    editor = "nvim"
+    pager = delta
 
-    [interactive]
-      diffFilter = delta --color-only
+  [interactive]
+    diffFilter = delta --color-only
 
-    [delta]
-      side-by-side = true
-      line-numbers = true
-      navigate = true
+  [delta]
+    side-by-side = true
+    line-numbers = true
+    navigate = true
 
-    [merge]
-      conflictStyle = zdiff3
+  [merge]
+    conflictStyle = zdiff3
 
-    [http]
-      postBuffer = 157286400
+  [http]
+    postBuffer = 157286400
 
-    [user]
-      email = "michaelcbuckley@proton.me"
-      name = "Michael Buckley"
+  [user]
+    email = "michaelcbuckley@proton.me"
+    name = "Michael Buckley"
+''
++ (
+  if signingKey != null
+  then ''
+    signingkey = "${signingKey}"
   ''
-  + (
-    if signingKey != null
-    then ''
-      signingkey = "${signingKey}"
-    ''
-    else ''''
-  )
-  + extraConfig)
+  else ''''
+)
++ extraConfig

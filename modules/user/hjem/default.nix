@@ -9,6 +9,7 @@ in {
   }: {
     imports = with flake.hjemConfig; [
       fastfetch
+      git
     ];
 
     hjem = {
