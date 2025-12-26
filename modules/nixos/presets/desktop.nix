@@ -59,7 +59,7 @@ in {
       extended
     ];
 
-    programs.nvf.settings.imports = [modules.nvf.extended];
+    programs.nvf.settings.imports = [modules.nvf.full];
 
     # MicroVM Devbox
     custom.impermanence.cache.directories = ["/var/lib/microvms"];

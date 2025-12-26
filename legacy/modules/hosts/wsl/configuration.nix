@@ -46,7 +46,7 @@ in {
 
     programs = {
       nix-ld.enable = true; # Allows seamless vscode WSL (and also remote) to just work
-      nvf.settings.imports = [modules.nvf.extended];
+      nvf.settings.imports = [modules.nvf.full];
     };
 
     security.sudo.wheelNeedsPassword = false;
