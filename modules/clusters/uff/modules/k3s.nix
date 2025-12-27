@@ -19,7 +19,6 @@ in {
     services.k3s = {
       tokenFile = config.sops.secrets.k3s_token.path;
       clusterInit = hostName == "uff1";
-      serverAddr = enu2;
       extraFlags =
         [
           "--node-name ${hostName}s"
