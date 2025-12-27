@@ -2,7 +2,6 @@
   inherit (config) flake;
 in {
   flake.hjemConfig.default = {
-    config,
     pkgs,
     lib,
     ...
@@ -30,11 +29,8 @@ in {
           # add this to stop the shell error from my wrapped fish since something touched it after creation
           flake.packages.${pkgs.stdenv.hostPlatform.system}.starship
 
-          # Add the appropriate wrapped git for the system
-          (flake.wrappers.mkGit {
-            inherit pkgs;
-            inherit (config.hjem.users.michael.git) signingKey;
-          })
+          # Wrapped packages
+          flake.packages.${pkgs.stdenv.hostPlatform.system}.git
         ];
 
         environment.sessionVariables = {

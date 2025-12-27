@@ -20,10 +20,7 @@ in {
     ];
 
     wrappedPkgs = with flake.wrappers; [
-      (mkGit {
-        inherit pkgs;
-        signingKey = "6F749AA097DC10EA46FE0ECD22CDD3676227046F!";
-      })
+      (mkGit {inherit pkgs;})
     ];
   in {
     home.packages = pkgsFromNix ++ localPkgs ++ wrappedPkgs;

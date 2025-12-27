@@ -1,6 +1,5 @@
 {config, ...}: {
   perSystem = {pkgs, ...}: {
-    # A generic one with difftastic but no signing keys set
     packages.git = config.flake.wrappers.mkGit {inherit pkgs;};
   };
 
@@ -9,15 +8,13 @@
       pkgs,
       pkg ? pkgs.git,
       extraConfig ? '''',
-      gpgProgram ? null,
-      signingKey ? null,
     }: let
       buildInputs = with pkgs; [
         tig
         delta
       ];
 
-      cfg = pkgs.writeText "git-wrapped-config" (config.flake.wrappers.mkGitConfig {inherit extraConfig gpgProgram signingKey;});
+      cfg = pkgs.writeText "git-wrapped-config" (config.flake.wrappers.mkGitConfig {inherit extraConfig;});
     in
       pkgs.symlinkJoin {
         name = "git";
@@ -33,11 +30,6 @@
 
     # For obtaining the config without the wrapped package
     # Useful for when git is changed in the path like in devshells
-    mkGitConfig = {
-      extraConfig ? '''',
-      gpgProgram ? null,
-      signingKey ? null,
-    }:
-      import ./_config.nix {inherit extraConfig signingKey gpgProgram;};
+    mkGitConfig = {extraConfig ? ''''}: import ./_config.nix {inherit extraConfig;};
   };
 }
