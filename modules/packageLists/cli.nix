@@ -13,6 +13,5 @@
     # Security
     "sops"
     "rage"
-    "gnupg"
   ];
 }
