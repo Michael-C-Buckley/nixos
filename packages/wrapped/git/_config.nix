@@ -1,8 +1,4 @@
-{
-  extraConfig,
-  gpgProgram,
-  signingKey,
-}:
+{extraConfig}:
 ''
   [advice]
       defaultBranchName = false
@@ -15,15 +11,9 @@
 
   [commit]
     gpgsign = true
-''
-+ (
-  if gpgProgram != null
-  then ''
-    program = "${gpgProgram}
-  ''
-  else ''''
-)
-+ ''
+
+  [gpg]
+    format = ssh
 
   [core]
     editor = "nvim"
@@ -46,12 +36,6 @@
   [user]
     email = "michaelcbuckley@proton.me"
     name = "Michael Buckley"
+    signingkey = "/home/michael/.ssh/id_ed25519_sk_rk_signing.pub"
 ''
-+ (
-  if signingKey != null
-  then ''
-    signingkey = "${signingKey}"
-  ''
-  else ''''
-)
 + extraConfig

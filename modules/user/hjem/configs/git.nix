@@ -4,11 +4,10 @@
 {config, ...}: let
   inherit (config) flake;
 in {
-  flake.hjemConfig.git = {config, ...}: {
+  flake.hjemConfig.git = {
     hjem.users.michael.files = {
-      ".config/git/config".text = flake.wrappers.mkGitConfig {
-        inherit (config.hjem.users.michael.git) signingKey;
-      };
+      ".config/git/config".text =
+        flake.wrappers.mkGitConfig {};
     };
   };
 }
