@@ -16,6 +16,7 @@
       microfetch
       killall
       npins
+      expect
 
       # Performance
       atop
