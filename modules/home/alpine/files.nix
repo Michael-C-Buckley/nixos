@@ -28,16 +28,9 @@
             # Activate Nix profile
             . "${config.home.profileDirectory}"
 
-            # Set SSH_AUTH_SOCK for GPG agent
-            export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-
             # Set default shell to customized fish from Nix
             fish
         fi
-      '';
-
-      ".gnupg/scdaemon.conf".text = ''
-        disable-ccid
       '';
     };
   };

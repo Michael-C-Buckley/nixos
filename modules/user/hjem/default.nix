@@ -14,7 +14,6 @@ in {
     hjem = {
       linker = pkgs.smfh;
       extraModules = [
-        flake.hjemModules.gnupg
         flake.hjemModules.localOptions
       ];
       users.michael = {
@@ -42,16 +41,6 @@ in {
           GIT_EDITOR = "nvf";
           CLICOLOR = "1";
           DIFF_COLOR = "auto";
-        };
-
-        # Basic GPG, more advanced settings in hjem-gpgAgent
-        gnupg = {
-          enable = true;
-          pinentryPackage = lib.mkDefault pkgs.pinentry-curses;
-          config.extraLines = ''
-            auto-key-locate local
-            auto-key-retrieve
-          '';
         };
       };
     };

@@ -11,7 +11,6 @@
       ssh-tpm-agent
       tpm2-tools
       p11-kit
-      gnupg-pkcs11-scd
       age-plugin-tpm
     ];
 

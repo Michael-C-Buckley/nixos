@@ -61,9 +61,6 @@ in
 
     direnv hook fish | source
 
-    # Set GPG_TTY for GPG agent
-    set -x GPG_TTY (tty)
-
     # Set some defaults that I use
     set PAGER bat
     set MANPAGER "sh -c 'col -bx | bat -l man -p'"

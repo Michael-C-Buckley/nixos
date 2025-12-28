@@ -55,7 +55,6 @@
     sops.validateSopsFiles = false;
 
     programs = {
-      gnupg.agent.enable = true;
       nvf = {
         enable = true;
         defaultEditor = true;

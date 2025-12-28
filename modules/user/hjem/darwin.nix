@@ -20,7 +20,6 @@ in {
 
     hjem.users.michael = {
       directory = "/Users/michael";
-      gnupg.pinentryPackage = pkgs.pinentry_mac; # Underscore unlike all other pinentry packages
 
       packages = [
         pkgs.ghostty-bin

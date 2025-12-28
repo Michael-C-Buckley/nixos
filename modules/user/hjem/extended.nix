@@ -4,14 +4,11 @@
   in {
     imports = with config.flake.hjemConfig; [
       cursor
-      gpgAgent
       helix
       zed
     ];
 
     hjem.users.michael = {
-      gnupg.pinentryPackage = pkgs.pinentry-qt;
-
       packages = [
         pkgs.nvfetcher
         pkgs.npins
