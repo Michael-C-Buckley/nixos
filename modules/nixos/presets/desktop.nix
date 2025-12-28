@@ -44,6 +44,7 @@ in {
       app-legcord
       app-librewolf
       app-materialgram
+      app-novelwriter
       app-obsidian
       app-qutebrowser
       app-signal
