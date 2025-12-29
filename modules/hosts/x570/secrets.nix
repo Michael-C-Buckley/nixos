@@ -10,7 +10,6 @@
       secrets =
         {
           cachePrivateKey = {};
-          pam_u2f_auth = {};
         }
         # Wireguards - stored as separate binary files for convenience
         // builtins.listToAttrs (map (n: {

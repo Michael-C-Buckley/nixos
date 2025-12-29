@@ -29,7 +29,6 @@ in {
       yubikey
       tpm2
       pam-ssh
-      pam-yubikey
       secrets
 
       packages

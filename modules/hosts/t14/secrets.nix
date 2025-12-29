@@ -7,15 +7,11 @@ in {
   flake.modules.nixos.t14 = {config, ...}: {
     sops = {
       defaultSopsFile = "/etc/secrets/hosts/t14/t14.yaml";
-      secrets =
-        {
-          pam_u2f_auth = {};
-        }
-        // builtins.listToAttrs (map (n: {
-            name = "wireguard-${n}";
-            value = wgSecret n;
-          })
-          ["mt1" "mt1v6" "mt3" "mt4" "o1" "k1"]);
+      secrets = builtins.listToAttrs (map (n: {
+          name = "wireguard-${n}";
+          value = wgSecret n;
+        })
+        ["mt1" "mt1v6" "mt3" "mt4" "o1" "k1"]);
     };
     environment.etc = {
       "wireguard/k1.conf" = {
