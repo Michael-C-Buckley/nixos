@@ -9,6 +9,8 @@
       libvirt
       netbird
       attic
+      systemd-credentials
+      secrets-nic-rename
     ];
 
     nix.settings.substituters = ["http://p520:5000"];
