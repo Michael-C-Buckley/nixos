@@ -18,7 +18,6 @@
         yubico-piv-tool
         libp11
         age-plugin-yubikey
-        yubioath-flutter
       ];
     };
 

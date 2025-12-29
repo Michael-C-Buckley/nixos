@@ -2,7 +2,7 @@
   inherit (config.flake) modules;
   inherit (config.flake.hjemConfig) nixos root extended;
 in {
-  flake.modules.nixos.desktopPreset = {
+  flake.modules.nixos.desktopPreset = {pkgs, ...}: {
     imports = with modules.nixos; [
       linuxPreset
       boot
@@ -58,6 +58,10 @@ in {
       nixos
       root
       extended
+    ];
+
+    environment.systemPackages = with pkgs; [
+      yubioath-flutter
     ];
 
     programs.nvf.settings.imports = [modules.nvf.full];
