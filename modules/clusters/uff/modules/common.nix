@@ -5,6 +5,8 @@
       netbird
       wifi
       wifi-home
+      systemd-credentials
+      secrets-nic-rename
     ];
   };
 }
