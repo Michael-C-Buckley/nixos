@@ -9,6 +9,8 @@
       libvirt
       netbird
       nvidia
+      systemd-credentials
+      secrets-nic-rename
     ];
 
     environment.systemPackages = with pkgs; [
