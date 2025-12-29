@@ -7,6 +7,8 @@
       wifi
       gaming
       lab-network
+      systemd-credentials
+      secrets-nic-rename
     ];
 
     system.stateVersion = "25.05";
