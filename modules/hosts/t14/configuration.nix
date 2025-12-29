@@ -3,6 +3,7 @@
   flake.modules.nixos.t14 = {
     imports = with config.flake.modules.nixos; [
       laptopPreset
+      systemd-credentials
     ];
 
     security.tpm2.enable = true;
