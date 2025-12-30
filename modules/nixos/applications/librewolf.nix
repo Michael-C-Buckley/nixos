@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.app-librewolf = {pkgs, ...}: {
-    environment.systemPackages = [pkgs.librewolf-bin];
+    environment.systemPackages = [pkgs.librewolf];
 
     custom.impermanence = {
       persist.user.directories = [".librewolf"];
