@@ -4,7 +4,7 @@ let
     format = "binary";
   };
 in {
-  flake.modules.nixos.t14 = {config, ...}: {
+  flake.modules.nixos.t14 = {
     sops = {
       defaultSopsFile = "/etc/secrets/hosts/t14/t14.yaml";
       secrets = builtins.listToAttrs (map (n: {
@@ -12,11 +12,6 @@ in {
           value = wgSecret n;
         })
         ["mt1" "mt3" "mt4" "o1"]);
-    };
-    environment.etc = {
-      "wireguard/k1.conf" = {
-        source = config.sops.secrets."wireguard-k1".path;
-      };
     };
   };
 }
