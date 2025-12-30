@@ -23,6 +23,7 @@ in {
       hyprland
       tuigreet
       noctalia
+      niri
 
       # Security
       clamav
