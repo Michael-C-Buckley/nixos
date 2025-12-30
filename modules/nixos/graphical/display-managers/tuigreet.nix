@@ -9,7 +9,7 @@
       defaultCommand = lib.mkOption {
         type = lib.types.str;
         # This is the wrapped niri provided within this flake
-        default = "niri";
+        default = "uwsm start niri";
         description = "The default session command for tuigreet and auto-login";
       };
     };
