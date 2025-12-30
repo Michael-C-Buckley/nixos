@@ -36,6 +36,7 @@
         paths = [pkgs.noctalia-shell];
         inherit buildInputs;
         nativeBuildInputs = [pkgs.makeWrapper];
+        meta.mainProgram = "noctalia-shell";
         postBuild = ''
           wrapProgram $out/bin/noctalia-shell \
             --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
