@@ -22,9 +22,14 @@ in {
           spawn-sh-at-startup "dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY"
         '';
     in {
+      custom.noctalia.parent = "niri.service";
+
       programs.niri = {
         enable = true;
-        package = mkNiri {inherit pkgs extraConfig;};
+        package = mkNiri {
+          inherit pkgs extraConfig;
+          spawnNoctalia = false;
+        };
       };
     };
   };
