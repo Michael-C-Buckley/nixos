@@ -26,7 +26,6 @@ in {
       niri
 
       # Security
-      clamav
       yubikey
       tpm2
       pam-ssh
