@@ -11,41 +11,59 @@
       };
     };
 
-  flake.wrappers.mkNiri = {
-    pkgs,
-    pkg ? pkgs.niri,
-    extraConfig ? "",
-    extraRuntimeInputs ? [],
-    spawnNoctalia ? true,
-  }: let
-    inherit (pkgs.stdenv.hostPlatform) system;
-    inherit (config.flake.packages.${system}) kitty noctalia;
-    # Add the necessary packages for a functional as-is experience
-    # For me, this means Noctalia and Kitty
-    buildInputs = with pkgs;
-      [
-        makeWrapper
-        hyprlock
-        wireplumber
-        playerctl
-        xwayland-satellite
-        nordzy-cursor-theme
-      ]
-      ++ [
-        kitty
-        noctalia
-      ]
-      ++ extraRuntimeInputs;
-  in
-    pkgs.symlinkJoin {
-      name = "niri";
-      paths = [pkg];
-      inherit buildInputs;
-      passthru.providedSessions = ["niri"];
-      postBuild = ''
-        wrapProgram $out/bin/niri \
-          --add-flags "--session -c ${import ./_config.nix {inherit pkgs extraConfig spawnNoctalia;}}" \
-          --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
-      '';
-    };
+  flake.wrappers = {
+    mkNiriConfig = {
+      pkgs,
+      extraConfig ? "",
+      spawnNoctalia ? true,
+    }:
+      import ./_config.nix {inherit pkgs extraConfig spawnNoctalia;};
+    mkNiri = {
+      pkgs,
+      pkg ? pkgs.niri,
+      extraConfig ? "",
+      extraRuntimeInputs ? [],
+      spawnNoctalia ? true,
+    }: let
+      inherit (pkgs.stdenv.hostPlatform) system;
+      inherit (config.flake.packages.${system}) kitty noctalia;
+      # Add the necessary packages for a functional as-is experience
+      # For me, this means Noctalia and Kitty
+      buildInputs = with pkgs;
+        [
+          makeWrapper
+          hyprlock
+          wireplumber
+          playerctl
+          xwayland-satellite
+          nordzy-cursor-theme
+        ]
+        ++ [
+          kitty
+          noctalia
+        ]
+        ++ extraRuntimeInputs;
+
+      niriCfg = import ./_config.nix {inherit pkgs extraConfig spawnNoctalia;};
+    in
+      pkgs.symlinkJoin {
+        name = "niri";
+        paths = [pkg];
+        inherit buildInputs;
+        passthru.providedSessions = ["niri"];
+        postBuild = ''
+          # Override the system unit to include the config
+          mkdir -p $out/lib/systemd/user/niri.service.d
+          cat > $out/lib/systemd/user/niri.service.d/override.conf <<EOF
+          [Service]
+          ExecStart=
+          ExecStart=$out/bin/niri --session -c ${niriCfg}
+          EOF
+
+          $out/bin/niri validate -c ${niriCfg}
+          wrapProgram $out/bin/niri \
+            --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
+        '';
+      };
+  };
 }

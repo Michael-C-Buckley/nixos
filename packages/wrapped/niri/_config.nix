@@ -20,14 +20,6 @@
       spawn-at-startup "noctalia-shell"
     ''
     else '''';
-
-  mkQuitScript = command:
-    pkgs.writeShellScript "niri-${command}" ''
-      #/usr/bin/env bash
-      niri msg action quit --skip-confirmation
-      sleep 2
-      systemctl ${command}
-    '';
 in
   pkgs.writeText "niri-wrapped-config.kdl" ''
     ${noctaliaSpawnCommand}
@@ -117,8 +109,8 @@ in
         Ctrl+Alt+Delete { quit skip-confirmation=true; }
         Mod+Shift+P { power-off-monitors; }
 
-        Ctrl+Mod+semicolon { spawn-sh "${mkQuitScript "poweroff"}"; }
-        Ctrl+Alt+Mod+semicolon { spawn-sh "${mkQuitScript "reboot"}"; }
+        Ctrl+Mod+semicolon { spawn-sh "niri msg action quit --skip-confirmation || true; sleep 2; systemctl poweroff"; }
+        Ctrl+Alt+Mod+semicolon { spawn-sh "niri msg action quit --skip-confirmation || true; sleep 2; systemctl reboot"; }
 
         // WINDOW
         Mod+Shift+Minus { set-window-height "-10%"; }

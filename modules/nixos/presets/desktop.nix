@@ -23,9 +23,9 @@ in {
       hyprland
       tuigreet
       noctalia
+      niri
 
       # Security
-      clamav
       yubikey
       tpm2
       pam-ssh

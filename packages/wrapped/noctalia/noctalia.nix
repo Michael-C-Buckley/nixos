@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{
   perSystem = {
     pkgs,
     lib,
@@ -33,9 +33,10 @@
     lib.optionalAttrs (lib.hasSuffix "linux" system) {
       packages.noctalia = pkgs.symlinkJoin {
         name = "noctalia-shell";
-        paths = [inputs.noctalia.packages.${system}.default];
+        paths = [pkgs.noctalia-shell];
         inherit buildInputs;
         nativeBuildInputs = [pkgs.makeWrapper];
+        meta.mainProgram = "noctalia-shell";
         postBuild = ''
           wrapProgram $out/bin/noctalia-shell \
             --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}

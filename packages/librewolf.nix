@@ -23,9 +23,6 @@
   in
     # Bwrap only for linux
     lib.optionalAttrs (lib.hasSuffix "linux" system) {
-      packages = {
-        librewolf = mkLibrewolf pkgs.librewolf;
-        librewolf-bin = mkLibrewolf pkgs.librewolf-bin;
-      };
+      packages.librewolf = mkLibrewolf pkgs.librewolf;
     };
 }
