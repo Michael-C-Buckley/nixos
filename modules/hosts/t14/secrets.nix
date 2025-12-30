@@ -11,7 +11,7 @@ in {
           name = "wireguard-${n}";
           value = wgSecret n;
         })
-        ["mt1" "mt1v6" "mt3" "mt4" "o1" "k1"]);
+        ["mt1" "mt3" "mt4" "o1"]);
     };
     environment.etc = {
       "wireguard/k1.conf" = {
