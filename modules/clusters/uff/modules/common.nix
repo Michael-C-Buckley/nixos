@@ -8,5 +8,7 @@
       systemd-credentials
       secrets-nic-rename
     ];
+
+    sops.defaultSopsFile = "/etc/secrets/clusters/uff/uff.yaml";
   };
 }

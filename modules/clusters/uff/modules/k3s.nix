@@ -16,8 +16,12 @@ in {
       kube-longhorn
     ];
 
+    systemd.services.k3s.serviceConfig.LoadCredentialEncrypted = [
+      "k3s_token:/var/lib/systemd/credentials/k3s_token"
+    ];
+
     services.k3s = {
-      tokenFile = config.sops.secrets.k3s_token.path;
+      tokenFile = "/run/credentials/k3s.service/k3s_token";
       clusterInit = hostName == "uff1";
       extraFlags =
         [
