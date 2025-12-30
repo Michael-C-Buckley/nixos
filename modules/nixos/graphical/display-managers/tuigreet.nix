@@ -5,11 +5,10 @@
     lib,
     ...
   }: {
-    options.custom.tuigreet = {
+    options.custom.greetd = {
       defaultCommand = lib.mkOption {
         type = lib.types.str;
-        # This is the wrapped niri provided within this flake
-        default = "uwsm start niri";
+        default = "niri-session";
         description = "The default session command for tuigreet and auto-login";
       };
     };
@@ -27,11 +26,11 @@
             # Session on first login which would use auto-login
             initial_session = {
               user = "michael";
-              command = config.custom.tuigreet.defaultCommand;
+              command = config.custom.greetd.defaultCommand;
             };
             # All other sessions
             default_session = {
-              command = "tuigreet --cmd " + config.custom.tuigreet.defaultCommand;
+              command = "tuigreet --cmd " + config.custom.greetd.defaultCommand;
               user = "greeter";
             };
           };

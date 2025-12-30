@@ -24,7 +24,6 @@
       extraConfig ? "",
       extraRuntimeInputs ? [],
       spawnNoctalia ? true,
-      useFlags ? true,
     }: let
       inherit (pkgs.stdenv.hostPlatform) system;
       inherit (config.flake.packages.${system}) kitty noctalia;
@@ -44,24 +43,27 @@
           noctalia
         ]
         ++ extraRuntimeInputs;
+
+      niriCfg = import ./_config.nix {inherit pkgs extraConfig spawnNoctalia;};
     in
       pkgs.symlinkJoin {
         name = "niri";
         paths = [pkg];
         inherit buildInputs;
         passthru.providedSessions = ["niri"];
-        postBuild =
-          ''
-            wrapProgram $out/bin/niri \
-              --prefix PATH : ${pkgs.lib.makeBinPath buildInputs} \
-          ''
-          + (
-            if useFlags
-            then ''
-              --add-flags "--session -c ${import ./_config.nix {inherit pkgs extraConfig spawnNoctalia;}}"
-            ''
-            else ''''
-          );
+        postBuild = ''
+          # Override the system unit to include the config
+          mkdir -p $out/lib/systemd/user/niri.service.d
+          cat > $out/lib/systemd/user/niri.service.d/override.conf <<EOF
+          [Service]
+          ExecStart=
+          ExecStart=$out/bin/niri --session -c ${niriCfg}
+          EOF
+
+          $out/bin/niri validate -c ${niriCfg}
+          wrapProgram $out/bin/niri \
+            --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
+        '';
       };
   };
 }

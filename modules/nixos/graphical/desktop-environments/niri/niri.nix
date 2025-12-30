@@ -1,5 +1,5 @@
 {config, ...}: let
-  inherit (config.flake) wrappers;
+  inherit (config.flake.wrappers) mkNiri;
 in {
   flake.modules.nixos.niri = {
     config,
@@ -22,26 +22,9 @@ in {
           spawn-sh-at-startup "dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY"
         '';
     in {
-      # Adding to the wrapper isn't enough, add it to the system
-      environment.systemPackages = [pkgs.xwayland-satellite];
-      programs = {
-        # Niri itself will not be wrapped because UWSM will be
-        niri = {
-          enable = true;
-          package = wrappers.mkNiri {
-            inherit pkgs;
-            useFlags = false;
-          };
-        };
-        uwsm = {
-          enable = true;
-          waylandCompositors.niri = {
-            prettyName = "Niri";
-            comment = "Niri managed by UWSM and wrapped with my config";
-            binPath = "/run/current-system/sw/bin/niri";
-            extraArgs = ["-c" "${wrappers.mkNiriConfig {inherit pkgs extraConfig;}}"];
-          };
-        };
+      programs.niri = {
+        enable = true;
+        package = mkNiri {inherit pkgs extraConfig;};
       };
     };
   };
