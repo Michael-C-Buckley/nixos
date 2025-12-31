@@ -44,6 +44,7 @@ in {
       app-librewolf
       app-materialgram
       app-novelwriter
+      app-opencode
       app-obsidian
       app-qutebrowser
       app-signal
