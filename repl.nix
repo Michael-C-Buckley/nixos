@@ -3,17 +3,26 @@
 # Special thanks to Iynaix for the inspiration:
 # https://github.com/iynaix/dotfiles/blob/main/repl.nix
 let
-  inherit (builtins) attrNames getFlake listToAttrs;
+  inherit (builtins) attrNames getFlake listToAttrs map;
   flake = getFlake (toString ./.);
 
   hosts = attrNames flake.nixosConfigurations;
 
   # Split and get the host since I always use my `name@` in the format
   homes =
-    map (
-      x: builtins.elemAt (builtins.split "@" x) 2
-    )
+    map (x: builtins.elemAt (builtins.split "@" x) 2)
     (attrNames flake.homeConfigurations);
+
+  # Helper to create an attrset from a list, mapping each name to a derived value
+  mapToAttrs = list: f:
+    listToAttrs (map (name: {
+        inherit name;
+        value = f name;
+      })
+      list);
+
+  # Shorthand for accessing nixosConfigurations
+  nixosCfg = name: flake.nixosConfigurations.${name}.config;
 in
   rec {
     inherit (flake) inputs lib self;
@@ -21,35 +30,16 @@ in
     inherit flake;
 
     # Aliases to quickly get the configs of my defined systems
-    c = listToAttrs (map (name: {
-        inherit name;
-        value = flake.nixosConfigurations.${name}.config;
-      })
-      hosts);
+    c = mapToAttrs hosts nixosCfg;
 
     # Aliases to quickly get my personal hjem configs on my hosts
-    ch = listToAttrs (map (name: {
-        inherit name;
-        value = flake.nixosConfigurations.${name}.config.hjem.users.michael;
-      })
-      hosts);
+    ch = mapToAttrs hosts (name: (nixosCfg name).hjem.users.michael);
 
-    hm = listToAttrs (map (name: {
-        inherit name;
-        value = flake.homeConfigurations."michael@${name}".config;
-      })
-      homes);
+    # Home aliases by just hostname for repl simplicity
+    hm = mapToAttrs homes (name: flake.homeConfigurations."michael@${name}".config);
 
-    # Aliases for impermance
-    cip = listToAttrs (map (name: {
-        inherit name;
-        value = flake.nixosConfigurations.${name}.config.environment.persistence."/persist";
-      })
-      hosts);
-    cic = listToAttrs (map (name: {
-        inherit name;
-        value = flake.nixosConfigurations.${name}.config.environment.persistence."/cache";
-      })
-      hosts);
+    # Aliases for impermanence
+    cip = mapToAttrs hosts (name: (nixosCfg name).environment.persistence."/persist");
+    cic = mapToAttrs hosts (name: (nixosCfg name).environment.persistence."/cache");
   }
   // flake
