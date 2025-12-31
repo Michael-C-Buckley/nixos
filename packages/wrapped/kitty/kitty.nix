@@ -7,7 +7,8 @@
 
   flake.wrappers.mkKitty = {
     pkgs,
-    extraConfig ? "",
+    extraConfig ? {},
+    extraBinds ? {},
     extraRuntimeInputs ? [],
   }: let
     buildInputs = [pkgs.cascadia-code] ++ extraRuntimeInputs;
@@ -19,7 +20,7 @@
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''
         wrapProgram $out/bin/kitty \
-          --add-flags "-c ${import ./_config.nix {inherit pkgs extraConfig;}}" \
+          --add-flags "-c ${import ./_config.nix {inherit pkgs extraConfig extraBinds;}}" \
           --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
       '';
     };
