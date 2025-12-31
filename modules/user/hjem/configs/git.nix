@@ -2,12 +2,11 @@
 # tools, this ensures my config is available so that even unwrapped
 # gits will work as expected in my environment
 {config, ...}: let
-  inherit (config) flake;
+  inherit (config.flake.wrappers) mkGitConfig;
 in {
-  flake.hjemConfig.git = {
+  flake.hjemConfig.git = {pkgs, ...}: {
     hjem.users.michael.files = {
-      ".config/git/config".text =
-        flake.wrappers.mkGitConfig {};
+      ".config/git/config".source = mkGitConfig {inherit pkgs;};
     };
   };
 }
