@@ -1,4 +1,14 @@
-{config, ...}: {
+{config, ...}: let
+  cfg = {
+    theme = "Wombat";
+    background = "#000000";
+    cursor-color = "#44A3A3";
+    cursor-opacity = "0.6";
+    font-family = "Cascadia Code NF";
+    font-size = "11";
+    window-theme = "system";
+  };
+in {
   perSystem = {
     pkgs,
     system,
@@ -13,10 +23,10 @@
       then one
       else two;
     pkg = separate pkgs.ghostty config.flake.packages.${system}.ghostty-dmg;
-    extraConfig = separate "" ''
-      command = fish
-      window-decoration = false
-    '';
+    extraConfig = separate {} {
+      command = "fish";
+      window-decoration = false;
+    };
     extraRuntimeInputs = separate [] [config.flake.packages.${system}.fish];
   in {
     packages = {
@@ -29,7 +39,7 @@
   flake.wrappers.mkGhostty = {
     pkgs,
     pkg ? pkgs.ghostty,
-    extraConfig ? "",
+    extraConfig ? {},
     extraRuntimeInputs ? [],
   }: let
     buildInputs = [pkgs.cascadia-code] ++ extraRuntimeInputs;
@@ -46,7 +56,7 @@
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''
         wrapProgram ${ghosttyBinary} \
-          --add-flags "--config-file=${import ./_config.nix {inherit pkgs extraConfig;}}" \
+          --add-flags "--config-file=${pkgs.writers.writeTOML "ghostty-wrapped-config" (cfg // extraConfig)}" \
           --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
       '';
     };
