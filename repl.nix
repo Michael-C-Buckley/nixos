@@ -3,10 +3,17 @@
 # Special thanks to Iynaix for the inspiration:
 # https://github.com/iynaix/dotfiles/blob/main/repl.nix
 let
-  inherit (builtins) getFlake;
+  inherit (builtins) attrNames getFlake listToAttrs;
   flake = getFlake (toString ./.);
 
-  hosts = builtins.attrNames flake.nixosConfigurations;
+  hosts = attrNames flake.nixosConfigurations;
+
+  # Split and get the host since I always use my `name@` in the format
+  homes =
+    map (
+      x: builtins.elemAt (builtins.split "@" x) 2
+    )
+    (attrNames flake.homeConfigurations);
 in
   rec {
     inherit (flake) inputs lib self;
@@ -14,26 +21,32 @@ in
     inherit flake;
 
     # Aliases to quickly get the configs of my defined systems
-    c = builtins.listToAttrs (map (name: {
+    c = listToAttrs (map (name: {
         inherit name;
         value = flake.nixosConfigurations.${name}.config;
       })
       hosts);
 
     # Aliases to quickly get my personal hjem configs on my hosts
-    ch = builtins.listToAttrs (map (name: {
+    ch = listToAttrs (map (name: {
         inherit name;
         value = flake.nixosConfigurations.${name}.config.hjem.users.michael;
       })
       hosts);
 
+    hm = listToAttrs (map (name: {
+        inherit name;
+        value = flake.homeConfigurations."michael@${name}".config;
+      })
+      homes);
+
     # Aliases for impermance
-    cip = builtins.listToAttrs (map (name: {
+    cip = listToAttrs (map (name: {
         inherit name;
         value = flake.nixosConfigurations.${name}.config.environment.persistence."/persist";
       })
       hosts);
-    cic = builtins.listToAttrs (map (name: {
+    cic = listToAttrs (map (name: {
         inherit name;
         value = flake.nixosConfigurations.${name}.config.environment.persistence."/cache";
       })
