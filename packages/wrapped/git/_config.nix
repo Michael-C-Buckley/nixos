@@ -1,4 +1,10 @@
-{extraConfig}:
+# My standard system layout uses a predictable signing key file location
+# Some variants may differ, like WSL, where some tweaks are made from my
+# usual process to get yubikey SSH signing to work correctly
+{
+  extraConfig,
+  signingKey ? "/home/michael/.ssh/id_ed25519_sk_rk_signing.pub",
+}:
 ''
   [advice]
       defaultBranchName = false
@@ -36,6 +42,6 @@
   [user]
     email = "michaelcbuckley@proton.me"
     name = "Michael Buckley"
-    signingkey = "/home/michael/.ssh/id_ed25519_sk_rk_signing.pub"
+    signingkey = "${signingKey}"
 ''
 + extraConfig
