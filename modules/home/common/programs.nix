@@ -1,5 +1,5 @@
 {config, ...}: {
-  flake.modules.homeManager.alpine = {pkgs, ...}: {
+  flake.modules.homeManager.programs = {pkgs, ...}: {
     programs = {
       direnv = {
         enable = true;
