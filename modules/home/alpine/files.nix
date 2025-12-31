@@ -1,5 +1,16 @@
 {
-  flake.modules.homeManager.alpine = {config, ...}: {
+  flake.modules.homeManager.alpine = {
+    config,
+    pkgs,
+    ...
+  }: {
+    custom.files.test = {
+      source = pkgs.writeText ".profile" ''
+        export ENV="$HOME/.ashrc"
+      '';
+      target = "/home/michael/.profile";
+    };
+
     home.file = {
       ".profile".text = ''
         export ENV="$HOME/.ashrc"
