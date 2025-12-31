@@ -7,19 +7,21 @@
     nixpkgs,
     ...
   } @ inputs: let
-    # Replacement for import-tree
+    inherit (nixpkgs.lib) hasPrefix lists;
     inherit (nixpkgs.lib.fileset) toList fileFilter;
-    mkImport = path:
-      toList (fileFilter (file: file.hasExt "nix" && !(nixpkgs.lib.hasPrefix "_" file.name)) path);
+
+    # Replacement for import-tree
+    mkImport = path: toList (fileFilter (f: f.hasExt "nix" && !(hasPrefix "_" f.name)) path);
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
       imports =
+        lists.flatten
         [
           flake-parts.flakeModules.modules
-        ]
-        # Currently the function returns a list of the paths per invocation
-        ++ (mkImport ./modules) ++ (mkImport ./packages);
+          (mkImport ./modules)
+          (mkImport ./packages)
+        ];
 
       # The shell is available as either a devshell or traditional nix-shell
       perSystem = {
