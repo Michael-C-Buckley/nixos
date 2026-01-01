@@ -41,3 +41,9 @@ The `mkShell` function includes `pkgs.git` in it, which will shadow a user/syste
 This caused the wrapped config to seemingly vanish, and without dotfiles, go completely default settings.
 My solution here was to surrender and link the dotfiles, despite having the wrapped git.
 Sometimes the simpler and sane solution is the easier one, even if it wasn't the original goal.
+
+You may not have additional modules to help configure the item.
+Configuration will fall more along the lines of classically configuring things.
+Trivial builders can help so that `pkgs.writers.writeTOML` can transfer attrsets into TOML.
+This provides opportunities for using nix's core features when declaring the items.
+There are frameworks to assist with this, but no large ones exist yet.
