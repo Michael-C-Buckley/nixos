@@ -41,7 +41,7 @@
     };
 
   inputs = {
-    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
+    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
 
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin";
