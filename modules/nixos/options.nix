@@ -41,9 +41,9 @@ in {
     options.custom = {
       # Impermanence options separate from the flake input so systems can be agnostic to it
       impermanence = {
-        home.enable = mkEnableOption "Set to false if persisting `/home` to not bind out locations";
-        var.enable = mkEnableOption "Set to false if persisting `/var` to not bind out locations";
-        enable = mkEnableOption "Set various flags for impermance options within the config.";
+        home.enable = mkEnableOption "Triggers `/home` to bind out locations that apps use.";
+        var.enable = mkEnableOption "Triggers `/var/` to bind out locations that apps use.";
+        enable = mkEnableOption "Set various flags for impermanence options within the config.";
         cache = {
           allUsers = mkSet;
           directories = mkDirectoryOption;
@@ -75,7 +75,6 @@ in {
     };
 
     config = {
-      # all user data from hjem and merge it into the submodules
       custom.impermanence = {
         persist.users = getHjemInfo "persist";
         cache.users = getHjemInfo "cache";
