@@ -1,7 +1,7 @@
 # Common system options for all NixOS machines
 {lib, ...}: let
   inherit (lib) mkEnableOption mkOption;
-  inherit (lib.types) attrsOf listOf str;
+  inherit (lib.types) attrsOf listOf str submodule;
 
   mkDirectoryOption = mkOption {
     type = listOf str;
@@ -13,27 +13,38 @@
     default = [];
     description = "Create binds for the specified files to the drive matching the option namespace.";
   };
+
+  userSubmodule = submodule {
+    options = {
+      directories = mkDirectoryOption;
+      files = mkFileOption;
+    };
+  };
 in {
   flake.modules.nixos.options = {
     # All are nested under a custom namespace that does not conflict with nixpkgs
     options.custom = {
       # Impermanence options separate from the flake input so systems can be agnostic to it
       impermanence = {
+        home.enable = mkEnableOption "Set to false if persisting `/home` to not bind out locations";
+        var.enable = mkEnableOption "Set to false if persisting `/var` to not bind out locations";
         enable = mkEnableOption "Set various flags for impermance options within the config.";
         cache = {
           directories = mkDirectoryOption;
           files = mkFileOption;
-          user = {
-            directories = mkDirectoryOption;
-            files = mkFileOption;
+          users = mkOption {
+            type = attrsOf userSubmodule;
+            default = {};
+            description = "Per-user cache directories and files, keyed by username.";
           };
         };
         persist = {
           directories = mkDirectoryOption;
           files = mkFileOption;
-          user = {
-            directories = mkDirectoryOption;
-            files = mkFileOption;
+          users = mkOption {
+            type = attrsOf userSubmodule;
+            default = {};
+            description = "Per-user persist directories and files, keyed by username.";
           };
         };
       };

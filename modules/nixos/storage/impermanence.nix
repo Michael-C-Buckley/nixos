@@ -6,116 +6,83 @@
 #
 # Flake Config mixes in the directories declared from Flake module options
 {inputs, ...}: {
-  flake.modules.nixos.impermanence = {config, ...}: let
-    inherit (config.custom.impermanence) cache persist;
+  flake.modules.nixos.impermanence = {
+    config,
+    lib,
+    ...
+  }: let
+    inherit (config.custom.impermanence) cache persist var;
 
-    commonUserCache =
-      [
-        "Downloads"
-        ".cache"
-        ".local"
-        "flakes"
-        "nixos"
-      ]
-      ++ cache.user.directories;
+    varCache = lib.optionals var.enable [
+      # A generic bind for caching
+      "/var/lib/cache"
+      "/var/lib/nixos-containers"
+      "/var/lib/machines"
+      "/var/log"
+    ];
 
-    commonUserPersist =
-      [
-        "Documents"
-        "Pictures"
-        "projects"
-        {
-          directory = ".gnupg";
-          mode = "0700";
-        }
-        {
-          directory = ".ssh";
-          mode = "0700";
-        }
-      ]
-      ++ persist.user.directories;
+    varPersist = lib.optionals var.enable [
+      # A generic bind for persisting
+      "/var/lib/persist"
 
-    mkUserSet = {
-      directories,
-      files,
-    }:
-      builtins.listToAttrs (map (name: {
-          inherit name;
-          value = {inherit directories files;};
-        })
-        config.users.powerUsers.members);
+      "/var/lib/bluetooth"
+      "/var/lib/nixos"
+      "/var/lib/systemd"
+
+      {
+        directory = "/var/lib/colord";
+        user = "colord";
+        group = "colord";
+        mode = "u=rwx,g=rx,o=";
+      }
+    ];
   in {
     imports = [inputs.impermanence.nixosModules.impermanence];
 
     # Trigger the various logical elements that rely on this
     custom.impermanence.enable = true;
 
-    # To make sure keys are available for sops decryption
+    # To make sure secrets are available for sops decryption
+    # SSH keys are not included because I seal them systemd-creds and persist elsewhere
+    # If you use agenix/sops-nix then you will need to make sure keys are available early during boot
     fileSystems = {
-      "/etc/ssh".neededForBoot = true;
+      # Secrets are impurely kept out of the repo and managed externally
       "/etc/secrets".neededForBoot = true;
     };
 
     environment.persistence."/cache" = {
       hideMounts = true;
-      directories =
-        [
-          # A generic bind for caching
-          "/var/lib/cache"
-          "/var/lib/nixos-containers"
-          "/var/lib/machines"
-          "/var/log"
-        ]
-        ++ cache.directories;
+      directories = cache.directories ++ varCache;
 
       inherit (cache) files;
 
-      users = mkUserSet {
-        directories = commonUserCache;
-        inherit (cache.user) files;
-      };
+      users = builtins.listToAttrs (map (name: {
+          inherit name;
+          value = {inherit (config.custom.impermanence.cache.user.${name}) directories files;};
+        })
+        config.users.powerUsers.members);
     };
 
     environment.persistence."/persist" = {
       hideMounts = true;
       directories =
         [
-          "/etc/ssh"
-          "/etc/nixos"
           "/etc/NetworkManager"
-          "/etc/nix"
           "/etc/wireguard"
           "/etc/secrets"
 
           # Explicitly cover root's keys
           "/root/.ssh"
-
-          # A generic bind for persisting
-          "/var/lib/persist"
-
-          "/var/lib/bluetooth"
-          "/var/lib/nixos"
-          "/var/lib/systemd"
-
-          {
-            directory = "/var/lib/colord";
-            user = "colord";
-            group = "colord";
-            mode = "u=rwx,g=rx,o=";
-          }
         ]
-        ++ persist.directories;
+        ++ persist.directories ++ varPersist;
 
-      files =
-        [
-          "/etc/machine-id"
-        ]
-        ++ persist.files;
+      files = ["/etc/machine-id"] ++ persist.files;
 
-      users = mkUserSet {
-        directories = commonUserPersist;
-        inherit (persist.user) files;
-      };
+      users = builtins.listToAttrs (map (name: {
+          inherit name;
+          value = {inherit (config.custom.impermanence.persist.user.${name}) directories files;};
+        })
+        config.users.powerUsers.members);
     };
   };
 }
