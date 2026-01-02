@@ -1,7 +1,7 @@
 # Helix does not support language in the default config, so I've chosen to not
 # wrap the config and instead use smfh, of which keep mutable with initial state
 {config, ...}: {
-  flake.hjemConfig.helix = {pkgs, ...}: let
+  flake.hjemConfigs.helix = {pkgs, ...}: let
     mkMutable = name: body: {
       source = pkgs.writeText name body;
       type = "copy";

@@ -5,7 +5,7 @@
 }: let
   inherit (config) flake;
 in {
-  flake.hjemConfig.nixos = {
+  flake.hjemConfigs.nixos = {
     config,
     pkgs,
     lib,
@@ -13,8 +13,8 @@ in {
   }: {
     imports = [
       inputs.hjem.nixosModules.default
-      flake.hjemConfig.default
-      flake.hjemConfig.secrets
+      flake.hjemConfigs.default
+      flake.hjemConfigs.secrets
     ];
 
     hjem.users.michael = {

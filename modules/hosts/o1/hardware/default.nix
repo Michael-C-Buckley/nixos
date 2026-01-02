@@ -13,7 +13,7 @@
         availableKernelModules = ["xhci_pci" "virtio_scsi"];
         kernelModules = [];
       };
-      kernelPackages = pkgs.linuxKernel.packages.linux_6_17;
+      kernelPackages = pkgs.linuxKernel.packages.linux_6_18;
       kernelModules = ["nls_cp437" "nls_iso8859-1"];
       extraModulePackages = [];
     };

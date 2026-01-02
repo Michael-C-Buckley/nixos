@@ -7,7 +7,7 @@
     ];
 
     custom.impermanence = {
-      cache.user.directories = [
+      cache.allUsers.directories = [
         ".config/helm"
       ];
       persist.directories = [

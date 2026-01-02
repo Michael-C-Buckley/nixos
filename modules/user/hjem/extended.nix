@@ -1,8 +1,8 @@
 {config, ...}: {
-  flake.hjemConfig.extended = {pkgs, ...}: let
+  flake.hjemConfigs.extended = {pkgs, ...}: let
     inherit (config.flake.packages.${pkgs.stdenv.hostPlatform.system}) ghostty kitty;
   in {
-    imports = with config.flake.hjemConfig; [
+    imports = with config.flake.hjemConfigs; [
       cursor
       helix
       zed

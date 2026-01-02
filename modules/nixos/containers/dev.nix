@@ -27,7 +27,7 @@ in {
         ...
       }: {
         imports = with flake.modules.nixos; [
-          flake.hjemConfig.default
+          flake.hjemConfigs.default
           users
           packages
         ];

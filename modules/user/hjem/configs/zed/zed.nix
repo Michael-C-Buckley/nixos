@@ -8,7 +8,7 @@ let
     permissions = "0644";
   };
 in {
-  flake.hjemConfig.zed = {
+  flake.hjemConfigs.zed = {
     hjem.users.michael = {
       files = {
         ".config/zed/settings.json" = mkMutable ./settings.json;

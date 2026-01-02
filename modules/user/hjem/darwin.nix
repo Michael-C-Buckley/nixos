@@ -5,7 +5,7 @@
 }: let
   inherit (config) flake;
 in {
-  flake.hjemConfig.darwin = {
+  flake.hjemConfigs.darwin = {
     pkgs,
     lib,
     ...
@@ -14,8 +14,8 @@ in {
   in {
     imports = [
       inputs.hjem.darwinModules.default
-      flake.hjemConfig.default
-      flake.hjemConfig.secrets
+      flake.hjemConfigs.default
+      flake.hjemConfigs.secrets
     ];
 
     hjem.users.michael = {

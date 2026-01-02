@@ -4,7 +4,7 @@
 {config, ...}: let
   inherit (config.flake.wrappers) mkGitConfig;
 in {
-  flake.hjemConfig.git = {pkgs, ...}: {
+  flake.hjemConfigs.git = {pkgs, ...}: {
     hjem.users.michael.files = {
       ".config/git/config".source = mkGitConfig {inherit pkgs;};
     };

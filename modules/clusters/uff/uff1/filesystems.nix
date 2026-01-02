@@ -6,6 +6,11 @@
       neededForBoot = true;
     };
   in {
+    custom.impermanence = {
+      var.enable = true;
+      home.enable = true;
+    };
+
     fileSystems = {
       "/boot" = {
         device = "/dev/disk/by-uuid/6B03-5772";
