@@ -2,6 +2,6 @@
 {
   # Gloriously empty, moved secrets to the system
   # for now, will likely populate again later
-  flake.hjemConfig.secrets = {
+  flake.hjemConfigs.secrets = {
   };
 }

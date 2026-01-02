@@ -6,6 +6,11 @@
       neededForBoot = true;
     };
   in {
+    custom.impermanence = {
+      var.enable = true;
+      home.enable = true;
+    };
+
     services.sanoid.datasets = {
       "zroot/o1/persist".use_template = ["normal"];
     };

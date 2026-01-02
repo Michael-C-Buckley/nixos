@@ -13,8 +13,14 @@ in {
   flake.modules.nixos.p520 = {
     boot.zfs.extraPools = ["zhdd"];
 
-    custom.k3s.impermanence = {
-      use_cache = false;
+    custom = {
+      impermanence = {
+        var.enable = true;
+        home.enable = true;
+      };
+      k3s.impermanence = {
+        use_cache = false;
+      };
     };
 
     services = {

@@ -1,7 +1,7 @@
 # An attempting at solving cursor issues
 # Built off of: https://gitlab.com/fazzi/nixohess/-/blob/main/modules/programs/hyprland/cursor.nix?ref_type=heads
 {
-  flake.hjemConfig.cursor = {
+  flake.hjemConfigs.cursor = {
     lib,
     pkgs,
     ...

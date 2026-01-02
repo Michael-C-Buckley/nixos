@@ -1,24 +1,27 @@
 {config, ...}: let
   inherit (config) flake;
 in {
-  flake.hjemConfig.default = {
+  flake.hjemConfigs.default = {
     pkgs,
     lib,
     ...
   }: {
-    imports = with flake.hjemConfig; [
+    imports = with flake.hjemConfigs; [
       fastfetch
       git
     ];
 
     hjem = {
       linker = pkgs.smfh;
-      extraModules = [
-        flake.hjemModules.localOptions
-      ];
+
+      # Pull in all my modules
+      extraModules = builtins.attrValues flake.hjemModules;
+
       users.michael = {
         # Push the existing files in to be merged
         files = import ../_findFiles.nix {inherit lib;};
+
+        impermanence.enable = lib.mkDefault true;
 
         packages = [
           pkgs.bat

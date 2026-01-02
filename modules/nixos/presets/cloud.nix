@@ -1,6 +1,6 @@
 {config, ...}: let
   inherit (config.flake) modules packageLists lib;
-  inherit (config.flake.hjemConfig) nixos root;
+  inherit (config.flake.hjemConfigs) nixos root;
 in {
   flake.modules.nixos.cloudPreset = {pkgs, ...}: {
     imports = with modules.nixos; [

@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.gaming = {
-    custom.impermanence.cache.user.directories = [".local/share/Steam"];
+    custom.impermanence.cache.allUsers.directories = [".local/share/Steam"];
 
     hardware.steam-hardware.enable = true;
 

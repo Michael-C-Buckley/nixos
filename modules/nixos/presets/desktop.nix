@@ -1,6 +1,6 @@
 {config, ...}: let
   inherit (config.flake) modules;
-  inherit (config.flake.hjemConfig) nixos root extended;
+  inherit (config.flake.hjemConfigs) nixos root extended;
 in {
   flake.modules.nixos.desktopPreset = {pkgs, ...}: {
     imports = with modules.nixos; [
@@ -36,20 +36,6 @@ in {
       packages-development
       packages-network
       packages-fonts
-
-      app-bitwarden
-      app-element
-      app-helium
-      app-legcord
-      app-librewolf
-      app-materialgram
-      app-novelwriter
-      app-opencode
-      app-obsidian
-      app-qutebrowser
-      app-signal
-      app-vscode
-      app-zed
 
       # Users
       michael-attic

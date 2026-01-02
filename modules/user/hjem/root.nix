@@ -3,7 +3,7 @@
 {config, ...}: let
   inherit (config) flake;
 in {
-  flake.hjemConfig.root = {
+  flake.hjemConfigs.root = {
     config,
     pkgs,
     ...

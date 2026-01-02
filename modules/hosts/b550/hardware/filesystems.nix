@@ -8,6 +8,11 @@
   in {
     swapDevices = [];
 
+    custom.impermanence = {
+      var.enable = true;
+      home.enable = true;
+    };
+
     services.sanoid.datasets = {
       "zroot/b550/nixos/persist".use_template = ["normal"];
     };

@@ -3,15 +3,15 @@
   inherit (lib.types) attrs attrsOf deferredModule;
 in {
   options.flake = {
-    hjemConfig = mkOption {
-      type = attrsOf deferredModule;
-      default = {};
-      description = "Hjem configuration modules to be included in the hjem user configuration.";
-    };
     hjemModules = mkOption {
       type = attrsOf deferredModule;
       default = {};
       description = "Hjem modules to be included in the hjem user configuration.";
+    };
+    hjemConfigs = mkOption {
+      type = attrsOf deferredModule;
+      default = {};
+      description = "Hjem configurations with specific options set, usually per-user.";
     };
     lib = mkOption {
       type = attrs;
