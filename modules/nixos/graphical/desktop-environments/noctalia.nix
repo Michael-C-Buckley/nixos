@@ -30,7 +30,7 @@ in {
     };
 
     config = {
-      custom.impermanence.persist.user.directories = [
+      custom.impermanence.persist.allUsers.directories = [
         ".config/noctalia"
       ];
       systemd.user.services.noctalia = {

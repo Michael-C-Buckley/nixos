@@ -37,20 +37,6 @@ in {
       packages-network
       packages-fonts
 
-      app-bitwarden
-      app-element
-      app-helium
-      app-legcord
-      app-librewolf
-      app-materialgram
-      app-novelwriter
-      app-opencode
-      app-obsidian
-      app-qutebrowser
-      app-signal
-      app-vscode
-      app-zed
-
       # Users
       michael-attic
 

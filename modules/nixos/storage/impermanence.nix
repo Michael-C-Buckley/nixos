@@ -13,6 +13,8 @@
   }: let
     inherit (config.custom.impermanence) cache persist var;
 
+    hjemUsers = builtins.attrNames config.hjem.users;
+
     varCache = lib.optionals var.enable [
       # A generic bind for caching
       "/var/lib/cache"
@@ -58,9 +60,16 @@
 
       users = builtins.listToAttrs (map (name: {
           inherit name;
-          value = {inherit (config.custom.impermanence.cache.user.${name}) directories files;};
+          value = {
+            #inherit (config.users.users.${name}) home;
+            home =
+              if name == "root"
+              then "/root"
+              else "/home/${name}";
+            inherit (config.custom.impermanence.cache.users.${name}) directories files;
+          };
         })
-        config.users.powerUsers.members);
+        hjemUsers);
     };
 
     environment.persistence."/persist" = {
@@ -80,9 +89,15 @@
 
       users = builtins.listToAttrs (map (name: {
           inherit name;
-          value = {inherit (config.custom.impermanence.persist.user.${name}) directories files;};
+          value = {
+            home =
+              if name == "root"
+              then "/root"
+              else "/home/${name}";
+            inherit (config.custom.impermanence.persist.users.${name}) directories files;
+          };
         })
-        config.users.powerUsers.members);
+        hjemUsers);
     };
   };
 }

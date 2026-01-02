@@ -11,7 +11,7 @@
     custom.impermanence = {
       cache = {
         directories = ["/var/lib/libvirt"];
-        user.directories = optionals gfx [".cache/virt-manager"];
+        allUsers.directories = optionals gfx [".cache/virt-manager"];
       };
     };
 
