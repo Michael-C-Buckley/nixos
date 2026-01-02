@@ -3,9 +3,23 @@
     inherit (config.flake.packages.${pkgs.stdenv.hostPlatform.system}) ghostty kitty;
   in {
     imports = with config.flake.hjemConfigs; [
+      bitwarden
       cursor
+      element
+      fastfetch
+      git
       glide
+      helium
       helix
+      legcord
+      librewolf
+      materialgram
+      novelwriter
+      obsidian
+      opencode
+      qutebrowser
+      signal
+      vscode
       zed
     ];
 
