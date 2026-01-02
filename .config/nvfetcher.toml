@@ -1,3 +1,10 @@
 [helium]
 src.github_tag = "imputnet/helium-linux"
 fetch.url = "https://github.com/imputnet/helium-linux/releases/download/$ver/helium-$ver-x86_64.AppImage"
+
+[glide]
+src.github_tag = "glide-browser/glide"
+fetch.url = "https://github.com/glide-browser/glide/releases/download/$ver/glide.linux-x86_64.tar.xz"
+[glide-mac]
+src.github_tag = "glide-browser/glide"
+fetch.url = "https://github.com/glide-browser/glide/releases/download/$ver/glide.macos-aarch64.dmg"

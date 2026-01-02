@@ -5,12 +5,28 @@
   fetchFromGitHub,
   dockerTools,
 }: {
+  glide = {
+    pname = "glide";
+    version = "0.1.57a";
+    src = fetchurl {
+      url = "https://github.com/glide-browser/glide/releases/download/0.1.57a/glide.linux-x86_64.tar.xz";
+      sha256 = "sha256-BK0vB8B6DN3TXs7MweiOAycB7+6IaQPau/0HvNbNta0=";
+    };
+  };
+  glide-mac = {
+    pname = "glide-mac";
+    version = "0.1.57a";
+    src = fetchurl {
+      url = "https://github.com/glide-browser/glide/releases/download/0.1.57a/glide.macos-aarch64.dmg";
+      sha256 = "sha256-BdLEfPtO+Y1rwzo53jsMyBIm8T2602oNIm+5moDpDx0=";
+    };
+  };
   helium = {
     pname = "helium";
-    version = "0.7.6.1";
+    version = "0.7.7.2";
     src = fetchurl {
-      url = "https://github.com/imputnet/helium-linux/releases/download/0.7.6.1/helium-0.7.6.1-x86_64.AppImage";
-      sha256 = "sha256-SUpXcyQXUjZR57pNabVR/cSrGOMKvgzW0PSCLdB8d+E=";
+      url = "https://github.com/imputnet/helium-linux/releases/download/0.7.7.2/helium-0.7.7.2-x86_64.AppImage";
+      sha256 = "sha256-L4uQzlryr2/ZCkqSJOQ2hgaJaaER0V/D3/L2sr0Ewso=";
     };
   };
 }

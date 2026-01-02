@@ -1,4 +1,34 @@
 {
+  "glide": {
+    "cargoLocks": null,
+    "date": null,
+    "extract": null,
+    "name": "glide",
+    "passthru": null,
+    "pinned": false,
+    "src": {
+      "name": null,
+      "sha256": "sha256-BK0vB8B6DN3TXs7MweiOAycB7+6IaQPau/0HvNbNta0=",
+      "type": "url",
+      "url": "https://github.com/glide-browser/glide/releases/download/0.1.57a/glide.linux-x86_64.tar.xz"
+    },
+    "version": "0.1.57a"
+  },
+  "glide-mac": {
+    "cargoLocks": null,
+    "date": null,
+    "extract": null,
+    "name": "glide-mac",
+    "passthru": null,
+    "pinned": false,
+    "src": {
+      "name": null,
+      "sha256": "sha256-BdLEfPtO+Y1rwzo53jsMyBIm8T2602oNIm+5moDpDx0=",
+      "type": "url",
+      "url": "https://github.com/glide-browser/glide/releases/download/0.1.57a/glide.macos-aarch64.dmg"
+    },
+    "version": "0.1.57a"
+  },
   "helium": {
     "cargoLocks": null,
     "date": null,
@@ -8,10 +38,10 @@
     "pinned": false,
     "src": {
       "name": null,
-      "sha256": "sha256-SUpXcyQXUjZR57pNabVR/cSrGOMKvgzW0PSCLdB8d+E=",
+      "sha256": "sha256-L4uQzlryr2/ZCkqSJOQ2hgaJaaER0V/D3/L2sr0Ewso=",
       "type": "url",
-      "url": "https://github.com/imputnet/helium-linux/releases/download/0.7.6.1/helium-0.7.6.1-x86_64.AppImage"
+      "url": "https://github.com/imputnet/helium-linux/releases/download/0.7.7.2/helium-0.7.7.2-x86_64.AppImage"
     },
-    "version": "0.7.6.1"
+    "version": "0.7.7.2"
   }
 }
