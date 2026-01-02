@@ -4,6 +4,7 @@
   in {
     imports = with config.flake.hjemConfigs; [
       cursor
+      glide
       helix
       zed
     ];
