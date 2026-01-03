@@ -8,7 +8,6 @@
     "fd"
     "fzf"
     "ripgrep"
-    "yazi"
 
     # Security
     "sops"

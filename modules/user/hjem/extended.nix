@@ -25,6 +25,7 @@
       packages = [
         pkgs.nvfetcher
         pkgs.npins
+        pkgs.yazi
         ghostty
         kitty
       ];

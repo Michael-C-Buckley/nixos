@@ -25,7 +25,6 @@ in {
       root
 
       packages
-      packages-server
       packages-network
     ];
 
