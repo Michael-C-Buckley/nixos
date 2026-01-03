@@ -7,6 +7,10 @@ extend-words = { "BA" = "BA" }
 extend-glob = ["*.png"]
 check-file = false
 
+[type.gz]
+extend-glob = ["*.gz"]
+check-file = false
+
 [default.extend-words]
 # This is an nvim plugin
 noice = "noice"

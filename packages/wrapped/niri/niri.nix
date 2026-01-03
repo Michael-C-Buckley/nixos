@@ -26,7 +26,7 @@
       spawnNoctalia ? true,
     }: let
       inherit (pkgs.stdenv.hostPlatform) system;
-      inherit (config.flake.packages.${system}) kitty noctalia;
+      inherit (config.flake.packages.${system}) kitty noctalia nordzy-cursor;
       # Add the necessary packages for a functional as-is experience
       # For me, this means Noctalia and Kitty
       buildInputs = with pkgs;
@@ -36,11 +36,11 @@
           wireplumber
           playerctl
           xwayland-satellite
-          nordzy-cursor-theme
         ]
         ++ [
           kitty
           noctalia
+          nordzy-cursor
         ]
         ++ extraRuntimeInputs;
 
