@@ -12,12 +12,10 @@
       helium
       helix
       legcord
-      librewolf
       materialgram
       novelwriter
       obsidian
       opencode
-      qutebrowser
       signal
       vscode
       zed
