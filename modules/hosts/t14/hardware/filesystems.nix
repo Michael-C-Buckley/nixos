@@ -10,16 +10,15 @@
 
     custom.impermanence = {
       var.enable = true;
-      home.enable = true;
+      home.enable = false;
     };
 
     services.sanoid.datasets = {
       "zroot/t14/nixos/persist".use_template = ["normal"];
+      "zroot/t14/nixos/home/michael".use_template = ["normal"];
     };
 
-    boot.zfs = {
-      requestEncryptionCredentials = true;
-    };
+    boot.zfs.requestEncryptionCredentials = true;
 
     fileSystems = {
       "/boot" = {
@@ -32,7 +31,7 @@
         fsType = "tmpfs";
         options = [
           "defaults"
-          "size=3G"
+          "size=1G"
           "mode=755"
         ];
       };
@@ -41,8 +40,8 @@
       "/cache" = mkZfs "zroot/t14/nixos/cache";
       "/persist" = mkZfs "zroot/t14/nixos/persist";
 
-      # Awaiting deprecation
-      "/var/lib/ollama" = mkZfs "zroot/local/ollama";
+      "/home/michael" = mkZfs "zroot/t14/nixos/home/michael";
+      "/home/shawn" = mkZfs "zroot/t14/nixos/home/shawn";
     };
   };
 }

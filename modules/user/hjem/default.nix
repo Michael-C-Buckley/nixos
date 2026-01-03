@@ -2,6 +2,7 @@
   inherit (config) flake;
 in {
   flake.hjemConfigs.default = {
+    config,
     pkgs,
     lib,
     ...
@@ -21,7 +22,27 @@ in {
         # Push the existing files in to be merged
         files = import ../_findFiles.nix {inherit lib;};
 
-        impermanence.enable = lib.mkDefault true;
+        impermanence = {
+          enable = lib.mkDefault true;
+          # Unconditionally bind out bulky replaceable items from snapshots
+          cache.directories = [
+            "Downloads"
+            ".cache"
+            ".local"
+            "flakes"
+            "nixos"
+            "projects/cache"
+          ];
+          persist.directories = lib.optionals config.custom.impermanence.home.enable [
+            "Documents"
+            "Pictures"
+            "projects"
+            {
+              directory = ".ssh";
+              mode = "0700";
+            }
+          ];
+        };
 
         packages = [
           pkgs.bat

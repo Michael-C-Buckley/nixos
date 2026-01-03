@@ -94,7 +94,8 @@
               if name == "root"
               then "/root"
               else "/home/${name}";
-            inherit (config.custom.impermanence.persist.users.${name}) directories files;
+            directories = persist.users.${name}.directories ++ persist.allUsers.directories;
+            files = persist.users.${name}.files ++ persist.allUsers.files;
           };
         })
         hjemUsers);
