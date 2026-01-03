@@ -4,14 +4,12 @@
       # System Utilities
       networkmanagerapplet
       pavucontrol # Pulse Volume control
-      gammastep
-      gparted
 
       # Going simple with Nemo for now; more to follow
       nemo-with-extensions
 
       # Productivity
-      qalculate-qt
+      gnome-calculator
       meld
 
       # Terminal
@@ -20,9 +18,7 @@
       # Media
       mpv
       imv
-      zathura # PDF Viewer
       photoqt # Photo Viewer
-      foliate # Ebook Reader
 
       # Office
       abiword

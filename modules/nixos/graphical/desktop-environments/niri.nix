@@ -30,6 +30,7 @@ in {
           inherit pkgs extraConfig;
           spawnNoctalia = false;
         };
+        useNautilus = false;
       };
     };
   };
