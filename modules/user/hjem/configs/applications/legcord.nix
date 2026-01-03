@@ -10,7 +10,10 @@
 
       impermanence = {
         persist.directories = lib.optionals config.custom.impermanence.home.enable [".config/legcord"];
-        cache.directories = [".config/legcord/cache"];
+        cache.directories = [
+          ".config/legcord/cache"
+          ".config/legcord/Code Cache"
+        ];
       };
     };
   };

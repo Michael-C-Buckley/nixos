@@ -12,10 +12,16 @@ in {
         flake.packages.${pkgs.stdenv.hostPlatform.system}.vscode
       ];
 
-      impermanence.persist.directories = lib.optionals config.custom.impermanence.home.enable [
-        ".config/Code"
-        ".vscode"
-      ];
+      impermanence = {
+        persist.directories = lib.optionals config.custom.impermanence.home.enable [
+          ".config/Code"
+          ".vscode"
+        ];
+        cache.directories = [
+          ".config/Code/CachedExtensionVSIXs"
+          ".config/Code/CachedData"
+        ];
+      };
     };
   };
 }

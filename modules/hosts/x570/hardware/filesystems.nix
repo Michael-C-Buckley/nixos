@@ -9,11 +9,12 @@
 
     custom.impermanence = {
       var.enable = true;
-      home.enable = true;
+      home.enable = false;
     };
 
     services.sanoid.datasets = {
       "zroot/x570/nixos/persist".use_template = ["normal"];
+      "zroot/x570/nixos/home/michael".use_template = ["normal"];
     };
 
     fileSystems = {
@@ -27,7 +28,7 @@
         fsType = "tmpfs";
         options = [
           "defaults"
-          "size=6G"
+          "size=1G"
           "mode=755"
         ];
       };
@@ -39,6 +40,8 @@
 
       # ZFS Volumes
       "/persist" = mkZfs "zroot/x570/nixos/persist" true;
+      "/home/michael" = mkZfs "zroot/x570/nixos/home/michael" true;
+      "/home/shawn" = mkZfs "zroot/x570/nixos/home/shawn" true;
     };
   };
 }
