@@ -1,5 +1,10 @@
 {
-  flake.hjemConfigs.bitwarden = {pkgs, ...}: {
+  flake.hjemConfigs.bitwarden = {
+    config,
+    pkgs,
+    lib,
+    ...
+  }: {
     hjem.users.michael = {
       packages = with pkgs; [
         bitwarden-desktop
@@ -7,7 +12,7 @@
       ];
 
       impermanence = {
-        persist.directories = [".config/bitwarden"];
+        persist.directories = lib.optionals config.custom.impermanence.home.enable [".config/bitwarden"];
         cache.directories = [".cache/com.bitwarden.desktop"];
       };
     };

@@ -1,10 +1,17 @@
-{config, ...}: {
-  flake.hjemConfigs.glide = {pkgs, ...}: {
+{config, ...}: let
+  inherit (config) flake;
+in {
+  flake.hjemConfigs.glide = {
+    config,
+    pkgs,
+    lib,
+    ...
+  }: {
     hjem.users.michael = {
-      packages = [config.flake.packages.${pkgs.stdenv.hostPlatform.system}.glide];
+      packages = [flake.packages.${pkgs.stdenv.hostPlatform.system}.glide];
 
       impermanence = {
-        persist.directories = [
+        persist.directories = lib.optionals config.custom.impermanence.home.enable [
           ".config/glide"
         ];
         cache.directories = [

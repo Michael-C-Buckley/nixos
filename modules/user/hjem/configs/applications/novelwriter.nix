@@ -1,10 +1,15 @@
 {
-  flake.hjemConfigs.novelwriter = {pkgs, ...}: {
+  flake.hjemConfigs.novelwriter = {
+    config,
+    pkgs,
+    lib,
+    ...
+  }: {
     hjem.users.michael = {
       packages = [pkgs.novelwriter];
 
       impermanence = {
-        persist.directories = [
+        persist.directories = lib.optionals config.custom.impermanence.home.enable [
           ".config/novelwriter"
           ".local/share/novelwriter"
         ];
