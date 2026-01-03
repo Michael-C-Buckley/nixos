@@ -37,10 +37,6 @@ in {
             "Documents"
             "Pictures"
             "projects"
-            {
-              directory = ".ssh";
-              mode = "0700";
-            }
           ];
         };
 

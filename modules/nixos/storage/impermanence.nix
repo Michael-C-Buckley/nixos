@@ -11,9 +11,16 @@
     lib,
     ...
   }: let
-    inherit (config.custom.impermanence) cache persist var;
+    inherit (config.custom.impermanence) cache home persist var;
 
     hjemUsers = builtins.attrNames config.hjem.users;
+
+    commonUser = lib.optionals home.enable [
+      {
+        directory = ".ssh";
+        mode = "0700";
+      }
+    ];
 
     varCache = lib.optionals var.enable [
       # A generic bind for caching
@@ -79,9 +86,6 @@
           "/etc/NetworkManager"
           "/etc/wireguard"
           "/etc/secrets"
-
-          # Explicitly cover root's keys
-          "/root/.ssh"
         ]
         ++ persist.directories ++ varPersist;
 
@@ -94,7 +98,7 @@
               if name == "root"
               then "/root"
               else "/home/${name}";
-            directories = persist.users.${name}.directories ++ persist.allUsers.directories;
+            directories = persist.users.${name}.directories ++ persist.allUsers.directories ++ commonUser;
             files = persist.users.${name}.files ++ persist.allUsers.files;
           };
         })
