@@ -22,7 +22,7 @@
       }
     ];
 
-    varCache = lib.optionals var.enable [
+    varCache = [
       # A generic bind for caching
       "/var/lib/cache"
       "/var/lib/nixos-containers"
@@ -87,7 +87,9 @@
           "/etc/wireguard"
           "/etc/secrets"
         ]
-        ++ persist.directories ++ varPersist;
+        # Filter out `/var` dirs if we are not making it impermanent
+        # This prevents the needs for splitting logic in all modules
+        ++ (builtins.filter (x: !(lib.hasPrefix "/var") x) persist.directories) ++ varPersist;
 
       files = ["/etc/machine-id"] ++ persist.files;
 
