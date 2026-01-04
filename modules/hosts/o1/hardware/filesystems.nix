@@ -7,7 +7,7 @@
     };
   in {
     custom.impermanence = {
-      var.enable = true;
+      var.enable = false;
       home.enable = true;
     };
 
@@ -35,6 +35,7 @@
       "/nix" = zfsFs "nix";
       "/cache" = zfsFs "cache";
       "/persist" = zfsFs "persist";
+      "/var" = zfsFs "var";
 
       "/var/lib/atticd" = {
         device = "zroot/local/attic";
