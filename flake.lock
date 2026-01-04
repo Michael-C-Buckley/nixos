@@ -169,15 +169,16 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1767369300,
-        "narHash": "sha256-QV+tdP2bS+PJBcp4YHhqpMTzcxsxGaS/d6cKMCJ4PnA=",
-        "owner": "notashelf",
+        "lastModified": 1767493207,
+        "narHash": "sha256-Rw0p3b9eJXHChZT5kWfgSXCdmKApfWkOWEJ7MQTfjBE=",
+        "owner": "michael-c-buckley",
         "repo": "nvf",
-        "rev": "9c75c2a199af39fc95fb203636ce97d070ca3973",
+        "rev": "fefbf2f128e8687354c8706dad3f19bae9bc1b7f",
         "type": "github"
       },
       "original": {
-        "owner": "notashelf",
+        "owner": "michael-c-buckley",
+        "ref": "fix-nvim-treesitter",
         "repo": "nvf",
         "type": "github"
       }

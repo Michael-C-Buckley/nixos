@@ -68,7 +68,7 @@
     };
 
     nvf = {
-      url = "github:notashelf/nvf";
+      url = "github:michael-c-buckley/nvf/fix-nvim-treesitter";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-compat.follows = "";
