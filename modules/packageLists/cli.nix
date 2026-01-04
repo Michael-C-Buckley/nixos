@@ -7,6 +7,7 @@
     "eza"
     "fd"
     "fzf"
+    "git"
     "ripgrep"
 
     # Security

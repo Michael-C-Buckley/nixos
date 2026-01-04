@@ -22,6 +22,7 @@ in {
     ];
 
     environment.systemPackages = lib.packageLists.combinePkgLists pkgs (with packageLists; [
+      cli
       network
     ]);
 
