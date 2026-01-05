@@ -42,6 +42,11 @@
         fsType = "zfs";
       };
 
+      "/var/lib/postgres" = {
+        device = "zroot/o1/postgres";
+        fsType = "zfs";
+      };
+
       "var/lib/authentik" = {
         device = "zroot/o1/authentik";
         fsType = "zfs";
