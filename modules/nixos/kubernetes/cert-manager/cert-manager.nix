@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.b550 = {config, ...}: {
+  flake.modules.nixos.kube-cert-manager = {config, ...}: {
     sops = {
       secrets = {
         "k3s/cloudflare" = {};
@@ -17,6 +17,13 @@
             api-token: ${config.sops.placeholder."k3s/cloudflare"}
         '';
       };
+    };
+
+    services.k3s.manifests = {
+      cert-manager.source = ./cert-manager.yaml;
+      cloudflare.source = config.sops.templates.k3s-cloudflare-secret.path;
+      lets-encrypt.source = ./lets-encrypt.yaml;
+      certificate.source = ./certificate.yaml;
     };
   };
 }

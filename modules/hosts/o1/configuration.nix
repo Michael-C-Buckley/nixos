@@ -8,7 +8,6 @@ in {
   }: {
     imports = with nixos; [
       cloudPreset
-      k3s
       attic
       netbird
       secrets
