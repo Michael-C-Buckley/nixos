@@ -8,6 +8,7 @@
       hostId = "8c3d4e62";
       hostName = "o1";
       firewall = {
+        allowedTCPPorts = [80 443];
         allowedUDPPortRanges = [
           {
             from = 33400;
