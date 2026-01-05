@@ -55,7 +55,7 @@ spec:
           name: http
         env:
         - name: DOMAIN
-          value: "https://vw.domain.tld"
+          value: "https://bitwarden.o1.groovyreserve.com"
         - name: DATABASE_URL
           valueFrom:
             secretKeyRef:
@@ -78,6 +78,29 @@ spec:
   selector:
     app: vaultwarden
   ports:
-  - protocol: TCP
+  - name: http
+    protocol: TCP
     port: 80
     targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vaultwarden
+  namespace: vaultwarden
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+      - bitwarden.o1.groovyreserve.com
+  rules:
+    - host: bitwarden.o1.groovyreserve.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: vaultwarden
+                port:
+                  number: 80
