@@ -37,6 +37,41 @@
       };
       k3s.manifests = {
         authentik-secrets.source = config.sops.templates.authentik-secrets.path;
+        authentik-storage.content = ''
+          ---
+          apiVersion: v1
+          kind: Namespace
+          metadata:
+            name: authentik
+          ---
+          apiVersion: v1
+          kind: PersistentVolume
+          metadata:
+            name: authentik-media-pv
+          spec:
+            capacity:
+              storage: 10Gi
+            accessModes:
+              - ReadWriteOnce
+            persistentVolumeReclaimPolicy: Retain
+            storageClassName: local-path
+            hostPath:
+              path: /var/lib/authentik
+          ---
+          apiVersion: v1
+          kind: PersistentVolumeClaim
+          metadata:
+            name: authentik-media
+            namespace: authentik
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 10Gi
+            storageClassName: local-path
+            volumeName: authentik-media-pv
+        '';
         authentik-chart.content =
           # yaml
           ''
@@ -52,6 +87,10 @@
               valuesContent: |-
                 authentik:
                   secret_key: file:///authentik-secrets/secret_key
+                  persistence:
+                    media:
+                      enabled: true
+                      existingClaim: authentik-media
                   postgresql:
                     host: postgresql.default.svc.cluster.local
                     port: 5432

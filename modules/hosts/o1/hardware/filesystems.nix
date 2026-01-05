@@ -42,6 +42,11 @@
         fsType = "zfs";
       };
 
+      "var/lib/authentik" = {
+        device = "zroot/o1/authentik";
+        fsType = "zfs";
+      };
+
       "/var/lib/vaultwarden" = {
         device = "zroot/o1/vaultwarden";
         fsType = "zfs";
