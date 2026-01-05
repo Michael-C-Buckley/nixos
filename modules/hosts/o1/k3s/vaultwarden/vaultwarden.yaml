@@ -56,6 +56,11 @@ spec:
         env:
         - name: DOMAIN
           value: "https://vw.domain.tld"
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: vaultwarden-secrets
+              key: database_url
         volumeMounts:
         - name: data
           mountPath: /data
