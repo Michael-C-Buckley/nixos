@@ -24,48 +24,60 @@
           '';
       };
     };
-    services.k3s.manifests = {
-      authentik-secrets.source = config.sops.templates.authentik-secrets.path;
-      authentik-chart.content =
-        # yaml
-        ''
-          apiVersion: helm.cattle.io/v1
-          kind: HelmChart
-          metadata:
-            name: authentik
-            namespace: authentik
-          spec:
-            repo: https://charts.goauthentik.io
-            chart: authentik
-            targetNamespace: authentik
-            valuesContent: |-
-              authentik:
-                secret_key: file:///authentik-secrets/secret_key
-                postgresql:
-                  host: postgresql.default.svc.cluster.local
-                  port: 5432
-                  name: "authentik"
-                  user: file:///authentik-secrets/postgres_username
-                  password: file:///authentik-secrets/postgres_password
-              server:
-                volumes:
-                  - name: authentik-secrets
-                    secret:
-                      secretName: authentik-secrets
-                volumeMounts:
-                  - name: authentik-secrets
-                    mountPath: /authentik-secrets
-                    readOnly: true
-              worker:
-                volumes:
-                  - name: authentik-secrets
-                    secret:
-                      secretName: authentik-secrets
-                volumeMounts:
-                  - name: authentik-secrets
-                    mountPath: /authentik-secrets
-                    readOnly: true
-        '';
+    services = {
+      postgresql = {
+        ensureDatabases = ["authentik"];
+        ensureUsers = [
+          {
+            name = "authentik";
+            ensureDBOwnership = true;
+            ensureClauses = {createdb = true;};
+          }
+        ];
+      };
+      k3s.manifests = {
+        authentik-secrets.source = config.sops.templates.authentik-secrets.path;
+        authentik-chart.content =
+          # yaml
+          ''
+            apiVersion: helm.cattle.io/v1
+            kind: HelmChart
+            metadata:
+              name: authentik
+              namespace: authentik
+            spec:
+              repo: https://charts.goauthentik.io
+              chart: authentik
+              targetNamespace: authentik
+              valuesContent: |-
+                authentik:
+                  secret_key: file:///authentik-secrets/secret_key
+                  postgresql:
+                    host: postgresql.default.svc.cluster.local
+                    port: 5432
+                    name: "authentik"
+                    user: file:///authentik-secrets/postgres_username
+                    password: file:///authentik-secrets/postgres_password
+                server:
+                  volumes:
+                    - name: authentik-secrets
+                      secret:
+                        secretName: authentik-secrets
+                  volumeMounts:
+                    - name: authentik-secrets
+                      mountPath: /authentik-secrets
+                      readOnly: true
+                worker:
+                  volumes:
+                    - name: authentik-secrets
+                      secret:
+                        secretName: authentik-secrets
+                  volumeMounts:
+                    - name: authentik-secrets
+                      mountPath: /authentik-secrets
+                      readOnly: true
+          '';
+      };
     };
   };
 }
