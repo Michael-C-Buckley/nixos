@@ -26,7 +26,7 @@
         fsType = "tmpfs";
         options = [
           "defaults"
-          "size=4G"
+          "size=1G"
           "mode=755"
         ];
       };
@@ -39,6 +39,11 @@
 
       "/var/lib/atticd" = {
         device = "zroot/local/attic";
+        fsType = "zfs";
+      };
+
+      "/var/lib/vaultwarden" = {
+        device = "zroot/o1/vaultwarden";
         fsType = "zfs";
       };
     };
