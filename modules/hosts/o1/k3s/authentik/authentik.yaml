@@ -49,7 +49,7 @@ spec:
           enabled: true
           existingClaim: authentik-media
       postgresql:
-        host: postgresql.default.svc.cluster.local
+        host: 10.42.0.1 
         port: 5432
         name: authentik
         user: authentik
@@ -72,3 +72,4 @@ spec:
         - name: authentik-secrets
           mountPath: /authentik-secrets
           readOnly: true
+

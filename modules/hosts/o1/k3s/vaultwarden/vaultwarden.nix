@@ -17,7 +17,7 @@
               namespace: vaultwarden
             stringData:
               postgres_password: ${placeholder."vaultwarden/postgres_password"}
-              database_url: postgresql://vaultwarden:${placeholder."vaultwarden/postgres_password"}@localhost:5432/vaultwarden
+              database_url: postgresql://vaultwarden:${placeholder."vaultwarden/postgres_password"}@10.42.0.1:5432/vaultwarden
           '';
       };
     };

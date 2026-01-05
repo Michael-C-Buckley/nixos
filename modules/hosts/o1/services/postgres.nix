@@ -8,8 +8,7 @@
       enable = true;
       package = pkgs.postgresql_18;
       settings = {
-        # This will be adjusted
-        listen_addresses = lib.mkForce "0.0.0.0";
+        listen_addresses = lib.mkForce "127.0.0.1,10.42.0.1";
       };
     };
   };
