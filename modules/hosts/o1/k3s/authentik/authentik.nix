@@ -18,7 +18,6 @@
               name: authentik-secrets
               namespace: authentik
             stringData:
-              postgres_username: ${placeholder."authentik/postgres_username"}
               postgres_password: ${placeholder."authentik/postgres_password"}
               secret_key: ${placeholder."authentik/secret_key"}
           '';

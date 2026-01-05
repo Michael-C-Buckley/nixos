@@ -51,8 +51,8 @@ spec:
       postgresql:
         host: postgresql.default.svc.cluster.local
         port: 5432
-        name: "authentik"
-        user: file:///authentik-secrets/postgres_username
+        name: authentik
+        user: authentik
         password: file:///authentik-secrets/postgres_password
     server:
       volumes:
