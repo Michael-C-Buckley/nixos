@@ -5,6 +5,7 @@ in {
     imports = with flake.modules.nixos; [
       k3s
       kube-cert-manager
+      kube-traefik
     ];
   };
 }
