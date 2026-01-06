@@ -14,9 +14,8 @@ spec:
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
-  commonName: "bitwarden.o1.groovyreserve.com"
+  commonName: "*.o1.groovyreserve.com"
   dnsNames:
-  - "bitwarden.o1.groovyreserve.com"
   - "*.o1.groovyreserve.com"
 ---
 apiVersion: v1
@@ -55,11 +54,11 @@ metadata:
 data:
   DOMAIN: "https://bitwarden.o1.groovyreserve.com"
 
-  SSO_ENABLED: "true"
-  SSO_ONLY: "true"
-  SSO_SCOPES: "email profile offline_access"
-  SSO_AUTHENTIK_URL: "http://authentik-server.authentik/application/o/vaultwarden/"
-  SSO_CLIENT_ID: "vaultwarden"
+  # SSO_ENABLED: "true"
+  # SSO_ONLY: "true"
+  # SSO_SCOPES: "email profile offline_access"
+  # SSO_AUTHENTIK_URL: "http://authentik-server.authentik/application/o/vaultwarden/"
+  # SSO_CLIENT_ID: "vaultwarden"
 ---
 apiVersion: apps/v1
 kind: Deployment
