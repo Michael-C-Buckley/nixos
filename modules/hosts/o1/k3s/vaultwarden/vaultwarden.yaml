@@ -4,6 +4,21 @@ kind: Namespace
 metadata:
   name: vaultwarden
 ---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: vaultwarden-cert
+  namespace: vaultwarden
+spec:
+  secretName: wildcard-groovyreserve-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: "bitwarden.o1.groovyreserve.com"
+  dnsNames:
+  - "bitwarden.o1.groovyreserve.com"
+  - "*.o1.groovyreserve.com"
+---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -108,6 +123,7 @@ spec:
   tls:
     - hosts:
       - bitwarden.o1.groovyreserve.com
+      secretName: wildcard-groovyreserve-com
   rules:
     - host: bitwarden.o1.groovyreserve.com
       http:
