@@ -1,0 +1,12 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    # Set a default TLS certificate for Traefik to use
+    tlsStore:
+      default:
+        defaultCertificate:
+          secretName: wildcard-groovyreserve-com
