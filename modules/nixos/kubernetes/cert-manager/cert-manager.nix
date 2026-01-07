@@ -23,7 +23,6 @@
       cert-manager.source = ./cert-manager.yaml;
       cloudflare.source = config.sops.templates.k3s-cloudflare-secret.path;
       lets-encrypt.source = ./lets-encrypt.yaml;
-      certificate.source = ./certificate.yaml;
     };
   };
 }
