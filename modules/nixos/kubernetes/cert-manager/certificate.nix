@@ -8,7 +8,7 @@
     };
 
     config = {
-      warnings = lib.mkIf (config.services.k3s.custom.certificate.attrs == {}) [
+      warnings = lib.mkIf (config.services.k3s.custom.certificate == {}) [
         "services.k3s.custom.certificate.attrs is empty. The certificate manifest may be incomplete."
       ];
 
