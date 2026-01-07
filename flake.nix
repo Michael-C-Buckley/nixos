@@ -48,9 +48,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      #nixpkgs-lib is a trimmed down nixpkgs, use the real thing instead
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
     # No Nixpkgs Inputs
     impermanence.url = "github:nix-community/impermanence";
-    flake-parts.url = "github:hercules-ci/flake-parts";
     jail.url = "sourcehut:~alexdavid/jail.nix";
 
     home-manager = {
