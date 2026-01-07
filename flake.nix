@@ -55,7 +55,7 @@
     };
 
     # No Nixpkgs Inputs
-    impermanence.url = "github:nix-community/impermanence";
+    impermanence.url = "github:nix-community/impermanence/4b3e914cdf97a5b536a889e939fb2fd2b043a170";
     jail.url = "sourcehut:~alexdavid/jail.nix";
 
     home-manager = {
