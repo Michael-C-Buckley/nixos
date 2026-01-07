@@ -32,6 +32,28 @@ spec:
   storageClassName: local-path
   volumeName: authentik-media-pv
 ---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: authentik
+  namespace: authentik
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+      - authentik.o1.groovyreserve.com
+  rules:
+    - host: authentik.o1.groovyreserve.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: authentik-server
+                port:
+                  number: 80
+---
 apiVersion: helm.cattle.io/v1
 kind: HelmChart
 metadata:
