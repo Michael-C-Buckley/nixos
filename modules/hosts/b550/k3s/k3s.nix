@@ -8,6 +8,7 @@ in {
     imports = with flake.modules.nixos; [
       k3s
       kube-cert-manager
+      kube-traefik
     ];
 
     custom.impermanence = {
@@ -24,8 +25,23 @@ in {
     ];
 
     services.k3s = {
+      custom = {
+        traefik.defaultCert = "wildcard-groovyreserve-com";
+        certificate = let
+          name = "wildcard-groovyreserve-com";
+        in {
+          metadata = {inherit name;};
+          spec = {
+            secretName = name;
+            commonName = "*.groovyreserve.com";
+            dnsNames = [
+              "*.cs.groovyreserve.com"
+              "*.groovyreserve.com"
+            ];
+          };
+        };
+      };
       manifests = {
-        traefik-config.source = ./manifests/traefik-config.yaml;
         open-webui.source = buildManifest ./open-webui;
         forgejo.source = buildManifest ./forgejo;
       };

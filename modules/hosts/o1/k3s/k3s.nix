@@ -18,7 +18,6 @@ in {
           secretName = name;
           commonName = "*.groovyreserve.com";
           dnsNames = [
-            "*.cs.groovyreserve.com"
             "*.o1.groovyreserve.com"
             "*.groovyreserve.com"
           ];
