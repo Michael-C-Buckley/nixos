@@ -4,6 +4,20 @@ kind: Namespace
 metadata:
   name: authentik
 ---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: authentik-cert
+  namespace: authentik
+spec:
+  secretName: wildcard-groovyreserve-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: "*.o1.groovyreserve.com"
+  dnsNames:
+    - "*.o1.groovyreserve.com"
+---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -32,28 +46,6 @@ spec:
   storageClassName: local-path
   volumeName: authentik-media-pv
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: authentik
-  namespace: authentik
-spec:
-  ingressClassName: traefik
-  tls:
-    - hosts:
-      - authentik.o1.groovyreserve.com
-  rules:
-    - host: authentik.o1.groovyreserve.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: /
-            backend:
-              service:
-                name: authentik-server
-                port:
-                  number: 80
----
 apiVersion: helm.cattle.io/v1
 kind: HelmChart
 metadata:
@@ -71,7 +63,7 @@ spec:
           enabled: true
           existingClaim: authentik-media
       postgresql:
-        host: 10.42.0.1 
+        host: 10.42.0.1
         port: 5432
         name: authentik
         user: authentik
@@ -94,4 +86,3 @@ spec:
         - name: authentik-secrets
           mountPath: /authentik-secrets
           readOnly: true
-

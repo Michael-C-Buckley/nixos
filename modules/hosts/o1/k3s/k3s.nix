@@ -7,6 +7,7 @@ in {
       kube-cert-manager
       kube-traefik
     ];
+    sops.secrets."k3s/whitelist" = {};
 
     services.k3s.custom = {
       traefik.defaultCert = "wildcard-groovyreserve-com";

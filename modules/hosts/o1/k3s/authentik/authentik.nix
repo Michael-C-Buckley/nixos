@@ -4,11 +4,37 @@
   in {
     sops = {
       secrets = {
-        "authentik/postgres_username" = {};
         "authentik/postgres_password" = {};
         "authentik/secret_key" = {};
       };
       templates = {
+        authentik-ingress.content =
+          # yaml
+          ''
+            apiVersion: networking.k8s.io/v1
+            kind: Ingress
+            metadata:
+              name: authentik
+              namespace: authentik
+              annotations:
+                traefik.ingress.kubernetes.io/whitelist-source-range: "${placeholder."k3s/whitelist"}"
+            spec:
+              ingressClassName: traefik
+              tls:
+                - hosts:
+                    - authentik.o1.groovyreserve.com
+              rules:
+                - host: authentik.o1.groovyreserve.com
+                  http:
+                    paths:
+                      - pathType: Prefix
+                        path: /
+                        backend:
+                          service:
+                            name: authentik-server
+                            port:
+                              number: 80
+          '';
         authentik-secrets.content =
           # yaml
           ''
@@ -37,6 +63,7 @@
       k3s.manifests = {
         authentik-secrets.source = config.sops.templates.authentik-secrets.path;
         authentik-chart.source = ./authentik.yaml;
+        authentik-ingress.source = config.sops.templates.authentik-ingress.path;
       };
     };
   };
