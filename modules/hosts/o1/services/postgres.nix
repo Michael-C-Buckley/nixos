@@ -1,9 +1,5 @@
 {
-  flake.modules.nixos.o1 = {
-    pkgs,
-    lib,
-    ...
-  }: {
+  flake.modules.nixos.o1 = {pkgs, ...}: {
     networking.firewall.allowedTCPPorts = [5432];
 
     systemd.services.postgresql.after = ["k3s.service"];
@@ -21,9 +17,7 @@
         host    vaultwarden     vaultwarden     10.42.0.0/16            scram-sha-256
       '';
       package = pkgs.postgresql_18;
-      settings = {
-        listen_addresses = lib.mkForce "127.0.0.1,10.42.0.1";
-      };
+      enableTCPIP = true; # makes it listen on all addresses
     };
   };
 }
