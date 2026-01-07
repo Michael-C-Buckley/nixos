@@ -122,7 +122,6 @@ spec:
   tls:
     - hosts:
       - bitwarden.o1.groovyreserve.com
-      secretName: wildcard-groovyreserve-com
   rules:
     - host: bitwarden.o1.groovyreserve.com
       http:
