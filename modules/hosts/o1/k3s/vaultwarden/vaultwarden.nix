@@ -5,6 +5,8 @@
     sops = {
       secrets = {
         "vaultwarden/postgres_password" = {};
+        "vaultwarden/client_id" = {};
+        "vaultwarden/client_secret" = {};
       };
       templates = {
         vaultwarden-secrets.content =
@@ -16,8 +18,9 @@
               name: vaultwarden-secrets
               namespace: vaultwarden
             stringData:
-              postgres_password: ${placeholder."vaultwarden/postgres_password"}
-              database_url: postgresql://vaultwarden:${placeholder."vaultwarden/postgres_password"}@10.42.0.1:5432/vaultwarden
+              DATABASE_URL: postgresql://vaultwarden:${placeholder."vaultwarden/postgres_password"}@10.42.0.1:5432/vaultwarden
+              SSO_CLIENT_ID: ${placeholder."vaultwarden/client_id"}
+              SSO_CLIENT_SECRET: ${placeholder ."vaultwarden/client_secret"}
           '';
       };
     };
