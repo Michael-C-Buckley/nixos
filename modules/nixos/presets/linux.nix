@@ -1,4 +1,7 @@
 # The base I gave to all linux hosts
+# CITATIONS:
+# 1 - https://github.com/iynaix/dotfiles/blob/bd2f8aaea20abf76dc1dcd54071b8037e3bfa088/modules/shell/nix/settings.nix#L69
+# execute shebangs that assume hardcoded shell paths
 {
   self,
   inputs,
@@ -24,11 +27,18 @@
         nvf.nixosModules.default
       ]);
 
-    # From: https://github.com/iynaix/dotfiles/blob/bd2f8aaea20abf76dc1dcd54071b8037e3bfa088/modules/shell/nix/settings.nix#L69
-    # execute shebangs that assume hardcoded shell paths
-    services.envfs.enable = true;
+    services = {
+      envfs.enable = true; # Citation 1
+      timesyncd.enable = false;
+      chrony.enable = true;
+    };
+
+    systemd.tmpfiles.rules = lib.mkAfter [
+      "z ${config.services.chrony.directory}/chrony.keys 0640 root chrony - -"
+    ];
+
     system = {
-      # envfs sets usrbinenv activation script to "" with mkForce
+      # Citation 1 - envfs sets usrbinenv activation script to "" with mkForce
       activationScripts.usrbinenv = lib.mkOverride (50 - 1) ''
         if [ ! -d "/usr/bin" ]; then
           mkdir -p /usr/bin
