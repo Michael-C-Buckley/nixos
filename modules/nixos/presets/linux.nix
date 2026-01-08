@@ -7,13 +7,16 @@
   inputs,
   config,
   ...
-}: {
+}: let
+  inherit (config) flake;
+in {
   flake.modules.nixos.linuxPreset = {
+    config,
     pkgs,
     lib,
     ...
   }: {
-    imports = with config.flake.modules.nixos;
+    imports = with flake.modules.nixos;
       [
         michael
         programs
