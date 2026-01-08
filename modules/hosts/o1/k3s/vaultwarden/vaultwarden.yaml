@@ -54,9 +54,18 @@ metadata:
 data:
   DOMAIN: "https://bitwarden.o1.groovyreserve.com"
   SSO_ENABLED: "true"
-  # SSO_ONLY: "true" # baby steps
+  SSO_ONLY: "true"
   SSO_SCOPES: "email profile offline_access"
   SSO_AUTHORITY: "https://authentik.o1.groovyreserve.com/application/o/vaultwarden"
+  SSO_ALLOW_UNKNOWN_EMAIL_VERIFICATION: false
+  SSO_CLIENT_CACHE_EXPIRATION: 0
+  SSO_SIGNUPS_MATCH_EMAIL: true
+
+  # Add some logging while early in the deployment phase
+  LOG_FILE: /data/vaultwarden.log
+  EXTENDED_LOGGING: true
+  USE_SYSLOG: true
+  LOG_LEVEL: debug
 ---
 apiVersion: apps/v1
 kind: Deployment
