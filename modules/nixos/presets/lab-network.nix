@@ -107,8 +107,9 @@ in {
       };
 
       # Virtual only bridge
-      bridges.br0 = {
-        interfaces = [];
+      bridges = {
+        br0.interfaces = [];
+        br1.interfaces = ["eno1"];
       };
 
       firewall = {

@@ -7,7 +7,7 @@
       int br0
        ip ospf area 0
        ip ospf passive
-      int eno1
+      int br1
        ip ospf area 0
        ip ospf cost 1000
       int enp2
