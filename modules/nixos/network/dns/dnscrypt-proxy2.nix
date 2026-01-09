@@ -11,7 +11,7 @@ in {
     networking.nameservers = ["127.0.0.153"];
 
     # Remove for impermanence due to incompatible hard-linking requirements
-    systemd.services.dnscrypt-proxy.serviceConfig = lib.mkIf config.custom.impermanence.enable {
+    systemd.services.dnscrypt-proxy.serviceConfig = lib.mkIf config.custom.impermanence.var.enable {
       DynamicUser = lib.mkForce false;
     };
 

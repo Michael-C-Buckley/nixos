@@ -17,7 +17,7 @@
 
       # Completely static users and self-managed state directory
       systemd.services.atticd = {
-        serviceConfig = {
+        serviceConfig = lib.mkIf config.custom.impermanence.var.enable {
           DynamicUser = lib.mkForce false;
           User = "atticd";
           Group = "atticd";
