@@ -35,6 +35,7 @@
       spellcheck = {
         enable = true;
         vim-dirtytalk.enable = true; # for programming words
+        ignoredFiletypes = ["toggleterm" "gitcommit"];
       };
 
       terminal.toggleterm = {
