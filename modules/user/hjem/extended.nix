@@ -8,10 +8,10 @@
       element
       fastfetch
       git
-      glide
       helium
       helix
       legcord
+      librewolf
       materialgram
       novelwriter
       obsidian

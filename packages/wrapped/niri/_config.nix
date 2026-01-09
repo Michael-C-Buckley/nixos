@@ -81,8 +81,8 @@ in
         // LAUNCH
         Mod+Return hotkey-overlay-title="Terminal: kitty" { spawn "kitty"; }
         Mod+Ctrl+Alt+L hotkey-overlay-title="Screen Lock: hyprlock" { spawn "hyprlock"; }
-        Mod+B hotkey-overlay-title="Browser: Glide" { spawn "glide"; }
-        Mod+Ctrl+B { spawn "helium"; }
+        Mod+B hotkey-overlay-title="Browser: Helium" { spawn "helium"; }
+        Mod+Ctrl+B { spawn "librewolf"; }
         Mod+D hotkey-overlay-title="Editor: Zed" { spawn "zeditor"; }
         Mod+Ctrl+D {spawn "code"; }
         Mod+E hotkey-overlay-title="File Manager: Nemo" { spawn "nemo"; }
