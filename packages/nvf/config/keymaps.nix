@@ -8,6 +8,13 @@
         action = ":bd<CR>";
         silent = true;
       }
+      {
+        # Remove F1 for help
+        mode = ["n" "i" "v"];
+        key = "<F1>";
+        action = "<Nop>";
+        silent = true;
+      }
     ];
   };
 }
