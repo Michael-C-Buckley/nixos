@@ -103,7 +103,8 @@ in {
       networkmanager = {
         enable = lib.mkDefault true;
         # `wl` will match against both my custom and linux default device naming for wifi
-        unmanaged = networkdInterfaces ++ physicalInterfaces;
+        # moving eno1 to the bridge port suddenly made NM want to manage it, remove explicitly
+        unmanaged = networkdInterfaces ++ physicalInterfaces ++ ["eno1"];
       };
 
       # Virtual only bridge
