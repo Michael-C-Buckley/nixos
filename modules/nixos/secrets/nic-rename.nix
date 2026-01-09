@@ -27,7 +27,7 @@
           set -euo pipefail
 
           SOPS_AGE_KEY="$(ssh-to-age -private-key < "$CREDENTIALS_DIRECTORY/ssh_host_ed25519_key")" \
-            sops -d --extract '["nic"]' ${config.sops.defaultSopsFile} | \
+            sops -d --extract '["nic"]["${config.networking.hostName}"]' ${config.sops.defaultSopsFile} | \
           while IFS=': ' read -r desired_name mac_addr; do
             [ -z "$desired_name" ] && continue
 
