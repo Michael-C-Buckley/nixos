@@ -32,6 +32,12 @@
         gitsigns.enable = true;
       };
 
+      spellcheck = {
+        enable = true;
+        vim-dirtytalk.enable = true; # for programming words
+        ignoredFiletypes = ["toggleterm" "gitcommit"];
+      };
+
       terminal.toggleterm = {
         enable = true;
         lazygit.enable = true;

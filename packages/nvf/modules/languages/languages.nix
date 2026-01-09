@@ -4,10 +4,15 @@
       lsp = {
         enable = true;
         formatOnSave = true;
+        lightbulb.enable = true;
+        trouble.enable = true;
+        otter-nvim.enable = true;
+        harper-ls.enable = true;
       };
       languages = {
         enableFormat = true;
         enableTreesitter = true;
+        enableExtraDiagnostics = true;
         bash.enable = true;
         yaml.enable = true;
       };
