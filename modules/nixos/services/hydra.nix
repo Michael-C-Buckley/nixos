@@ -2,9 +2,10 @@
   flake.modules.nixos.hydra = {
     config,
     pkgs,
+    lib,
     ...
   }: {
-    custom.impermanence.persist.directories = [
+    custom.impermanence.persist.directories = lib.mkIf config.custom.impermanence.var.enable [
       "/var/lib/hydra"
     ];
     environment.systemPackages = [

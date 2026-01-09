@@ -13,7 +13,6 @@
       secrets-nic-rename
     ];
 
-    nix.settings.substituters = ["http://p520:5000"];
     system.stateVersion = "26.05";
 
     environment = {
