@@ -11,6 +11,7 @@
     systemd.services.rename-nics = {
       description = "Rename NICs using secrets";
       wantedBy = ["network-pre.target"];
+      before = ["systemd-networkd.service"];
       path = with pkgs; [
         bash
         busybox
