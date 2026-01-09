@@ -10,14 +10,15 @@
     # same applies to systemd-networkd, as udev actually does the renaming
     systemd.services.rename-nics = {
       description = "Rename NICs using secrets";
-      wantedBy = ["network-pre.target"];
-      before = ["systemd-networkd.service"];
+      wantedBy = ["multi-user.target"];
+      after = ["systemd-networkd.service"];
       path = with pkgs; [
         bash
         busybox
         iproute2
         ssh-to-age
         sops
+        systemd
       ];
 
       serviceConfig = {
@@ -38,7 +39,7 @@
               echo "Renaming $current_name (MAC: $mac_addr) to $desired_name"
               ip link set "$current_name" down
               ip link set "$current_name" name "$desired_name"
-              ip link set "$desired_name" up
+              networkctl reconfigure "$desired_name"
             elif [ -z "$current_name" ]; then
               echo "Warning: No interface found with MAC $mac_addr for $desired_name"
             else
