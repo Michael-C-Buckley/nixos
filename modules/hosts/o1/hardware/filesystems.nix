@@ -42,6 +42,11 @@
         fsType = "zfs";
       };
 
+      "/var/lib/forgejo" = {
+        device = "zroot/o1/forgejo";
+        fsType = "zfs";
+      };
+
       "/var/lib/postgres" = {
         device = "zroot/o1/postgres";
         fsType = "zfs";
