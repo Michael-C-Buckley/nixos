@@ -12,7 +12,7 @@
     inherit (source) pname version src;
 
     jail = inputs.jail.lib.init pkgs;
-    homeBind = with jail.combinators; path: (rw-bind (noescape path) (noescape path));
+    homeBind = with jail.combinators; bindPath: (rw-bind (noescape bindPath) (noescape bindPath));
 
     features = with jail.combinators;
       [
@@ -45,8 +45,8 @@
       inherit pname version src extraInstallCommands;
     };
   in
-    # Helium is only available on linux and bwrap is a linux only utility
-    lib.optionalAttrs (lib.hasSuffix "linux" system) {
+    # I currently am only preparing and using this on X86 Linux machines
+    lib.optionalAttrs (system == "x86_64-linux") {
       packages = {
         helium = localPkg;
         helium-jailed = jail "helium" localPkg features;
