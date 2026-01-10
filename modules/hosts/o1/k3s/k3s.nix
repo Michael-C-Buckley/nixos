@@ -13,7 +13,10 @@ in {
       # Kube ingress owns 22
       openssh.ports = [2222];
       k3s.custom = {
-        traefik.defaultCert = "wildcard-groovyreserve-com";
+        traefik = {
+          defaultCert = "wildcard-groovyreserve-com";
+          ssh.enable = true;
+        };
         certificate = let
           name = "wildcard-groovyreserve-com";
         in {
