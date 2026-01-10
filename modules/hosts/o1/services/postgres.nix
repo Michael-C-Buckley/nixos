@@ -15,6 +15,7 @@
         # Allow connections from k3s pod network
         host    authentik       authentik       10.42.0.0/16            scram-sha-256
         host    vaultwarden     vaultwarden     10.42.0.0/16            scram-sha-256
+        host    forgejo         forgejo         10.42.0.0/17            scram-sha-256
       '';
       package = pkgs.postgresql_18;
       enableTCPIP = true; # makes it listen on all addresses
