@@ -12,13 +12,10 @@
         default = "";
         description = "The default tlsStore certificate to use.";
       };
-      ssh = {
-        # TODO: add error for invalid
-        enable = lib.mkEnableOption "Add SSH to ports.";
-        port = lib.mkOption {
-          type = lib.types.int;
-          default = 22;
-        };
+      ports = lib.mkOption {
+        type = lib.types.attrsOf lib.types.anything;
+        default = {};
+        description = "Literal attrset that will be merged into the ports field.";
       };
     };
 
@@ -26,6 +23,8 @@
       warnings = lib.mkIf (traefik.defaultCert == {}) [
         "services.k3s.custom.traefik.defaultCert is not defined. The traefik manifest may be incomplete."
       ];
+
+      networking.firewall.allowedTCPPorts = lib.flatten (map builtins.attrValues (builtins.attrValues traefik.ports));
 
       services.k3s.manifests = {
         # Use a name other than traefik, as that default name is used by the system
@@ -49,14 +48,7 @@
               drop = ["ALL"];
             };
             service.type = "ClusterIP";
-            ports =
-              {
-                web.port = 80;
-                websecure.port = 443;
-              }
-              // lib.optionalAttrs traefik.ssh.enable {
-                ssh.port = traefik.ssh.port;
-              };
+            inherit (traefik) ports;
           };
         in {
           apiVersion = "helm.cattle.io/v1";

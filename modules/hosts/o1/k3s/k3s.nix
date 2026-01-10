@@ -15,7 +15,11 @@ in {
       k3s.custom = {
         traefik = {
           defaultCert = "wildcard-groovyreserve-com";
-          ssh.enable = true;
+          ports = {
+            ssh.port = 22;
+            web.port = 80;
+            websecure.port = 443;
+          };
         };
         certificate = let
           name = "wildcard-groovyreserve-com";
