@@ -1,7 +1,5 @@
 {
-  flake.modules.nixos.o1 = {config, ...}: let
-    inherit (config.sops) placeholder;
-  in {
+  flake.modules.nixos.o1 = {config, ...}: {
     sops = {
       secrets = {
         "authentik/postgres_password" = {};
@@ -17,7 +15,7 @@
               name: authentik
               namespace: authentik
               annotations:
-                traefik.ingress.kubernetes.io/whitelist-source-range: "${placeholder."k3s/whitelist"}"
+                traefik.ingress.kubernetes.io/whitelist-source-range: "${config.sops.placeholder."k3s/whitelist"}"
             spec:
               ingressClassName: traefik
               tls:
@@ -44,8 +42,8 @@
               name: authentik-secrets
               namespace: authentik
             stringData:
-              postgres_password: ${placeholder."authentik/postgres_password"}
-              secret_key: ${placeholder."authentik/secret_key"}
+              postgres_password: ${config.sops.placeholder."authentik/postgres_password"}
+              secret_key: ${config.sops.placeholder."authentik/secret_key"}
           '';
       };
     };

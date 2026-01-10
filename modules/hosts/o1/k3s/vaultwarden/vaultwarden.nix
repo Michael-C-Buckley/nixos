@@ -1,7 +1,5 @@
 {
-  flake.modules.nixos.o1 = {config, ...}: let
-    inherit (config.sops) placeholder;
-  in {
+  flake.modules.nixos.o1 = {config, ...}: {
     sops = {
       secrets = {
         "vaultwarden/postgres_password" = {};
@@ -16,8 +14,8 @@
               name: vaultwarden-secrets
               namespace: vaultwarden
             stringData:
-              postgres_password: ${placeholder."vaultwarden/postgres_password"}
-              database_url: postgresql://vaultwarden:${placeholder."vaultwarden/postgres_password"}@10.42.0.1:5432/vaultwarden
+              postgres_password: ${config.sops.placeholder."vaultwarden/postgres_password"}
+              database_url: postgresql://vaultwarden:${config.sops.placeholder."vaultwarden/postgres_password"}@10.42.0.1:5432/vaultwarden
           '';
       };
     };

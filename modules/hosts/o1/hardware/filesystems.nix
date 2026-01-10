@@ -1,7 +1,7 @@
 {
   flake.modules.nixos.o1 = let
-    zfsFs = path: {
-      device = "zroot/o1/${path}";
+    zfsFs = mount: {
+      device = "zroot/o1/${mount}";
       fsType = "zfs";
       neededForBoot = true;
     };
