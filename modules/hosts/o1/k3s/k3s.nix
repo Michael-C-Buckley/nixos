@@ -9,19 +9,23 @@ in {
     ];
     sops.secrets."k3s/whitelist" = {};
 
-    services.k3s.custom = {
-      traefik.defaultCert = "wildcard-groovyreserve-com";
-      certificate = let
-        name = "wildcard-groovyreserve-com";
-      in {
-        metadata = {inherit name;};
-        spec = {
-          secretName = name;
-          commonName = "*.groovyreserve.com";
-          dnsNames = [
-            "*.o1.groovyreserve.com"
-            "*.groovyreserve.com"
-          ];
+    services = {
+      # Kube ingress owns 22
+      openssh.ports = [2222];
+      k3s.custom = {
+        traefik.defaultCert = "wildcard-groovyreserve-com";
+        certificate = let
+          name = "wildcard-groovyreserve-com";
+        in {
+          metadata = {inherit name;};
+          spec = {
+            secretName = name;
+            commonName = "*.groovyreserve.com";
+            dnsNames = [
+              "*.o1.groovyreserve.com"
+              "*.groovyreserve.com"
+            ];
+          };
         };
       };
     };
