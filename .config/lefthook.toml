@@ -7,6 +7,12 @@ glob = "*.nix"
 run = "deadnix --fail {staged_files}"
 
 [[pre-commit.jobs]]
+name = "nil"
+exclude = ["_sources/**", "npins/**"]
+glob = "*.nix"
+run = "nil diagnostics --deny-warnings {staged_files}"
+
+[[pre-commit.jobs]]
 name = "taplo"
 glob = "*.toml"
 run = "taplo lint {staged_files}"

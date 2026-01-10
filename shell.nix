@@ -21,6 +21,7 @@ pkgs.mkShellNoCC {
       deadnix
       statix
       typos
+      nil
     ]
     ++ extraPkgs;
 
