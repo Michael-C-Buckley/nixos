@@ -9,7 +9,6 @@ in {
     imports = with nixos; [
       cloudPreset
       attic
-      netbird
       secrets
       systemd-credentials
     ];

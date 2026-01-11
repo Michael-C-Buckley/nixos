@@ -13,7 +13,6 @@ in {
       # Network
       network
       dnscrypt-proxy
-      netbird
 
       # Virtualization
       libvirt

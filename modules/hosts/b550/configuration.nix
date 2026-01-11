@@ -7,7 +7,6 @@
       containerlab
       lab-network
       libvirt
-      netbird
       attic
       systemd-credentials
       secrets-nic-rename

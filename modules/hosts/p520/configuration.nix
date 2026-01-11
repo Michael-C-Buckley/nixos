@@ -7,7 +7,6 @@
       containerlab
       lab-network
       libvirt
-      netbird
       nvidia
       systemd-credentials
       secrets-nic-rename
