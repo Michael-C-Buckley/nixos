@@ -7,17 +7,11 @@
         virtualRouterId = 2;
         virtualIps = [{addr = "172.16.166.30/16";}];
       };
-      lan1 = {
+      lan = {
         state = lib.mkDefault "BACKUP";
-        interface = "eno1.3";
+        interface = "br1";
         virtualRouterId = 3;
         virtualIps = [{addr = "192.168.59.30/27";}];
-      };
-      lan2 = {
-        state = lib.mkDefault "BACKUP";
-        interface = "eno2.5";
-        virtualRouterId = 4;
-        virtualIps = [{addr = "192.168.59.94/27";}];
       };
     };
   };

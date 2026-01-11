@@ -26,11 +26,7 @@
         priority = 130;
         state = "MASTER";
       };
-      lan1 = {
-        priority = 130;
-        state = "MASTER";
-      };
-      lan2 = {
+      lan = {
         priority = 130;
         state = "MASTER";
       };
