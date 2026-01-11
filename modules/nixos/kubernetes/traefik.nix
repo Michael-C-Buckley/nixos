@@ -1,9 +1,5 @@
 {lib, ...}: {
-  flake.modules.nixos.kube-traefik = {
-    config,
-    pkgs,
-    ...
-  }: let
+  flake.modules.nixos.kube-traefik = {config, ...}: let
     inherit (config.services.k3s.custom) traefik;
   in {
     options.services.k3s.custom.traefik = {
@@ -29,7 +25,6 @@
       services.k3s.manifests = {
         # Use a name other than traefik, as that default name is used by the system
         traefik-base.content = let
-          yamlFormat = pkgs.formats.yaml {};
           valuesConfig = {
             # Set a default TLS certificate for Traefik to use
             tlsStore.default.defaultCertificate.secretName = traefik.defaultCert;
@@ -57,7 +52,7 @@
             name = "traefik";
             namespace = "kube-system";
           };
-          spec.valuesContent = builtins.readFile (yamlFormat.generate "traefik-values.yaml" valuesConfig);
+          spec.valuesContent = lib.generators.toYAML {} valuesConfig;
         };
       };
     };
