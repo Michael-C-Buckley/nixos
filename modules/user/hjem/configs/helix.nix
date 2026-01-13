@@ -10,10 +10,32 @@
           type = "copy";
           permissions = "0644";
           source = pkgs.writeText "helix-languages" ''
+            [language-server.ty]
+            command = "ty"
+            args = ["server"]
+
             [[language]]
             name = "nix"
             auto-format = true
             formatter = {command = "alejandra"}
+
+            [[language]]
+            name = "python"
+            auto-format = false
+            formatter = {command = "ruff", args = ["format", "--quiet", "-"]}
+            language-servers = ["ty", "basedpyright"]
+
+            [language.debugger]
+            name = "debugpy"
+            transport = "stdio"
+            command = "python3"
+            args = ["-m",  "debugpy.adapter"]
+
+            [[language.debugger.templates]]
+            name = "source"
+            request = "launch"
+            completion = [ { name = "entrypoint", completion = "filename", default = "." } ]
+            args = { mode = "debug", program = "{0}"}
           '';
         };
 

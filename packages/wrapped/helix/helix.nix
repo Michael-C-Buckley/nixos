@@ -15,6 +15,10 @@
         alejandra
         nil
         nixd
+        basedpyright
+        ty
+        ruff
+        (python3.withPackages (ps: [ps.debugpy]))
       ]
       ++ extraRuntimeInputs;
   in
