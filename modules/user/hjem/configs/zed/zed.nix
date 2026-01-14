@@ -12,7 +12,6 @@ in {
     hjem.users.michael = {
       files = {
         ".config/zed/settings.json" = mkMutable ./settings.json;
-        ".config/zed/keymap.json" = mkMutable ./keymap.json;
       };
     };
   };
