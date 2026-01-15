@@ -21,6 +21,7 @@ in {
       environment.sessionVariables = {
         IP_COLOR = "always";
         NH_FLAKE = "/home/michael/nixos";
+        NIXPKGS_ALLOW_FREE = 1;
       };
       packages = [
         # Makes `nvf` work as a command, disambiguating from `nvim`

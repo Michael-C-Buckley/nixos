@@ -15,6 +15,9 @@
         alejandra
         nil
         nixd
+        basedpyright
+        ty
+        ruff
       ]
       ++ extraRuntimeInputs;
   in
