@@ -12,7 +12,7 @@
 
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
-      kernelPackages = pkgs.linuxPackages_zen;
+      kernelPackages = pkgs.linuxPackages_xanmod_latest;
       kernelModules = ["kvm" "kvm-amd" "virtiofs" "9p" "9pnet_virtio" "mt7921e"];
       kernelParams = [
         "amd_pstate=active" # AMD Power efficiency on Linux 6.3+
