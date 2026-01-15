@@ -2,7 +2,10 @@
   perSystem = {pkgs, ...}: {
     packages.fish = config.flake.wrappers.mkFish {
       inherit pkgs;
-      env = {NH_FLAKE = "/home/michael/nixos";};
+      env = {
+        NH_FLAKE = "/home/michael/nixos";
+        NIXPKGS_ALLOW_UNFREE = "1";
+      };
     };
   };
   flake.wrappers.mkFish = {

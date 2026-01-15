@@ -16,7 +16,7 @@
 
   # Generate env export commands
   envCommands = pkgs.lib.concatStringsSep "\n" (
-    pkgs.lib.mapAttrsToList (name: value: "    set -gx ${name} '${value}'") env
+    pkgs.lib.mapAttrsToList (name: value: "    set -gx ${name} '${toString value}'") env
   );
 
   # Create unique identifier including env vars to prevent overwrites

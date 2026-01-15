@@ -1,5 +1,6 @@
 {config, ...}: let
   inherit (config) flake;
+  editor = "hx";
 in {
   flake.hjemConfigs.default = {
     config,
@@ -53,12 +54,12 @@ in {
         ];
 
         environment.sessionVariables = {
-          EDITOR = "nvf";
-          VISUAL = "nvf";
+          EDITOR = editor;
+          VISUAL = editor;
+          GIT_EDITOR = editor;
           PAGER = "bat";
           MANPAGER = "sh -c 'col -bx | bat -l man -p'";
           DIFF = "difft";
-          GIT_EDITOR = "nvf";
           CLICOLOR = "1";
           DIFF_COLOR = "auto";
         };
