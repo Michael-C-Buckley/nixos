@@ -7,7 +7,6 @@ in {
       linuxPreset
       network
       boot
-      impermanence
       zfs
       shawn
       pam-ssh

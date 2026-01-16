@@ -63,5 +63,9 @@
     tempest.interfaces = {
       lo.ipv4 = null;
     };
+
+    sff3.interfaces = {
+      lo.ipv4 = null;
+    };
   };
 }

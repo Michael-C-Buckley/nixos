@@ -3,6 +3,7 @@
     imports = with config.flake.modules.nixos; [
       homelabPreset
       wifi-home
+      impermanence
       systemd-credentials
       secrets-nic-rename
     ];

@@ -10,6 +10,7 @@ in {
       cloudPreset
       attic
       secrets
+      impermanence
       systemd-credentials
     ];
     environment = {

@@ -3,6 +3,7 @@
     imports = with config.flake.modules.nixos; [
       serverPreset
       homelabPreset
+      impermanence
       network-no-static-default
       containerlab
       lab-network
