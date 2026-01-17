@@ -34,6 +34,7 @@
     #  so far I am only using this on P520, see that host for
     #  addition config like remote builders
     services.hydra = {
+      enable = true;
       hydraURL = "http://localhost:3000";
       notificationSender = "hydra@localhost";
       useSubstitutes = true;
