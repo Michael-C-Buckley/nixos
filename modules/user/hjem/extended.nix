@@ -1,11 +1,9 @@
 {config, ...}: {
   flake.hjemConfigs.extended = {pkgs, ...}: let
-    inherit (config.flake.packages.${pkgs.stdenv.hostPlatform.system}) ghostty kitty;
+    inherit (config.flake.packages.${pkgs.stdenv.hostPlatform.system}) kitty;
   in {
     imports = with config.flake.hjemConfigs; [
-      bitwarden
       cursor
-      element
       fastfetch
       git
       helium
@@ -24,9 +22,7 @@
     hjem.users.michael = {
       packages = [
         pkgs.nvfetcher
-        pkgs.npins
         pkgs.yazi
-        ghostty
         kitty
       ];
 
