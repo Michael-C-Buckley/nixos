@@ -25,6 +25,9 @@
       pyrefly
       pyright
       basedpyright
+
+      # Yaml
+      yaml-language-server
     ];
 
     localPkg = pkgs.symlinkJoin {

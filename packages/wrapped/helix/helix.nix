@@ -18,6 +18,7 @@
         basedpyright
         ty
         ruff
+        yaml-language-server
       ]
       ++ extraRuntimeInputs;
   in
