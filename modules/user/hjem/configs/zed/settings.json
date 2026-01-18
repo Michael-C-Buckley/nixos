@@ -9,6 +9,7 @@
   "buffer_font_weight": 400,
   "diagnostics": { "inline": { "enabled": true, "min_column": 80 } },
   "git": { "git_gutter": "tracked_files" },
+  "features": { "edit_prediction_provider": "none" },
   "helix_mode": true,
   "languages": {
     "Nix": {
