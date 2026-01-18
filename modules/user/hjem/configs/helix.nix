@@ -77,6 +77,7 @@
                 "A-." = "goto_next_buffer";
                 A-w = ":buffer-close";
                 A-x = "extend_to_line_bounds";
+                A-r = ":reload-all";
                 X = "select_line_above";
               };
               select = {
