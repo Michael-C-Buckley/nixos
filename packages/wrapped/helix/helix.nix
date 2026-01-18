@@ -19,6 +19,7 @@
         ty
         ruff
         yaml-language-server
+        vscode-json-languageserver
       ]
       ++ extraRuntimeInputs;
   in
