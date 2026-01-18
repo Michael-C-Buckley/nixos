@@ -15,7 +15,6 @@
       obsidian
       opencode
       signal
-      vscode
       zed
     ];
 

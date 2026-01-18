@@ -12,6 +12,6 @@
 
     # Security
     "sops"
-    "rage"
+    "age"
   ];
 }
