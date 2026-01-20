@@ -2,9 +2,7 @@
   flake.modules.nixos.programs = {
     programs = {
       fish.enable = true;
-      vim.enable = true;
       nano.enable = false;
-      neovim.defaultEditor = true;
       nh.enable = true;
 
       direnv = {
