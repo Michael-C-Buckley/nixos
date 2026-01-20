@@ -2,14 +2,32 @@
   config,
   inputs,
   ...
-}: {
-  flake.homeConfigurations = {
-    "michael@alpine" = inputs.home-manager.lib.homeManagerConfiguration {
+}: let
+  inherit (config.flake.modules.homeManager) alpine default gentoo;
+  mkHmConfig = {
+    system,
+    modules,
+  }:
+    inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = import inputs.nixpkgs {
-        system = "x86_64-linux";
+        inherit system;
         config.allowUnfree = true;
       };
-      modules = with config.flake.modules.homeManager; [
+      inherit modules;
+    };
+in {
+  flake.homeConfigurations = {
+    "michael@gentoo" = mkHmConfig {
+      system = "x86_64-linux";
+      modules = [
+        gentoo
+        default
+      ];
+    };
+
+    "michael@alpine" = mkHmConfig {
+      system = "x86_64-linux";
+      modules = [
         alpine
         default
       ];
