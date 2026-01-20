@@ -9,10 +9,8 @@ let
   };
 in {
   flake.hjemConfigs.zed = {
-    hjem.users.michael = {
-      files = {
-        ".config/zed/settings.json" = mkMutable ./settings.json;
-      };
+    hjem.users.michael.files = {
+      ".config/zed/settings.json" = mkMutable ./settings.json;
     };
   };
 }

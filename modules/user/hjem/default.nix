@@ -19,9 +19,6 @@ in {
       extraModules = builtins.attrValues flake.hjemModules;
 
       users.michael = {
-        # Push the existing files in to be merged
-        files = import ../_findFiles.nix {inherit lib;};
-
         impermanence = {
           enable = lib.mkDefault true;
           # Unconditionally bind out bulky replaceable items from snapshots
