@@ -29,7 +29,5 @@ in {
     ];
 
     environment.systemPackages = [pkgs.python3];
-
-    programs.nvf.settings.imports = [modules.nvf.default];
   };
 }

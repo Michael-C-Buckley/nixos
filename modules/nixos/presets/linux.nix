@@ -67,12 +67,6 @@ in {
     # Lets impure paths be used
     sops.validateSopsFiles = false;
 
-    programs = {
-      nvf = {
-        enable = true;
-        defaultEditor = true;
-      };
-    };
     time.timeZone = lib.mkDefault "America/New_York";
     networking.nftables.enable = lib.mkDefault true;
   };

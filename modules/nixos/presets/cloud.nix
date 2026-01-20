@@ -25,7 +25,5 @@ in {
       cli
       network
     ]);
-
-    programs.nvf.settings.imports = [modules.nvf.default];
   };
 }
