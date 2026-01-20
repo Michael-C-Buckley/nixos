@@ -2,7 +2,6 @@
   flake.modules.nixos.hyprland = {pkgs, ...}: {
     programs = {
       hyprland.enable = true;
-      hyprlock.enable = true;
     };
 
     environment = {
@@ -21,7 +20,6 @@
         [
           hyprshot
           hyprcursor
-          hyprsunset
           hyprpolkitagent # Auth agent
           xdg-desktop-portal
 
@@ -30,7 +28,7 @@
           wl-clip-persist
           wl-clipboard
           xclip
-        ] # include my noctalia so that it actually runs now
+        ]
         ++ [config.flake.packages.${pkgs.stdenv.hostPlatform.system}.noctalia];
     };
   };
