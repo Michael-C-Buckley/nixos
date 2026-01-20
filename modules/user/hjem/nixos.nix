@@ -14,7 +14,6 @@ in {
     imports = [
       inputs.hjem.nixosModules.default
       flake.hjemConfigs.default
-      flake.hjemConfigs.secrets
     ];
 
     hjem.users.michael = {

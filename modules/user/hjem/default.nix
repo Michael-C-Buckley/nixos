@@ -8,10 +8,6 @@ in {
     lib,
     ...
   }: {
-    imports = with flake.hjemConfigs; [
-      git
-    ];
-
     hjem = {
       linker = pkgs.smfh;
 

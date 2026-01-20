@@ -4,7 +4,6 @@
   in {
     imports = with config.flake.hjemConfigs; [
       cursor
-      git
       helium
       helix
       legcord
