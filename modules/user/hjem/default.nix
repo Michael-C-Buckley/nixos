@@ -37,6 +37,10 @@ in {
           ];
         };
 
+        files = {
+          ".config/git/config".source = flake.wrappers.mkGitConfig {inherit pkgs;};
+        };
+
         packages = [
           pkgs.bat
           pkgs.eza
