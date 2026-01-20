@@ -41,7 +41,6 @@
     sshn = "ssh -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile=/dev/null";
 
     # Programs
-    fetch = "fastfetch --logo ~/.media/nixos.png --logo-height 20 --logo-width 40";
     nv = "nvim";
 
     # Calculate the evaluation time of the current host

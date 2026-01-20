@@ -12,7 +12,6 @@
 
     localPkgs = with pkgs; [
       # System
-      fastfetch
       microfetch
       killall
       npins
