@@ -1,4 +1,6 @@
-{config, ...}: {
+{config, ...}: let
+  inherit (config.flake.wrappers) mkHyprland mkHyprlandConfig;
+in {
   perSystem = {
     pkgs,
     lib,
@@ -6,17 +8,33 @@
     ...
   }:
     lib.optionalAttrs (lib.hasSuffix "linux" system) {
-      packages.hyprland = config.flake.wrappers.mkHyprland {
-        inherit pkgs;
+      packages = {
+        hyprland = mkHyprland {inherit pkgs;};
+        hyprlandConfig = mkHyprlandConfig {inherit pkgs;};
       };
     };
 
   flake.wrappers = {
     mkHyprlandConfig = {
       pkgs,
+      hyprland ? pkgs.hyprland,
       hostConfig ? null,
-    }:
-      import ./_config.nix {inherit pkgs hostConfig;};
+    }: let
+      src = import ./_config.nix {inherit pkgs hostConfig;};
+    in
+      pkgs.stdenv.mkDerivation {
+        name = "hyprland-config";
+        inherit src;
+        nativeBuildInputs = [hyprland];
+        dontUnpack = true;
+        dontInstall = true;
+        buildPhase = ''
+          # Needs to be set but isn't real and isn't used in prod
+          export XDG_RUNTIME_DIR=/run/user/9999
+          hyprland --verify-config -c ${src}
+          cp ${src} $out
+        '';
+      };
 
     mkHyprland = {
       pkgs,
