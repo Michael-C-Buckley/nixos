@@ -4,6 +4,7 @@
       programs
       packages
       nvf
+      helix
     ];
 
     home = {
