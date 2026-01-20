@@ -35,6 +35,7 @@
       paths = [pkgs.zed-editor];
       buildInputs = zedInputs;
       nativeBuildInputs = [pkgs.makeWrapper];
+      meta.mainProgram = "zeditor";
       postBuild = ''
         wrapProgram $out/bin/zeditor \
         --prefix PATH : ${pkgs.lib.makeBinPath zedInputs}
