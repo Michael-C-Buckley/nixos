@@ -55,8 +55,9 @@ in
     env=HYPRCURSOR_SIZE,28
 
     # TODO: fix the systemd service in the wrapper
-    #exec-once=systemctl --user start noctalia-shell.service
     exec-once=${noctaliaPathScript}
+    exec-once=${noctaliaWrapper}
+    #exec-once=systemctl --user start noctalia-shell.service
     exec-once=systemctl --user start hyprpolkitagent
 
     # https://wiki.hyprland.org/Configuring/Variables/#input
