@@ -31,7 +31,6 @@ in
     $terminal=kitty
     $browser=helium
     $browser2=librewolf
-    $fileManager=nemo
     $ide=zeditor
     $noctalia=${noctaliaWrapper}
     $launcher=$noctalia ipc call launcher toggle

@@ -85,7 +85,6 @@ in
         Mod+Ctrl+B { spawn "librewolf"; }
         Mod+D hotkey-overlay-title="Editor: Zed" { spawn "zeditor"; }
         Mod+Ctrl+D {spawn "code"; }
-        Mod+E hotkey-overlay-title="File Manager: Nemo" { spawn "nemo"; }
 
         // MEDIA
         XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }

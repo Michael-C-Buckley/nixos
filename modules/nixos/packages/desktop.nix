@@ -6,9 +6,6 @@
       pavucontrol # Pulse Volume control
       kubectl
 
-      # Going simple with Nemo for now; more to follow
-      nemo-with-extensions
-
       # Productivity
       gnome-calculator
       meld

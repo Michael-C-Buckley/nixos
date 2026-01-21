@@ -8,6 +8,7 @@
       helix
       legcord
       librewolf
+      termfilechooser
       materialgram
       novelwriter
       obsidian
