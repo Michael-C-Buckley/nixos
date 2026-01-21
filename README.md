@@ -32,10 +32,6 @@ It is like Home-Manager in that it allows a user's home to be declared.
 It is different as it follows a much leaner approach. I prefer the higher performance, more reliable codebase and mechanisms, and lack of overly opinionated defaults in my configs.
 It does not provide modules but another project, [Hjem-Rum](https://github.com/snugnug/hjem-rum) does (although I do not use this).
 
-A small number are files are handled by simple recursive linker setup in `modules/user/findFiles.nix` that pulls and links all the files from `modules/user/files`.
-It rebuilds the nested folder structure in my `$HOME` exactly as-is. This is useful for anything that doesn't have a module without having to write declarative boilerplate.
-Though, I've largely reduced reliance on this mechanism currently, but it still exists.
-
 ### [NVF](https://github.com/notashelf/nvf)
 
 NVF is a Neovim framework in Nix.
