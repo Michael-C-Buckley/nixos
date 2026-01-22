@@ -24,6 +24,7 @@ in {
       tuigreet
       noctalia
       niri
+      oxwm
 
       # Security
       yubikey
