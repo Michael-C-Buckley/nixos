@@ -170,6 +170,26 @@
         "type": "github"
       }
     },
+    "oxwm": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1769104873,
+        "narHash": "sha256-/GqoRgGwTC88BFXXVSRLkGO884X0r5Wa+DECspXXgRs=",
+        "owner": "tonybanters",
+        "repo": "oxwm",
+        "rev": "e16c0d26b2dcc8c0c9983bd02ade852eaccd47b5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tonybanters",
+        "repo": "oxwm",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -180,6 +200,7 @@
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
         "nvf": "nvf",
+        "oxwm": "oxwm",
         "sops-nix": "sops-nix"
       }
     },

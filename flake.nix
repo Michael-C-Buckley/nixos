@@ -72,6 +72,11 @@
       };
     };
 
+    oxwm = {
+      url = "github:tonybanters/oxwm";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nvf = {
       url = "github:notashelf/nvf";
       inputs = {
