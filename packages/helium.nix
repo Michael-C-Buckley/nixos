@@ -34,15 +34,26 @@
         (homeBind "~/.config/net.imput.helium/")
       ];
 
-    extraInstallCommands = ''
-      install -m 444 -D ${contents}/${pname}.desktop -t $out/share/applications
-      substituteInPlace $out/share/applications/${pname}.desktop \
-        --replace 'Exec=AppRun' 'Exec=${pname}'
-      cp -r ${contents}/usr/share/icons $out/share
-    '';
-
     localPkg = pkgs.appimageTools.wrapType2 {
-      inherit pname version src extraInstallCommands;
+      inherit pname version src;
+      nativeBuildInputs = [pkgs.makeWrapper];
+
+      extraInstallCommands = ''
+        wrapProgram $out/bin/${pname} \
+            --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}"
+
+        install -m 444 -D ${contents}/${pname}.desktop -t $out/share/applications
+        substituteInPlace $out/share/applications/${pname}.desktop \
+          --replace 'Exec=AppRun' 'Exec=${pname}'
+        cp -r ${contents}/usr/share/icons $out/share
+      '';
+
+      extraBwrapArgs = [
+        # chromium policies
+        "--ro-bind-try /etc/chromium/policies/managed/default.json /etc/chromium/policies/managed/default.json"
+        # xdg scheme-handlers
+        "--ro-bind-try /etc/xdg/ /etc/xdg/"
+      ];
     };
   in
     # I currently am only preparing and using this on X86 Linux machines
