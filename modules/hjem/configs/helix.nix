@@ -7,14 +7,14 @@ in {
     hjem.users.michael = {
       packages = [packages.${pkgs.stdenv.hostPlatform.system}.helix];
 
-      files = {
-        ".config/helix/languages.toml" = {
+      xdg.config.files = {
+        "helix/languages.toml" = {
           type = "copy";
           permissions = "0644";
           source = pkgs.writers.writeTOML "helix-languages" (wrappers.mkHelixLanguages {inherit pkgs;});
         };
 
-        ".config/helix/config.toml" = {
+        "helix/config.toml" = {
           type = "copy";
           permissions = "0644";
           source = wrappers.mkHelixConfig {inherit pkgs;};

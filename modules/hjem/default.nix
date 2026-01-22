@@ -33,8 +33,8 @@ in {
           ];
         };
 
-        files = {
-          ".config/git/config".source = flake.wrappers.mkGitConfig {inherit pkgs;};
+        xdg.config.files = {
+          "git/config".source = flake.wrappers.mkGitConfig {inherit pkgs;};
         };
 
         packages = [
