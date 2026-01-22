@@ -3,7 +3,7 @@
   inputs,
   ...
 }: let
-  inherit (config.flake.modules.homeManager) alpine default gentoo wsl;
+  inherit (config.flake.modules.homeManager) alpine gentoo;
   mkHmConfig = {
     system,
     modules,
@@ -19,19 +19,12 @@ in {
   flake.homeConfigurations = {
     "michael@gentoo" = mkHmConfig {
       system = "x86_64-linux";
-      modules = [
-        gentoo
-        default
-        wsl
-      ];
+      modules = [gentoo];
     };
 
     "michael@alpine" = mkHmConfig {
       system = "x86_64-linux";
-      modules = [
-        alpine
-        default
-      ];
+      modules = [alpine];
     };
   };
 }

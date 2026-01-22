@@ -16,11 +16,19 @@ in {
     };
   in {
     home = {
-      files.".config/git/config".source = flake.wrappers.mkGitConfig {inherit pkgs extraConfig;};
+      file = {
+        ".config/git/config".source = flake.wrappers.mkGitConfig {inherit pkgs extraConfig;};
+        ".bashrc".text = ''
+          export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/wsl2-ssh-agent.sock
+        '';
+      };
       packages = [
         pkgs.wsl2-ssh-agent
         (lib.hiPrio git)
       ];
+      sessionVariables = {
+        SSH_AUTH_SOCK = "\${XDG_RUNTIME_DIR}/wsl2-ssh-agent.sock";
+      };
     };
 
     systemd.user.services = lib.mkIf config.custom.systemd.use {
@@ -31,10 +39,10 @@ in {
           ConditionUser = "!root";
         };
         Service = {
-          ExecStart = "{lib.getExe pkgs.wsl2-ssh-agent} --verbose --foreground --socket=%t/wsl2-ssh-agent.sock";
+          ExecStart = "${lib.getExe pkgs.wsl2-ssh-agent} --verbose --foreground --socket=%t/wsl2-ssh-agent.sock";
           Restart = "on-failure";
         };
-        Install.WantedBy = "default.target";
+        Install.WantedBy = ["default.target"];
       };
     };
   };
