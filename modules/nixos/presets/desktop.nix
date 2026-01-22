@@ -18,6 +18,7 @@ in {
       libvirt
 
       # Userspace
+      chromiumPolicies
       dconf
       hyprland
       tuigreet
