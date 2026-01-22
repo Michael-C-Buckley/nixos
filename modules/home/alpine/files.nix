@@ -3,6 +3,9 @@
     home.file = {
       ".profile".text = ''
         export ENV="$HOME/.ashrc"
+
+        # Standalone nix
+        . "$HOME/.nix-profile/etc/profile.d/nix.sh" 2>/dev/null || true
       '';
 
       ".ashrc".text = ''
