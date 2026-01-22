@@ -3,6 +3,9 @@
 
   # for Git
   extraConfig.user.signingkey = "/home/michael/.ssh/id_ed25519_sk";
+
+  # default location they spawn
+  ssh_sock = "/home/michael/.ssh/wsl2-ssh-agent.sock";
 in {
   flake.modules.homeManager.wsl = {
     config,
@@ -18,7 +21,7 @@ in {
     home = {
       file = {
         ".profile".text = ''
-          export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/wsl2-ssh-agent.sock
+          eval $(wsl2-ssh-agent)
         '';
       };
       packages = [
@@ -26,7 +29,7 @@ in {
         (lib.hiPrio git)
       ];
       sessionVariables = {
-        SSH_AUTH_SOCK = "\${XDG_RUNTIME_DIR}/wsl2-ssh-agent.sock";
+        SSH_AUTH_SOCK = ssh_sock;
       };
     };
 
@@ -38,7 +41,7 @@ in {
           ConditionUser = "!root";
         };
         Service = {
-          ExecStart = "${lib.getExe pkgs.wsl2-ssh-agent} --verbose --foreground --socket=%t/wsl2-ssh-agent.sock";
+          ExecStart = "${lib.getExe pkgs.wsl2-ssh-agent} --verbose --foreground --socket=${ssh_sock}";
           Restart = "on-failure";
         };
         Install.WantedBy = ["default.target"];
