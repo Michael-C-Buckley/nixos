@@ -10,11 +10,9 @@ in {
       (mkGit {inherit pkgs;})
     ];
   in {
-    home.packages = with pkgs;
-      [
-        nh
-        nix-tree
-      ]
-      ++ localPkgs ++ wrappedPkgs;
+    home.packages =
+      localPkgs
+      ++ wrappedPkgs
+      ++ (flake.lib.packageLists.combinePkgLists pkgs (with flake.packageLists; [cli development]));
   };
 }
