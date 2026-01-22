@@ -17,8 +17,7 @@ in {
   in {
     home = {
       file = {
-        ".config/git/config".source = flake.wrappers.mkGitConfig {inherit pkgs extraConfig;};
-        ".bashrc".text = ''
+        ".profile".text = ''
           export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/wsl2-ssh-agent.sock
         '';
       };
