@@ -3,7 +3,6 @@
     imports = with config.flake.modules.homeManager; [
       programs
       packages
-      nvf
       helix
     ];
 

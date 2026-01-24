@@ -27,7 +27,6 @@ in {
       ]
       ++ (with inputs; [
         sops-nix.nixosModules.sops
-        nvf.nixosModules.default
       ]);
 
     services = {

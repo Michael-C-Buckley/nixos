@@ -95,21 +95,6 @@
         "type": "sourcehut"
       }
     },
-    "mnw": {
-      "locked": {
-        "lastModified": 1768701608,
-        "narHash": "sha256-kSvWF3Xt2HW9hmV5V7i8PqeWJIBUKmuKoHhOgj3Znzs=",
-        "owner": "Gerg-L",
-        "repo": "mnw",
-        "rev": "20d63a8a1ae400557c770052a46a9840e768926b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Gerg-L",
-        "repo": "mnw",
-        "type": "github"
-      }
-    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -143,33 +128,6 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       }
     },
-    "nvf": {
-      "inputs": {
-        "flake-compat": [],
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "mnw": "mnw",
-        "ndg": [],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "systems": "systems"
-      },
-      "locked": {
-        "lastModified": 1768906339,
-        "narHash": "sha256-iwkHIz2IYRcELkBoKXQUHlP0bFGmrHIz/roJUVYsyx8=",
-        "owner": "notashelf",
-        "repo": "nvf",
-        "rev": "18c55d3bebf2c704970b4ea6fd0261808bec8d94",
-        "type": "github"
-      },
-      "original": {
-        "owner": "notashelf",
-        "repo": "nvf",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -179,7 +137,6 @@
         "jail": "jail",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
-        "nvf": "nvf",
         "sops-nix": "sops-nix"
       }
     },
@@ -200,21 +157,6 @@
       "original": {
         "owner": "Mic92",
         "repo": "sops-nix",
-        "type": "github"
-      }
-    },
-    "systems": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
         "type": "github"
       }
     }

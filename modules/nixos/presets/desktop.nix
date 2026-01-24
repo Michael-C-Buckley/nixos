@@ -50,11 +50,6 @@ in {
       yubioath-flutter
     ];
 
-    programs.nvf = {
-      enable = true;
-      settings.imports = [modules.nvf.full];
-    };
-
     # MicroVM Devbox
     custom.impermanence.cache.directories = ["/var/lib/microvms"];
 

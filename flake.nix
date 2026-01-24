@@ -72,16 +72,6 @@
       };
     };
 
-    nvf = {
-      url = "github:notashelf/nvf";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-compat.follows = "";
-        flake-parts.follows = "flake-parts";
-        ndg.follows = ""; # Documentation generator
-      };
-    };
-
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";

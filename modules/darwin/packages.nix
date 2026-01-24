@@ -4,14 +4,13 @@
   ...
 }: {
   flake.modules.darwin.packages = {pkgs, ...}: let
-    inherit (config.flake.packages.${pkgs.stdenv.hostPlatform.system}) ns nvf vscode;
+    inherit (config.flake.packages.${pkgs.stdenv.hostPlatform.system}) ns vscode;
   in {
     environment.systemPackages =
       [
         # Ensure we can rebuild
         inputs.nix-darwin.packages.${pkgs.stdenv.hostPlatform.system}.default
         ns
-        nvf
         vscode
 
         # iproute2 on mac and with an override for color

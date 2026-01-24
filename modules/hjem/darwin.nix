@@ -5,13 +5,7 @@
 }: let
   inherit (config) flake;
 in {
-  flake.hjemConfigs.darwin = {
-    pkgs,
-    lib,
-    ...
-  }: let
-    inherit (flake.packages.${pkgs.stdenv.hostPlatform.system}) nvf;
-  in {
+  flake.hjemConfigs.darwin = {pkgs, ...}: {
     imports = [
       inputs.hjem.darwinModules.default
       flake.hjemConfigs.default
@@ -28,13 +22,6 @@ in {
           name = "ip";
           text = ''
             exec ${pkgs.iproute2mac}/bin/ip -c "$@"
-          '';
-        })
-        # Adds my NVF under the nvf command
-        (pkgs.writeShellApplication {
-          name = "nvf";
-          text = ''
-            exec ${lib.getExe nvf} "$@"
           '';
         })
       ];
