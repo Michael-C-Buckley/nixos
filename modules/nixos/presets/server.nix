@@ -1,6 +1,6 @@
 {config, ...}: let
   inherit (config.flake) modules;
-  inherit (config.flake.hjemConfigs) nixos root;
+  inherit (config.flake.hjemConfigs) nixos root vim;
 in {
   flake.modules.nixos.serverPreset = {pkgs, ...}: {
     imports = with modules.nixos; [
@@ -23,6 +23,7 @@ in {
       # Hjem
       nixos
       root
+      vim
 
       packages
       packages-network

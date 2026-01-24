@@ -1,6 +1,6 @@
 {config, ...}: let
   inherit (config.flake) modules packageLists lib;
-  inherit (config.flake.hjemConfigs) nixos root;
+  inherit (config.flake.hjemConfigs) nixos root vim;
 in {
   flake.modules.nixos.cloudPreset = {pkgs, ...}: {
     imports = with modules.nixos; [
@@ -19,6 +19,7 @@ in {
       # Hjem
       nixos
       root
+      vim
     ];
 
     environment.systemPackages = lib.packageLists.combinePkgLists pkgs (with packageLists; [
