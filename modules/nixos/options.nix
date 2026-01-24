@@ -39,6 +39,7 @@ in {
   in {
     # All are nested under a custom namespace that does not conflict with nixpkgs
     options.custom = {
+      systemdSops = mkEnableOption "Triggers options that depend on `sops-install-secrets` service unit.";
       # Impermanence options separate from the flake input so systems can be agnostic to it
       impermanence = {
         home.enable = mkEnableOption "Triggers `/home` to bind out locations that apps use.";

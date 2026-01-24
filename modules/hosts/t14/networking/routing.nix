@@ -1,5 +1,8 @@
 {
   flake.modules.nixos.t14 = {
+    # This host routes over wireguard, wait until the secrets are up at least
+    systemd.services.frr.after = ["sops-install-secrets.service"];
+
     services.frr.config = ''
       ip forward
       ip route 192.168.38.0/24 Null0 250

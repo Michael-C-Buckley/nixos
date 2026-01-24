@@ -10,6 +10,7 @@
       pkgs,
     }: {
       inherit enable;
+      after = pkgs.lib.optionals config.custom.systemdSops ["sops-install-secrets.service"];
       description = "WireGuard: ${name}";
       wantedBy = ["multi-user.target"];
       serviceConfig = {

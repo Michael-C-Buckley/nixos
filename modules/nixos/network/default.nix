@@ -29,6 +29,8 @@ in {
       iperf3.openFirewall = config.services.iperf3.enable;
     };
 
+    systemd.services.frr.after = lib.optionals config.custom.systemdSops ["sops-install-secrets.service"];
+
     # Apply the loopback address if added
     networking.interfaces.lo.ipv4.addresses = lib.optionals (lo.ipv4 != null) [
       (getAddressAttrs lo.ipv4)

@@ -1,5 +1,7 @@
 {
   flake.modules.nixos.systemd-credentials = {
+    custom.systemdSops = true;
+
     # SSH host key is protected by systemd-credentials, this is the location it gets decrypted to
     sops.age.sshKeyPaths = [
       "/run/credentials/sops-install-secrets.service/ssh_host_ed25519_key"
@@ -18,18 +20,15 @@
 
     # Sops-nix and Openssh receives the protected SSH key from systemd-credentials
     # MUST be provisioned imperatively in advance
-    systemd.services = {
+    systemd.services = let
+      key = ["ssh_host_ed25519_key:/var/lib/systemd/credentials/ssh_host_ed25519_key"];
+    in {
       sops-install-secrets = {
-        serviceConfig.LoadCredentialEncrypted = [
-          "ssh_host_ed25519_key:/var/lib/systemd/credentials/ssh_host_ed25519_key"
-        ];
+        serviceConfig.LoadCredentialEncrypted = key;
+        # I use impermanence, so ensure everything exists
+        after = ["local-fs.target"];
       };
-    };
-    systemd.services = {
-      # Grab the key from credentials
-      sshd.serviceConfig.LoadCredentialEncrypted = [
-        "ssh_host_ed25519_key:/var/lib/systemd/credentials/ssh_host_ed25519_key"
-      ];
+      sshd.serviceConfig.LoadCredentialEncrypted = key;
     };
   };
 }
