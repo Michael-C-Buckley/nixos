@@ -12,6 +12,18 @@
       "revision": "69ecf31e8fddc9354a4b418f3a517445d486bb54",
       "url": "https://github.com/nix-community/impermanence/archive/69ecf31e8fddc9354a4b418f3a517445d486bb54.tar.gz",
       "hash": "sha256-OyxsfXNcOkt06/kM+4bnuC8moDx+t7Qr+RB0BBa83Ig="
+    },
+    "jail": {
+      "type": "Git",
+      "repository": {
+        "type": "Git",
+        "url": "https://git.sr.ht/~alexdavid/jail.nix"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "bf9f49c8118e7a77b68a675dbe26e93e91412066",
+      "url": null,
+      "hash": "sha256-buoPpx7moJzAXbLuHAImn6x9fGRdk3x0T57goPv1vnc="
     }
   },
   "version": 7

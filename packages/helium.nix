@@ -1,5 +1,5 @@
 # Helium Browser, pulled from the appImage and jailed
-{inputs, ...}: {
+{config, ...}: {
   perSystem = {
     pkgs,
     system,
@@ -11,7 +11,7 @@
     contents = pkgs.appimageTools.extract source;
     inherit (source) pname version src;
 
-    jail = inputs.jail.lib.init pkgs;
+    jail = (import "${config.flake.npins.jail}/lib").init pkgs;
     homeBind = with jail.combinators; bindPath: (rw-bind (noescape bindPath) (noescape bindPath));
 
     features = with jail.combinators;

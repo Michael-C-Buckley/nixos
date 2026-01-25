@@ -1,6 +1,6 @@
 # Just a simple way to put some tools in the Zed path
 # This also bwraps the linux variant
-{inputs, ...}: {
+{config, ...}: {
   perSystem = {
     pkgs,
     lib,
@@ -42,7 +42,7 @@
       '';
     };
 
-    jail = inputs.jail.lib.init pkgs;
+    jail = (import "${config.flake.npins.jail}/lib").init pkgs;
     inherit (jail.combinators) gui gpu readonly rw-bind noescape;
     homeBind = path: (rw-bind (noescape path) (noescape path));
 

@@ -43,6 +43,9 @@
       };
     };
 
+  # I use some alternative fetchers to get some sources
+  # Npins for git repos
+  # Nvfetchers for appImages
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
 
@@ -53,12 +56,8 @@
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
-      #nixpkgs-lib is a trimmed down nixpkgs, use the real thing instead
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-
-    # No Nixpkgs Inputs
-    jail.url = "sourcehut:~alexdavid/jail.nix";
 
     home-manager = {
       url = "github:nix-community/home-manager";
