@@ -11,6 +11,7 @@
     ];
 
     boot = {
+      loader.systemd-boot.configurationLimit = lib.mkForce 3;
       kernelPackages = pkgs.linuxPackages_xanmod_latest;
       initrd = {
         availableKernelModules = ["nvme" "xhci_pci" "uas" "sd_mod" "sdhci_pci"];
