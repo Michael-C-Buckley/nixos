@@ -38,13 +38,11 @@ NVF is a Neovim framework in Nix.
 It trivialized creating and maintaining a custom nvim setup.
 I never did traditional nvim configuration, and I don't think I ever will since this exists.
 
-My setup is standalone nested under `packages/nvf`.
-I ship a few variants depending on if its a basic config for servers or extensive for development hosts.
-They have similar UI but differing setups on language servers, mainly.
+My setup is standalone and can be found here: [nvf-flake](https://github.com/Michael-C-Buckley/nvf-flake)
 
 ### Non-Flake Inputs (Nvfetcher & Npins)
 
-I am using Nvfetcher to get appImages and other non-flake items.
+I am using Nvfetcher to get appImages and npins for other non-flake items.
 The motivation is decreasing the amount of inputs and I'll be selecting inputs which do not depend on the flake metadata tree and no have inputs.
 The upside is increased performance from lazier evaluation and reduced dependency tree sizes, as well as not having to copy these sources to the nix store, even if they're not used.
 
