@@ -16,14 +16,11 @@
       "/root"
       "/home/michael"
       "/home/shawn"
-      "/etc/sops"
     ];
 
     boot.zfs.requestEncryptionCredentials = true;
 
     fileSystems = {
-      "/etc/sops".neededForBoot = true;
-
       "/boot" = {
         device = "/dev/disk/by-uuid/159C-593C";
         fsType = "vfat";
