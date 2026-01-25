@@ -5,7 +5,9 @@
 # - Cache: persisted but no snapshots
 #
 # Flake Config mixes in the directories declared from Flake module options
-{inputs, ...}: {
+{config, ...}: let
+  inherit (config.flake) npins;
+in {
   flake.modules.nixos.impermanence = {
     config,
     lib,
@@ -46,7 +48,7 @@
       }
     ];
   in {
-    imports = [inputs.impermanence.nixosModules.impermanence];
+    imports = ["${npins.impermanence}/nixos.nix"];
 
     # Trigger the various logical elements that rely on this
     custom.impermanence.enable = true;
@@ -54,10 +56,12 @@
     # To make sure secrets are available for sops decryption
     # SSH keys are not included because I seal them systemd-creds and persist elsewhere
     # If you use agenix/sops-nix then you will need to make sure keys are available early during boot
-    fileSystems = {
-      # Secrets are impurely kept out of the repo and managed externally
-      "/etc/secrets".neededForBoot = true;
-    };
+    # fileSystems = {
+    #   # Secrets are impurely kept out of the repo and managed externally
+    #   "/etc/secrets" = {
+    #     neededForBoot = true;
+    #   };
+    # };
 
     environment.persistence."/cache" = {
       hideMounts = true;
@@ -69,10 +73,6 @@
           inherit name;
           value = {
             #inherit (config.users.users.${name}) home;
-            home =
-              if name == "root"
-              then "/root"
-              else "/home/${name}";
             inherit (config.custom.impermanence.cache.users.${name}) directories files;
           };
         })
@@ -96,10 +96,6 @@
       users = builtins.listToAttrs (map (name: {
           inherit name;
           value = {
-            home =
-              if name == "root"
-              then "/root"
-              else "/home/${name}";
             directories = persist.users.${name}.directories ++ persist.allUsers.directories ++ commonUser;
             files = persist.users.${name}.files ++ persist.allUsers.files;
           };

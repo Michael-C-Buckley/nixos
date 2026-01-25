@@ -1,0 +1,18 @@
+{
+  "pins": {
+    "impermanence": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "impermanence"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "69ecf31e8fddc9354a4b418f3a517445d486bb54",
+      "url": "https://github.com/nix-community/impermanence/archive/69ecf31e8fddc9354a4b418f3a517445d486bb54.tar.gz",
+      "hash": "sha256-OyxsfXNcOkt06/kM+4bnuC8moDx+t7Qr+RB0BBa83Ig="
+    }
+  },
+  "version": 7
+}
