@@ -1,6 +1,8 @@
 {config, ...}: {
   flake.modules.nixos.b550 = {pkgs, ...}: {
     imports = with config.flake.modules.nixos; [
+      systemd-boot
+      impermanence
       serverPreset
       homelabPreset
       network-no-static-default

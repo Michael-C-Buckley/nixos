@@ -7,6 +7,8 @@ in {
     ...
   }: {
     imports = with nixos; [
+      systemd-boot
+      impermanence
       cloudPreset
       attic
       secrets

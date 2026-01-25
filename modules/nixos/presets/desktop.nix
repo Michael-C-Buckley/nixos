@@ -5,8 +5,6 @@ in {
   flake.modules.nixos.desktopPreset = {pkgs, ...}: {
     imports = with modules.nixos; [
       linuxPreset
-      boot
-      impermanence
       shawn
       zfs
 

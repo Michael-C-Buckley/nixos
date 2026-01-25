@@ -6,8 +6,6 @@ in {
     imports = with modules.nixos; [
       linuxPreset
       network
-      boot
-      impermanence
       zfs
       shawn
 

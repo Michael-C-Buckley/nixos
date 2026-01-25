@@ -29,6 +29,8 @@ in {
         sops-nix.nixosModules.sops
       ]);
 
+    boot.initrd.systemd.enable = lib.mkDefault true;
+
     services = {
       envfs.enable = true; # Citation 1
       timesyncd.enable = false;

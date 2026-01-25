@@ -1,6 +1,8 @@
 {config, ...}: {
   flake.modules.nixos.x570 = {
     imports = with config.flake.modules.nixos; [
+      systemd-boot
+      impermanence
       desktopPreset
       homelabPreset
       intelGraphics

@@ -5,6 +5,8 @@
     ...
   }: {
     imports = with config.flake.modules.nixos; [
+      impermanence
+      systemd-boot
       laptopPreset
       wifi
       cosmicDesktop
