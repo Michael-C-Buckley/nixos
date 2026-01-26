@@ -6,6 +6,12 @@
       neededForBoot = true;
     };
   in {
+    # For ownership, declaring what was created on install
+    users.users = {
+      michael.uid = 1001;
+      shawn.uid = 1000;
+    };
+
     swapDevices = [];
 
     custom.impermanence = {
