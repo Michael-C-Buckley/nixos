@@ -22,6 +22,7 @@ in {
       powerUsers.members = ["michael"];
       users.michael = {
         hashedPasswordFile = "/etc/secrets/users/michael/hashedPassword";
+        initialHashedPassword = "$y$j9T$bVNKu2gquLcYXW7VBd7md1$g3YVAnTQKCBeNC92HcpAPivd8pdrQlqFvvynmMlvfF0";
         isNormalUser = true;
         extraGroups = config.users.powerUsers.groups;
         shell = "${shell}${shell.shellPath}";
