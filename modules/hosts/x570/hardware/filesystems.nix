@@ -7,8 +7,13 @@
   in {
     swapDevices = [];
 
+    users.users = {
+      michael.uid = 1000;
+      shawn.uid = 1001;
+    };
+
     custom.impermanence = {
-      var.enable = true;
+      var.enable = false;
       home.enable = false;
     };
 
@@ -40,6 +45,7 @@
 
       # ZFS Volumes
       "/persist" = mkZfs "zroot/x570/nixos/persist" true;
+      "/var" = mkZfs "zroot/x570/nixos/var" true;
       "/home/michael" = mkZfs "zroot/x570/nixos/home/michael" true;
       "/home/shawn" = mkZfs "zroot/x570/nixos/home/shawn" true;
     };
