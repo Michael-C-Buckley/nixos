@@ -19,7 +19,6 @@ in {
         uid = 2001;
         group = "users";
         initialHashedPassword = "$6$qqfYcXgaiZknCMEO$vQWbS.ojgq1Z278tlMxXuHXwwXIbvnuYifD7InXpvzdg.jLYcMoawE1GGtJzEVGJGn80PLfT1cMVMlcsaX3h5.";
-        hashedPasswordFile = "/etc/secrets/users/shawn/hashedPassword";
         isNormalUser = true;
         extraGroups = config.users.powerUsers.groups;
         shell = "${shell}${shell.shellPath}";

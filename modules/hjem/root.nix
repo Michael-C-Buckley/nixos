@@ -15,8 +15,8 @@ in {
     };
   in {
     users.users.root = {
-      hashedPasswordFile = "/etc/secrets/users/root/hashedPassword";
       shell = "${shell}${shell.shellPath}";
+      initialHashedPassword = "$6$oIx8hLUFc.Adg5yl$1/tSkuisZT1NDgAueIkbJ7Qb91Ed7i9Ge1EbKfzCGr7WuZZAHY/4fjLgRwi2B3Ofar4X99hqeXhB2aVbbcgra0";
       openssh.authorizedKeys.keys = michael.openssh.authorizedKeys.keys ++ shawn.openssh.authorizedKeys.keys;
     };
 

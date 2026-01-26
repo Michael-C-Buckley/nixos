@@ -91,7 +91,12 @@ in {
         # This prevents the needs for splitting logic in all modules
         ++ (builtins.filter (x: !(lib.hasPrefix "/var") x) persist.directories) ++ varPersist;
 
-      files = ["/etc/machine-id"] ++ persist.files;
+      files =
+        [
+          "/etc/shadow"
+          "/etc/machine-id"
+        ]
+        ++ persist.files;
 
       users = builtins.listToAttrs (map (name: {
           inherit name;
