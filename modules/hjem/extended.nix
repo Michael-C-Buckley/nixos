@@ -1,26 +1,27 @@
 {config, ...}: {
   flake.hjemConfigs.extended = {pkgs, ...}: let
-    inherit (config.flake.packages.${pkgs.stdenv.hostPlatform.system}) kitty;
+    inherit (config.flake.packages.${pkgs.stdenv.hostPlatform.system}) kitty zeditor;
   in {
     imports = with config.flake.hjemConfigs; [
       cursor
       helium
       helix
-      legcord
       termfilechooser
-      materialgram
-      novelwriter
-      obsidian
-      opencode
-      signal
-      zed
     ];
 
     hjem.users.michael = {
-      packages = [
-        pkgs.nvfetcher
-        pkgs.yazi
+      packages = with pkgs; [
+        nvfetcher
+        yazi
+        legcord
+        materialgram
+        novelwriter
+        obsidian
+        opencode
+        signal-desktop
+
         kitty
+        zeditor
       ];
 
       environment.sessionVariables = {

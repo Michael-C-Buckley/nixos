@@ -9,14 +9,14 @@
     swapDevices = [];
 
     custom.impermanence = {
-      var.enable = true;
+      var.enable = false;
       home.enable = false;
     };
 
-    services.sanoid.datasets = {
-      "zroot/t14/nixos/persist".use_template = ["normal"];
-      "zroot/t14/nixos/home/michael".use_template = ["normal"];
-    };
+    #services.sanoid.datasets = {
+    #  "zroot/t14/nixos/persist".use_template = ["normal"];
+    #  "zroot/t14/nixos/home/michael".use_template = ["normal"];
+    #};
 
     boot.zfs.requestEncryptionCredentials = true;
 
@@ -31,17 +31,21 @@
         fsType = "tmpfs";
         options = [
           "defaults"
-          "size=1G"
+          "size=512M"
           "mode=755"
         ];
       };
 
-      "/nix" = mkZfs "zroot/local/nix";
-      "/cache" = mkZfs "zroot/t14/nixos/cache";
-      "/persist" = mkZfs "zroot/t14/nixos/persist";
+      "/nix" = mkZfs "zroot/local/nix/nixos";
+      "/nix/store" = mkZfs "zroot/local/nix/store";
 
-      "/home/michael" = mkZfs "zroot/t14/nixos/home/michael";
-      "/home/shawn" = mkZfs "zroot/t14/nixos/home/shawn";
+      "/cache" = mkZfs "zroot/crypt/t14/nixos/cache";
+      "/persist" = mkZfs "zroot/crypt/t14/nixos/persist";
+
+      "/home" = mkZfs "zroot/crypt/t14/nixos/home";
+      #"/home/michael/.local/keep" = mkZfs "zroot/crypt/t14/michael";
+
+      "/var" = mkZfs "zroot/crypt/t14/nixos/var";
     };
   };
 }
