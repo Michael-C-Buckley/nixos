@@ -93,7 +93,6 @@ in {
 
       files =
         [
-          "/etc/shadow"
           "/etc/machine-id"
         ]
         ++ persist.files;
