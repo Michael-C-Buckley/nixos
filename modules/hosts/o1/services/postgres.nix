@@ -1,5 +1,7 @@
-{
+{config, ...}: {
   flake.modules.nixos.o1 = {pkgs, ...}: {
+    imports = [config.flake.modules.nixos.postgres-sanoid];
+
     networking.firewall.allowedTCPPorts = [5432];
 
     systemd.services.postgresql.after = ["k3s.service"];

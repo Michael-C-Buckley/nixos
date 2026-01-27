@@ -5,6 +5,13 @@
       fsType = "zfs";
       neededForBoot = true;
     };
+
+    services = [
+      "authentik"
+      "forgejo"
+      "postgres"
+      "vaultwarden"
+    ];
   in {
     custom.impermanence = {
       var.enable = false;
@@ -13,54 +20,46 @@
 
     services.sanoid.datasets = {
       "zroot/o1/persist".use_template = ["normal"];
+      "zroot/o1/services/postgres".use_template = ["database"];
     };
 
-    fileSystems = {
-      "/boot" = {
-        device = "/dev/disk/by-uuid/12CE-A600";
-        fsType = "vfat";
-      };
+    fileSystems =
+      {
+        "/boot" = {
+          device = "/dev/disk/by-uuid/12CE-A600";
+          fsType = "vfat";
+        };
 
-      "/" = {
-        device = "tmpfs";
-        fsType = "tmpfs";
-        options = [
-          "defaults"
-          "size=1G"
-          "mode=755"
-        ];
-      };
+        "/" = {
+          device = "tmpfs";
+          fsType = "tmpfs";
+          options = [
+            "defaults"
+            "size=256G"
+            "mode=755"
+          ];
+        };
 
-      # ZFS Volumes
-      "/nix" = zfsFs "nix";
-      "/cache" = zfsFs "cache";
-      "/persist" = zfsFs "persist";
-      "/var" = zfsFs "var";
+        # ZFS Volumes
+        "/nix" = zfsFs "nix";
+        "/cache" = zfsFs "cache";
+        "/persist" = zfsFs "persist";
+        "/var" = zfsFs "var";
+        "/home" = zfsFs "home";
 
-      "/var/lib/atticd" = {
-        device = "zroot/local/attic";
-        fsType = "zfs";
-      };
-
-      "/var/lib/forgejo" = {
-        device = "zroot/o1/forgejo";
-        fsType = "zfs";
-      };
-
-      "/var/lib/postgres" = {
-        device = "zroot/o1/postgres";
-        fsType = "zfs";
-      };
-
-      "var/lib/authentik" = {
-        device = "zroot/o1/authentik";
-        fsType = "zfs";
-      };
-
-      "/var/lib/vaultwarden" = {
-        device = "zroot/o1/vaultwarden";
-        fsType = "zfs";
-      };
-    };
+        # Attic separate from services to not replicate
+        "/var/lib/atticd" = {
+          device = "zroot/local/attic";
+          fsType = "zfs";
+        };
+      }
+      // builtins.listToAttrs (map (a: {
+          name = "/var/lib/${a}";
+          value = {
+            device = "zroot/o1/services/${a}";
+            fsType = "zfs";
+          };
+        })
+        services);
   };
 }
