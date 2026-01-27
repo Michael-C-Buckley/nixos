@@ -1,15 +1,17 @@
 {
   flake.modules.nixos.o1 = let
-    zfsFs = mount: {
-      device = "zroot/o1/${mount}";
-      fsType = "zfs";
-      neededForBoot = true;
-    };
+    base = [
+      "cache"
+      "home"
+      "persist"
+      "nix"
+      "var"
+    ];
 
     services = [
       "authentik"
       "forgejo"
-      "postgres"
+      "postgresql"
       "vaultwarden"
     ];
   in {
@@ -39,20 +41,23 @@
             "mode=755"
           ];
         };
-
-        # ZFS Volumes
-        "/nix" = zfsFs "nix";
-        "/cache" = zfsFs "cache";
-        "/persist" = zfsFs "persist";
-        "/var" = zfsFs "var";
-        "/home" = zfsFs "home";
-
         # Attic separate from services to not replicate
         "/var/lib/atticd" = {
           device = "zroot/local/attic";
           fsType = "zfs";
         };
       }
+      # Base volumes at the top level under root
+      // builtins.listToAttrs (map (a: {
+          name = "/${a}";
+          value = {
+            device = "zroot/o1/${a}";
+            fsType = "zfs";
+            neededForBoot = true;
+          };
+        })
+        base)
+      # My various services datasets for convenient segmentation
       // builtins.listToAttrs (map (a: {
           name = "/var/lib/${a}";
           value = {
