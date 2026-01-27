@@ -2,7 +2,7 @@
 {config, ...}: {
   flake.modules.nixos.t14 = {
     imports = with config.flake.modules.nixos; [
-      systemd-boot
+      lanzaboote
       impermanence
       laptopPreset
       systemd-credentials

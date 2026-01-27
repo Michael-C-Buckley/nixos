@@ -1,4 +1,4 @@
-{
+{inputs, ...}: {
   flake.modules.nixos = {
     grub = {
       boot.loader.grub = {
@@ -6,6 +6,20 @@
         efiSupport = true;
         efiInstallAsRemovable = true;
         device = "nodev";
+      };
+    };
+
+    lanzaboote = {pkgs, ...}: {
+      imports = [inputs.lanzaboote.nixosModules.lanzaboote];
+
+      environment.systemPackages = [pkgs.sbctl];
+
+      boot = {
+        loader.systemd-boot.enable = false;
+        lanzaboote = {
+          enable = true;
+          pkiBundle = "/var/lib/sbctl";
+        };
       };
     };
 
