@@ -1,7 +1,7 @@
 {config, ...}: {
   flake.modules.nixos.x570 = {
     imports = with config.flake.modules.nixos; [
-      systemd-boot
+      lanzaboote
       impermanence
       desktopPreset
       homelabPreset
