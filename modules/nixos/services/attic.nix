@@ -42,8 +42,9 @@
 
           storage = {
             type = "local";
-            path = "/var/lib/atticd";
+            path = "/var/lib/atticd/storage";
           };
+
           # I provide compression via ZFS
           compression.type = "none";
 

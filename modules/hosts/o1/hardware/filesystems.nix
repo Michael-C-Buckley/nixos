@@ -42,7 +42,7 @@
           ];
         };
         # Attic separate from services to not replicate
-        "/var/lib/atticd" = {
+        "/var/lib/atticd/storage" = {
           device = "zroot/local/attic";
           fsType = "zfs";
         };
