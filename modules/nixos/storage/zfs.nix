@@ -21,7 +21,6 @@
 
     services.sanoid = {
       enable = true;
-      # Define some reused templates
       templates = {
         short = {
           autoprune = true;
@@ -36,6 +35,14 @@
           daily = 3;
           weekly = 2;
           monthly = 2;
+        };
+        database = {
+          autoprune = true;
+          autosnap = true;
+          hourly = 50;
+          daily = 10;
+          weekly = 4;
+          monthly = 6;
         };
       };
     };
