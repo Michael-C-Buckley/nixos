@@ -22,7 +22,7 @@
 
     services.sanoid.datasets = {
       "zroot/o1/persist".use_template = ["normal"];
-      "zroot/o1/services/postgres".use_template = ["database"];
+      "zroot/o1/services/postgresql".use_template = ["database"];
     };
 
     fileSystems =
