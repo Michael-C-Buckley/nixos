@@ -1,11 +1,10 @@
 {
   pkgs,
+  starshipConfig,
   env ? {},
   extraConfig ? "",
   extraAliases ? {},
 }: let
-  inherit (pkgs) starship fd fzf;
-  starshipConfig = import ../starship/_config.nix {inherit pkgs;};
   aliases = import ../resources/shells/_aliases.nix;
   allAliases = aliases.common // aliases.fish // extraAliases;
 
@@ -28,10 +27,10 @@ in
 
     # Initialize starship with custom config and explicit path
     set -x STARSHIP_CONFIG ${starshipConfig}
-    ${starship}/bin/starship init fish | source
+    starship init fish | source
 
     function starship_transient_prompt_func
-      ${starship}/bin/starship module character
+      starship module character
     end
 
     enable_transience
@@ -48,7 +47,7 @@ in
     end
 
     function fcd --description 'Interactive directory change with fzf'
-      set -l selected_path (${fd}/bin/fd . | ${fzf}/bin/fzf --height 40% --reverse)
+      set -l selected_path (fd . | fzf --height 40% --reverse)
 
       if test -n "$selected_path"
           if test -d "$selected_path"

@@ -1,7 +1,6 @@
 {
   pkgs,
-  lib ? pkgs.lib,
-  overrides ? {},
+  extraConfig ? {},
 }: let
   tomlFormat = pkgs.formats.toml {};
 
@@ -62,4 +61,4 @@
     };
   };
 in
-  tomlFormat.generate "starship.toml" (lib.recursiveUpdate baseConfig overrides)
+  tomlFormat.generate "starship.toml" (pkgs.lib.recursiveUpdate baseConfig extraConfig)

@@ -15,6 +15,7 @@
     extraAliases ? {},
     extraRuntimeInputs ? [],
   }: let
+    starshipConfig = config.flake.wrappers.mkStarshipConfig {inherit pkgs;};
     buildInputs = with pkgs;
       [
         bat
@@ -25,9 +26,8 @@
         jq
         nix-direnv
         starship
+        git
         ripgrep
-
-        # Git tools (Git wrapped individually)
         delta
         tig
         lazygit
@@ -41,7 +41,17 @@
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''
         wrapProgram $out/bin/fish \
-          --add-flags "--init-command 'source ${import ./_config.nix {inherit pkgs env extraConfig extraAliases;}}'" \
+          --add-flags "--init-command 'source ${
+          import ./_config.nix {
+            inherit
+              pkgs
+              env
+              starshipConfig
+              extraConfig
+              extraAliases
+              ;
+          }
+        }'" \
           --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
       '';
       passthru.shellPath = "/bin/fish";
