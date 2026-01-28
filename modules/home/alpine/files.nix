@@ -8,6 +8,10 @@
         . "$HOME/.nix-profile/etc/profile.d/nix.sh" 2>/dev/null || true
       '';
 
+      ".bashrc".text = ''
+        source ~/.config/bash/extra
+      '';
+
       ".ashrc".text = ''
         # Some aliases if I'm not using my nix setup
         alias ls='ls --color=auto'

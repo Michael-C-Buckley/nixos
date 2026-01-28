@@ -1,7 +1,7 @@
 {
   flake.modules.homeManager.bash = {
     home.file = {
-      ".bashrc".text =
+      ".config/bash/extra".text =
         #sh
         ''
           eval $(direnv hook bash)
