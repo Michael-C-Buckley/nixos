@@ -1,6 +1,7 @@
 {
   pkgs,
   starshipConfig,
+  gitConfig,
   env ? {},
   extraConfig ? "",
   extraAliases ? {},
@@ -34,6 +35,9 @@ in
     end
 
     enable_transience
+
+    # Set Git's config path
+    set -x GIT_CONFIG_GLOBAL ${gitConfig}
 
     # Environment Variables
     ${envCommands}

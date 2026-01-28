@@ -1,6 +1,8 @@
-{config, ...}: {
+{config, ...}: let
+  inherit (config.flake.wrappers) mkFish mkStarshipConfig mkGitConfig;
+in {
   perSystem = {pkgs, ...}: {
-    packages.fish = config.flake.wrappers.mkFish {
+    packages.fish = mkFish {
       inherit pkgs;
       env = {
         NH_FLAKE = "/home/michael/nixos";
@@ -15,7 +17,8 @@
     extraAliases ? {},
     extraRuntimeInputs ? [],
   }: let
-    starshipConfig = config.flake.wrappers.mkStarshipConfig {inherit pkgs;};
+    starshipConfig = mkStarshipConfig {inherit pkgs;};
+    gitConfig = mkGitConfig {inherit pkgs;};
     buildInputs = with pkgs;
       [
         bat
@@ -47,6 +50,7 @@
               pkgs
               env
               starshipConfig
+              gitConfig
               extraConfig
               extraAliases
               ;

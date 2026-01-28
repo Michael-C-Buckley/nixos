@@ -33,10 +33,6 @@ in {
           ];
         };
 
-        xdg.config.files = {
-          "git/config".source = flake.wrappers.mkGitConfig {inherit pkgs;};
-        };
-
         packages = [
           pkgs.bat
           pkgs.eza
