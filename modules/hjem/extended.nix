@@ -7,6 +7,7 @@
       helium
       helix
       termfilechooser
+      zed
     ];
 
     hjem.users.michael = {
