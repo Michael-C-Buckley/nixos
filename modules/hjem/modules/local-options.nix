@@ -20,7 +20,7 @@
     };
 
     config = {
-      files.".config/sops/age/keys.txt" = lib.mkIf (config.sops.age.defaultKey != null) {
+      xdg.config.files."sops/age/keys.txt" = lib.mkIf (config.sops.age.defaultKey != null) {
         source = pkgs.writeText "sops-age-key" config.sops.age.defaultKey;
       };
     };
