@@ -51,6 +51,19 @@
       "url": "https://github.com/michael-c-buckley/lanzaboote-bin/archive/c123b9b24a1fc0971df9fd408ec511f7d2ff0c12.tar.gz",
       "hash": "sha256-7YN63o3+ELV6C2hMIjtgGbWt2HR0Eas7LZKA5JUEmDY=",
       "frozen": true
+    },
+    "nixos-wsl": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "nixos-wsl"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "38a5250e57f583662eac3b944830e4b9e169e965",
+      "url": "https://github.com/nix-community/nixos-wsl/archive/38a5250e57f583662eac3b944830e4b9e169e965.tar.gz",
+      "hash": "sha256-RY9kJDXD6+2Td/59LkZ0PFSereCXHdBX9wIkbYjRKCY="
     }
   },
   "version": 7
