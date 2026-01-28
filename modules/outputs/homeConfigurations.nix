@@ -3,12 +3,13 @@
   inputs,
   ...
 }: let
+  home-manager = import "${config.flake.npins.home-manager}/lib" {inherit (inputs.nixpkgs) lib;};
   inherit (config.flake.modules.homeManager) alpine gentoo;
   mkHmConfig = {
     system,
     modules,
   }:
-    inputs.home-manager.lib.homeManagerConfiguration {
+    home-manager.homeManagerConfiguration {
       pkgs = import inputs.nixpkgs {
         inherit system;
         config.allowUnfree = true;
@@ -17,7 +18,7 @@
     };
 in {
   flake.homeConfigurations = {
-    "michael@gentoo" = mkHmConfig {
+    "michael@t14" = mkHmConfig {
       system = "x86_64-linux";
       modules = [gentoo];
     };

@@ -1,5 +1,18 @@
 {
   "pins": {
+    "home-manager": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "home-manager"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "d505dc46dc9831d1db4e7d6e323b2c42d5eba3e6",
+      "url": "https://github.com/nix-community/home-manager/archive/d505dc46dc9831d1db4e7d6e323b2c42d5eba3e6.tar.gz",
+      "hash": "sha256-tJzEPNC6fMCzF4W8h2YdnvjlI4TpRV/yJg9cTnbwkfc="
+    },
     "impermanence": {
       "type": "Git",
       "repository": {
