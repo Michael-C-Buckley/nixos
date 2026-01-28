@@ -6,6 +6,8 @@
 
         # Standalone nix
         . "$HOME/.nix-profile/etc/profile.d/nix.sh" 2>/dev/null || true
+
+          eval $(wsl2-ssh-agent)
       '';
 
       ".bashrc".text = ''

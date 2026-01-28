@@ -12,24 +12,15 @@ in {
     pkgs,
     lib,
     ...
-  }: let
-    # WSL uses a different signing key standard
-    git = flake.wrappers.mkGit {
-      inherit pkgs extraConfig;
-    };
-  in {
+  }: {
     home = {
-      file = {
-        ".profile".text = ''
-          eval $(wsl2-ssh-agent)
-        '';
-      };
-      packages = [
-        pkgs.wsl2-ssh-agent
-        (lib.hiPrio git)
+      packages = with pkgs; [
+        wsl2-ssh-agent
+        git
       ];
       sessionVariables = {
         SSH_AUTH_SOCK = ssh_sock;
+        GIT_CONFIG_GLOBAL = flake.wrappers.mkGitConfig {inherit pkgs extraConfig;};
       };
     };
 
