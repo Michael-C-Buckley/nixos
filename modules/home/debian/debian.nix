@@ -5,6 +5,7 @@ in {
     imports = with homeManager; [
       bash
       default
+      helium
       wsl
     ];
     home.stateVersion = "25.11";
