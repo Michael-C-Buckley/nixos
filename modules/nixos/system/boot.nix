@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{config, ...}: {
   flake.modules.nixos = {
     grub = {
       boot.loader.grub = {
@@ -10,8 +10,7 @@
     };
 
     lanzaboote = {pkgs, ...}: {
-      imports = [inputs.lanzaboote.nixosModules.lanzaboote];
-
+      imports = ["${config.flake.npins.lanzaboote-bin}/modules"];
       environment.systemPackages = [pkgs.sbctl];
 
       boot = {

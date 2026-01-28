@@ -24,6 +24,20 @@
       "revision": "bf9f49c8118e7a77b68a675dbe26e93e91412066",
       "url": null,
       "hash": "sha256-buoPpx7moJzAXbLuHAImn6x9fGRdk3x0T57goPv1vnc="
+    },
+    "lanzaboote-bin": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "michael-c-buckley",
+        "repo": "lanzaboote-bin"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "c123b9b24a1fc0971df9fd408ec511f7d2ff0c12",
+      "url": "https://github.com/michael-c-buckley/lanzaboote-bin/archive/c123b9b24a1fc0971df9fd408ec511f7d2ff0c12.tar.gz",
+      "hash": "sha256-7YN63o3+ELV6C2hMIjtgGbWt2HR0Eas7LZKA5JUEmDY=",
+      "frozen": true
     }
   },
   "version": 7
