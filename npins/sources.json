@@ -9,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "d505dc46dc9831d1db4e7d6e323b2c42d5eba3e6",
-      "url": "https://github.com/nix-community/home-manager/archive/d505dc46dc9831d1db4e7d6e323b2c42d5eba3e6.tar.gz",
-      "hash": "sha256-tJzEPNC6fMCzF4W8h2YdnvjlI4TpRV/yJg9cTnbwkfc="
+      "revision": "eec72f127831326b042d1f35003767a4ab6a9516",
+      "url": "https://github.com/nix-community/home-manager/archive/eec72f127831326b042d1f35003767a4ab6a9516.tar.gz",
+      "hash": "sha256-EE2bs7xFrC64qrj0N2zP6E6e/nmhcdw6v/grdYi+BiY="
     },
     "impermanence": {
       "type": "Git",
@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "69ecf31e8fddc9354a4b418f3a517445d486bb54",
-      "url": "https://github.com/nix-community/impermanence/archive/69ecf31e8fddc9354a4b418f3a517445d486bb54.tar.gz",
-      "hash": "sha256-OyxsfXNcOkt06/kM+4bnuC8moDx+t7Qr+RB0BBa83Ig="
+      "revision": "7b1d382faf603b6d264f58627330f9faa5cba149",
+      "url": "https://github.com/nix-community/impermanence/archive/7b1d382faf603b6d264f58627330f9faa5cba149.tar.gz",
+      "hash": "sha256-03+JxvzmfwRu+5JafM0DLbxgHttOQZkUtDWBmeUkN8Y="
     },
     "jail": {
       "type": "Git",

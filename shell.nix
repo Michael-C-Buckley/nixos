@@ -7,6 +7,8 @@ pkgs.mkShellNoCC {
   name = "default";
   buildInputs = with pkgs;
     [
+      just
+
       # Formatting
       mdformat
       alejandra
