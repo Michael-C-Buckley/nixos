@@ -15,8 +15,8 @@ in {
 
     custom = {
       impermanence = {
-        var.enable = true;
-        home.enable = true;
+        var.enable = false;
+        home.enable = false;
       };
       k3s.impermanence = {
         use_cache = false;
@@ -59,6 +59,8 @@ in {
       "/nix" = zfsFs "zroot/p520/nix";
       "/cache" = zfsFs "zroot/p520/cache";
       "/persist" = zfsFs "zroot/p520/persist";
+      "/var" = zfsFs "zroot/p520/var";
+      "/home" = zfsFs "zroot/p520/home";
 
       # Datasets
       "/var/lib/postgresql" = zfsFs "zroot/p520/postgres";
