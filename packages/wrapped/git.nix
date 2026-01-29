@@ -25,11 +25,11 @@
     user = {
       name = "Michael Buckley";
       email = "michaelcbuckley@proton.me";
-      signingkey = "/home/michael/.ssh/id_ed25519_sk_rk_signing.pub";
+      signingkey = "/home/michael/.ssh/id_ed25519_sk.pub";
     };
   };
 in {
-  perSystem = {pkgs, ...}: {
+  perSystem = {pkgs, lib, ...}: {
     packages.git = config.flake.wrappers.mkGit {inherit pkgs;};
   };
 
@@ -51,7 +51,7 @@ in {
         nativeBuildInputs = [pkgs.makeWrapper];
         postBuild = ''
           wrapProgram $out/bin/git \
-            --set GIT_CONFIG_GLOBAL ${pkgs.writers.writeTOML "git-wrapped-config" (gitCfg // extraConfig)} \
+            --set GIT_CONFIG_GLOBAL ${pkgs.writers.writeTOML "git-wrapped-config" (pkgs.lib.recursiveUpdate gitCfg extraConfig)} \
             --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
         '';
       };
@@ -62,6 +62,6 @@ in {
       pkgs,
       extraConfig ? {},
     }:
-      pkgs.writers.writeTOML "git-wrapped-config" (gitCfg // extraConfig);
+      pkgs.writers.writeTOML "git-wrapped-config" (pkgs.lib.recursiveUpdate gitCfg extraConfig);
   };
 }
