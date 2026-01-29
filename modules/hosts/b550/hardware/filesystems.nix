@@ -9,8 +9,8 @@
     swapDevices = [];
 
     custom.impermanence = {
-      var.enable = true;
-      home.enable = true;
+      var.enable = false;
+      home.enable = false;
     };
 
     services.sanoid.datasets = {
@@ -40,6 +40,9 @@
       # ZFS Volumes
       "/persist" = mkZfs "zroot/b550/nixos/persist";
       "/var/lib/attic" = mkZfs "zroot/local/attic";
+
+      "/var" = mkZfs "zroot/b550/nixos/var";
+      "/home" = mkZfs "zroot/b550/nixos/home";
     };
   };
 }
