@@ -4,7 +4,7 @@
   ...
 }: let
   home-manager = import "${config.flake.npins.home-manager}/lib" {inherit (inputs.nixpkgs) lib;};
-  inherit (config.flake.modules.homeManager) alpine gentoo;
+  inherit (config.flake.modules.homeManager) alpine debian gentoo;
   mkHmConfig = {
     system,
     modules,
@@ -26,6 +26,11 @@ in {
     "michael@alpine" = mkHmConfig {
       system = "x86_64-linux";
       modules = [alpine];
+    };
+
+    "michael@debian" = mkHmConfig {
+      system = "x86_64-linux";
+      modules = [debian];
     };
   };
 }
