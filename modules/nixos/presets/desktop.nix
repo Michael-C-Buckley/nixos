@@ -1,6 +1,6 @@
 {config, ...}: let
   inherit (config.flake) modules;
-  inherit (config.flake.hjemConfigs) nixos root extended;
+  inherit (config.flake.hjemConfigs) nixos root extended ssh-agent;
 in {
   flake.modules.nixos.desktopPreset = {pkgs, ...}: {
     imports = with modules.nixos; [
@@ -42,6 +42,7 @@ in {
       nixos
       root
       extended
+      ssh-agent
     ];
 
     environment.systemPackages = with pkgs; [

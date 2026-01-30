@@ -23,7 +23,7 @@
 
     programs = {
       ssh = {
-        startAgent = true;
+        startAgent = false;
         extraConfig = ''
           PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
         '';

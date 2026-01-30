@@ -29,7 +29,7 @@
     };
   };
 in {
-  perSystem = {pkgs, lib, ...}: {
+  perSystem = {pkgs, ...}: {
     packages.git = config.flake.wrappers.mkGit {inherit pkgs;};
   };
 
