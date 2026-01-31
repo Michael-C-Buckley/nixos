@@ -21,7 +21,7 @@ in {
     users = {
       powerUsers.members = ["michael"];
       users.michael = {
-        hashedPassword = "$6$OygNbzUiFbw7L/6p$bdPh2c0HG48rB1UeBr8BGMb8Efugoz25td9Dx2qB9ZTN/IjOB/NCrsl5ZMDv//6aNjf/kg2iRv8C34o1Chgn4/";
+        initialHashedPassword = "$6$aQHYzxKJC/yStH4U$1kAsuU3GW9gn2ANJ5GzRgAVnExqlb3OfBjKGddjnScI05DuttGE6WmuUyhT7CVBJmNliyE4mquEovPbOxRyev0";
         isNormalUser = true;
         extraGroups = config.users.powerUsers.groups;
         shell = "${shell}${shell.shellPath}";
