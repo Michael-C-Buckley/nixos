@@ -21,15 +21,6 @@
       ];
     };
 
-    programs = {
-      ssh = {
-        startAgent = false;
-        extraConfig = ''
-          PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
-        '';
-      };
-    };
-
     services = {
       gnome.gnome-keyring.enable = lib.mkForce false;
       pcscd.enable = true;
