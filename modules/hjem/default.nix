@@ -39,10 +39,7 @@ in {
           pkgs.nushell
 
           # add this to stop the shell error from my wrapped fish since something touched it after creation
-          flake.packages.${pkgs.stdenv.hostPlatform.system}.starship
-
-          # Wrapped packages
-          flake.packages.${pkgs.stdenv.hostPlatform.system}.git
+          #flake.packages.${pkgs.stdenv.hostPlatform.system}.starship
         ];
 
         environment.sessionVariables = {
@@ -50,10 +47,13 @@ in {
           VISUAL = editor;
           GIT_EDITOR = editor;
           PAGER = "bat";
-          MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+          MANPAGER = "less";
           DIFF = "difft";
           CLICOLOR = "1";
           DIFF_COLOR = "auto";
+          NH_FLAKE = lib.mkDefault "/home/michael/nixos";
+          IP_COLOR = "always";
+          NIXPKGS_ALLOW_FREE = "1";
         };
       };
     };

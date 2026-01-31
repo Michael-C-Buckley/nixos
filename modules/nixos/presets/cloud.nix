@@ -13,6 +13,7 @@ in {
 
       # Users
       michael-attic
+      michael-fish
 
       # Hjem
       nixos

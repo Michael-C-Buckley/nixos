@@ -2,14 +2,12 @@
   config,
   inputs,
   ...
-}: let
-  inherit (config) flake;
-in {
+}: {
   flake.hjemConfigs.darwin = {pkgs, ...}: {
     imports = [
       inputs.hjem.darwinModules.default
-      flake.hjemConfigs.default
-      flake.hjemConfigs.secrets
+      config.flake.hjemConfigs.default
+      config.flake.hjemConfigs.secrets
     ];
 
     hjem.users.michael = {
@@ -20,9 +18,7 @@ in {
         # iproute2 on mac and with an override for color
         (pkgs.writeShellApplication {
           name = "ip";
-          text = ''
-            exec ${pkgs.iproute2mac}/bin/ip -c "$@"
-          '';
+          text = ''exec ${pkgs.iproute2mac}/bin/ip -c "$@"'';
         })
       ];
     };

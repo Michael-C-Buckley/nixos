@@ -37,6 +37,7 @@ in {
 
       # Users
       michael-attic
+      michael-fish
       michael-ssh-agent
 
       # Hjem
