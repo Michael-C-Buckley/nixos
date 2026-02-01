@@ -8,7 +8,7 @@
     inherit (lib) optionals;
     gfx = config.hardware.graphics.enable;
   in {
-    custom.impermanence = {
+    custom.impermanence = lib.mkIf config.custom.impermanence.var.enable {
       cache = {
         directories = ["/var/lib/libvirt"];
         allUsers.directories = optionals gfx [".cache/virt-manager"];
@@ -26,7 +26,7 @@
 
     virtualisation.libvirtd = {
       enable = true;
-      allowedBridges = ["br0"];
+      allowedBridges = lib.mkDefault (builtins.attrNames config.networking.bridges);
       parallelShutdown = 5;
       qemu = {
         package = pkgs.qemu_kvm;
