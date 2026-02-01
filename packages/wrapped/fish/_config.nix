@@ -6,6 +6,7 @@
   extraConfig ? "",
   extraAliases ? {},
 }: let
+  inherit (pkgs.lib) getExe;
   aliases = import ../resources/shells/_aliases.nix;
   allAliases = aliases.common // aliases.fish // extraAliases;
 
@@ -24,14 +25,15 @@
 in
   pkgs.writeText "fish-init-${configHash}.fish" ''
     set -g fish_greeting ""
+    # Fallback default prompt
     fish_config prompt choose arrow
 
     # Initialize starship with custom config and explicit path
     set -x STARSHIP_CONFIG ${starshipConfig}
-    starship init fish | source
+    ${getExe pkgs.starship} init fish | source
 
     function starship_transient_prompt_func
-      starship module character
+      ${getExe pkgs.starship} module character
     end
 
     enable_transience
@@ -51,7 +53,7 @@ in
     end
 
     function fcd --description 'Interactive directory change with fzf'
-      set -l selected_path (fd . | fzf --height 40% --reverse)
+      set -l selected_path (${getExe pkgs.fd} . | ${getExe pkgs.fzf} --height 40% --reverse)
 
       if test -n "$selected_path"
           if test -d "$selected_path"
@@ -63,10 +65,6 @@ in
     end
 
     direnv hook fish | source
-
-    # Set some defaults that I use
-    set PAGER bat
-    set MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
     # Extra config
     ${extraConfig}
