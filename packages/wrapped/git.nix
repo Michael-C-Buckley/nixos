@@ -25,7 +25,7 @@
     user = {
       name = "Michael Buckley";
       email = "michaelcbuckley@proton.me";
-      signingkey = "/home/michael/.ssh/id_ed25519_sk.pub";
+      signingkey = "/home/michael/.ssh/id_ed25519_sk_signing.pub";
     };
   };
 in {
