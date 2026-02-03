@@ -8,9 +8,9 @@
           eval "$(direnv hook bash)"
           eval "$(fzf --bash)"
 
+          alias fz='fzf --height 40% --reverse --border'
+
           export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-          export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-          export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
           export GIT_CONFIG_GLOBAL=${config.flake.wrappers.mkGitConfig {inherit pkgs;}}
         '';
     };

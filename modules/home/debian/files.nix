@@ -1,5 +1,9 @@
 {
   flake.modules.homeManager.debian = {
+    config,
+    lib,
+    ...
+  }: {
     home.file = {
       # Largely based on what was default
       ".profile".text =
@@ -31,7 +35,7 @@
           case $- in
             *i*)
               if [ -z "$FISH_VERSION" ] && command -v fish >/dev/null 2>&1; then
-                exec fish
+                exec ${lib.getExe config.programs.fish.package}
               fi
               ;;
           esac
