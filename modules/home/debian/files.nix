@@ -6,7 +6,7 @@
         # bash
         ''
           if [ -n "$BASH_VERSION" ]; then
-            eval $(wsl2-ssh-agent)
+            export SSH_AUTH_SOCK="/home/michael/.ssh/ssh-agent.sock"
 
             if [ -f "$HOME./bashrc" ]; then
               . "$HOME/.bashrc"
