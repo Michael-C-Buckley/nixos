@@ -51,6 +51,22 @@
       "url": "https://github.com/michael-c-buckley/lanzaboote-bin/archive/c123b9b24a1fc0971df9fd408ec511f7d2ff0c12.tar.gz",
       "hash": "sha256-7YN63o3+ELV6C2hMIjtgGbWt2HR0Eas7LZKA5JUEmDY=",
       "frozen": true
+    },
+    "system-manager": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "numtide",
+        "repo": "system-manager"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v1.0.0",
+      "revision": "eb3d23a760d75a5606786c0e6aa354f948e61948",
+      "url": "https://api.github.com/repos/numtide/system-manager/tarball/refs/tags/v1.0.0",
+      "hash": "sha256-Jjvn9gPmL6otZcaYjzE4cXLQFyzAEEsnpgwP3OoN8Gk="
     }
   },
   "version": 7
