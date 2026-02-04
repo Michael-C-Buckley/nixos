@@ -1,5 +1,11 @@
 {
-  flake.modules.nixos.o1 = {config, ...}: {
+  flake.modules.nixos.o1 = {
+    config,
+    flakeLib,
+    ...
+  }: let
+    inherit (flakeLib.functions-yaml) checkYAML;
+  in {
     sops = {
       secrets = {
         "vaultwarden/postgres_password" = {};
@@ -31,8 +37,14 @@
         ];
       };
       k3s.manifests = {
-        vaultwarden-secrets.source = config.sops.templates.vaultwarden-secrets.path;
-        vaultwarden-manifest.source = ./vaultwarden.yaml;
+        vaultwarden-secrets.source = checkYAML {
+          yaml = config.sops.templates.vaultwarden-secrets.path;
+          name = "vaultwarden-secrets";
+        };
+        vaultwarden-manifest.source = checkYAML {
+          yaml = ./vaultwarden.yaml;
+          name = "vaultwarden-manifest";
+        };
       };
     };
   };

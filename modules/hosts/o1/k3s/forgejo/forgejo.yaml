@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -47,40 +48,40 @@ spec:
         app: forgejo
     spec:
       containers:
-      - name: forgejo
-        image: codeberg.org/forgejo/forgejo:1.21
-        ports:
-        - containerPort: 3000
-          name: http
-        - containerPort: 22
-          name: ssh
-        env:
-        - name: FORGEJO__database__DB_TYPE
-          value: postgres
-        - name: FORGEJO__database__HOST
-          value: 10.42.0.1:5432
-        - name: FORGEJO__database__NAME
-          value: forgejo
-        - name: FORGEJO__database__USER
-          value: forgejo
-        - name: FORGEJO__database__PASSWD
-          valueFrom:
-            secretKeyRef:
-              name: postgres-secret
-              key: POSTGRES_PASSWORD
-        - name: FORGEJO__server__DOMAIN
-          value: git.o1.groovyreserve.com
-        - name: FORGEJO__server__ROOT_URL
-          value: https://git.o1.groovyreserve.com
-        - name: FORGEJO__server__SSH_DOMAIN
-          value: git.o1.groovyreserve.com
-        volumeMounts:
-        - name: forgejo-data
-          mountPath: /data
+        - name: forgejo
+          image: codeberg.org/forgejo/forgejo:1.21
+          ports:
+            - containerPort: 3000
+              name: http
+            - containerPort: 22
+              name: ssh
+          env:
+            - name: FORGEJO__database__DB_TYPE
+              value: postgres
+            - name: FORGEJO__database__HOST
+              value: 10.42.0.1:5432
+            - name: FORGEJO__database__NAME
+              value: forgejo
+            - name: FORGEJO__database__USER
+              value: forgejo
+            - name: FORGEJO__database__PASSWD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_PASSWORD
+            - name: FORGEJO__server__DOMAIN
+              value: git.o1.groovyreserve.com
+            - name: FORGEJO__server__ROOT_URL
+              value: https://git.o1.groovyreserve.com
+            - name: FORGEJO__server__SSH_DOMAIN
+              value: git.o1.groovyreserve.com
+          volumeMounts:
+            - name: forgejo-data
+              mountPath: /data
       volumes:
-      - name: forgejo-data
-        persistentVolumeClaim:
-          claimName: forgejo-data-pvc
+        - name: forgejo-data
+          persistentVolumeClaim:
+            claimName: forgejo-data-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -91,14 +92,14 @@ spec:
   selector:
     app: forgejo
   ports:
-  - name: http
-    protocol: TCP
-    port: 3000
-    targetPort: 3000
-  - name: ssh
-    protocol: TCP
-    port: 22
-    targetPort: 22
+    - name: http
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+    - name: ssh
+      protocol: TCP
+      port: 22
+      targetPort: 22
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -112,20 +113,20 @@ metadata:
 spec:
   ingressClassName: traefik
   tls:
-  - hosts:
-    - git.o1.groovyreserve.com
-    secretName: forgejo-tls
+    - hosts:
+        - git.o1.groovyreserve.com
+      secretName: forgejo-tls
   rules:
-  - host: git.o1.groovyreserve.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: forgejo
-            port:
-              number: 3000
+    - host: git.o1.groovyreserve.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: forgejo
+                port:
+                  number: 3000
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRouteTCP
