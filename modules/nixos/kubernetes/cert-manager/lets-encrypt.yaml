@@ -9,11 +9,11 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-prod
     solvers:
-    - dns01:
-        cloudflare:
-          apiTokenSecretRef:
-            name: cloudflare-api-token-secret
-            key: api-token
+      - dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              name: cloudflare-api-token-secret
+              key: api-token
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
@@ -26,8 +26,8 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-staging
     solvers:
-    - dns01:
-        cloudflare:
-          apiTokenSecretRef:
-            name: cloudflare-api-token-secret
-            key: api-token
+      - dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              name: cloudflare-api-token-secret
+              key: api-token

@@ -1,9 +1,7 @@
----
 - name: Change to repository directory
   ansible.builtin.shell: cd {{ repo_path }}
   args:
     chdir: "{{ repo_path }}"
-  
 - name: Pull latest changes from git
   ansible.builtin.git:
     repo: "{{ ansible_repo_url | default('origin') }}"

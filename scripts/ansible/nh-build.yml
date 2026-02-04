@@ -1,19 +1,15 @@
----
 - name: Update NixOS Configuration
   hosts: nixos_hosts
   vars:
     repo_path: "/home/{{ ansible_user }}/nixos"
-    
   tasks:
     - name: Update git repository
       ansible.builtin.include_tasks: tasks/git-update.yml
-      
     - name: Build NixOS configuration
       ansible.builtin.shell: nh os build
       args:
         chdir: "{{ repo_path }}"
       register: build_result
-        
     - name: Report Exit Code
       ansible.builtin.fail:
         msg: "NixOS build failed: {{ build_result.stderr }}"

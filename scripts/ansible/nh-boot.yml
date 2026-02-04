@@ -1,18 +1,14 @@
----
 - name: Update NixOS Configuration
   hosts: nixos_hosts
   vars:
     # I keep my nixos dir in my home directory
     repo_path: "/home/{{ ansible_user }}/nixos"
-    
   tasks:
     - name: Update git repository
       ansible.builtin.include_tasks: tasks/git-update.yml
-      
     - name: NixOS Switch
       ansible.builtin.shell: nh os boot
       register: build_result
-        
     - name: Report Exit Code
       ansible.builtin.fail:
         msg: "NixOS build failed: {{ build_result.stderr }}"

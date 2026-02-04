@@ -16,6 +16,8 @@ pkgs.mkShellNoCC {
       shfmt
       taplo
       treefmt
+      yamlfmt
+      yamllint
 
       # Hooks
       lefthook

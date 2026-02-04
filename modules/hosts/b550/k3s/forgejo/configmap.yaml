@@ -5,26 +5,20 @@ metadata:
   namespace: forgejo
 data:
   FORGEJO__database__DB_TYPE: "sqlite"
-
   # Server settings
   FORGEJO__server__DOMAIN: "git.cs.groovyreserve.com"
   FORGEJO__server__HTTP_PORT: "3000"
   FORGEJO__server__ROOT_URL: "http://git.cs.groovyreserve.com/"
   FORGEJO__server__SSH_DOMAIN: "git.cs.groovyreserve.com"
   FORGEJO__server__SSH_PORT: "2222"
-
   # Service settings
   FORGEJO__service__DISABLE_REGISTRATION: "true"
   FORGEJO__service__REQUIRE_SIGNIN_VIEW: "false"
-
   # Actions
   FORGEJO__actions__ENABLED: "true"
-
   # Mailer
   FORGEJO__mailer__ENABLED: "false"
-
   # Repository
   FORGEJO__repository__DEFAULT_PRIVATE: "private"
-
   # Log
   FORGEJO__log__LEVEL: "Info"

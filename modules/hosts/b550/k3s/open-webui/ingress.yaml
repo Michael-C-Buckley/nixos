@@ -7,26 +7,26 @@ spec:
   ingressClassName: traefik
   tls:
     - hosts:
-      - owi.cs.groovyreserve.com
-      - owi.groovyreserve.com
+        - owi.cs.groovyreserve.com
+        - owi.groovyreserve.com
   rules:
-  - host: owi.cs.groovyreserve.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: open-webui
-            port:
-              number: 80
-  - host: owi.groovyreserve.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: open-webui
-            port:
-              number: 80
+    - host: owi.cs.groovyreserve.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: open-webui
+                port:
+                  number: 80
+    - host: owi.groovyreserve.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: open-webui
+                port:
+                  number: 80
