@@ -1,3 +1,4 @@
+---
 - name: Update NixOS Configuration
   hosts: nixos_hosts
   vars:

@@ -1,3 +1,4 @@
+---
 - name: Change to repository directory
   ansible.builtin.shell: cd {{ repo_path }}
   args:

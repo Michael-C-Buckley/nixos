@@ -27,4 +27,5 @@ options = ["format"]
 
 [formatter.yamlfmt]
 command = "yamlfmt"
+options = ["-conf", ".config/yamlfmt.yaml"]
 includes = ["*.yaml", "*.yml"]
