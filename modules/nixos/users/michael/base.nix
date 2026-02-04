@@ -1,30 +1,9 @@
-{config, ...}: let
-  inherit (config) flake;
-
-  envars = {
-    NH_FLAKE = "/home/michael/nixos";
-  };
-in {
+{
   flake.modules.nixos.michael = {
-    config,
-    pkgs,
-    ...
-  }: let
-    shell = flake.wrappers.mkFish {
-      inherit pkgs;
-      env =
-        config.custom.shell.environmentVariables
-        // config.hjem.users.michael.environment.sessionVariables
-        // envars;
-    };
-  in {
     users = {
-      powerUsers.members = ["michael"];
       users.michael = {
-        hashedPassword = "$6$OygNbzUiFbw7L/6p$bdPh2c0HG48rB1UeBr8BGMb8Efugoz25td9Dx2qB9ZTN/IjOB/NCrsl5ZMDv//6aNjf/kg2iRv8C34o1Chgn4/";
+        initialHashedPassword = "$6$aQHYzxKJC/yStH4U$1kAsuU3GW9gn2ANJ5GzRgAVnExqlb3OfBjKGddjnScI05DuttGE6WmuUyhT7CVBJmNliyE4mquEovPbOxRyev0";
         isNormalUser = true;
-        extraGroups = config.users.powerUsers.groups;
-        shell = "${shell}${shell.shellPath}";
         openssh.authorizedKeys.keys = [
           "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAICVdKrhTH1OxUE/164StP+Iu5sOGcGEmpTyNvarAUn69AAAABHNzaDo="
           "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAILqRzNVovg805v52UxSRSZxZu0RwUOPlTA7eSHhkDpbrAAAABHNzaDo="

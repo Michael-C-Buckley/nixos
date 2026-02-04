@@ -21,24 +21,6 @@
       ];
     };
 
-    programs = {
-      ssh = {
-        startAgent = true;
-        extraConfig = ''
-          PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
-        '';
-      };
-    };
-
-    # Attempt to add the user's keys
-    systemd.user.services.ssh-agent = {
-      environment.SSH_AUTH_SOCK = "%t/ssh-agent";
-      postStart = ''
-        sleep 1
-        ${pkgs.openssh}/bin/ssh-add
-      '';
-    };
-
     services = {
       gnome.gnome-keyring.enable = lib.mkForce false;
       pcscd.enable = true;

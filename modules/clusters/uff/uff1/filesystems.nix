@@ -7,8 +7,8 @@
     };
   in {
     custom.impermanence = {
-      var.enable = true;
-      home.enable = true;
+      var.enable = false;
+      home.enable = false;
     };
 
     fileSystems = {
@@ -16,7 +16,6 @@
         device = "/dev/disk/by-uuid/6B03-5772";
         fsType = "vfat";
       };
-
       # Tmpfs
       "/" = {
         device = "tmpfs";
@@ -33,6 +32,8 @@
       "/cache" = zfsFs "cache";
       "/persist" = zfsFs "persist";
       "/var/lib/longhorn" = zfsFs "longhorn";
+      "/var" = zfsFs "var";
+      "/home" = zfsFs "home";
     };
   };
 }

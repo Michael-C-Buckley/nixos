@@ -1,5 +1,6 @@
 {
   flake.modules.nixos.users = {
+    config,
     lib,
     pkgs,
     ...
@@ -15,7 +16,7 @@
       };
       groups = mkOption {
         type = listOf str;
-        default = ["networkmanager" "wheel" "video"];
+        default = ["wheel"];
         description = "List of groups to add to power users";
       };
     };
@@ -24,9 +25,10 @@
       users = {
         powerUsers = {
           members = ["michael"];
-          groups = ["networkmanager" "wheel" "video" "update"];
+          groups = ["networkmanager" "wheel" "video" "plugdev" "wireshark"];
         };
         users = {
+          michael.extraGroups = config.users.powerUsers.groups;
           # Used for remote builds
           builder = {
             isNormalUser = true;
