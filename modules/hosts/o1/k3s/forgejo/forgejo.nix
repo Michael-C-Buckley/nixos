@@ -1,5 +1,11 @@
 {
-  flake.modules.nixos.o1 = {config, ...}: {
+  flake.modules.nixos.o1 = {
+    config,
+    flakeLib,
+    ...
+  }: let
+    inherit (flakeLib.functions-yaml) checkYAML;
+  in {
     sops = {
       secrets."forgejo/postgres_password" = {};
       templates.forgejo-secrets.content =
@@ -28,8 +34,14 @@
         ];
       };
       k3s.manifests = {
-        forgejo-deployment.source = ./forgejo.yaml;
-        forgejo-secrets.source = config.sops.templates.forgejo-secrets.path;
+        forgejo-deployment.source = checkYAML {
+          yaml = ./forgejo.yaml;
+          name = "forgejo-deployment";
+        };
+        forgejo-secrets.source = checkYAML {
+          yaml = config.sops.templates.forgejo-secrets.path;
+          name = "forgejo-secrets";
+        };
       };
     };
   };
