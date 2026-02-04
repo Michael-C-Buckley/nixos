@@ -1,5 +1,5 @@
 {
-  flake.lib.functions = {pkgs}: {
+  flake.lib.functions-yaml = {pkgs}: {
     buildYAML = {
       attrs,
       name ? "built-yaml",

@@ -12,20 +12,22 @@
     system ? "x86_64-linux",
     cudaSupport ? false,
   }: let
-    basePkgs = import nixpkgs {
+    pkgs = import nixpkgs {
       inherit system;
       config = {
         inherit cudaSupport;
         allowUnfree = true;
       };
     };
-    lib = basePkgs.lib // {flake = config.flake.lib.functions basePkgs;};
+    # Prime the lib functions that need pkgs which are prefixed with `functions`
+    functions = pkgs.lib.filterAttrs (n: _: pkgs.lib.hasPrefix "functions" n) flake.lib;
+    primedFunctions = mapAttrs (_: v: v {inherit pkgs;}) functions;
+    flakeLib = flake.lib // primedFunctions;
   in
     nixpkgs.lib.nixosSystem {
-      inherit system;
+      inherit system pkgs;
+      specialArgs = {inherit flakeLib;};
       modules = [flake.modules.nixos.${hostname}];
-
-      pkgs = basePkgs // {inherit lib;};
     };
 in {
   flake.nixosConfigurations =
