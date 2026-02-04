@@ -10,20 +10,22 @@
   mkSystem = {
     hostname,
     system ? "x86_64-linux",
-    extraCfg ? {},
-  }:
+    cudaSupport ? false,
+  }: let
+    basePkgs = import nixpkgs {
+      inherit system;
+      config = {
+        inherit cudaSupport;
+        allowUnfree = true;
+      };
+    };
+    lib = basePkgs.lib // {flake = config.flake.lib.functions basePkgs;};
+  in
     nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [flake.modules.nixos.${hostname}];
 
-      pkgs = import nixpkgs {
-        inherit system;
-        config =
-          {
-            allowUnfree = true;
-          }
-          // extraCfg;
-      };
+      pkgs = basePkgs // {inherit lib;};
     };
 in {
   flake.nixosConfigurations =
@@ -34,7 +36,7 @@ in {
     ) {
       b550 = {};
       o1 = {system = "aarch64-linux";};
-      p520 = {extraCfg = {cudaSupport = true;};};
+      p520 = {cudaSupport = true;};
       t14 = {};
       tempest = {};
       x570 = {};
