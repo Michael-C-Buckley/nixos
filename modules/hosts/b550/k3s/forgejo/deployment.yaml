@@ -9,7 +9,7 @@ spec:
     matchLabels:
       app: forgejo
   strategy:
-    type: Recreate # Since we're using hostPath PV
+    type: Recreate
   template:
     metadata:
       labels:

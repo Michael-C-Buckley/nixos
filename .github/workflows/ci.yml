@@ -3,15 +3,15 @@ on:
   push:
     branches: [master, main]
     paths:
-      - 'flake.*'
-      - 'modules/**'
-      - '.github/workflows/**'
+      - "flake.*"
+      - "modules/**"
+      - ".github/workflows/**"
   pull_request:
     branches: [master, main]
     paths:
-      - 'flake.*'
-      - 'modules/**'
-      - '.github/workflows/**'
+      - "flake.*"
+      - "modules/**"
+      - ".github/workflows/**"
   workflow_dispatch:
 jobs:
   fast-checks:

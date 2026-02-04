@@ -7,5 +7,5 @@
     repo: "{{ ansible_repo_url | default('origin') }}"
     dest: "{{ repo_path }}"
     version: "{{ git_branch | default('master') }}"
-    force: yes
+    force: true
   become_user: "{{ ansible_user }}"
