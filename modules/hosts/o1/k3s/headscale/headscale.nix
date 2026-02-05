@@ -1,5 +1,9 @@
 {
-  flake.modules.nixos.o1 = {config, ...}: {
+  flake.modules.nixos.o1 = {
+    config,
+    flakeLib,
+    ...
+  }: {
     sops = {
       secrets = {
         "headscale/derp_key" = {};
@@ -15,7 +19,7 @@
           kind: Secret
           metadata:
             name: headscale-secrets
-            namespace: forgejo
+            namespace: headscale
           type: Opaque
           stringData:
             noise_key: "${config.sops.placeholder."headscale/noise_key"}"
@@ -25,7 +29,10 @@
     };
 
     services.k3s.manifests = {
-      headscale-secrets.source = config.sops.templates.headscale-secrets.path;
+      headscale-secrets.source = flakeLib.functions-yaml.checkYAML {
+        yaml = config.sops.templates.headscale-secrets.path;
+        name = "headscale-secrets";
+      };
     };
   };
 }
