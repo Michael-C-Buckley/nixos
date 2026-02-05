@@ -8,6 +8,12 @@ let
 
   hosts = attrNames flake.nixosConfigurations;
 
+  # Pre-load the most commonly used pkgs I reference
+  p = import flake.inputs.nixpkgs {
+    system = "x86_64-linux";
+    config.allowUnfree = true;
+  };
+
   # Split and get the host since I always use my `name@` in the format
   homes =
     map (x: builtins.elemAt (builtins.split "@" x) 2)
@@ -27,7 +33,7 @@ in
   rec {
     inherit (flake) inputs lib self;
     inherit (flake.inputs) nixpkgs;
-    inherit flake;
+    inherit flake p;
 
     # Aliases to quickly get the configs of my defined systems
     c = mapToAttrs hosts nixosCfg;

@@ -3,11 +3,10 @@
   ansible.builtin.shell: cd {{ repo_path }}
   args:
     chdir: "{{ repo_path }}"
-  
 - name: Pull latest changes from git
   ansible.builtin.git:
     repo: "{{ ansible_repo_url | default('origin') }}"
     dest: "{{ repo_path }}"
     version: "{{ git_branch | default('master') }}"
-    force: yes
+    force: true
   become_user: "{{ ansible_user }}"

@@ -1,6 +1,6 @@
 {lib, ...}: let
   inherit (lib) mkOption;
-  inherit (lib.types) attrs attrsOf deferredModule;
+  inherit (lib.types) attrsOf deferredModule lazyAttrsOf raw;
 in {
   options.flake = {
     hjemModules = mkOption {
@@ -14,9 +14,14 @@ in {
       description = "Hjem configurations with specific options set, usually per-user.";
     };
     lib = mkOption {
-      type = attrs;
+      type = lazyAttrsOf raw;
       default = {};
-      description = "Library functions to be made available in this flake.";
+      description = "Library components which are not dependent on `pkgs`.";
+    };
+    functions = mkOption {
+      type = lazyAttrsOf raw;
+      default = {};
+      description = "Library functions which require `pkgs` to be primed and loaded.";
     };
     packageLists = mkOption {
       description = "Commonly reused package lists, they are lists of strings found in nixpkgs that will be transformed given `pkgs` reference.";

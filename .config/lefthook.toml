@@ -18,6 +18,11 @@ glob = "*.toml"
 run = "taplo lint {staged_files}"
 
 [[pre-commit.jobs]]
+name = "yamllint"
+glob = "*.{yml,yaml}"
+run = "yamllint {staged_files}"
+
+[[pre-commit.jobs]]
 interactive = true
 name = "treefmt"
 run = "treefmt --config-file .config/treefmt.toml {staged_files}"

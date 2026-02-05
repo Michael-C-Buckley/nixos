@@ -1,12 +1,16 @@
 {
   flake.modules.homeManager.debian = {
+    config,
+    lib,
+    ...
+  }: {
     home.file = {
       # Largely based on what was default
       ".profile".text =
         # bash
         ''
           if [ -n "$BASH_VERSION" ]; then
-            eval $(wsl2-ssh-agent)
+            export SSH_AUTH_SOCK="/home/michael/.ssh/ssh-agent.sock"
 
             if [ -f "$HOME./bashrc" ]; then
               . "$HOME/.bashrc"
@@ -31,7 +35,7 @@
           case $- in
             *i*)
               if [ -z "$FISH_VERSION" ] && command -v fish >/dev/null 2>&1; then
-                exec fish
+                exec ${lib.getExe config.programs.fish.package}
               fi
               ;;
           esac
