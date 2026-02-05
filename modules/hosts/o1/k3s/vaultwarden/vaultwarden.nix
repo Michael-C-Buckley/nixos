@@ -37,10 +37,7 @@
         ];
       };
       k3s.manifests = {
-        vaultwarden-secrets.source = checkYAML {
-          yaml = config.sops.templates.vaultwarden-secrets.path;
-          name = "vaultwarden-secrets";
-        };
+        vaultwarden-secrets.source = config.sops.templates.vaultwarden-secrets.path;
         vaultwarden-manifest.source = checkYAML {
           yaml = ./vaultwarden.yaml;
           name = "vaultwarden-manifest";

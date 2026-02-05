@@ -4,7 +4,6 @@
     flakeLib,
     ...
   }: let
-    inherit (config.sops) placeholder templates;
     inherit (flakeLib.functions-yaml) checkYAML;
   in {
     sops = {
@@ -22,7 +21,7 @@
               name: authentik
               namespace: authentik
               annotations:
-                traefik.ingress.kubernetes.io/whitelist-source-range: "${placeholder."k3s/whitelist"}"
+                traefik.ingress.kubernetes.io/whitelist-source-range: "${config.sops.placeholder."k3s/whitelist"}"
             spec:
               ingressClassName: traefik
               tls:
@@ -49,9 +48,9 @@
               name: authentik-secrets
               namespace: authentik
             stringData:
-              postgres_password: ${placeholder."authentik/postgres_password"}
-              secret_key: ${placeholder."authentik/secret_key"}
-              whitelist: ${placeholder."k3s/whitelist"}
+              postgres_password: ${config.sops.placeholder."authentik/postgres_password"}
+              secret_key: ${config.sops.placeholder."authentik/secret_key"}
+              whitelist: ${config.sops.placeholder."k3s/whitelist"}
           '';
       };
     };
@@ -67,14 +66,8 @@
         ];
       };
       k3s.manifests = {
-        authentik-secrets.source = checkYAML {
-          yaml = templates.authentik-secrets.path;
-          name = "authentik-secrets";
-        };
-        authentik-ingress.source = checkYAML {
-          yaml = templates.authentik-ingress.path;
-          name = "authentik-ingress";
-        };
+        authentik-secrets.source = config.sops.templates.authentik-secrets.path;
+        authentik-ingress.source = config.sops.templates.authentik-ingress.path;
         authentik-chart.source = checkYAML {
           yaml = ./authentik.yaml;
           name = "authentik-manifest";

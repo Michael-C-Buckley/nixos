@@ -1,9 +1,5 @@
 {
-  flake.modules.nixos.o1 = {
-    config,
-    flakeLib,
-    ...
-  }: {
+  flake.modules.nixos.o1 = {config, ...}: {
     sops = {
       secrets = {
         "headscale/derp_key" = {};
@@ -29,10 +25,7 @@
     };
 
     services.k3s.manifests = {
-      headscale-secrets.source = flakeLib.functions-yaml.checkYAML {
-        yaml = config.sops.templates.headscale-secrets.path;
-        name = "headscale-secrets";
-      };
+      headscale-secrets.source = config.sops.templates.headscale-secrets.path;
     };
   };
 }

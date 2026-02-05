@@ -38,10 +38,7 @@
           yaml = ./forgejo.yaml;
           name = "forgejo-deployment";
         };
-        forgejo-secrets.source = checkYAML {
-          yaml = config.sops.templates.forgejo-secrets.path;
-          name = "forgejo-secrets";
-        };
+        forgejo-secrets.source = config.sops.templates.forgejo-secrets.path;
       };
     };
   };
