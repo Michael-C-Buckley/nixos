@@ -10,9 +10,6 @@
       gnome-calculator
       meld
 
-      # Terminal
-      ghostty
-
       # Media
       mpv
       imv
