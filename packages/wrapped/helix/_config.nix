@@ -1,5 +1,4 @@
-{pkgs}:
-pkgs.writers.writeTOML "helix-config" {
+{
   theme = "ayu_dark";
   editor = {
     line-number = "relative";

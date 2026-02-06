@@ -7,6 +7,9 @@ name = "nix"
 auto-format = true
 formatter = { command = "alejandra" }
 
+[language-server.nixd.config.nixd.nixpkgs]
+expr = "import <nixpkgs> {}"
+
 [[language]]
 name = "python"
 auto-format = false

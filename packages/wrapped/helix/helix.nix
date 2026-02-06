@@ -1,18 +1,41 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}: let
+  inherit (config.flake.wrappers) mkHelixConfig mkHelixLanguages;
+  inherit (lib) importTOML recursiveUpdate;
+in {
   perSystem = {pkgs, ...}: {
-    packages.helix = config.flake.wrappers.mkHelix {
-      inherit pkgs;
-    };
+    packages.helix = config.flake.wrappers.mkHelix {inherit pkgs;};
   };
 
   flake.wrappers = {
-    mkHelixLanguages = {pkgs}: pkgs.lib.importTOML ./languages.toml;
-    mkHelixConfig = {pkgs}: import ./_config.nix {inherit pkgs;};
+    mkHelixLanguages = {
+      pkgs,
+      extraLang,
+    }:
+      pkgs.writers.writeTOML "helix-languages" (
+        recursiveUpdate
+        (importTOML ./languages.toml)
+        extraLang
+      );
+    mkHelixConfig = {
+      pkgs,
+      extraCfg,
+    }:
+      pkgs.writers.writeTOML "helix-config" (
+        recursiveUpdate
+        (import ./_config.nix)
+        extraCfg
+      );
 
     mkHelix = {
       pkgs,
       pkg ? pkgs.helix,
       extraRuntimeInputs ? [],
+      extraCfg ? {},
+      extraLang ? {},
     }: let
       buildInputs = with pkgs;
         [
@@ -37,8 +60,8 @@
         nativeBuildInputs = [pkgs.makeWrapper];
         postBuild = ''
           mkdir $out/helix
-          ln -s ${import ./_config.nix {inherit pkgs;}} $out/helix/config.toml
-          ln -s ${./languages.toml} $out/helix/language.toml
+          ln -s ${mkHelixConfig {inherit pkgs extraCfg;}} $out/helix/config.toml
+          ln -s ${mkHelixLanguages {inherit pkgs extraLang;}} $out/helix/language.toml
           wrapProgram $out/bin/hx \
             --prefix PATH : ${pkgs.lib.makeBinPath buildInputs} \
             --set XDG_CONFIG_HOME $out
