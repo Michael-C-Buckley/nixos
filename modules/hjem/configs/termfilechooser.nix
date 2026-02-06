@@ -4,7 +4,11 @@
     pkgs,
     ...
   }: {
-    environment.systemPackages = [pkgs.xdg-desktop-portal-termfilechooser];
+    environment.systemPackages = with pkgs; [
+      xdg-desktop-portal-termfilechooser
+      yazi
+    ];
+
     hjem.users.michael.xdg.config.files = {
       "xdg-desktop-portal/portals.conf".text = ''
         [preferred]

@@ -34,6 +34,7 @@ in
     $ide=zeditor
     $noctalia=${noctaliaWrapper}
     $launcher=$noctalia ipc call launcher toggle
+    $files=dolphin
     $mod=SUPER
 
     master {
@@ -52,6 +53,10 @@ in
     # TODO: set env when wrapping
     env=XCURSOR_SIZE,28
     env=HYPRCURSOR_SIZE,28
+    env=QT_QPA_PLATFORMTHEME,qt6ct
+    env=QT_STYLE_OVERRIDE,kvantum
+    env=KDE_PLATFORM_THEME,qt6ct
+
 
     # TODO: fix the systemd service in the wrapper
     exec-once=${noctaliaPathScript}
