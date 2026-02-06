@@ -10,6 +10,7 @@
       cursor
       dolphin
       helium
+      qt
       zed
     ];
 
