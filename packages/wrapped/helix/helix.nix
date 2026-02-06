@@ -7,56 +7,7 @@
 
   flake.wrappers = {
     mkHelixLanguages = {pkgs}: pkgs.lib.importTOML ./languages.toml;
-
-    mkHelixConfig = {
-      pkgs,
-      extra ? {},
-    }:
-      pkgs.writers.writeTOML "helix-config" {
-        theme = "ayu_dark";
-        editor = {
-          line-number = "relative";
-          bufferline = "multiple";
-          cursorline = true;
-          true-color = true;
-          rulers = [120];
-          end-of-line-diagnostics = "hint";
-
-          inline-diagnostics = {
-            cursor-line = "error";
-            other-lines = "disable";
-          };
-
-          cursor-shape = {
-            insert = "bar";
-            normal = "block";
-            select = "underline";
-          };
-
-          file-picker.hidden = false;
-
-          indent-guides = {
-            character = "╎";
-            render = true;
-          };
-        };
-
-        keys = {
-          normal = {
-            "A-," = "goto_previous_buffer";
-            "A-." = "goto_next_buffer";
-            A-w = ":buffer-close";
-            A-x = "extend_to_line_bounds";
-            A-r = ":reload-all";
-            X = "select_line_above";
-          };
-          select = {
-            A-x = "extend_to_line_bounds";
-            X = "select_line_above";
-          };
-        };
-      }
-      // extra;
+    mkHelixConfig = {pkgs}: import ./_config.nix {inherit pkgs;};
 
     mkHelix = {
       pkgs,
@@ -65,12 +16,15 @@
     }: let
       buildInputs = with pkgs;
         [
+          # Nix
           alejandra
           nil
           nixd
+          # Python
           basedpyright
           ty
           ruff
+          # Yaml/json
           yaml-language-server
           vscode-json-languageserver
         ]
@@ -82,8 +36,12 @@
         inherit buildInputs;
         nativeBuildInputs = [pkgs.makeWrapper];
         postBuild = ''
+          mkdir $out/helix
+          ln -s ${import ./_config.nix {inherit pkgs;}} $out/helix/config.toml
+          ln -s ${./languages.toml} $out/helix/language.toml
           wrapProgram $out/bin/hx \
-            --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
+            --prefix PATH : ${pkgs.lib.makeBinPath buildInputs} \
+            --set XDG_CONFIG_HOME $out
         '';
       };
   };

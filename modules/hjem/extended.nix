@@ -1,12 +1,15 @@
 {config, ...}: {
   flake.hjemConfigs.extended = {pkgs, ...}: let
-    wrappedPkgs = with config.flake.packages.${pkgs.stdenv.hostPlatform.system}; [kitty zeditor];
+    wrappedPkgs = with config.flake.packages.${pkgs.stdenv.hostPlatform.system}; [
+      helix
+      kitty
+      zeditor
+    ];
   in {
     imports = with config.flake.hjemConfigs; [
       cursor
       dolphin
       helium
-      helix
       zed
     ];
 
