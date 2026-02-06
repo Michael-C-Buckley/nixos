@@ -1,6 +1,6 @@
 {
   "helium": {
-    "cargoLocks": null,
+    "cargoLock": null,
     "date": null,
     "extract": null,
     "name": "helium",
@@ -8,10 +8,10 @@
     "pinned": false,
     "src": {
       "name": null,
-      "sha256": "sha256-GGltZ0/6rGQJixlGz3Na/vAwOlTeUR87WGyAPpLmtKM=",
+      "sha256": "sha256-jFSLLDsHB/NiJqFmn8S+JpdM8iCy3Zgyq+8l4RkBecM=",
       "type": "url",
-      "url": "https://github.com/imputnet/helium-linux/releases/download/0.8.3.1/helium-0.8.3.1-x86_64.AppImage"
+      "url": "https://github.com/imputnet/helium-linux/releases/download/0.8.5.1/helium-0.8.5.1-x86_64.AppImage"
     },
-    "version": "0.8.3.1"
+    "version": "0.8.5.1"
   }
 }
