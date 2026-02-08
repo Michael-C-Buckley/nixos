@@ -13,5 +13,20 @@
       "url": "https://github.com/imputnet/helium-linux/releases/download/0.8.5.1/helium-0.8.5.1-x86_64.AppImage"
     },
     "version": "0.8.5.1"
+  },
+  "helium-mac": {
+    "cargoLock": null,
+    "date": null,
+    "extract": null,
+    "name": "helium-mac",
+    "passthru": null,
+    "pinned": false,
+    "src": {
+      "name": null,
+      "sha256": "sha256-erlRR3QTHvzNCSXcGtpR27d2ElNrrRvS7ZLHEnZK0wI=",
+      "type": "url",
+      "url": "https://github.com/imputnet/helium-macos/releases/download/0.8.5.1/helium_0.8.5.1_arm64-macos.dmg"
+    },
+    "version": "0.8.5.1"
   }
 }

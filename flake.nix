@@ -25,6 +25,7 @@
 
       # Easy mechanism to make them available everywhere
       flake.npins = import ./npins;
+      flake.nvfetcher = ./_sources/generated.nix;
 
       # The shell is available as either a devshell or traditional nix-shell
       perSystem = {pkgs, ...}: {

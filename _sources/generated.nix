@@ -13,4 +13,12 @@
       sha256 = "sha256-jFSLLDsHB/NiJqFmn8S+JpdM8iCy3Zgyq+8l4RkBecM=";
     };
   };
+  helium-mac = {
+    pname = "helium-mac";
+    version = "0.8.5.1";
+    src = fetchurl {
+      url = "https://github.com/imputnet/helium-macos/releases/download/0.8.5.1/helium_0.8.5.1_arm64-macos.dmg";
+      sha256 = "sha256-erlRR3QTHvzNCSXcGtpR27d2ElNrrRvS7ZLHEnZK0wI=";
+    };
+  };
 }

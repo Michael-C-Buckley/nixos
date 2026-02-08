@@ -7,7 +7,7 @@
     ...
   }: let
     # Preparation definitions on various tooling
-    source = (pkgs.callPackage ../_sources/generated.nix {}).helium;
+    source = (pkgs.callPackage config.flake.nvfetcher {}).helium;
     contents = pkgs.appimageTools.extract source;
     inherit (source) pname version src;
 
