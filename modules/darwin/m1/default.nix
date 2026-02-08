@@ -1,6 +1,13 @@
-# First draft for a nix-darwin config
-{self, ...}: {
+{
+  self,
+  config,
+  ...
+}: {
   flake.modules.darwin.m1 = {
+    imports = with config.flake.modules.darwin; [
+      ssh-agent
+    ];
+
     # This is a Determinate system
     nix.enable = false;
 
