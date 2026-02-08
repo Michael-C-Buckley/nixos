@@ -1,11 +1,24 @@
-{config, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.flake.wrappers) mkFish mkStarshipConfig mkGitConfig;
 in {
-  perSystem = {pkgs, ...}: {
+  perSystem = {
+    pkgs,
+    system,
+    ...
+  }: let
+    home =
+      if lib.hasSuffix "darwin" system
+      then "Users"
+      else "home";
+  in {
     packages.fish = mkFish {
       inherit pkgs;
       env = {
-        NH_FLAKE = "/home/michael/nixos";
+        NH_FLAKE = "/${home}/michael/nixos";
         NIXPKGS_ALLOW_UNFREE = "1";
       };
     };

@@ -1,6 +1,10 @@
-{config, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   # My standard config, overwritten as needed on merging
-  gitCfg = {
+  gitCfg = home: {
     advice.defaultBranchName = false;
     color = {
       diff = "auto";
@@ -25,7 +29,7 @@
     user = {
       name = "Michael Buckley";
       email = "michaelcbuckley@proton.me";
-      signingkey = "/home/michael/.ssh/id_ed25519_sk_signing.pub";
+      signingkey = "/${home}/michael/.ssh/id_ed25519_sk_signing.pub";
     };
   };
 in {
@@ -39,6 +43,10 @@ in {
       pkg ? pkgs.git,
       extraConfig ? {},
     }: let
+      home =
+        if lib.hasSuffix "darwin" pkgs.stdenv.hostPlatform.system
+        then "Users"
+        else "home";
       buildInputs = with pkgs; [
         tig
         delta
@@ -51,7 +59,7 @@ in {
         nativeBuildInputs = [pkgs.makeWrapper];
         postBuild = ''
           wrapProgram $out/bin/git \
-            --set GIT_CONFIG_GLOBAL ${pkgs.writers.writeTOML "git-wrapped-config" (pkgs.lib.recursiveUpdate gitCfg extraConfig)} \
+            --set GIT_CONFIG_GLOBAL ${pkgs.writers.writeTOML "git-wrapped-config" (lib.recursiveUpdate (gitCfg home) extraConfig)} \
             --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
         '';
       };
@@ -61,7 +69,12 @@ in {
     mkGitConfig = {
       pkgs,
       extraConfig ? {},
-    }:
-      pkgs.writers.writeTOML "git-wrapped-config" (pkgs.lib.recursiveUpdate gitCfg extraConfig);
+    }: let
+      home =
+        if lib.hasSuffix "darwin" pkgs.stdenv.hostPlatform.system
+        then "Users"
+        else "home";
+    in
+      pkgs.writers.writeTOML "git-wrapped-config" (lib.recursiveUpdate (gitCfg home) extraConfig);
   };
 }
