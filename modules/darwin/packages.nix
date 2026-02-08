@@ -4,12 +4,14 @@
   ...
 }: {
   flake.modules.darwin.packages = {pkgs, ...}: let
-    inherit (config.flake.packages.${pkgs.stdenv.hostPlatform.system}) ns helix;
+    inherit (config.flake.packages.${pkgs.stdenv.hostPlatform.system}) ns helix ghostty zeditor;
   in {
     environment.systemPackages =
       [
         # Ensure we can rebuild
         inputs.nix-darwin.packages.${pkgs.stdenv.hostPlatform.system}.default
+        ghostty
+        zeditor
         ns
         helix
 
@@ -22,9 +24,10 @@
         })
       ]
       ++ (with pkgs; [
+        nh
         openssh # Mac's builtin SSH does not support SK keys
         age
-        age-age-plugin-yubikey
+        age-plugin-yubikey
         sops
         orbstack
         obsidian

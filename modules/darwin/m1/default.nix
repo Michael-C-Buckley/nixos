@@ -1,6 +1,6 @@
 # First draft for a nix-darwin config
 {self, ...}: {
-  flake.modules.darwin.default = {
+  flake.modules.darwin.m1 = {
     # This is a Determinate system
     nix.enable = false;
 

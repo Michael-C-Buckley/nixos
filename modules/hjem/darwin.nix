@@ -7,7 +7,7 @@
     imports = [
       inputs.hjem.darwinModules.default
       config.flake.hjemConfigs.default
-      config.flake.hjemConfigs.secrets
+      config.flake.hjemConfigs.zed
     ];
 
     hjem.users.michael = {
