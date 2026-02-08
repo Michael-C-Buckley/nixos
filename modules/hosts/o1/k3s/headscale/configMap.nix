@@ -73,11 +73,6 @@
             format = "text";
           };
 
-          policy = {
-            mode = "file";
-            path = "/run/secrets/headscale/acl.hujson";
-          };
-
           dns = {
             magic_dns = true;
             base_domain = "example.com";
