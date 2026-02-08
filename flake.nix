@@ -27,19 +27,8 @@
       flake.npins = import ./npins;
 
       # The shell is available as either a devshell or traditional nix-shell
-      perSystem = {
-        self',
-        pkgs,
-        ...
-      }: {
-        # The devshell includes a jailed opencode instance
-        devShells = {
-          default = import ./shell.nix {inherit pkgs;};
-          opencode = import ./shell.nix {
-            inherit pkgs;
-            extraPkgs = [self'.packages.opencode];
-          };
-        };
+      perSystem = {pkgs, ...}: {
+        devShells.default = import ./shell.nix {inherit pkgs;};
       };
     };
 
