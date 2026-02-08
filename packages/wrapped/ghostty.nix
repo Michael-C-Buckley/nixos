@@ -22,7 +22,7 @@ in {
       if (lib.hasSuffix "linux" system)
       then one
       else two;
-    pkg = separate pkgs.ghostty config.flake.packages.${system}.ghostty-dmg;
+    pkg = separate pkgs.ghostty config.flake.packages.${system}.ghostty-bin;
     extraConfig = separate {} {
       command = "fish";
       window-decoration = false;
