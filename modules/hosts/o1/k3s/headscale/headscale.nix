@@ -26,6 +26,7 @@
 
     services.k3s.manifests = {
       headscale-secrets.source = config.sops.templates.headscale-secrets.path;
+      headscale-deployment.source = ./config.yaml;
     };
   };
 }

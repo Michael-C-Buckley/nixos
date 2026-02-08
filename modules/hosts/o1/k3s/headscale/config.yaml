@@ -1,0 +1,86 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: headscale
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: headscale
+  namespace: headscale
+spec:
+  tls:
+    - hosts:
+        - headscale.o1.groovyreserve.com
+      secretName: headscale-tls
+  rules:
+    - host: headscale.o1.groovyreserve.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: headscale
+                port:
+                  number: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: headscale
+  namespace: headscale
+spec:
+  selector:
+    app: headscale
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+    - name: grpc
+      port: 50443
+      targetPort: 50443
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: headscale
+  namespace: headscale
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: headscale
+  template:
+    metadata:
+      labels:
+        app: headscale
+    spec:
+      containers:
+        - name: headscale
+          image: headscale/headscale:v0.28
+          args: ["serve", "--config", "/etc/headscale/config.yaml"]
+          ports:
+            - containerPort: 80
+              name: http
+            - containerPort: 50443
+              name: grpc
+          volumeMounts:
+            - name: config
+              mountPath: /etc/headscale
+            - name: secrets
+              mountPath: /run/secrets/headscale
+            - name: data
+              mountPath: /var/lib/headscale
+      volumes:
+        - name: config
+          configMap:
+            name: headscale-config
+        - name: secrets
+          secret:
+            secretName: headscale-secrets
+        - name: data
+          hostPath:
+            path: /var/lib/headscale
+            type: DirectoryOrCreate

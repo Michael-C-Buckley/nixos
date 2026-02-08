@@ -5,6 +5,7 @@
       kind = "ConfigMap";
       metadata = {
         name = "headscale-config";
+        namespace = "headscale";
       };
       data = {
         "config.yaml" = builtins.toJSON {
