@@ -33,7 +33,7 @@ jobs:
         run: nix run nixpkgs#typos -- -c .config/typos.toml .
       - name: Check formatting with treefmt
         run: |
-          nix-shell -p treefmt alejandra biome mdformat taplo --run \
+          nix-shell -p treefmt alejandra biome mdformat taplo yamlfmt --run \
             "treefmt --config-file .config/treefmt.toml --fail-on-change ."
       - name: Check Flake
         run: nix flake check
