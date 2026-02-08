@@ -4,14 +4,14 @@
   ...
 }: {
   flake.modules.darwin.packages = {pkgs, ...}: let
-    inherit (config.flake.packages.${pkgs.stdenv.hostPlatform.system}) ns vscode;
+    inherit (config.flake.packages.${pkgs.stdenv.hostPlatform.system}) ns helix;
   in {
     environment.systemPackages =
       [
         # Ensure we can rebuild
         inputs.nix-darwin.packages.${pkgs.stdenv.hostPlatform.system}.default
         ns
-        vscode
+        helix
 
         # iproute2 on mac and with an override for color
         (pkgs.writeShellApplication {
@@ -23,7 +23,6 @@
       ]
       ++ (with pkgs; [
         openssh # Mac's builtin SSH does not support SK keys
-        gnupg
         orbstack
         obsidian
       ]);
