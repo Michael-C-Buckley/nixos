@@ -23,6 +23,9 @@
       ]
       ++ (with pkgs; [
         openssh # Mac's builtin SSH does not support SK keys
+        age
+        age-age-plugin-yubikey
+        sops
         orbstack
         obsidian
       ]);
