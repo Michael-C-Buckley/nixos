@@ -1,3 +1,11 @@
+# My Helix is a fully configured and immutable config experience
+# I bundle all the tools I normally use, which includes LSPs
+#
+# This derivation may be quite big as the number of dependencies is
+# not trivial and some are quite large, like basedpyright
+#
+# The XDG override was needed as passing the config flag did not
+# allow for the languages config to be wrapped with it
 {
   config,
   lib,
