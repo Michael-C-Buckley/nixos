@@ -1,3 +1,8 @@
+# Wrapping Ghostty allows me to ship the entire experience, which
+# is the config I use plus the font I use with it
+#
+# There is some slightly different logic for handling the wrapping
+# of Linux or MacOS versions with minor tweaks to the configs
 {config, ...}: let
   cfg = {
     theme = "Wombat";
