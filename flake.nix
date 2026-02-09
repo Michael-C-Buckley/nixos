@@ -11,6 +11,7 @@
     inherit (nixpkgs.lib.fileset) toList fileFilter;
 
     # Replacement for import-tree
+    # This recursively collects all nix files that do not start with `_`
     mkImport = path: toList (fileFilter (f: f.hasExt "nix" && !(hasPrefix "_" f.name)) path);
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
@@ -37,6 +38,9 @@
   # Npins for git repos
   # Nvfetchers for appImages
   inputs = {
+    # This downloads Nixpkgs directly from the NixOS Foundation Hydra instance
+    # It does properly lock and my main reason is to avoid github as a source
+    # since lately there has been a good amount of availability issues
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
 
     nix-darwin = {
@@ -54,7 +58,7 @@
       inputs = {
         nix-darwin.follows = "nix-darwin";
         nixpkgs.follows = "nixpkgs";
-        smfh.follows = ""; # Use nixpkgs version
+        smfh.follows = ""; # Deleted input since I use the nixpkgs version
       };
     };
 
