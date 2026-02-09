@@ -26,6 +26,20 @@ spec:
                 port:
                   number: 80
 ---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: headscale-cert
+  namespace: headscale
+spec:
+  secretName: wildcard-groovyreserve-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: "*.o1.groovyreserve.com"
+  dnsNames:
+    - "*.o1.groovyreserve.com"
+---
 apiVersion: v1
 kind: Service
 metadata:
