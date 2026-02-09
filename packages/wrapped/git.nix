@@ -1,3 +1,12 @@
+# I primarily use wrappers for my git, but for the config file
+# and not the fully wrapped binary
+#
+# WRAPPER PROBLEMS:
+# It is not enough to just wrap the binary, because any nix shell
+# environment will displace you git and you git falls back to files
+#
+# Ideally you have your base shell with the config
+# This config is also references in my wrapped fish config
 {
   config,
   lib,
@@ -38,6 +47,8 @@ in {
   };
 
   flake.wrappers = {
+    # The fully wrapped package is somewhat limited, as any nix shell
+    # will take precedent over your installed config path
     mkGit = {
       pkgs,
       pkg ? pkgs.git,
@@ -65,7 +76,7 @@ in {
       };
 
     # For obtaining the config without the wrapped package
-    # Useful for when git is changed in the path like in devshells
+    # I use this whenever I need the config without the package
     mkGitConfig = {
       pkgs,
       extraConfig ? {},
