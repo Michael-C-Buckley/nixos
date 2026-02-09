@@ -1,5 +1,15 @@
-{config, ...}: {
-  perSystem = {pkgs, ...}: let
+# Jail is a linux brwap implementation and I'm attempting to use
+# it to prevent LLMs from having unfettered filesystem access
+{
+  config,
+  lib,
+  ...
+}: {
+  perSystem = {
+    pkgs,
+    system,
+    ...
+  }: let
     jail = (import "${config.flake.npins.jail}/lib").init pkgs;
     homeBind = with jail.combinators; path: (rw-bind (noescape path) (noescape path));
 
@@ -17,9 +27,10 @@
         (homeBind "~/.cache/opencode")
         (homeBind "~/.local/share/opencode")
       ];
-  in {
-    packages = {
-      opencode = jail "opencode" pkgs.opencode features;
+  in
+    lib.optionalAttrs (lib.hasSuffix "linux" system) {
+      packages = {
+        opencode = jail "opencode" pkgs.opencode features;
+      };
     };
-  };
 }
