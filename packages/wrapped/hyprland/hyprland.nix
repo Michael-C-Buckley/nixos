@@ -1,3 +1,10 @@
+# Wrapped Hyprland for me is a full drop-in experience where I include
+# configs plus other essentials like my wrapped Noctalia and Kitty
+#
+# I wrap the binary, unlike Niri, since it does not interfere with
+# normal operation
+#
+# This is not yet deployed with Systemd, though I will eventually
 {config, ...}: let
   inherit (config.flake.wrappers) mkHyprland mkHyprlandConfig;
 in {
@@ -79,8 +86,8 @@ in {
         postBuild = ''
           # This is needed only to verify the config, not at runtime
           export XDG_RUNTIME_DIR=/run/user/9999
-
           $out/bin/hyprland --verify-config --config ${hyprlandCfg}
+
           wrapProgram $out/bin/start-hyprland \
             --prefix PATH : ${pkgs.lib.makeBinPath buildInputs} \
             --add-flags "-c ${hyprlandCfg}"
