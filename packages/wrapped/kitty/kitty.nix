@@ -1,3 +1,4 @@
+# Wrapped Kitty comes with my config and the font I normally use with it
 {config, ...}: {
   perSystem = {pkgs, ...}: {
     packages.kitty = config.flake.wrappers.mkKitty {
