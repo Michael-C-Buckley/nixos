@@ -1,3 +1,8 @@
+# My Fish is a full basic CLI setup that I use, including configs, functions
+# and a few common tools
+#
+# I use this quite regularly anywhere I am in a shell, which includes hosts,
+# VMs, Mac, Linux, WSL, etc
 {
   config,
   lib,
