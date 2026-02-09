@@ -1,3 +1,15 @@
+# Fully Wrapped Niri (with Caveats)
+# This generally just works *but* only with systemd implementations
+# as the binary itself is not wrapped
+# You can check the builder were the config is injected into the
+# service unit
+#
+# I previously attempted to manually wrap the binary instead and
+# it had issues as the `niri msg` output stopped working due to
+# flag interference
+#
+# I also include other elements of my Niri experience, which is
+# Noctalia and Kitty
 {config, ...}: {
   perSystem = {
     pkgs,
