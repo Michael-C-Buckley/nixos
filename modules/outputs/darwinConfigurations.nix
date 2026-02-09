@@ -1,3 +1,7 @@
+# I have one Mac in the form of an M1 Mac Mini
+# It's managed by Nix-Darwin and Hjem and I
+# mainly pull configs from things like my
+# Hjem and wrapped apps
 {
   config,
   inputs,
