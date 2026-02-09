@@ -1,3 +1,7 @@
+# A fully wrapped Noctalia that is include all dependencies for normal
+# operation and allows just in just-working status
+#
+# I still have configs declared in Hjem for declarative per-host needs
 {
   perSystem = {
     pkgs,
@@ -26,6 +30,7 @@
       roboto
     ];
 
+    # Not available on ARM
     x86Inputs = with pkgs; [gpu-screen-recorder];
 
     buildInputs = allInputs ++ lib.optionals (lib.hasPrefix "x86" system) x86Inputs;
