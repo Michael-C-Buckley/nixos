@@ -1,6 +1,6 @@
 {config, ...}: let
   inherit (config.flake) modules;
-  inherit (config.flake.hjemConfigs) nixos root vim;
+  inherit (config.flake.hjemConfigs) nixos root;
 in {
   flake.modules.nixos.serverPreset = {pkgs, ...}: {
     imports = with modules.nixos; [
@@ -22,12 +22,14 @@ in {
       # Hjem
       nixos
       root
-      vim
 
       packages
       packages-network
     ];
 
-    environment.systemPackages = [pkgs.python3];
+    environment.systemPackages = [
+      pkgs.python3
+      config.flake.packages.${pkgs.stdenv.hostPlatform.system}.vim
+    ];
   };
 }
