@@ -1,6 +1,11 @@
 {
-  flake.modules.nixos.o1 = {pkgs, ...}: {
+  flake.modules.nixos.o1 = {
+    config,
+    pkgs,
+    ...
+  }: {
     services = {
+      k3s.manifests.headscale-config.source = config.sops.templates.headscale-config.path;
       postgresql = {
         ensureDatabases = [
           "headscale"
@@ -12,8 +17,11 @@
           }
         ];
       };
+    };
 
-      k3s.manifests.headscale-config.source = pkgs.writers.writeYAML "headscale-config.yaml" {
+    sops = {
+      secrets."headscale/postgres_password" = {};
+      templates.headscale-config.content = builtins.readFile (pkgs.writers.writeYAML "headscale-config.yaml" {
         apiVersion = "v1";
         kind = "ConfigMap";
         metadata = {
@@ -68,9 +76,11 @@
               debug = false;
 
               postgres = {
-                host = "/var/lib/postgresql";
+                host = "10.42.0.1";
+                port = 5432;
                 name = "headscale";
                 user = "headscale";
+                pass = config.sops.placeholder."headscale/postgres_password";
                 max_open_conns = 10;
                 max_idle_conns = 10;
                 conn_max_idle_time_secs = 3600;
@@ -116,7 +126,7 @@
             randomize_client_port = false;
           };
         };
-      };
+      });
     };
   };
 }
