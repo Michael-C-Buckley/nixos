@@ -1,7 +1,8 @@
 {config, ...}: {
-  flake.modules.nixos.packages-network = {pkgs, ...}: let
-    inherit (config.flake) lib packageLists;
+  flake.modules.nixos.packages-network = {functions, ...}: let
+    inherit (config.flake.packageLists) network;
+    inherit (functions.packageLists) makePkgList;
   in {
-    environment.systemPackages = lib.packageLists.makePkgList pkgs packageLists.network;
+    environment.systemPackages = makePkgList network;
   };
 }

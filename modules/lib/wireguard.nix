@@ -1,5 +1,5 @@
-{
-  flake.lib.wireguard = {
+{lib, ...}: {
+  flake.functions.wireguard = {pkgs}: {
     genInterface = {
       cfgPath ? config.sops.secrets."wireguard-${name}".path,
       config,
@@ -7,10 +7,9 @@
       mtu ? 1420,
       enable ? true,
       name,
-      pkgs,
     }: {
       inherit enable;
-      after = pkgs.lib.optionals config.custom.systemdSops ["sops-install-secrets.service"];
+      after = lib.optionals config.custom.systemdSops ["sops-install-secrets.service"];
       description = "WireGuard: ${name}";
       wantedBy = ["multi-user.target"];
       serviceConfig = {
@@ -23,7 +22,7 @@
             "${pkgs.iproute2}/bin/ip link set wg-${name} mtu ${toString mtu}"
             "${pkgs.wireguard-tools}/bin/wg setconf wg-${name} ${cfgPath}"
           ]
-          ++ pkgs.lib.concatMap (addr: [
+          ++ lib.concatMap (addr: [
             "${pkgs.iproute2}/bin/ip address add ${addr} dev wg-${name}"
           ])
           ipAddresses;

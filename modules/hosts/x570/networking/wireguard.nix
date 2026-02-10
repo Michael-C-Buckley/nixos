@@ -1,13 +1,10 @@
-{config, ...}: let
-  inherit (config) flake;
-in {
+{lib, ...}: {
   flake.modules.nixos.x570 = {
     config,
-    pkgs,
-    lib,
+    functions,
     ...
   }: let
-    inherit (flake.lib.wireguard) genInterface;
+    inherit (functions.wireguard) genInterface;
     inherit (lib) mapAttrs' nameValuePair;
 
     interfaces = {
@@ -16,7 +13,7 @@ in {
     };
   in {
     systemd.services = mapAttrs' (name: ipAddresses:
-      nameValuePair "wireguard-${name}" (genInterface {inherit config pkgs name ipAddresses;}))
+      nameValuePair "wireguard-${name}" (genInterface {inherit config name ipAddresses;}))
     interfaces;
   };
 }

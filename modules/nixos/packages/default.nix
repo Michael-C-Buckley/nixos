@@ -1,8 +1,13 @@
 {config, ...}: {
-  flake.modules.nixos.packages = {pkgs, ...}: let
-    inherit (config.flake) packages packageLists lib;
+  flake.modules.nixos.packages = {
+    pkgs,
+    functions,
+    ...
+  }: let
+    inherit (config.flake) packages packageLists;
+    inherit (functions.packageLists) combinePkgLists;
 
-    pkgList = lib.packageLists.combinePkgLists pkgs (with packageLists; [
+    pkgList = combinePkgLists (with packageLists; [
       cli
     ]);
 

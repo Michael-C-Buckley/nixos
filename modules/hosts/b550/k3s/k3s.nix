@@ -2,8 +2,8 @@
 {config, ...}: let
   inherit (config) flake;
 in {
-  flake.modules.nixos.b550 = {flakeLib, ...}: let
-    inherit (flakeLib.functions-kube) buildManifest;
+  flake.modules.nixos.b550 = {functions, ...}: let
+    inherit (functions.kube) buildManifest;
   in {
     imports = with flake.modules.nixos; [
       k3s

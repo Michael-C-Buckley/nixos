@@ -19,14 +19,17 @@
         allowUnfree = true;
       };
     };
-    # Prime the lib functions that need pkgs which are prefixed with `functions`
-    functions = pkgs.lib.filterAttrs (n: _: pkgs.lib.hasPrefix "functions" n) flake.lib;
-    primedFunctions = mapAttrs (_: v: v {inherit pkgs;}) functions;
-    flakeLib = flake.lib // primedFunctions;
   in
     nixpkgs.lib.nixosSystem {
       inherit system pkgs;
-      specialArgs = {inherit flakeLib;};
+
+      # My own custom functions are passed via specialArgs
+      specialArgs = {
+        # This intentionally does not collide with `lib`
+        flakeLib = flake.lib;
+        # These require pkgs to be passed so collect and do once to get the ready functions
+        functions = mapAttrs (_: v: v {inherit pkgs;}) flake.functions;
+      };
       modules = [flake.modules.nixos.${hostname}];
     };
 in {

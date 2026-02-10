@@ -1,10 +1,10 @@
 {
   flake.modules.nixos.o1 = {
     config,
-    flakeLib,
+    functions,
     ...
   }: let
-    inherit (flakeLib.functions-yaml) checkYAML;
+    inherit (functions.yaml) checkYAML;
   in {
     sops = {
       secrets."forgejo/postgres_password" = {};

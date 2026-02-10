@@ -1,8 +1,9 @@
 # Basic local development-based tools
 {config, ...}: {
-  flake.modules.nixos.packages-development = {pkgs, ...}: let
-    inherit (config.flake) lib packageLists;
+  flake.modules.nixos.packages-development = {functions, ...}: let
+    inherit (functions.packageLists) makePkgList;
+    inherit (config.flake.packageLists) development;
   in {
-    environment.systemPackages = lib.packageLists.makePkgList pkgs packageLists.development;
+    environment.systemPackages = makePkgList development;
   };
 }

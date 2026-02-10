@@ -1,21 +1,19 @@
-{config, ...}: let
-  inherit (config) flake;
-in {
+{
   flake.modules.nixos.o1 = {
     config,
-    pkgs,
+    functions,
     ...
   }: let
-    inherit (flake.lib.wireguard) genInterface;
+    inherit (functions.wireguard) genInterface;
   in {
     systemd.services = {
       "wireguard-clients" = genInterface {
-        inherit config pkgs;
+        inherit config;
         name = "clients";
         ipAddresses = ["192.168.32.129/27" "fe80::32:129/64"];
       };
       "wireguard-mt1" = genInterface {
-        inherit config pkgs;
+        inherit config;
         name = "mt1";
         ipAddresses = ["192.168.254.81/31" "fe80::254:81/64"];
       };

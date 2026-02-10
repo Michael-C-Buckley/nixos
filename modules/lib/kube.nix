@@ -1,5 +1,5 @@
 {
-  flake.lib.functions-kube = {pkgs}: {
+  flake.functions.kube = {pkgs}: {
     # Build a single manifest file from a kustomize directory
     buildManifest = path:
       pkgs.runCommand "${path}-manifests" {} ''
