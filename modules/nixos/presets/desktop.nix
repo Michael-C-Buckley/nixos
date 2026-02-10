@@ -28,6 +28,7 @@ in {
       tpm2
       pam-ssh
       secrets
+      tailscale
 
       packages
       packages-desktop
