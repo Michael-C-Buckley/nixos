@@ -81,6 +81,8 @@ spec:
             - containerPort: 50443
               name: grpc
           volumeMounts:
+            - name: postgres-socket
+              mountPath: /var/run/postgresql
             - name: config
               mountPath: /etc/headscale
             - name: secrets
@@ -88,6 +90,10 @@ spec:
             - name: data
               mountPath: /var/lib/headscale
       volumes:
+        - name: postgres-socket
+          hostPath:
+            path: /var/run/postgresql
+            type: Directory
         - name: config
           configMap:
             name: headscale-config
