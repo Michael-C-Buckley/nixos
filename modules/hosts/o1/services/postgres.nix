@@ -15,6 +15,7 @@
         host    all             all             ::1/128                 scram-sha-256
 
         # Allow connections from k3s pod network
+        host    headscale       headscale       10.42.0.0/16            scram-sha-256
         host    authentik       authentik       10.42.0.0/16            scram-sha-256
         host    vaultwarden     vaultwarden     10.42.0.0/16            scram-sha-256
         host    forgejo         forgejo         10.42.0.0/16            scram-sha-256
