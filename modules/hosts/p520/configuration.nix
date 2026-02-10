@@ -12,6 +12,7 @@
       nvidia
       systemd-credentials
       secrets-nic-rename
+      tailscale
     ];
 
     environment.systemPackages = with pkgs; [

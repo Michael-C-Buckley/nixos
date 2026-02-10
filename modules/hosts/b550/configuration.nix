@@ -12,6 +12,7 @@
       attic
       systemd-credentials
       secrets-nic-rename
+      tailscale
     ];
 
     system.stateVersion = "26.05";
