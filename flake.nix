@@ -28,8 +28,18 @@
       flake.npins = import ./npins;
       flake.nvfetcher = ./_sources/generated.nix;
 
-      # The shell is available as either a devshell or traditional nix-shell
-      perSystem = {pkgs, ...}: {
+      perSystem = {
+        pkgs,
+        system,
+        ...
+      }: {
+        # Globally set unfree for all per-system evals
+        _module.args.pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
+
+        # The shell is available as either a devshell or traditional nix-shell
         devShells.default = import ./shell.nix {inherit pkgs;};
       };
     };
