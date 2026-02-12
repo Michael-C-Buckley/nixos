@@ -17,6 +17,9 @@ in {
       useBabelfish = true;
       extraCompletionPackages = config.users.users.michael.packages;
     };
-    users.users.michael.shell = "${shell}${shell.shellPath}";
+    users.users.michael = {
+      shell = "${shell}${shell.shellPath}";
+      packages = [shell];
+    };
   };
 }
