@@ -5,6 +5,7 @@ in {
     imports = with homeManager; [
       bash
       default
+      dev
       helium
       wsl
     ];
