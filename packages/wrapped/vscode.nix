@@ -1,16 +1,30 @@
 {
   perSystem = {pkgs, ...}: let
     buildInputs = with pkgs; [
+      sops
+
+      # Python - LSP is invariably Pylance, via extension + sync
       python3
+      uv
+      ruff
+
+      # Nix
+      alejandra
       nil
       nixd
-      sops
-      uv
-      neovim
+
+      # Rust
+      rust-analyzer
+      rustfmt
+
+      # Fonts
+      cascadia-code
+      nerd-fonts.symbols-only
+      vista-fonts
     ];
   in {
     # Wrap packages for the path but no need for extensions
-    # as I use settings sync for the times I use VScode and
+    # as I use settings sync for the times I use VScode
     packages.vscode = pkgs.symlinkJoin {
       name = "code";
       paths = [pkgs.vscode];
