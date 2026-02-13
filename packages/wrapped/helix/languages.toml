@@ -2,6 +2,9 @@
 command = "ty"
 args = ["server"]
 
+[language-server.jedi]
+command = "jedi-language-server"
+
 [[language]]
 name = "nix"
 auto-format = true
@@ -14,7 +17,7 @@ expr = "import <nixpkgs> {}"
 name = "python"
 auto-format = false
 formatter = { command = "ruff", args = ["format", "--quiet", "-"] }
-language-servers = ["ty", "basedpyright"]
+language-servers = ["ty", "jedi"]
 
 [language.debugger]
 name = "debugpy"

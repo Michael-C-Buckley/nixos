@@ -52,7 +52,7 @@ in {
           nil
           nixd
           # Python
-          basedpyright
+          python313Packages.jedi-language-server
           ty
           ruff
           # Yaml/json
@@ -69,7 +69,7 @@ in {
         postBuild = ''
           mkdir $out/helix
           ln -s ${mkHelixConfig {inherit pkgs extraCfg;}} $out/helix/config.toml
-          ln -s ${mkHelixLanguages {inherit pkgs extraLang;}} $out/helix/language.toml
+          ln -s ${mkHelixLanguages {inherit pkgs extraLang;}} $out/helix/languages.toml
           wrapProgram $out/bin/hx \
             --prefix PATH : ${pkgs.lib.makeBinPath buildInputs} \
             --set XDG_CONFIG_HOME $out
