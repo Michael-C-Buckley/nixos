@@ -1,8 +1,12 @@
 {config, ...}: let
-  inherit (config.flake) modules packageLists lib;
+  inherit (config.flake) modules packageLists;
   inherit (config.flake.hjemConfigs) nixos root;
 in {
-  flake.modules.nixos.cloudPreset = {pkgs, ...}: {
+  flake.modules.nixos.cloudPreset = {
+    pkgs,
+    functions,
+    ...
+  }: {
     imports = with modules.nixos; [
       linuxPreset
       network
@@ -21,7 +25,7 @@ in {
     ];
 
     environment.systemPackages =
-      lib.packageLists.combinePkgLists pkgs (with packageLists; [
+      functions.packageLists.combinePkgLists (with packageLists; [
         cli
         network
       ])
