@@ -19,7 +19,6 @@
       # System
       microfetch
       killall
-      npins
       expect
 
       # Performance

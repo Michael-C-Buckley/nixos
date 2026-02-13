@@ -49,6 +49,7 @@ in {
 
     environment.systemPackages = with pkgs; [
       yubioath-flutter
+      npins
     ];
 
     # MicroVM Devbox
