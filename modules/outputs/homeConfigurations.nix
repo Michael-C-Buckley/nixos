@@ -12,15 +12,26 @@
   # needed helps reduce evaluation overhead for the majority of things that don't use it
   home-manager = import "${config.flake.npins.home-manager}/lib" {inherit (inputs.nixpkgs) lib;};
 
+  inherit (builtins) mapAttrs;
+  inherit (config) flake;
+
   inherit (config.flake.modules.homeManager) alpine debian gentoo;
   mkHmConfig = {
     system,
     modules,
-  }:
+  }: let
+    pkgs = import inputs.nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
+  in
     home-manager.homeManagerConfiguration {
-      pkgs = import inputs.nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
+      inherit pkgs;
+      extraSpecialArgs = {
+        # This intentionally does not collide with `lib`
+        flakeLib = flake.lib;
+        # These require pkgs to be passed so collect and do once to get the ready functions
+        functions = mapAttrs (_: v: v {inherit pkgs;}) flake.functions;
       };
       inherit modules;
     };

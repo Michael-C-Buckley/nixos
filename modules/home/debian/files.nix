@@ -9,6 +9,9 @@
       ".profile".text =
         # bash
         ''
+          # Ensure that binaries are readable in other sources too
+          echo 'export PATH="$HOME/.nix-profile/bin:$PATH"' >> ~/.profile
+
           if [ -n "$BASH_VERSION" ]; then
             export SSH_AUTH_SOCK="/home/michael/.ssh/ssh-agent.sock"
 
