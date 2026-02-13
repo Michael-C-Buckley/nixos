@@ -9,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "471e6a065f9efed51488d7c51a9abbd387df91b8",
-      "url": "https://github.com/nix-community/home-manager/archive/471e6a065f9efed51488d7c51a9abbd387df91b8.tar.gz",
-      "hash": "sha256-yFVde8QZK7Dc0Xa8eQDsmxLX4NJNfL1NKfctSyiQgMY="
+      "revision": "9bdb6938109884cb8b6a79ab79ba18e7b585a881",
+      "url": "https://github.com/nix-community/home-manager/archive/9bdb6938109884cb8b6a79ab79ba18e7b585a881.tar.gz",
+      "hash": "sha256-INksKY2oo1hDNrDYh0r+uK0Fd4hBxkQwD4qQAl8lYyg="
     },
     "impermanence": {
       "type": "Git",
@@ -34,9 +34,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "bf9f49c8118e7a77b68a675dbe26e93e91412066",
+      "revision": "c141cf8cc68617625b4a28a7d8ce0a35904815d5",
       "url": null,
-      "hash": "sha256-buoPpx7moJzAXbLuHAImn6x9fGRdk3x0T57goPv1vnc="
+      "hash": "sha256-EzQUbe1gwW/xpJoMuMeblWcjAEF+F92cz/enz0Mz/qo="
     },
     "lanzaboote-bin": {
       "type": "Git",
