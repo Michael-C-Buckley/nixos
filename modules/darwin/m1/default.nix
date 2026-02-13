@@ -3,13 +3,12 @@
   config,
   ...
 }: {
-  flake.modules.darwin.m1 = {
+  flake.modules.darwin.m1 = {pkgs, ...}: {
     imports = with config.flake.modules.darwin; [
       ssh-agent
     ];
 
-    # This is a Determinate system
-    nix.enable = false;
+    nix.packages = pkgs.lix;
 
     nixpkgs.config.allowUnfree = true;
 
