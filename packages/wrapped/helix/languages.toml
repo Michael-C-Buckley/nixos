@@ -1,9 +1,13 @@
-[language-server.ty]
-command = "ty"
-args = ["server"]
+[language-server.pyrefly]
+command = "pyrefly"
+args = ["lsp"]
 
 [language-server.jedi]
 command = "jedi-language-server"
+
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
 
 [[language]]
 name = "nix"
@@ -17,7 +21,7 @@ expr = "import <nixpkgs> {}"
 name = "python"
 auto-format = false
 formatter = { command = "ruff", args = ["format", "--quiet", "-"] }
-language-servers = ["ty", "jedi"]
+language-servers = ["pyrefly", "ruff", "jedi"]
 
 [language.debugger]
 name = "debugpy"

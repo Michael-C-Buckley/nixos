@@ -52,9 +52,9 @@ in {
           nil
           nixd
           # Python
-          python313Packages.jedi-language-server
-          ty
+          python314Packages.jedi-language-server
           ruff
+          pyrefly
           # Yaml/json
           yaml-language-server
           vscode-json-languageserver
