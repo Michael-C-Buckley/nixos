@@ -13,6 +13,7 @@ in {
       attic
       secrets
       systemd-credentials
+      tailscale
     ];
     environment = {
       # This is not linking for some reason, attempting to force copy instead of link
