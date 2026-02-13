@@ -1,6 +1,12 @@
 # Just a simple way to put some tools in the Zed path
 # This also bwraps the linux variant
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
+  flake.wrappers.mkZedConfig = {extraConfig ? {}}: builtins.toJSON (lib.recursiveUpdate (import ./_settings.nix) extraConfig);
+
   perSystem = {
     pkgs,
     lib,
@@ -23,8 +29,7 @@
       python3
       ruff
       pyrefly
-      pyright
-      basedpyright
+      python314Packages.jedi-language-server
 
       # Yaml
       yaml-language-server
