@@ -1,6 +1,6 @@
 {config, ...}: let
   inherit (config) flake;
-  editor = "hx";
+  editor = "vim"; # vim on servers, nvim on full systems
 in {
   flake.hjemConfigs.default = {
     config,
