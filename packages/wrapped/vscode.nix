@@ -1,5 +1,14 @@
-{
-  perSystem = {pkgs, ...}: let
+{config, ...}: {
+  perSystem = {
+    pkgs,
+    system,
+    ...
+  }: let
+    pkgs-small = import config.flake.npins.nixpkgs-small {
+      inherit system;
+      config.allowUnfree = true;
+    };
+
     buildInputs = with pkgs; [
       sops
 
@@ -27,7 +36,7 @@
     # as I use settings sync for the times I use VScode
     packages.vscode = pkgs.symlinkJoin {
       name = "code";
-      paths = [pkgs.vscode];
+      paths = [pkgs-small.vscode]; # Pull from unstable small for a needed update
       inherit buildInputs;
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''

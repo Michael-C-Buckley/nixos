@@ -52,6 +52,19 @@
       "hash": "sha256-7YN63o3+ELV6C2hMIjtgGbWt2HR0Eas7LZKA5JUEmDY=",
       "frozen": true
     },
+    "nixpkgs-small": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nixos",
+        "repo": "nixpkgs"
+      },
+      "branch": "nixos-unstable-small",
+      "submodules": false,
+      "revision": "ade8a1892d8f76616100c4d0de56f642ac4b004f",
+      "url": "https://github.com/nixos/nixpkgs/archive/ade8a1892d8f76616100c4d0de56f642ac4b004f.tar.gz",
+      "hash": "sha256-6/VriPJZPqQfOyujd1AEjSYzgP/In4dtmQAbvhkkhyI="
+    },
     "system-manager": {
       "type": "GitRelease",
       "repository": {
