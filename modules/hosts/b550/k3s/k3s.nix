@@ -18,15 +18,15 @@ in {
       ];
     };
 
-    networking.firewall.allowedTCPPorts = [
-      30222 # Forgejo SSH
-      80
-      443
-    ];
-
     services.k3s = {
       custom = {
-        traefik.defaultCert = "wildcard-groovyreserve-com";
+        traefik = {
+          defaultCert = "wildcard-groovyreserve-com";
+          ports = {
+            web.port = 80;
+            websecure.port = 443;
+          };
+        };
         certificate = let
           name = "wildcard-groovyreserve-com";
         in {
