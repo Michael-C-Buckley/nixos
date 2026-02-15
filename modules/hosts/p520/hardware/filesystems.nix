@@ -7,6 +7,11 @@ let
   zfsFs = device: {
     inherit device;
     fsType = "zfs";
+  };
+
+  zfsFsBoot = device: {
+    inherit device;
+    fsType = "zfs";
     neededForBoot = true;
   };
 in {
@@ -56,19 +61,20 @@ in {
       };
 
       # Essential System Volumes
-      "/nix" = zfsFs "zroot/p520/nix";
-      "/cache" = zfsFs "zroot/p520/cache";
-      "/persist" = zfsFs "zroot/p520/persist";
-      "/var" = zfsFs "zroot/p520/var";
-      "/home" = zfsFs "zroot/p520/home";
+      "/nix" = zfsFsBoot "zroot/p520/nix";
+      "/cache" = zfsFsBoot "zroot/p520/cache";
+      "/persist" = zfsFsBoot "zroot/p520/persist";
+      "/var" = zfsFsBoot "zroot/p520/var";
+      "/home" = zfsFsBoot "zroot/p520/home";
 
       # Datasets
-      "/var/lib/postgresql" = zfsFs "zroot/p520/postgres";
+      "/var/lib/postgresql" = zfsFsBoot "zroot/p520/postgres";
       "/var/lib/attic" = zfsFs "zroot/local/attic";
 
       # HDD Array
       "/data" = zfsFs "zhdd/data";
       "/var/lib/rancher/k3s/agent" = zfsFs "zhdd/k3s/agent";
+      "/var/lib/docker" = zfsFs "zhdd/var/docker";
     };
   };
 }

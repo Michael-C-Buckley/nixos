@@ -3,6 +3,11 @@
     mkZfs = device: {
       inherit device;
       fsType = "zfs";
+    };
+
+    mkZfsBoot = device: {
+      inherit device;
+      fsType = "zfs";
       neededForBoot = true;
     };
   in {
@@ -34,15 +39,16 @@
       };
 
       # local datasets
-      "/cache" = mkZfs "zroot/local/cache";
-      "/nix" = mkZfs "zroot/local/nix";
+      "/cache" = mkZfsBoot "zroot/local/cache";
+      "/nix" = mkZfsBoot "zroot/local/nix";
 
       # ZFS Volumes
-      "/persist" = mkZfs "zroot/b550/nixos/persist";
-      "/var/lib/attic" = mkZfs "zroot/local/attic";
+      "/persist" = mkZfsBoot "zroot/b550/nixos/persist";
+      "/var" = mkZfsBoot "zroot/b550/nixos/var";
+      "/home" = mkZfsBoot "zroot/b550/nixos/home";
 
-      "/var" = mkZfs "zroot/b550/nixos/var";
-      "/home" = mkZfs "zroot/b550/nixos/home";
+      "/var/lib/attic" = mkZfs "zroot/local/attic";
+      "/var/lib/docker" = mkZfs "zhdd/var/docker";
     };
   };
 }

@@ -21,12 +21,6 @@
       systemPackages = with pkgs; [
         attic-client
       ];
-
-      # Containers (existing data but current disabled)
-      persistence."/cache".directories = [
-        "/var/lib/containers"
-        "/var/tmp"
-      ];
     };
   };
 }
