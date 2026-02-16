@@ -17,8 +17,7 @@ in {
       users.michael = {
         impermanence = {
           enable = lib.mkDefault true;
-          # Unconditionally bind out bulky replaceable items from snapshots
-          cache.directories = [
+          cache.directories = lib.optionals config.custom.impermanence.home.enable [
             "Downloads"
             ".cache"
             ".local"
@@ -37,9 +36,6 @@ in {
           pkgs.bat
           pkgs.eza
           pkgs.nushell
-
-          # add this to stop the shell error from my wrapped fish since something touched it after creation
-          #flake.packages.${pkgs.stdenv.hostPlatform.system}.starship
         ];
 
         environment.sessionVariables = {
