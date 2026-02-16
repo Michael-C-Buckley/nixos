@@ -44,14 +44,11 @@
 
       "/nix" = mkZfs "zroot/local/nix/nixos";
       "/nix/store" = mkZfs "zroot/local/nix/store";
-
       "/cache" = mkZfs "zroot/crypt/t14/nixos/cache";
       "/persist" = mkZfs "zroot/crypt/t14/nixos/persist";
-
       "/home" = mkZfs "zroot/crypt/t14/nixos/home";
-      #"/home/michael/.local/keep" = mkZfs "zroot/crypt/t14/michael";
-
       "/var" = mkZfs "zroot/crypt/t14/nixos/var";
+      "/var/lib/docker" = mkZfs "zroot/local/docker";
     };
   };
 }

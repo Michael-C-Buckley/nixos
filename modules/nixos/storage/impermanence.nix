@@ -14,6 +14,7 @@ in {
     ...
   }: let
     inherit (config.custom.impermanence) cache home persist var;
+    inherit (lib) optionals;
 
     hjemUsers = builtins.attrNames config.hjem.users;
 
@@ -24,15 +25,13 @@ in {
       }
     ];
 
-    varCache = [
-      # A generic bind for caching
-      "/var/lib/cache"
+    varCache = optionals var.enable [
       "/var/lib/nixos-containers"
       "/var/lib/machines"
       "/var/log"
     ];
 
-    varPersist = lib.optionals var.enable [
+    varPersist = optionals var.enable [
       # A generic bind for persisting
       "/var/lib/persist"
 

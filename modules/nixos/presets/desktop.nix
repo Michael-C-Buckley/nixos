@@ -52,9 +52,6 @@ in {
       npins
     ];
 
-    # MicroVM Devbox
-    custom.impermanence.cache.directories = ["/var/lib/microvms"];
-
     # Host bridge configuration
     networking = {
       bridges.br0.interfaces = [];
