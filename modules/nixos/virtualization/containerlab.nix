@@ -8,6 +8,9 @@
     imports = [config.flake.modules.nixos.docker];
     environment.systemPackages = [pkgs.containerlab];
 
+    # To allow vscode remote to connect, to be able to use the extension
+    programs.nix-ld.enable = true;
+
     # Set SUID bit on containerlab so it runs as root without sudo
     # Useful for restricting new privileges such as using vscode sandboxed
     security.wrappers.containerlab = {
