@@ -14,6 +14,7 @@ in {
 
       # Virtualization
       libvirt
+      containerlab
 
       # Userspace
       chromiumPolicies

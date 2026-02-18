@@ -8,6 +8,11 @@
     imports = [config.flake.modules.nixos.docker];
     environment.systemPackages = [pkgs.containerlab];
 
+    users = {
+      groups.clab_admins = {};
+      users.michael.extraGroups = ["clab_admins"];
+    };
+
     # To allow vscode remote to connect, to be able to use the extension
     programs.nix-ld.enable = true;
 
