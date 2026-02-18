@@ -1,6 +1,6 @@
 {
   flake.packageLists.development = [
-    # Git tools
+    # Version control tools
     "git"
     "lazygit"
     "tig"
@@ -14,5 +14,6 @@
 
     # Misc
     "python3"
+    "nushell"
   ];
 }

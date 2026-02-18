@@ -9,6 +9,7 @@
     "fzf"
     "git"
     "ripgrep"
+    "lf"
 
     # Security
     "sops"

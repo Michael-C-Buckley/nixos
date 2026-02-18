@@ -32,12 +32,6 @@ in {
           ];
         };
 
-        packages = [
-          pkgs.bat
-          pkgs.eza
-          pkgs.nushell
-        ];
-
         environment.sessionVariables = {
           EDITOR = editor;
           VISUAL = editor;
