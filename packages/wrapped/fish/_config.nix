@@ -47,6 +47,10 @@ in
     # Aliases
     ${aliasCommands}
 
+    # Dynamically find my signing key
+    ${getExe pkgs.nushell} ${../resources/shells/key_script.nu}
+
+
     # Functions (session-scoped to avoid conflicts)
     function show --description 'Show VTY command output'
       sudo vtysh -c "show $argv"

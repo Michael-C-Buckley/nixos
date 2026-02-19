@@ -44,6 +44,7 @@ in {
           NH_FLAKE = lib.mkDefault "/home/michael/nixos";
           IP_COLOR = "always";
           NIXPKGS_ALLOW_FREE = "1";
+          GIT_SIGNING_KEYS_FILE = "${flake.wrappers.mkGitSignersFile {inherit pkgs;}}";
         };
       };
     };

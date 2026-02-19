@@ -8,7 +8,7 @@
   lib,
   ...
 }: let
-  inherit (config.flake.wrappers) mkFish mkStarshipConfig mkGitConfig;
+  inherit (config.flake.wrappers) mkFish mkStarshipConfig mkGitConfig mkGitSignersFile;
 in {
   perSystem = {
     pkgs,
@@ -25,6 +25,7 @@ in {
       env = {
         NH_FLAKE = "/${home}/michael/nixos";
         NIXPKGS_ALLOW_UNFREE = "1";
+        GIT_SIGNING_KEYS_FILE = "${mkGitSignersFile {inherit pkgs;}}";
       };
     };
   };
@@ -52,6 +53,7 @@ in {
         delta
         tig
         lazygit
+        nushell
       ]
       ++ extraRuntimeInputs;
   in

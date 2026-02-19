@@ -12,6 +12,15 @@
   lib,
   ...
 }: let
+  signingKeys = ''
+    sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAICVdKrhTH1OxUE/164StP+Iu5sOGcGEmpTyNvarAUn69AAAABHNzaDo=
+    sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIDmeP5ouNAD/hWUMq6DsZzLQCtOIh8rvQghX/huztRc8AAAAEXNzaDptaWNoYWVsQHlrNTcz
+    sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIKAR+0i/+FR8pFkwiU7jubzaPrDJAhtX3qMpYrGVnVE/AAAAEXNzaDptaWNoYWVsQHlrOTAy
+    sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIHs226+TygXNbePufYVItfHQqTgAO8JChAigzEfQK4ftAAAAEXNzaDptaWNoYWVsQHlrMDcz
+    sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIJRDTnuE/pbhRwOkDyK4ZpRztJ7zYvN3cAHl+xCSGgYDAAAABHNzaDo=
+    sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIO7l+i5FouCyBe4stv0W9jGs/XBCy4VYioefx0S4ud3WAAAACnNzaDpnaXRodWI=
+  '';
+
   # My standard config, overwritten as needed on merging
   gitCfg = home: {
     advice.defaultBranchName = false;
@@ -38,7 +47,7 @@
     user = {
       name = "Michael Buckley";
       email = "michaelcbuckley@proton.me";
-      signingkey = "/${home}/michael/.ssh/id_ed25519_sk_signing.pub";
+      signingkey = "/${home}/michael/.ssh/git_signing.pub";
     };
   };
 in {
@@ -87,5 +96,11 @@ in {
         else "home";
     in
       pkgs.writers.writeTOML "git-wrapped-config" (lib.recursiveUpdate (gitCfg home) extraConfig);
+
+    mkGitSignersFile = {
+      pkgs,
+      extraKeys ? '''',
+    }:
+      pkgs.writeText "git-allowed-signers" (signingKeys + extraKeys);
   };
 }
