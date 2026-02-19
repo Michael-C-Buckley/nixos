@@ -12,15 +12,8 @@ extend-glob = ["*.gz"]
 check-file = false
 
 [default.extend-words]
-# This is an nvim plugin
-noice = "noice"
-# This is a KDE package
-thumbnailers = "thumbnailers"
-# vscode extensions
-routeros = "routeros"
-metaphore = "metaphore"
-# Shorthand used in Gnupg and my key finder
-fpr = "fpr"
+# Random key from dnscrypt-proxy
+RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3 = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3"
 
 [default]
 extend-ignore-identifiers-re = ['LESS_TERMCAP_\w+$']
