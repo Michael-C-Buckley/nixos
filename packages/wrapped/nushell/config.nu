@@ -47,6 +47,8 @@ $env.config = {
         vi_normal: block
     }
 
+    #color_config.shape_external: { fg: "yellow" attr: "b" }
+
     edit_mode: vi
 
     shell_integration: {
@@ -82,7 +84,7 @@ def create_left_prompt [] {
         } else { "" }
     )
 
-    $"(ansi cyan_bold)($dir)(ansi reset)($git_string)(ansi reset) "
+    $"(ansi cyan_bold)($dir)(ansi reset)($git_string)(ansi reset)\n"
 }
 
 def create_right_prompt [] {
@@ -102,10 +104,12 @@ def create_right_prompt [] {
 $env.PROMPT_COMMAND = { create_left_prompt }
 $env.PROMPT_COMMAND_RIGHT = { create_right_prompt }
 $env.PROMPT_INDICATOR = $"(ansi cyan_bold)❯ (ansi reset)"
-$env.PROMPT_INDICATOR_VI_INSERT = $"(ansi green_bold)❯ (ansi reset)"
-$env.PROMPT_INDICATOR_VI_NORMAL = $"(ansi yellow_bold)● (ansi reset)"
+$env.PROMPT_INDICATOR_VI_INSERT = $"(ansi green_bold)❯(ansi reset) "
+$env.PROMPT_INDICATOR_VI_NORMAL = $"(ansi yellow_bold)●(ansi reset) "
 $env.PROMPT_MULTILINE_INDICATOR = $"::: "
-
+$env.TRANSIENT_PROMPT_COMMAND = { "" }
+$env.TRANSIENT_PROMPT_COMMAND_RIGHT = { "" }
+$env.TRANSIENT_PROMPT_INDICATOR = { "" }
 # ── Useful Custom Commands ────────────────────────────────────────────────────
 
 # Find files by name
