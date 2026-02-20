@@ -30,8 +30,15 @@ in {
   flake.wrappers = {
     mkNuConfig = {
       pkgs,
+      extraAliases ? {},
       extraConfig ? '''',
-    }:
+    }: let
+      shellAliases = import ../resources/shells/_aliases.nix;
+      mergedAliases = shellAliases.common // shellAliases.nu // extraAliases;
+      aliases = lib.concatStringsSep "\n" (
+        lib.mapAttrsToList (k: v: "alias ${k} = ${v}") mergedAliases
+      );
+    in
       pkgs.writeText "nu-config" (
         (builtins.readFile ./config.nu)
         +
@@ -40,6 +47,7 @@ in {
           source ${../resources/shells/key_script.nu}
         ''
         + extraConfig
+        + aliases
       );
 
     mkNuEnvConfig = {
@@ -54,6 +62,7 @@ in {
       pkgs,
       env ? {},
       extraConfig ? '''',
+      extraAliases ? {},
       extraRuntimeInputs ? [],
     }: let
       buildInputs = with pkgs;
@@ -72,6 +81,9 @@ in {
           lazygit
         ]
         ++ extraRuntimeInputs;
+
+      nuConfig = mkNuConfig {inherit pkgs extraAliases extraConfig;};
+      nuEnvConfig = mkNuEnvConfig {inherit pkgs env;};
     in
       pkgs.symlinkJoin {
         name = "nu";
@@ -80,7 +92,7 @@ in {
         nativeBuildInputs = [pkgs.makeWrapper];
         postBuild = ''
           wrapProgram $out/bin/nu \
-            --add-flags "--config ${mkNuConfig {inherit pkgs extraConfig;}} --env-config ${mkNuEnvConfig {inherit pkgs env;}}" \
+            --add-flags "--config ${nuConfig} --env-config ${nuEnvConfig}" \
             --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
         '';
         passthru.shellPath = "/bin/nu";

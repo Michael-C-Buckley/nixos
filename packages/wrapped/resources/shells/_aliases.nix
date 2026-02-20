@@ -1,10 +1,8 @@
 {
   # Common aliases shared across shells
   common = {
-    aa = "echo $(whoami)@$(hostname)";
-    ll = "eza -ala -g --icons";
-    la = "eza -A";
-    l = "ls -CF";
+    aa = "echo (whoami)@(hostname)";
+
     lt = "eza --tree --level=2 --icons";
     tree = "eza --tree";
     cat = "bat -p";
@@ -30,9 +28,6 @@
     kgs = "kubectl get svc";
     kgn = "kubectl get nodes";
 
-    # Nu/Nushell
-    n = "nu -c";
-
     # ZFS
     zls = "zfs list -o name,used,compressratio,lused,avail";
     zsls = "zfs list -t snapshot -S creation -o name,creation,used,written,refer";
@@ -49,6 +44,15 @@
 
   # Fish-specific aliases
   fish = {
+    l = "ls -CF";
+    ll = "eza -ala -g --icons";
+    la = "eza -A";
     duz = "du -xh . | sort -hr | fzf";
+    n = "nu -c";
+  };
+
+  nu = {
+    ll = "ls -la";
+    la = "ls -a";
   };
 }

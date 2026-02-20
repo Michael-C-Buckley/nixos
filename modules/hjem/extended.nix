@@ -3,6 +3,7 @@
     wrappedPkgs = with config.flake.packages.${pkgs.stdenv.hostPlatform.system}; [
       helix
       kitty
+      nushell
       vscode
       zeditor
     ];
