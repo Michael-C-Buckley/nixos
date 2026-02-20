@@ -158,5 +158,10 @@ $env.config.hooks.env_change.PWD ++= [{||
 }]
 
 # ── Extra ──────────────────────────────────────────────────────────────────────
+
+let carapace_completer = {|spans|
+    carapace $spans.0 nushell ...$spans | from json
+}
+
 # This section will be anything merged it when nix handles this file
 

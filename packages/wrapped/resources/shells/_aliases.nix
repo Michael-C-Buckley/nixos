@@ -54,5 +54,6 @@
   nu = {
     ll = "ls -la";
     la = "ls -a";
+    fg = "job unfreeze";
   };
 }

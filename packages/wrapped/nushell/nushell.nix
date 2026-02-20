@@ -41,10 +41,9 @@ in {
     in
       pkgs.writeText "nu-config" (
         (builtins.readFile ./config.nu)
-        +
-        # Add my SSH key detection script
-        ''
+        + ''
           source ${../resources/shells/key_script.nu}
+          source $"($nu.cache-dir)/carapace.nu"
         ''
         + extraConfig
         + aliases
@@ -53,10 +52,20 @@ in {
     mkNuEnvConfig = {
       pkgs,
       env ? {},
-    }:
-      pkgs.writeText "nu-env-config" (lib.concatStringsSep "\n" (
+      extraConfig ? '''',
+    }: let
+      completions = ''
+
+
+        $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
+        mkdir $"($nu.cache-dir)"
+        carapace _carapace nushell | save --force $"($nu.cache-dir)/carapace.nu"
+      '';
+      envAttrs = lib.concatStringsSep "\n" (
         lib.mapAttrsToList (k: v: "$env.${k} = ${builtins.toJSON v}") env
-      ));
+      );
+    in
+      pkgs.writeText "nu-env-config" (envAttrs + extraConfig + completions);
 
     mkNushell = {
       pkgs,
@@ -69,6 +78,8 @@ in {
         [
           bat
           direnv
+          carapace
+          carapace-bridge
           eza
           fd
           fzf
