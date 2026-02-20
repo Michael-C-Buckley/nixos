@@ -5,7 +5,14 @@
   lib,
   ...
 }: let
-  inherit (config.flake.wrappers) mkNushell mkNuConfig mkNuEnvConfig mkGitConfig mkGitSignersFile;
+  inherit
+    (config.flake.wrappers)
+    mkNushell
+    mkNuConfig
+    mkNuEnvConfig
+    mkGitConfig
+    mkGitSignersFile
+    ;
 in {
   perSystem = {
     pkgs,
@@ -31,16 +38,15 @@ in {
     mkNuConfig = {
       pkgs,
       extraAliases ? {},
-      extraConfig ? '''',
+      extraConfig ? "",
     }: let
       shellAliases = import ../resources/shells/_aliases.nix;
       mergedAliases = shellAliases.common // shellAliases.nu // extraAliases;
-      aliases = lib.concatStringsSep "\n" (
-        lib.mapAttrsToList (k: v: "alias ${k} = ${v}") mergedAliases
-      );
+      aliases = lib.concatStringsSep "\n" (lib.mapAttrsToList (k: v: "alias ${k} = ${v}") mergedAliases);
     in
       pkgs.writeText "nu-config" (
         (builtins.readFile ./config.nu)
+        + (builtins.readFile ./prompt.nu)
         + ''
           source ${../resources/shells/key_script.nu}
           source $"($nu.cache-dir)/carapace.nu"
@@ -52,41 +58,45 @@ in {
     mkNuEnvConfig = {
       pkgs,
       env ? {},
-      extraConfig ? '''',
+      extraConfig ? "",
     }: let
       completions = ''
-
-
         $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
         mkdir $"($nu.cache-dir)"
         carapace _carapace nushell | save --force $"($nu.cache-dir)/carapace.nu"
       '';
-      envAttrs = lib.concatStringsSep "\n" (
-        lib.mapAttrsToList (k: v: "$env.${k} = ${builtins.toJSON v}") env
-      );
+      envAttrs =
+        (lib.concatStringsSep "\n" (
+          lib.mapAttrsToList (k: v: "$env.${k} = ${builtins.toJSON v}") env
+        ))
+        + "\n";
     in
-      pkgs.writeText "nu-env-config" (envAttrs + extraConfig + completions);
+      pkgs.writeText "nu-env-config" (envAttrs + completions + extraConfig);
 
     mkNushell = {
       pkgs,
       env ? {},
-      extraConfig ? '''',
+      extraConfig ? "",
       extraAliases ? {},
       extraRuntimeInputs ? [],
     }: let
       buildInputs = with pkgs;
         [
-          bat
-          direnv
+          # Shell Utilities
           carapace
           carapace-bridge
+          starship
+          direnv
+          nix-direnv
+          # Command Line
+          bat
           eza
           fd
           fzf
           jq
-          nix-direnv
-          git
           ripgrep
+          # VCS
+          git
           delta
           tig
           lazygit
