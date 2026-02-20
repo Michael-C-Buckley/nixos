@@ -1,12 +1,16 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   flake.hjemConfigs.extended = {pkgs, ...}: let
-    wrappedPkgs = with config.flake.packages.${pkgs.stdenv.hostPlatform.system}; [
+    wrappedPkgs = map lib.hiPrio (with config.flake.packages.${pkgs.stdenv.hostPlatform.system}; [
       helix
       kitty
       nushell
       vscode
       zeditor
-    ];
+    ]);
   in {
     imports = with config.flake.hjemConfigs; [
       cursor

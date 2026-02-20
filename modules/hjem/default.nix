@@ -7,7 +7,13 @@ in {
     pkgs,
     lib,
     ...
-  }: {
+  }: let
+    inherit (pkgs.stdenv.hostPlatform) system;
+    home =
+      if (lib.hasSuffix "linux" system)
+      then "home"
+      else "User";
+  in {
     hjem = {
       linker = pkgs.smfh;
 
@@ -41,10 +47,11 @@ in {
           DIFF = "difft";
           CLICOLOR = "1";
           DIFF_COLOR = "auto";
-          NH_FLAKE = lib.mkDefault "/home/michael/nixos";
+          NH_FLAKE = lib.mkDefault "/${home}/michael/nixos";
           IP_COLOR = "always";
           NIXPKGS_ALLOW_FREE = "1";
-          GIT_SIGNING_KEYS_FILE = "${flake.wrappers.mkGitSignersFile {inherit pkgs;}}";
+          GIT_SIGNING_KEYS_FILE = flake.wrappers.mkGitSignersFile {inherit pkgs;};
+          GIT_CONFIG_GLOBAL = flake.wrappers.mkGitConfig {inherit pkgs;};
         };
       };
     };
