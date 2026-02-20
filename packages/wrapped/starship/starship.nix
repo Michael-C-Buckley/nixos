@@ -16,13 +16,15 @@ in {
     mkStarshipConfig = {
       pkgs,
       extraConfig ? {},
+      useCharacter ? false,
     }:
-      import ./_config.nix {inherit pkgs extraConfig;};
+      import ./_config.nix {inherit pkgs extraConfig useCharacter;};
 
     mkStarship = {
       pkgs,
       extraConfig ? {},
       buildInputs ? [],
+      useCharacter ? false,
     }:
       pkgs.symlinkJoin {
         name = "starship";
@@ -31,7 +33,7 @@ in {
         nativeBuildInputs = [pkgs.makeWrapper];
         postBuild = ''
           wrapProgram $out/bin/starship \
-            --set STARSHIP_CONFIG ${mkStarshipConfig {inherit pkgs extraConfig;}}
+            --set STARSHIP_CONFIG ${mkStarshipConfig {inherit pkgs extraConfig useCharacter;}}
         '';
       };
   };

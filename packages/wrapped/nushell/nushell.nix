@@ -12,6 +12,7 @@
     mkNuEnvConfig
     mkGitConfig
     mkGitSignersFile
+    mkStarship
     ;
 in {
   perSystem = {
@@ -46,7 +47,7 @@ in {
     in
       pkgs.writeText "nu-config" (
         (builtins.readFile ./config.nu)
-        + (builtins.readFile ./prompt.nu)
+        + (builtins.readFile ./starship.nu)
         + ''
           source ${../resources/shells/key_script.nu}
           source $"($nu.cache-dir)/carapace.nu"
@@ -85,7 +86,6 @@ in {
           # Shell Utilities
           carapace
           carapace-bridge
-          starship
           direnv
           nix-direnv
           # Command Line
@@ -101,6 +101,7 @@ in {
           tig
           lazygit
         ]
+        ++ [(mkStarship {inherit pkgs;})]
         ++ extraRuntimeInputs;
 
       nuConfig = mkNuConfig {inherit pkgs extraAliases extraConfig;};

@@ -36,7 +36,10 @@ in {
     extraAliases ? {},
     extraRuntimeInputs ? [],
   }: let
-    starshipConfig = mkStarshipConfig {inherit pkgs;};
+    starshipConfig = mkStarshipConfig {
+      inherit pkgs;
+      useCharacter = true;
+    };
     gitConfig = mkGitConfig {inherit pkgs;};
     buildInputs = with pkgs;
       [

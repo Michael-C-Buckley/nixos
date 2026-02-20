@@ -1,11 +1,28 @@
 {
   pkgs,
   extraConfig ? {},
+  useCharacter ? false,
 }: let
   tomlFormat = pkgs.formats.toml {};
 
+  format = pkgs.lib.concatStringsSep "" ([
+      "$hostname"
+      "$directory"
+      "$git_branch"
+      "$git_status"
+      "$cmd_duration"
+      "$fill"
+      "$nix_shell"
+      "$time"
+      "\n"
+      "$battery"
+      "$jobs"
+      "$python"
+    ]
+    ++ (pkgs.lib.optionals useCharacter ["$character"]));
+
   baseConfig = {
-    format = "$hostname$directory$git_branch$git_state$git_status$cmd_duration$fill$nix_shell$time\n$battery$jobs$python$character";
+    inherit format;
 
     directory.style = "cyan";
     fill.symbol = " ";
@@ -18,7 +35,7 @@
     time = {
       disabled = false;
       format = " [$time]($style) ";
-      style = "cyan";
+      style = "grey";
     };
 
     cmd_duration = {
