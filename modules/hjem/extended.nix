@@ -14,7 +14,6 @@
   in {
     imports = with config.flake.hjemConfigs; [
       cursor
-      dolphin
       helium
       qt
       zed

@@ -30,11 +30,10 @@ in
   ''
     $terminal=kitty
     $browser=helium
-    $browser2=librewolf
     $ide=zeditor
+    $ide2=code
     $noctalia=${noctaliaWrapper}
     $launcher=$noctalia ipc call launcher toggle
-    $files=dolphin
     $mod=SUPER
 
     master {
