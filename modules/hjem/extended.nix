@@ -8,7 +8,6 @@
     wrappedPkgs = map lib.hiPrio (with wpkgs; [
       helix
       kitty
-      nushell
       vscode
       zeditor
     ]);

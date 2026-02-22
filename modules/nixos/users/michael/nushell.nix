@@ -9,6 +9,10 @@ in {
     shellPkg = mkNushell {
       inherit pkgs;
       env = config.hjem.users.michael.environment.sessionVariables;
+      extraAliases =
+        if config.security.doas.enable
+        then {sudo = "doas";}
+        else {};
     };
     shell = "${shellPkg}${shellPkg.shellPath}";
   in {
