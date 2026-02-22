@@ -51,6 +51,9 @@ in {
           alejandra
           nil
           nixd
+          # Rust
+          rust-analyzer
+          rustfmt
           # Python
           python314Packages.jedi-language-server
           ruff
