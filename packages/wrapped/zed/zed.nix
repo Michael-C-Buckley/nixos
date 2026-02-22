@@ -25,6 +25,10 @@
       gopls
       gofumpt
 
+      # Rust
+      rust-analyzer
+      rustfmt
+
       # Python
       python3
       ruff
