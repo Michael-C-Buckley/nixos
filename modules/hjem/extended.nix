@@ -4,7 +4,8 @@
   ...
 }: {
   flake.hjemConfigs.extended = {pkgs, ...}: let
-    wrappedPkgs = map lib.hiPrio (with config.flake.packages.${pkgs.stdenv.hostPlatform.system}; [
+    wpkgs = config.flake.packages.${pkgs.stdenv.hostPlatform.system};
+    wrappedPkgs = map lib.hiPrio (with wpkgs; [
       helix
       kitty
       nushell
@@ -18,6 +19,10 @@
       qt
       zed
     ];
+
+    environment.shellAliases = {
+      mhx = lib.getExe wpkgs.helix;
+    };
 
     hjem.users.michael = {
       packages = with pkgs;

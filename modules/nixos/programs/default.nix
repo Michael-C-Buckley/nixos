@@ -1,7 +1,6 @@
 {
   flake.modules.nixos.programs = {
     programs = {
-      fish.enable = true;
       nano.enable = false;
       nh.enable = true;
 
