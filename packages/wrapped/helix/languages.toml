@@ -9,6 +9,10 @@ command = "jedi-language-server"
 command = "ruff"
 args = ["server"]
 
+[language-server.json]
+command = "vscode-json-language-server"
+args = ["--stdio"]
+
 [[language]]
 name = "nix"
 auto-format = true
@@ -16,6 +20,16 @@ formatter = { command = "alejandra" }
 
 [language-server.nixd.config.nixd.nixpkgs]
 expr = "import <nixpkgs> {}"
+
+[[language]]
+name = "json"
+auto-format = true
+formatter = { command = "biome", args = [
+  "format",
+  "--stdin-file-path",
+  "%file",
+] }
+language-servers = ["json"]
 
 [[language]]
 name = "python"

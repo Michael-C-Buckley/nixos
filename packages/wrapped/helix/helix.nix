@@ -59,6 +59,7 @@ in {
           ruff
           pyrefly
           # Yaml/json
+          biome
           yaml-language-server
           vscode-json-languageserver
         ]
