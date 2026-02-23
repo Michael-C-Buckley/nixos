@@ -1,8 +1,9 @@
 # Baseline Greetd used in the linux preset
 # This is specific for my graphical hosts extending it
 {
-  flake.modules.nixos.greetd = {pkgs, ...}: {
+  flake.modules.nixos.greetd = {
     config,
+    pkgs,
     lib,
     ...
   }: {
