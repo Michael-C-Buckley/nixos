@@ -10,6 +10,8 @@
     inherit (nixpkgs.lib) hasPrefix lists;
     inherit (nixpkgs.lib.fileset) toList fileFilter;
 
+    npins = import ./npins;
+
     # Replacement for import-tree
     # This recursively collects all nix files that do not start with `_`
     mkImport = path: toList (fileFilter (f: f.hasExt "nix" && !(hasPrefix "_" f.name)) path);
@@ -25,18 +27,28 @@
         ];
 
       # Easy mechanism to make them available everywhere
-      flake.npins = import ./npins;
-      flake.nvfetcher = ./_sources/generated.nix;
+      flake = {
+        inherit npins;
+        nvfetcher = ./_sources/generated.nix;
+      };
 
       perSystem = {
         pkgs,
         system,
         ...
       }: {
-        # Globally set unfree for all per-system evals
-        _module.args.pkgs = import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
+        _module.args = {
+          # Globally set unfree for all per-system evals
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
+          # Make pkgs-small available everywhere reusably
+          # for faster moving packages
+          pkgs-small = import npins.nixpkgs-small {
+            inherit system;
+            config.allowUnfree = true;
+          };
         };
 
         # The shell is available as either a devshell or traditional nix-shell

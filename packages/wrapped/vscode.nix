@@ -1,14 +1,9 @@
-{config, ...}: {
+{
   perSystem = {
     pkgs,
-    system,
+    pkgs-small,
     ...
   }: let
-    pkgs-small = import config.flake.npins.nixpkgs-small {
-      inherit system;
-      config.allowUnfree = true;
-    };
-
     buildInputs = with pkgs; [
       sops
 
