@@ -20,7 +20,7 @@ in {
       chromiumPolicies
       dconf
       hyprland
-      tuigreet
+      greetd
       noctalia
       niri
 

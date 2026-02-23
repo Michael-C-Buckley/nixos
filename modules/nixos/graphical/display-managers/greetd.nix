@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.tuigreet = {
+  flake.modules.nixos.greetd = {
     config,
     pkgs,
     lib,
@@ -9,12 +9,11 @@
       defaultCommand = lib.mkOption {
         type = lib.types.str;
         default = "start-hyprland";
-        description = "The default session command for tuigreet and auto-login";
+        description = "The default session command for greetd and auto-login";
       };
     };
 
     config = {
-      environment.systemPackages = [pkgs.tuigreet];
       hardware.graphics.enable = true;
       services.xserver.enable = true;
 
@@ -22,6 +21,7 @@
         displayManager.ly.enable = false; # Intentionally collide
         greetd = {
           enable = true;
+          useTextGreeter = true;
           settings = {
             # Session on first login which would use auto-login
             initial_session = {
@@ -30,7 +30,7 @@
             };
             # All other sessions
             default_session = {
-              command = "tuigreet --cmd " + config.custom.greetd.defaultCommand;
+              command = "${pkgs.greetd}/bin/agreety";
               user = "greeter";
             };
           };
