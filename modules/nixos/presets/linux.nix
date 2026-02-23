@@ -4,7 +4,6 @@
 # execute shebangs that assume hardcoded shell paths
 {
   self,
-  inputs,
   config,
   ...
 }: let
@@ -26,9 +25,9 @@ in {
         options
         users
       ]
-      ++ (with inputs; [
-        sops-nix.nixosModules.sops
-      ]);
+      ++ [
+        "${flake.npins.sops-nix}/modules/sops"
+      ];
 
     boot.initrd.systemd.enable = lib.mkDefault true;
 
