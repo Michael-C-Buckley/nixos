@@ -33,6 +33,7 @@
           obsidian
           opencode
           signal-desktop
+          yazi
         ]
         ++ wrappedPkgs;
 

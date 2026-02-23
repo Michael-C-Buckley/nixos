@@ -9,7 +9,6 @@
     "fzf"
     "git"
     "ripgrep"
-    "yazi"
 
     # Security
     "sops"
