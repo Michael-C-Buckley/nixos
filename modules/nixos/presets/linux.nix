@@ -18,6 +18,7 @@ in {
   }: {
     imports = with flake.modules.nixos;
       [
+        doas
         michael
         programs
         security

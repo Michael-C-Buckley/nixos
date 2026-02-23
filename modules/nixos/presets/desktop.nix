@@ -25,7 +25,6 @@ in {
       niri
 
       # Security
-      doas
       yubikey
       tpm2
       pam-ssh
