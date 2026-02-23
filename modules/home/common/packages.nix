@@ -10,6 +10,7 @@ in {
     localPkgs = with flake.packages.${system}; [
       helix
       ns
+      nushell
     ];
   in {
     home.packages =

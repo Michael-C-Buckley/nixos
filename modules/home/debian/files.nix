@@ -1,9 +1,5 @@
 {
   flake.modules.homeManager.debian = {
-    config,
-    lib,
-    ...
-  }: {
     home.file = {
       # Largely based on what was default
       ".profile".text =
@@ -30,15 +26,15 @@
           fi
         '';
 
-      ".config/bash/fish".text =
+      ".config/bash/nushell".text =
         # bash
         ''
           #!/usr/bin/env bash
-          # If this is an interactive shell, replace it with fish
+          # If this is an interactive shell, replace it with nushell
           case $- in
             *i*)
-              if [ -z "$FISH_VERSION" ] && command -v fish >/dev/null 2>&1; then
-                exec ${lib.getExe config.programs.fish.package}
+              if [ -z "$NUSHELL_VERSION" ] && command -v nushell >/dev/null 2>&1; then
+                exec nu
               fi
               ;;
           esac

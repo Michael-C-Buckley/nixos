@@ -14,6 +14,5 @@
 
     # Misc
     "python3"
-    "nushell"
   ];
 }
