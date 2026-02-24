@@ -49,7 +49,7 @@ in {
         (builtins.readFile ./config.nu)
         + (builtins.readFile ./starship.nu)
         + ''
-          source ${../resources/shells/key_script.nu}
+          source ${config.flake.userModules.nu.keyScript}
           source $"($nu.cache-dir)/carapace.nu"
         ''
         + extraConfig

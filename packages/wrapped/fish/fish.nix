@@ -8,7 +8,8 @@
   lib,
   ...
 }: let
-  inherit (config.flake.wrappers) mkFish mkStarshipConfig mkGitConfig mkGitSignersFile;
+  inherit (config) flake;
+  inherit (config.flake.wrappers) mkFish mkGitSignersFile;
   inherit (config.flake.userModules.shellAliases) basic extra fish;
 in {
   perSystem = {
@@ -38,11 +39,7 @@ in {
     extraRuntimeInputs ? [],
   }: let
     aliases = basic // extra // fish // extraAliases;
-    starshipConfig = mkStarshipConfig {
-      inherit pkgs;
-      useCharacter = true;
-    };
-    gitConfig = mkGitConfig {inherit pkgs;};
+
     buildInputs = with pkgs;
       [
         bat
@@ -73,9 +70,8 @@ in {
           import ./_config.nix {
             inherit
               pkgs
+              flake
               env
-              starshipConfig
-              gitConfig
               extraConfig
               aliases
               ;

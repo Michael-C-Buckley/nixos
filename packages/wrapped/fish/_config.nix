@@ -1,12 +1,17 @@
 {
   pkgs,
-  starshipConfig,
-  gitConfig,
+  flake,
   env ? {},
   extraConfig ? "",
   aliases ? {},
 }: let
   inherit (pkgs.lib) getExe;
+
+  starshipConfig = flake.wrappers.mkStarshipConfig {
+    inherit pkgs;
+    useCharacter = true;
+  };
+  gitConfig = flake.wrappers.mkGitConfig {inherit pkgs;};
 
   aliasCommands = pkgs.lib.concatStringsSep "\n" (
     pkgs.lib.mapAttrsToList (name: value: "    alias ${name}='${value}'") aliases
@@ -44,7 +49,7 @@ in
     ${aliasCommands}
 
     # Dynamically find my signing key
-    ${getExe pkgs.nushell} ${../resources/shells/key_script.nu}
+    ${getExe pkgs.nushell} ${flake.userModules.nu.keyScript}
 
 
     # Functions (session-scoped to avoid conflicts)
