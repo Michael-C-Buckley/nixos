@@ -13,6 +13,11 @@ in {
       default = {};
       description = "Hjem configurations with specific options set, usually per-user.";
     };
+    userModules = mkOption {
+      type = attrsOf raw;
+      default = {};
+      description = "User configuration modules that can be shared across module types.";
+    };
     lib = mkOption {
       type = lazyAttrsOf raw;
       default = {};
