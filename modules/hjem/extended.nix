@@ -1,17 +1,5 @@
-{
-  config,
-  lib,
-  ...
-}: {
-  flake.hjemConfigs.extended = {pkgs, ...}: let
-    wpkgs = config.flake.packages.${pkgs.stdenv.hostPlatform.system};
-    wrappedPkgs = map lib.hiPrio (with wpkgs; [
-      helix
-      kitty
-      vscode
-      zeditor
-    ]);
-  in {
+{config, ...}: {
+  flake.hjemConfigs.extended = {pkgs, ...}: {
     imports = with config.flake.hjemConfigs; [
       cursor
       helium
@@ -19,23 +7,12 @@
       zed
     ];
 
-    environment.shellAliases = {
-      mhx = lib.getExe wpkgs.helix;
-    };
-
     hjem.users.michael = {
-      packages = with pkgs;
-        [
-          nvfetcher
-          legcord
-          materialgram
-          novelwriter
-          obsidian
-          opencode
-          signal-desktop
-          yazi
-        ]
-        ++ wrappedPkgs;
+      packages = with pkgs; [
+        novelwriter
+        obsidian
+        opencode
+      ];
 
       environment.sessionVariables = {
         BROWSER = "helium";

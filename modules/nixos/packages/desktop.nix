@@ -7,6 +7,12 @@
       pavucontrol # Pulse Volume control
       kubectl
       npins
+      nvfetcher
+
+      # Communication
+      legcord
+      signal-desktop
+      materialgram
 
       # Productivity
       gnome-calculator
@@ -19,6 +25,7 @@
 
       # Terminal
       kitty
+      yazi
 
       # Office
       abiword

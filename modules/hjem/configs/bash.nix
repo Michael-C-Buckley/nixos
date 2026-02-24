@@ -4,7 +4,7 @@ in {
   flake.hjemConfigs.bash = {
     hjem.users.michael = {
       files = {
-        ".bashrc".text = bashrc;
+        ".bashrc".source = bashrc;
         ".bash_profile".text = bashProfile;
       };
     };
