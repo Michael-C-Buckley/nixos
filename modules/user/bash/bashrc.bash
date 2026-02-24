@@ -1,21 +1,29 @@
 # Exit early for non-interactive shells
 [[ $- != *i* ]] && return
 
+# Hand-off to my nushell early if that's the intent
+if [[ -z "$NUSHELL" && -z "$BASH_NO_NU" ]] &&
+  [[ "$(ps -o comm= -p "$PPID" 2>/dev/null)" != "nu" ]] &&
+  command -v nu >/dev/null 2>&1 &&
+  [[ -t 0 && -t 1 ]]; then
+  export NUSHELL=1
+  exec nu
+fi
+
 # --- Behavior changes ----
 shopt -s globstar
 
 # --- Prompt ---
 if [[ -t 1 ]]; then
-    PS1='\[\e[1;32m\]\u@\h\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]\$ '
+  PS1='\[\e[1;32m\]\u@\h\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]\$ '
 else
-    PS1='\u@\h:\w\$ '
+  PS1='\u@\h:\w\$ '
 fi
 
 # --- Completion (provided by system) ---
 if [[ -r /etc/bash_completion ]]; then
-    . /etc/bash_completion
+  . /etc/bash_completion
 fi
-
 
 # --- Sensible Bash ---
 # These options largely came from:
@@ -79,11 +87,11 @@ bind '"\e[D": backward-char'
 ## BETTER DIRECTORY NAVIGATION ##
 
 # Prepend cd to directory names automatically
-shopt -s autocd 2> /dev/null
+shopt -s autocd 2>/dev/null
 # Correct spelling errors during tab-completion
-shopt -s dirspell 2> /dev/null
+shopt -s dirspell 2>/dev/null
 # Correct spelling errors in arguments supplied to cd
-shopt -s cdspell 2> /dev/null
+shopt -s cdspell 2>/dev/null
 
 # This defines where cd looks for targets
 # Add the directories you want to have fast access to, separated by colon
