@@ -41,8 +41,8 @@ in {
       extraAliases ? {},
       extraConfig ? "",
     }: let
-      shellAliases = import ../resources/shells/_aliases.nix;
-      mergedAliases = shellAliases.common // shellAliases.nu // extraAliases;
+      inherit (config.flake.userModules.shellAliases) basic nu extra;
+      mergedAliases = basic // extra // nu // extraAliases;
       aliases = lib.concatStringsSep "\n" (lib.mapAttrsToList (k: v: "alias ${k} = ${v}") mergedAliases);
     in
       pkgs.writeText "nu-config" (

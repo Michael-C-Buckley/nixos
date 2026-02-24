@@ -4,24 +4,20 @@
   gitConfig,
   env ? {},
   extraConfig ? "",
-  extraAliases ? {},
+  aliases ? {},
 }: let
   inherit (pkgs.lib) getExe;
-  aliases = import ../resources/shells/_aliases.nix;
-  allAliases = aliases.common // aliases.fish // extraAliases;
 
-  # Generate fish alias commands
   aliasCommands = pkgs.lib.concatStringsSep "\n" (
-    pkgs.lib.mapAttrsToList (name: value: "    alias ${name}='${value}'") allAliases
+    pkgs.lib.mapAttrsToList (name: value: "    alias ${name}='${value}'") aliases
   );
 
-  # Generate env export commands
   envCommands = pkgs.lib.concatStringsSep "\n" (
     pkgs.lib.mapAttrsToList (name: value: "    set -gx ${name} '${toString value}'") env
   );
 
   # Create unique identifier including env vars to prevent overwrites
-  configHash = builtins.substring 0 8 (builtins.hashString "sha256" "${extraConfig}${toString (builtins.attrNames extraAliases)}${toString (builtins.attrNames env)}${toString (builtins.attrValues env)}");
+  configHash = builtins.substring 0 8 (builtins.hashString "sha256" "${extraConfig}${toString (builtins.attrNames aliases)}${toString (builtins.attrNames env)}${toString (builtins.attrValues env)}");
 in
   pkgs.writeText "fish-init-${configHash}.fish" ''
     set -g fish_greeting ""

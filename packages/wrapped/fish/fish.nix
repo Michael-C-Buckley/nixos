@@ -9,6 +9,7 @@
   ...
 }: let
   inherit (config.flake.wrappers) mkFish mkStarshipConfig mkGitConfig mkGitSignersFile;
+  inherit (config.flake.userModules.shellAliases) basic extra fish;
 in {
   perSystem = {
     pkgs,
@@ -36,6 +37,7 @@ in {
     extraAliases ? {},
     extraRuntimeInputs ? [],
   }: let
+    aliases = basic // extra // fish // extraAliases;
     starshipConfig = mkStarshipConfig {
       inherit pkgs;
       useCharacter = true;
@@ -75,7 +77,7 @@ in {
               starshipConfig
               gitConfig
               extraConfig
-              extraAliases
+              aliases
               ;
           }
         }'" \
