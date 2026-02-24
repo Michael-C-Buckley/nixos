@@ -10,10 +10,6 @@
           eval $(wsl2-ssh-agent)
       '';
 
-      ".bashrc".text = ''
-        source ~/.config/bash/extra
-      '';
-
       ".ashrc".text = ''
         # Some aliases if I'm not using my nix setup
         alias ls='ls --color=auto'
