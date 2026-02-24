@@ -2,7 +2,7 @@
   inherit (config.flake) modules;
   inherit (config.flake.hjemConfigs) nixos root extended;
 in {
-  flake.modules.nixos.desktopPreset = {pkgs, ...}: {
+  flake.modules.nixos.desktopPreset = {
     imports = with modules.nixos; [
       linuxPreset
       shawn
@@ -46,11 +46,6 @@ in {
       nixos
       root
       extended
-    ];
-
-    environment.systemPackages = with pkgs; [
-      yubioath-flutter
-      npins
     ];
 
     # Host bridge configuration

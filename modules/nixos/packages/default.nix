@@ -17,7 +17,6 @@
 
     localPkgs = with pkgs; [
       # System
-      microfetch
       killall
       expect
 
