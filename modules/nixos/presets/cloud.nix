@@ -17,7 +17,6 @@ in {
 
       # Users
       michael-attic
-      michael-nushell
 
       # Hjem
       nixos

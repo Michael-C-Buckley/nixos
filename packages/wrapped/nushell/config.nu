@@ -15,7 +15,7 @@ $env.config = {
     }
 
     table: {
-        mode: heavy             # rounded | heavy | light | compact | none
+        mode: heavy
         index_mode: always
         trim: {
             methodology: wrapping
@@ -34,7 +34,7 @@ $env.config = {
         case_sensitive: false
         quick: true
         partial: true
-        algorithm: "fuzzy"      # "prefix" | "fuzzy"
+        algorithm: "fuzzy"
         external: {
             enable: true
             max_results: 50
@@ -127,6 +127,21 @@ $env.config.hooks.env_change.PWD ++= [{||
 }]
 
 # ── Extra ──────────────────────────────────────────────────────────────────────
+# Sudo shim that is universally compatible across my systems with no dependency on state
+def sudo [...args] {
+  if (which ^sudo | is-not-empty) {
+    ^sudo ...$args
+  } else if  (which ^doas | is-not-empty ) {
+    doas ...$args
+  } else {
+    echo "nushell: sudo and doas not found"
+  }
+}
+# Load any extra components via a host file
+const hostfile = "~/.config/nushell/host.nu"
+if ($hostfile | path exists) {
+    source $hostfile
+}
 
 let carapace_completer = {|spans|
     carapace $spans.0 nushell ...$spans | from json

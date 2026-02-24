@@ -39,7 +39,6 @@ in {
 
       # Users
       michael-attic
-      michael-nushell
       michael-ssh-agent
 
       # Hjem

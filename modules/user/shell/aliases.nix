@@ -2,7 +2,6 @@
   flake.userModules.shellAliases = {
     basic = {
       aa = "echo (whoami)@(hostname)";
-      l = "ls -CF";
       ll = "ls -la";
       la = "ls -a";
       ".." = "cd ..";

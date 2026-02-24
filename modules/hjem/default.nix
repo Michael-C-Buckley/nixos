@@ -17,6 +17,7 @@ in {
   in {
     imports = with flake.hjemConfigs; [
       bash
+      nushell
     ];
 
     hjem = {

@@ -62,7 +62,7 @@ in {
       extraConfig ? "",
     }: let
       completions = ''
-        $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
+        $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
         mkdir $"($nu.cache-dir)"
         carapace _carapace nushell | save --force $"($nu.cache-dir)/carapace.nu"
       '';
