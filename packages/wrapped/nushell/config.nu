@@ -107,6 +107,14 @@ def pg [pattern: string] {
     ps | where name =~ $pattern
 }
 
+# Find a file or directory and cd to it
+def --env fcd [] {
+    let selection = (fd | fzf --height 40% --reverse)
+    if $selection != "" {
+        cd ($selection | path expand | path dirname)
+    }
+}
+
 
 # ── Direnv ──────────────────────────────────────────────────────────────────────
 
