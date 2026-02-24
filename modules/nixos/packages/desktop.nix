@@ -9,27 +9,9 @@
       npins
       nvfetcher
 
-      # Communication
-      legcord
-      signal-desktop
-      materialgram
-
-      # Productivity
-      gnome-calculator
-      meld
-
-      # Media
-      mpv
-      imv
-      photoqt # Photo Viewer
-
       # Terminal
       kitty
       yazi
-
-      # Office
-      abiword
-      gnumeric
 
       # Utility
       attic-client

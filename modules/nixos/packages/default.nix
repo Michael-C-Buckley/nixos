@@ -21,9 +21,7 @@
       expect
 
       # Performance
-      atop
       btop
-      htop
 
       # Hardware
       usbutils
