@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Exit early for non-interactive shells
 [[ $- != *i* ]] && return
 

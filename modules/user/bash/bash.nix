@@ -1,6 +1,6 @@
 {
   flake.userModules.bash = {
-    bashrc = ./bashrc.bash;
+    bashrc = ./bashrc;
 
     bashProfile =
       # bash
