@@ -151,9 +151,39 @@ if ($hostfile | path exists) {
     source $hostfile
 }
 
-let carapace_completer = {|spans|
+# ── Completions ────────────────────────────────────────────────────────────────
+
+let carapace_completer = {|spans: list<string>|
     carapace $spans.0 nushell ...$spans | from json
 }
+
+# File-path completer as a fallback for when carapace returns nothing
+let file_completer = {|spans: list<string>|
+    let prefix = $spans | last
+    ls ($prefix ++ "*")
+    | each { |entry|
+        let is_dir = ($entry.type == "dir")
+        {
+            value: (if $is_dir { $entry.name ++ "/" } else { $entry.name })
+            description: $entry.type
+        }
+    }
+    | sort-by value
+}
+
+# Multi-completer: tries carapace first, falls back to file completion
+let multi_completer = {|spans: list<string>|
+    let carapace_result = do $carapace_completer $spans
+    if ($carapace_result | is-not-empty) {
+        $carapace_result
+    } else {
+        do $file_completer $spans
+    }
+}
+
+$env.config.completions.external.completer = $multi_completer
+
+# ── External  -──--──────────────────────────────────────────────────────────────
 
 # This section will be anything merged it when nix handles this file
 

@@ -5,7 +5,7 @@
     system,
     ...
   }: {
-    packages.env = pkgs.buildEnv {
+    packages.fullEnv = pkgs.buildEnv {
       name = "Michael's Environment";
       paths = with config.flake.packages.${system};
         [
