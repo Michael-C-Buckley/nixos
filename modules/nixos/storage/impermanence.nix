@@ -16,7 +16,9 @@ in {
     inherit (config.custom.impermanence) cache home persist var;
     inherit (lib) optionals;
 
-    hjemUsers = builtins.attrNames config.hjem.users;
+    # Deprecated feature - intentionally now empty set
+    #hjemUsers = builtins.attrNames config.hjem.users;
+    hjemUsers = [];
 
     commonUser = lib.optionals home.enable [
       {
@@ -51,16 +53,6 @@ in {
 
     # Trigger the various logical elements that rely on this
     custom.impermanence.enable = true;
-
-    # To make sure secrets are available for sops decryption
-    # SSH keys are not included because I seal them systemd-creds and persist elsewhere
-    # If you use agenix/sops-nix then you will need to make sure keys are available early during boot
-    # fileSystems = {
-    #   # Secrets are impurely kept out of the repo and managed externally
-    #   "/etc/secrets" = {
-    #     neededForBoot = true;
-    #   };
-    # };
 
     environment.persistence."/cache" = {
       hideMounts = true;

@@ -3,7 +3,6 @@
   editor = "vim"; # vim on servers, nvim on full systems
 in {
   flake.hjemConfigs.default = {
-    config,
     pkgs,
     lib,
     ...
@@ -28,23 +27,6 @@ in {
       extraModules = builtins.attrValues flake.hjemModules;
 
       users.michael = {
-        impermanence = {
-          enable = lib.mkDefault true;
-          cache.directories = lib.optionals config.custom.impermanence.home.enable [
-            "Downloads"
-            ".cache"
-            ".local"
-            "flakes"
-            "nixos"
-            "projects/cache"
-          ];
-          persist.directories = lib.optionals config.custom.impermanence.home.enable [
-            "Documents"
-            "Pictures"
-            "projects"
-          ];
-        };
-
         environment.sessionVariables = {
           EDITOR = editor;
           VISUAL = editor;

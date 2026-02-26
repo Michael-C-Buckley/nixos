@@ -1,7 +1,11 @@
 # The custom settings I use to define impermanence at a per-user basis
 # Mainly reused within various application definitions
 {
-  flake.hjemModules.impermanence = {lib, ...}: let
+  flake.hjemModules.impermanence = {
+    config,
+    lib,
+    ...
+  }: let
     inherit (lib) mkOption mkEnableOption;
     inherit (lib.types) listOf str;
 
@@ -31,5 +35,25 @@
         )
         volumes
       ));
+    config = {
+      hjem.users.michael = {
+        impermanence = {
+          enable = lib.mkDefault true;
+          cache.directories = lib.optionals config.custom.impermanence.home.enable [
+            "Downloads"
+            ".cache"
+            ".local"
+            "flakes"
+            "nixos"
+            "projects/cache"
+          ];
+          persist.directories = lib.optionals config.custom.impermanence.home.enable [
+            "Documents"
+            "Pictures"
+            "projects"
+          ];
+        };
+      };
+    };
   };
 }
