@@ -10,7 +10,7 @@ let approved_file = (
     $env | get -o GIT_SIGNING_KEYS_FILE
     | if ($in | is-empty) {
         print -e "git-sign: GIT_SIGNING_KEYS_FILE not set"
-        exit 1
+        return
     } else { $in | path expand }
 )
 
@@ -18,7 +18,7 @@ let agent_keys = (ssh-add -L | complete)
 
 if $agent_keys.exit_code != 0 or ($agent_keys.stdout | str trim | is-empty) {
     print -e "git-sign: no keys in agent"
-    exit 1
+    return
 }
 
 let agent_key_parts = (
@@ -44,7 +44,7 @@ let match = (
 
 if ($match | is-empty) {
     print -e "git-sign: no approved signing key found in agent — insert a YubiKey or load a key"
-    exit 1
+    return
 }
 
 $match | save /home/michael/.ssh/git_signing.pub
