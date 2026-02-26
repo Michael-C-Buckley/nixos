@@ -20,7 +20,7 @@
   features.edit_prediction_provider = "none";
 
   languages = {
-    nix = {
+    Nix = {
       formatter.external = {
         arguments = ["--quiet" "--"];
         command = "alejandra";
