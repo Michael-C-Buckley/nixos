@@ -65,6 +65,8 @@ in {
         $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
         mkdir $"($nu.cache-dir)"
         carapace _carapace nushell | save --force $"($nu.cache-dir)/carapace.nu"
+        mkdir ('~/.config/nushell' | path expand)
+        touch ('~/.config/nushell/host.nu' | path expand)
       '';
       envAttrs =
         (lib.concatStringsSep "\n" (
