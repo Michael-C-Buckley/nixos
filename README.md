@@ -46,6 +46,20 @@ I am using Nvfetcher to get appImages and npins for other non-flake items.
 The motivation is decreasing the amount of inputs and I'll be selecting inputs which do not depend on the flake metadata tree and no have inputs.
 The upside is increased performance from lazier evaluation and reduced dependency tree sizes, as well as not having to copy these sources to the nix store, even if they're not used.
 
+### Wrappers & BuildEnv
+
+Nix provides a unique opportunity for "wrapping" packages.
+This allows a package derivation to be created that provides additional package paths and other things, like pre-bundling configuration files.
+I have created a number of wrapped packages under `packages/wrapped` which contain my application "experiences" with their configs and dependencies.
+
+Additionally, nixpkgs provides `pkgs.buildEnv` which allows you to create 1 package derivation with multiple packages in it.
+As such, I've decided to move a number of standalone wrapped packages to various buildEnv definitions.
+This creates the ability to manage those items independently from the system and home-manager, via nix profile.
+
+This is a highly explicit choice, and still somewhat new to my process.
+What it provides is the ability to not couple small items like shell config tweaks to requiring system rebuilds or additional frameworks like home-manager.
+Useful in the case of servers where I want CLI tools available, and updatable, but without disturbing the rest of the system for tweaks and having a fully declared experience.
+
 ## Credits & Thanks
 
 A few people I would like to thank, though by no means an exhaustive list.
