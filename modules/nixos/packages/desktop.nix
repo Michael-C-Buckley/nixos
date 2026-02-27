@@ -17,6 +17,7 @@
       attic-client
       yubioath-flutter
       wireshark
+      putty
       winbox4
     ];
   };
