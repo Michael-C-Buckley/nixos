@@ -22,7 +22,10 @@ in {
         listen_addresses = ["127.0.0.153:53"];
 
         # Use servers that support DNSCrypt, DOH, and Anonymized DNS
-        server_names = ["cloudflare" "quad9-dnscrypt-ip4-filter-pri"];
+        server_names = [
+          "cloudflare"
+          "quad9-dnscrypt-ip4-filter-pri"
+        ];
 
         # Enable DNS-over-HTTPS
         doh_servers = true;
@@ -45,7 +48,7 @@ in {
             "https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md"
           ];
           cache_file = "${dnsDir}/public-resolvers.md";
-          minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
+          minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3"; # typos:ignore-line
           refresh_delay = 72;
         };
       };

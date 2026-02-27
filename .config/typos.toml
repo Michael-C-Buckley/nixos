@@ -11,9 +11,9 @@ check-file = false
 extend-glob = ["*.gz"]
 check-file = false
 
-[default.extend-words]
-# Random key from dnscrypt-proxy
-RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3 = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3"
-
 [default]
+extend-ignore-re = [
+  # Ignore lines ending with `# typos:ignore-line`
+  "(?Rm)^.*#\\s*typos:ignore-line$",
+]
 extend-ignore-identifiers-re = ['LESS_TERMCAP_\w+$']
