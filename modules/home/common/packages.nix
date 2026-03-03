@@ -8,9 +8,7 @@ in {
   }: let
     inherit (pkgs.stdenv.hostPlatform) system;
     localPkgs = with flake.packages.${system}; [
-      helix
       ns
-      nushell
     ];
   in {
     home.packages =
