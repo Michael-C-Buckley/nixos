@@ -1,5 +1,5 @@
 {
-  theme = "ayu_dark";
+  theme = "carbon";
   editor = {
     line-number = "relative";
     bufferline = "multiple";
