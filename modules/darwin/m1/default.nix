@@ -8,7 +8,7 @@
       ssh-agent
     ];
 
-    nix.packages = pkgs.lix;
+    nix.packages = pkgs.nixVersions.latest;
 
     nixpkgs.config.allowUnfree = true;
 
