@@ -1,16 +1,10 @@
-{config, ...}: let
-  inherit (config) flake;
-in {
-  flake.modules.darwin.default = {pkgs, ...}: let
-    inherit (flake.packages.${pkgs.stdenv.hostPlatform.system}) fish;
-  in {
+{
+  flake.modules.darwin.default = {
     programs = {
-      direnv.enable = true;
-
-      # Use my wrapped shell but also get the nix-darwin completions
-      fish = {
+      direnv = {
         enable = true;
-        package = fish;
+        nix-direnv.enable = true;
+        enableZshIntegration = true; # Just for the default shell
       };
     };
   };

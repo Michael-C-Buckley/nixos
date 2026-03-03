@@ -4,16 +4,13 @@
   ...
 }: {
   flake.modules.darwin.packages = {pkgs, ...}: let
-    inherit (config.flake.packages.${pkgs.stdenv.hostPlatform.system}) ns helix ghostty zeditor;
+    localPkgs = config.flake.packages.${pkgs.stdenv.hostPlatform.system};
   in {
     environment.systemPackages =
       [
         # Ensure we can rebuild
         inputs.nix-darwin.packages.${pkgs.stdenv.hostPlatform.system}.default
-        ghostty
-        zeditor
-        ns
-        helix
+        localPkgs.ns
 
         # iproute2 on mac and with an override for color
         (pkgs.writeShellApplication {
@@ -30,7 +27,6 @@
         age-plugin-yubikey
         sops
         orbstack
-        obsidian
       ]);
 
     fonts.packages = with pkgs; [
