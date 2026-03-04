@@ -71,6 +71,7 @@ in {
         ]
         ++ [
           kitty
+          ghostty
           noctalia
           nordzy-cursor
         ]

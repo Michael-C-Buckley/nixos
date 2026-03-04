@@ -80,6 +80,7 @@ in
 
         // LAUNCH
         Mod+Return hotkey-overlay-title="Terminal: kitty" { spawn "kitty"; }
+        Mod+Ctrl+Return { spawn "ghostty"; }
         Mod+Ctrl+Alt+L hotkey-overlay-title="Screen Lock: hyprlock" { spawn-sh "${noctaliaWrapper} ipc call lockScreen lock"; }
         Mod+B hotkey-overlay-title="Browser: Helium" { spawn "helium"; }
         Mod+Ctrl+B { spawn "librewolf"; }

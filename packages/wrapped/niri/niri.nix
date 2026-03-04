@@ -51,6 +51,7 @@
         ]
         ++ [
           kitty
+          ghostty
           noctalia
           nordzy-cursor
         ]
