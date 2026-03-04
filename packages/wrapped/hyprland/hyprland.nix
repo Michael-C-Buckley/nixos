@@ -50,7 +50,7 @@ in {
       extraRuntimeInputs ? [],
     }: let
       inherit (pkgs.stdenv.hostPlatform) system;
-      inherit (config.flake.packages.${system}) kitty noctalia nordzy-cursor;
+      inherit (config.flake.packages.${system}) ghostty kitty noctalia nordzy-cursor;
       # Add the necessary packages for a functional as-is experience
       # For me, this means Noctalia and Kitty
       buildInputs = with pkgs;

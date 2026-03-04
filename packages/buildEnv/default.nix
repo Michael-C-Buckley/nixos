@@ -32,6 +32,7 @@
             helix
             vscode
             zeditor
+            ghostty
             kitty
             helium
           ]
