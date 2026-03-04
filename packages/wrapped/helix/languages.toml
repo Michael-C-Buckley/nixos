@@ -1,10 +1,3 @@
-[language-server.pyrefly]
-command = "pyrefly"
-args = ["lsp"]
-
-[language-server.jedi]
-command = "jedi-language-server"
-
 [language-server.ruff]
 command = "ruff"
 args = ["server"]
@@ -12,6 +5,13 @@ args = ["server"]
 [language-server.json]
 command = "vscode-json-language-server"
 args = ["--stdio"]
+
+[language-server.basedpyright]
+command = "basedpyright-langserver"
+args = ["--stdio"]
+
+[language-server.basedpyright.config.basedpyright.analysis]
+typeCheckingMode = "standard"
 
 [[language]]
 name = "nix"
@@ -35,7 +35,7 @@ language-servers = ["json"]
 name = "python"
 auto-format = false
 formatter = { command = "ruff", args = ["format", "--quiet", "-"] }
-language-servers = ["pyrefly", "ruff", "jedi"]
+language-servers = ["basedpyright", "ruff"]
 
 [language.debugger]
 name = "debugpy"

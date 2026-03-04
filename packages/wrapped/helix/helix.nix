@@ -55,9 +55,8 @@ in {
           rust-analyzer
           rustfmt
           # Python
-          python314Packages.jedi-language-server
           ruff
-          pyrefly
+          basedpyright
           # Yaml/json
           biome
           yaml-language-server
