@@ -28,8 +28,8 @@
 in
   pkgs.writeText "hyprland-wrapped-config.conf"
   ''
-    $terminal=kitty
-    $terminal2=ghostty
+    $terminal=ghostty
+    $terminal2=kitty
     $browser=helium
     $ide=zeditor
     $ide2=code

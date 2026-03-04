@@ -20,6 +20,9 @@
       spawn-at-startup "noctalia-shell"
     ''
     else '''';
+
+  terminal1 = "ghostty";
+  terminal2 = "kitty";
 in
   pkgs.writeText "niri-wrapped-config.kdl" ''
     ${noctaliaSpawnCommand}
@@ -79,8 +82,8 @@ in
         Mod+Ctrl+N hotkey-overlay-title="Noctalia: Toggle Notifications Do Not Disturb" { spawn-sh "${noctaliaWrapper} ipc call notifications toggleDND"; }
 
         // LAUNCH
-        Mod+Return hotkey-overlay-title="Terminal: kitty" { spawn "kitty"; }
-        Mod+Ctrl+Return { spawn "ghostty"; }
+        Mod+Return hotkey-overlay-title="Terminal: ${terminal1}" { spawn "${terminal1}"; }
+        Mod+Ctrl+Return { spawn "${terminal2}"; }
         Mod+Ctrl+Alt+L hotkey-overlay-title="Screen Lock: hyprlock" { spawn-sh "${noctaliaWrapper} ipc call lockScreen lock"; }
         Mod+B hotkey-overlay-title="Browser: Helium" { spawn "helium"; }
         Mod+Ctrl+B { spawn "librewolf"; }
