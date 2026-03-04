@@ -3,15 +3,25 @@
 #
 # There is some slightly different logic for handling the wrapping
 # of Linux or MacOS versions with minor tweaks to the configs
-{config, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
+  inherit (config.flake.wrappers) mkGhosttyConfig;
   cfg = {
-    theme = "Wombat";
+    theme = "Niji";
     background = "#000000";
     cursor-color = "#44A3A3";
     cursor-opacity = "0.6";
     font-family = "Cascadia Code NF";
     font-size = "11";
     window-theme = "system";
+  };
+
+  binds = {
+    "performable:ctrl+shift+h" = "previous_tab";
+    "performable:ctrl+shift+l" = "next_tab";
   };
 in {
   perSystem = {
@@ -41,28 +51,43 @@ in {
     };
   };
 
-  flake.wrappers.mkGhostty = {
-    pkgs,
-    pkg ? pkgs.ghostty,
-    extraConfig ? {},
-    extraRuntimeInputs ? [],
-  }: let
-    buildInputs = [pkgs.cascadia-code] ++ extraRuntimeInputs;
-    # The MacOS ghostty comes from the official dmg and is in a different location
-    ghosttyBinary =
-      if pkgs.stdenv.isDarwin
-      then "$out/Applications/Ghostty.app/Contents/MacOS/ghostty"
-      else "$out/bin/ghostty";
-  in
-    pkgs.symlinkJoin {
-      name = "ghostty";
-      paths = [pkg];
-      inherit buildInputs;
-      nativeBuildInputs = [pkgs.makeWrapper];
-      postBuild = ''
-        wrapProgram ${ghosttyBinary} \
-          --add-flags "--config-file=${pkgs.writers.writeTOML "ghostty-wrapped-config" (cfg // extraConfig)}" \
-          --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
-      '';
-    };
+  flake.wrappers = {
+    mkGhosttyConfig = {
+      pkgs,
+      extraConfig ? {},
+      extraBinds ? {},
+    }: let
+      allConfig = cfg // extraConfig;
+      allBinds = binds // extraBinds;
+      configLines = lib.mapAttrsToList (k: v: "${k} = ${toString v}") allConfig;
+      bindLines = lib.mapAttrsToList (k: v: "keybind = ${k}=${v}") allBinds;
+    in
+      pkgs.writeText "ghostty-wrapped-config" (lib.concatStringsSep "\n" (configLines ++ bindLines));
+
+    mkGhostty = {
+      pkgs,
+      pkg ? pkgs.ghostty,
+      extraConfig ? {},
+      extraBinds ? {},
+      extraRuntimeInputs ? [],
+    }: let
+      buildInputs = [pkgs.cascadia-code] ++ extraRuntimeInputs;
+      # The MacOS ghostty comes from the official dmg and is in a different location
+      ghosttyBinary =
+        if pkgs.stdenv.isDarwin
+        then "$out/Applications/Ghostty.app/Contents/MacOS/ghostty"
+        else "$out/bin/ghostty";
+    in
+      pkgs.symlinkJoin {
+        name = "ghostty";
+        paths = [pkg];
+        inherit buildInputs;
+        nativeBuildInputs = [pkgs.makeWrapper];
+        postBuild = ''
+          wrapProgram ${ghosttyBinary} \
+            --add-flags "--config-file=${mkGhosttyConfig {inherit pkgs extraConfig extraBinds;}}" \
+            --prefix PATH : ${lib.makeBinPath buildInputs}
+        '';
+      };
+  };
 }
