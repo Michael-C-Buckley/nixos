@@ -33,7 +33,18 @@
           while IFS=': ' read -r desired_name mac_addr; do
             [ -z "$desired_name" ] && continue
 
+            # First try matching by current MAC, then fall back to permanent address
             current_name=$(ip -o link | grep -i "$mac_addr" | awk '{print $2}' | tr -d ':' || true)
+            if [ -z "$current_name" ]; then
+              target=$(echo "$mac_addr" | tr '[:upper:]' '[:lower:]')
+              for iface in $(ls /sys/class/net/); do
+                perm=$(cat "/sys/class/net/$iface/perm_addr" 2>/dev/null | tr '[:upper:]' '[:lower:]' || true)
+                if [ "$perm" = "$target" ]; then
+                  current_name="$iface"
+                  break
+                fi
+              done
+            fi
 
             if [ -n "$current_name" ] && [ "$current_name" != "$desired_name" ]; then
               echo "Renaming $current_name (MAC: $mac_addr) to $desired_name"
