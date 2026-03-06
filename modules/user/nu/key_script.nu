@@ -3,6 +3,9 @@
 # Script to dynamically find which valid signing key is connected via my agent
 # Mostly for use with my yubikeys as I have multiple and forward among remotes
 
+# Returns 0 unconditionally in all cases to prevent issues with automation breaking
+# it just provides a simple warning if it fails to get a valid key
+
 # Remove the file to reset the state
 rm -f /home/michael/.ssh/git_signing.pub
 
@@ -18,7 +21,7 @@ let agent_keys = (ssh-add -L | complete)
 
 if $agent_keys.exit_code != 0 or ($agent_keys.stdout | str trim | is-empty) {
     print -e "git-sign: no keys in agent"
-    return
+    exit 0
 }
 
 let agent_key_parts = (
@@ -44,7 +47,7 @@ let match = (
 
 if ($match | is-empty) {
     print -e "git-sign: no approved signing key found in agent — insert a YubiKey or load a key"
-    return
+    exit 0
 }
 
 $match | save /home/michael/.ssh/git_signing.pub
