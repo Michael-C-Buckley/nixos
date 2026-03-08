@@ -115,6 +115,19 @@ def --env fcd [] {
     }
 }
 
+# Function to wrap the default vim command and use nvim if available
+def vim [...args] {
+  if (which nvim | is-not-empty) {
+    ^nvim ...$args
+  } else if (which hx | is-not-empty) {
+    ^hx ...$args
+  } else if (which vim | is-not-empty) {
+    ^vim ...$args
+  } else {
+    ^vi ...$args
+  }
+}
+
 
 # ── Direnv ──────────────────────────────────────────────────────────────────────
 
@@ -186,4 +199,3 @@ $env.config.completions.external.completer = $multi_completer
 # ── External  -──--──────────────────────────────────────────────────────────────
 
 # This section will be anything merged it when nix handles this file
-
