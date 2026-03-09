@@ -8,7 +8,6 @@ in {
     ...
   }: let
     inherit (pkgs.stdenv.hostPlatform) system;
-    smallPkgs = import flake.npins.nixpkgs-small {inherit system;};
     home =
       if (lib.hasSuffix "linux" system)
       then "home"
@@ -21,7 +20,7 @@ in {
 
     hjem = {
       # Small is ahead of nixpkgs for a needed version
-      linker = smallPkgs.smfh;
+      linker = pkgs.smfh;
 
       # Pull in all my modules
       extraModules = builtins.attrValues flake.hjemModules;

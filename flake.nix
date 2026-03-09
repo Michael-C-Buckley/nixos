@@ -43,12 +43,6 @@
             inherit system;
             config.allowUnfree = true;
           };
-          # Make pkgs-small available everywhere reusably
-          # for faster moving packages
-          pkgs-small = import npins.nixpkgs-small {
-            inherit system;
-            config.allowUnfree = true;
-          };
         };
 
         # The shell is available as either a devshell or traditional nix-shell

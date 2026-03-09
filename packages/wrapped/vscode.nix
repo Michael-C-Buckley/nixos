@@ -1,9 +1,5 @@
 {
-  perSystem = {
-    pkgs,
-    pkgs-small,
-    ...
-  }: let
+  perSystem = {pkgs, ...}: let
     buildInputs = with pkgs; [
       sops
 
@@ -31,7 +27,7 @@
     # as I use settings sync for the times I use VScode
     packages.vscode = pkgs.symlinkJoin {
       name = "code";
-      paths = [pkgs-small.vscode]; # Pull from unstable small for a needed update
+      paths = [pkgs.vscode]; # Pull from unstable small for a needed update
       inherit buildInputs;
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''
