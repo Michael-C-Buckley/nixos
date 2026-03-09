@@ -9,6 +9,7 @@
     # precludes using secrets since rules are built immutably and udevd runs early
     # same applies to systemd-networkd, as udev actually does the renaming
     systemd.services.rename-nics = {
+      enable = false;
       description = "Rename NICs using secrets";
       wantedBy = ["multi-user.target"];
       after = ["systemd-networkd.service"];
