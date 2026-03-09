@@ -37,5 +37,12 @@
       rtkit.enable = true;
       tpm2.enable = true;
     };
+
+    services.udev.extraRules = ''
+      SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="9c:6b:00:c0:ac:92", NAME="eno1"
+      SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="c0:a1:c3:a4:13:d0", NAME="enp2"
+      SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="90:e2:ba:5f:f3:68", NAME="enx3"
+      SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="90:e2:ba:5f:f3:69", NAME="enx4"
+    '';
   };
 }

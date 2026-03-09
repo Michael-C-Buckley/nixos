@@ -21,15 +21,22 @@
       };
     };
 
-    services.keepalived.vrrpInstances = {
-      wifi = {
-        priority = 130;
-        state = "MASTER";
+    services = {
+      keepalived.vrrpInstances = {
+        wifi = {
+          priority = 130;
+          state = "MASTER";
+        };
+        lan = {
+          priority = 130;
+          state = "MASTER";
+        };
       };
-      lan = {
-        priority = 130;
-        state = "MASTER";
-      };
+      udev.extraRules = ''
+        SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="6c:4b:90:04:7d:23", NAME="eno1"
+        SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="6c:1f:f7:06:13:8f", NAME="enu2"
+        SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="28:16:ad:4d:c8:c1", NAME="wlan1"
+      '';
     };
   };
 }

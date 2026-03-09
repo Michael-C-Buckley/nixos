@@ -35,5 +35,11 @@
       cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
       ksm.enable = true;
     };
+
+    services.udev.extraRules = ''
+      SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="f4:93:9f:ef:97:c5", NAME="eno1"
+      SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="90:e2:ba:44:86:68", NAME="enx2"
+      SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="90:e2:ba:44:86:69", NAME="enx3"
+    '';
   };
 }
