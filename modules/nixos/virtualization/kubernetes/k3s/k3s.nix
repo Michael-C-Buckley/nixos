@@ -1,5 +1,6 @@
 {config, ...}: let
   inherit (config) flake;
+  KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
 in {
   flake.modules.nixos.k3s = {
     config,
@@ -11,10 +12,13 @@ in {
     imports = with flake.modules.nixos; [
       kube-common
     ];
+    environment.variables = {
+      inherit KUBECONFIG;
+    };
 
     custom = {
       shell.environmentVariables = {
-        KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
+        inherit KUBECONFIG;
       };
       impermanence = {
         persist.directories = lib.optionals k3s.impermanence.use_persist [
