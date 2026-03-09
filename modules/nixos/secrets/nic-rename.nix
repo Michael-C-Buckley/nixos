@@ -33,18 +33,21 @@
           while IFS=': ' read -r desired_name mac_addr; do
             [ -z "$desired_name" ] && continue
 
-            # First try matching by current MAC, then fall back to permanent address
-            current_name=$(ip -o link | grep -i "$mac_addr" | awk '{print $2}' | tr -d ':' || true)
-            if [ -z "$current_name" ]; then
-              target=$(echo "$mac_addr" | tr '[:upper:]' '[:lower:]')
-              for iface in $(ls /sys/class/net/); do
-                perm=$(cat "/sys/class/net/$iface/perm_addr" 2>/dev/null | tr '[:upper:]' '[:lower:]' || true)
-                if [ "$perm" = "$target" ]; then
-                  current_name="$iface"
-                  break
-                fi
-              done
-            fi
+            target=$(echo "$mac_addr" | tr '[:upper:]' '[:lower:]')
+            current_name=""
+
+            # Match by link/ether (current MAC) or permaddr (permanent MAC) from ip output
+            for iface in $(ls /sys/class/net/); do
+              iface_info=$(ip -o link show "$iface" 2>/dev/null || true)
+
+              current_mac=$(echo "$iface_info" | sed -n 's/.*link\/ether \([^ ]*\).*/\1/p' | tr '[:upper:]' '[:lower:]')
+              perm_mac=$(echo "$iface_info" | sed -n 's/.*permaddr \([^ ]*\).*/\1/p' | tr '[:upper:]' '[:lower:]')
+
+              if [ "$current_mac" = "$target" ] || [ "$perm_mac" = "$target" ]; then
+                current_name="$iface"
+                break
+              fi
+            done
 
             if [ -n "$current_name" ] && [ "$current_name" != "$desired_name" ]; then
               echo "Renaming $current_name (MAC: $mac_addr) to $desired_name"
