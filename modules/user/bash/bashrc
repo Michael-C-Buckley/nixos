@@ -99,3 +99,6 @@ shopt -s cdspell 2>/dev/null
 # Add the directories you want to have fast access to, separated by colon
 # Ex: CDPATH=".:~:~/projects" will look for targets in the current working directory, in home and in the ~/projects folder
 CDPATH="."
+
+# Additional Environment Variables
+export NH_FLAKE=/home/michael/nixos
