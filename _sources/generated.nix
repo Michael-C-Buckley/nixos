@@ -7,18 +7,18 @@
 }: {
   helium = {
     pname = "helium";
-    version = "0.9.4.1";
+    version = "0.10.1.1";
     src = fetchurl {
-      url = "https://github.com/imputnet/helium-linux/releases/download/0.9.4.1/helium-0.9.4.1-x86_64.AppImage";
-      sha256 = "sha256-N5gdWuxOrIudJx/4nYo4/SKSxakpTFvL4zzByv6Cnug=";
+      url = "https://github.com/imputnet/helium-linux/releases/download/0.10.1.1/helium-0.10.1.1-x86_64.AppImage";
+      sha256 = "sha256-c9eBukRn6BIHb23bt/P+gRLjHa/Gf405rxkSC5qPjyA=";
     };
   };
   helium-mac = {
     pname = "helium-mac";
-    version = "0.9.4.1";
+    version = "0.10.1.1";
     src = fetchurl {
-      url = "https://github.com/imputnet/helium-macos/releases/download/0.9.4.1/helium_0.9.4.1_arm64-macos.dmg";
-      sha256 = "sha256-miPsputiNQwAm867O5I+OBZAr52OzzIFD1UHMzWDMVQ=";
+      url = "https://github.com/imputnet/helium-macos/releases/download/0.10.1.1/helium_0.10.1.1_arm64-macos.dmg";
+      sha256 = "sha256-f4t75ub1UWYIhwJDG+5USqPwGhqNCMuvyOA1Jy5pg2s=";
     };
   };
 }
