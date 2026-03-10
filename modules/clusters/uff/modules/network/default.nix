@@ -10,11 +10,16 @@ in {
       vrrp
     ];
 
-    services.dnscrypt-proxy.settings.listen_addresses = [
-      "192.168.61.0:53"
-      "${lo}:53"
-      "127.0.0.153:53"
-    ];
+    services = {
+      resolved.enable = false;
+      dnscrypt-proxy.settings = {
+        listen_addresses = [
+          "192.168.61.0:53"
+          "${lo}:53"
+          "127.0.0.153:53"
+        ];
+      };
+    };
 
     networking = {
       interfaces = {
