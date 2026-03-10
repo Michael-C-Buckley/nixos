@@ -18,6 +18,9 @@
         generateHosts=false
         generateResolvConf=false
         hostname=debian
+
+        [interop]
+        appendWindowsPath=false
       '';
     };
   };

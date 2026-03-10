@@ -20,7 +20,6 @@ in {
         nix
         packages
         debian
-        #fish # Currently experimental
       ];
     };
   };
