@@ -97,6 +97,7 @@ in {
     };
 
     networking = {
+      nameservers = ["192.168.61.0"];
       # Wired interfaces will be on systemd-networkd
       useNetworkd = true;
       # I use networkmanager for wifi
