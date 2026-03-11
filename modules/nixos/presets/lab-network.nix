@@ -97,7 +97,14 @@ in {
     };
 
     networking = {
-      nameservers = ["192.168.61.0"];
+      # Adjust DNS to make sure it uses local
+      # Hosts not using useLocalResolver will use this
+      resolvconf = {
+        enable = true;
+        extraConfig = ''
+          name_servers_append="192.168.61.0"
+        '';
+      };
       # Wired interfaces will be on systemd-networkd
       useNetworkd = true;
       # I use networkmanager for wifi

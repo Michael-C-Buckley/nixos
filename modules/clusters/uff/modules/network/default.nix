@@ -46,6 +46,7 @@ in {
           home2.connection.interface-name = "wlan1";
         };
       };
+      resolvconf.useLocalResolver = true;
     };
   };
 }

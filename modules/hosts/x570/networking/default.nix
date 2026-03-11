@@ -4,6 +4,7 @@
     networking = {
       hostId = "c07fa570";
       hostName = "x570";
+      resolvconf.useLocalResolver = true;
     };
   };
 }
