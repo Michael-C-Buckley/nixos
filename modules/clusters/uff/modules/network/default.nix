@@ -14,6 +14,10 @@ in {
       resolved.enable = false;
       dnscrypt-proxy.settings = {
         listen_addresses = [
+          # Safe since Resolved is not used
+          "[::1]:53"
+          "127.0.0.1:53"
+          # Additional Listeners
           "192.168.61.0:53"
           "${lo}:53"
           "127.0.0.153:53"
