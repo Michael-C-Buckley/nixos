@@ -30,5 +30,7 @@ in {
       pkgs.python3
       config.flake.packages.${pkgs.stdenv.hostPlatform.system}.vim
     ];
+
+    services.resolved.enable = false;
   };
 }
