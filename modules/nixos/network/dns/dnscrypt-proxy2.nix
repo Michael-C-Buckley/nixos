@@ -8,7 +8,7 @@ in {
   }: {
     custom.impermanence.persist.directories = [dnsDir];
     networking.nameservers = [
-      "::1:53"
+      "[::1]:53"
       "127.0.0.1"
     ];
 
@@ -24,7 +24,7 @@ in {
         settings = {
           # Move the default to prevent collisions
           listen_addresses = [
-            "::1:53"
+            "[::1]:53"
             "127.0.0.1:53"
           ];
 
