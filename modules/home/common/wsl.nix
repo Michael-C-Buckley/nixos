@@ -5,10 +5,19 @@
     lib,
     ...
   }: {
-    home.packages = with pkgs; [
-      wsl2-ssh-agent
-      git
-    ];
+    home = {
+      file = {
+        # This messes up the shebang, but thankfully it doesn't matter
+        # I just need it before the exec nu
+        ".bashrc".text = lib.mkBefore ''
+          export SSH_AUTH_SOCK=/home/michael/.ssh/ssh-agent.sock
+        '';
+      };
+      packages = with pkgs; [
+        wsl2-ssh-agent
+        git
+      ];
+    };
 
     systemd.user.services = lib.mkIf config.custom.systemd.use {
       # Standard SSH agent for normal activity when passing yubikey through USBIPD

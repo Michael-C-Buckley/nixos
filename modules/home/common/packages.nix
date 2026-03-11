@@ -8,6 +8,7 @@ in {
   }: let
     inherit (pkgs.stdenv.hostPlatform) system;
     localPkgs = with flake.packages.${system}; [
+      nushell
       ns
     ];
   in {

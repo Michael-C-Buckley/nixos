@@ -3,7 +3,7 @@
 in {
   flake.modules.homeManager.bash = {pkgs, ...}: {
     home.file = {
-      ".bashrc".source = bashrc;
+      ".bashrc".text = builtins.readFile bashrc;
       ".base_profile".text = bashProfile;
       ".config/bash/extra".text =
         #sh
