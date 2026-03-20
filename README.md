@@ -32,14 +32,6 @@ It is like Home-Manager in that it allows a user's home to be declared.
 It is different as it follows a much leaner approach. I prefer the higher performance, more reliable codebase and mechanisms, and lack of overly opinionated defaults in my configs.
 It does not provide modules but another project, [Hjem-Rum](https://github.com/snugnug/hjem-rum) does (although I do not use this).
 
-### [NVF](https://github.com/notashelf/nvf)
-
-NVF is a Neovim framework in Nix.
-It trivialized creating and maintaining a custom nvim setup.
-I never did traditional nvim configuration, and I don't think I ever will since this exists.
-
-My setup is standalone and can be found here: [nvf-flake](https://github.com/Michael-C-Buckley/nvf-flake)
-
 ### Non-Flake Inputs (Nvfetcher & Npins)
 
 I am using Nvfetcher to get appImages and npins for other non-flake items.
@@ -59,6 +51,24 @@ This creates the ability to manage those items independently from the system and
 This is a highly explicit choice, and still somewhat new to my process.
 What it provides is the ability to not couple small items like shell config tweaks to requiring system rebuilds or additional frameworks like home-manager.
 Useful in the case of servers where I want CLI tools available, and updatable, but without disturbing the rest of the system for tweaks and having a fully declared experience.
+
+### Other Related Projects
+
+#### [NVF](https://github.com/notashelf/nvf)
+
+NVF is a Neovim framework in Nix.
+It trivialized creating and maintaining a custom nvim setup.
+This is how I started my nvim journey, though I've transitioned (to the next section).
+
+My setup is standalone and can be found here: [nvf-flake](https://github.com/Michael-C-Buckley/nvf-flake)
+
+#### Nvim
+
+I also use [mnw](https://gerg-l.github.io/mnw/) to create a more traditional config.
+This is the current way I'm using nvim.
+It uses nix to manage and build the package with configs kept in traditional lua.
+
+My flake is [here](https://github.com/michael-c-buckley/nvim.nix)
 
 ## Credits & Thanks
 
