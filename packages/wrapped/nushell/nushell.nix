@@ -48,6 +48,7 @@ in {
       pkgs.writeText "nu-config" (
         (builtins.readFile ./config.nu)
         + (builtins.readFile ./starship.nu)
+        + (builtins.readFile ./git.nu)
         + ''
           source ${config.flake.userModules.nu.keyScript}
           source $"($nu.cache-dir)/carapace.nu"
