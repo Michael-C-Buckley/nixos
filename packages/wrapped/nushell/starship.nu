@@ -19,5 +19,9 @@ $env.PROMPT_INDICATOR = ""
 $env.PROMPT_MULTILINE_INDICATOR = "::: "
 $env.PROMPT_INDICATOR_VI_INSERT = { create_prompt_character }
 $env.PROMPT_INDICATOR_VI_NORMAL = $"(ansi yellow_bold)●(ansi reset) "
-
-
+$env.TRANSIENT_PROMPT_COMMAND = {|| "" }
+$env.TRANSIENT_PROMPT_COMMAND_RIGHT = {|| "" }
+$env.TRANSIENT_PROMPT_INDICATOR = $"(ansi dark_gray_bold)❯ (ansi reset)"
+$env.TRANSIENT_PROMPT_INDICATOR_VI_INSERT = $"(ansi dark_gray_bold)❯ (ansi reset)"
+$env.TRANSIENT_PROMPT_INDICATOR_VI_NORMAL = $"(ansi dark_gray_bold)❯ (ansi reset)"
+$env.TRANSIENT_PROMPT_MULTILINE_INDICATOR = ""
