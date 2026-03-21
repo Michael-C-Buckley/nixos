@@ -7,7 +7,7 @@ def "git-status-entries" [] {
 
 def "nu-complete git unstaged-files" [] {
     git-status-entries
-    | where status != "A"
+    | where {|it| not ($it.status | str starts-with "A") and not ($it.status | str ends-with "D") }
     | get file
 }
 
@@ -49,17 +49,21 @@ def "nu-complete git tracked-files" [] {
     | lines
 }
 
+def "nu-complete git checkout" [context: string, position: int] {
+    (nu-complete git branches) | append (nu-complete git staged-files)
+}
+
 export extern "git add" [
-    ...files: string@"nu-complete git unstaged-files"
+    ...files: string@"nu-complete git add-files"
 ]
 
 export extern "git restore" [
-    ...files: string@"nu-complete git staged-files"
+    --staged(-S)
+    ...files: string@"nu-complete git unstaged-files"
 ]
 
 export extern "git checkout" [
-    branch?: string@"nu-complete git branches"
-    ...files: string@"nu-complete git tracked-files"
+    ...rest: string@"nu-complete git checkout"
 ]
 
 export extern "git switch" [
