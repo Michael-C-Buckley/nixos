@@ -11,6 +11,11 @@
       packages.helium = pkgs.stdenve.mkDerivation {
         inherit (source) pname version src;
 
+        buildInputs = with pkgs; [
+          noto-fonts
+          dejavu_fonts
+        ];
+
         nativeBuildInputs = [pkgs.undmg];
         sourceRoot = ".";
 
