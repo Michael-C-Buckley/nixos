@@ -24,6 +24,12 @@ def "nu-complete git add-files" [] {
     | lines
 }
 
+def "nu-complete git modified-files" [] {
+    git-status-entries
+    | where {|it| $it.status | str starts-with "M" }
+    | get file
+}
+
 def "nu-complete git branches" [] {
     ^git branch --format="%(refname:short)"
     | lines
@@ -50,7 +56,7 @@ def "nu-complete git tracked-files" [] {
 }
 
 def "nu-complete git checkout" [context: string, position: int] {
-    (nu-complete git branches) | append (nu-complete git staged-files)
+    (nu-complete git modified-files) | append (nu-complete git branches)
 }
 
 export extern "git add" [
