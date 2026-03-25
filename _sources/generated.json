@@ -8,11 +8,11 @@
     "pinned": false,
     "src": {
       "name": null,
-      "sha256": "sha256-6xqNRaP3aqitEseexRVEEjKkJClC0j1HHZoRGQanhSk=",
+      "sha256": "sha256-+vmxXcg8TkR/GAiHKnjq4b04bGtQzErfJkOb4P4nZUk=",
       "type": "url",
-      "url": "https://github.com/imputnet/helium-linux/releases/download/0.10.6.1/helium-0.10.6.1-x86_64.AppImage"
+      "url": "https://github.com/imputnet/helium-linux/releases/download/0.10.7.1/helium-0.10.7.1-x86_64.AppImage"
     },
-    "version": "0.10.6.1"
+    "version": "0.10.7.1"
   },
   "helium-mac": {
     "cargoLock": null,
@@ -23,10 +23,10 @@
     "pinned": false,
     "src": {
       "name": null,
-      "sha256": "sha256-SSGLqGeodjk31D1jr/nZaiaMYXFbyrmpvYWodFPIj2E=",
+      "sha256": "sha256-zQUIP9LoZnjPKyvxPAOmyOsNp/cr0EBSxX0YEdmJO58=",
       "type": "url",
-      "url": "https://github.com/imputnet/helium-macos/releases/download/0.10.6.1/helium_0.10.6.1_arm64-macos.dmg"
+      "url": "https://github.com/imputnet/helium-macos/releases/download/0.10.7.1/helium_0.10.7.1_arm64-macos.dmg"
     },
-    "version": "0.10.6.1"
+    "version": "0.10.7.1"
   }
 }
