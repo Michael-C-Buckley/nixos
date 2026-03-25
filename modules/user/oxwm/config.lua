@@ -4,7 +4,6 @@
 -------------------------------------------------------------------------------
 -- Variables
 -------------------------------------------------------------------------------
-local modkey = "Mod4"
 local terminal = "ghostty"
 local colors = require("colors")
 require("bar")
@@ -14,7 +13,6 @@ require("binds")
 -- Basic Settings
 -------------------------------------------------------------------------------
 oxwm.set_terminal(terminal)
-oxwm.set_modkey(modkey) -- This is for Mod + mouse binds, such as drag/resize
 
 -------------------------------------------------------------------------------
 -- Layouts
@@ -43,14 +41,3 @@ oxwm.gaps.set_smart(true)
 oxwm.gaps.set_inner(5, 5)
 -- Outer gaps (horizontal, vertical) in pixels
 oxwm.gaps.set_outer(5, 5)
-
--------------------------------------------------------------------------------
--- Autostart
--------------------------------------------------------------------------------
--- Commands to run once when OXWM starts
--- Uncomment and modify these examples, or add your own
-
--- oxwm.autostart("picom")
--- oxwm.autostart("feh --bg-scale ~/wallpaper.jpg")
--- oxwm.autostart("dunst")
--- oxwm.autostart("nm-applet")

@@ -1,3 +1,5 @@
+--@module "oxwm"
+
 oxwm.set_tags({ "1", "2", "3", "4", "5", "6", "7", "8", "9" })
 -- oxwm.set_tags({ "", "󰊯", "", "", "󰙯", "󱇤", "", "󱘶", "󰧮" }) -- Example of nerd font icon tags
 oxwm.bar.set_font("monospace:style=Bold:size=10")

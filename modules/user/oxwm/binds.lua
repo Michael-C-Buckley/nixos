@@ -1,9 +1,14 @@
+--@module "oxwm"
+
 -------------------------------------------------------------------------------
 -- Keybindings
 -------------------------------------------------------------------------------
+
+local modkey = "Mod4"
+oxwm.set_modkey(modkey) -- This is for Mod + mouse binds, such as drag/resize
+
 oxwm.key.bind({ modkey }, "Return", oxwm.spawn_terminal())
 
---oxwm.key.bind({ modkey }, "Space", oxwm.spawn({ "sh", "-c", "dmenu_run -l 10" }))
 -- Copy screenshot to clipboard
 oxwm.key.bind({ modkey }, "S", oxwm.spawn({ "sh", "-c", "maim -s | xclip -selection clipboard -t image/png" }))
 
