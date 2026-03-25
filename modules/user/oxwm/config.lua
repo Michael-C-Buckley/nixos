@@ -8,6 +8,7 @@ local modkey = "Mod4"
 local terminal = "ghostty"
 local colors = require("colors")
 require("bar")
+require("binds")
 
 -------------------------------------------------------------------------------
 -- Basic Settings

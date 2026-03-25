@@ -1,9 +1,13 @@
-{
+{config, ...}: {
   flake.modules.nixos.oxwm = {
     pkgs,
     lib,
     ...
   }: {
+    imports = [
+      config.flake.hjemConfigs.oxwm
+    ];
+
     environment.systemPackages = with pkgs; [
       oxwm
 
