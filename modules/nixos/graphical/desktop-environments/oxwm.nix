@@ -1,16 +1,20 @@
-{config, ...}: {
+{
+  config,
+  inputs,
+  ...
+}: {
   flake.modules.nixos.oxwm = {
     pkgs,
     lib,
     ...
-  }: {
+  }: let
+    inherit (inputs.oxwm.packages.${pkgs.stdenv.hostPlatform.system}) oxwm;
+  in {
     imports = [
       config.flake.hjemConfigs.oxwm
     ];
 
     environment.systemPackages = with pkgs; [
-      oxwm
-
       # Utility
       arandr
       rofi
@@ -42,12 +46,15 @@
         displayManager.lightdm.enable = true;
 
         windowManager = {
-          oxwm.enable = true;
+          oxwm = {
+            enable = true;
+            package = oxwm;
+          };
           session = lib.singleton {
             name = "oxwm";
             start = ''
               export _JAVA_AWT_WM_NONREPARENTING=1
-              ${lib.getExe pkgs.oxwm} &
+              ${lib.getExe oxwm} &
               waitPID=$!
             '';
           };

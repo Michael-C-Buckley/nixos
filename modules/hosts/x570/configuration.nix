@@ -11,7 +11,6 @@
       lab-network
       systemd-credentials
       secrets-nic-rename
-      oxwm
     ];
 
     system.stateVersion = "25.05";

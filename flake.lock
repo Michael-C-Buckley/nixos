@@ -77,12 +77,33 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       }
     },
+    "oxwm": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1774444817,
+        "narHash": "sha256-9IYVniJ0qEmE38hP88I25XM85srofftMkGAZYUsHRIM=",
+        "owner": "tonybanters",
+        "repo": "oxwm",
+        "rev": "66d1a2cddf8cef1ef91dcc4eb2fd6c06c78bbc9d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tonybanters",
+        "repo": "oxwm",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
         "hjem": "hjem",
         "nix-darwin": "nix-darwin",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "oxwm": "oxwm"
       }
     }
   },
