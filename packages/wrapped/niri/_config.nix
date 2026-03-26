@@ -24,7 +24,9 @@
   terminal1 = "ghostty";
   terminal2 = "kitty";
 in
-  pkgs.writeText "niri-wrapped-config.kdl" ''
+  pkgs.writeText "niri-wrapped-config.kdl"
+  # kdl
+  ''
     ${noctaliaSpawnCommand}
     spawn-sh-at-startup "${noctaliaPath}"
 
