@@ -1,15 +1,9 @@
-{
-  config,
-  inputs,
-  ...
-}: {
+{config, ...}: {
   flake.modules.nixos.oxwm = {
     pkgs,
     lib,
     ...
-  }: let
-    inherit (inputs.oxwm.packages.${pkgs.stdenv.hostPlatform.system}) oxwm;
-  in {
+  }: {
     imports = [
       config.flake.hjemConfigs.oxwm
     ];
@@ -49,7 +43,7 @@
           name = "oxwm";
           start = ''
             export _JAVA_AWT_WM_NONREPARENTING=1
-            ${lib.getExe oxwm} &
+            ${lib.getExe pkgs.oxwm} &
             waitPID=$!
           '';
         };

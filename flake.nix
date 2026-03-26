@@ -69,11 +69,6 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    oxwm = {
-      url = "github:tonybanters/oxwm";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     hjem = {
       url = "github:feel-co/hjem";
       inputs = {
