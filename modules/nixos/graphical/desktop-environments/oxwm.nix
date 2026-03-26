@@ -45,19 +45,13 @@
         xkb.layout = "us";
         displayManager.lightdm.enable = true;
 
-        windowManager = {
-          oxwm = {
-            enable = true;
-            package = oxwm;
-          };
-          session = lib.singleton {
-            name = "oxwm";
-            start = ''
-              export _JAVA_AWT_WM_NONREPARENTING=1
-              ${lib.getExe oxwm} &
-              waitPID=$!
-            '';
-          };
+        windowManager.session = lib.singleton {
+          name = "oxwm";
+          start = ''
+            export _JAVA_AWT_WM_NONREPARENTING=1
+            ${lib.getExe oxwm} &
+            waitPID=$!
+          '';
         };
       };
     };
