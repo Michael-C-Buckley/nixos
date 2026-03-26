@@ -34,6 +34,7 @@ in
             tap
             dwt
         }
+        focus-follows-mouse max-scroll-amount="0%"
       }
 
       gestures {
@@ -57,6 +58,7 @@ in
             width 4
             active-color "#2d6981ab"
             inactive-color "#595959aa"
+            urgent-color "#9b0000"
         }
       }
 
@@ -70,6 +72,10 @@ in
       window-rule {
         geometry-corner-radius 12
         clip-to-geometry true
+      }
+
+      animations {
+        off
       }
 
       binds {
