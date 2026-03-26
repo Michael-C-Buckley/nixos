@@ -1,0 +1,14 @@
+{
+  "Lua": {
+    "diagnostics": {
+      "globals": ["vim", "oxwm"]
+    },
+    "runtime": {
+      "version": "LuaJIT",
+      "path": ["?.lua", "?/init.lua", "nvim/lua/?.lua", "nvim/lua/?/init.lua"]
+    },
+    "workspace": {
+      "checkThirdParty": false
+    }
+  }
+}

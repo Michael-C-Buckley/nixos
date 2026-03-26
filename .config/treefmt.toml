@@ -29,3 +29,7 @@ options = ["format"]
 command = "yamlfmt"
 options = ["-conf", ".config/yamlfmt.yaml"]
 includes = ["*.yaml", "*.yml"]
+
+[formatter.stylua]
+command = "stylua"
+includes = ["*.lua"]

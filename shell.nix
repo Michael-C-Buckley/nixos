@@ -9,23 +9,31 @@ pkgs.mkShellNoCC {
     [
       just
 
+      # Lua
+      stylua
+      selene
+
+      # Nix
+      alejandra
+      deadnix
+      statix
+      nil
+
+      # Yaml
+      yamlfmt
+      yamllint
+
       # Formatting
       mdformat
-      alejandra
       biome
       shfmt
       taplo
       treefmt
-      yamlfmt
-      yamllint
 
       # Hooks
       lefthook
       shellcheck
-      deadnix
-      statix
       typos
-      nil
     ]
     ++ extraPkgs;
 
