@@ -24,9 +24,6 @@ in {
       noctalia
       niri
 
-      # This overrides and becomes the default login while active
-      oxwm
-
       # Security
       yubikey
       tpm2
