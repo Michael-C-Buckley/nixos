@@ -1,9 +1,18 @@
 {
   flake.modules.nixos.t14 = let
-    mkZfs = device: {
+    mkZfsNeeded = device: {
       inherit device;
       fsType = "zfs";
       neededForBoot = true;
+    };
+    mkZfs = device: {
+      inherit device;
+      fsType = "zfs";
+    };
+    mkNspawnMounts = name: {
+      "var/lib/machines/${name}" = mkZfs "zroot/crypt/t14/${name}/root";
+      "var/lib/machines/${name}/home" = mkZfs "zroot/crypt/t14/${name}/home";
+      "var/lib/machines/${name}/var" = mkZfs "zroot/crypt/t14/${name}/var";
     };
   in {
     # For ownership, declaring what was created on install
@@ -19,41 +28,34 @@
       home.enable = false;
     };
 
-    #services.sanoid.datasets = {
-    #  "zroot/t14/nixos/persist".use_template = ["normal"];
-    #  "zroot/t14/nixos/home/michael".use_template = ["normal"];
-    #};
-
     boot.zfs.requestEncryptionCredentials = true;
 
-    fileSystems = {
-      "/boot" = {
-        device = "/dev/disk/by-uuid/A926-212B";
-        fsType = "vfat";
-      };
+    fileSystems =
+      {
+        "/boot" = {
+          device = "/dev/disk/by-uuid/A926-212B";
+          fsType = "vfat";
+        };
 
-      "/" = {
-        device = "tmpfs";
-        fsType = "tmpfs";
-        options = [
-          "defaults"
-          "size=256M"
-          "mode=755"
-        ];
-      };
+        "/" = {
+          device = "tmpfs";
+          fsType = "tmpfs";
+          options = [
+            "defaults"
+            "size=256M"
+            "mode=755"
+          ];
+        };
 
-      "/nix" = mkZfs "zroot/local/nix/nixos";
-      "/nix/store" = mkZfs "zroot/local/nix/store";
-      "/cache" = mkZfs "zroot/crypt/t14/nixos/cache";
-      "/persist" = mkZfs "zroot/crypt/t14/nixos/persist";
-      "/home" = mkZfs "zroot/crypt/t14/nixos/home";
-      "/var" = mkZfs "zroot/crypt/t14/nixos/var";
-      "/var/lib/docker" = mkZfs "zroot/local/docker";
-
-      # Mount my alpine instance so it could be inspected and modified, if needed
-      "/var/lib/machines/alpine" = mkZfs "zroot/crypt/t14/alpine/root";
-      "/var/lib/machines/alpine/home" = mkZfs "zroot/crypt/t14/alpine/home";
-      "/var/lib/machines/alpine/var" = mkZfs "zroot/crypt/t14/alpine/var";
-    };
+        "/nix" = mkZfsNeeded "zroot/local/nix/nixos";
+        "/nix/store" = mkZfsNeeded "zroot/local/nix/store";
+        "/cache" = mkZfsNeeded "zroot/crypt/t14/nixos/cache";
+        "/persist" = mkZfsNeeded "zroot/crypt/t14/nixos/persist";
+        "/home" = mkZfsNeeded "zroot/crypt/t14/nixos/home";
+        "/var" = mkZfsNeeded "zroot/crypt/t14/nixos/var";
+        "/var/lib/docker" = mkZfs "zroot/local/docker";
+      }
+      # Some experimentation I'm doing
+      // (mkNspawnMounts "alpine") // (mkNspawnMounts "gentoo");
   };
 }
