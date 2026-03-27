@@ -1,6 +1,6 @@
 {
-  flake.modules.nixos.doas = {
-    environment.shellAliases.sudo = "doas";
+  flake.modules.nixos.doas = {pkgs, ...}: {
+    environment.systemPackages = [pkgs.doas-sudo-shim];
 
     security = {
       sudo.enable = false;
