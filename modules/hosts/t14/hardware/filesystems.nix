@@ -49,6 +49,11 @@
       "/home" = mkZfs "zroot/crypt/t14/nixos/home";
       "/var" = mkZfs "zroot/crypt/t14/nixos/var";
       "/var/lib/docker" = mkZfs "zroot/local/docker";
+
+      # Mount my alpine instance so it could be inspected and modified, if needed
+      "/var/lib/machines/alpine" = mkZfs "zroot/crypt/t14/alpine/root";
+      "/var/lib/machines/alpine/home" = mkZfs "zroot/crypt/t14/alpine/home";
+      "/var/lib/machines/alpine/var" = mkZfs "zroot/crypt/t14/alpine/var";
     };
   };
 }
