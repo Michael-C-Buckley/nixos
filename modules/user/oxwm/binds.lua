@@ -80,10 +80,10 @@ end
 -------------------------------------------------------------------------------
 oxwm.key.chord({
     { { modkey }, "Space" },
-    { {},         "F" },
+    { {}, "F" },
 }, oxwm.spawn({ "sh", "-c", "rofi -show drun" }))
 
 oxwm.key.chord({
     { { modkey }, "Space" },
-    { {},         "W" },
+    { {}, "W" },
 }, oxwm.spawn({ "sh", "-c", "rofi -show window" }))

@@ -1,0 +1,6 @@
+---
+base: lua51
+name: oxwm
+globals:
+  oxwm:
+    any: true

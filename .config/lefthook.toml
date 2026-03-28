@@ -45,5 +45,5 @@ run = "typos -c .config/typos.toml {staged_files}"
 
 [[pre-commit.jobs]]
 name = "selene"
-run = "selene --config .config/selene.toml {staged_files}"
+run = "selene --config .config/selene/selene.toml {staged_files}"
 glob = "*.lua"
