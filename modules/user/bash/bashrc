@@ -3,6 +3,13 @@
 # Exit early for non-interactive shells
 [[ $- != *i* ]] && return
 
+# Attempt to set a standard SSH agent if one is not already set
+standard_agent="$HOME/.ssh/ssh-agent.sock"
+
+if [[ -z "$SSH_AUTH_SOCK" && -e "$standard_agent" ]]; then
+  export SSH_AUTH_SOCK="$standard_agent"
+fi
+
 # Hand-off to my nushell early if that's the intent
 if [[ -z "$NUSHELL" && -z "$BASH_NO_NU" ]] &&
   [[ "$(ps -o comm= -p "$PPID" 2>/dev/null)" != "nu" ]] &&

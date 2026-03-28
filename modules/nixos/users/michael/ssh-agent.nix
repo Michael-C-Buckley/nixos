@@ -9,8 +9,6 @@
     mkCred = key_variant: "id_ed25519_sk_${key_variant}:/home/michael/.ssh/crypt/id_ed25519_sk_${key_variant}";
     keyTypes = ["signing" "internal" "github"];
   in {
-    hjem.users.michael.environment.sessionVariables.SSH_AUTH_SOCK = "/home/michael/.ssh/ssh-agent.sock";
-
     systemd.services.ssh-agent-michael = {
       description = "SSH Agent for michael";
       wantedBy = ["multi-user.target"];
