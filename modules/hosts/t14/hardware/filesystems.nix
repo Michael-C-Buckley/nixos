@@ -55,10 +55,11 @@
         "/var" = mkZfsNeeded "zroot/crypt/t14/nixos/var";
         "/var/lib/docker" = mkZfs "zroot/local/docker";
 
-        # Alpine has a nix store
+        # Alpine and Chimera have a nix store
         "/var/lib/machines/alpine/nix" = mkZfs "zroot/local/nix/alpine";
+        "/var/lib/machines/chimera/nix" = mkZfs "zroot/local/nix/chimera";
       }
       # Some experimentation I'm doing
-      // (mkNspawnMounts "alpine") // (mkNspawnMounts "gentoo");
+      // (mkNspawnMounts "alpine") // (mkNspawnMounts "gentoo") // (mkNspawnMounts "chimera");
   };
 }
