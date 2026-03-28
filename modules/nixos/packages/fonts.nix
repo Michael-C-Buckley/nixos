@@ -8,6 +8,8 @@
       geist-font
       cascadia-code
       noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-color-emoji
 
       nerd-fonts.symbols-only
       nerd-fonts.lilex
