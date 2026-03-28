@@ -54,6 +54,9 @@
         "/home" = mkZfsNeeded "zroot/crypt/t14/nixos/home";
         "/var" = mkZfsNeeded "zroot/crypt/t14/nixos/var";
         "/var/lib/docker" = mkZfs "zroot/local/docker";
+
+        # Alpine has a nix store
+        "/var/lib/machines/alpine/nix" = mkZfs "zroot/local/nix/alpine";
       }
       # Some experimentation I'm doing
       // (mkNspawnMounts "alpine") // (mkNspawnMounts "gentoo");
