@@ -27,6 +27,10 @@
       usbutils
       pciutils
 
+      # Editors
+      vim
+      kakoune
+
       # Machine Utilities
       gptfdisk
       parted
