@@ -63,6 +63,20 @@ in {
           vscode-json-languageserver
         ]
         ++ extraRuntimeInputs;
+
+      langs = mkHelixLanguages {inherit pkgs extraLang;};
+      cfg = mkHelixConfig {inherit pkgs extraCfg;};
+
+      printCfg = config.flake.functions.printConfig {
+        inherit cfg pkgs;
+        name = "hx-print-config";
+      };
+
+      printLangs = config.flake.functions.printConfig {
+        inherit pkgs;
+        name = "hx-print-languages";
+        cfg = langs;
+      };
     in
       pkgs.symlinkJoin {
         name = "hx";
@@ -70,9 +84,12 @@ in {
         inherit buildInputs;
         nativeBuildInputs = [pkgs.makeWrapper];
         postBuild = ''
+          cp -r ${printCfg}/bin $out
+          cp -r ${printLangs}/bin $out
+
           mkdir $out/helix
-          ln -s ${mkHelixConfig {inherit pkgs extraCfg;}} $out/helix/config.toml
-          ln -s ${mkHelixLanguages {inherit pkgs extraLang;}} $out/helix/languages.toml
+          ln -s ${cfg} $out/helix/config.toml
+          ln -s ${langs} $out/helix/languages.toml
           wrapProgram $out/bin/hx \
             --prefix PATH : ${pkgs.lib.makeBinPath buildInputs} \
             --set XDG_CONFIG_HOME $out
