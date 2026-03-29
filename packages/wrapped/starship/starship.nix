@@ -25,15 +25,24 @@ in {
       extraConfig ? {},
       buildInputs ? [],
       useCharacter ? false,
-    }:
+    }: let
+      cfg = mkStarshipConfig {inherit pkgs extraConfig useCharacter;};
+
+      printCfg = config.flake.functions.printConfig {
+        inherit cfg pkgs;
+        name = "starship-print-config";
+      };
+    in
       pkgs.symlinkJoin {
         name = "starship";
         paths = [pkgs.starship];
         inherit buildInputs;
         nativeBuildInputs = [pkgs.makeWrapper];
         postBuild = ''
+          cp -r ${printCfg}/bin $out
+
           wrapProgram $out/bin/starship \
-            --set STARSHIP_CONFIG ${mkStarshipConfig {inherit pkgs extraConfig useCharacter;}}
+            --set STARSHIP_CONFIG ${cfg}
         '';
       };
   };
