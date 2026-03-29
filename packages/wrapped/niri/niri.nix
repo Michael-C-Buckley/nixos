@@ -57,12 +57,11 @@
         ]
         ++ extraRuntimeInputs;
 
-      niriCfg = import ./_config.nix {inherit pkgs extraConfig spawnNoctalia;};
+      cfg = import ./_config.nix {inherit pkgs extraConfig spawnNoctalia;};
 
       print = config.flake.functions.printConfig {
-        inherit pkgs;
+        inherit cfg pkgs;
         name = "niri-print-config";
-        cfg = niriCfg;
       };
     in
       pkgs.symlinkJoin {
@@ -78,17 +77,17 @@
           ln -s $out/bin/niri $out/bin/niri-wrapped
           wrapProgram $out/bin/niri-wrapped \
             --prefix PATH : ${pkgs.lib.makeBinPath buildInputs} \
-            --add-flags "-c ${niriCfg}"
+            --add-flags "-c ${cfg}"
 
           # Override the systemd unit to include the config
           mkdir -p $out/lib/systemd/user/niri.service.d
           cat > $out/lib/systemd/user/niri.service.d/override.conf <<EOF
           [Service]
           ExecStart=
-          ExecStart=$out/bin/niri --session -c ${niriCfg}
+          ExecStart=$out/bin/niri --session -c ${cfg}
           EOF
 
-          $out/bin/niri validate -c ${niriCfg}
+          $out/bin/niri validate -c ${cfg}
           wrapProgram $out/bin/niri \
             --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
         '';
