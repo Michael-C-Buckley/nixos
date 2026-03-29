@@ -58,6 +58,13 @@
         ++ extraRuntimeInputs;
 
       niriCfg = import ./_config.nix {inherit pkgs extraConfig spawnNoctalia;};
+
+      printCfg = pkgs.writeShellApplication {
+        name = "niri-print-config";
+        text = ''
+          ${pkgs.lib.getExe pkgs.bat} -p ${niriCfg}
+        '';
+      };
     in
       pkgs.symlinkJoin {
         name = "niri";
@@ -65,6 +72,9 @@
         inherit buildInputs;
         passthru.providedSessions = ["niri"];
         postBuild = ''
+          # A simple script to print the current config that is active
+          cp -r ${printCfg}/bin $out
+
           # Include a command that wraps the config to be able to just launch it without a service unit
           ln -s $out/bin/niri $out/bin/niri-wrapped
           wrapProgram $out/bin/niri-wrapped \
