@@ -107,8 +107,19 @@ in {
         ++ [(mkStarship {inherit pkgs;})]
         ++ extraRuntimeInputs;
 
-      nuConfig = mkNuConfig {inherit pkgs extraAliases extraConfig;};
-      nuEnvConfig = mkNuEnvConfig {inherit pkgs env;};
+      cfg = mkNuConfig {inherit pkgs extraAliases extraConfig;};
+      envCfg = mkNuEnvConfig {inherit pkgs env;};
+
+      printCfg = config.flake.functions.printConfig {
+        inherit cfg pkgs;
+        name = "nu-print-config";
+      };
+
+      printEnv = config.flake.functions.printConfig {
+        inherit pkgs;
+        name = "nu-print-env";
+        cfg = envCfg;
+      };
     in
       pkgs.symlinkJoin {
         name = "nu";
@@ -116,8 +127,11 @@ in {
         inherit buildInputs;
         nativeBuildInputs = [pkgs.makeWrapper];
         postBuild = ''
+          cp -r ${printCfg}/bin $out
+          cp -r ${printEnv}/bin $out
+
           wrapProgram $out/bin/nu \
-            --add-flags "--config ${nuConfig} --env-config ${nuEnvConfig}" \
+            --add-flags "--config ${cfg} --env-config ${envCfg}" \
             --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
         '';
         passthru.shellPath = "/bin/nu";
