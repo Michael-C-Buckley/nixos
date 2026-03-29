@@ -77,6 +77,13 @@ in {
         if pkgs.stdenv.isDarwin
         then "$out/Applications/Ghostty.app/Contents/MacOS/ghostty"
         else "$out/bin/ghostty";
+
+      cfg = mkGhosttyConfig {inherit pkgs extraConfig extraBinds;};
+
+      printCfg = config.flake.functions.printConfig {
+        inherit cfg pkgs;
+        name = "ghostty-print-config";
+      };
     in
       pkgs.symlinkJoin {
         name = "ghostty";
@@ -84,8 +91,10 @@ in {
         inherit buildInputs;
         nativeBuildInputs = [pkgs.makeWrapper];
         postBuild = ''
+          cp -r ${printCfg}/bin $out
+
           wrapProgram ${ghosttyBinary} \
-            --add-flags "--config-file=${mkGhosttyConfig {inherit pkgs extraConfig extraBinds;}}" \
+            --add-flags "--config-file=${cfg}" \
             --prefix PATH : ${lib.makeBinPath buildInputs}
         '';
       };
