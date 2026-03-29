@@ -77,7 +77,12 @@ in {
         ]
         ++ extraRuntimeInputs;
 
-      hyprlandCfg = import ./_config.nix {inherit pkgs hostConfig;};
+      cfg = import ./_config.nix {inherit pkgs hostConfig;};
+
+      printCfg = config.flake.functions.printConfig {
+        inherit cfg pkgs;
+        name = "hyprland-print-config";
+      };
     in
       pkgs.symlinkJoin {
         name = "hyprland";
@@ -85,13 +90,15 @@ in {
         inherit buildInputs;
         passthru.providedSessions = ["hyprland"];
         postBuild = ''
+          cp -r ${printCfg}/bin $out
+
           # This is needed only to verify the config, not at runtime
           export XDG_RUNTIME_DIR=/run/user/9999
-          $out/bin/hyprland --verify-config --config ${hyprlandCfg}
+          $out/bin/hyprland --verify-config --config ${cfg}
 
           wrapProgram $out/bin/start-hyprland \
             --prefix PATH : ${pkgs.lib.makeBinPath buildInputs} \
-            --add-flags "-c ${hyprlandCfg}"
+            --add-flags "-c ${cfg}"
         '';
       };
   };
