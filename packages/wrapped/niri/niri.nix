@@ -59,11 +59,10 @@
 
       niriCfg = import ./_config.nix {inherit pkgs extraConfig spawnNoctalia;};
 
-      printCfg = pkgs.writeShellApplication {
+      print = config.flake.functions.printConfig {
+        inherit pkgs;
         name = "niri-print-config";
-        text = ''
-          ${pkgs.lib.getExe pkgs.bat} -p ${niriCfg}
-        '';
+        cfg = niriCfg;
       };
     in
       pkgs.symlinkJoin {
@@ -73,7 +72,7 @@
         passthru.providedSessions = ["niri"];
         postBuild = ''
           # A simple script to print the current config that is active
-          cp -r ${printCfg}/bin $out
+          cp -r ${print}/bin $out
 
           # Include a command that wraps the config to be able to just launch it without a service unit
           ln -s $out/bin/niri $out/bin/niri-wrapped
