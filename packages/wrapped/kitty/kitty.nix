@@ -13,6 +13,12 @@
     extraRuntimeInputs ? [],
   }: let
     buildInputs = [pkgs.cascadia-code] ++ extraRuntimeInputs;
+    cfg = import ./_config.nix {inherit pkgs extraConfig extraBinds;};
+
+    printCfg = config.flake.functions.printConfig {
+      inherit cfg pkgs;
+      name = "kitty-print-config";
+    };
   in
     pkgs.symlinkJoin {
       name = "kitty";
@@ -20,8 +26,10 @@
       inherit buildInputs;
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''
+        cp -r ${printCfg}/bin $out
+
         wrapProgram $out/bin/kitty \
-          --add-flags "-c ${import ./_config.nix {inherit pkgs extraConfig extraBinds;}}" \
+          --add-flags "-c ${cfg}" \
           --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
       '';
     };
