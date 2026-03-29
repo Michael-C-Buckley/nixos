@@ -2,15 +2,13 @@
 # like servers and whatnot
 {
   perSystem = {pkgs, ...}: let
-    inherit (pkgs.vimPlugins) starrynight;
     cfg = pkgs.writeText "vimrc" ''
       syntax on
       filetype on
       filetype plugin on
       filetype indent on
 
-      set runtimepath+=${starrynight}
-      colorscheme starrynight
+      colorscheme catppuccin
 
       set number
       set relativenumber
@@ -48,7 +46,6 @@
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''
         wrapProgram $out/bin/vim \
-          --set XDG_CONFIG_DIRS ${starrynight} \
           --set VIMINIT "source ${cfg}"
       '';
     };
