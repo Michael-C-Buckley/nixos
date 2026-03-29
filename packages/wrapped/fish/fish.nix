@@ -40,6 +40,16 @@ in {
   }: let
     aliases = basic // extra // fish // extraAliases;
 
+    cfg = import ./_config.nix {
+      inherit
+        pkgs
+        flake
+        env
+        extraConfig
+        aliases
+        ;
+    };
+
     buildInputs = with pkgs;
       [
         bat
@@ -58,6 +68,11 @@ in {
         nushell
       ]
       ++ extraRuntimeInputs;
+
+    print = config.flake.functions.printConfig {
+      inherit cfg pkgs;
+      name = "fish-print-config";
+    };
   in
     pkgs.symlinkJoin {
       name = "fish";
@@ -65,18 +80,10 @@ in {
       inherit buildInputs;
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''
+        cp -r ${print}/bin $out
+
         wrapProgram $out/bin/fish \
-          --add-flags "--init-command 'source ${
-          import ./_config.nix {
-            inherit
-              pkgs
-              flake
-              env
-              extraConfig
-              aliases
-              ;
-          }
-        }'" \
+          --add-flags "--init-command 'source ${cfg}'" \
           --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
       '';
       passthru.shellPath = "/bin/fish";
