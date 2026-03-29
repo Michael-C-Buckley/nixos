@@ -65,7 +65,13 @@
         inherit buildInputs;
         passthru.providedSessions = ["niri"];
         postBuild = ''
-          # Override the system unit to include the config
+          # Include a command that wraps the config to be able to just launch it without a service unit
+          ln -s $out/bin/niri $out/bin/niri-wrapped
+          wrapProgram $out/bin/niri-wrapped \
+            --prefix PATH : ${pkgs.lib.makeBinPath buildInputs} \
+            --add-flags "-c ${niriCfg}"
+
+          # Override the systemd unit to include the config
           mkdir -p $out/lib/systemd/user/niri.service.d
           cat > $out/lib/systemd/user/niri.service.d/override.conf <<EOF
           [Service]
