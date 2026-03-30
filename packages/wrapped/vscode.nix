@@ -16,8 +16,8 @@
       # Rust
       rust-analyzer
       rustfmt
-
-      # Fonts
+    ];
+    fonts = with pkgs; [
       cascadia-code
       nerd-fonts.symbols-only
       vista-fonts
@@ -32,7 +32,8 @@
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''
         wrapProgram $out/bin/code \
-        --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
+        --prefix PATH : ${pkgs.lib.makeBinPath buildInputs} \
+        --set FONTCONFIG_FILE ${pkgs.makeFontsConf {fontDirectories = fonts;}}
       '';
     };
   };
