@@ -95,7 +95,8 @@ in {
 
           wrapProgram ${ghosttyBinary} \
             --add-flags "--config-file=${cfg}" \
-            --prefix PATH : ${lib.makeBinPath buildInputs}
+            --prefix PATH : ${lib.makeBinPath buildInputs} \
+            --set FONTCONFIG_FILE ${pkgs.makeFontsConf {fontDirectories = [pkgs.cascadia-code];}}
         '';
       };
   };
