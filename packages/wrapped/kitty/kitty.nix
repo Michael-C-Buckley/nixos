@@ -30,7 +30,8 @@
 
         wrapProgram $out/bin/kitty \
           --add-flags "-c ${cfg}" \
-          --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
+          --prefix PATH : ${pkgs.lib.makeBinPath buildInputs} \
+          --set FONTCONFIG_FILE ${pkgs.makeFontsConf {fontDirectories = [pkgs.cascadia-code];}}
       '';
     };
 }
