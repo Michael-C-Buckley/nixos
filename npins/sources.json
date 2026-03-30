@@ -64,22 +64,6 @@
       "revision": "614e256310e0a4f8a9ccae3fa80c11844fba7042",
       "url": "https://github.com/mic92/sops-nix/archive/614e256310e0a4f8a9ccae3fa80c11844fba7042.tar.gz",
       "hash": "sha256-fhG4JAcLgjKwt+XHbjs8brpWnyKUfU4LikLm3s0Q/ic="
-    },
-    "system-manager": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "GitHub",
-        "owner": "numtide",
-        "repo": "system-manager"
-      },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "submodules": false,
-      "version": "v1.1.0",
-      "revision": "5b9189d62bcef84e3a45bf7fcd11c3e95b0d3abe",
-      "url": "https://api.github.com/repos/numtide/system-manager/tarball/refs/tags/v1.1.0",
-      "hash": "sha256-r0/UDbEeYmVqhtxiuJSUfYhjBjtLKHDWhMScpe1RkOA="
     }
   },
   "version": 7
