@@ -47,7 +47,8 @@
       meta.mainProgram = "zeditor";
       postBuild = ''
         wrapProgram $out/bin/zeditor \
-        --prefix PATH : ${pkgs.lib.makeBinPath zedInputs}
+        --prefix PATH : ${pkgs.lib.makeBinPath zedInputs} \
+        --set FONTCONFIG_FILE ${pkgs.makeFontsConf {fontDirectories = with pkgs; [ibm-plex lilex];}}
       '';
     };
 
