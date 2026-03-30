@@ -46,7 +46,13 @@
       spawnNoctalia ? true,
     }: let
       inherit (pkgs.stdenv.hostPlatform) system;
-      inherit (config.flake.packages.${system}) kitty ghostty noctalia nordzy-cursor;
+      inherit
+        (config.flake.packages.${system})
+        kitty
+        ghostty
+        noctalia
+        nordzy-cursor
+        ;
       # Add the necessary packages for a functional as-is experience
       # For me, this means Noctalia and Kitty
       buildInputs = with pkgs;
@@ -71,6 +77,12 @@
         inherit cfg pkgs;
         name = "niri-print-config";
       };
+
+      stdArgs = ''
+        --prefix PATH : ${pkgs.lib.makeBinPath buildInputs} \
+        --set XCURSOR_THEME "Nordzy-cursors-white" \
+        --set XCURSOR_SIZE "24" \
+      '';
     in
       pkgs.symlinkJoin {
         name = "niri";
@@ -84,8 +96,9 @@
           # Include a command that wraps the config to be able to just launch it without a service unit
           ln -s $out/bin/niri $out/bin/niri-wrapped
           wrapProgram $out/bin/niri-wrapped \
-            --prefix PATH : ${pkgs.lib.makeBinPath buildInputs} \
-            --add-flags "-c ${cfg}"
+          --add-flags "-c ${cfg}" \
+            ${stdArgs}
+
 
           # Override the systemd unit to include the config
           mkdir -p $out/lib/systemd/user/niri.service.d
@@ -97,7 +110,7 @@
 
           $out/bin/niri validate -c ${cfg}
           wrapProgram $out/bin/niri \
-            --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
+            ${stdArgs}
         '';
       };
   };
