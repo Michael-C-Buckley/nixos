@@ -28,7 +28,7 @@
 
       # Easy mechanism to make them available everywhere
       flake = {
-        inherit npins;
+        inherit mkImport npins;
         nvfetcher = ./_sources/generated.nix;
       };
 
