@@ -18,6 +18,11 @@ in {
       default = {};
       description = "User configuration modules that can be shared across module types.";
     };
+    extraConfigs = mkOption {
+      type = attrsOf raw;
+      default = {};
+      description = "Small extra configs I want to be portable around the flake.";
+    };
     lib = mkOption {
       type = lazyAttrsOf raw;
       default = {};

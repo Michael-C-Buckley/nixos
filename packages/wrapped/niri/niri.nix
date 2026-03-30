@@ -16,10 +16,18 @@
     lib,
     system,
     ...
-  }:
+  }: let
+    inherit (config.flake.wrappers) mkNiri;
+  in
     lib.optionalAttrs (lib.hasSuffix "linux" system) {
-      packages.niri = config.flake.wrappers.mkNiri {
-        inherit pkgs;
+      packages = {
+        niri = mkNiri {
+          inherit pkgs;
+        };
+        niri-t14 = mkNiri {
+          inherit pkgs;
+          extraConfig = config.flake.extraConfigs.t14-niri;
+        };
       };
     };
 
