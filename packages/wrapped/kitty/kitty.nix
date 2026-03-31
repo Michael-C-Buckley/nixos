@@ -10,9 +10,7 @@
     pkgs,
     extraConfig ? {},
     extraBinds ? {},
-    extraRuntimeInputs ? [],
   }: let
-    buildInputs = [pkgs.cascadia-code] ++ extraRuntimeInputs;
     cfg = import ./_config.nix {inherit pkgs extraConfig extraBinds;};
 
     printCfg = config.flake.functions.printConfig {
@@ -23,14 +21,12 @@
     pkgs.symlinkJoin {
       name = "kitty";
       paths = [pkgs.kitty];
-      inherit buildInputs;
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''
         cp -r ${printCfg}/bin $out
 
         wrapProgram $out/bin/kitty \
           --add-flags "-c ${cfg}" \
-          --prefix PATH : ${pkgs.lib.makeBinPath buildInputs} \
           --set FONTCONFIG_FILE ${pkgs.makeFontsConf {fontDirectories = [pkgs.cascadia-code];}}
       '';
     };
