@@ -1,7 +1,7 @@
 {
   agent = {
     default_model = {
-      model = "gpt-5-mini";
+      model = "claude-sonnet-4.6";
       provider = "copilot_chat";
     };
     default_profile = "write";
@@ -17,7 +17,7 @@
     };
   };
   git.git_gutter = "tracked_files";
-  features.edit_prediction_provider = "none";
+  edit_prediction_provider = "none";
 
   languages = {
     Nix = {
@@ -51,6 +51,6 @@
 
   toolbar.code_actions = true;
 
-  us_font_size = 16;
   vim_mode = true;
+  helix_mode = true;
 }
