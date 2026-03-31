@@ -4,6 +4,7 @@
       default
       helium
       chimera-ssh-agent
+      chimera-zed-deploy
     ];
     home.stateVersion = "25.11";
   };
