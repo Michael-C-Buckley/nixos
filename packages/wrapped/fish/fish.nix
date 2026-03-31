@@ -50,41 +50,43 @@ in {
         ;
     };
 
-    buildInputs = with pkgs;
-      [
-        bat
-        direnv
-        eza
-        fd
-        fzf
-        jq
-        nix-direnv
-        starship
-        git
-        ripgrep
-        delta
-        tig
-        lazygit
-        nushell
-      ]
-      ++ extraRuntimeInputs;
-
     print = config.flake.functions.printConfig {
       inherit cfg pkgs;
       name = "fish-print-config";
+    };
+
+    runtimeEnv = pkgs.buildEnv {
+      name = "fish-runtime-env";
+      pathsToLink = ["/bin"];
+      paths = with pkgs;
+        [
+          bat
+          direnv
+          eza
+          fd
+          fzf
+          jq
+          nix-direnv
+          starship
+          git
+          ripgrep
+          delta
+          tig
+          lazygit
+        ]
+        ++ extraRuntimeInputs;
     };
   in
     pkgs.symlinkJoin {
       name = "fish";
       paths = [pkgs.fish];
-      inherit buildInputs;
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''
         cp -r ${print}/bin $out
 
         wrapProgram $out/bin/fish \
           --add-flags "--init-command 'source ${cfg}'" \
-          --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
+          --prefix PATH : ${runtimeEnv}/bin
       '';
       passthru.shellPath = "/bin/fish";
     };
