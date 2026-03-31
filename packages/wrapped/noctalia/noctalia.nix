@@ -10,20 +10,20 @@
     ...
   }: let
     allInputs = with pkgs; [
-      # Packages
+      # Required
       brightnessctl
-      cava
       cliphist
-      coreutils
       ddcutil
-      file
-      findutils
-      libnotify
-      matugen
-      swww
       wl-clipboard
+      imagemagick
       wlsunset
-      # Fonts
+      wlr-randr
+      # Optional that I include
+      cava
+      libnotify
+    ];
+
+    fontDirectories = with pkgs; [
       dejavu_fonts
       inter
       material-symbols
@@ -33,18 +33,22 @@
     # Not available on ARM
     x86Inputs = with pkgs; [gpu-screen-recorder];
 
-    buildInputs = allInputs ++ lib.optionals (lib.hasPrefix "x86" system) x86Inputs;
+    runtimeEnv = pkgs.buildEnv {
+      name = "noctalia-runtime-env";
+      pathsToLink = ["/bin"];
+      paths = allInputs ++ lib.optionals (lib.hasPrefix "x86" system) x86Inputs;
+    };
   in
     lib.optionalAttrs (lib.hasSuffix "linux" system) {
       packages.noctalia = pkgs.symlinkJoin {
         name = "noctalia-shell";
         paths = [pkgs.noctalia-shell];
-        inherit buildInputs;
         nativeBuildInputs = [pkgs.makeWrapper];
         meta.mainProgram = "noctalia-shell";
         postBuild = ''
           wrapProgram $out/bin/noctalia-shell \
-            --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
+            --prefix PATH : ${runtimeEnv}/bin \
+            --set FONTCONFIG_FILE ${pkgs.makeFontsConf {inherit fontDirectories;}}
         '';
       };
     };
