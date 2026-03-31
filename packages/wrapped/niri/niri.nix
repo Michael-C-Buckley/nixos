@@ -45,9 +45,8 @@
       extraRuntimeInputs ? [],
       spawnNoctalia ? true,
     }: let
-      inherit (pkgs.stdenv.hostPlatform) system;
       inherit
-        (config.flake.packages.${system})
+        (config.flake.packages.${pkgs.stdenv.hostPlatform.system})
         kitty
         ghostty
         noctalia
@@ -55,22 +54,25 @@
         ;
       # Add the necessary packages for a functional as-is experience
       # For me, this means Noctalia and Kitty
-      buildInputs = with pkgs;
-        [
-          makeWrapper
-          hyprlock
-          wireplumber
-          playerctl
-          xwayland-satellite
-          xdg-desktop-portal-gnome
-        ]
-        ++ [
-          kitty
-          ghostty
-          noctalia
-          nordzy-cursor
-        ]
+      nativeBuildInputs = with pkgs; [makeWrapper];
+      runtimeInputs =
+        (builtins.attrValues {
+          inherit kitty ghostty noctalia;
+          inherit
+            (pkgs)
+            wireplumber
+            playerctl
+            xwayland-satellite
+            xdg-desktop-portal-gnome
+            ;
+        })
         ++ extraRuntimeInputs;
+
+      runtimeEnv = pkgs.buildEnv {
+        name = "niri-runtime-env";
+        paths = runtimeInputs;
+        pathsToLink = ["/bin"];
+      };
 
       cfg = import ./_config.nix {inherit pkgs extraConfig spawnNoctalia;};
 
@@ -80,7 +82,8 @@
       };
 
       stdArgs = ''
-        --prefix PATH : ${pkgs.lib.makeBinPath buildInputs} \
+        --prefix PATH : ${runtimeEnv}/bin \
+        --prefix XCURSOR_PATH : ${nordzy-cursor}/share/icons \
         --set XCURSOR_THEME "Nordzy-cursors-white" \
         --set XCURSOR_SIZE "24" \
       '';
@@ -88,7 +91,7 @@
       pkgs.symlinkJoin {
         name = "niri";
         paths = [pkg];
-        inherit buildInputs;
+        inherit nativeBuildInputs;
         passthru.providedSessions = ["niri"];
         postBuild = ''
           # A simple script to print the current config that is active
