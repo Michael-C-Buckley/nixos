@@ -84,28 +84,33 @@ in {
       extraAliases ? {},
       extraRuntimeInputs ? [],
     }: let
-      buildInputs = with pkgs;
-        [
-          # Shell Utilities
-          carapace
-          carapace-bridge
-          direnv
-          nix-direnv
-          # Command Line
-          bat
-          eza
-          fd
-          fzf
-          jq
-          ripgrep
-          # VCS
-          git
-          delta
-          tig
-          lazygit
-        ]
-        ++ [(mkStarship {inherit pkgs;})]
-        ++ extraRuntimeInputs;
+      runtimeEnv = pkgs.buildEnv {
+        name = "nushell-runtime-env";
+        pathsToLink = ["/bin"];
+
+        paths = with pkgs;
+          [
+            # Shell Utilities
+            carapace
+            carapace-bridge
+            direnv
+            nix-direnv
+            # Command Line
+            bat
+            eza
+            fd
+            fzf
+            jq
+            ripgrep
+            # VCS
+            git
+            delta
+            tig
+            lazygit
+          ]
+          ++ [(mkStarship {inherit pkgs;})]
+          ++ extraRuntimeInputs;
+      };
 
       cfg = mkNuConfig {inherit pkgs extraAliases extraConfig;};
       envCfg = mkNuEnvConfig {inherit pkgs env;};
@@ -124,7 +129,6 @@ in {
       pkgs.symlinkJoin {
         name = "nu";
         paths = [pkgs.nushell];
-        inherit buildInputs;
         nativeBuildInputs = [pkgs.makeWrapper];
         postBuild = ''
           cp -r ${printCfg}/bin $out
@@ -132,7 +136,7 @@ in {
 
           wrapProgram $out/bin/nu \
             --add-flags "--config ${cfg} --env-config ${envCfg}" \
-            --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
+            --prefix PATH : ${runtimeEnv}/bin
         '';
         passthru.shellPath = "/bin/nu";
       };
