@@ -42,11 +42,10 @@ in {
       command = "fish";
       window-decoration = false;
     };
-    extraRuntimeInputs = separate [] [config.flake.packages.${system}.fish];
   in {
     packages = {
       ghostty = config.flake.wrappers.mkGhostty {
-        inherit pkg pkgs extraConfig extraRuntimeInputs;
+        inherit pkg pkgs extraConfig;
       };
     };
   };
@@ -69,9 +68,7 @@ in {
       pkg ? pkgs.ghostty,
       extraConfig ? {},
       extraBinds ? {},
-      extraRuntimeInputs ? [],
     }: let
-      buildInputs = [pkgs.cascadia-code] ++ extraRuntimeInputs;
       # The MacOS ghostty comes from the official dmg and is in a different location
       ghosttyBinary =
         if pkgs.stdenv.isDarwin
@@ -88,14 +85,12 @@ in {
       pkgs.symlinkJoin {
         name = "ghostty";
         paths = [pkg];
-        inherit buildInputs;
         nativeBuildInputs = [pkgs.makeWrapper];
         postBuild = ''
           cp -r ${printCfg}/bin $out
 
           wrapProgram ${ghosttyBinary} \
             --add-flags "--config-file=${cfg}" \
-            --prefix PATH : ${lib.makeBinPath buildInputs} \
             --set FONTCONFIG_FILE ${pkgs.makeFontsConf {fontDirectories = [pkgs.cascadia-code];}}
         '';
       };
