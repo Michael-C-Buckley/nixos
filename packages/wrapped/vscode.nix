@@ -1,23 +1,27 @@
 {
   perSystem = {pkgs, ...}: let
-    buildInputs = with pkgs; [
-      sops
+    runtimeEnv = pkgs.buildEnv {
+      name = "vscode-runtime-env";
+      pathsToLink = ["/bin"];
+      paths = with pkgs; [
+        sops
 
-      # Python - LSP is invariably Pylance, via extension + sync
-      python3
-      uv
-      ruff
+        # Python - LSP is invariably Pylance, via extension + sync
+        python3
+        uv
+        ruff
 
-      # Nix
-      alejandra
-      nil
-      nixd
+        # Nix
+        alejandra
+        nil
+        nixd
 
-      # Rust
-      rust-analyzer
-      rustfmt
-    ];
-    fonts = with pkgs; [
+        # Rust
+        rust-analyzer
+        rustfmt
+      ];
+    };
+    fontDirectories = with pkgs; [
       cascadia-code
       nerd-fonts.symbols-only
       vista-fonts
@@ -28,12 +32,11 @@
     packages.vscode = pkgs.symlinkJoin {
       name = "code";
       paths = [pkgs.vscode]; # Pull from unstable small for a needed update
-      inherit buildInputs;
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''
         wrapProgram $out/bin/code \
-        --prefix PATH : ${pkgs.lib.makeBinPath buildInputs} \
-        --set FONTCONFIG_FILE ${pkgs.makeFontsConf {fontDirectories = fonts;}}
+        --prefix PATH : ${runtimeEnv}/bin \
+        --set FONTCONFIG_FILE ${pkgs.makeFontsConf {inherit fontDirectories;}}
       '';
     };
   };
