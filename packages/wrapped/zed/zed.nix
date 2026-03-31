@@ -5,7 +5,17 @@
   lib,
   ...
 }: {
-  flake.wrappers.mkZedConfig = {extraConfig ? {}}: builtins.toJSON (lib.recursiveUpdate (import ./_settings.nix) extraConfig);
+  flake.wrappers.mkZedConfig = {
+    pkgs,
+    extraConfig ? {},
+  }:
+    pkgs.runCommand "zed-settings.json" {
+      nativeBuildInputs = [pkgs.biome];
+      json = builtins.toJSON (lib.recursiveUpdate (import ./_settings.nix) extraConfig);
+      passAsFile = ["json"];
+    } ''
+      biome format --stdin-file-path settings.json < "$jsonPath" > $out
+    '';
 
   perSystem = {
     pkgs,
@@ -74,6 +84,7 @@
     packages =
       {
         zeditor = localPkg;
+        zedConfig = config.flake.wrappers.mkZedConfig {inherit pkgs;};
       }
       // lib.optionalAttrs (lib.hasSuffix "linux" system) {
         zeditor-jailed = jail "zeditor" localPkg bwrapFeatures;
