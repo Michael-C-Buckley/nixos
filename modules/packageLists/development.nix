@@ -11,8 +11,5 @@
     "attic-client"
     "nix-tree"
     "nh"
-
-    # Misc
-    "python3"
   ];
 }
