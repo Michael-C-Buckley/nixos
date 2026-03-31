@@ -7,6 +7,12 @@
     default_profile = "write";
     single_file_review = true;
   };
+  auto_install_extensions = {
+    html = true;
+    nix = true;
+    toml = true;
+    lua = true;
+  };
   base_keymap = "VSCode";
   buffer_font_size = 15;
   buffer_font_weight = 400;
