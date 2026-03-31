@@ -49,33 +49,37 @@ in {
       pkg ? pkgs.hyprland,
       extraRuntimeInputs ? [],
     }: let
-      inherit (pkgs.stdenv.hostPlatform) system;
-      inherit (config.flake.packages.${system}) ghostty kitty noctalia nordzy-cursor;
       # Add the necessary packages for a functional as-is experience
       # For me, this means Noctalia and Kitty
-      buildInputs = with pkgs;
-        [
-          hyprshot
-          hyprcursor
-          hyprpolkitagent
-          xdg-desktop-portal
+      runtimeEnv = pkgs.buildEnv {
+        name = "hyprland-runtime-env";
+        pathsToLink = ["/bin"];
+        paths =
+          (builtins.attrValues {
+            inherit
+              (pkgs)
+              hyprshot
+              hyprcursor
+              hyprpolkitagent
+              xdg-desktop-portal
+              clipse
+              wl-clip-persist
+              wl-clipboard
+              xclip
+              wireplumber
+              playerctl
+              ;
 
-          clipse
-          wl-clip-persist
-          wl-clipboard
-          xclip
-
-          makeWrapper
-          wireplumber
-          playerctl
-        ]
-        ++ [
-          kitty
-          ghostty
-          noctalia
-          nordzy-cursor
-        ]
-        ++ extraRuntimeInputs;
+            inherit
+              (config.flake.packages.${pkgs.stdenv.hostPlatform.system})
+              kitty
+              ghostty
+              noctalia
+              nordzy-cursor
+              ;
+          })
+          ++ extraRuntimeInputs;
+      };
 
       cfg = import ./_config.nix {inherit pkgs hostConfig;};
 
@@ -87,7 +91,7 @@ in {
       pkgs.symlinkJoin {
         name = "hyprland";
         paths = [pkg];
-        inherit buildInputs;
+        buildInputs = [pkgs.makeWrapper];
         passthru.providedSessions = ["hyprland"];
         postBuild = ''
           cp -r ${printCfg}/bin $out
@@ -97,7 +101,7 @@ in {
           $out/bin/hyprland --verify-config --config ${cfg}
 
           wrapProgram $out/bin/start-hyprland \
-            --prefix PATH : ${pkgs.lib.makeBinPath buildInputs} \
+            --prefix PATH : ${runtimeEnv}/bin \
             --add-flags "-c ${cfg}"
         '';
       };
