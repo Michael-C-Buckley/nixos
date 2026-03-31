@@ -13,41 +13,44 @@
     system,
     ...
   }: let
-    zedInputs = with pkgs; [
-      # Nix
-      alejandra
-      nil
-      nixd
-      statix
+    runtimeEnv = pkgs.buildEnv {
+      name = "zed-runtime-env";
+      pathsToLink = ["/bin"];
+      paths = with pkgs; [
+        # Nix
+        alejandra
+        nil
+        nixd
+        statix
 
-      # Go
-      go
-      gopls
-      gofumpt
+        # Go
+        go
+        gopls
+        gofumpt
 
-      # Rust
-      rust-analyzer
-      rustfmt
+        # Rust
+        rust-analyzer
+        rustfmt
 
-      # Python
-      python3
-      ruff
-      pyrefly
-      python314Packages.jedi-language-server
+        # Python
+        python3
+        ruff
+        pyrefly
+        python314Packages.jedi-language-server
 
-      # Yaml
-      yaml-language-server
-    ];
+        # Yaml
+        yaml-language-server
+      ];
+    };
 
     localPkg = pkgs.symlinkJoin {
       name = "zeditor";
       paths = [pkgs.zed-editor];
-      buildInputs = zedInputs;
       nativeBuildInputs = [pkgs.makeWrapper];
       meta.mainProgram = "zeditor";
       postBuild = ''
         wrapProgram $out/bin/zeditor \
-        --prefix PATH : ${pkgs.lib.makeBinPath zedInputs} \
+        --prefix PATH : ${runtimeEnv}/bin \
         --set FONTCONFIG_FILE ${pkgs.makeFontsConf {fontDirectories = with pkgs; [ibm-plex lilex];}}
       '';
     };
