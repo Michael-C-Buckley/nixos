@@ -45,24 +45,29 @@ in {
       extraCfg ? {},
       extraLang ? {},
     }: let
-      buildInputs = with pkgs;
-        [
-          # Nix
-          alejandra
-          nil
-          nixd
-          # Rust
-          rust-analyzer
-          rustfmt
-          # Python
-          ruff
-          basedpyright
-          # Yaml/json
-          biome
-          yaml-language-server
-          vscode-json-languageserver
-        ]
-        ++ extraRuntimeInputs;
+      runtimeEnv = pkgs.buildEnv {
+        name = "helix-runtime-env";
+        pathsToLink = ["/bin"];
+
+        paths = with pkgs;
+          [
+            # Nix
+            alejandra
+            nil
+            nixd
+            # Rust
+            rust-analyzer
+            rustfmt
+            # Python
+            ruff
+            basedpyright
+            # Yaml/json
+            biome
+            yaml-language-server
+            vscode-json-languageserver
+          ]
+          ++ extraRuntimeInputs;
+      };
 
       langs = mkHelixLanguages {inherit pkgs extraLang;};
       cfg = mkHelixConfig {inherit pkgs extraCfg;};
@@ -81,7 +86,6 @@ in {
       pkgs.symlinkJoin {
         name = "hx";
         paths = [pkg];
-        inherit buildInputs;
         nativeBuildInputs = [pkgs.makeWrapper];
         postBuild = ''
           cp -r ${printCfg}/bin $out
@@ -91,7 +95,7 @@ in {
           ln -s ${cfg} $out/helix/config.toml
           ln -s ${langs} $out/helix/languages.toml
           wrapProgram $out/bin/hx \
-            --prefix PATH : ${pkgs.lib.makeBinPath buildInputs} \
+            --prefix PATH : ${runtimeEnv}/bin \
             --set XDG_CONFIG_HOME $out
         '';
       };
