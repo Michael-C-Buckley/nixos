@@ -45,8 +45,7 @@
         # Python
         python3
         ruff
-        pyrefly
-        python314Packages.jedi-language-server
+        basedpyright
 
         # Yaml
         yaml-language-server
