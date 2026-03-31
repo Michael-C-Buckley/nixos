@@ -62,6 +62,7 @@
           wireplumber
           playerctl
           xwayland-satellite
+          xdg-desktop-portal-gnome
         ]
         ++ [
           kitty
