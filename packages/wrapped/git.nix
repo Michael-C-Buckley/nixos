@@ -67,20 +67,23 @@ in {
         if lib.hasSuffix "darwin" pkgs.stdenv.hostPlatform.system
         then "Users"
         else "home";
-      buildInputs = with pkgs; [
-        tig
-        delta
-      ];
+      runtimeEnv = pkgs.buildEnv {
+        name = "git-runtime-env";
+        pathsToLink = ["/bin"];
+        paths = with pkgs; [
+          tig
+          delta
+        ];
+      };
     in
       pkgs.symlinkJoin {
         name = "git";
         paths = [pkg];
-        inherit buildInputs;
         nativeBuildInputs = [pkgs.makeWrapper];
         postBuild = ''
           wrapProgram $out/bin/git \
             --set GIT_CONFIG_GLOBAL ${pkgs.writers.writeTOML "git-wrapped-config" (lib.recursiveUpdate (gitCfg home) extraConfig)} \
-            --prefix PATH : ${pkgs.lib.makeBinPath buildInputs}
+            --prefix PATH : ${runtimeEnv}/bin
         '';
       };
 
