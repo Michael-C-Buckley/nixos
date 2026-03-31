@@ -15,9 +15,15 @@
   inherit (builtins) mapAttrs;
   inherit (config) flake;
 
-  inherit (config.flake.modules.homeManager) alpine debian gentoo;
+  inherit
+    (config.flake.modules.homeManager)
+    alpine
+    debian
+    gentoo
+    chimera
+    ;
   mkHmConfig = {
-    system,
+    system ? "x86_64-linux",
     modules,
   }: let
     pkgs = import inputs.nixpkgs {
@@ -37,18 +43,19 @@
     };
 in {
   flake.homeConfigurations = {
+    "michael@t14c" = mkHmConfig {
+      modules = [chimera];
+    };
+
     "michael@t14" = mkHmConfig {
-      system = "x86_64-linux";
       modules = [gentoo];
     };
 
     "michael@alpine" = mkHmConfig {
-      system = "x86_64-linux";
       modules = [alpine];
     };
 
     "michael@debian" = mkHmConfig {
-      system = "x86_64-linux";
       modules = [debian];
     };
   };
