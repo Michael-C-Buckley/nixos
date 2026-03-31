@@ -23,7 +23,6 @@ in {
     mkStarship = {
       pkgs,
       extraConfig ? {},
-      buildInputs ? [],
       useCharacter ? false,
     }: let
       cfg = mkStarshipConfig {inherit pkgs extraConfig useCharacter;};
@@ -36,7 +35,6 @@ in {
       pkgs.symlinkJoin {
         name = "starship";
         paths = [pkgs.starship];
-        inherit buildInputs;
         nativeBuildInputs = [pkgs.makeWrapper];
         postBuild = ''
           cp -r ${printCfg}/bin $out
