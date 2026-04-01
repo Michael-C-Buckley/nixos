@@ -17,6 +17,7 @@
       inherit pkgs;
       extraConfig = config.flake.extraConfigs.t14-niri;
       spawnNoctalia = false;
+      systemd = false;
     };
   in {
     xdg.configFile = {

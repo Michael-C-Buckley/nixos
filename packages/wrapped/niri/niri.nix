@@ -44,6 +44,7 @@
       extraConfig ? "",
       extraRuntimeInputs ? [],
       spawnNoctalia ? true,
+      systemd ? true,
     }: let
       inherit
         (config.flake.packages.${pkgs.stdenv.hostPlatform.system})
@@ -74,7 +75,7 @@
         pathsToLink = ["/bin"];
       };
 
-      cfg = import ./_config.nix {inherit pkgs extraConfig spawnNoctalia;};
+      cfg = import ./_config.nix {inherit pkgs extraConfig systemd spawnNoctalia;};
 
       print = config.flake.functions.printConfig {
         inherit cfg pkgs;

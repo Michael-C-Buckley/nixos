@@ -2,8 +2,11 @@
   pkgs,
   extraConfig,
   spawnNoctalia,
+  systemd,
   options ? {},
 }: let
+  # Wrappers for pinning the active noctalia instance
+  # prevents the IPC from not working when the system updates
   noctaliaWrapper = pkgs.writeShellScript "noctalia-wrapper" ''
     #!/usr/bin/env bash
     exec $(cat ~/.local/share/noctalia_path) "$@"
@@ -13,6 +16,13 @@
     mkdir -p ~/.local/share
     echo $(whereis noctalia-shell | awk '{print $2}') > ~/.local/share/noctalia_path
   '';
+
+  # Set what the bind should be for power commands and changes
+  # whether systemd or elogind is active
+  powerCommand =
+    if systemd
+    then "systemctl"
+    else "loginctl";
 
   noctaliaSpawnCommand =
     if spawnNoctalia
@@ -119,8 +129,8 @@ in
         Ctrl+Alt+Delete { quit skip-confirmation=true; }
         Mod+Shift+P { power-off-monitors; }
 
-        Ctrl+Mod+semicolon { spawn-sh "loginctl poweroff"; }
-        Ctrl+Alt+Mod+semicolon { spawn-sh "loginctl reboot"; }
+        Ctrl+Mod+semicolon { spawn-sh "${powerCommand} poweroff"; }
+        Ctrl+Alt+Mod+semicolon { spawn-sh "${powerCommand} reboot"; }
 
         // WINDOW
         Mod+Shift+Minus { set-window-height "-10%"; }
