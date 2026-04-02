@@ -26,6 +26,7 @@
         };
         niri-t14 = mkNiri {
           inherit pkgs;
+          systemd = false;
           extraConfig = config.flake.extraConfigs.t14-niri;
         };
       };
