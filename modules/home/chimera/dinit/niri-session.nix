@@ -32,12 +32,12 @@
     xdg.configFile = {
       "dinit.d/session-env".text = ''
         type = scripted
-        command = ${dinitSetenv}
+        command = ${lib.getExe dinitSetenv}
       '';
 
       "dinit.d/niri".text = ''
         type = process
-        command = nixGL ${lib.getExe' niri "niri-wrapped"}
+        command = nixGL ${lib.getExe' niri "niri-session-wrapped"}
         smooth-recovery = true
         depends-on = session-env
         stop-command = ${sessionEnd}
