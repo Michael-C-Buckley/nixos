@@ -7,6 +7,7 @@
       helium
       chimera-ssh-agent
       chimera-zed-deploy
+      chimera-niri-session
     ];
     home = {
       packages = builtins.attrValues {

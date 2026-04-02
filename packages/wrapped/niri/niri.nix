@@ -44,6 +44,7 @@
       extraConfig ? "",
       extraRuntimeInputs ? [],
       spawnNoctalia ? true,
+      systemd ? true,
     }: let
       inherit
         (config.flake.packages.${pkgs.stdenv.hostPlatform.system})
@@ -74,7 +75,7 @@
         pathsToLink = ["/bin"];
       };
 
-      cfg = import ./_config.nix {inherit pkgs extraConfig spawnNoctalia;};
+      cfg = import ./_config.nix {inherit pkgs extraConfig systemd spawnNoctalia;};
 
       print = config.flake.functions.printConfig {
         inherit cfg pkgs;
@@ -103,7 +104,10 @@
           --add-flags "-c ${cfg}" \
             ${stdArgs}
 
-
+          ln -s $out/bin/niri $out/bin/niri-session-wrapped
+          wrapProgram $out/bin/niri-session-wrapped \
+          --add-flags "--session -c ${cfg}" \
+            ${stdArgs}
           # Override the systemd unit to include the config
           mkdir -p $out/lib/systemd/user/niri.service.d
           cat > $out/lib/systemd/user/niri.service.d/override.conf <<EOF
