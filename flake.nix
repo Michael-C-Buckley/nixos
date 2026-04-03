@@ -28,8 +28,7 @@
 
       # Easy mechanism to make them available everywhere
       flake = {
-        inherit mkImport npins;
-        nvfetcher = ./_sources/generated.nix;
+        inherit npins;
       };
 
       perSystem = {
@@ -38,6 +37,8 @@
         ...
       }: {
         _module.args = {
+          # Nvfetcher is only used for packaging so pass it as a module arg
+          nvfetcher = ./_sources/generated.nix;
           # Globally set unfree for all per-system evals
           pkgs = import nixpkgs {
             inherit system;
