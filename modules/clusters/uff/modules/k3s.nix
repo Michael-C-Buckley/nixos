@@ -1,5 +1,6 @@
 {config, ...}: let
-  inherit (config.flake) modules hosts;
+  inherit (config.flake) modules;
+  inherit (config.flake.custom) hosts;
   inherit (config.flake.custom.lib.network) getAddress;
 in {
   flake.modules.nixos.uff = {

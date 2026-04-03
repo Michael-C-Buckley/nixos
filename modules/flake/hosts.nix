@@ -2,7 +2,7 @@
 # These are reused anywhere the IPs need to be referenced and serve
 # as the single source of truth
 {
-  flake.hosts = {
+  flake.custom.hosts = {
     uff1.interfaces = {
       lo.ipv4 = "192.168.61.1/32";
       br1.ipv4 = "192.168.59.10/27";

@@ -1,6 +1,5 @@
 {config, ...}: let
-  inherit (config.flake) hosts;
-  inherit (config.flake.custom) lib;
+  inherit (config.flake.custom) hosts lib;
 in {
   flake.modules.nixos.ntp = {config, ...}: let
     inherit (config.networking) hostName;

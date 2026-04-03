@@ -15,7 +15,7 @@ in {
   }: let
     inherit (builtins) attrNames filter listToAttrs;
     inherit (config.networking) hostName;
-    inherit (flake.hosts.${hostName}) interfaces;
+    inherit (flake.custom.hosts.${hostName}) interfaces;
 
     lo = getAddress interfaces.lo.ipv4;
 
