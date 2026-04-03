@@ -6,8 +6,17 @@
 # Returns 0 unconditionally in all cases to prevent issues with automation breaking
 # it just provides a simple warning if it fails to get a valid key
 
+# Check the OS for where home files will be placed
+let os = (uname | get kernel-name)
+
+let pubkey_file = match (uname | get kernel-name) {
+  "Linux" => /home/michael/.ssh/git_signing.pub
+  "Darwin" => /Users/michael/.ssh/git_signing.pub
+  _ => /tmp/git_signing.pub # I don't expect this
+}
+
 # Remove the file to reset the state
-rm -f /home/michael/.ssh/git_signing.pub
+rm -f  $pubkey_file
 
 let approved_file = (
     $env | get -o GIT_SIGNING_KEYS_FILE
@@ -50,4 +59,4 @@ if ($match | is-empty) {
     return
 }
 
-$match | save /home/michael/.ssh/git_signing.pub
+$match | save $pubkey_file
