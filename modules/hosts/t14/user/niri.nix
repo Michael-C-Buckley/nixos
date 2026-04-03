@@ -1,5 +1,5 @@
 {config, ...}: {
   flake.modules.nixos.t14 = {
-    custom.niri.extraConfig = config.flake.extraConfigs.t14-niri;
+    custom.niri.extraConfig = config.flake.custom.extraConfigs.t14-niri;
   };
 }

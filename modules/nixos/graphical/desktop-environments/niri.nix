@@ -1,5 +1,5 @@
 {config, ...}: let
-  inherit (config.flake.wrappers) mkNiri;
+  inherit (config.flake.custom.wrappers) mkNiri;
 in {
   flake.modules.nixos.niri = {
     config,

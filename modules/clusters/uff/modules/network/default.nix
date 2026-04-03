@@ -3,7 +3,7 @@
 in {
   flake.modules.nixos.uff = {config, ...}: let
     inherit (config.networking) hostName;
-    lo = flake.lib.network.getAddress flake.hosts.${hostName}.interfaces.lo.ipv4;
+    lo = flake.custom.lib.network.getAddress flake.hosts.${hostName}.interfaces.lo.ipv4;
   in {
     imports = with flake.modules.nixos; [
       lab-network

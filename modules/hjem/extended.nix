@@ -1,6 +1,6 @@
 {config, ...}: {
-  flake.hjemConfigs.extended = {pkgs, ...}: {
-    imports = with config.flake.hjemConfigs; [
+  flake.custom.hjemConfigs.extended = {pkgs, ...}: {
+    imports = with config.flake.custom.hjemConfigs; [
       cursor
       helium
       qt

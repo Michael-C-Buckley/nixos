@@ -1,5 +1,5 @@
 {lib, ...}: {
-  flake.functions.wireguard = {pkgs}: {
+  flake.custom.functions.wireguard = {pkgs}: {
     genInterface = {
       cfgPath ? config.sops.secrets."wireguard-${name}".path,
       config,

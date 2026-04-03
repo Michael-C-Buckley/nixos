@@ -3,7 +3,7 @@
 {config, ...}: let
   inherit (config) flake;
 in {
-  flake.hjemConfigs.cursor = {
+  flake.custom.hjemConfigs.cursor = {
     pkgs,
     lib,
     ...

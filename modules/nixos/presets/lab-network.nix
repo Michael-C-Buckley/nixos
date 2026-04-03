@@ -4,7 +4,7 @@
 {config, ...}: let
   inherit (config) flake;
   inherit
-    (config.flake.lib.network)
+    (config.flake.custom.lib.network)
     getAddress
     ;
 in {

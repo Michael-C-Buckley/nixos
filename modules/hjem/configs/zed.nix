@@ -2,9 +2,9 @@
 # so mutably link an initial state to prevent issues
 # with not being able to have them convert the config
 {config, ...}: {
-  flake.hjemConfigs.zed = {pkgs, ...}: {
+  flake.custom.hjemConfigs.zed = {pkgs, ...}: {
     hjem.users.michael.xdg.config.files."zed/settings.json" = {
-      source = config.flake.wrappers.mkZedConfig {inherit pkgs;};
+      source = config.flake.custom.wrappers.mkZedConfig {inherit pkgs;};
       type = "copy";
       permissions = "0644";
     };

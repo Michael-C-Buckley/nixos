@@ -1,5 +1,5 @@
 {
-  flake.hjemConfigs.helium = {pkgs, ...}: {
+  flake.custom.hjemConfigs.helium = {pkgs, ...}: {
     # Just plumbs the necessary components for getting widevine working
     # Package is now part of my fullEnv package
     hjem.users.michael = {

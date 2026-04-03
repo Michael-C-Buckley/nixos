@@ -14,6 +14,6 @@ in {
   in {
     home.packages =
       localPkgs
-      ++ (functions.packageLists.combinePkgLists (with flake.packageLists; [cli development]));
+      ++ (functions.packageLists.combinePkgLists (with flake.custom.packageLists; [cli development]));
   };
 }

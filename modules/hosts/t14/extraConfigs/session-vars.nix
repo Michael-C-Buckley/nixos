@@ -3,7 +3,7 @@
 in {
   # Common Session Variables I reuse
   # Will require priming with pkgs to get the cursor path
-  flake.extraConfigs.session-vars = {pkgs}: let
+  flake.custom.extraConfigs.session-vars = {pkgs}: let
     inherit (pkgs.stdenv.hostPlatform) system;
   in {
     XCURSOR_PATH = "${packages.${system}.nordzy-cursor}/share/icons";

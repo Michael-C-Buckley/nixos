@@ -5,7 +5,7 @@
   lib,
   ...
 }: {
-  flake.wrappers.mkZedConfig = {
+  flake.custom.wrappers.mkZedConfig = {
     pkgs,
     extraConfig ? {},
   }:
@@ -83,7 +83,7 @@
     packages =
       {
         zeditor = localPkg;
-        zedConfig = config.flake.wrappers.mkZedConfig {inherit pkgs;};
+        zedConfig = config.flake.custom.wrappers.mkZedConfig {inherit pkgs;};
       }
       // lib.optionalAttrs (lib.hasSuffix "linux" system) {
         zeditor-jailed = jail "zeditor" localPkg bwrapFeatures;

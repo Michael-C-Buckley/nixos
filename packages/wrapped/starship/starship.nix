@@ -5,13 +5,13 @@
 # is not included because it is useless.  Just the good and relevant
 # things have kept.
 {config, ...}: let
-  inherit (config.flake.wrappers) mkStarshipConfig mkStarship;
+  inherit (config.flake.custom.wrappers) mkStarshipConfig mkStarship;
 in {
   perSystem = {pkgs, ...}: {
     packages.starship = mkStarship {inherit pkgs;};
   };
 
-  flake.wrappers = {
+  flake.custom.wrappers = {
     # Expose just the config if I ever wanted it
     mkStarshipConfig = {
       pkgs,
@@ -27,7 +27,7 @@ in {
     }: let
       cfg = mkStarshipConfig {inherit pkgs extraConfig useCharacter;};
 
-      printCfg = config.flake.functions.printConfig {
+      printCfg = config.flake.custom.functions.printConfig {
         inherit cfg pkgs;
         name = "starship-print-config";
       };

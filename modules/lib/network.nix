@@ -6,7 +6,7 @@ in
     lib,
     ...
   }: {
-    flake.lib.network = {
+    flake.custom.lib.network = {
       # Helper to get split an IP with CIDR mask and return just the address
       getAddress = ip: head (split "/" ip);
 
@@ -26,7 +26,7 @@ in
       # such as `eth1.100` where it's name and ID
       getVlanList = interfaces:
         map
-        config.flake.lib.network.fixVlanName
+        config.flake.custom.lib.network.fixVlanName
         (lib.filter (lib.hasInfix "-") (attrNames interfaces));
 
       # Template for the VLAN schema I use

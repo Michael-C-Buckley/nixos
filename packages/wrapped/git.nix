@@ -52,10 +52,10 @@
   };
 in {
   perSystem = {pkgs, ...}: {
-    packages.git = config.flake.wrappers.mkGit {inherit pkgs;};
+    packages.git = config.flake.custom.wrappers.mkGit {inherit pkgs;};
   };
 
-  flake.wrappers = {
+  flake.custom.wrappers = {
     # The fully wrapped package is somewhat limited, as any nix shell
     # will take precedent over your installed config path
     mkGit = {

@@ -1,5 +1,5 @@
 {
-  flake.hjemConfigs.termfilechooser = {
+  flake.custom.hjemConfigs.termfilechooser = {
     config,
     pkgs,
     ...

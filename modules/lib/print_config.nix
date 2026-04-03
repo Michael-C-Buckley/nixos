@@ -1,5 +1,5 @@
 {
-  flake.functions.printConfig = {
+  flake.custom.functions.printConfig = {
     pkgs,
     name,
     cfg,

@@ -9,7 +9,7 @@
   file = "/home/michael/.config/zed/settings.json";
 in {
   flake.modules.homeManager.chimera-zed-deploy = {pkgs, ...}: let
-    cfg = config.flake.wrappers.mkZedConfig {inherit pkgs;};
+    cfg = config.flake.custom.wrappers.mkZedConfig {inherit pkgs;};
     wrapper = pkgs.writeShellScriptBin "zed-deploy-wrapper" ''
       # Skip if the config already exists
       if [ -e ${file} ]; then

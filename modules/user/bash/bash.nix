@@ -1,5 +1,5 @@
 {
-  flake.userModules.bash = {
+  flake.custom.userModules.bash = {
     bashrc = ./bashrc;
 
     bashProfile =

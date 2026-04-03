@@ -6,7 +6,7 @@ in {
     pkgs,
     ...
   }: let
-    shell = flake.wrappers.mkFish {
+    shell = flake.custom.wrappers.mkFish {
       inherit pkgs;
       env = config.custom.shell.environmentVariables;
     };

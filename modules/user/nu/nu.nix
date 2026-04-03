@@ -1,5 +1,5 @@
 {
-  flake.userModules.nu = {
+  flake.custom.userModules.nu = {
     keyScript = ./key_script.nu;
   };
 }

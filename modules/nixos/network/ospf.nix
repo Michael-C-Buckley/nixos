@@ -1,6 +1,6 @@
 {config, ...}: let
   inherit (config.flake) hosts;
-  inherit (config.flake.lib.network) getAddress;
+  inherit (config.flake.custom.lib.network) getAddress;
 in {
   flake.modules.nixos.ospf = {
     config,
