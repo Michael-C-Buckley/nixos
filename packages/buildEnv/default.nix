@@ -34,7 +34,12 @@
       fullEnv = pkgs.buildEnv {
         # Fully loaded graphical environments
         name = "Michael's full env";
-        paths = commonFullPkgs ++ lib.optionals (lib.hasSuffix "linux" system) [local.helium];
+        paths =
+          commonFullPkgs
+          ++ lib.optionals (lib.hasSuffix "linux" system) [
+            local.helium
+            local.librewolf-jailed
+          ];
       };
     };
   };

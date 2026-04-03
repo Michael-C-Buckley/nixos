@@ -15,15 +15,13 @@
 
       # Utility
       attic-client
-      yubioath-flutter
       wireshark
       putty
       winbox4
 
       # Communication
-      legcord
       signal-desktop
-      materialgram
+
       # Productivity
       novelwriter
     ];
