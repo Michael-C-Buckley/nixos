@@ -1,11 +1,11 @@
 {config, ...}: {
-  flake.modules.nixos.nix = {pkgs, ...}: {
+  flake.modules.darwin.nix = {pkgs, ...}: {
     imports = [config.flake.modules.generic.nix];
     nix = {
       package = pkgs.nixVersions.latest;
       settings = {
-        trusted-users = ["root" "@wheel"];
-        allowed-users = ["root" "@wheel"];
+        trusted-users = ["root" "@admin"];
+        allowed-users = ["root" "@admin"];
       };
     };
   };

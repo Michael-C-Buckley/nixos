@@ -1,32 +1,10 @@
-{
-  self,
-  config,
-  ...
-}: {
-  flake.modules.darwin.m1 = {pkgs, ...}: {
+{config, ...}: {
+  flake.modules.darwin.m1 = {
     imports = with config.flake.modules.darwin; [
       ssh-agent
     ];
 
-    nix = {
-      package = pkgs.nixVersions.latest;
-      settings = {
-        warn-dirty = false;
-        experimental-features = [
-          "nix-command"
-          "flakes"
-          "pipe-operators"
-        ];
-      };
-    };
-
-    nixpkgs.config.allowUnfree = true;
-
-    # Set Git commit hash for darwin-version.
-    system = {
-      configurationRevision = self.rev or self.dirtyRev or null;
-      stateVersion = 6;
-    };
+    system.stateVersion = 6;
     nixpkgs.hostPlatform = "aarch64-darwin";
   };
 }
