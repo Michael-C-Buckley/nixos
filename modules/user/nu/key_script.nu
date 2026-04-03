@@ -10,9 +10,9 @@
 let os = (uname | get kernel-name)
 
 let pubkey_file = match (uname | get kernel-name) {
-  "Linux" => /home/michael/.ssh/git_signing.pub
-  "Darwin" => /Users/michael/.ssh/git_signing.pub
-  _ => /tmp/git_signing.pub # I don't expect this
+  "Linux" => "/home/michael/.ssh/git_signing.pub"
+  "Darwin" => "/Users/michael/.ssh/git_signing.pub"
+  _ => "/tmp/git_signing.pub" # I don't expect this
 }
 
 # Remove the file to reset the state

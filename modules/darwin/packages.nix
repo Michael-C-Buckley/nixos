@@ -4,30 +4,30 @@
   ...
 }: {
   flake.modules.darwin.packages = {pkgs, ...}: let
-    localPkgs = config.flake.packages.${pkgs.stdenv.hostPlatform.system};
-  in {
-    environment.systemPackages =
-      [
-        # Ensure we can rebuild
-        inputs.nix-darwin.packages.${pkgs.stdenv.hostPlatform.system}.default
-        localPkgs.ns
+    inherit (pkgs.stdenv.hostPlatform) system;
 
-        # iproute2 on mac and with an override for color
-        (pkgs.writeShellApplication {
-          name = "ip";
-          text = ''
-            exec ${pkgs.iproute2mac}/bin/ip -c "$@"
-          '';
-        })
-      ]
-      ++ (with pkgs; [
+    # iproute2 on mac and with an override for color
+    iproute2 = pkgs.writeShellApplication {
+      name = "ip";
+      text = ''
+        exec ${pkgs.iproute2mac}/bin/ip -c "$@"
+      '';
+    };
+  in {
+    environment.systemPackages = builtins.attrValues {
+      inherit (inputs.nix-darwin.packages.${system}) default;
+      inherit iproute2;
+      inherit (config.flake.packages.${system}) helix nushell ns zeditor;
+      inherit
+        (pkgs)
         nh
-        openssh # Mac's builtin SSH does not support SK keys
+        openssh
         age
         age-plugin-yubikey
         sops
         orbstack
-      ]);
+        ;
+    };
 
     fonts.packages = with pkgs; [
       cascadia-code

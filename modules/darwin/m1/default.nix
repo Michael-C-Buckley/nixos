@@ -8,7 +8,17 @@
       ssh-agent
     ];
 
-    nix.packages = pkgs.nixVersions.latest;
+    nix = {
+      package = pkgs.nixVersions.latest;
+      settings = {
+        warn-dirty = false;
+        experimental-features = [
+          "nix-command"
+          "flakes"
+          "pipe-operators"
+        ];
+      };
+    };
 
     nixpkgs.config.allowUnfree = true;
 
