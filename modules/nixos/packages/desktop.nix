@@ -19,6 +19,13 @@
       wireshark
       putty
       winbox4
+
+      # Communication
+      legcord
+      signal-desktop
+      materialgram
+      # Productivity
+      novelwriter
     ];
   };
 }

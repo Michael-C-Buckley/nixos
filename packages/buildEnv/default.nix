@@ -1,11 +1,26 @@
 # First attempt
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   perSystem = {
     pkgs,
     system,
     ...
   }: let
     local = config.flake.packages.${system};
+
+    commonFullPkgs = builtins.attrValues {
+      inherit
+        (local)
+        nushell
+        helix
+        zeditor
+        ghostty
+        kitty
+        ;
+    };
   in {
     packages = {
       termEnv = pkgs.buildEnv {
@@ -19,27 +34,7 @@
       fullEnv = pkgs.buildEnv {
         # Fully loaded graphical environments
         name = "Michael's full env";
-        paths = builtins.attrValues {
-          inherit
-            (local)
-            nushell
-            helix
-            vscode
-            zeditor
-            ghostty
-            kitty
-            helium
-            ;
-          inherit
-            (pkgs)
-            # Communication
-            legcord
-            signal-desktop
-            materialgram
-            # Productivity
-            novelwriter
-            ;
-        };
+        paths = commonFullPkgs ++ lib.optionals (lib.hasSuffix "linux" system) [local.helium];
       };
     };
   };
