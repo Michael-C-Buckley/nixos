@@ -12,6 +12,7 @@
   ...
 }: let
   inherit (config.flake.custom.wrappers) mkHelixConfig mkHelixLanguages;
+  inherit (config.flake.custom.functions) printConfig;
   inherit (lib) importTOML recursiveUpdate;
 in {
   perSystem = {pkgs, ...}: {
@@ -72,12 +73,12 @@ in {
       langs = mkHelixLanguages {inherit pkgs extraLang;};
       cfg = mkHelixConfig {inherit pkgs extraCfg;};
 
-      printCfg = config.flake.custom.functions.printConfig {
+      printCfg = printConfig {
         inherit cfg pkgs;
         name = "hx-print-config";
       };
 
-      printLangs = config.flake.custom.functions.printConfig {
+      printLangs = printConfig {
         inherit pkgs;
         name = "hx-print-languages";
         cfg = langs;

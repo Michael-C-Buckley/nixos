@@ -6,6 +6,7 @@
 # things have kept.
 {config, ...}: let
   inherit (config.flake.custom.wrappers) mkStarshipConfig mkStarship;
+  inherit (config.flake.custom.functions) printConfig;
 in {
   perSystem = {pkgs, ...}: {
     packages.starship = mkStarship {inherit pkgs;};
@@ -27,7 +28,7 @@ in {
     }: let
       cfg = mkStarshipConfig {inherit pkgs extraConfig useCharacter;};
 
-      printCfg = config.flake.custom.functions.printConfig {
+      printCfg = printConfig {
         inherit cfg pkgs;
         name = "starship-print-config";
       };

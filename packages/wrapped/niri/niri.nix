@@ -10,7 +10,9 @@
 #
 # I also include other elements of my Niri experience, which is
 # Noctalia and Kitty
-{config, ...}: {
+{config, ...}: let
+  inherit (config.flake.custom.functions) printConfig;
+in {
   perSystem = {
     pkgs,
     lib,
@@ -78,7 +80,7 @@
 
       cfg = import ./_config.nix {inherit pkgs extraConfig systemd spawnNoctalia;};
 
-      print = config.flake.custom.functions.printConfig {
+      print = printConfig {
         inherit cfg pkgs;
         name = "niri-print-config";
       };

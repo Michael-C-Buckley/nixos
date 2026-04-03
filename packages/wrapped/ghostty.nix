@@ -9,6 +9,7 @@
   ...
 }: let
   inherit (config.flake.custom.wrappers) mkGhosttyConfig;
+  inherit (config.flake.custom.functions) printConfig;
   cfg = {
     theme = "Niji";
     background = "#000000";
@@ -77,7 +78,7 @@ in {
 
       cfg = mkGhosttyConfig {inherit pkgs extraConfig extraBinds;};
 
-      printCfg = config.flake.custom.functions.printConfig {
+      printCfg = printConfig {
         inherit cfg pkgs;
         name = "ghostty-print-config";
       };

@@ -1,5 +1,7 @@
 # Wrapped Kitty comes with my config and the font I normally use with it
-{config, ...}: {
+{config, ...}: let
+  inherit (config.flake.custom.functions) printConfig;
+in {
   perSystem = {pkgs, ...}: {
     packages.kitty = config.flake.custom.wrappers.mkKitty {
       inherit pkgs;
@@ -13,7 +15,7 @@
   }: let
     cfg = import ./_config.nix {inherit pkgs extraConfig extraBinds;};
 
-    printCfg = config.flake.custom.functions.printConfig {
+    printCfg = printConfig {
       inherit cfg pkgs;
       name = "kitty-print-config";
     };

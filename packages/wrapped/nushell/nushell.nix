@@ -14,6 +14,7 @@
     mkGitSignersFile
     mkStarship
     ;
+  inherit (config.flake.custom.functions) printConfig;
 in {
   perSystem = {
     pkgs,
@@ -115,12 +116,12 @@ in {
       cfg = mkNuConfig {inherit pkgs extraAliases extraConfig;};
       envCfg = mkNuEnvConfig {inherit pkgs env;};
 
-      printCfg = config.flake.custom.functions.printConfig {
+      printCfg = printConfig {
         inherit cfg pkgs;
         name = "nu-print-config";
       };
 
-      printEnv = config.flake.custom.functions.printConfig {
+      printEnv = printConfig {
         inherit pkgs;
         name = "nu-print-env";
         cfg = envCfg;
