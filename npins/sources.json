@@ -9,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "a184bd2f8426087bae93f203403cd4b86c99e57d",
-      "url": "https://github.com/nix-community/home-manager/archive/a184bd2f8426087bae93f203403cd4b86c99e57d.tar.gz",
-      "hash": "sha256-0Utnqo+FbB+0CVUi0MI3oonF0Kuzy9VcgRkxl53Euvk="
+      "revision": "9dc93220c1c9a410ef6277d6dc55c571d9e592d0",
+      "url": "https://github.com/nix-community/home-manager/archive/9dc93220c1c9a410ef6277d6dc55c571d9e592d0.tar.gz",
+      "hash": "sha256-Sa5tW5kYPJornQEkFVD43F/0d4/WP+/GLTNktTFe2qU="
     },
     "impermanence": {
       "type": "Git",
@@ -34,9 +34,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "c141cf8cc68617625b4a28a7d8ce0a35904815d5",
+      "revision": "42b355c38ca63dab4904acc5c0d95f17954a8c9b",
       "url": null,
-      "hash": "sha256-EzQUbe1gwW/xpJoMuMeblWcjAEF+F92cz/enz0Mz/qo="
+      "hash": "sha256-h4MGNbOo7L3RHi4uNFmsg5g17/DHXEfnv/xiG6BrNFQ="
     },
     "lanzaboote-bin": {
       "type": "Git",
@@ -61,9 +61,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "19bf3d8678fbbfbc173beaa0b5b37d37938db301",
-      "url": "https://github.com/mic92/sops-nix/archive/19bf3d8678fbbfbc173beaa0b5b37d37938db301.tar.gz",
-      "hash": "sha256-B+rZDPyktGEjOMt8PcHKYmgmKoF+GaNAFJhguktXAo0="
+      "revision": "8f093d0d2f08f37317778bd94db5951d6cce6c46",
+      "url": "https://github.com/mic92/sops-nix/archive/8f093d0d2f08f37317778bd94db5951d6cce6c46.tar.gz",
+      "hash": "sha256-/0BoSi0Dg0ON7IW0oscM12WSPBaMSCn36XTt0lHZoy8="
     }
   },
   "version": 7
