@@ -1,5 +1,5 @@
 {
-  flake.functions.packageLists = {pkgs}: let
+  flake.custom.functions.packageLists = {pkgs}: let
     # Take in a package list (list of strings) and convert to a list of derviations
     # string manipulation is to ensure proper matching of attributes
     makePkgList = pkgList:

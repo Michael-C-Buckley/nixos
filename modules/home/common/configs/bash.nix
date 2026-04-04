@@ -1,5 +1,5 @@
 {config, ...}: let
-  inherit (config.flake.userModules.bash) bashrc bashProfile;
+  inherit (config.flake.custom.userModules.bash) bashrc bashProfile;
 in {
   flake.modules.homeManager.bash = {pkgs, ...}: {
     home.file = {
@@ -15,7 +15,7 @@ in {
           alias fz='fzf --height 40% --reverse --border'
 
           export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-          export GIT_CONFIG_GLOBAL=${config.flake.wrappers.mkGitConfig {inherit pkgs;}}
+          export GIT_CONFIG_GLOBAL=${config.flake.custom.wrappers.mkGitConfig {inherit pkgs;}}
         '';
       ".config/bash/nushell".text =
         # bash

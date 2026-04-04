@@ -3,11 +3,11 @@
   inputs,
   ...
 }: {
-  flake.hjemConfigs.darwin = {pkgs, ...}: {
+  flake.custom.hjemConfigs.darwin = {pkgs, ...}: {
     imports = [
       inputs.hjem.darwinModules.default
-      config.flake.hjemConfigs.default
-      config.flake.hjemConfigs.zed
+      config.flake.custom.hjemConfigs.default
+      config.flake.custom.hjemConfigs.zed
     ];
 
     hjem.users.michael = {

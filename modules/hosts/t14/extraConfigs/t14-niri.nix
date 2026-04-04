@@ -1,7 +1,7 @@
 let
   mon1 = "eDP-1";
 in {
-  flake.extraConfigs.t14-niri = ''
+  flake.custom.extraConfigs.t14-niri = ''
     workspace "N1" { open-on-output "${mon1}"; }
     workspace "N2" { open-on-output "${mon1}"; }
     workspace "N3" { open-on-output "${mon1}"; }

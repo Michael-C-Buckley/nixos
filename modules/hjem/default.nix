@@ -2,7 +2,7 @@
   inherit (config) flake;
   editor = "vim"; # vim on servers, nvim on full systems
 in {
-  flake.hjemConfigs.default = {
+  flake.custom.hjemConfigs.default = {
     pkgs,
     lib,
     ...
@@ -13,7 +13,7 @@ in {
       then "home"
       else "User";
   in {
-    imports = with flake.hjemConfigs; [
+    imports = with flake.custom.hjemConfigs; [
       bash
       nushell
     ];
@@ -23,7 +23,7 @@ in {
       linker = pkgs.smfh;
 
       # Pull in all my modules
-      extraModules = builtins.attrValues flake.hjemModules;
+      extraModules = builtins.attrValues flake.custom.hjemModules;
 
       users.michael = {
         environment.sessionVariables = {
@@ -38,8 +38,8 @@ in {
           NH_FLAKE = lib.mkDefault "/${home}/michael/nixos";
           IP_COLOR = "always";
           NIXPKGS_ALLOW_FREE = "1";
-          GIT_SIGNING_KEYS_FILE = flake.wrappers.mkGitSignersFile {inherit pkgs;};
-          GIT_CONFIG_GLOBAL = flake.wrappers.mkGitConfig {inherit pkgs;};
+          GIT_SIGNING_KEYS_FILE = flake.custom.wrappers.mkGitSignersFile {inherit pkgs;};
+          GIT_CONFIG_GLOBAL = flake.custom.wrappers.mkGitConfig {inherit pkgs;};
         };
       };
     };

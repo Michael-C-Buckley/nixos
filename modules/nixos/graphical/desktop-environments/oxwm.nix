@@ -5,7 +5,7 @@
     ...
   }: {
     imports = [
-      config.flake.hjemConfigs.oxwm
+      config.flake.custom.hjemConfigs.oxwm
     ];
 
     environment.systemPackages = with pkgs; [

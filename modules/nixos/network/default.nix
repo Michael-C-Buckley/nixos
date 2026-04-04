@@ -3,8 +3,8 @@
 # I also DO NOT respect namespaces - Copy at your own risk
 # You have been warned
 {config, ...}: let
-  inherit (config.flake) hosts;
-  inherit (config.flake.lib.network) getAddressAttrs;
+  inherit (config.flake.custom) hosts;
+  inherit (config.flake.custom.lib.network) getAddressAttrs;
 in {
   flake.modules.nixos.network = {
     config,

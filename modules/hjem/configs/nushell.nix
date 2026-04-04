@@ -2,7 +2,7 @@
 # This exists to patch in any nixos common elements not available
 # in the wrapper directly
 {
-  flake.hjemConfigs.nushell = {
+  flake.custom.hjemConfigs.nushell = {
     config,
     lib,
     ...

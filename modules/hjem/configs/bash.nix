@@ -1,7 +1,7 @@
 {config, ...}: let
-  inherit (config.flake.userModules.bash) bashrc bashProfile;
+  inherit (config.flake.custom.userModules.bash) bashrc bashProfile;
 in {
-  flake.hjemConfigs.bash = {
+  flake.custom.hjemConfigs.bash = {
     hjem.users.michael = {
       files = {
         ".bashrc".source = bashrc;

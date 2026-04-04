@@ -10,14 +10,16 @@
 #
 # I also include other elements of my Niri experience, which is
 # Noctalia and Kitty
-{config, ...}: {
+{config, ...}: let
+  inherit (config.flake.custom.functions) printConfig;
+in {
   perSystem = {
     pkgs,
     lib,
     system,
     ...
   }: let
-    inherit (config.flake.wrappers) mkNiri;
+    inherit (config.flake.custom.wrappers) mkNiri;
   in
     lib.optionalAttrs (lib.hasSuffix "linux" system) {
       packages = {
@@ -27,12 +29,12 @@
         niri-t14 = mkNiri {
           inherit pkgs;
           systemd = false;
-          extraConfig = config.flake.extraConfigs.t14-niri;
+          extraConfig = config.flake.custom.extraConfigs.t14-niri;
         };
       };
     };
 
-  flake.wrappers = {
+  flake.custom.wrappers = {
     mkNiriConfig = {
       pkgs,
       extraConfig ? "",
@@ -78,7 +80,7 @@
 
       cfg = import ./_config.nix {inherit pkgs extraConfig systemd spawnNoctalia;};
 
-      print = config.flake.functions.printConfig {
+      print = printConfig {
         inherit cfg pkgs;
         name = "niri-print-config";
       };

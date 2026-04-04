@@ -6,12 +6,14 @@
   aliases ? {},
 }: let
   inherit (pkgs.lib) getExe;
+  inherit (flake.custom.wrappers) mkStarshipConfig mkGitConfig;
+  inherit (flake.custom.userModules) nu;
 
-  starshipConfig = flake.wrappers.mkStarshipConfig {
+  starshipConfig = mkStarshipConfig {
     inherit pkgs;
     useCharacter = true;
   };
-  gitConfig = flake.wrappers.mkGitConfig {inherit pkgs;};
+  gitConfig = mkGitConfig {inherit pkgs;};
 
   aliasCommands = pkgs.lib.concatStringsSep "\n" (
     pkgs.lib.mapAttrsToList (name: value: "    alias ${name}='${value}'") aliases
@@ -49,7 +51,7 @@ in
     ${aliasCommands}
 
     # Dynamically find my signing key
-    ${getExe pkgs.nushell} ${flake.userModules.nu.keyScript}
+    ${getExe pkgs.nushell} ${nu.keyScript}
 
 
     # Functions (session-scoped to avoid conflicts)

@@ -1,5 +1,5 @@
 {
-  flake.hjemConfigs.dolphin = {pkgs, ...}: {
+  flake.custom.hjemConfigs.dolphin = {pkgs, ...}: {
     hjem.users.michael = {
       packages = with pkgs.kdePackages; [
         dolphin

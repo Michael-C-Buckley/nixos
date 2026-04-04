@@ -46,9 +46,9 @@
       # My own custom functions are passed via specialArgs
       specialArgs = {
         # This intentionally does not collide with `lib`
-        flakeLib = flake.lib;
+        flakeLib = flake.custom.lib;
         # These require pkgs to be passed so collect and do once to get the ready functions
-        functions = mapAttrs (_: v: v {inherit pkgs;}) flake.functions;
+        functions = mapAttrs (_: v: v {inherit pkgs;}) flake.custom.functions;
       };
       modules = [flake.modules.nixos.${hostname}] ++ modules;
     };

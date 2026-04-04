@@ -1,6 +1,6 @@
 # Common command line utilities I use
 {
-  flake.packageLists.cli = [
+  flake.custom.packageLists.cli = [
     "bat"
     "duf"
     "dust"

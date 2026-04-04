@@ -4,7 +4,8 @@
     functions,
     ...
   }: let
-    inherit (config.flake) packages packageLists;
+    inherit (config.flake) packages;
+    inherit (config.flake.custom) packageLists;
     inherit (functions.packageLists) combinePkgLists;
 
     pkgList = combinePkgLists (with packageLists; [

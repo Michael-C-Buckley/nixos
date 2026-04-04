@@ -4,10 +4,11 @@
     pkgs,
     system,
     lib,
+    nvfetcher,
     ...
   }: let
     # Preparation definitions on various tooling
-    source = (pkgs.callPackage config.flake.nvfetcher {}).helium;
+    source = (pkgs.callPackage nvfetcher {}).helium;
     contents = pkgs.appimageTools.extract source;
     inherit (source) pname version src;
 

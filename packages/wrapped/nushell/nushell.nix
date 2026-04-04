@@ -6,7 +6,7 @@
   ...
 }: let
   inherit
-    (config.flake.wrappers)
+    (config.flake.custom.wrappers)
     mkNushell
     mkNuConfig
     mkNuEnvConfig
@@ -14,6 +14,7 @@
     mkGitSignersFile
     mkStarship
     ;
+  inherit (config.flake.custom.functions) printConfig;
 in {
   perSystem = {
     pkgs,
@@ -35,13 +36,13 @@ in {
       };
     };
   };
-  flake.wrappers = {
+  flake.custom.wrappers = {
     mkNuConfig = {
       pkgs,
       extraAliases ? {},
       extraConfig ? "",
     }: let
-      inherit (config.flake.userModules.shellAliases) basic nu extra;
+      inherit (config.flake.custom.userModules.shellAliases) basic nu extra;
       mergedAliases = basic // extra // nu // extraAliases;
       aliases = lib.concatStringsSep "\n" (lib.mapAttrsToList (k: v: "alias ${k} = ${v}") mergedAliases);
     in
@@ -50,7 +51,7 @@ in {
         + (builtins.readFile ./starship.nu)
         + (builtins.readFile ./git.nu)
         + ''
-          source ${config.flake.userModules.nu.keyScript}
+          source ${config.flake.custom.userModules.nu.keyScript}
           source $"($nu.cache-dir)/carapace.nu"
         ''
         + extraConfig
@@ -115,12 +116,12 @@ in {
       cfg = mkNuConfig {inherit pkgs extraAliases extraConfig;};
       envCfg = mkNuEnvConfig {inherit pkgs env;};
 
-      printCfg = config.flake.functions.printConfig {
+      printCfg = printConfig {
         inherit cfg pkgs;
         name = "nu-print-config";
       };
 
-      printEnv = config.flake.functions.printConfig {
+      printEnv = printConfig {
         inherit pkgs;
         name = "nu-print-env";
         cfg = envCfg;

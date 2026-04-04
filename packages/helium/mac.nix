@@ -1,11 +1,12 @@
-{config, ...}: {
+{
   perSystem = {
     pkgs,
     system,
     lib,
+    nvfetcher,
     ...
   }: let
-    source = (pkgs.callPackage config.flake.nvfetcher {}).helium-mac;
+    source = (pkgs.callPackage nvfetcher {}).helium-mac;
   in
     lib.optionalAttrs (lib.hasSuffix system "darwin") {
       packages.helium = pkgs.stdenve.mkDerivation {

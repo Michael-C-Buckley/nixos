@@ -1,7 +1,7 @@
 # A basic Root user configuration that pulls in select aspects of my configs
 # *This does depend on importing my hjem configs
 {
-  flake.hjemConfigs.root = {config, ...}: let
+  flake.custom.hjemConfigs.root = {config, ...}: let
     inherit (config.users.users) michael shawn;
   in {
     users.users.root = {

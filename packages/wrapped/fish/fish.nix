@@ -9,8 +9,9 @@
   ...
 }: let
   inherit (config) flake;
-  inherit (config.flake.wrappers) mkFish mkGitSignersFile;
-  inherit (config.flake.userModules.shellAliases) basic extra fish;
+  inherit (config.flake.custom.functions) printConfig;
+  inherit (config.flake.custom.wrappers) mkFish mkGitSignersFile;
+  inherit (config.flake.custom.userModules.shellAliases) basic extra fish;
 in {
   perSystem = {
     pkgs,
@@ -31,7 +32,7 @@ in {
       };
     };
   };
-  flake.wrappers.mkFish = {
+  flake.custom.wrappers.mkFish = {
     pkgs,
     env ? {},
     extraConfig ? "",
@@ -50,7 +51,7 @@ in {
         ;
     };
 
-    print = config.flake.functions.printConfig {
+    print = printConfig {
       inherit cfg pkgs;
       name = "fish-print-config";
     };

@@ -1,5 +1,5 @@
 {
-  flake.packageLists.network = [
+  flake.custom.packageLists.network = [
     # HTTP/Web
     "curl"
     "wget"

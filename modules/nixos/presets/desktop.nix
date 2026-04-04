@@ -1,6 +1,6 @@
 {config, ...}: let
   inherit (config.flake) modules;
-  inherit (config.flake.hjemConfigs) nixos root extended;
+  inherit (config.flake.custom.hjemConfigs) nixos root extended;
 in {
   flake.modules.nixos.desktopPreset = {
     imports = with modules.nixos; [

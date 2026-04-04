@@ -1,5 +1,5 @@
 {
-  flake.packageLists.development = [
+  flake.custom.packageLists.development = [
     # Version control tools
     "git"
     "lazygit"

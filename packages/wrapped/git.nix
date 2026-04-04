@@ -12,6 +12,7 @@
   lib,
   ...
 }: let
+  inherit (config.flake.custom.wrappers) mkGit;
   signingKeys = ''
     sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAICVdKrhTH1OxUE/164StP+Iu5sOGcGEmpTyNvarAUn69AAAABHNzaDo=
     sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIDmeP5ouNAD/hWUMq6DsZzLQCtOIh8rvQghX/huztRc8AAAAEXNzaDptaWNoYWVsQHlrNTcz
@@ -52,10 +53,10 @@
   };
 in {
   perSystem = {pkgs, ...}: {
-    packages.git = config.flake.wrappers.mkGit {inherit pkgs;};
+    packages.git = mkGit {inherit pkgs;};
   };
 
-  flake.wrappers = {
+  flake.custom.wrappers = {
     # The fully wrapped package is somewhat limited, as any nix shell
     # will take precedent over your installed config path
     mkGit = {

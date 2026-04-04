@@ -6,7 +6,7 @@
   }: let
     inherit (config.flake.packages.${pkgs.stdenv.hostPlatform.system}) noctalia;
 
-    session-vars = config.flake.extraConfigs.session-vars {inherit pkgs;};
+    session-vars = config.flake.custom.extraConfigs.session-vars {inherit pkgs;};
 
     sessionEnd = pkgs.writeShellScript "niri-session-end" ''
       if [ -p "$SESSION_PIPE" ]; then
@@ -22,9 +22,9 @@
       )
     );
 
-    niri = config.flake.wrappers.mkNiri {
+    niri = config.flake.custom.wrappers.mkNiri {
       inherit pkgs;
-      extraConfig = config.flake.extraConfigs.t14-niri;
+      extraConfig = config.flake.custom.extraConfigs.t14-niri;
       spawnNoctalia = false;
       systemd = false;
     };

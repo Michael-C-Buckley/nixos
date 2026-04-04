@@ -8,7 +8,8 @@
   lib,
   ...
 }: let
-  inherit (config.flake.wrappers) mkGhosttyConfig;
+  inherit (config.flake.custom.wrappers) mkGhosttyConfig;
+  inherit (config.flake.custom.functions) printConfig;
   cfg = {
     theme = "Niji";
     background = "#000000";
@@ -44,13 +45,13 @@ in {
     };
   in {
     packages = {
-      ghostty = config.flake.wrappers.mkGhostty {
+      ghostty = config.flake.custom.wrappers.mkGhostty {
         inherit pkg pkgs extraConfig;
       };
     };
   };
 
-  flake.wrappers = {
+  flake.custom.wrappers = {
     mkGhosttyConfig = {
       pkgs,
       extraConfig ? {},
@@ -77,7 +78,7 @@ in {
 
       cfg = mkGhosttyConfig {inherit pkgs extraConfig extraBinds;};
 
-      printCfg = config.flake.functions.printConfig {
+      printCfg = printConfig {
         inherit cfg pkgs;
         name = "ghostty-print-config";
       };

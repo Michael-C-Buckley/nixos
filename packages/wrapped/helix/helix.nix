@@ -11,14 +11,15 @@
   lib,
   ...
 }: let
-  inherit (config.flake.wrappers) mkHelixConfig mkHelixLanguages;
+  inherit (config.flake.custom.wrappers) mkHelixConfig mkHelixLanguages;
+  inherit (config.flake.custom.functions) printConfig;
   inherit (lib) importTOML recursiveUpdate;
 in {
   perSystem = {pkgs, ...}: {
-    packages.helix = config.flake.wrappers.mkHelix {inherit pkgs;};
+    packages.helix = config.flake.custom.wrappers.mkHelix {inherit pkgs;};
   };
 
-  flake.wrappers = {
+  flake.custom.wrappers = {
     mkHelixLanguages = {
       pkgs,
       extraLang,
@@ -72,12 +73,12 @@ in {
       langs = mkHelixLanguages {inherit pkgs extraLang;};
       cfg = mkHelixConfig {inherit pkgs extraCfg;};
 
-      printCfg = config.flake.functions.printConfig {
+      printCfg = printConfig {
         inherit cfg pkgs;
         name = "hx-print-config";
       };
 
-      printLangs = config.flake.functions.printConfig {
+      printLangs = printConfig {
         inherit pkgs;
         name = "hx-print-languages";
         cfg = langs;

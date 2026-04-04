@@ -6,7 +6,8 @@
 #
 # This is not yet deployed with Systemd, though I will eventually
 {config, ...}: let
-  inherit (config.flake.wrappers) mkHyprland mkHyprlandConfig;
+  inherit (config.flake.custom.wrappers) mkHyprland mkHyprlandConfig;
+  inherit (config.flake.custom.functions) printConfig;
 in {
   perSystem = {
     pkgs,
@@ -21,7 +22,7 @@ in {
       };
     };
 
-  flake.wrappers = {
+  flake.custom.wrappers = {
     mkHyprlandConfig = {
       pkgs,
       hyprland ? pkgs.hyprland,
@@ -83,7 +84,7 @@ in {
 
       cfg = import ./_config.nix {inherit pkgs hostConfig;};
 
-      printCfg = config.flake.functions.printConfig {
+      printCfg = printConfig {
         inherit cfg pkgs;
         name = "hyprland-print-config";
       };

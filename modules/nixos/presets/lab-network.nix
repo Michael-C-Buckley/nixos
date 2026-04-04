@@ -4,7 +4,7 @@
 {config, ...}: let
   inherit (config) flake;
   inherit
-    (config.flake.lib.network)
+    (config.flake.custom.lib.network)
     getAddress
     ;
 in {
@@ -15,7 +15,7 @@ in {
   }: let
     inherit (builtins) attrNames filter listToAttrs;
     inherit (config.networking) hostName;
-    inherit (flake.hosts.${hostName}) interfaces;
+    inherit (flake.custom.hosts.${hostName}) interfaces;
 
     lo = getAddress interfaces.lo.ipv4;
 
