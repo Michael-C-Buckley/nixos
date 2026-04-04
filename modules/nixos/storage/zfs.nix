@@ -1,48 +1,70 @@
-{
+{config, ...}: let
+  inherit (config) flake;
+  zfsUnits = config.flake.custom.lib.mkJournalNamespace "zfs" [
+    "zfs-mount"
+    "zfs-share"
+    "zfs-zed"
+    "zfs-import"
+    "zfs-scrub"
+    "sanoid"
+    "syncoid"
+  ];
+in {
   flake.modules.nixos.zfs = {
     config,
     pkgs,
     lib,
     ...
-  }: {
-    boot = {
-      kernelModules = ["zfs"];
-      supportedFilesystems = ["zfs"];
-      zfs.package = lib.mkDefault pkgs.zfs_2_4;
-    };
+  }: let
+    inherit (config.custom.journald) zfs;
+  in {
+    options.custom.journald.zfs = flake.custom.lib.mkJournalOptions;
 
-    # I don't know if this is necessary, but just in case
-    environment.systemPackages = [config.boot.zfs.package];
+    config = {
+      boot = {
+        kernelModules = ["zfs"];
+        supportedFilesystems = ["zfs"];
+        zfs.package = lib.mkDefault pkgs.zfs_2_4;
+      };
 
-    services.zfs.autoScrub.enable = true;
+      # Add custom namespace for ZFS logs
+      environment.etc."systemd/journald@zfs.conf".text = flake.custom.lib.mkJournalEtcFile zfs;
 
-    # https://github.com/openzfs/zfs/issues/10891
-    systemd.services.systemd-udev-settle.enable = false;
+      services.zfs.autoScrub.enable = true;
 
-    services.sanoid = {
-      enable = true;
-      templates = {
-        short = {
-          autoprune = true;
-          autosnap = true;
-          hourly = 6;
-          daily = 1;
-        };
-        normal = {
-          autoprune = true;
-          autosnap = true;
-          hourly = 12;
-          daily = 3;
-          weekly = 2;
-          monthly = 2;
-        };
-        database = {
-          autoprune = true;
-          autosnap = true;
-          hourly = 50;
-          daily = 10;
-          weekly = 4;
-          monthly = 6;
+      systemd.services =
+        {
+          # https://github.com/openzfs/zfs/issues/10891
+          systemd-udev-settle.enable = false;
+          # Add to persistent journaling
+        }
+        // zfsUnits;
+
+      services.sanoid = {
+        enable = true;
+        templates = {
+          short = {
+            autoprune = true;
+            autosnap = true;
+            hourly = 6;
+            daily = 1;
+          };
+          normal = {
+            autoprune = true;
+            autosnap = true;
+            hourly = 12;
+            daily = 3;
+            weekly = 2;
+            monthly = 2;
+          };
+          database = {
+            autoprune = true;
+            autosnap = true;
+            hourly = 50;
+            daily = 10;
+            weekly = 4;
+            monthly = 6;
+          };
         };
       };
     };
