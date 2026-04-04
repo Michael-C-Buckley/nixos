@@ -23,7 +23,7 @@ in {
 
     # Exclude the current host from the neighbors
     neighbors = lib.strings.concatMapStringsSep "\n" (
-      hostname: " neighbor ${getAddress flake.hosts.${hostname}.interfaces.lo.ipv4} peer-group fabric"
+      hostname: " neighbor ${getAddress flake.custom.hosts.${hostname}.interfaces.lo.ipv4} peer-group fabric"
     ) (lib.filter (h: h != config.networking.hostName) labHosts);
 
     # Remove wifi interfaces

@@ -1,6 +1,6 @@
 {config, ...}: let
   inherit (config.flake.custom.lib.network) getAddress;
-  lo = getAddress config.flake.hosts.x570.interfaces.lo.ipv4;
+  lo = getAddress config.flake.custom.hosts.x570.interfaces.lo.ipv4;
 in {
   flake.modules.nixos.x570 = {
     services.frr.config = ''
