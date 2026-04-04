@@ -1,64 +1,74 @@
 {config, ...}: let
   inherit (config) flake;
   KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
+  k3sUnits = config.flake.custom.lib.mkJournalNamespace "k3s" ["k3s"];
 in {
   flake.modules.nixos.k3s = {
     config,
     lib,
     ...
   }: let
-    inherit (config.custom) k3s;
+    inherit (config.custom) k3s journald;
   in {
     imports = with flake.modules.nixos; [
       kube-common
     ];
-    environment.variables = {
-      inherit KUBECONFIG;
-    };
+    options.custom.journald.k3s = flake.custom.lib.mkJournalOptions;
 
-    custom = {
-      shell.environmentVariables = {
-        inherit KUBECONFIG;
+    config = {
+      environment = {
+        etc."systemd/journald@k3s.conf".text = flake.custom.lib.mkJournalEtcFile journald.k3s;
+        variables = {
+          inherit KUBECONFIG;
+        };
       };
-      impermanence = {
-        persist.directories = lib.optionals k3s.impermanence.use_persist [
-          "/var/lib/rancher/k3s/server"
-          "/etc/rancher"
-        ];
-        cache.directories = lib.optionals k3s.impermanence.use_cache [
-          "/var/lib/rancher/k3s/agent"
-        ];
+
+      custom = {
+        shell.environmentVariables = {
+          inherit KUBECONFIG;
+        };
+        impermanence = {
+          persist.directories = lib.optionals k3s.impermanence.use_persist [
+            "/var/lib/rancher/k3s/server"
+            "/etc/rancher"
+          ];
+          cache.directories = lib.optionals k3s.impermanence.use_cache [
+            "/var/lib/rancher/k3s/agent"
+          ];
+        };
       };
-    };
 
-    networking = {
-      # Does not currently stably support nftables
-      nftables.enable = false;
+      networking = {
+        # Does not currently stably support nftables
+        nftables.enable = false;
 
-      firewall = {
-        allowedTCPPorts = [
-          2379
-          2380
-          6443 # Kubernetes API
-          10250 # Kubelet API
-        ];
-        allowedUDPPorts = [
-          8472 # Flannel VXLAN
-        ];
+        firewall = {
+          allowedTCPPorts = [
+            2379
+            2380
+            6443 # Kubernetes API
+            10250 # Kubelet API
+          ];
+          allowedUDPPorts = [
+            8472 # Flannel VXLAN
+          ];
+        };
       };
-    };
 
-    services = {
-      # This exists chiefly to collide and stop eval if both are enabled
-      kubernetes.kubelet.enable = false;
+      systemd.services = k3sUnits;
 
-      k3s = {
-        enable = true;
-        role = "server";
-        extraFlags = [
-          "--write-kubeconfig-group wheel"
-          "--write-kubeconfig-mode \"0640\""
-        ];
+      services = {
+        # This exists chiefly to collide and stop eval if both are enabled
+        kubernetes.kubelet.enable = false;
+
+        k3s = {
+          enable = true;
+          role = "server";
+          extraFlags = [
+            "--write-kubeconfig-group wheel"
+            "--write-kubeconfig-mode \"0640\""
+          ];
+        };
       };
     };
   };
