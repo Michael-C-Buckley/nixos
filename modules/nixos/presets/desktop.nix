@@ -1,51 +1,50 @@
 {config, ...}: let
   inherit (config.flake) modules;
-  inherit (config.flake.custom.hjemConfigs) nixos root extended;
+  inherit (config.flake.custom) hjemConfigs;
 in {
   flake.modules.nixos.desktopPreset = {
-    imports = with modules.nixos; [
-      linuxPreset
-      shawn
-      zfs
+    imports = builtins.attrValues {
+      inherit
+        (modules.nixos)
+        linuxPreset
+        shawn
+        zfs
+        # Network
+        network
+        dnscrypt-proxy
+        # Virtualization
+        libvirt
+        containerlab
+        # Userspace
+        chromiumPolicies
+        dconf
+        hyprland
+        greetd
+        noctalia
+        niri
+        # Security
+        yubikey
+        tpm2
+        pam-ssh
+        secrets
+        tailscale
+        packages
+        packages-desktop
+        packages-development
+        packages-network
+        packages-fonts
+        # Users
+        michael-attic
+        michael-ssh-agent
+        ;
 
-      # Network
-      network
-      dnscrypt-proxy
-
-      # Virtualization
-      libvirt
-      containerlab
-
-      # Userspace
-      chromiumPolicies
-      dconf
-      hyprland
-      greetd
-      noctalia
-      niri
-
-      # Security
-      yubikey
-      tpm2
-      pam-ssh
-      secrets
-      tailscale
-
-      packages
-      packages-desktop
-      packages-development
-      packages-network
-      packages-fonts
-
-      # Users
-      michael-attic
-      michael-ssh-agent
-
-      # Hjem
-      nixos
-      root
-      extended
-    ];
+      inherit
+        (hjemConfigs)
+        nixos
+        root
+        extended
+        ;
+    };
 
     # Host bridge configuration
     networking = {

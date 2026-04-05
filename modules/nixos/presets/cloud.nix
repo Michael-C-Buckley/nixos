@@ -1,27 +1,33 @@
 {config, ...}: let
   inherit (config.flake) modules packageLists;
-  inherit (config.flake.custom.hjemConfigs) nixos root;
+  inherit (config.flake.custom) hjemConfigs;
 in {
   flake.modules.nixos.cloudPreset = {
     pkgs,
     functions,
     ...
   }: {
-    imports = with modules.nixos; [
-      linuxPreset
-      network
-      zfs
-      shawn
-      pam-ssh
-      packages
+    imports =
+      builtins.attrValues
+      {
+        inherit
+          (modules.nixos)
+          linuxPreset
+          network
+          zfs
+          shawn
+          pam-ssh
+          packages
+          # Users
+          michael-attic
+          ;
 
-      # Users
-      michael-attic
-
-      # Hjem
-      nixos
-      root
-    ];
+        inherit
+          (hjemConfigs)
+          nixos
+          root
+          ;
+      };
 
     environment.systemPackages =
       functions.packageLists.combinePkgLists (with packageLists; [

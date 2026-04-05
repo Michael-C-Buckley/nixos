@@ -1,30 +1,31 @@
 {config, ...}: let
   inherit (config.flake) modules;
-  inherit (config.flake.custom.hjemConfigs) nixos root;
+  inherit (config.flake.custom) hjemConfigs;
 in {
   flake.modules.nixos.serverPreset = {pkgs, ...}: {
-    imports = with modules.nixos; [
-      linuxPreset
-      network
-      zfs
-      shawn
-
-      # Security
-      clamav
-      yubikey
-      secrets
-      pam-ssh
-
-      # Users
-      michael-attic
-
-      # Hjem
-      nixos
-      root
-
-      packages
-      packages-network
-    ];
+    imports = builtins.attrValues {
+      inherit
+        (modules.nixos)
+        linuxPreset
+        network
+        zfs
+        shawn
+        packages
+        packages-network
+        # Security
+        clamav
+        yubikey
+        secrets
+        pam-ssh
+        # Users
+        michael-attic
+        ;
+      inherit
+        (hjemConfigs)
+        nixos
+        root
+        ;
+    };
 
     environment.systemPackages = [
       pkgs.python3

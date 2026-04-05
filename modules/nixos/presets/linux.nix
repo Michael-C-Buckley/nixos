@@ -15,8 +15,9 @@ in {
     lib,
     ...
   }: {
-    imports = with flake.modules.nixos;
-      [
+    imports = builtins.attrValues {
+      inherit
+        (flake.modules.nixos)
         doas
         michael
         programs
@@ -24,10 +25,9 @@ in {
         nix
         options
         users
-      ]
-      ++ [
-        "${flake.npins.sops-nix}/modules/sops"
-      ];
+        ;
+      sops = "${flake.npins.sops-nix}/modules/sops";
+    };
 
     boot.initrd.systemd.enable = lib.mkDefault true;
 
