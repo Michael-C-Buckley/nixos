@@ -1,5 +1,18 @@
 {
   "pins": {
+    "binhost.nix": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "michael-c-buckley",
+        "repo": "binhost.nix"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "1d580e1ac2aa49aa5eaba09dfdb8e56bf0f1fa5f",
+      "url": "https://github.com/michael-c-buckley/binhost.nix/archive/1d580e1ac2aa49aa5eaba09dfdb8e56bf0f1fa5f.tar.gz",
+      "hash": "sha256-Eb+UQ4isVknpYOLFe5ogv0fa1/mzIjVIjQ9cTEivtlc="
+    },
     "home-manager": {
       "type": "Git",
       "repository": {
@@ -37,20 +50,6 @@
       "revision": "42b355c38ca63dab4904acc5c0d95f17954a8c9b",
       "url": null,
       "hash": "sha256-h4MGNbOo7L3RHi4uNFmsg5g17/DHXEfnv/xiG6BrNFQ="
-    },
-    "lanzaboote-bin": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "michael-c-buckley",
-        "repo": "lanzaboote-bin"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "c123b9b24a1fc0971df9fd408ec511f7d2ff0c12",
-      "url": "https://github.com/michael-c-buckley/lanzaboote-bin/archive/c123b9b24a1fc0971df9fd408ec511f7d2ff0c12.tar.gz",
-      "hash": "sha256-7YN63o3+ELV6C2hMIjtgGbWt2HR0Eas7LZKA5JUEmDY=",
-      "frozen": true
     },
     "sops-nix": {
       "type": "Git",

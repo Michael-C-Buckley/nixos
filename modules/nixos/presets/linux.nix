@@ -65,9 +65,12 @@ in {
       ]);
     };
 
-    # Lets impure paths be used
-    sops.validateSopsFiles = false;
-
+    sops = {
+      # Lets impure paths be used
+      validateSopsFiles = false;
+      # Swap the go binary to my binhost
+      package = pkgs.callPackage "${flake.npins."binhost.nix"}/sops-nix/packages/sops-install-secrets.nix" {};
+    };
     time.timeZone = lib.mkDefault "America/New_York";
     networking.nftables.enable = lib.mkDefault true;
   };

@@ -10,7 +10,7 @@
     };
 
     lanzaboote = {pkgs, ...}: {
-      imports = ["${config.flake.npins.lanzaboote-bin}/modules"];
+      imports = ["${config.flake.npins."binhost.nix"}/lanzaboote/modules"];
       environment.systemPackages = [pkgs.sbctl];
 
       boot = {
