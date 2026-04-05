@@ -21,6 +21,8 @@
 
       # Communication
       signal-desktop
+      legcord
+      materialgram
 
       # Productivity
       novelwriter

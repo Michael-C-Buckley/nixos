@@ -6,6 +6,7 @@
     "dust"
     "eza"
     "fd"
+    "file"
     "fzf"
     "git"
     "ripgrep"
