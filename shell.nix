@@ -2,13 +2,12 @@
 {
   pkgs ? import <nixpkgs> {},
   extraPkgs ? [],
-}:
-pkgs.mkShellNoCC {
-  name = "default";
-  buildInputs = with pkgs;
-    [
-      just
-
+}: let
+  # Wrap the pre-commit to not interfere with anyone's PATH for tools they use
+  runtimeEnv = pkgs.buildEnv {
+    name = "lefthook-runtime-env";
+    pathsToLink = ["/bin"];
+    paths = with pkgs; [
       # Lua
       stylua
       selene
@@ -31,18 +30,36 @@ pkgs.mkShellNoCC {
       treefmt
 
       # Hooks
-      lefthook
       shellcheck
       typos
-    ]
-    ++ extraPkgs;
+    ];
+  };
 
-  # Note to myself for pushing config
-  # git config url."git@github.com:".pushInsteadOf "https://github.com/"
-  shellHook = ''
-    lefthook install
-    git fetch
-    git status --short --branch
-    export PATH="$PATH:/usr/local/bin"
-  '';
-}
+  lefthook = pkgs.symlinkJoin {
+    name = "lefthook";
+    paths = [pkgs.lefthook];
+    nativeBuildInputs = [pkgs.makeWrapper];
+    postBuild = ''
+      wrapProgram $out/bin/lefthook \
+        --prefix PATH : ${runtimeEnv}/bin
+    '';
+  };
+in
+  pkgs.mkShellNoCC {
+    name = "default";
+    buildInputs =
+      [
+        pkgs.just
+        lefthook
+      ]
+      ++ extraPkgs;
+
+    # Note to myself for pushing config
+    # git config url."git@github.com:".pushInsteadOf "https://github.com/"
+    shellHook = ''
+      lefthook install
+      git fetch
+      git status --short --branch
+      export PATH="$PATH:/usr/local/bin"
+    '';
+  }
