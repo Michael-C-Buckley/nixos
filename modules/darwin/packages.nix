@@ -25,12 +25,14 @@
         age
         age-plugin-yubikey
         sops
-        orbstack
         ;
     };
 
     fonts.packages = with pkgs; [
       cascadia-code
+      # For Zed
+      lilex
+      ibm-plex
     ];
   };
 }
