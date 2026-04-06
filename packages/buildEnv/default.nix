@@ -17,8 +17,7 @@
         nushell
         helix
         zeditor
-        ghostty
-        kitty
+        ns
         ;
     };
   in {
@@ -31,14 +30,23 @@
           helix
         ];
       };
+
+      macEnv = pkgs.buildEnv {
+        # For use on Macs, obviously, so no jails or incompatible apps
+        name = "macos-buildenv";
+        paths = commonFullPkgs;
+      };
+
       fullEnv = pkgs.buildEnv {
         # Fully loaded graphical environments
         name = "Michael's full env";
         paths =
           commonFullPkgs
           ++ lib.optionals (lib.hasSuffix "linux" system) [
+            local.ghostty
             local.helium
             local.librewolf-jailed
+            local.kitty
           ];
       };
     };

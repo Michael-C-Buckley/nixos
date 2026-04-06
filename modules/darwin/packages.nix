@@ -1,8 +1,4 @@
-{
-  config,
-  inputs,
-  ...
-}: {
+{inputs, ...}: {
   flake.modules.darwin.packages = {pkgs, ...}: let
     inherit (pkgs.stdenv.hostPlatform) system;
 
@@ -17,7 +13,6 @@
     environment.systemPackages = builtins.attrValues {
       inherit (inputs.nix-darwin.packages.${system}) default;
       inherit iproute2;
-      inherit (config.flake.packages.${system}) helix nushell ns zeditor;
       inherit
         (pkgs)
         nh
