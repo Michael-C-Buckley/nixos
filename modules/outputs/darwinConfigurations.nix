@@ -7,15 +7,28 @@
   inputs,
   ...
 }: let
-  inherit (config.flake.modules.darwin) default packages m1;
-  inherit (config.flake) hjemConfigs;
-in {
-  flake.darwinConfigurations.m1 = inputs.nix-darwin.lib.darwinSystem {
-    modules = [
-      m1
-      default
-      packages
-      hjemConfigs.darwin
-    ];
+  mkCfg = {hostname, ...}:
+    inputs.nix-darwin.lib.darwinSystem {
+      modules = builtins.attrValues {
+        inherit
+          (config.flake.modules.darwin)
+          default
+          packages
+          ;
+
+        inherit (config.flake.custom.hjemConfigs) darwin;
+
+        localhost = config.flake.modules.darwin.${hostname};
+      };
+    };
+  macs = {
+    m1 = {};
+    m4 = {};
   };
+in {
+  flake.darwinConfigurations =
+    builtins.mapAttrs (
+      hostname: params: mkCfg (params // {inherit hostname;})
+    )
+    macs;
 }
