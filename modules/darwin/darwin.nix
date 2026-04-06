@@ -9,7 +9,7 @@ in {
   flake.modules.darwin.default = {
     imports = builtins.attrValues {
       inherit (darwin) nix;
-      inherit (hjemConfigs) ghostty;
+      inherit (hjemConfigs) kitty ghostty;
     };
     nixpkgs.config.allowUnfree = true;
 
