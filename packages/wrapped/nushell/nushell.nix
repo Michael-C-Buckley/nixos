@@ -33,6 +33,8 @@ in {
         NIXPKGS_ALLOW_UNFREE = "1";
         GIT_SIGNING_KEYS_FILE = mkGitSignersFile {inherit pkgs;};
         GIT_CONFIG_GLOBAL = mkGitConfig {inherit pkgs;};
+        # Redundant on linux but needed for my mac setups
+        XDG_STATE_HOME = "/${home}/michael/.local/share";
       };
     };
   };
