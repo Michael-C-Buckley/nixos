@@ -1,9 +1,5 @@
 # First attempt
-{
-  config,
-  lib,
-  ...
-}: {
+{config, ...}: {
   perSystem = {
     pkgs,
     system,
@@ -11,12 +7,11 @@
   }: let
     local = config.flake.packages.${system};
 
-    commonFullPkgs = builtins.attrValues {
+    commonPkgs = builtins.attrValues {
       inherit
         (local)
         nushell
         helix
-        zeditor
         ns
         ;
     };
@@ -25,29 +20,20 @@
       termEnv = pkgs.buildEnv {
         # Extra packages for CLI hosts like development servers
         name = "Michael's terminal env";
-        paths = with local; [
-          nushell
-          helix
-        ];
-      };
-
-      macEnv = pkgs.buildEnv {
-        # For use on Macs, obviously, so no jails or incompatible apps
-        name = "macos-buildenv";
-        paths = commonFullPkgs;
+        paths = commonPkgs;
       };
 
       fullEnv = pkgs.buildEnv {
         # Fully loaded graphical environments
         name = "Michael's full env";
-        paths =
-          commonFullPkgs
-          ++ lib.optionals (lib.hasSuffix "linux" system) [
-            local.ghostty
-            local.helium
-            local.librewolf-jailed
-            local.kitty
-          ];
+        paths = with local;
+          [
+            ghostty
+            helium
+            librewolf-jailed
+            kitty
+          ]
+          ++ commonPkgs;
       };
     };
   };

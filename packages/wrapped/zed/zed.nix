@@ -53,6 +53,18 @@ in {
         yaml-language-server
       ];
     };
+    isMac = lib.hasSuffix "darwin" pkgs.stdenv.hostPlatform.system;
+
+    fonts =
+      if isMac
+      then ""
+      else "--set FONTCONFIG_FILE ${pkgs.makeFontsConf {fontDirectories = with pkgs; [ibm-plex lilex];}}";
+
+    macScript = pkgs.writeShellScriptBin "zed-mac-script" ''
+      export __PATH_HELPER_LOADED=1
+      export PATH="${runtimeEnv}/bin:$PATH"
+      exec -a "$0" "${lib.getExe pkgs.zed-editor}" "$@"
+    '';
 
     localPkg = pkgs.symlinkJoin {
       name = "zeditor";
@@ -61,8 +73,16 @@ in {
       meta.mainProgram = "zeditor";
       postBuild = ''
         wrapProgram $out/bin/zeditor \
-        --prefix PATH : ${runtimeEnv}/bin \
-        --set FONTCONFIG_FILE ${pkgs.makeFontsConf {fontDirectories = with pkgs; [ibm-plex lilex];}}
+        --prefix PATH : ${runtimeEnv}/bin ${fonts}
+
+        cp ${lib.getExe macScript} $out/bin/zed-mac
+
+
+        ${
+          if isMac
+          then "sed -i '1s|^#!.*|#!/bin/bash -e|' $out/bin/zeditor"
+          else ""
+        }
       '';
     };
 
