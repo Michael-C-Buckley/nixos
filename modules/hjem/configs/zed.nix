@@ -1,12 +1,22 @@
-# Zed is changing their config schema a bunch,
-# so mutably link an initial state to prevent issues
-# with not being able to have them convert the config
-{config, ...}: {
-  flake.custom.hjemConfigs.zed = {pkgs, ...}: {
-    hjem.users.michael.xdg.config.files."zed/settings.json" = {
-      source = config.flake.custom.wrappers.mkZedConfig {inherit pkgs;};
-      type = "copy";
-      permissions = "0644";
+# Zed really does need a writeable config
+# Also, MacOS has trouble with GUI wrappers so just put the deps into the user path
+{
+  config,
+  lib,
+  ...
+}: let
+  inherit (config.flake.custom) wrappers;
+in {
+  flake.custom.hjemConfigs.zed = {pkgs, ...}: let
+    inherit (pkgs.stdenv.hostPlatform) system;
+  in {
+    hjem.users.michael = {
+      packages = lib.optionals (lib.hasSuffix "darwin" system) [config.flake.packages.${system}.zedPkgs];
+      xdg.config.files."zed/settings.json" = {
+        source = wrappers.mkZedConfig {inherit pkgs;};
+        type = "copy";
+        permissions = "0644";
+      };
     };
   };
 }
