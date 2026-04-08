@@ -1,4 +1,4 @@
-# Zed needs a writeable config to operate normally
+# Zed needs a writable config to operate normally
 # I wish to just ensure a starting state so I'll be using Dinit
 # to deploy the config if none exists
 {

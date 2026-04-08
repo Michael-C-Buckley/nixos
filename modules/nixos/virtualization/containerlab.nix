@@ -25,7 +25,7 @@
       source = lib.getExe pkgs.containerlab;
     };
 
-    # This makes the hosts file writeable for containerlab to use
+    # This makes the hosts file writable for containerlab to use
     systemd.services."relink-hosts" = {
       wantedBy = ["multi-user.target"];
       after = ["local-fs.target" "sysinit-reactivation.target"];
