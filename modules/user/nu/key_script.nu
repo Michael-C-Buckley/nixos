@@ -15,8 +15,8 @@ let pubkey_file = match (uname | get kernel-name) {
   _ => "/tmp/git_signing.pub" # I don't expect this
 }
 
-# Remove the file to reset the state
-rm -f  $pubkey_file
+# Get the key to see if changes are actually needed
+let current_key = open $pubkey_file
 
 let approved_file = (
     $env | get -o GIT_SIGNING_KEYS_FILE
@@ -59,4 +59,11 @@ if ($match | is-empty) {
     return
 }
 
+
+if ($match == $current_key) {
+  return
+}
+
+# Write the new key file
+rm -f  $pubkey_file
 $match | save $pubkey_file
