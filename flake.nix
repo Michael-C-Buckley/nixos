@@ -75,7 +75,6 @@
       inputs = {
         nix-darwin.follows = "nix-darwin";
         nixpkgs.follows = "nixpkgs";
-        smfh.follows = ""; # Deleted input since I use the nixpkgs version
       };
     };
   };
