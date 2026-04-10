@@ -2,14 +2,10 @@
   self,
   config,
   ...
-}: let
-  inherit (config.flake.modules) darwin;
-  inherit (config.flake.custom) hjemConfigs;
-in {
+}: {
   flake.modules.darwin.default = {
     imports = builtins.attrValues {
-      inherit (darwin) nix;
-      inherit (hjemConfigs) kitty ghostty;
+      inherit (config.flake.modules.darwin) nix;
     };
     nixpkgs.config.allowUnfree = true;
 
