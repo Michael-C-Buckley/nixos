@@ -1,4 +1,4 @@
-# Zed really does need a writeable config
+# Zed really does need a writable config
 # Also, MacOS has trouble with GUI wrappers so just put the deps into the user path
 {
   config,
