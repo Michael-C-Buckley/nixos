@@ -21,10 +21,14 @@
     sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIJRDTnuE/pbhRwOkDyK4ZpRztJ7zYvN3cAHl+xCSGgYDAAAABHNzaDo=
     sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIO7l+i5FouCyBe4stv0W9jGs/XBCy4VYioefx0S4ud3WAAAACnNzaDpnaXRodWI=
     ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKwRoyE6eCR6RAiAnLACmi1RCi9cDVoFwoQZsf1t9NnHVWTG86+Gbln5Yeg8v3groM6MMgwtKLddbUyp1W9JkJ8=
+    ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKCUs11g5Art9eoGCTw9ZHI8NAvCrkmQYHHmG3vivb+aUDwasx59AC8ElqP06QBlxKfyZ8CMfdgbTWr2aj8a6uU=
   '';
 
   # My standard config, overwritten as needed on merging
-  gitCfg = home: {
+  gitCfg = {
+    home,
+    username,
+  }: {
     advice.defaultBranchName = false;
     color = {
       diff = "auto";
@@ -49,7 +53,7 @@
     user = {
       name = "Michael Buckley";
       email = "michaelcbuckley@proton.me";
-      signingkey = "/${home}/michael/.ssh/git_signing.pub";
+      signingkey = "/${home}/${username}/.ssh/git_signing.pub";
     };
   };
 in {
@@ -94,13 +98,14 @@ in {
     mkGitConfig = {
       pkgs,
       extraConfig ? {},
+      username ? "michael",
     }: let
       home =
         if lib.hasSuffix "darwin" pkgs.stdenv.hostPlatform.system
         then "Users"
         else "home";
     in
-      pkgs.writers.writeTOML "git-wrapped-config" (lib.recursiveUpdate (gitCfg home) extraConfig);
+      pkgs.writers.writeTOML "git-wrapped-config" (lib.recursiveUpdate (gitCfg {inherit home username;}) extraConfig);
 
     mkGitSignersFile = {
       pkgs,

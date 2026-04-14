@@ -2,8 +2,8 @@
   flakeConfig = config;
 in {
   flake.modules.darwin.m4 = {
-    pkgs,
     config,
+    pkgs,
     ...
   }: let
     inherit (config.custom.hjem) username;
@@ -23,6 +23,7 @@ in {
 
         nushell = flakeConfig.flake.custom.wrappers.mkNushell {
           inherit pkgs;
+          env = config.hjem.users.${config.custom.hjem.username}.environment.sessionVariables;
           # Work has a long verbose hostname, I just call it M4 for simplicity
           extraAliases = {nhs = "nh darwin switch /Users/${username}/nixos#m4";};
         };

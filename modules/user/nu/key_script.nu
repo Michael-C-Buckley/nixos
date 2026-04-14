@@ -8,10 +8,11 @@
 
 # Check the OS for where home files will be placed
 let os = (uname | get kernel-name)
+let user = whoami
 
 let pubkey_file = match (uname | get kernel-name) {
-  "Linux" => "/home/michael/.ssh/git_signing.pub"
-  "Darwin" => "/Users/michael/.ssh/git_signing.pub"
+  "Linux" => $"/home/($user)/.ssh/git_signing.pub"
+  "Darwin" => $"/Users/($user)/.ssh/git_signing.pub"
   _ => "/tmp/git_signing.pub" # I don't expect this
 }
 

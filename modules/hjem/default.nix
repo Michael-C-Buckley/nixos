@@ -47,7 +47,7 @@ in {
           IP_COLOR = "always";
           NIXPKGS_ALLOW_FREE = "1";
           GIT_SIGNING_KEYS_FILE = flake.custom.wrappers.mkGitSignersFile {inherit pkgs;};
-          GIT_CONFIG_GLOBAL = flake.custom.wrappers.mkGitConfig {inherit pkgs;};
+          GIT_CONFIG_GLOBAL = flake.custom.wrappers.mkGitConfig {inherit pkgs username;};
         };
       };
     };
