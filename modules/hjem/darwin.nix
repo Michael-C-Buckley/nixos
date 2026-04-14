@@ -9,7 +9,7 @@ in {
     inherit (config.custom.hjem) username;
   in {
     imports = builtins.attrValues {
-      inherit (flake.custom.hjemConfigs) default kitty ghostty zed;
+      inherit (flake.custom.hjemConfigs) default kitty ghostty;
       hjem-darwin = inputs.hjem.darwinModules.default;
     };
 

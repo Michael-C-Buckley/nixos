@@ -1,7 +1,10 @@
-{config, ...}: {
+{config, ...}: let
+  inherit (config) flake;
+in {
   flake.modules.darwin.m1 = {pkgs, ...}: {
-    imports = with config.flake.modules.darwin; [
-      ssh-agent
+    imports = [
+      flake.modules.darwin.ssh-agent
+      flake.hjemConfigs.zed
     ];
 
     environment.systemPackages = with pkgs; [orbstack];
