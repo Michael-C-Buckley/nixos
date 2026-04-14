@@ -1,9 +1,14 @@
 {config, ...}: let
+  flakeConfig = config;
   mon1 = "DP-1"; # Center Monitor, 34" ultrawide
   mon2 = "HDMI-A-3"; # Right side monitor, vertical 24"
 in {
-  flake.modules.nixos.x570 = {pkgs, ...}: {
-    hjem.users.michael.xdg.config.files."hypr/hyprland.conf".source = config.flake.custom.wrappers.mkHyprlandConfig {
+  flake.modules.nixos.x570 = {
+    pkgs,
+    config,
+    ...
+  }: {
+    hjem.users.${config.custom.hjem.username}.xdg.config.files."hypr/hyprland.conf".source = flakeConfig.flake.custom.wrappers.mkHyprlandConfig {
       inherit pkgs;
       hostConfig = pkgs.writeText "x570-hyprland-conf" ''
         #X570 Host-Specific

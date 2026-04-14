@@ -2,15 +2,19 @@
   config,
   inputs,
   ...
-}: {
-  flake.custom.hjemConfigs.darwin = {
+}: let
+  inherit (config) flake;
+in {
+  flake.custom.hjemConfigs.darwin = {config, ...}: let
+    inherit (config.custom.hjem) username;
+  in {
     imports = builtins.attrValues {
-      inherit (config.flake.custom.hjemConfigs) default kitty ghostty zed;
+      inherit (flake.custom.hjemConfigs) default kitty ghostty zed;
       hjem-darwin = inputs.hjem.darwinModules.default;
     };
 
-    hjem.users.michael = {
-      directory = "/Users/michael";
+    hjem.users.${username} = {
+      directory = "/Users/${username}";
     };
   };
 }

@@ -6,8 +6,8 @@
   inherit (config.flake) userModules;
 in {
   # Intake my user modules directory for OXWM and reproduce it
-  flake.custom.hjemConfigs.oxwm = {
-    hjem.users.michael = {
+  flake.custom.hjemConfigs.oxwm = {config, ...}: {
+    hjem.users.${config.custom.hjem.username} = {
       xdg.config.files =
         builtins.mapAttrs
         (_: value: {

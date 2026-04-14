@@ -9,7 +9,7 @@
       yazi
     ];
 
-    hjem.users.michael.xdg.config.files = {
+    hjem.users.${config.custom.hjem.username}.xdg.config.files = {
       "xdg-desktop-portal/portals.conf".text = ''
         [preferred]
         default=gtk;
@@ -18,7 +18,7 @@
 
       "xdg-desktop-portal-termfilechooser/config".text = ''
         [filechooser]
-        cmd=${config.hjem.users.michael.xdg.config.directory}/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
+        cmd=${config.hjem.users.${config.custom.hjem.username}.xdg.config.directory}/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
         default_dir=$HOME
       '';
 

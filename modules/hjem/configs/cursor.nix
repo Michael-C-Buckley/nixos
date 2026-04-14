@@ -4,6 +4,7 @@
   inherit (config) flake;
 in {
   flake.custom.hjemConfigs.cursor = {
+    config,
     pkgs,
     lib,
     ...
@@ -19,7 +20,7 @@ in {
       XCURSOR_PATH = ["${cursor}/share/icons"];
     };
 
-    hjem.users.michael = {
+    hjem.users.${config.custom.hjem.username} = {
       packages = [cursor];
       xdg.data.files."icons/default/index.theme" = {
         generator = lib.generators.toINI {};

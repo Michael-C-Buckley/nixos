@@ -1,6 +1,12 @@
-{config, ...}: {
-  flake.modules.nixos.t14 = {pkgs, ...}: {
-    hjem.users.michael.xdg.config.files."hypr/hyprland.conf".source = config.flake.custom.wrappers.mkHyprlandConfig {
+{config, ...}: let
+  flakeConfig = config;
+in {
+  flake.modules.nixos.t14 = {
+    pkgs,
+    config,
+    ...
+  }: {
+    hjem.users.${config.custom.hjem.username}.xdg.config.files."hypr/hyprland.conf".source = flakeConfig.flake.custom.wrappers.mkHyprlandConfig {
       inherit pkgs;
       hostConfig = pkgs.writeText "t14-hyprland-conf" ''
         # T14 Host-specific

@@ -6,12 +6,17 @@
   ...
 }: let
   inherit (config.flake.custom) wrappers;
+  flakePackages = config.flake.packages;
 in {
-  flake.custom.hjemConfigs.zed = {pkgs, ...}: let
+  flake.custom.hjemConfigs.zed = {
+    pkgs,
+    config,
+    ...
+  }: let
     inherit (pkgs.stdenv.hostPlatform) system;
   in {
-    hjem.users.michael = {
-      packages = lib.optionals (lib.hasSuffix "darwin" system) [config.flake.packages.${system}.zedPkgs];
+    hjem.users.${config.custom.hjem.username} = {
+      packages = lib.optionals (lib.hasSuffix "darwin" system) [flakePackages.${system}.zedPkgs];
       xdg.config.files."zed/settings.json" = {
         source = wrappers.mkZedConfig {inherit pkgs;};
         type = "copy";

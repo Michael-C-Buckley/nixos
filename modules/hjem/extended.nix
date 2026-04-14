@@ -1,13 +1,19 @@
-{config, ...}: {
-  flake.custom.hjemConfigs.extended = {pkgs, ...}: {
-    imports = with config.flake.custom.hjemConfigs; [
+{config, ...}: let
+  inherit (config) flake;
+in {
+  flake.custom.hjemConfigs.extended = {
+    config,
+    pkgs,
+    ...
+  }: {
+    imports = with flake.custom.hjemConfigs; [
       cursor
       helium
       qt
       zed
     ];
 
-    hjem.users.michael = {
+    hjem.users.${config.custom.hjem.username} = {
       packages = with pkgs; [
         novelwriter
         obsidian

@@ -1,6 +1,10 @@
 {
-  flake.custom.hjemConfigs.dolphin = {pkgs, ...}: {
-    hjem.users.michael = {
+  flake.custom.hjemConfigs.dolphin = {
+    config,
+    pkgs,
+    ...
+  }: {
+    hjem.users.${config.custom.hjem.username} = {
       packages = with pkgs.kdePackages; [
         dolphin
         kservice

@@ -1,6 +1,6 @@
 {
-  flake.modules.nixos.t14 = {
-    hjem.users.michael = {
+  flake.modules.nixos.t14 = {config, ...}: {
+    hjem.users.${config.custom.hjem.username} = {
       xdg.config.files."noctalia/settings" = {
         source = ./settings.json;
         type = "copy";

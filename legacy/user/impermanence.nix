@@ -36,7 +36,7 @@
         volumes
       ));
     config = {
-      hjem.users.michael = {
+      hjem.users.${config.custom.hjem.username} = {
         impermanence = {
           enable = lib.mkDefault true;
           cache.directories = lib.optionals config.custom.impermanence.home.enable [

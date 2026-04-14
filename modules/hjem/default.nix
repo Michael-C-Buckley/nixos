@@ -3,11 +3,13 @@
   editor = "vim"; # vim on servers, nvim on full systems
 in {
   flake.custom.hjemConfigs.default = {
+    config,
     pkgs,
     lib,
     ...
   }: let
     inherit (pkgs.stdenv.hostPlatform) system;
+    inherit (config.custom.hjem) username;
     home =
       if (lib.hasSuffix "linux" system)
       then "home"
@@ -18,14 +20,20 @@ in {
       nushell
     ];
 
-    hjem = {
+    options.custom.hjem.username = lib.mkOption {
+      type = lib.types.str;
+      default = "michael";
+      description = "My username on the system (for non-default things like work systems with odd usernames).";
+    };
+
+    config.hjem = {
       # Small is ahead of nixpkgs for a needed version
       linker = pkgs.smfh;
 
       # Pull in all my modules
       extraModules = builtins.attrValues flake.custom.hjemModules;
 
-      users.michael = {
+      users.${username} = {
         environment.sessionVariables = {
           EDITOR = editor;
           VISUAL = editor;
@@ -35,7 +43,7 @@ in {
           DIFF = "difft";
           CLICOLOR = "1";
           DIFF_COLOR = "auto";
-          NH_FLAKE = lib.mkDefault "/${home}/michael/nixos";
+          NH_FLAKE = lib.mkDefault "/${home}/${username}/nixos";
           IP_COLOR = "always";
           NIXPKGS_ALLOW_FREE = "1";
           GIT_SIGNING_KEYS_FILE = flake.custom.wrappers.mkGitSignersFile {inherit pkgs;};
