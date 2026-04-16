@@ -13,6 +13,7 @@
           "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIKAR+0i/+FR8pFkwiU7jubzaPrDJAhtX3qMpYrGVnVE/AAAAEXNzaDptaWNoYWVsQHlrOTAy"
           "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIHs226+TygXNbePufYVItfHQqTgAO8JChAigzEfQK4ftAAAAEXNzaDptaWNoYWVsQHlrMDcz"
           "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIAeSC5gh3pMr5v3p+/Dh3SMddk/n5Dr+srLS3OV3hEqOAAAABHNzaDo="
+          "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBTrqZCztEbXrLr7noL+UrhaNG008+2SgSPd4NhMauJkfSiv5Y0CzuzMi7Ujoe46+BSVLIQtxT7pVuKQlWa6UzM="
         ];
       };
     };
