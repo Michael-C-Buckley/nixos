@@ -18,7 +18,6 @@ in {
     imports = builtins.attrValues {
       inherit
         (flake.modules.nixos)
-        doas
         michael
         programs
         security
