@@ -32,6 +32,7 @@
             helium
             librewolf-jailed
             kitty
+            vscode
           ]
           ++ commonPkgs;
       };
