@@ -2,7 +2,7 @@
   inherit (config.flake) modules;
   inherit (config.flake.custom) hjemConfigs;
 in {
-  flake.modules.nixos.desktopPreset = {
+  flake.modules.nixos.desktopPreset = {pkgs, ...}: {
     imports = builtins.attrValues {
       inherit
         (modules.nixos)
@@ -45,6 +45,19 @@ in {
         extended
         ;
     };
+
+    services = {
+      gvfs.enable = true;
+      tumbler.enable = true;
+    };
+
+    environment.systemPackages = with pkgs; [
+      thunar
+      thunar-archive-plugin
+      webp-pixbuf-loader
+      geeqie
+      libgsf
+    ];
 
     # Host bridge configuration
     networking = {
