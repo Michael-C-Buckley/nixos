@@ -27,7 +27,7 @@
   # My standard config, overwritten as needed on merging
   gitCfg = {
     home,
-    username,
+    username ? "michael",
   }: {
     advice.defaultBranchName = false;
     color = {
@@ -88,7 +88,7 @@ in {
         nativeBuildInputs = [pkgs.makeWrapper];
         postBuild = ''
           wrapProgram $out/bin/git \
-            --set GIT_CONFIG_GLOBAL ${pkgs.writers.writeTOML "git-wrapped-config" (lib.recursiveUpdate (gitCfg home) extraConfig)} \
+            --set GIT_CONFIG_GLOBAL ${pkgs.writers.writeTOML "git-wrapped-config" (lib.recursiveUpdate (gitCfg {inherit home;}) extraConfig)} \
             --prefix PATH : ${runtimeEnv}/bin
         '';
       };
