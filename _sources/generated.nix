@@ -15,10 +15,10 @@
   };
   helium-mac = {
     pname = "helium-mac";
-    version = "0.11.2.1";
+    version = "0.11.3.2";
     src = fetchurl {
-      url = "https://github.com/imputnet/helium-macos/releases/download/0.11.2.1/helium_0.11.2.1_arm64-macos.dmg";
-      sha256 = "sha256-jfixNeOiKBznY7lyOpLJscybg7VgEhrf5aI7RBN8DWI=";
+      url = "https://github.com/imputnet/helium-macos/releases/download/0.11.3.2/helium_0.11.3.2_arm64-macos.dmg";
+      sha256 = "sha256-nOk6FC0g6N1WXLzTxW6mFMu2OO/9TKRqj+nqeOiWi+o=";
     };
   };
 }
