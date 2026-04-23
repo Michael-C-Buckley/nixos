@@ -11,6 +11,7 @@
       inherit
         (local)
         nushell
+        fish
         helix
         ns
         ;
@@ -32,7 +33,7 @@
             helium
             librewolf-jailed
             kitty
-            vscode
+            zeditor
           ]
           ++ commonPkgs;
       };
