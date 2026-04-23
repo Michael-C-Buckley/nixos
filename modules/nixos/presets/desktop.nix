@@ -14,7 +14,7 @@ in {
         dnscrypt-proxy
         # Virtualization
         libvirt
-        containerlab
+        #containerlab # Temporarily disabled
         # Userspace
         chromiumPolicies
         dconf
