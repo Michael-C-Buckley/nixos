@@ -17,7 +17,7 @@ in {
     mkStarshipConfig = {
       pkgs,
       extraConfig ? {},
-      useCharacter ? false,
+      useCharacter ? true,
     }:
       import ./_config.nix {inherit pkgs extraConfig useCharacter;};
 

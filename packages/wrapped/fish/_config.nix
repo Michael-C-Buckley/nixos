@@ -9,10 +9,7 @@
   inherit (flake.custom.wrappers) mkStarshipConfig mkGitConfig;
   inherit (flake.custom.userModules) nu;
 
-  starshipConfig = mkStarshipConfig {
-    inherit pkgs;
-    useCharacter = true;
-  };
+  starshipConfig = mkStarshipConfig {inherit pkgs;};
   gitConfig = mkGitConfig {inherit pkgs;};
 
   aliasCommands = pkgs.lib.concatStringsSep "\n" (

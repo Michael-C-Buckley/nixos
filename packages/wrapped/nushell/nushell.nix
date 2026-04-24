@@ -12,7 +12,7 @@
     mkNuEnvConfig
     mkGitConfig
     mkGitSignersFile
-    mkStarship
+    mkStarshipConfig
     ;
   inherit (config.flake.custom.functions) printConfig;
 in {
@@ -33,6 +33,10 @@ in {
         NIXPKGS_ALLOW_UNFREE = "1";
         GIT_SIGNING_KEYS_FILE = mkGitSignersFile {inherit pkgs;};
         GIT_CONFIG_GLOBAL = mkGitConfig {inherit pkgs;};
+        STARSHIP_CONFIG = mkStarshipConfig {
+          inherit pkgs;
+          useCharacter = false;
+        };
         # Redundant on linux but needed for my mac setups
         XDG_STATE_HOME = "/${home}/michael/.local/share";
       };
@@ -93,6 +97,7 @@ in {
 
         paths = with pkgs;
           [
+            starship
             # Shell Utilities
             carapace
             carapace-bridge
@@ -111,7 +116,6 @@ in {
             tig
             lazygit
           ]
-          ++ [(mkStarship {inherit pkgs;})]
           ++ extraRuntimeInputs;
       };
 

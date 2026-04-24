@@ -16,7 +16,7 @@ $env.PROMPT_COMMAND_RIGHT = ""
 # The prompt indicators are environmental variables that represent
 # the state of the prompt
 $env.PROMPT_INDICATOR = ""
-$env.PROMPT_MULTILINE_INDICATOR = "::: "
+$env.PROMPT_MULTILINE_INDICATOR = "|| "
 $env.PROMPT_INDICATOR_VI_INSERT = { create_prompt_character }
 $env.PROMPT_INDICATOR_VI_NORMAL = $"(ansi yellow_bold)●(ansi reset) "
 $env.TRANSIENT_PROMPT_COMMAND = {|| "" }
