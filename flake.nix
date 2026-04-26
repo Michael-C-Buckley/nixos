@@ -60,11 +60,6 @@
     # since lately there has been a good amount of availability issues
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
 
-    nix-darwin = {
-      url = "github:nix-darwin/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -73,7 +68,7 @@
     hjem = {
       url = "github:feel-co/hjem";
       inputs = {
-        nix-darwin.follows = "nix-darwin";
+        nix-darwin.follows = "";
         nixpkgs.follows = "nixpkgs";
       };
     };

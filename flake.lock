@@ -22,9 +22,7 @@
     },
     "hjem": {
       "inputs": {
-        "nix-darwin": [
-          "nix-darwin"
-        ],
+        "nix-darwin": [],
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -40,26 +38,6 @@
       "original": {
         "owner": "feel-co",
         "repo": "hjem",
-        "type": "github"
-      }
-    },
-    "nix-darwin": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1775037210,
-        "narHash": "sha256-KM2WYj6EA7M/FVZVCl3rqWY+TFV5QzSyyGE2gQxeODU=",
-        "owner": "nix-darwin",
-        "repo": "nix-darwin",
-        "rev": "06648f4902343228ce2de79f291dd5a58ee12146",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-darwin",
-        "repo": "nix-darwin",
         "type": "github"
       }
     },
@@ -80,7 +58,6 @@
       "inputs": {
         "flake-parts": "flake-parts",
         "hjem": "hjem",
-        "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs"
       }
     }
