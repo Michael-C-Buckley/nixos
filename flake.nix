@@ -65,6 +65,13 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
+    xlibre-overlay = {
+      url = "git+https://codeberg.org/takagemacoed/xlibre-overlay?ref=dev-for-26.05";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+      };
+    };
+
     hjem = {
       url = "github:feel-co/hjem";
       inputs = {

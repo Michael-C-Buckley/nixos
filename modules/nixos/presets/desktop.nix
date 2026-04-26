@@ -19,9 +19,10 @@ in {
         chromiumPolicies
         dconf
         hyprland
-        greetd
         noctalia
         niri
+        xmonad
+        ly
         # Security
         yubikey
         tpm2

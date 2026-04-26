@@ -1,5 +1,19 @@
 {
   "nodes": {
+    "fetchurl-sources": {
+      "flake": false,
+      "locked": {
+        "path": "./consumer-overridable/fetchurl-sources.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "./consumer-overridable/fetchurl-sources.nix",
+        "type": "path"
+      },
+      "parent": [
+        "xlibre-overlay"
+      ]
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -54,11 +68,81 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1775710090,
+        "narHash": "sha256-ar3rofg+awPB8QXDaFJhJ2jJhu+KqN/PRCXeyuXR76E=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "4c1018dae018162ec878d42fec712642d214fdfa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
         "hjem": "hjem",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "xlibre-overlay": "xlibre-overlay"
+      }
+    },
+    "systems": {
+      "flake": false,
+      "locked": {
+        "path": "./systems.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "./systems.nix",
+        "type": "path"
+      },
+      "parent": [
+        "xlibre-overlay"
+      ]
+    },
+    "xlibre-drivers-overlay-choice": {
+      "flake": false,
+      "locked": {
+        "path": "./consumer-overridable/drivers-overlay-choice.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "./consumer-overridable/drivers-overlay-choice.nix",
+        "type": "path"
+      },
+      "parent": [
+        "xlibre-overlay"
+      ]
+    },
+    "xlibre-overlay": {
+      "inputs": {
+        "fetchurl-sources": "fetchurl-sources",
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": "nixpkgs_2",
+        "systems": "systems",
+        "xlibre-drivers-overlay-choice": "xlibre-drivers-overlay-choice"
+      },
+      "locked": {
+        "lastModified": 1775917469,
+        "narHash": "sha256-E5i4nHVCGMo6muaNZjqCznrULWVPLSXigUA3IrNk1wY=",
+        "ref": "dev-for-26.05",
+        "rev": "1fb999fbfec4e9c68c9b68ff09e50e9b2bbdcaf9",
+        "revCount": 127,
+        "type": "git",
+        "url": "https://codeberg.org/takagemacoed/xlibre-overlay"
+      },
+      "original": {
+        "ref": "dev-for-26.05",
+        "type": "git",
+        "url": "https://codeberg.org/takagemacoed/xlibre-overlay"
       }
     }
   },
