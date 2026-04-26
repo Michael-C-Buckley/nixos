@@ -18,9 +18,6 @@ in {
         # Userspace
         chromiumPolicies
         dconf
-        hyprland
-        noctalia
-        niri
         xmonad
         ly
         # Security
