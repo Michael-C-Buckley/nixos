@@ -11,7 +11,6 @@
       libvirt
       attic
       systemd-credentials
-      secrets-nic-rename
       tailscale
     ];
 

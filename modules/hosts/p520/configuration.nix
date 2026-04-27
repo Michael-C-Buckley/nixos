@@ -11,7 +11,6 @@
       libvirt
       nvidia
       systemd-credentials
-      secrets-nic-rename
       tailscale
     ];
 

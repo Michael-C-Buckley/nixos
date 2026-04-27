@@ -5,7 +5,6 @@
       showExcludedPkgsWarning = false;
     };
     environment.cosmic.excludePackages = with pkgs; [
-      # keep-sorted start
       cosmic-design-demo
       cosmic-edit
       cosmic-files
@@ -13,7 +12,6 @@
       cosmic-player
       cosmic-store
       cosmic-term
-      # keep-sorted end
     ];
   };
 }

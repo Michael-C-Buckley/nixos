@@ -7,7 +7,6 @@
       systemd-credentials
 
       # Network
-      secrets-nic-rename
       dnscrypt-proxy
       ntp
       wifi-home
