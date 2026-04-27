@@ -17,16 +17,6 @@
     };
   in {
     packages = {
-      macEnv = pkgs.buildEnv {
-        # Packages I use on macs that don't ship my whole env
-        name = "mac-env";
-        paths = with pkgs; [
-          nix-tree
-          nix-direnv
-          nil
-          nixd
-        ];
-      };
       termEnv = pkgs.buildEnv {
         # Extra packages for CLI hosts like development servers
         name = "Michael's terminal env";
