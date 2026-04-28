@@ -16,7 +16,8 @@ in {
       workspace "N0" { open-on-output "${mon2}"; }
 
       output "${mon1}" {
-        mode "3440x1440@165.000"
+        mode "3440x1440@144.000"
+        scale 1.0
         position x=0 y=0
         focus-at-startup
         layout { default-column-width { proportion 0.5; }; }
@@ -24,6 +25,7 @@ in {
 
       output "${mon2}" {
         mode "2560x1440@74.599"
+        scale 1.0
         position x=3440 y=-500
         transform "270"
         layout { default-column-width { proportion 1.0; }; }
