@@ -10,7 +10,7 @@
     options.custom.greetd = {
       defaultCommand = lib.mkOption {
         type = lib.types.str;
-        default = "start-hyprland";
+        default = "niri-session";
         description = "The default session command for greetd and auto-login";
       };
     };
