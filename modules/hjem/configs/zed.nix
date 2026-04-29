@@ -1,5 +1,3 @@
-# Zed really does need a writable config
-# Also, MacOS has trouble with GUI wrappers so just put the deps into the user path
 {
   config,
   lib,
@@ -18,6 +16,7 @@ in {
     hjem.users.${config.custom.hjem.username} = {
       packages = lib.optionals (lib.hasSuffix "darwin" system) [flakePackages.${system}.zedPkgs];
       xdg.config.files."zed/settings.json" = {
+        clobber = false;
         source = wrappers.mkZedConfig {inherit pkgs;};
         type = "copy";
         permissions = "0644";

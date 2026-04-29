@@ -59,6 +59,10 @@ in {
       libgsf
     ];
 
+    # Move my shell to fish
+    programs.fish.enable = true;
+    users.users.michael.shell = pkgs.fish;
+
     # Host bridge configuration
     networking = {
       bridges.br0.interfaces = [];
