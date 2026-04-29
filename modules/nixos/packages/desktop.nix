@@ -9,6 +9,12 @@
       npins
       nvfetcher
 
+      # Security
+      keepassxc
+      keepassxc-go
+      keepass-diff
+      passage
+
       # Terminal
       kitty
       yazi

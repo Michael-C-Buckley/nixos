@@ -1,9 +1,5 @@
 {
-  flake.modules.nixos.yubikey = {
-    pkgs,
-    lib,
-    ...
-  }: {
+  flake.modules.nixos.yubikey = {pkgs, ...}: {
     environment = {
       etc."pkcs11/pkcs11.conf".text = ''
         module: ${pkgs.opensc}/lib/opensc-pkcs11.so
@@ -22,7 +18,6 @@
     };
 
     services = {
-      gnome.gnome-keyring.enable = lib.mkForce false;
       pcscd.enable = true;
       udev.packages = [pkgs.yubikey-personalization];
     };

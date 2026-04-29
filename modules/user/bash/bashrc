@@ -3,10 +3,10 @@
 # Exit early for non-interactive shells
 [[ $- != *i* ]] && return
 
-# Attempt to set a standard SSH agent if one is not already set
-standard_agent="$HOME/.ssh/ssh-agent.sock"
+# Use custom SSH agent socket if it exists, overriding any existing agent
+standard_agent="$HOME/.ssh/custom-agent.sock"
 
-if [[ -z "$SSH_AUTH_SOCK" && -e "$standard_agent" ]]; then
+if [[ -S "$standard_agent" ]]; then
   export SSH_AUTH_SOCK="$standard_agent"
 fi
 

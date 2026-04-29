@@ -26,7 +26,7 @@
         Type = "forking";
         User = "michael";
         RuntimeDirectory = "ssh-agent-michael";
-        Environment = "SSH_AUTH_SOCK=/home/michael/.ssh/ssh-agent.sock";
+        Environment = "SSH_AUTH_SOCK=/home/michael/.ssh/custom-agent.sock";
         ExecStart = "${pkgs.openssh}/bin/ssh-agent -a $SSH_AUTH_SOCK";
         LoadCredentialEncrypted = map mkCred keyTypes;
       };
