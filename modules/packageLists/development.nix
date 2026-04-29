@@ -4,6 +4,7 @@
     "git"
     "lazygit"
     "tig"
+    "delta"
     "jujutsu"
     "gh"
 
