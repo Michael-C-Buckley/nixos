@@ -3,7 +3,7 @@
 {config, ...}: let
   inherit (config) flake;
 in {
-  flake.custom.hjemConfigs.cursor = {
+  flake.modules.nixos.hjem-cursor = {
     pkgs,
     lib,
     ...

@@ -1,5 +1,5 @@
 {
-  flake.custom.hjemConfigs.qt = {pkgs, ...}: {
+  flake.modules.nixos.hjem-qt = {pkgs, ...}: {
     hjem.users.michael = {
       environment.sessionVariables = {
         # These are also in Hyprland since shell environment is not part of

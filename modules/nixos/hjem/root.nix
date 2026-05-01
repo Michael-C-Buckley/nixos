@@ -1,7 +1,7 @@
 # A basic Root user configuration that pulls in select aspects of my configs
 # *This does depend on importing my hjem configs
 {
-  flake.custom.hjemConfigs.root = {config, ...}: let
+  flake.modules.nixos.hjem-root = {config, ...}: let
     inherit (config.users.users) michael shawn;
   in {
     users.users.root = {

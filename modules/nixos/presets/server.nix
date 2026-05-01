@@ -1,6 +1,5 @@
 {config, ...}: let
   inherit (config.flake) modules;
-  inherit (config.flake.custom) hjemConfigs;
 in {
   flake.modules.nixos.serverPreset = {pkgs, ...}: {
     imports = builtins.attrValues {
@@ -19,11 +18,7 @@ in {
         pam-ssh
         # Users
         michael-attic
-        ;
-      inherit
-        (hjemConfigs)
-        nixos
-        root
+        hjem
         ;
     };
 

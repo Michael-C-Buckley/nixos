@@ -1,8 +1,12 @@
-{config, ...}: let
+{
+  config,
+  inputs,
+  ...
+}: let
   inherit (config) flake;
   editor = "vim"; # vim on servers, nvim on full systems
 in {
-  flake.custom.hjemConfigs.default = {
+  flake.modules.nixos.hjem = {
     config,
     pkgs,
     lib,
@@ -15,7 +19,12 @@ in {
       then "home"
       else "User";
   in {
-    config.hjem = {
+    imports = [
+      flake.modules.nixos.hjem-root
+      inputs.hjem.nixosModules.default
+    ];
+
+    hjem = {
       linker = pkgs.smfh;
 
       # Pull in all my modules

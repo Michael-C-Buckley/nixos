@@ -1,6 +1,5 @@
 {config, ...}: let
   inherit (config.flake) modules;
-  inherit (config.flake.custom) hjemConfigs;
 in {
   flake.modules.nixos.desktopPreset = {
     pkgs,
@@ -40,13 +39,7 @@ in {
         # Users
         michael-attic
         michael-ssh-agent
-        ;
-
-      inherit
-        (hjemConfigs)
-        nixos
-        root
-        extended
+        hjem
         ;
     };
 

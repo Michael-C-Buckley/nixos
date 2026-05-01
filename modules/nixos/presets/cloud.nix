@@ -1,6 +1,5 @@
 {config, ...}: let
   inherit (config.flake) modules packageLists;
-  inherit (config.flake.custom) hjemConfigs;
 in {
   flake.modules.nixos.cloudPreset = {
     pkgs,
@@ -20,12 +19,7 @@ in {
           packages
           # Users
           michael-attic
-          ;
-
-        inherit
-          (hjemConfigs)
-          nixos
-          root
+          hjem
           ;
       };
 

@@ -1,11 +1,11 @@
 {config, ...}: let
   inherit (config) flake;
 in {
-  flake.custom.hjemConfigs.extended = {pkgs, ...}: {
-    imports = with flake.custom.hjemConfigs; [
-      cursor
-      helium
-      qt
+  flake.modules.nixos.hjem-extended = {pkgs, ...}: {
+    imports = with flake.modules.nixos; [
+      hjem-cursor
+      hjem-helium
+      hjem-qt
     ];
 
     hjem.users.michael = {
