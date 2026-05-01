@@ -1,7 +1,6 @@
 {
   flake.modules.nixos.security = {
     config,
-    pkgs,
     lib,
     ...
   }: {
@@ -14,11 +13,6 @@
       generators.systemd-ssh-generator = "/dev/null";
       sockets.sshd-unix-local.enable = lib.mkForce false;
       sockets.sshd-vsock.enable = lib.mkForce false;
-
-      # Gnome keyring should only do secrets on the keyring and not SSH, GPG, or PKCS11
-      user.services.gnome-keyring.serviceConfig.ExecStart = [
-        "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --foreground --components=secrets"
-      ];
     };
 
     services = {
