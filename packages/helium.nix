@@ -70,6 +70,7 @@
     lib.optionalAttrs (system == "x86_64-linux") {
       packages = {
         helium = localPkg;
+        # Jail version is experimental, as double bwrap causes some issues like with audio
         helium-jailed = jail "helium" localPkg features;
       };
     };
