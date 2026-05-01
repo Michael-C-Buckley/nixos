@@ -46,7 +46,13 @@ in {
     services = {
       gvfs.enable = true;
       tumbler.enable = true;
+      gnome.gnome-keyring.enable = true;
     };
+
+    # Gnome keyring should only do secrets on the keyring and not SSH, GPG, or PKCS11
+    systemd.user.services.gnome-keyring.serviceConfig.ExecStart = [
+      "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --foreground --components=secrets"
+    ];
 
     environment.systemPackages = with pkgs; [
       thunar
