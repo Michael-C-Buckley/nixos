@@ -15,13 +15,7 @@ in {
       then "home"
       else "User";
   in {
-    imports = with flake.custom.hjemConfigs; [
-      bash
-      nushell
-    ];
-
     config.hjem = {
-      # Small is ahead of nixpkgs for a needed version
       linker = pkgs.smfh;
 
       # Pull in all my modules

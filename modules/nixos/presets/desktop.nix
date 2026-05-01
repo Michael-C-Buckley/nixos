@@ -2,7 +2,11 @@
   inherit (config.flake) modules;
   inherit (config.flake.custom) hjemConfigs;
 in {
-  flake.modules.nixos.desktopPreset = {pkgs, ...}: {
+  flake.modules.nixos.desktopPreset = {
+    pkgs,
+    lib,
+    ...
+  }: {
     imports = builtins.attrValues {
       inherit
         (modules.nixos)
@@ -61,7 +65,7 @@ in {
 
     # Move my shell to fish
     programs.fish.enable = true;
-    users.users.michael.shell = pkgs.fish;
+    users.users.michael.shell = lib.mkForce pkgs.fish;
 
     # Host bridge configuration
     networking = {
