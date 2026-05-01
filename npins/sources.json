@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "508daf831ab8d1b143d908239c39a7d8d39561b2",
-      "url": "https://github.com/nix-community/home-manager/archive/508daf831ab8d1b143d908239c39a7d8d39561b2.tar.gz",
-      "hash": "sha256-vEe2f4NEhMvaNDpM1pla4hteaIIGQyAMKUfIBPLasr0="
+      "revision": "899c08a15beae5da51a5cecd6b2b994777a948da",
+      "url": "https://github.com/nix-community/home-manager/archive/899c08a15beae5da51a5cecd6b2b994777a948da.tar.gz",
+      "hash": "sha256-h90sHwoRJLRvaTpZroTvU2JRHDFj0czUafM8eqLe1RI="
     },
     "impermanence": {
       "type": "Git",
@@ -60,9 +60,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "bef289e2248991f7afeb95965c82fbcd8ff72598",
-      "url": "https://github.com/mic92/sops-nix/archive/bef289e2248991f7afeb95965c82fbcd8ff72598.tar.gz",
-      "hash": "sha256-DRFGPfFV6hbrfO9a1PH1FkCi7qR5FgjSqsQGGvk1rdI="
+      "revision": "8eaee5c45428b28b8c47a83e4c09dccec5f279b5",
+      "url": "https://github.com/mic92/sops-nix/archive/8eaee5c45428b28b8c47a83e4c09dccec5f279b5.tar.gz",
+      "hash": "sha256-bc+ZZCmOTNq86/svGnw0tVpH7vJaLYvGLLKFYP08Q8E="
     }
   },
   "version": 7
