@@ -1,11 +1,7 @@
 {config, ...}: let
-  inherit (config.flake) modules packageLists;
+  inherit (config.flake) modules custom;
 in {
-  flake.modules.nixos.cloudPreset = {
-    pkgs,
-    functions,
-    ...
-  }: {
+  flake.modules.nixos.cloudPreset = {functions, ...}: {
     imports =
       builtins.attrValues
       {
@@ -23,13 +19,9 @@ in {
           ;
       };
 
-    environment.systemPackages =
-      functions.packageLists.combinePkgLists (with packageLists; [
-        cli
-        network
-      ])
-      ++ [
-        config.flake.packages.${pkgs.stdenv.hostPlatform.system}.vim
-      ];
+    environment.systemPackages = functions.packageLists.combinePkgLists (with custom.packageLists; [
+      cli
+      network
+    ]);
   };
 }

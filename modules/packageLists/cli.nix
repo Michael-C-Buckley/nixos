@@ -10,6 +10,7 @@
     "fzf"
     "git"
     "ripgrep"
+    "neovim"
 
     # Security
     "sops"
