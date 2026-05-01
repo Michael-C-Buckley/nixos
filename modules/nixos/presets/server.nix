@@ -1,7 +1,11 @@
 {config, ...}: let
   inherit (config.flake) modules;
 in {
-  flake.modules.nixos.serverPreset = {pkgs, ...}: {
+  flake.modules.nixos.serverPreset = {
+    pkgs,
+    lib,
+    ...
+  }: {
     imports = builtins.attrValues {
       inherit
         (modules.nixos)
@@ -21,6 +25,8 @@ in {
         hjem
         ;
     };
+
+    boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
 
     environment.systemPackages = [
       pkgs.python3

@@ -1,9 +1,5 @@
 {
-  flake.modules.nixos.o1 = {
-    pkgs,
-    modulesPath,
-    ...
-  }: {
+  flake.modules.nixos.o1 = {modulesPath, ...}: {
     imports = [
       (modulesPath + "/profiles/qemu-guest.nix")
     ];
@@ -13,7 +9,6 @@
         availableKernelModules = ["xhci_pci" "virtio_scsi"];
         kernelModules = [];
       };
-      kernelPackages = pkgs.linuxKernel.packages.linux_6_19;
       kernelModules = ["nls_cp437" "nls_iso8859-1"];
       extraModulePackages = [];
     };

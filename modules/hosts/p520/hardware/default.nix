@@ -1,7 +1,6 @@
 {
   flake.modules.nixos.p520 = {
     config,
-    pkgs,
     modulesPath,
     ...
   }: {
@@ -10,7 +9,6 @@
     ];
 
     boot = {
-      kernelPackages = pkgs.linuxPackages_6_19;
       binfmt.emulatedSystems = ["aarch64-linux"];
       initrd = {
         availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];

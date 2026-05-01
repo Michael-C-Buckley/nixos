@@ -3,7 +3,6 @@
     config,
     lib,
     modulesPath,
-    pkgs,
     ...
   }: {
     imports = [
@@ -11,7 +10,6 @@
     ];
 
     boot = {
-      kernelPackages = pkgs.linuxPackages_6_19;
       kernelModules = ["kvm" "kvm-amd" "virtiofs" "9p" "9pnet_virtio"];
       kernelParams = [
         "amd_pstate=active" # AMD Power efficiency on Linux 6.3+
