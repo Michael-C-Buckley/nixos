@@ -1,10 +1,6 @@
 {
-  flake.custom.hjemConfigs.qt = {
-    config,
-    pkgs,
-    ...
-  }: {
-    hjem.users.${config.custom.hjem.username} = {
+  flake.custom.hjemConfigs.qt = {pkgs, ...}: {
+    hjem.users.michael = {
       environment.sessionVariables = {
         # These are also in Hyprland since shell environment is not part of
         # the launcher and won't read in properly

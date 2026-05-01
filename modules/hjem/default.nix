@@ -20,12 +20,6 @@ in {
       nushell
     ];
 
-    options.custom.hjem.username = lib.mkOption {
-      type = lib.types.str;
-      default = "michael";
-      description = "My username on the system (for non-default things like work systems with odd usernames).";
-    };
-
     config.hjem = {
       # Small is ahead of nixpkgs for a needed version
       linker = pkgs.smfh;
@@ -33,7 +27,7 @@ in {
       # Pull in all my modules
       extraModules = builtins.attrValues flake.custom.hjemModules;
 
-      users.${username} = {
+      users.michael = {
         environment.sessionVariables = {
           EDITOR = editor;
           VISUAL = editor;

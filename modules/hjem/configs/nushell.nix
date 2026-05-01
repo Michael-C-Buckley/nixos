@@ -7,7 +7,7 @@
     lib,
     ...
   }: let
-    inherit (config.hjem.users.${config.custom.hjem.username}.environment) sessionVariables;
+    inherit (config.hjem.users.michael.environment) sessionVariables;
     envAttrs =
       "# --- Environmenmt Attributes from Session Variables ---"
       + (lib.concatStringsSep "\n" (
@@ -15,7 +15,7 @@
       ))
       + "\n\n";
   in {
-    hjem.users.${config.custom.hjem.username} = {
+    hjem.users.michael = {
       xdg.config.files."nushell/host.nu" = {
         type = "copy";
         permissions = "0644";

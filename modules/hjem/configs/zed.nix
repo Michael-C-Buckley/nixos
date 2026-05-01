@@ -6,14 +6,10 @@
   inherit (config.flake.custom) wrappers;
   flakePackages = config.flake.packages;
 in {
-  flake.custom.hjemConfigs.zed = {
-    pkgs,
-    config,
-    ...
-  }: let
+  flake.custom.hjemConfigs.zed = {pkgs, ...}: let
     inherit (pkgs.stdenv.hostPlatform) system;
   in {
-    hjem.users.${config.custom.hjem.username} = {
+    hjem.users.michael = {
       packages = lib.optionals (lib.hasSuffix "darwin" system) [flakePackages.${system}.zedPkgs];
       xdg.config.files."zed/settings.json" = {
         clobber = false;
