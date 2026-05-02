@@ -1,3 +1,8 @@
 [helium]
 src.github_tag = "imputnet/helium-linux"
 fetch.url = "https://github.com/imputnet/helium-linux/releases/download/$ver/helium-$ver-x86_64.AppImage"
+
+# Raf's TUIGreet
+[tuigreet]
+src.github_tag = "notashelf/tuigreet"
+fetch.url = "https://github.com/NotAShelf/tuigreet/releases/download/$ver/tuigreet-$ver-x86_64"

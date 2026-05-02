@@ -13,5 +13,20 @@
       "url": "https://github.com/imputnet/helium-linux/releases/download/0.11.7.1/helium-0.11.7.1-x86_64.AppImage"
     },
     "version": "0.11.7.1"
+  },
+  "tuigreet": {
+    "cargoLock": null,
+    "date": null,
+    "extract": null,
+    "name": "tuigreet",
+    "passthru": null,
+    "pinned": false,
+    "src": {
+      "name": null,
+      "sha256": "sha256-YQu5+tAneDNlIVc3Q926rfn4J56iYsfdi8oFtw7viBI=",
+      "type": "url",
+      "url": "https://github.com/NotAShelf/tuigreet/releases/download/0.10.2/tuigreet-0.10.2-x86_64"
+    },
+    "version": "0.10.2"
   }
 }
