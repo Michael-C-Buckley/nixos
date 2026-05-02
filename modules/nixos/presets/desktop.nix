@@ -23,6 +23,7 @@ in {
         dconf
         hyprland
         greetd
+        mango
         noctalia
         niri
         # Security

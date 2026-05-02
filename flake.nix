@@ -65,6 +65,14 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
+    mango = {
+      url = "github:mangowm/mango";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
+    };
+
     hjem = {
       url = "github:feel-co/hjem";
       inputs = {
