@@ -10,13 +10,16 @@ in {
   }: let
     cursor = flake.packages.${pkgs.stdenv.hostPlatform.system}.nordzy-cursor;
   in {
-    environment.sessionVariables = {
-      HYPRCURSOR_THEME = "Nordzy-hyprcursors-white";
-      HYPRCURSOR_SIZE = 24;
-      XCURSOR_THEME = "Nordzy-cursors-white";
-      XCURSOR_SIZE = 24;
-      # as a list makes this append to instead of overwrite.
-      XCURSOR_PATH = ["${cursor}/share/icons"];
+    environment = {
+      systemPackages = [cursor];
+      sessionVariables = {
+        HYPRCURSOR_THEME = "Nordzy-hyprcursors-white";
+        HYPRCURSOR_SIZE = 24;
+        XCURSOR_THEME = "Nordzy-cursors-white";
+        XCURSOR_SIZE = 24;
+        # as a list makes this append to instead of overwrite.
+        XCURSOR_PATH = ["${cursor}/share/icons"];
+      };
     };
 
     hjem.users.michael = {

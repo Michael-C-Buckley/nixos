@@ -41,6 +41,7 @@ in {
         michael-attic
         michael-ssh-agent
         hjem
+        hjem-extended
         ;
     };
 
