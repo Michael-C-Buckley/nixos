@@ -25,8 +25,6 @@
     niri = config.flake.custom.wrappers.mkNiri {
       inherit pkgs;
       extraConfig = config.flake.custom.extraConfigs.t14-niri;
-      spawnNoctalia = false;
-      systemd = false;
     };
   in {
     xdg.configFile = {

@@ -12,7 +12,6 @@ in {
       package = mkNiri {
         inherit pkgs;
         inherit (config.custom.niri) extraConfig;
-        spawnNoctalia = false;
       };
       useNautilus = false;
     };

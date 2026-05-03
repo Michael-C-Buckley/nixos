@@ -1,44 +1,24 @@
 {
+  flake,
   pkgs,
   extraConfig,
-  spawnNoctalia,
-  systemd,
   options ? {},
 }: let
+  inherit (pkgs.stdenv.hostPlatform) system;
   # Wrappers for pinning the active noctalia instance
   # prevents the IPC from not working when the system updates
-  noctaliaWrapper = pkgs.writeShellScript "noctalia-wrapper" ''
-    #!/usr/bin/env bash
-    exec $(cat ~/.local/share/noctalia_path) "$@"
-  '';
-  noctaliaPath = pkgs.writeShellScript "noctalia-path" ''
-    #!/usr/bin/env bash
-    mkdir -p ~/.local/share
-    echo $(whereis noctalia-shell | awk '{print $2}') > ~/.local/share/noctalia_path
-  '';
+  inherit (flake.packages.${system}) noctalia;
+  noctalia-path = "${noctalia}/bin/noctalia-path";
+  noctalia-wrapper = "${noctalia}/bin/noctalia-wrapper";
 
-  # Set what the bind should be for power commands and changes
-  # whether systemd or elogind is active
-  powerCommand =
-    if systemd
-    then "systemctl"
-    else "loginctl";
-
-  noctaliaSpawnCommand =
-    if spawnNoctalia
-    then ''
-      spawn-at-startup "noctalia-shell"
-    ''
-    else '''';
-
-  terminal1 = "ghostty";
-  terminal2 = "kitty";
+  terminal1 = "kitty";
+  terminal2 = "ghostty";
 in
   pkgs.writeText "niri-wrapped-config.kdl"
   # kdl
   ''
-    ${noctaliaSpawnCommand}
-    spawn-sh-at-startup "${noctaliaPath}"
+    spawn-at-startup "noctalia-shell"
+    spawn-sh-at-startup "${noctalia-path}"
 
       input {
         disable-power-key-handling
@@ -94,15 +74,15 @@ in
         Mod+Shift+Slash { show-hotkey-overlay; }
 
         // NOCTALIA
-        Mod+space hotkey-overlay-title="Noctalia: Launcher" { spawn-sh "${noctaliaWrapper} ipc call launcher toggle"; }
-        Mod+Ctrl+space hotkey-overlay-title="Noctalia: Toggle Bar" { spawn-sh "${noctaliaWrapper} ipc call bar toggle"; }
-        Mod+Ctrl+M hotkey-overlay-title="Noctalia: Toggle Dark Mode" { spawn-sh "${noctaliaWrapper} ipc call darkMode toggle"; }
-        Mod+Ctrl+N hotkey-overlay-title="Noctalia: Toggle Notifications Do Not Disturb" { spawn-sh "${noctaliaWrapper} ipc call notifications toggleDND"; }
+        Mod+space hotkey-overlay-title="Noctalia: Launcher" { spawn-sh "${noctalia-wrapper} ipc call launcher toggle"; }
+        Mod+Ctrl+space hotkey-overlay-title="Noctalia: Toggle Bar" { spawn-sh "${noctalia-wrapper} ipc call bar toggle"; }
+        Mod+Ctrl+M hotkey-overlay-title="Noctalia: Toggle Dark Mode" { spawn-sh "${noctalia-wrapper} ipc call darkMode toggle"; }
+        Mod+Ctrl+N hotkey-overlay-title="Noctalia: Toggle Notifications Do Not Disturb" { spawn-sh "${noctalia-wrapper} ipc call notifications toggleDND"; }
 
         // LAUNCH
         Mod+Return hotkey-overlay-title="Terminal: ${terminal1}" { spawn "${terminal1}"; }
         Mod+Ctrl+Return { spawn "${terminal2}"; }
-        Mod+Ctrl+Alt+L hotkey-overlay-title="Screen Lock: hyprlock" { spawn-sh "${noctaliaWrapper} ipc call lockScreen lock"; }
+        Mod+Ctrl+Alt+L hotkey-overlay-title="Screen Lock: hyprlock" { spawn-sh "${noctalia-wrapper} ipc call lockScreen lock"; }
         Mod+B hotkey-overlay-title="Browser: Helium" { spawn "helium"; }
         Mod+Ctrl+B { spawn "librewolf"; }
         Mod+D hotkey-overlay-title="Editor: Zed" { spawn "zeditor"; }
@@ -129,8 +109,8 @@ in
         Ctrl+Alt+Delete { quit skip-confirmation=true; }
         Mod+Shift+P { power-off-monitors; }
 
-        Ctrl+Mod+semicolon { spawn-sh "${powerCommand} poweroff"; }
-        Ctrl+Alt+Mod+semicolon { spawn-sh "${powerCommand} reboot"; }
+        Ctrl+Mod+semicolon { spawn-sh "systemctl poweroff ; loginctl poweroff"; }
+        Ctrl+Alt+Mod+semicolon { spawn-sh "systemctl reboot ; loginctl reboot"; }
 
         // WINDOW
         Mod+Shift+Minus { set-window-height "-10%"; }

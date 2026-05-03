@@ -11,6 +11,7 @@
 # I also include other elements of my Niri experience, which is
 # Noctalia and Kitty
 {config, ...}: let
+  inherit (config) flake;
   inherit (config.flake.custom.functions) printConfig;
 in {
   perSystem = {
@@ -28,7 +29,6 @@ in {
         };
         niri-t14 = mkNiri {
           inherit pkgs;
-          systemd = false;
           extraConfig = config.flake.custom.extraConfigs.t14-niri;
         };
       };
@@ -38,16 +38,13 @@ in {
     mkNiriConfig = {
       pkgs,
       extraConfig ? "",
-      spawnNoctalia ? true,
     }:
-      import ./_config.nix {inherit pkgs extraConfig spawnNoctalia;};
+      import ./_config.nix {inherit pkgs extraConfig;};
     mkNiri = {
       pkgs,
       pkg ? pkgs.niri,
       extraConfig ? "",
       extraRuntimeInputs ? [],
-      spawnNoctalia ? true,
-      systemd ? true,
     }: let
       inherit
         (config.flake.packages.${pkgs.stdenv.hostPlatform.system})
@@ -78,7 +75,7 @@ in {
         pathsToLink = ["/bin"];
       };
 
-      cfg = import ./_config.nix {inherit pkgs extraConfig systemd spawnNoctalia;};
+      cfg = import ./_config.nix {inherit flake pkgs extraConfig;};
 
       print = printConfig {
         inherit cfg pkgs;
