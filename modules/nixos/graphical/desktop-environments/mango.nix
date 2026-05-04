@@ -1,10 +1,4 @@
-{
-  config,
-  inputs,
-  ...
-}: let
-  inherit (config) flake;
-in {
+{inputs, ...}: {
   flake.modules.nixos.mango = {pkgs, ...}: let
     inherit (pkgs.stdenv.hostPlatform) system;
   in {
@@ -15,9 +9,22 @@ in {
       package = inputs.mango.packages.${system}.mango;
     };
 
-    environment.systemPackages = builtins.attrValues {
-      inherit (pkgs) grim slurp wl-clipboard;
-      inherit (flake.packages.${system}) noctalia;
-    };
+    environment.systemPackages = with pkgs; [
+      grim
+      slurp
+      wl-clipboard
+
+      bemenu
+      fuzzel
+      swaylock
+
+      waybar
+      wleave
+      mako
+      swaynotificationcenter
+      networkmanagerapplet
+      mpd-mpris
+      waybar-mpris
+    ];
   };
 }
