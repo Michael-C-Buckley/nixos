@@ -17,6 +17,7 @@
       bemenu
       fuzzel
       swaylock
+      gammastep
 
       waybar
       wleave
