@@ -66,7 +66,7 @@
     };
 
     mango = {
-      url = "github:mangowm/mango";
+      url = "github:WeraPea/mangowc/touch-pr";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
