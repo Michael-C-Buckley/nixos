@@ -1,14 +1,9 @@
 {
-  flake.modules.nixos.zfs = {
-    config,
-    pkgs,
-    lib,
-    ...
-  }: {
+  flake.modules.nixos.zfs = {config, ...}: {
     boot = {
       kernelModules = ["zfs"];
       supportedFilesystems = ["zfs"];
-      zfs.package = lib.mkDefault pkgs.zfs_2_4;
+      zfs.forceImportRoot = true;
     };
 
     # I don't know if this is necessary, but just in case
