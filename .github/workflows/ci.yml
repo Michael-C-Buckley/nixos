@@ -37,5 +37,15 @@ jobs:
           treefmt alejandra biome mdformat taplo yamlfmt stylua \
           --run \
             "treefmt --config-file .config/treefmt.toml --fail-on-change ."
+  flake-check:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Nix
+        uses: cachix/install-nix-action@v27
+        with:
+          nix_patch: nixpkgs=flake:nixpkgs
       - name: Check Flake
         run: nix flake check
