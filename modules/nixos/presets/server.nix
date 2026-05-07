@@ -22,8 +22,6 @@ in {
         ;
     };
 
-    #boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_6_19; # Deprecated, will fall back to 6.18 LTS
-
     environment.systemPackages = [
       pkgs.python3
       config.flake.packages.${pkgs.stdenv.hostPlatform.system}.vim

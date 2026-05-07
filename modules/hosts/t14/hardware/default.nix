@@ -3,7 +3,6 @@
     config,
     lib,
     modulesPath,
-    pkgs,
     ...
   }: {
     imports = [
@@ -11,7 +10,6 @@
     ];
 
     boot = {
-      kernelPackages = pkgs.linuxPackages_zen;
       initrd = {
         availableKernelModules = ["nvme" "xhci_pci" "uas" "sd_mod" "sdhci_pci"];
         kernelModules = ["dm-snapshot"];
