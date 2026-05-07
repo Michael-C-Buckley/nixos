@@ -1,4 +1,3 @@
----
 name: CI
 "on":
   push:
@@ -6,46 +5,57 @@ name: CI
     paths:
       - "flake.*"
       - "modules/**"
+      - "packages/**"
+      - ".config/**"
       - ".github/workflows/**"
   pull_request:
     branches: [master, main]
     paths:
       - "flake.*"
       - "modules/**"
+      - "packages/**"
+      - ".config/**"
       - ".github/workflows/**"
   workflow_dispatch:
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
-  fast-checks:
+  lint:
+    name: ${{ matrix.check.name }}
     runs-on: ubuntu-latest
-    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        check:
+          - name: deadnix
+            cmd: nix develop --command deadnix --fail --exclude _sources/ .
+          - name: statix
+            cmd: nix develop --command statix check -c .config/statix.toml .
+          - name: typos
+            cmd: nix develop --command typos -c .config/typos.toml .
+          - name: treefmt
+            cmd: |
+              nix develop --command treefmt \
+              --ci --config-file .config/treefmt.toml
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install Nix
-        uses: cachix/install-nix-action@v27
-        with:
-          nix_path: nixpkgs=flake:nixpkgs
-      - name: Check for dead code with deadnix
-        run: nix run nixpkgs#deadnix -- --fail --exclude _sources/ .
-      - name: Check for antipatterns with statix
-        run: nix run nixpkgs#statix -- check -c .config/statix.toml .
-      - name: Check spelling with typos
-        run: nix run nixpkgs#typos -- -c .config/typos.toml .
-      - name: Check formatting with treefmt
-        run: |
-          nix-shell -p \
-          treefmt alejandra biome mdformat taplo yamlfmt stylua \
-          --run \
-            "treefmt --config-file .config/treefmt.toml --fail-on-change ."
+        uses: DeterminateSystems/nix-installer-action@main
+      - name: Setup Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: Run ${{ matrix.check.name }}
+        run: ${{ matrix.check.cmd }}
   flake-check:
+    name: nix flake check
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install Nix
-        uses: cachix/install-nix-action@v27
-        with:
-          nix_patch: nixpkgs=flake:nixpkgs
+        uses: DeterminateSystems/nix-installer-action@main
+      - name: Setup Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
       - name: Check Flake
-        run: nix flake check
+        run: nix flake check -L

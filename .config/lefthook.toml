@@ -1,6 +1,12 @@
 assert_lefthook_installed = true
 
 [[pre-commit.jobs]]
+interactive = true
+name = "treefmt"
+run = "treefmt --config-file .config/treefmt.toml {staged_files}"
+stage_fixed = true
+
+[[pre-commit.jobs]]
 name = "deadnix"
 exclude = ["_sources/**", "npins/**"]
 glob = "*.nix"
@@ -21,12 +27,6 @@ run = "taplo lint {staged_files}"
 name = "yamllint"
 glob = "*.{yml,yaml}"
 run = "yamllint {staged_files}"
-
-[[pre-commit.jobs]]
-interactive = true
-name = "treefmt"
-run = "treefmt --config-file .config/treefmt.toml {staged_files}"
-stage_fixed = true
 
 [[pre-commit.jobs]]
 name = "shellcheck"
