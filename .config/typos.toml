@@ -15,5 +15,6 @@ check-file = false
 extend-ignore-re = [
   # Ignore lines ending with `# typos:ignore-line`
   "(?Rm)^.*#\\s*typos:ignore-line$",
+  "sha256-[A-Za-z0-9+/]{43}=",
 ]
 extend-ignore-identifiers-re = ['LESS_TERMCAP_\w+$']

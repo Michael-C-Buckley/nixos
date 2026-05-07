@@ -21,11 +21,10 @@ in {
         # Userspace
         chromiumPolicies
         dconf
+        dms
         hyprland
         greetd
         mango
-        noctalia
-        niri
         # Security
         yubikey
         tpm2

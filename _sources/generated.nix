@@ -7,18 +7,10 @@
 }: {
   helium = {
     pname = "helium";
-    version = "0.11.7.1";
+    version = "0.12.1.1";
     src = fetchurl {
-      url = "https://github.com/imputnet/helium-linux/releases/download/0.11.7.1/helium-0.11.7.1-x86_64.AppImage";
-      sha256 = "sha256-qzc135IP5F2btxtOMUGMz+0azJhYL9KI0lcPG2KjcxU=";
-    };
-  };
-  tuigreet = {
-    pname = "tuigreet";
-    version = "0.10.2";
-    src = fetchurl {
-      url = "https://github.com/NotAShelf/tuigreet/releases/download/0.10.2/tuigreet-0.10.2-x86_64";
-      sha256 = "sha256-YQu5+tAneDNlIVc3Q926rfn4J56iYsfdi8oFtw7viBI=";
+      url = "https://github.com/imputnet/helium-linux/releases/download/0.12.1.1/helium-0.12.1.1-x86_64.AppImage";
+      sha256 = "sha256-+UE+JqQtxbA5szPvAohapXlES21VBOdNsV6Ej1dRRfs=";
     };
   };
 }
