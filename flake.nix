@@ -22,6 +22,7 @@
         lists.flatten
         [
           flake-parts.flakeModules.modules
+          flake-parts.flakeModules.touchup
           (mkImport ./modules)
           (mkImport ./packages)
         ];
@@ -30,6 +31,9 @@
       flake = {
         inherit npins;
       };
+
+      # I apparently need to tell them I don't use a formatter to not bug out
+      touchup.attr.formatter.enable = false;
 
       perSystem = {
         pkgs,
