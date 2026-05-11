@@ -84,5 +84,19 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    disko-zfs = {
+      url = "github:numtide/disko-zfs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        disko.follows = "disko";
+      };
+    };
   };
 }

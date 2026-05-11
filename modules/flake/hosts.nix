@@ -56,6 +56,10 @@
       lo.ipv4 = null;
     };
 
+    t14g5.interfaces = {
+      lo.ipv4 = null;
+    };
+
     o1.interfaces = {
       lo.ipv4 = null;
     };

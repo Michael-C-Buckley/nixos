@@ -1,5 +1,51 @@
 {
   "nodes": {
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1777713215,
+        "narHash": "sha256-8GzXDOXckDWwST8TY5DbwYFjdvQLlP7K9CLSVx6iTTo=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "63b4e7e6cf75307c1d26ac3762b886b5b0247267",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "disko",
+        "type": "github"
+      }
+    },
+    "disko-zfs": {
+      "inputs": {
+        "disko": [
+          "disko"
+        ],
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1773422739,
+        "narHash": "sha256-nfl7tj3TN8MZI5JpidUjlqax+2ly2BHay3tpM/cc9ik=",
+        "owner": "numtide",
+        "repo": "disko-zfs",
+        "rev": "adaef72fba88b4f313fcb3f7cf02e24b2a09b648",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "disko-zfs",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -81,6 +127,8 @@
     },
     "root": {
       "inputs": {
+        "disko": "disko",
+        "disko-zfs": "disko-zfs",
         "flake-parts": "flake-parts",
         "hjem": "hjem",
         "mango": "mango",
