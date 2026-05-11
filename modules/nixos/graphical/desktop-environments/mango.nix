@@ -2,9 +2,7 @@
   flake.modules.nixos.mango = {pkgs, ...}: let
     inherit (pkgs.stdenv.hostPlatform) system;
   in {
-    imports = [inputs.mango.nixosModules.mango];
-
-    programs.mango = {
+    programs.mangowc = {
       enable = true;
       package = inputs.mango.packages.${system}.mango;
     };
