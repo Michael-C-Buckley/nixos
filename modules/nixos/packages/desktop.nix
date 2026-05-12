@@ -35,12 +35,12 @@
         materialgram
         # Productivity
         novelwriter
+        helix
         ;
       inherit
         (fpkgs)
         zeditor
         helium
-        helix
         ns
         ;
     };
