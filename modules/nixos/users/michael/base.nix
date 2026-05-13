@@ -8,15 +8,11 @@
         initialHashedPassword = "$6$aQHYzxKJC/yStH4U$1kAsuU3GW9gn2ANJ5GzRgAVnExqlb3OfBjKGddjnScI05DuttGE6WmuUyhT7CVBJmNliyE4mquEovPbOxRyev0";
         isNormalUser = true;
         openssh.authorizedKeys.keys = [
-          "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAICVdKrhTH1OxUE/164StP+Iu5sOGcGEmpTyNvarAUn69AAAABHNzaDo="
-          "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAILqRzNVovg805v52UxSRSZxZu0RwUOPlTA7eSHhkDpbrAAAABHNzaDo="
-          "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIBDfIFxTCpYmNKivpDhn2YRPFHcL3QN4ztuimnA2o/+DAAAABHNzaDo="
-          "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIDmeP5ouNAD/hWUMq6DsZzLQCtOIh8rvQghX/huztRc8AAAAEXNzaDptaWNoYWVsQHlrNTcz"
-          "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIPf4FlUmj1rIXYC80u1YtvYijLEC9HNsNoNNSli26yfiAAAAEXNzaDptaWNoYWVsQHlrODcw"
-          "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIKAR+0i/+FR8pFkwiU7jubzaPrDJAhtX3qMpYrGVnVE/AAAAEXNzaDptaWNoYWVsQHlrOTAy"
-          "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIHs226+TygXNbePufYVItfHQqTgAO8JChAigzEfQK4ftAAAAEXNzaDptaWNoYWVsQHlrMDcz"
-          "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIAeSC5gh3pMr5v3p+/Dh3SMddk/n5Dr+srLS3OV3hEqOAAAABHNzaDo="
-          "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBTrqZCztEbXrLr7noL+UrhaNG008+2SgSPd4NhMauJkfSiv5Y0CzuzMi7Ujoe46+BSVLIQtxT7pVuKQlWa6UzM="
+          "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAILHytYnSkT8S9gh4QKA61YRECw/HNQuORhPCfjIGj4ywAAAAEHNzaDo1NzNfaW50ZXJuYWw="
+          "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIF00cQEcA6NU6u/v6B5jUCOG3KrAjpLjDHMbcZDq/R5LAAAAEHNzaDo4NzBfaW50ZXJuYWw="
+          "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIKAcHW9O7aLXURyPNjNUf9H3IZRu4kUC6Fo5zSSEs96FAAAAEHNzaDo5MDJfaW50ZXJuYWw="
+          "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAII2UKCyclW6L/AxGAHIOaq0dgQJm1hMA2qEKwCmEebA7AAAAEHNzaDo5MjFfaW50ZXJuYWw="
+          "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIE2yZHI+VR3sWjsBypQpyK3rO1Y44qZnG8G5QqZyP1E2AAAAEHNzaDowNzRfaW50ZXJuYWw="
         ];
       };
     };
