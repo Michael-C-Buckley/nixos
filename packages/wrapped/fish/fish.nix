@@ -10,7 +10,7 @@
 }: let
   inherit (config) flake;
   inherit (config.flake.custom.functions) printConfig;
-  inherit (config.flake.custom.wrappers) mkFish mkGitSignersFile;
+  inherit (config.flake.custom.wrappers) mkFish;
   inherit (config.flake.custom.userModules.shellAliases) basic extra fish;
 in {
   perSystem = {
@@ -28,7 +28,6 @@ in {
       env = {
         NH_FLAKE = "/${home}/michael/nixos";
         NIXPKGS_ALLOW_UNFREE = "1";
-        GIT_SIGNING_KEYS_FILE = "${mkGitSignersFile {inherit pkgs;}}";
       };
     };
   };

@@ -7,7 +7,6 @@
 }: let
   inherit (pkgs.lib) getExe;
   inherit (flake.custom.wrappers) mkStarshipConfig mkGitConfig;
-  inherit (flake.custom.userModules) nu;
 
   starshipConfig = mkStarshipConfig {inherit pkgs;};
   gitConfig = mkGitConfig {inherit pkgs;};
@@ -46,10 +45,6 @@ in
 
     # Aliases
     ${aliasCommands}
-
-    # Dynamically find my signing key
-    ${getExe pkgs.nushell} ${nu.keyScript}
-
 
     # Functions (session-scoped to avoid conflicts)
     function show --description 'Show VTY command output'

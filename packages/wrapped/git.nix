@@ -13,16 +13,6 @@
   ...
 }: let
   inherit (config.flake.custom.wrappers) mkGit;
-  signingKeys = ''
-    sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAICVdKrhTH1OxUE/164StP+Iu5sOGcGEmpTyNvarAUn69AAAABHNzaDo=
-    sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIDmeP5ouNAD/hWUMq6DsZzLQCtOIh8rvQghX/huztRc8AAAAEXNzaDptaWNoYWVsQHlrNTcz
-    sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIKAR+0i/+FR8pFkwiU7jubzaPrDJAhtX3qMpYrGVnVE/AAAAEXNzaDptaWNoYWVsQHlrOTAy
-    sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIHs226+TygXNbePufYVItfHQqTgAO8JChAigzEfQK4ftAAAAEXNzaDptaWNoYWVsQHlrMDcz
-    sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIJRDTnuE/pbhRwOkDyK4ZpRztJ7zYvN3cAHl+xCSGgYDAAAABHNzaDo=
-    sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIO7l+i5FouCyBe4stv0W9jGs/XBCy4VYioefx0S4ud3WAAAACnNzaDpnaXRodWI=
-    ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKwRoyE6eCR6RAiAnLACmi1RCi9cDVoFwoQZsf1t9NnHVWTG86+Gbln5Yeg8v3groM6MMgwtKLddbUyp1W9JkJ8=
-    ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKCUs11g5Art9eoGCTw9ZHI8NAvCrkmQYHHmG3vivb+aUDwasx59AC8ElqP06QBlxKfyZ8CMfdgbTWr2aj8a6uU=
-  '';
 
   # My standard config, overwritten as needed on merging
   gitCfg = {
@@ -53,7 +43,7 @@
     user = {
       name = "Michael Buckley";
       email = "michaelcbuckley@proton.me";
-      signingkey = "/${home}/${username}/.ssh/git_signing.pub";
+      signingkey = "/${home}/${username}/.ssh/active/signing";
     };
   };
 in {
@@ -106,11 +96,5 @@ in {
         else "home";
     in
       pkgs.writers.writeTOML "git-wrapped-config" (lib.recursiveUpdate (gitCfg {inherit home username;}) extraConfig);
-
-    mkGitSignersFile = {
-      pkgs,
-      extraKeys ? '''',
-    }:
-      pkgs.writeText "git-allowed-signers" (signingKeys + extraKeys);
   };
 }

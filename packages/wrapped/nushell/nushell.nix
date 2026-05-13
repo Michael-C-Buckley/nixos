@@ -11,7 +11,6 @@
     mkNuConfig
     mkNuEnvConfig
     mkGitConfig
-    mkGitSignersFile
     mkStarshipConfig
     ;
   inherit (config.flake.custom.functions) printConfig;
@@ -31,7 +30,6 @@ in {
       env = {
         NH_FLAKE = "/${home}/michael/nixos";
         NIXPKGS_ALLOW_UNFREE = "1";
-        GIT_SIGNING_KEYS_FILE = mkGitSignersFile {inherit pkgs;};
         GIT_CONFIG_GLOBAL = mkGitConfig {inherit pkgs;};
         STARSHIP_CONFIG = mkStarshipConfig {
           inherit pkgs;
@@ -57,7 +55,6 @@ in {
         + (builtins.readFile ./starship.nu)
         + (builtins.readFile ./git.nu)
         + ''
-          source ${config.flake.custom.userModules.nu.keyScript}
           source $"($nu.cache-dir)/carapace.nu"
         ''
         + extraConfig
