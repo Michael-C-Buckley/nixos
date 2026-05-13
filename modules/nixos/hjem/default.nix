@@ -7,13 +7,12 @@
   editor = "vim"; # vim on servers, nvim on full systems
 in {
   flake.modules.nixos.hjem = {
-    config,
     pkgs,
     lib,
     ...
   }: let
     inherit (pkgs.stdenv.hostPlatform) system;
-    inherit (config.custom.hjem) username;
+    username = "michael";
     home =
       if (lib.hasSuffix "linux" system)
       then "home"
