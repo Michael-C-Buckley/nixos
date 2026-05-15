@@ -1,24 +1,17 @@
-let
-  key = name: {
-    sopsFile = "/etc/secrets/users/${name}/ssh_pubkeys.sops";
-    mode = "0644";
-    format = "binary";
-  };
-in {
-  flake.modules.nixos.secrets = {pkgs, ...}: {
+{
+  flake.modules.nixos.secrets = {
+    pkgs,
+    lib,
+    ...
+  }: {
     sops = {
       # Systemd in order to use systemd-credentials for the protected host key
       useSystemdActivation = true;
       # SSH host key is protected by systemd-credentials, this is the location it gets decrypted to
-      age.sshKeyPaths = ["/run/credentials/sops-install-secrets.service/ssh_host_ed25519_key"];
+      age.sshKeyPaths = lib.mkDefault ["/run/credentials/sops-install-secrets.service/ssh_host_ed25519_key"];
       # Do not use GPG
       gnupg.sshKeyPaths = [];
-
-      secrets = {
-        michael_ssh_pubkeys = key "michael";
-        shawn_ssh_pubkeys = key "shawn";
-        root_ssh_pubkeys = key "root";
-      };
+      age.plugins = with pkgs; [age-plugin-tpm];
     };
 
     # Sops-nix receives the protected SSH key from systemd-credentials

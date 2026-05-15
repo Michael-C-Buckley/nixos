@@ -11,8 +11,6 @@ in {
       env = config.custom.shell.environmentVariables;
     };
   in {
-    environment.etc."ssh/authorized_keys.d/shawn".source = config.sops.secrets.shawn_ssh_pubkeys.path;
-
     users = {
       powerUsers.members = ["shawn"];
       users.shawn = {
@@ -20,6 +18,11 @@ in {
         isNormalUser = true;
         extraGroups = config.users.powerUsers.groups;
         shell = "${shell}${shell.shellPath}";
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMHGkt46r4YJfNSji+DpfwlU/kCRVBwLAbUFbvyN2Ax1"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIW/Nlbf1An3q7yoWY5D6wYSm8Y5tWFtTMJm0pImjK1g"
+          "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKsayKA+q+xhiZtvQ58Xxl4tQq+zVVyYJwLP9BruIEphQsxe3pVqoQG25f+irYX0rqPij3bNZM3Dc/tejX2vDjI="
+        ];
       };
     };
   };

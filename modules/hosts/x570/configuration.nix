@@ -14,6 +14,11 @@
 
     system.stateVersion = "25.05";
 
+    sops.age = {
+      keyFile = "/var/lib/nixos/tpm.keys";
+      sshKeyPaths = [];
+    };
+
     # Containers (existing data but current disabled)
     environment.persistence."/cache".directories = [
       "/var/lib/containers"
