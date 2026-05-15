@@ -13,8 +13,12 @@
       home.enable = false;
     };
 
+    boot.tmp = {
+      useTmpfs = true;
+      tmpfsSize = "4G";
+    };
+
     services.sanoid.datasets = {
-      "zroot/x570/nixos/persist".use_template = ["normal"];
       "zroot/x570/nixos/home/michael".use_template = ["normal"];
     };
   };

@@ -38,7 +38,13 @@
     };
   };
 
-  lvm = {};
+  nvmeLvm = {
+    size = "200G";
+    content = {
+      type = "lvm_pv";
+      vg = "nvme";
+    };
+  };
 
   zfs = {
     content = {
@@ -47,5 +53,21 @@
     };
     name = "zfs";
     size = "1000G";
+  };
+
+  optaneSwap = {
+    size = "50%";
+    content = {
+      type = "swap";
+      priority = 90;
+    };
+  };
+
+  optaneLvm = {
+    size = "50%";
+    content = {
+      type = "lvm_pv";
+      vg = "optane";
+    };
   };
 }
