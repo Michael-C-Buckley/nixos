@@ -85,6 +85,8 @@
       };
     };
 
+    hyprland.url = "github:hyprwm/hyprland";
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
