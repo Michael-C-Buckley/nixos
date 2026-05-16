@@ -37,4 +37,10 @@ in {
     options.recordsize = "1M";
     mountpoint = "/media/games";
   };
+
+  # This will container the various "normal" home directories that are shared
+  # among distros but without various state folders, via binds
+  michael = z {
+    mountpoint = "/media/michael";
+  };
 }
