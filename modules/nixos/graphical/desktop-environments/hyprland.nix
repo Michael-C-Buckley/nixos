@@ -1,12 +1,7 @@
-{
-  inputs,
-  config,
-  ...
-}: {
+{config, ...}: {
   flake.modules.nixos.hyprland = {pkgs, ...}: {
     programs = {
       hyprland.enable = true;
-      hyprland.package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     };
 
     environment = {
@@ -20,7 +15,6 @@
         _JAVA_AWT_WM_NONREPARENTING = "1";
       };
 
-      # TODO: audit these packages to see what I use
       systemPackages = with pkgs;
         [
           hyprshot

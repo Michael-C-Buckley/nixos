@@ -69,14 +69,6 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    mango = {
-      url = "github:WeraPea/mangowc/touch-pr";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
-    };
-
     hjem = {
       url = "github:feel-co/hjem";
       inputs = {
@@ -84,8 +76,6 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-
-    hyprland.url = "github:hyprwm/hyprland";
 
     disko = {
       url = "github:nix-community/disko";
