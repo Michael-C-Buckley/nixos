@@ -1,5 +1,5 @@
 {lib, ...}: {
-  flake.modules.nixos.t14 = {
+  flake.modules.nixos.t14-wireguard = {
     config,
     functions,
     ...

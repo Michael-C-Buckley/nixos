@@ -5,7 +5,8 @@
       # lanzaboote
       systemd-boot
       laptopPreset
-      systemd-credentials
+      t14-secrets
+      t14-wireguard
     ];
 
     security.tpm2.enable = true;

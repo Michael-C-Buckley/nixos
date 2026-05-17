@@ -4,7 +4,7 @@ let
     format = "binary";
   };
 in {
-  flake.modules.nixos.t14 = {
+  flake.modules.nixos.t14-secrets = {
     sops = {
       defaultSopsFile = "/etc/secrets/hosts/t14/t14.yaml";
       secrets = builtins.listToAttrs (map (n: {

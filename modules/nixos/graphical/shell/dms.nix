@@ -6,7 +6,7 @@
     };
     services.displayManager.dms-greeter = {
       enable = true;
-      compositor.name = "hyprland"; # I'll PR and fix this on nixpkgs, it doesn't have everything
+      compositor.name = "hyprland";
       configHome = "/home/michael";
     };
   };

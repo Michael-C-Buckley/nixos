@@ -10,7 +10,7 @@
     options.custom.greetd = {
       defaultCommand = lib.mkOption {
         type = lib.types.str;
-        default = "mango";
+        default = "start-hyprland";
         description = "The default session command for greetd and auto-login";
       };
     };

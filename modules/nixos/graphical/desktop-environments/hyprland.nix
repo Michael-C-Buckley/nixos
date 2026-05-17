@@ -1,7 +1,12 @@
-{config, ...}: {
+{
+  inputs,
+  config,
+  ...
+}: {
   flake.modules.nixos.hyprland = {pkgs, ...}: {
     programs = {
       hyprland.enable = true;
+      hyprland.package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     };
 
     environment = {
