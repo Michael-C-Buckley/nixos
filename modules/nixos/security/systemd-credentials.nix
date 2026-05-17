@@ -1,6 +1,11 @@
 {
-  flake.modules.nixos.systemd-credentials = {
+  flake.modules.nixos.systemd-credentials = {lib, ...}: {
     custom.systemdSops = true;
+
+    sops = {
+      # SSH host key is protected by systemd-credentials, this is the location it gets decrypted to
+      age.sshKeyPaths = lib.mkDefault ["/run/credentials/sops-install-secrets.service/ssh_host_ed25519_key"];
+    };
 
     services.openssh = {
       # Pre-provisioned, do not attempt to generate new ones

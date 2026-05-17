@@ -1,24 +1,14 @@
 {
-  flake.modules.nixos.secrets = {
-    pkgs,
-    lib,
-    ...
-  }: {
+  flake.modules.nixos.secrets = {pkgs, ...}: {
     sops = {
       # Systemd in order to use systemd-credentials for the protected host key
       useSystemdActivation = true;
-      # SSH host key is protected by systemd-credentials, this is the location it gets decrypted to
-      age.sshKeyPaths = lib.mkDefault ["/run/credentials/sops-install-secrets.service/ssh_host_ed25519_key"];
       # Do not use GPG
       gnupg.sshKeyPaths = [];
       age.plugins = with pkgs; [age-plugin-tpm];
     };
 
-    # Sops-nix receives the protected SSH key from systemd-credentials
     systemd.services = {
-      sops-install-secrets.serviceConfig = {
-        LoadCredentialEncrypted = ["ssh_host_ed25519_key:/var/lib/systemd/credentials/ssh_host_ed25519_key"];
-      };
       # Updates my local private secrets
       # Impure and imperative, attempt with caution
       secrets-update = {
