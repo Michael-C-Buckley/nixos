@@ -1,14 +1,13 @@
 {config, ...}: {
   flake.modules.nixos.x570 = {
     imports = with config.flake.modules.nixos; [
-      lanzaboote
+      systemd-boot
       desktopPreset
       homelabPreset
       intelGraphics
       wifi
       gaming
       lab-network
-      systemd-credentials
     ];
 
     system.stateVersion = "26.05";

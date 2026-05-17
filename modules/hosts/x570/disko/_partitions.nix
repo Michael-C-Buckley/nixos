@@ -56,7 +56,7 @@
   };
 
   optaneSwap = {
-    size = "50%";
+    size = "6500M";
     content = {
       type = "swap";
       priority = 90;
@@ -64,7 +64,7 @@
   };
 
   optaneLvm = {
-    size = "50%";
+    size = "6500M";
     content = {
       type = "lvm_pv";
       vg = "optane";

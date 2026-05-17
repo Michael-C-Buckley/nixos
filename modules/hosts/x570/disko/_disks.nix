@@ -2,16 +2,16 @@ let
   parts = import ./_partitions.nix;
 in {
   main1 = {
-    device = "/dev/nvme0n1";
+    device = "/dev/disk/by-id/nvme-CT2000P3PSSD8_2321E6DC0D72";
     content = {
       type = "gpt";
       partitions = {
-        inherit (parts) boot swap zfs;
+        inherit (parts) boot swap zfs nvmeLvm;
       };
     };
   };
   main2 = {
-    device = "/dev/nvme1n1";
+    device = "/dev/disk/by-id/nvme-CT2000P3PSSD8_2321E6DC11CE";
     content = {
       type = "gpt";
       partitions = {
@@ -21,7 +21,7 @@ in {
   };
 
   optane = {
-    device = "/dev/nvme2n1";
+    device = "/dev/disk/by-id/nvme-eui.e4d25ce60f200100";
     content = {
       type = "gpt";
       partitions = {
