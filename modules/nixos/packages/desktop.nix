@@ -24,7 +24,8 @@
         yazi
         starship
         # Utility
-        bemenu
+        wmenu
+        gammastep
         attic-client
         wireshark
         putty

@@ -29,8 +29,7 @@
       pciutils
 
       # Editors
-      vim
-      kakoune
+      neovim
 
       # Machine Utilities
       gptfdisk

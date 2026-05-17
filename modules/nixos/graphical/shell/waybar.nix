@@ -5,7 +5,7 @@
       slurp
       wl-clipboard
 
-      bemenu
+      wmenu
       fuzzel
       swaylock
       gammastep
