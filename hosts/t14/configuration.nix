@@ -1,16 +1,20 @@
-# T14 Laptop Configuration
-{config, ...}: {
-  flake.modules.nixos.t14 = {
-    imports = with config.flake.modules.nixos; [
+{flake, ...}: {
+  imports = with flake.modules.nixos;
+    [
       lanzaboote
       impermanence
       laptopPreset
       systemd-credentials
       t14-secrets
       t14-wireguard
+    ]
+    ++ [
+      ./hardware
+      ./networking
+      ./systemd/night-led.nix
+      ./user/noctalia.nix
     ];
 
-    security.tpm2.enable = true;
-    system.stateVersion = "24.11";
-  };
+  security.tpm2.enable = true;
+  system.stateVersion = "24.11";
 }

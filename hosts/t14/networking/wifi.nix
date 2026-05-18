@@ -44,40 +44,40 @@ let
     route6 = "192.168.63.10/32,172.${octet}.166.10";
   };
 in
-  {config, ...}: let
-    inherit (config) flake;
-  in {
-    flake.modules.nixos.t14 = {config, ...}: {
-      imports = with flake.modules.nixos; [
-        wifi-home
-        wifi-mobile
+  {
+    config,
+    flake,
+    ...
+  }: {
+    imports = with flake.modules.nixos; [
+      wifi-home
+      wifi-mobile
+    ];
+    networking.networkmanager.ensureProfiles = {
+      environmentFiles = with config.sops.secrets; [
+        shawn-wifi.path
+        r1-wifi.path
+        r2-wifi.path
       ];
-      networking.networkmanager.ensureProfiles = {
-        environmentFiles = with config.sops.secrets; [
-          shawn-wifi.path
-          r1-wifi.path
-          r2-wifi.path
-        ];
 
-        profiles =
-          builtins.listToAttrs (map nameWifi ["SHAWN" "R11" "R12" "R2"])
-          // {
-            # Additional static routes exist to connect to my home lab
-            # The `/20` is the local prefix
-            # The `/32` routes are the UFF cluster members with static loopback routes
-            #  because VRRP otherwise interferes with routing to them directly
-            home = {
-              connection.interface-name = "wlp3s0";
-              ipv4 = mkIpv4Info "16";
-              ipv6.address = "fe80::a14/64";
-            };
-
-            home2 = {
-              connection.interface-name = "wlp3s0";
-              ipv4 = mkIpv4Info "30";
-              ipv6.address = "fe80::a14/64";
-            };
+      profiles =
+        builtins.listToAttrs (map nameWifi ["SHAWN" "R11" "R12" "R2"])
+        // {
+          # Additional static routes exist to connect to my home lab
+          # The `/20` is the local prefix
+          # The `/32` routes are the UFF cluster members with static loopback routes
+          #  because VRRP otherwise interferes with routing to them directly
+          home = {
+            connection.interface-name = "wlp3s0";
+            ipv4 = mkIpv4Info "16";
+            ipv6.address = "fe80::a14/64";
           };
-      };
+
+          home2 = {
+            connection.interface-name = "wlp3s0";
+            ipv4 = mkIpv4Info "30";
+            ipv6.address = "fe80::a14/64";
+          };
+        };
     };
   }
