@@ -1,10 +1,14 @@
 {
-  flake.modules.nixos.x570 = {
-    systemd.network.wait-online.enable = false;
-    networking = {
-      hostId = "c07fa570";
-      hostName = "x570";
-      resolvconf.useLocalResolver = true;
-    };
+  imports = [
+    ./routing.nix
+    ./wifi.nix
+    ./wireguard.nix
+  ];
+
+  systemd.network.wait-online.enable = false;
+  networking = {
+    hostId = "c07fa570";
+    hostName = "x570";
+    resolvconf.useLocalResolver = true;
   };
 }
