@@ -21,7 +21,7 @@
   uffs = builtins.listToAttrs (
     map (hostname: {
       name = hostname;
-      value.modules = [flake.modules.nixos.uff];
+      value.modules = [../hosts/uff/${hostname}];
     }) ["uff1" "uff2" "uff3"]
   );
 
@@ -30,7 +30,7 @@
     hostname,
     system ? "x86_64-linux",
     cudaSupport ? false,
-    modules ? [],
+    modules ? [../hosts/${hostname}/configuration.nix],
   }: let
     pkgs = import nixpkgs {
       inherit system;
@@ -51,12 +51,7 @@
         # These require pkgs to be passed so collect and do once to get the ready functions
         functions = mapAttrs (_: v: v {inherit pkgs;}) flake.custom.functions;
       };
-      modules =
-        [
-          # flake.modules.nixos.${hostname}
-          ../hosts/${hostname}/configuration.nix
-        ]
-        ++ modules;
+      inherit modules;
     };
 in {
   flake.nixosConfigurations =
