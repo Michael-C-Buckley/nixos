@@ -25,7 +25,6 @@
           flake-parts.flakeModules.touchup
           (mkImport ./modules)
           (mkImport ./packages)
-          (mkImport ./hosts)
           (mkImport ./outputs)
         ];
 

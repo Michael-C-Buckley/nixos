@@ -1,20 +1,21 @@
-# T14g5 Laptop Configuration
-{config, ...}: {
-  flake.modules.nixos.t14g5 = {
-    imports = with config.flake.modules.nixos; [
-      # lanzaboote
+{flake, ...}: {
+  imports = with flake.modules.nixos;
+    [
       systemd-boot
       laptopPreset
       t14-secrets
       t14-wireguard
+    ]
+    ++ [
+      ./hardware
+      ./networking
     ];
 
-    sops.age = {
-      keyFile = "/var/lib/nixos/tpm.keys";
-      sshKeyPaths = [];
-    };
-
-    security.tpm2.enable = true;
-    system.stateVersion = "26.05";
+  sops.age = {
+    keyFile = "/var/lib/nixos/tpm.keys";
+    sshKeyPaths = [];
   };
+
+  security.tpm2.enable = true;
+  system.stateVersion = "26.05";
 }
