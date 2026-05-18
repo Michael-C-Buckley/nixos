@@ -13,6 +13,7 @@
       ./disko
       ./hardware
       ./networking
+      ./secrets.nix
     ];
 
   system.stateVersion = "26.05";
