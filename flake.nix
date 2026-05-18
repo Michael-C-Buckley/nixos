@@ -25,6 +25,8 @@
           flake-parts.flakeModules.touchup
           (mkImport ./modules)
           (mkImport ./packages)
+          (mkImport ./hosts)
+          (mkImport ./outputs)
         ];
 
       # Easy mechanism to make them available everywhere
