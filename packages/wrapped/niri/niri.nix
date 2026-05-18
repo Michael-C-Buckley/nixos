@@ -27,10 +27,6 @@ in {
         niri = mkNiri {
           inherit pkgs;
         };
-        niri-t14 = mkNiri {
-          inherit pkgs;
-          extraConfig = config.flake.custom.extraConfigs.t14-niri;
-        };
       };
     };
 
