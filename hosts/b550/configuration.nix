@@ -1,6 +1,10 @@
-{config, ...}: {
-  flake.modules.nixos.b550 = {pkgs, ...}: {
-    imports = with config.flake.modules.nixos; [
+{
+  flake,
+  pkgs,
+  ...
+}: {
+  imports = with flake.modules.nixos;
+    [
       systemd-boot
       impermanence
       serverPreset
@@ -12,14 +16,19 @@
       attic
       systemd-credentials
       tailscale
+    ]
+    ++ [
+      ./hardware
+      ./k3s
+      ./networking
+      ./secrets.nix
     ];
 
-    system.stateVersion = "26.05";
+  system.stateVersion = "26.05";
 
-    environment = {
-      systemPackages = with pkgs; [
-        attic-client
-      ];
-    };
+  environment = {
+    systemPackages = with pkgs; [
+      attic-client
+    ];
   };
 }
