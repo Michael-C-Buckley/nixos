@@ -71,7 +71,7 @@ spec:
     spec:
       containers:
         - name: vaultwarden
-          image: vaultwarden/server:1.35.1
+          image: vaultwarden/server:1.36.0
           ports:
             - containerPort: 80
               name: http
