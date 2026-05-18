@@ -11,7 +11,6 @@
   hosts = {
     b550 = {};
     o1 = {system = "aarch64-linux";};
-    p520 = {cudaSupport = true;};
     t14 = {};
     t14g5 = {};
     tempest = {};
