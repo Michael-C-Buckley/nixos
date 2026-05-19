@@ -6,7 +6,7 @@
   inherit (config.networking) hostName;
   lo = flake.custom.lib.network.getAddress flake.custom.hosts.${hostName}.interfaces.lo.ipv4;
 in {
-  imports = with flake.modules.nixos; [
+  imports = with flake.nixosModules; [
     lab-network
     vrrp
     ./routing.nix

@@ -1,16 +1,10 @@
 {flake, ...}: {
-  imports = with flake.modules.nixos;
+  imports = with flake.nixosModules;
     [
-      serverPreset
-      systemd-boot
-      impermanence
-      systemd-credentials
-
-      # Network
+      server-preset
       dnscrypt-proxy
       ntp
       wifi-home
-      homelabPreset
     ]
     ++ [
       ./network

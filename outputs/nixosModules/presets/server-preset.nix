@@ -6,15 +6,14 @@
       network-base
       zfs
       shawn
-      packages
+      packages-base
       packages-network
       # Security
       clamav
       yubikey
       secrets
-      pam-ssh
       # Users
-      hjem-base
+      hjem
       ;
   };
 

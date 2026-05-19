@@ -1,11 +1,5 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}: let
+{pkgs, ...}: let
   KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
-  inherit (config.custom) k3s;
 in {
   environment.systemPackages = with pkgs; [
     k9s
@@ -14,21 +8,6 @@ in {
   ];
   environment.variables = {
     inherit KUBECONFIG;
-  };
-
-  custom = {
-    shell.environmentVariables = {
-      inherit KUBECONFIG;
-    };
-    impermanence = {
-      persist.directories = lib.optionals k3s.impermanence.use_persist [
-        "/var/lib/rancher/k3s/server"
-        "/etc/rancher"
-      ];
-      cache.directories = lib.optionals k3s.impermanence.use_cache [
-        "/var/lib/rancher/k3s/agent"
-      ];
-    };
   };
 
   networking = {

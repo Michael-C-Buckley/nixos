@@ -10,9 +10,9 @@
   # This IP is the locally evaluated host's
   enu2 = getAddress hosts.${hostName}.interfaces.enu2.ipv4;
 in {
-  imports = with flake.modules.nixos; [
+  imports = with flake.nixosModules; [
     k3s
-    kube-longhorn
+    longhorn
   ];
 
   systemd.services.k3s.serviceConfig.LoadCredentialEncrypted = [

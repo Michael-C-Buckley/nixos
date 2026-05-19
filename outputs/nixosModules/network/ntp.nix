@@ -7,10 +7,6 @@
   inherit (flake.custom) hosts lib;
   lo = hosts.${hostName}.interfaces.lo.ipv4;
 in {
-  custom.impermanence.persist.directories = [
-    "/var/lib/chrony"
-  ];
-
   services.chrony = {
     enable = true;
 
