@@ -9,7 +9,7 @@
   } @ inputs: let
     inherit (nixpkgs.lib) lists;
     utility = import ./utility {inherit inputs;};
-    inherit (utility) mkImport mkModule importPackages;
+    inherit (utility) mkImport mkModule;
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
@@ -23,11 +23,10 @@
           ./outputs/nixosConfigurations.nix
         ];
 
-      # Easy mechanism to make them available everywhere
       flake = {
         npins = import ./npins;
         nixosModules = mkModule ./modules/nixos;
-        packages = importPackages;
+        packages = import ./outputs/packages.nix {inherit inputs;};
       };
 
       # I apparently need to tell them I don't use a formatter to not bug out

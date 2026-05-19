@@ -1,6 +1,6 @@
 # Helper function to properly import package references in my flake
 {inputs}: let
-  eachSystem = import ./eachSystem.nix {inherit inputs;};
+  eachSystem = import ../utility/eachSystem.nix {inherit inputs;};
   mac = ["aarch64-darwin"];
   linux = ["aarch64-linux" "x86_64-linux"];
   all = mac ++ linux;
