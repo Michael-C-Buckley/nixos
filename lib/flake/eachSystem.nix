@@ -1,6 +1,6 @@
 {inputs}: systems: basePath: let
-  nvfetcher = ../_sources/generated.nix;
-  npins = import ../npins;
+  nvfetcher = ../../_sources/generated.nix;
+  npins = import ../../npins;
   inherit (inputs.nixpkgs.lib) foldl' recursiveUpdate;
 in
   # Map over the imported files

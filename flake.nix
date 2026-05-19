@@ -3,7 +3,7 @@
 
   # I live the majority of things in files matching the name of their flake output type
   outputs = {flake-parts, ...} @ inputs: let
-    inherit (import ./utility {inherit inputs;}) mkModule;
+    inherit (import ./lib/flake {inherit inputs;}) mkModule;
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];

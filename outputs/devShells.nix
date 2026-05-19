@@ -1,5 +1,5 @@
 {inputs, ...}: let
-  inherit (import ../utility {inherit inputs;}) systems;
+  inherit (import ../lib/flake {inherit inputs;}) systems;
 in
   inputs.nixpkgs.lib.genAttrs systems.all (
     system: {

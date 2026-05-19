@@ -1,6 +1,6 @@
 # Helper function to properly import package references in my flake
 {inputs}: let
-  inherit (import ../utility {inherit inputs;}) eachSystem mkImport systems;
+  inherit (import ../lib/flake {inherit inputs;}) eachSystem mkImport systems;
   inherit (inputs.nixpkgs.lib) foldl' recursiveUpdate;
 in
   foldl' recursiveUpdate {} [
