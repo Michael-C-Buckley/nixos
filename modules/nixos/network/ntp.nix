@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (config.networking) hostName;
-  inherit (flake.custom) hosts lib;
+  inherit (flake) hosts lib;
   lo = hosts.${hostName}.interfaces.lo.ipv4;
 in {
   services.chrony = {

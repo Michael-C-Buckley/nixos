@@ -8,12 +8,12 @@
   ...
 }: let
   inherit
-    (flake.custom.lib.network)
+    (flake.lib.network)
     getAddress
     ;
   inherit (builtins) attrNames filter listToAttrs;
   inherit (config.networking) hostName;
-  inherit (flake.custom.hosts.${hostName}) interfaces;
+  inherit (flake.hosts.${hostName}) interfaces;
 
   lo = getAddress interfaces.lo.ipv4;
 
@@ -21,7 +21,7 @@
 
   # Exclude the current host from the neighbors
   neighbors = lib.strings.concatMapStringsSep "\n" (
-    hostname: " neighbor ${getAddress flake.custom.hosts.${hostname}.interfaces.lo.ipv4} peer-group fabric"
+    hostname: " neighbor ${getAddress flake.hosts.${hostname}.interfaces.lo.ipv4} peer-group fabric"
   ) (lib.filter (h: h != config.networking.hostName) labHosts);
 
   # Remove wifi interfaces

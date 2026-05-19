@@ -1,9 +1,9 @@
 {
   config,
-  functions,
+  flake,
   ...
 }: let
-  inherit (functions.yaml) checkYAML;
+  inherit (flake.functions.yaml) checkYAML;
 in {
   sops = {
     secrets."forgejo/postgres_password" = {};

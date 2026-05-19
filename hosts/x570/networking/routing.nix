@@ -1,6 +1,6 @@
 {flake, ...}: let
-  inherit (flake.custom.lib.network) getAddress;
-  lo = getAddress flake.custom.hosts.x570.interfaces.lo.ipv4;
+  inherit (flake.lib.network) getAddress;
+  lo = getAddress flake.hosts.x570.interfaces.lo.ipv4;
 in {
   services.frr.config = ''
     ip forwarding

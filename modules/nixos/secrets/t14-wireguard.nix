@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  functions,
+  flake,
   ...
 }: let
   inherit (lib) mapAttrs' nameValuePair;
@@ -14,6 +14,6 @@
   };
 in {
   systemd.services = mapAttrs' (name: ipAddresses:
-    nameValuePair "wireguard-${name}" (functions.wireguard {inherit config name ipAddresses;}))
+    nameValuePair "wireguard-${name}" (flake.functions.wireguard {inherit config name ipAddresses;}))
   interfaces;
 }

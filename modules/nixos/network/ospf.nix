@@ -4,8 +4,8 @@
   lib,
   ...
 }: let
-  inherit (flake.custom) hosts;
-  inherit (flake.custom.lib.network) getAddress;
+  inherit (flake) hosts;
+  inherit (flake.lib.network) getAddress;
   inherit (config.networking) ospf hostName;
   lo = getAddress hosts.${hostName}.interfaces.lo.ipv4;
 

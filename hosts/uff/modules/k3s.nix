@@ -5,8 +5,8 @@
   ...
 }: let
   inherit (config.networking) hostName;
-  inherit (flake.custom) hosts;
-  inherit (flake.custom.lib.network) getAddress;
+  inherit (flake) hosts;
+  inherit (flake.lib.network) getAddress;
   # This IP is the locally evaluated host's
   enu2 = getAddress hosts.${hostName}.interfaces.enu2.ipv4;
 in {

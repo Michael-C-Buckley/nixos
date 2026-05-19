@@ -8,8 +8,8 @@
   lib,
   ...
 }: let
-  inherit (flake.custom.lib.network) getAddressAttrs;
-  inherit (flake.custom.hosts.${config.networking.hostName}.interfaces) lo;
+  inherit (flake.lib.network) getAddressAttrs;
+  inherit (flake.hosts.${config.networking.hostName}.interfaces) lo;
 in {
   boot.kernel.sysctl = {
     "net.ipv4.conf.all.forwarding" = true;

@@ -1,9 +1,9 @@
 {
   config,
-  functions,
+  flake,
   ...
 }: let
-  inherit (functions) wireguard;
+  inherit (flake.functions) wireguard;
 in {
   systemd.services = {
     "wireguard-clients" = wireguard {

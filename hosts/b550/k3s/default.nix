@@ -1,10 +1,6 @@
 # Nix-related elements for K3s
-{
-  flake,
-  functions,
-  ...
-}: let
-  inherit (functions.kube) buildManifest;
+{flake, ...}: let
+  inherit (flake.functions.kube) buildManifest;
 in {
   imports = with flake.nixosModules; [
     k3s

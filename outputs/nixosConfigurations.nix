@@ -9,16 +9,7 @@
 
   npins = import ../npins;
 
-  fLib = import ../lib {inherit inputs;};
-
-  # WIP transtional attrset
-  flake = {
-    custom = {
-      hosts = import ../modules/flake/hosts.nix;
-      lib = fLib;
-    };
-    inherit nixosModules packages npins;
-  };
+  lib = import ../lib {inherit inputs;};
 
   # My individual hosts
   hosts = {
@@ -56,9 +47,14 @@
     nixpkgs.lib.nixosSystem {
       inherit system pkgs;
       specialArgs = {
-        inherit self inputs npins flake;
-        # These require pkgs to be passed so collect and do once to get the ready functions
-        functions = fLib.functions {inherit pkgs;};
+        inherit self inputs;
+        # Vehicle for some things originating from my flake
+        flake = {
+          hosts = import ../modules/flake/hosts.nix;
+          inherit nixosModules packages npins lib;
+          # These require pkgs to be passed so collect and do once to get the ready functions
+          functions = lib.functions {inherit pkgs;}; # Vehicle for some things originating from my flake
+        };
       };
       modules =
         modules
