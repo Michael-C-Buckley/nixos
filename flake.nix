@@ -3,10 +3,12 @@
 
   outputs = inputs: let
     inherit (import ./lib/flake {inherit inputs;}) mkModule;
-  in {
-    nixosConfigurations = import ./outputs/nixosConfigurations.nix {inherit inputs;};
     nixosModules = mkModule ./modules/nixos;
     packages = import ./outputs/packages.nix {inherit inputs;};
+  in {
+    inherit nixosModules packages;
+    # Pass along the references so that self is not needed to be called and doesn't break if it's changed
+    nixosConfigurations = import ./outputs/nixosConfigurations.nix {inherit inputs nixosModules packages;};
     devShells = import ./outputs/devShells.nix {inherit inputs;};
   };
 

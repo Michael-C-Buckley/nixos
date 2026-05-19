@@ -1,4 +1,9 @@
-{inputs, ...}: let
+{
+  inputs,
+  nixosModules,
+  packages,
+  ...
+}: let
   inherit (builtins) mapAttrs;
   inherit (inputs) nixpkgs self;
 
@@ -12,8 +17,7 @@
       hosts = import ../modules/flake/hosts.nix;
       lib = fLib;
     };
-    inherit npins;
-    inherit (self) nixosModules packages; # Effectively a band-aid
+    inherit nixosModules packages npins;
   };
 
   # My individual hosts
