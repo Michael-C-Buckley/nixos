@@ -1,6 +1,7 @@
 {flake, ...}: {
-  imports = with flake.modules.nixos; [
+  imports = with flake.nixosModules; [
     k3s
+    kube-certificate
     kube-cert-manager
     kube-traefik
   ];

@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  imports = [flake.modules.nixos.postgres-sanoid];
+  imports = [flake.nixosModules.postgres-sanoid];
 
   networking.firewall.allowedTCPPorts = [5432];
 

@@ -1,6 +1,6 @@
 {flake, ...}: {
   imports = [
-    flake.modules.nixos.bgp
+    flake.nixosModules.bgp
     ./routing.nix
     ./wireguard.nix
   ];

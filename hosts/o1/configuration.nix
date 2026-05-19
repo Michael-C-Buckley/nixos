@@ -4,14 +4,11 @@
   flake,
   ...
 }: {
-  imports = with flake.modules.nixos;
+  imports = with flake.nixosModules;
     [
-      systemd-boot
-      impermanence
-      cloudPreset
+      cloud-preset
       attic
       secrets
-      systemd-credentials
       tailscale
     ]
     ++ [
