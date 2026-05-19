@@ -68,6 +68,8 @@ Including talking about various aspects of my security, even if others would not
 
 ## [Systemd-Credentials](https://systemd.io/CREDENTIALS/)
 
+NOTE: This is outdated, I am in the process of changing how I handle these secrets.
+
 The dark horse in this one is systemd-credentials.
 It allows you to seal secrets with the local TPM and also only unseal for selected service units.
 

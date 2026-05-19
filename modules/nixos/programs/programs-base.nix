@@ -1,0 +1,16 @@
+{
+  programs = {
+    nh.enable = true;
+    zsh.enable = true;
+
+    direnv = {
+      enable = true;
+      silent = true;
+      nix-direnv.enable = true;
+      direnvrcExtra = ''
+        warn_timeout=0
+        hide_env_diff=true
+      '';
+    };
+  };
+}

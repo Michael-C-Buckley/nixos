@@ -2,6 +2,7 @@
 {
   pkgs ? import <nixpkgs> {},
   extraPkgs ? [],
+  ...
 }:
 pkgs.mkShellNoCC {
   name = "default";
@@ -32,6 +33,7 @@ pkgs.mkShellNoCC {
       lefthook
       shellcheck
       typos
+      just
     ]
     ++ extraPkgs;
 

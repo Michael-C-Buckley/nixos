@@ -1,5 +1,11 @@
 {
-  flake.modules.nixos.secrets = {pkgs, ...}: {
+  pkgs,
+  lib,
+  ...
+}: {
+  options.custom.systemdSops = lib.mkEnableOption "Triggers options that depend on `sops-install-secrets` service unit.";
+
+  config = {
     sops = {
       # Systemd in order to use systemd-credentials for the protected host key
       useSystemdActivation = true;

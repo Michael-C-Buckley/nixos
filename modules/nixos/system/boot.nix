@@ -1,40 +1,10 @@
-{config, ...}: {
-  flake.modules.nixos = {
-    grub = {
-      boot.loader.grub = {
-        enable = true;
-        efiSupport = true;
-        efiInstallAsRemovable = true;
-        device = "nodev";
-      };
-    };
-
-    lanzaboote = {pkgs, ...}: {
-      imports = ["${config.flake.npins."binhost.nix"}/lanzaboote/modules"];
-      environment.systemPackages = [pkgs.sbctl];
-
-      boot = {
-        loader.systemd-boot.enable = false;
-        lanzaboote = {
-          enable = true;
-          pkiBundle = "/var/lib/sbctl";
-        };
-      };
-    };
-
+{lib, ...}: {
+  boot.loader = {
     systemd-boot = {
-      boot.loader = {
-        systemd-boot = {
-          enable = true;
-          configurationLimit = 10;
-          netbootxyz.enable = true;
-        };
-        efi.canTouchEfiVariables = true;
-      };
+      enable = lib.mkDefault true;
+      configurationLimit = 20;
+      netbootxyz.enable = true;
     };
-
-    limine = {
-      boot.loader.limine.enable = true;
-    };
+    efi.canTouchEfiVariables = true;
   };
 }

@@ -1,0 +1,54 @@
+{
+  flake,
+  config,
+  ...
+}: let
+  inherit (config.networking) hostName;
+  lo = flake.custom.lib.network.getAddress flake.custom.hosts.${hostName}.interfaces.lo.ipv4;
+in {
+  imports = with flake.nixosModules; [
+    lab-network
+    vrrp
+    ./routing.nix
+    ./vrrp.nix
+  ];
+
+  services = {
+    resolved.enable = false;
+    dnscrypt-proxy.settings = {
+      listen_addresses = [
+        # Safe since Resolved is not used
+        "[::1]:53"
+        "127.0.0.1:53"
+        # Additional Listeners
+        "192.168.61.0:53"
+        "${lo}:53"
+        "127.0.0.153:53"
+      ];
+    };
+  };
+
+  networking = {
+    interfaces = {
+      lo.ipv4.addresses = [
+        {
+          #Cluster anycast gateway, individual loopbacks defined in lab-network
+          address = "192.168.61.0";
+          prefixLength = 32;
+        }
+      ];
+    };
+    firewall = {
+      allowedTCPPorts = [53];
+      allowedUDPPorts = [53];
+    };
+    useDHCP = false;
+    networkmanager = {
+      ensureProfiles.profiles = {
+        home.connection.interface-name = "wlan1";
+        home2.connection.interface-name = "wlan1";
+      };
+    };
+    resolvconf.useLocalResolver = true;
+  };
+}

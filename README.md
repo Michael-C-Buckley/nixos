@@ -4,26 +4,17 @@ This flake is the major collection of all things I use to manage my systems.
 It contains primary use systems, like desktop, laptop, and some servers.
 
 Caveat: I have included some custom options merged into the default Nix options namespace.
-They are largely under `config.custom`, but some exceptions still exist.
 Copying small sections can incur breakage this way, especially from networking (with advanced options since I am a network engineer).
 Secrets are protected by sops-nix and deployed manually on the hosts, using absolute paths (as a means to prevent harvest now, decrypt later).
 
 ## Major Frameworks
 
-### [Dendritic Pattern](https://vic.github.io/dendrix/Dendritic.html)
+### Semi-[Dendritic](https://vic.github.io/dendrix/Dendritic.html) Inspiration
 
-The flake is nearly a full dendritic implementation.
-Everything within `/modules` are flake-parts modules and collected with my custom implementation mimicking `import-tree` by Vic, per the usual layout.
-I still have some elements scattered around that are not in the pattern.
-
-This is a new addition to me and I am still exploring and integrating the possibilities.
-The point is to streamline the flow and it may not ever fully comply with the pattern.
-I am largely satisfied with this, however, would not recommend it as a blanket solution to all problems or workflows.
-
-### [Flake-Parts](https://flake.parts/)
-
-This project makes fairly heavy use of flake-parts.
-It is the required supporting library for Dendritic patterns.
+The flake has a partial implementation of the dendritic pattern.
+The divergence is that the nixos modules are collected via a custom import-tree lookalike.
+However, flake-parts is not used.
+The module imports are collected by name and added to via the nixosModules flake output.
 
 ### [Hjem](https://github.com/feel-co/hjem)
 
@@ -39,6 +30,8 @@ The motivation is decreasing the amount of inputs and I'll be selecting inputs w
 The upside is increased performance from lazier evaluation and reduced dependency tree sizes, as well as not having to copy these sources to the nix store, even if they're not used.
 
 ### Wrappers & BuildEnv
+
+INFO: Wrappers are being converted after a recent major change that removed flake-parts.
 
 Nix provides a unique opportunity for "wrapping" packages.
 This allows a package derivation to be created that provides additional package paths and other things, like pre-bundling configuration files.
