@@ -22,11 +22,6 @@ in {
 
   swapDevices = [];
 
-  custom.impermanence = {
-    var.enable = false;
-    home.enable = false;
-  };
-
   boot.zfs.requestEncryptionCredentials = true;
 
   fileSystems =

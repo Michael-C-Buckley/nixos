@@ -1,10 +1,8 @@
 {flake, ...}: {
-  imports = with flake.modules.nixos;
+  imports = with flake.nixosModules;
     [
       lanzaboote
-      impermanence
       laptop-preset
-      systemd-credentials
       t14-secrets
       t14-wireguard
     ]

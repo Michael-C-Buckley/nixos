@@ -1,5 +1,5 @@
 {flake, ...}: {
-  imports = with flake.modules.nixos; [
+  imports = with flake.nixosModules; [
     bgp
   ];
 
