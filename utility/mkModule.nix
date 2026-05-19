@@ -4,8 +4,8 @@
   nixpkgs,
   mkImport,
 }: let
-  inherit (builtins) concatStringsSep unsafeDiscardStringContext;
-  inherit (nixpkgs.lib) removeSuffix splitString drop;
+  inherit (builtins) unsafeDiscardStringContext;
+  inherit (nixpkgs.lib) removeSuffix splitString last;
 in
   path:
     builtins.listToAttrs
@@ -15,12 +15,10 @@ in
         name = unsafeDiscardStringContext (
           # Trim the extension
           removeSuffix ".nix"
-          # Put it together as a module name with dashes
-          (concatStringsSep "-"
-            # Split up the filename
-            (drop 4 (
-              splitString "/" a
-            )))
+          # Get the filename only
+          (last (
+            splitString "/" a
+          ))
         );
         value = import a;
       }

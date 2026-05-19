@@ -3,7 +3,7 @@
     [
       lanzaboote
       impermanence
-      laptopPreset
+      laptop-preset
       systemd-credentials
       t14-secrets
       t14-wireguard

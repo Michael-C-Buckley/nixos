@@ -15,6 +15,7 @@
     # Replacement for import-tree
     # This recursively collects all nix files that do not start with `_`
     mkImport = path: toList (fileFilter (f: f.hasExt "nix" && !(hasPrefix "_" f.name)) path);
+    mkModule = import ./utility/mkModule.nix {inherit nixpkgs mkImport;};
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
@@ -25,12 +26,13 @@
           flake-parts.flakeModules.touchup
           (mkImport ./modules)
           (mkImport ./packages)
-          (mkImport ./outputs)
+          ./outputs/nixosConfigurations.nix
         ];
 
       # Easy mechanism to make them available everywhere
       flake = {
         inherit npins;
+        nixosModules = mkModule ./outputs/nixosModules;
       };
 
       # I apparently need to tell them I don't use a formatter to not bug out

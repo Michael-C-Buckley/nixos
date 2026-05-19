@@ -8,7 +8,7 @@
     [
       impermanence
       systemd-boot
-      laptopPreset
+      laptop-preset
       wifi
       cosmicDesktop
     ]

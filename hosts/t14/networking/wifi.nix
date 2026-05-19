@@ -49,7 +49,7 @@ in
     flake,
     ...
   }: {
-    imports = with flake.modules.nixos; [
+    imports = with flake.nixosModules; [
       wifi-home
       wifi-mobile
     ];

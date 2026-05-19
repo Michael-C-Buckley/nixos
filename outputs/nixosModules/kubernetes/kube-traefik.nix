@@ -1,0 +1,62 @@
+{
+  config,
+  lib,
+  ...
+}: let
+  inherit (config.services.k3s.custom) traefik;
+in {
+  options.services.k3s.custom.traefik = {
+    defaultCert = lib.mkOption {
+      type = lib.types.str;
+      default = "";
+      description = "The default tlsStore certificate to use.";
+    };
+    ports = lib.mkOption {
+      type = lib.types.attrsOf lib.types.anything;
+      default = {};
+      description = "Literal attrset that will be merged into the ports field.";
+    };
+  };
+
+  config = {
+    warnings = lib.mkIf (traefik.defaultCert == {}) [
+      "services.k3s.custom.traefik.defaultCert is not defined. The traefik manifest may be incomplete."
+    ];
+
+    networking.firewall.allowedTCPPorts = lib.flatten (map builtins.attrValues (builtins.attrValues traefik.ports));
+
+    services.k3s.manifests = {
+      # Use a name other than traefik, as that default name is used by the system
+      traefik-base.content = let
+        valuesConfig = {
+          # Set a default TLS certificate for Traefik to use
+          tlsStore.default.defaultCertificate.secretName = traefik.defaultCert;
+
+          # Use host network mode to bind directly to host ports 80/443 on all interfaces
+          # This bypasses klipper-lb and allows binding to all interfaces including Netbird
+          hostNetwork = true;
+          updateStrategy.type = "Recreate";
+          podSecurityContext = {
+            runAsUser = 0;
+            runAsGroup = 0;
+            runAsNonRoot = false;
+          };
+          securityContext.capabilities = {
+            add = ["NET_BIND_SERVICE"];
+            drop = ["ALL"];
+          };
+          service.type = "ClusterIP";
+          inherit (traefik) ports;
+        };
+      in {
+        apiVersion = "helm.cattle.io/v1";
+        kind = "HelmChartConfig";
+        metadata = {
+          name = "traefik";
+          namespace = "kube-system";
+        };
+        spec.valuesContent = lib.generators.toYAML {} valuesConfig;
+      };
+    };
+  };
+}

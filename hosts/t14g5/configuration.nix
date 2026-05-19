@@ -1,8 +1,7 @@
 {flake, ...}: {
-  imports = with flake.modules.nixos;
+  imports = with flake.nixosModules;
     [
-      systemd-boot
-      laptopPreset
+      laptop-preset
       t14-secrets
       t14-wireguard
     ]

@@ -1,9 +1,8 @@
 {flake, ...}: {
   imports = with flake.modules.nixos;
     [
-      systemd-boot
-      desktopPreset
-      homelabPreset
+      desktop-preset
+      homelab-preset
       intelGraphics
       wifi
       gaming
