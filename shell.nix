@@ -33,6 +33,7 @@ pkgs.mkShellNoCC {
       lefthook
       shellcheck
       typos
+      just
     ]
     ++ extraPkgs;
 
