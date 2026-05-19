@@ -4,13 +4,11 @@
   lib,
   ...
 }: {
-  imports = with flake.modules.nixos;
+  imports = with flake.nixosModules;
     [
-      impermanence
-      systemd-boot
       laptop-preset
       wifi
-      cosmicDesktop
+      cosmic
     ]
     ++ [
       ./hardware

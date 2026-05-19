@@ -5,18 +5,6 @@ let
     neededForBoot = true;
   };
 in {
-  custom.impermanence = {
-    var.enable = true;
-    home.enable = true;
-  };
-
-  # Preserve everything for users
-  environment.persistence."/persist".directories = [
-    "/root"
-    "/home/michael"
-    "/home/shawn"
-  ];
-
   boot.zfs.requestEncryptionCredentials = true;
 
   fileSystems = {
