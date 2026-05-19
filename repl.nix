@@ -3,7 +3,7 @@
 # Special thanks to Iynaix for the inspiration:
 # https://github.com/iynaix/dotfiles/blob/main/repl.nix
 let
-  inherit (builtins) attrNames getFlake listToAttrs map;
+  inherit (builtins) attrNames getFlake listToAttrs;
   flake = getFlake (toString ./.);
 
   hosts = attrNames flake.nixosConfigurations;
@@ -31,7 +31,7 @@ let
   nixosCfg = name: flake.nixosConfigurations.${name}.config;
 in
   rec {
-    inherit (flake) inputs lib self;
+    inherit (flake) inputs self;
     inherit (flake.inputs) nixpkgs;
     inherit flake p;
 

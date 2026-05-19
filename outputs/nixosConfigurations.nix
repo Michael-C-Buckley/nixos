@@ -1,14 +1,20 @@
-{
-  self,
-  inputs,
-  config,
-  ...
-}: let
-  inherit (config) flake;
+{inputs, ...}: let
   inherit (builtins) mapAttrs;
-  inherit (inputs) nixpkgs;
+  inherit (inputs) nixpkgs self;
 
   npins = import ../npins;
+
+  fLib = import ../lib {inherit inputs;};
+
+  # WIP transtional attrset
+  flake = {
+    custom = {
+      hosts = import ../modules/flake/hosts.nix;
+      lib = fLib;
+    };
+    inherit npins;
+    inherit (self) nixosModules packages; # Effectively a band-aid
+  };
 
   # My individual hosts
   hosts = {
@@ -45,22 +51,20 @@
   in
     nixpkgs.lib.nixosSystem {
       inherit system pkgs;
-
-      # My own custom functions are passed via specialArgs
       specialArgs = {
-        inherit self flake inputs npins;
-        # This intentionally does not collide with `lib`
-        flakeLib = flake.custom.lib;
+        inherit self inputs npins flake;
         # These require pkgs to be passed so collect and do once to get the ready functions
-        functions = mapAttrs (_: v: v {inherit pkgs;}) flake.custom.functions;
+        functions = fLib.functions {inherit pkgs;};
       };
-      inherit modules;
+      modules =
+        modules
+        ++ [
+          ../modules/flake/hostOptions.nix
+        ];
     };
-in {
-  flake.nixosConfigurations =
-    # Add the hostname to the params and assemble the closures
-    mapAttrs (
-      hostname: params:
-        mkSystem (params // {inherit hostname;})
-    ) (hosts // uffs);
-}
+in
+  # Add the hostname to the params and assemble the closures
+  mapAttrs (
+    hostname: params:
+      mkSystem (params // {inherit hostname;})
+  ) (hosts // uffs)

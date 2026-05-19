@@ -5,7 +5,6 @@
   ...
 }: let
   inherit (lib) mapAttrs' nameValuePair;
-  mkWgInterface = functions.wireguard.genInterface;
 
   interfaces = {
     mt1 = ["192.168.78.2/27"];
@@ -15,6 +14,6 @@
   };
 in {
   systemd.services = mapAttrs' (name: ipAddresses:
-    nameValuePair "wireguard-${name}" (mkWgInterface {inherit config name ipAddresses;}))
+    nameValuePair "wireguard-${name}" (functions.wireguard {inherit config name ipAddresses;}))
   interfaces;
 }

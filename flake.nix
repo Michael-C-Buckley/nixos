@@ -2,27 +2,18 @@
   description = "Michael's System Flake";
 
   # I live the majority of things in files matching the name of their flake output type
-  outputs = {
-    flake-parts,
-    nixpkgs,
-    ...
-  } @ inputs: let
-    inherit (nixpkgs.lib) lists;
-    inherit (import ./utility {inherit inputs;}) mkImport mkModule;
+  outputs = {flake-parts, ...} @ inputs: let
+    inherit (import ./utility {inherit inputs;}) mkModule;
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
-      imports =
-        lists.flatten
-        [
-          flake-parts.flakeModules.modules
-          flake-parts.flakeModules.touchup
-          (mkImport ./modules/flake)
-          (mkImport ./modules/lib)
-          ./outputs/nixosConfigurations.nix
-        ];
+      imports = [
+        flake-parts.flakeModules.modules
+        flake-parts.flakeModules.touchup
+      ];
 
       flake = {
+        nixosConfigurations = import ./outputs/nixosConfigurations.nix {inherit inputs;};
         nixosModules = mkModule ./modules/nixos;
         packages = import ./outputs/packages.nix {inherit inputs;};
         devShells = import ./outputs/devShells.nix {inherit inputs;};
