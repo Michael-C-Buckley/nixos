@@ -8,9 +8,6 @@
     ...
   } @ inputs: let
     inherit (nixpkgs.lib) lists;
-
-    npins = import ./npins;
-
     utility = import ./utility {inherit inputs;};
     inherit (utility) mkImport mkModule importPackages;
   in
@@ -21,33 +18,25 @@
         [
           flake-parts.flakeModules.modules
           flake-parts.flakeModules.touchup
-          (mkImport ./modules)
+          (mkImport ./modules/flake)
+          (mkImport ./modules/lib)
           ./outputs/nixosConfigurations.nix
         ];
 
       # Easy mechanism to make them available everywhere
       flake = {
-        inherit npins;
-        nixosModules = mkModule ./outputs/nixosModules;
+        npins = import ./npins;
+        nixosModules = mkModule ./modules/nixos;
         packages = importPackages;
       };
 
       # I apparently need to tell them I don't use a formatter to not bug out
       touchup.attr.formatter.enable = false;
 
-      perSystem = {
-        pkgs,
-        system,
-        ...
-      }: {
+      perSystem = {pkgs, ...}: {
         _module.args = {
           # Nvfetcher is only used for packaging so pass it as a module arg
           nvfetcher = ./_sources/generated.nix;
-          # Globally set unfree for all per-system evals
-          pkgs = import nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
-          };
         };
 
         # The shell is available as either a devshell or traditional nix-shell
