@@ -1,5 +1,4 @@
 {inputs}: systems: basePath: let
-  mkImport = import ./mkImport.nix {inherit inputs;};
   nvfetcher = ../_sources/generated.nix;
   inherit (inputs.nixpkgs.lib) foldl' recursiveUpdate;
 in
@@ -24,5 +23,5 @@ in
           systems
         )
     )
-    (mkImport basePath)
+    basePath
   )

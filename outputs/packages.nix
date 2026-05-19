@@ -1,13 +1,10 @@
 # Helper function to properly import package references in my flake
 {inputs}: let
-  eachSystem = import ../utility/eachSystem.nix {inherit inputs;};
-  mac = ["aarch64-darwin"];
-  linux = ["aarch64-linux" "x86_64-linux"];
-  all = mac ++ linux;
+  inherit (import ../utility {inherit inputs;}) eachSystem mkImport systems;
   inherit (inputs.nixpkgs.lib) foldl' recursiveUpdate;
 in
   foldl' recursiveUpdate {} [
-    (eachSystem mac ../packages/mac)
-    (eachSystem linux ../packages/linux)
-    (eachSystem all ../packages/all)
+    (eachSystem systems.mac (mkImport ../packages/mac))
+    (eachSystem systems.linux (mkImport ../packages/linux))
+    (eachSystem systems.all (mkImport ../packages/all))
   ]

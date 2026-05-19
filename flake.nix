@@ -8,8 +8,7 @@
     ...
   } @ inputs: let
     inherit (nixpkgs.lib) lists;
-    utility = import ./utility {inherit inputs;};
-    inherit (utility) mkImport mkModule;
+    inherit (import ./utility {inherit inputs;}) mkImport mkModule;
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
@@ -27,20 +26,11 @@
         npins = import ./npins;
         nixosModules = mkModule ./modules/nixos;
         packages = import ./outputs/packages.nix {inherit inputs;};
+        devShells = import ./outputs/devShells.nix {inherit inputs;};
       };
 
       # I apparently need to tell them I don't use a formatter to not bug out
       touchup.attr.formatter.enable = false;
-
-      perSystem = {pkgs, ...}: {
-        _module.args = {
-          # Nvfetcher is only used for packaging so pass it as a module arg
-          nvfetcher = ./_sources/generated.nix;
-        };
-
-        # The shell is available as either a devshell or traditional nix-shell
-        devShells.default = import ./shell.nix {inherit pkgs;};
-      };
     };
 
   # I use some alternative fetchers to get some sources
