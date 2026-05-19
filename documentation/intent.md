@@ -13,19 +13,15 @@ It contains configs for my various hosts as well as other elements like some pac
 ## Dendritic Nix
 
 This is the most fundamental structural component of my entire flake.
-All nix files (with rare exception) are flake-parts modules and imported automatically.
-
-All modules are no longer constrained by their physical file location path, which is the chief element I was after using this pattern.
+Most common nixos modules are no longer constrained by their physical file location path, which is the chief element I was after using this pattern.
 
 I was able to better compose my configurations once that limitation was removed, especially since I group things by category and compose them far away from the physical location.
-What this means is my imports are no longer `./../../some/path.nix` but instead now `flake.modules.nixos.something` instead.
+What this means is my imports are no longer `./../../some/path.nix` but instead now `flake.modules.nixos.path` instead, where `path.nix` is the end filename.
 Module imports reference the namespace that I assign and are totally free from having to walk up and down a filepath tree.
-
-Other features exist too, such as
 
 ## Flakes
 
-Flakes, Flake-Parts, and Dendritic Nix are the overwhelming reason I am able to so freely compose my nix as I do.
+Flakes and my "dendrite" structure are the overwhelming reason I am able to so freely compose my nix as I do.
 As such, flake-primary thinking will be consistent in this repository.
 
 While not perfect, they are suitable.
@@ -41,7 +37,8 @@ I do not feel the need to strict locking of the dependencies (and the fuss that 
 Nix-direnv takes care of caching.
 
 Likewise, I am not living elements of pre-commit within `flake.nix` or its inputs.
-I use a more traditional approach via `shell.nix` triggered by `direnv` and various tools configured in `.config`. Linting, formatting, etc need not be transferred to other projects as strict dependencies, when they have no bearing on the operational nature of the flake's modules.
+I use a more traditional approach via `shell.nix` triggered by `direnv` and various tools configured in `.config`.
+Linting, formatting, etc need not be transferred to other projects as strict dependencies, when they have no bearing on the operational nature of the flake's modules.
 
 By this logic, I deleted non-operational inputs from my inputs.
 This weakens the dependency graph as much as possible.
@@ -98,9 +95,8 @@ Three's enough complexity for anyone looking at various sections to easily get l
 - **Nested or Derivative Frameworks**
 
 I am a very large framework skeptic. My adoption of Flake-Parts, as a software framework, and Dendritic, as a design framework, were after careful consideration.
-Flake-Parts is well-composed, supported, and adopted. I do not have concerns about it not being maintained six months from now.
 I currently am not interested in subframeworks for either of the components.
 
-Despite being dendritic, I do not use `import-tree` which is the most common dendritic-accessory and fundamental lynchpin of the pattern.
+Despite being dendritic in nature, I do not use `flake-parts` or `import-tree` which are the most common dendritic-accessories and fundamental lynchpins of the pattern.
 Instead, I created my own implementation [here](https://github.com/Michael-C-Buckley/nixos/blob/master/flake.nix#L14).
-It effectively replicates the behavior I need without an external dependency.
+It effectively replicates the behavior I need without external dependencies.
