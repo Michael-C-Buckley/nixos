@@ -12,11 +12,6 @@ let
 in {
   swapDevices = [];
 
-  custom.impermanence = {
-    var.enable = false;
-    home.enable = false;
-  };
-
   services.sanoid.datasets = {
     "zroot/b550/nixos/persist".use_template = ["normal"];
   };

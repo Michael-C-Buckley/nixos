@@ -6,18 +6,12 @@
 }: let
   inherit (functions.kube) buildManifest;
 in {
-  imports = with flake.modules.nixos; [
+  imports = with flake.nixosModules; [
     k3s
     kube-cert-manager
+    kube-certificate
     kube-traefik
   ];
-
-  custom.impermanence = {
-    persist.directories = [
-      "/var/lib/forgejo"
-      "/var/lib/openwebui"
-    ];
-  };
 
   services.k3s = {
     custom = {

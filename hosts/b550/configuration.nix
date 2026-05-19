@@ -3,18 +3,14 @@
   pkgs,
   ...
 }: {
-  imports = with flake.modules.nixos;
+  imports = with flake.nixosModules;
     [
-      systemd-boot
-      impermanence
-      serverPreset
-      homelabPreset
-      network-no-static-default
+      server-preset
       containerlab
+      no-static-default-routes
       lab-network
       libvirt
       attic
-      systemd-credentials
       tailscale
     ]
     ++ [

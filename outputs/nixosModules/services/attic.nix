@@ -14,15 +14,6 @@ in {
   config = {
     networking.firewall.allowedTCPPorts = [listenPort];
 
-    # Completely static users and self-managed state directory
-    systemd.services.atticd = {
-      serviceConfig = lib.mkIf config.custom.impermanence.var.enable {
-        DynamicUser = lib.mkForce false;
-        User = "atticd";
-        Group = "atticd";
-      };
-    };
-
     users = {
       users.atticd = {
         isSystemUser = true;
