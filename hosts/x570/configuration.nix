@@ -1,10 +1,9 @@
 {flake, ...}: {
-  imports = with flake.modules.nixos;
+  imports = with flake.nixosModules;
     [
       desktop-preset
-      homelab-preset
       intelGraphics
-      wifi
+      wifi-home
       gaming
       lab-network
     ]

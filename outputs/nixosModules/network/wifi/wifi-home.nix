@@ -5,7 +5,13 @@
 # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/services/networking/networkmanager.nix#L467
 # Conveniently, I use Sops-nix to declare those files and then just read the path in
 # NetworkManager is run under root so the `path` attr is sufficient and need not be linked anywhere or chown
-{config, ...}: {
+{
+  config,
+  flake,
+  ...
+}: {
+  imports = [flake.nixosModules.wifi];
+
   sops.secrets = {
     michael-wifi = {
       sopsFile = "/etc/secrets/common/wifi/michael.env";

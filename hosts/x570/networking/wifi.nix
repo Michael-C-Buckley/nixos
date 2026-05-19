@@ -1,5 +1,4 @@
-{flake, ...}: {
-  imports = [flake.modules.nixos.wifi-home];
+{
   networking.networkmanager.ensureProfiles.profiles = {
     home = {
       connection.interface-name = "wlo1";

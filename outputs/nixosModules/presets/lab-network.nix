@@ -31,7 +31,7 @@
     filter (a: (lib.hasPrefix "en" a) || (lib.hasPrefix "br" a)) (attrNames interfaces)
   );
 in {
-  imports = with flake.modules.nixos; [
+  imports = with flake.nixosModules; [
     bfd
     bgp
     ospf
