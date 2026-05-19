@@ -8,6 +8,7 @@
   config,
   pkgs,
   lib,
+  npins,
   ...
 }: {
   imports = builtins.attrValues {
@@ -20,7 +21,7 @@
       nix
       users
       ;
-    sops = "${flake.npins.sops-nix}/modules/sops";
+    sops = "${npins.sops-nix}/modules/sops";
   };
 
   boot.initrd.systemd.enable = lib.mkDefault true;

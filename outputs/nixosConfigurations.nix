@@ -8,6 +8,8 @@
   inherit (builtins) mapAttrs;
   inherit (inputs) nixpkgs;
 
+  npins = import ../npins;
+
   # My individual hosts
   hosts = {
     b550 = {};
@@ -46,7 +48,7 @@
 
       # My own custom functions are passed via specialArgs
       specialArgs = {
-        inherit self flake inputs;
+        inherit self flake inputs npins;
         # This intentionally does not collide with `lib`
         flakeLib = flake.custom.lib;
         # These require pkgs to be passed so collect and do once to get the ready functions

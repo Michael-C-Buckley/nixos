@@ -23,7 +23,6 @@
         ];
 
       flake = {
-        npins = import ./npins;
         nixosModules = mkModule ./modules/nixos;
         packages = import ./outputs/packages.nix {inherit inputs;};
         devShells = import ./outputs/devShells.nix {inherit inputs;};

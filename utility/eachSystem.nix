@@ -1,5 +1,6 @@
 {inputs}: systems: basePath: let
   nvfetcher = ../_sources/generated.nix;
+  npins = import ../npins;
   inherit (inputs.nixpkgs.lib) foldl' recursiveUpdate;
 in
   # Map over the imported files
@@ -12,7 +13,7 @@ in
             system: {
               name = system;
               value = import file {
-                inherit inputs system nvfetcher;
+                inherit inputs system npins nvfetcher;
                 pkgs = import inputs.nixpkgs {
                   inherit system;
                   config.allowUnfree = true;

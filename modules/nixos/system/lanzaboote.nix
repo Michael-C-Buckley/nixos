@@ -1,9 +1,9 @@
 {
-  flake,
+  npins,
   pkgs,
   ...
 }: {
-  imports = ["${flake.npins."binhost.nix"}/lanzaboote/modules"];
+  imports = ["${npins."binhost.nix"}/lanzaboote/modules"];
   environment.systemPackages = [pkgs.sbctl];
 
   boot = {
