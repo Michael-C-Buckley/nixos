@@ -1,8 +1,4 @@
 {
-  imports = [
-    ./routing.nix
-  ];
-
   networking = {
     hostName = "b550";
     hostId = "272a6fae";

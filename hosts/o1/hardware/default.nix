@@ -1,7 +1,6 @@
 {modulesPath, ...}: {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
-    ./filesystems.nix
   ];
 
   boot = {

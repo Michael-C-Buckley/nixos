@@ -1,14 +1,9 @@
 {flake, ...}: {
-  imports = with flake.nixosModules;
-    [
-      laptop-preset
-      t14-secrets
-      t14-wireguard
-    ]
-    ++ [
-      ./hardware
-      ./networking
-    ];
+  imports = with flake.nixosModules; [
+    laptop-preset
+    t14-secrets
+    t14-wireguard
+  ];
 
   sops.age = {
     keyFile = "/var/lib/nixos/tpm.keys";

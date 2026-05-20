@@ -4,21 +4,12 @@
   flake,
   ...
 }: {
-  imports = with flake.nixosModules;
-    [
-      cloud-preset
-      attic
-      secrets
-      tailscale
-    ]
-    ++ [
-      ./hardware
-      ./k3s
-      ./networking
-      ./services/attic.nix
-      ./services/postgres.nix
-      ./secrets.nix
-    ];
+  imports = with flake.nixosModules; [
+    cloud-preset
+    attic
+    secrets
+    tailscale
+  ];
   environment = {
     # This is not linking for some reason, attempting to force copy instead of link
     etc."nix/nix.conf".mode = lib.mkForce "0755";

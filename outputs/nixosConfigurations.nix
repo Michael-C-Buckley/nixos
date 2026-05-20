@@ -8,6 +8,7 @@
   inherit (inputs) nixpkgs self;
 
   npins = import ../npins;
+  mkImport = import ../lib/flake/mkImport.nix {inherit inputs;};
 
   lib = import ../lib {inherit inputs;};
 
@@ -25,7 +26,10 @@
   uffs = builtins.listToAttrs (
     map (hostname: {
       name = hostname;
-      value.modules = [../hosts/uff/${hostname}];
+      value = {
+        hostDir = ../hosts/uff/${hostname};
+        modules = mkImport ../hosts/uff/modules;
+      };
     }) ["uff1" "uff2" "uff3"]
   );
 
@@ -34,7 +38,8 @@
     hostname,
     system ? "x86_64-linux",
     cudaSupport ? false,
-    modules ? [../hosts/${hostname}/configuration.nix],
+    hostDir ? ../hosts/${hostname},
+    modules ? [],
   }: let
     pkgs = import nixpkgs {
       inherit system;
@@ -57,7 +62,8 @@
         };
       };
       modules =
-        modules
+        (mkImport hostDir)
+        ++ modules
         ++ [
           ../modules/flake/hostOptions.nix
         ];

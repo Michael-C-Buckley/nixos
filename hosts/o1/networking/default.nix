@@ -1,8 +1,6 @@
 {flake, ...}: {
   imports = [
     flake.nixosModules.bgp
-    ./routing.nix
-    ./wireguard.nix
   ];
 
   networking = {

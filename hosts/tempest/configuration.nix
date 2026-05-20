@@ -4,15 +4,11 @@
   lib,
   ...
 }: {
-  imports = with flake.nixosModules;
-    [
-      laptop-preset
-      wifi
-      cosmic
-    ]
-    ++ [
-      ./hardware
-    ];
+  imports = with flake.nixosModules; [
+    laptop-preset
+    wifi
+    cosmic
+  ];
 
   networking = {
     hostId = "fd78a12b";

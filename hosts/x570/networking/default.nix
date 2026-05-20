@@ -1,10 +1,4 @@
 {
-  imports = [
-    ./routing.nix
-    ./wifi.nix
-    ./wireguard.nix
-  ];
-
   systemd.network.wait-online.enable = false;
   networking = {
     hostId = "c07fa570";

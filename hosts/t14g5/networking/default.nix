@@ -1,7 +1,6 @@
 {flake, ...}: {
   imports = [
     flake.nixosModules.bgp
-    ./wifi.nix
   ];
 
   networking = {
