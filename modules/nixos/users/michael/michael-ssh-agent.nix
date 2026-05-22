@@ -17,13 +17,12 @@ in {
   systemd.services = {
     yubikey-link = {
       description = "Update Yubikey symlinks";
-      path = with pkgs; [busybox yubikey-manager];
       serviceConfig = {
         User = "michael";
         Type = "oneshot";
         ExecStart = pkgs.writeShellScript "yubikey-linkstart" ''
-          sleep 1
-          ykman list
+          ${pkgs.coreutils}/bin/sleep 1
+          ${lib.getExe pkgs.yubikey-manager} list
           ${link_script} ${lib.getExe pkgs.yubikey-manager}
         '';
       };
