@@ -29,9 +29,17 @@
       };
     };
 
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
     rootbeer = {
       url = "github:michael-c-buckley/rootbeer";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
     };
 
     disko = {
@@ -44,6 +52,7 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         disko.follows = "disko";
+        flake-parts.follows = "flake-parts";
       };
     };
   };
