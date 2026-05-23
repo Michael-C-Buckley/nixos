@@ -13,6 +13,19 @@
       "url": "https://github.com/michael-c-buckley/binhost.nix/archive/1d580e1ac2aa49aa5eaba09dfdb8e56bf0f1fa5f.tar.gz",
       "hash": "sha256-Eb+UQ4isVknpYOLFe5ogv0fa1/mzIjVIjQ9cTEivtlc="
     },
+    "disko": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "disko"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "65fb947964bd44fc0008faf77d1fcb7a9f40bb32",
+      "url": "https://github.com/nix-community/disko/archive/65fb947964bd44fc0008faf77d1fcb7a9f40bb32.tar.gz",
+      "hash": "sha256-wuOkjI6pRiN4sEn/EPBRnNW5cmcpvd7xtIM8y5LooAs="
+    },
     "home-manager": {
       "type": "Git",
       "repository": {

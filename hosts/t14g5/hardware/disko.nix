@@ -1,8 +1,4 @@
-{inputs, ...}: {
-  imports = [
-    inputs.disko.nixosModules.disko
-    inputs.disko-zfs.nixosModules.default
-  ];
+{
   disko.devices = {
     disk.main = {
       device = "/dev/nvme0n1";

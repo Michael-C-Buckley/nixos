@@ -42,16 +42,11 @@
       };
     };
 
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     disko-zfs = {
       url = "github:numtide/disko-zfs";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        disko.follows = "disko";
+        disko.follows = ""; # This works because I manually import Disko via npins
         flake-parts.follows = "flake-parts";
       };
     };

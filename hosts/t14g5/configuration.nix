@@ -1,5 +1,6 @@
 {flake, ...}: {
   imports = with flake.nixosModules; [
+    disko
     laptop-preset
     t14-secrets
     t14-wireguard

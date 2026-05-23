@@ -1,10 +1,6 @@
 # I have split the disko config into several files as it's extremely
 # verbose and nested if kept together, which is just hard to read
-{inputs, ...}: {
-  imports = [
-    inputs.disko.nixosModules.disko
-    inputs.disko-zfs.nixosModules.default
-  ];
+{
   # WARNING: Must absolutely make sure of the device names at install time
   disko.devices = {
     disk = import ./_disks.nix;

@@ -1,6 +1,7 @@
 {flake, ...}: {
   imports = with flake.nixosModules; [
     desktop-preset
+    disko
     intelGraphics
     wifi-home
     gaming
