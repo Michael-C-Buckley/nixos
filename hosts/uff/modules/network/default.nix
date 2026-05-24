@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (config.networking) hostName;
-  lo = flake.custom.lib.network.getAddress flake.custom.hosts.${hostName}.interfaces.lo.ipv4;
+  lo = flake.lib.network.getAddress flake.hosts.${hostName}.interfaces.lo.ipv4;
 in {
   imports = with flake.nixosModules; [
     lab-network
