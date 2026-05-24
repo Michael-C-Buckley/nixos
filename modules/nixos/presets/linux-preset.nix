@@ -23,7 +23,10 @@
     sops = "${flake.npins.sops-nix}/modules/sops";
   };
 
-  boot.initrd.systemd.enable = lib.mkDefault true;
+  boot = {
+    initrd.systemd.enable = lib.mkDefault true;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_7_0;
+  };
 
   services = {
     envfs.enable = true; # Citation 1

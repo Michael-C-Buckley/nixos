@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   lib,
   modulesPath,
   ...
@@ -9,6 +10,7 @@
   ];
 
   boot = {
+    kernelPackages = pkgs.linuxPackages_zen;
     binfmt.emulatedSystems = ["aarch64-linux"];
     kernelModules = ["kvm" "kvm-amd" "virtiofs" "9p" "9pnet_virtio" "mt7921e"];
     kernelParams = [
