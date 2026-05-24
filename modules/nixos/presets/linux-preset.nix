@@ -9,7 +9,9 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  inherit (flake.npins) nixos-core;
+in {
   imports = builtins.attrValues {
     inherit
       (flake.nixosModules)
@@ -21,6 +23,7 @@
       users
       ;
     sops = "${flake.npins.sops-nix}/modules/sops";
+    nixos-core = import "${nixos-core}/nix/modules/nixos.nix" {self = nixos-core;};
   };
 
   boot = {

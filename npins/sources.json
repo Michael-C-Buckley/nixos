@@ -64,6 +64,19 @@
       "url": null,
       "hash": "sha256-h4MGNbOo7L3RHi4uNFmsg5g17/DHXEfnv/xiG6BrNFQ="
     },
+    "nixos-core": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "feel-co",
+        "repo": "nixos-core"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "5512197f02333c24a9260dd9254c8d0dd8990981",
+      "url": "https://github.com/feel-co/nixos-core/archive/5512197f02333c24a9260dd9254c8d0dd8990981.tar.gz",
+      "hash": "sha256-fTHhZmepyzXXwisSb/ULB/gGu8wqDF0FqKD/v6nMBYM="
+    },
     "rootbeer": {
       "type": "Git",
       "repository": {
