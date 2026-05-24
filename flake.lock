@@ -62,9 +62,7 @@
     "hjem": {
       "inputs": {
         "nix-darwin": [],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": []
       },
       "locked": {
         "lastModified": 1779044379,

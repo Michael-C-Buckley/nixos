@@ -64,6 +64,19 @@
       "url": null,
       "hash": "sha256-h4MGNbOo7L3RHi4uNFmsg5g17/DHXEfnv/xiG6BrNFQ="
     },
+    "rootbeer": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "michael-c-buckley",
+        "repo": "rootbeer"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "c01e7cbba9ebc9163d55a4c684f01a35aa08a9de",
+      "url": "https://github.com/michael-c-buckley/rootbeer/archive/c01e7cbba9ebc9163d55a4c684f01a35aa08a9de.tar.gz",
+      "hash": "sha256-sZFmk11UYZ0BbyMzW2BhF3SakIyQ0867Hjiq/j3PRMo="
+    },
     "sops-nix": {
       "type": "Git",
       "repository": {
