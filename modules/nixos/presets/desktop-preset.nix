@@ -19,8 +19,8 @@
       # Userspace
       chromium-policy
       dconf
-      dms
       hyprland
+      noctalia
       greetd
       mango
       # Security
