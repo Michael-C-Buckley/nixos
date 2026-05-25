@@ -9,9 +9,4 @@
   ];
 
   system.stateVersion = "26.05";
-
-  sops.age = {
-    keyFile = "/var/lib/nixos/tpm.keys";
-    sshKeyPaths = [];
-  };
 }

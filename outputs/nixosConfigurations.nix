@@ -56,7 +56,7 @@
         # Vehicle for some things originating from my flake
         flake = {
           hosts = import ../modules/flake/hosts.nix;
-          inherit nixosModules packages npins lib;
+          inherit nixosModules packages npins lib system;
           # These require pkgs to be passed so collect and do once to get the ready functions
           functions = lib.functions {inherit pkgs;}; # Vehicle for some things originating from my flake
         };

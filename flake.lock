@@ -39,6 +39,29 @@
         "type": "github"
       }
     },
+    "dotfiles": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rootbeer": [
+          "rootbeer"
+        ]
+      },
+      "locked": {
+        "lastModified": 1779742966,
+        "narHash": "sha256-W08nA4gikcXE9c8oZQijWeLFQW3thGjRoampZ8gSrlk=",
+        "owner": "michael-c-buckley",
+        "repo": "dotfiles",
+        "rev": "f947d61f46d9516bb9a174df71a780626b0d44a9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "michael-c-buckley",
+        "repo": "dotfiles",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -94,6 +117,7 @@
     "root": {
       "inputs": {
         "disko-zfs": "disko-zfs",
+        "dotfiles": "dotfiles",
         "flake-parts": "flake-parts",
         "hjem": "hjem",
         "nixpkgs": "nixpkgs",

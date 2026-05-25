@@ -21,6 +21,14 @@
     # since lately there has been a good amount of availability issues
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
 
+    dotfiles = {
+      url = "github:michael-c-buckley/dotfiles";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        rootbeer.follows = "rootbeer";
+      };
+    };
+
     hjem = {
       url = "github:feel-co/hjem";
       inputs = {
