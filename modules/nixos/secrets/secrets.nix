@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   lib,
   ...
 }: {
@@ -7,11 +8,15 @@
 
   config = {
     sops = {
-      # Systemd in order to use systemd-credentials for the protected host key
       useSystemdActivation = true;
       # Do not use GPG
       gnupg.sshKeyPaths = [];
-      age.plugins = with pkgs; [age-plugin-tpm];
+      # I use TPM sealed keys by default
+      age = {
+        keyFile = lib.mkDefault "/etc/secrets/hosts/${config.networking.hostName}/tpm.keys";
+        sshKeyPaths = [];
+        plugins = with pkgs; [age-plugin-tpm];
+      };
     };
 
     systemd.services = {
