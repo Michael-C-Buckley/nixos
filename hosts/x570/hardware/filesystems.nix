@@ -6,6 +6,6 @@
   };
 
   services.sanoid.datasets = {
-    "zroot/x570/nixos/home/michael".use_template = ["normal"];
+    "zroot/michael".use_template = ["normal"];
   };
 }
