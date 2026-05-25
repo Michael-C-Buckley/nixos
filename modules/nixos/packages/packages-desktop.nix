@@ -52,10 +52,12 @@ in {
   fonts.packages = with pkgs; [
     jetbrains-mono
     dejavu_fonts
+    commit-mono
     vista-fonts
     font-awesome
     geist-font
     cascadia-code
+    ibm-plex
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
