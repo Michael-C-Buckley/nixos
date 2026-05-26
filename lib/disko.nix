@@ -29,6 +29,14 @@
     };
   };
 
+  mkDataset = attrs: let
+    base = {
+      type = "zfs_fs";
+      options = {mountpoint = "legacy";};
+    };
+  in
+    base // attrs // {options = base.options // (attrs.options or {});};
+
   mkSwap = {
     size,
     priority,

@@ -1,15 +1,7 @@
 # Declared datasets, which includes other distros I run as well since Disko is good at
 # formatting the drives to start with and disko-zfs helps too
-let
-  # Reduce duplication
-  z = attrs: let
-    base = {
-      type = "zfs_fs";
-      options = {mountpoint = "legacy";};
-    };
-  in
-    base // attrs // {options = base.options // (attrs.options or {});};
-
+{flake, ...}: let
+  z = flake.lib.disko.mkDataset;
   chimera = "/var/lib/machines/chimera";
 in {
   nixos = z {

@@ -6,7 +6,7 @@
     devices = {
       disk = import ./_disks.nix {inherit flake;};
       lvm_vg = import ./_lvm.nix;
-      zpool.zroot = flake.lib.disko.mkZroot (import ./_datasets.nix);
+      zpool.zroot = flake.lib.disko.mkZroot (import ./_datasets.nix {inherit flake;});
     };
   };
 }
