@@ -23,8 +23,8 @@
       enable = true;
       useTextGreeter = true;
       settings = {
-        default_session = lib.mkDefault {
-          command = "${pkgs.greetd}/bin/agreety";
+        default_session = {
+          command = lib.mkDefault "${pkgs.greetd}/bin/agreety";
           user = "greeter";
         };
         initial_session = {
