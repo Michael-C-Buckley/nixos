@@ -1,73 +1,39 @@
-{
+{flake, ...}: let
+  inherit (flake.lib.disko) mkBoot mkSwap mkZfs mkLvm;
+in {
   # First drive will get the boot drive
-  boot = {
-    content = {
-      format = "vfat";
-      mountpoint = "/boot";
-      type = "filesystem";
-      mountOptions = [
-        "fmask=0077"
-        "dmask=0077"
-        "noexec"
-        "nodev"
-        "nosuid"
-      ];
-    };
-    name = "boot";
-    size = "5G";
-    start = "1M";
-    type = "EF00";
-  };
+  boot = mkBoot "5G";
 
   # Here's a bit of extra swap that takes up the same space as boot
   # It is lower priority than shared swap
-  extraSwap = {
+  extraSwap = mkSwap {
     size = "5G";
-    content = {
-      type = "swap";
-      priority = 60;
-    };
+    priority = 60;
   };
 
   # This shared swap will effectively be "raided"
-  swap = {
+  swap = mkSwap {
     size = "8G";
-    content = {
-      type = "swap";
-      priority = 80;
-    };
+    priority = 80;
   };
 
-  nvmeLvm = {
+  nvmeLvm = mkLvm {
     size = "200G";
-    content = {
-      type = "lvm_pv";
-      vg = "nvme";
-    };
+    vg = "nvme";
   };
 
-  zfs = {
-    content = {
-      pool = "zroot";
-      type = "zfs";
-    };
-    name = "zfs";
+  zfs = mkZfs {
     size = "1000G";
+    pool = "zroot";
   };
 
-  optaneSwap = {
+  optaneSwap = mkSwap {
     size = "6500M";
-    content = {
-      type = "swap";
-      priority = 90;
-    };
+    priority = 90;
   };
 
-  optaneLvm = {
+  optaneLvm = mkLvm {
     size = "6500M";
-    content = {
-      type = "lvm_pv";
-      vg = "optane";
-    };
+    vg = "optane";
   };
 }

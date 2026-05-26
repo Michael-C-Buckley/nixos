@@ -1,6 +1,7 @@
 {inputs, ...}: {
   # Immediately available
   network = import ./network/base.nix {inherit inputs;};
+  disko = import ./disko.nix;
 
   # Require currying with imported pkgs to be made available
   # I generally handle this when then nixos config is declared
