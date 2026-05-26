@@ -6,21 +6,7 @@
     devices = {
       disk = import ./_disks.nix {inherit flake;};
       lvm_vg = import ./_lvm.nix;
-      zpool.zroot = {
-        type = "zpool";
-        options = {
-          ashift = "12";
-          autotrim = "on";
-        };
-        rootFsOptions = {
-          acltype = "posixacl";
-          atime = "off";
-          compression = "lz4";
-          normalization = "none";
-          xattr = "sa";
-        };
-        datasets = import ./_datasets.nix;
-      };
+      zpool.zroot = flake.lib.disko.mkZroot (import ./_datasets.nix);
     };
   };
 }

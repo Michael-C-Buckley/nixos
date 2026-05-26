@@ -62,4 +62,20 @@
     };
     inherit size;
   };
+
+  mkZroot = datasets: {
+    inherit datasets;
+    type = "zpool";
+    options = {
+      ashift = "12";
+      autotrim = "on";
+    };
+    rootFsOptions = {
+      acltype = "posixacl";
+      atime = "off";
+      compression = "lz4";
+      normalization = "none";
+      xattr = "sa";
+    };
+  };
 }
