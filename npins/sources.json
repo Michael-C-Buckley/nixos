@@ -26,19 +26,6 @@
       "url": "https://github.com/nix-community/disko/archive/5ba0c9555c28685e57fa54c7a25e42c7efdbfc8d.tar.gz",
       "hash": "sha256-EcCaSTKnmg2o4wLKaN1aqQFomwyhO7ik0bX9COdyCas="
     },
-    "home-manager": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "nix-community",
-        "repo": "home-manager"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "612bbe3b405ad5f71d7bf9edecc04b678a061652",
-      "url": "https://github.com/nix-community/home-manager/archive/612bbe3b405ad5f71d7bf9edecc04b678a061652.tar.gz",
-      "hash": "sha256-gHcIFg0mm+KFsg7iZQt67kni3+qR5U3PhEC9P7vKlZ4="
-    },
     "jail": {
       "type": "Git",
       "repository": {
