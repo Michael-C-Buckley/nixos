@@ -55,14 +55,14 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "feel-co",
+        "owner": "manic-systems",
         "repo": "nixos-core"
       },
       "branch": "main",
       "submodules": false,
-      "revision": "5c62672911ca593ca1bfd6b4135b5dc2c2ccf9ea",
-      "url": "https://github.com/feel-co/nixos-core/archive/5c62672911ca593ca1bfd6b4135b5dc2c2ccf9ea.tar.gz",
-      "hash": "sha256-WzZopauS3/olUJ7rc+OiJCfplcUr1DMZdqJSkK038Yw="
+      "revision": "65174d3a5c0b5f47dc584c6c15b3f2a1fa2d8ea7",
+      "url": "https://github.com/manic-systems/nixos-core/archive/65174d3a5c0b5f47dc584c6c15b3f2a1fa2d8ea7.tar.gz",
+      "hash": "sha256-a+c6LVhRKk8XhGzbDnZpsmWO5CDFfXfN07qUxaP2Ehs="
     },
     "rootbeer": {
       "type": "Git",
