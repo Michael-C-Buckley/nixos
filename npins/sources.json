@@ -51,6 +51,19 @@
       "url": "https://github.com/manic-systems/nixos-core/archive/20b5f8916a3fde2f02bccd2e1f2795ab511aab5b.tar.gz",
       "hash": "sha256-7x7KzH5p+VDBvvzpCjkRcVhNm6fIty7WYgI7sPq1SCw="
     },
+    "noctalia-shell": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell"
+      },
+      "branch": "v5",
+      "submodules": false,
+      "revision": "3c0f36f929a7fe5cbb7e7e7c4cb8e61a89a138e8",
+      "url": "https://github.com/noctalia-dev/noctalia-shell/archive/3c0f36f929a7fe5cbb7e7e7c4cb8e61a89a138e8.tar.gz",
+      "hash": "sha256-/9LHAFNb2ZAM6EIBhg0RDdNluWovi6S7fhahNIDcuFc="
+    },
     "rootbeer": {
       "type": "Git",
       "repository": {

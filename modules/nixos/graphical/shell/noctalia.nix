@@ -5,7 +5,6 @@
   ...
 }: let
   allInputs = with pkgs; [
-    noctalia-shell
     # Required
     brightnessctl
     imagemagick
@@ -28,8 +27,10 @@
     roboto
   ];
 
+  noctalia = [(pkgs.callPackage "${flake.npins.noctalia-shell}/nix/package.nix" {})];
+
   # Not available on ARM
   x86Inputs = with pkgs; [gpu-screen-recorder];
 in {
-  environment.systemPackages = allInputs ++ fonts ++ lib.optionals (flake.system == "x86_64-linux") x86Inputs;
+  environment.systemPackages = noctalia ++ allInputs ++ fonts ++ lib.optionals (flake.system == "x86_64-linux") x86Inputs;
 }
