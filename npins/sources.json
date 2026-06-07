@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "5ba0c9555c28685e57fa54c7a25e42c7efdbfc8d",
-      "url": "https://github.com/nix-community/disko/archive/5ba0c9555c28685e57fa54c7a25e42c7efdbfc8d.tar.gz",
-      "hash": "sha256-EcCaSTKnmg2o4wLKaN1aqQFomwyhO7ik0bX9COdyCas="
+      "revision": "115e5211780054d8a890b41f0b7734cafad54dfe",
+      "url": "https://github.com/nix-community/disko/archive/115e5211780054d8a890b41f0b7734cafad54dfe.tar.gz",
+      "hash": "sha256-eTAlX0CwgB84Ts3GaBd944A3DRXVMzgA0EqroZBISUo="
     },
     "jail": {
       "type": "Git",
@@ -47,9 +47,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "65174d3a5c0b5f47dc584c6c15b3f2a1fa2d8ea7",
-      "url": "https://github.com/manic-systems/nixos-core/archive/65174d3a5c0b5f47dc584c6c15b3f2a1fa2d8ea7.tar.gz",
-      "hash": "sha256-a+c6LVhRKk8XhGzbDnZpsmWO5CDFfXfN07qUxaP2Ehs="
+      "revision": "20b5f8916a3fde2f02bccd2e1f2795ab511aab5b",
+      "url": "https://github.com/manic-systems/nixos-core/archive/20b5f8916a3fde2f02bccd2e1f2795ab511aab5b.tar.gz",
+      "hash": "sha256-7x7KzH5p+VDBvvzpCjkRcVhNm6fIty7WYgI7sPq1SCw="
     },
     "rootbeer": {
       "type": "Git",
@@ -73,9 +73,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "c591bf665727040c6cc5cb409079acb22dcce33c",
-      "url": "https://github.com/mic92/sops-nix/archive/c591bf665727040c6cc5cb409079acb22dcce33c.tar.gz",
-      "hash": "sha256-VfGRo1qTBKOe3s2gOv8LSoA6Fk19PvBlwQ1ECN0Evn8="
+      "revision": "9ed65852b6257fbeae4355bc24ecfea307ca759a",
+      "url": "https://github.com/mic92/sops-nix/archive/9ed65852b6257fbeae4355bc24ecfea307ca759a.tar.gz",
+      "hash": "sha256-Gq8KNx5A7hBB3uGJaj6eQfLDIz5YdLu92gqBcvHvoUo="
     }
   },
   "version": 7
