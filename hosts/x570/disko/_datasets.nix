@@ -3,6 +3,7 @@
 {flake, ...}: let
   z = flake.lib.disko.mkDataset;
   chimera = "/var/lib/machines/chimera";
+  # gentoo = "/var/lib/machines/gentoo";
 in {
   nixos = z {
     options.mountpoint = "none";
@@ -20,11 +21,14 @@ in {
     mountpoint = "/var/log";
     options = {
       recordsize = "1M";
-      compression = "zstd";
+      compression = "zstd:6";
     };
   };
   "nixos/nix" = z {
-    options.recordsize = "32K";
+    options = {
+      recordsize = "32K";
+      compression = "zstd:2";
+    };
   };
   "nixos/root" = z {
     mountpoint = "/";
@@ -78,9 +82,54 @@ in {
   };
   "chimera/nix" = z {
     mountpoint = "${chimera}/nix";
-    options.recordsize = "32K";
+    options = {
+      recordsize = "32K";
+      compression = "zstd:2";
+    };
   };
   "chimera/root" = z {
     mountpoint = "${chimera}";
+  };
+
+  gentoo =
+    z {
+    };
+
+  "gentoo/root" = z {
+    # mountpoint = "${gentoo}";
+  };
+
+  "gentoo/nix" = z {
+    # mountpoint = "${gentoo}/nix";
+    options = {
+      recordsize = "32K";
+      compression = "zstd";
+    };
+  };
+
+  "gentoo/home" = z {
+    # mountpoint = "${gentoo}/home";
+  };
+
+  "gentoo/var" = z {
+    # mountpoint = "${gentoo}/var";
+  };
+
+  "gentoo/var/log" = z {
+    # mountpoint = "${gentoo}/var/log";
+    options = {
+      recordsize = "1M";
+      compression = "zstd";
+    };
+  };
+
+  "gentoo/var/cache" = z {
+    # mountpoint = "${gentoo}/var/lib";
+    options.compression = "zstd";
+  };
+
+  "gentoo/var/tmp" = z {
+    # mountpoint = "${gentoo}/var/tmp";
+    options.compression = "zstd";
   };
 }
