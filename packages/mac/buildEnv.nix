@@ -10,6 +10,7 @@
     paths = builtins.attrValues {
       inherit
         (pkgs)
+        virt-manager
         # Openssh from nixpkgs has better libfido2 support
         openssh
         # Nix Tools
