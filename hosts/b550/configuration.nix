@@ -11,6 +11,7 @@
     libvirt
     attic
     tailscale
+    tpm2
   ];
 
   system.stateVersion = "26.11";
