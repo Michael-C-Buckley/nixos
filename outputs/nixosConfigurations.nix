@@ -7,7 +7,6 @@
   inherit (builtins) mapAttrs;
   inherit (inputs) nixpkgs self;
 
-  npins = import ../npins;
   mkImport = import ../lib/flake/mkImport.nix {inherit inputs;};
 
   lib = import ../lib {inherit inputs;};
@@ -56,7 +55,7 @@
         # Vehicle for some things originating from my flake
         flake = {
           hosts = import ../modules/flake/hosts.nix;
-          inherit nixosModules packages npins lib system;
+          inherit nixosModules packages self lib system;
           # These require pkgs to be passed so collect and do once to get the ready functions
           functions = lib.functions {inherit pkgs;}; # Vehicle for some things originating from my flake
         };

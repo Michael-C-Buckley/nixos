@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   flake,
   lib,
   ...
@@ -27,7 +28,7 @@
     roboto
   ];
 
-  noctalia = [(pkgs.callPackage "${flake.npins.noctalia-shell}/nix/package.nix" {})];
+  noctalia = [(pkgs.callPackage "${inputs.noctalia}/nix/package.nix" {})];
 
   # Not available on ARM
   x86Inputs = with pkgs; [gpu-screen-recorder];

@@ -13,7 +13,6 @@ in {
       networkmanagerapplet
       pavucontrol # Pulse Volume control
       kubectl
-      npins
       nvfetcher
       # Security
       keepassxc

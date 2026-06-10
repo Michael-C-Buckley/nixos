@@ -5,13 +5,12 @@
 {
   self,
   flake,
+  inputs,
   config,
   pkgs,
   lib,
   ...
-}: let
-  inherit (flake.npins) nixos-core;
-in {
+}: {
   imports = builtins.attrValues {
     inherit
       (flake.nixosModules)
@@ -22,8 +21,8 @@ in {
       nix
       users
       ;
-    sops = "${flake.npins.sops-nix}/modules/sops";
-    nixos-core = import "${nixos-core}/nix/modules/nixos.nix" {self = nixos-core;};
+    sops = "${inputs.sops-nix}/modules/sops";
+    nixos-core = import "${inputs.nixos-core}/nix/modules/nixos.nix" {self = inputs.nixos-core;};
   };
 
   boot = {
@@ -69,7 +68,7 @@ in {
     # Lets impure paths be used
     validateSopsFiles = false;
     # Swap the go binary to my binhost
-    package = pkgs.callPackage "${flake.npins."binhost.nix"}/sops-nix/packages/sops-install-secrets.nix" {};
+    package = pkgs.callPackage "${inputs.binhost}/sops-nix/packages/sops-install-secrets.nix" {};
   };
   time.timeZone = lib.mkDefault "America/New_York";
   networking.nftables.enable = lib.mkDefault true;

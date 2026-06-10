@@ -1,9 +1,9 @@
 {
   pkgs,
-  npins,
+  inputs,
   ...
 }: let
-  jail = (import "${npins.jail}/lib").init pkgs;
+  jail = (import "${inputs.jail}/lib").init pkgs;
 in {
   # Main body of the jailed binary
   librewolf = let

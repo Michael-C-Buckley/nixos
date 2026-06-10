@@ -2,7 +2,7 @@
 {
   pkgs,
   nvfetcher,
-  npins,
+  inputs,
   ...
 }: let
   # Preparation definitions on various tooling
@@ -10,7 +10,7 @@
   contents = pkgs.appimageTools.extract source;
   inherit (source) pname version src;
 
-  jail = (import "${npins.jail}/lib").init pkgs;
+  jail = (import "${inputs.jail}/lib").init pkgs;
   homeBind = with jail.combinators; bindPath: (rw-bind (noescape bindPath) (noescape bindPath));
 
   features = with jail.combinators;

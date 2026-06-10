@@ -1,0 +1,53 @@
+[shorturls]
+nixpkgs = "https://channels.nixos.org/{path}/nixexprs.tar.xz"
+gh = "github:{path}"
+srchut = "https://git.sr.ht/{path}"
+manic = "github:manic-systems/{path}"
+mine = "github:michael-c-buckley/{path}"
+
+[all_follow]
+nixpkgs = ["nixpkgs", "nixpkgs-lib"]
+flake-parts = "flake-parts"
+disko = "disko"
+
+[inputs.nixpkgs]
+url = "nixpkgs:nixos-unstable"
+
+[inputs.dotfiles]
+url = "mine:dotfiles"
+
+[inputs.hjem]
+url = "gh:feel-co/hjem"
+
+[inputs.flake-parts]
+url = "gh:hercules-ci/flake-parts"
+
+[inputs.rootbeer]
+url = "mine:rootbeer"
+
+[inputs.disko]
+url = "gh:nix-community/disko"
+
+[inputs.disko-zfs]
+url = "gh:numtide/disko-zfs"
+
+[inputs.jail]
+# Normal URL link currently broken on tack
+#url = "srchut:~alexdavid/jail.nix"
+url = "srchut:~alexdavid/jail.nix/archive/42b355c38ca63dab4904acc5c0d95f17954a8c9b.tar.gz"
+
+[inputs.nixos-core]
+url = "manic:nixos-core"
+
+[inputs.tack]
+url = "manic:tack"
+
+[inputs.sops-nix]
+url = "gh:mic92/sops-nix"
+
+[inputs.binhost]
+url = "mine:binhost.nix"
+flake = false
+
+[inputs.noctalia]
+url = "gh:noctalia-dev/noctalia"

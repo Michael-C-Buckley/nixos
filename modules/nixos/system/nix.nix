@@ -1,15 +1,15 @@
 {
-  inputs,
+  #  inputs,
   pkgs,
-  lib,
+  #  lib,
   ...
 }: {
   nix = {
     package = pkgs.nixVersions.latest;
     # Disable channels and add the flake inputs to the registry
     channel.enable = false;
-    registry = lib.mapAttrs (_: flake: {inherit flake;}) inputs;
-    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
+    # registry = lib.mapAttrs (_: flake: {inherit flake;}) inputs;
+    # nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
 
     extraOptions = ''
       # Optimizing cache requests with faster failing
@@ -30,8 +30,8 @@
       ];
 
       # Clear the default registry and add the inputs to the nix path
-      nix-path = lib.mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
-      flake-registry = "";
+      # nix-path = lib.mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
+      # flake-registry = "";
 
       substituters = [
         "https://cache.nixos-cuda.org"

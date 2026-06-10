@@ -1,0 +1,102 @@
+{
+  "binhost": {
+    "lastModified": 1775348227,
+    "narHash": "sha256-Eb+UQ4isVknpYOLFe5ogv0fa1/mzIjVIjQ9cTEivtlc=",
+    "owner": "michael-c-buckley",
+    "repo": "binhost.nix",
+    "rev": "1d580e1ac2aa49aa5eaba09dfdb8e56bf0f1fa5f",
+    "type": "github"
+  },
+  "disko": {
+    "lastModified": 1780894562,
+    "narHash": "sha256-c3430xwxwhHipl3jigUGMMBfpaMylDqytW/kdmB3ZGs=",
+    "owner": "nix-community",
+    "repo": "disko",
+    "rev": "24fed06cac83bcc44ac8efbb57cab1a82fa0bedc",
+    "type": "github"
+  },
+  "disko-zfs": {
+    "lastModified": 1773422739,
+    "narHash": "sha256-nfl7tj3TN8MZI5JpidUjlqax+2ly2BHay3tpM/cc9ik=",
+    "owner": "numtide",
+    "repo": "disko-zfs",
+    "rev": "adaef72fba88b4f313fcb3f7cf02e24b2a09b648",
+    "type": "github"
+  },
+  "dotfiles": {
+    "lastModified": 1781040850,
+    "narHash": "sha256-7JmXkS+y4yieZajtEgEw7VAUb7Pf/XtKMLoKQS2pq8E=",
+    "owner": "michael-c-buckley",
+    "repo": "dotfiles",
+    "rev": "cea7d8397c5a948fc889c8dfcc144a9bac18cd35",
+    "type": "github"
+  },
+  "flake-parts": {
+    "lastModified": 1778716662,
+    "narHash": "sha256-m1Yf0wZ8j1OHjTc2UwHwyQRSnNeSgLJOd7q5Y45hzi4=",
+    "owner": "hercules-ci",
+    "repo": "flake-parts",
+    "rev": "f7c1a2d347e4c52d5fb8d10cb4d94b5884e546fb",
+    "type": "github"
+  },
+  "hjem": {
+    "lastModified": 1780971222,
+    "narHash": "sha256-q4+HMlbi80dbN4KfFxhO84MEBMQE0E87ShbNKXOKLao=",
+    "owner": "feel-co",
+    "repo": "hjem",
+    "rev": "3aaf5f238fb3b2f9efdc926e6024730636f0de23",
+    "type": "github"
+  },
+  "jail": {
+    "lastModified": 0,
+    "narHash": "sha256-h4MGNbOo7L3RHi4uNFmsg5g17/DHXEfnv/xiG6BrNFQ=",
+    "type": "tarball",
+    "url": "https://git.sr.ht/~alexdavid/jail.nix/archive/42b355c38ca63dab4904acc5c0d95f17954a8c9b.tar.gz"
+  },
+  "nixos-core": {
+    "lastModified": 1780223676,
+    "narHash": "sha256-7x7KzH5p+VDBvvzpCjkRcVhNm6fIty7WYgI7sPq1SCw=",
+    "owner": "manic-systems",
+    "repo": "nixos-core",
+    "rev": "20b5f8916a3fde2f02bccd2e1f2795ab511aab5b",
+    "type": "github"
+  },
+  "nixpkgs": {
+    "lastModified": 1780879182,
+    "narHash": "sha256-G5B1h4sOH4DN/RZ85xYi6zPm2MHdOrNMeUmMslZ28Qs=",
+    "type": "tarball",
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1011622.a799d3e3886d/nixexprs.tar.xz"
+  },
+  "noctalia": {
+    "lastModified": 1781091362,
+    "narHash": "sha256-u48EXpiT8c+lHGWNM4EgmoD5UumNhKTLsL004qjA+Ps=",
+    "owner": "noctalia-dev",
+    "repo": "noctalia",
+    "rev": "da771ad841bbeeef16fcf43c56a36d177b407422",
+    "type": "github"
+  },
+  "rootbeer": {
+    "lastModified": 1779581697,
+    "narHash": "sha256-sZFmk11UYZ0BbyMzW2BhF3SakIyQ0867Hjiq/j3PRMo=",
+    "owner": "michael-c-buckley",
+    "repo": "rootbeer",
+    "rev": "c01e7cbba9ebc9163d55a4c684f01a35aa08a9de",
+    "type": "github"
+  },
+  "sops-nix": {
+    "lastModified": 1780547341,
+    "narHash": "sha256-Gq8KNx5A7hBB3uGJaj6eQfLDIz5YdLu92gqBcvHvoUo=",
+    "owner": "mic92",
+    "repo": "sops-nix",
+    "rev": "9ed65852b6257fbeae4355bc24ecfea307ca759a",
+    "type": "github"
+  },
+  "tack": {
+    "lastModified": 1780213242,
+    "narHash": "sha256-5dYWCjKBwjHOCJBlQK9iBKJxoUosTGQvI62vPBdQUgs=",
+    "owner": "manic-systems",
+    "repo": "tack",
+    "rev": "8c574901340af860979500f24495417ce7e53cdc",
+    "type": "github"
+  }
+}
