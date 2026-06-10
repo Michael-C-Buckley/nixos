@@ -1,8 +1,8 @@
 {
   description = "Michael's System Flake";
 
-  outputs = {self, ...}: let
-    inputs = (import ./.tack) // {inherit self;};
+  outputs = {self, ...} @ args: let
+    inputs = ((import ./.tack) {overrides = args.tackOverrides or {};}) // {inherit self;};
     inherit (import ./lib/flake {inherit inputs;}) mkModule;
     nixosModules = mkModule ./modules/nixos;
     packages = import ./outputs/packages.nix {inherit inputs;};
