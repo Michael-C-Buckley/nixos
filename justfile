@@ -1,10 +1,8 @@
 update:
-    nix flake update
-    npins update
+    tack update
     nvfetcher -c .config/nvfetcher.toml
 
 # Do not move main nixpkgs
 bump:
-    nix flake update nix-darwin flake-parts hjem
-    npins update
+    tack update dotfiles hjem flake-parts rootbeer disko disko-zfs jail nixos-core tack sops-nix binhost noctalia
     nvfetcher -c .config/nvfetcher.toml
