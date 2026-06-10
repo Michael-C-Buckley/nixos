@@ -1,11 +1,18 @@
 {
   pkgs,
+  inputs,
   flake,
   ...
 }: let
-  fpkgs = flake.packages.${pkgs.stdenv.hostPlatform.system};
+  inherit (pkgs.stdenv.hostPlatform) system;
+  fpkgs = flake.packages.${system};
 in {
   environment.systemPackages = builtins.attrValues {
+    inherit
+      (inputs.tack.packages.${system})
+      tack
+      ;
+
     inherit
       (pkgs)
       # System Utilities
