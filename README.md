@@ -1,5 +1,14 @@
 # My System Configuration
 
+> [!NOTE]
+> This project has been archived.
+> My flake is being handled privately, and for a few core reasons.
+> I made my system public in the first place as a way to give back to the community, I had a chance to learn so much from other's works.
+> However, I'm being limited in a few aspects which has made me close it, for now.
+> It mainly has to do with security and due diligence in an era where exploits and challenges are rising steadily.
+> To all those who helped me get here, thank you.
+> To those who show up after, I think there may be a few things worth learning from still.
+
 This flake is the major collection of all things I use to manage my systems.
 It contains primary use systems, like desktop, laptop, and some servers.
 
