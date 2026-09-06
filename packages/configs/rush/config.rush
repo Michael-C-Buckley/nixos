@@ -1,0 +1,147 @@
+
+export EDITOR="vim"
+export NH_FLAKE="$HOME/.config/nixos"
+
+mkcd() {
+    mkdir -p -- "$1" && cd -- "$1"
+}
+
+alias ip='ip -c'
+
+abbr .. 'cd ..'
+abbr ... 'cd ../..'
+
+event add directory.change direnv rush_direnv_hook
+
+rush_prompt_transient() {
+  if test "$?" = 0; then
+    prompt segment --fg bright-black '❯ '
+  else
+    prompt segment --fg red '❯ '
+  fi
+}
+
+rush_has_stopped_jobs() {
+    jobs_file="${TMPDIR:-/tmp}/rush-jobs-$$"
+
+    jobs >"$jobs_file" 2>/dev/null
+
+    if grep -q 'Stopped' "$jobs_file"; then
+        rm -f "$jobs_file"
+        return 0
+    fi
+
+    rm -f "$jobs_file"
+    return 1
+}
+
+rush_update_job_count() {
+    jobs_file="${TMPDIR:-/tmp}/rush-jobs-$$"
+
+    jobs >"$jobs_file" 2>/dev/null
+    rush_stopped_jobs=$(grep -c 'Stopped' "$jobs_file")
+    rm -f "$jobs_file"
+}
+
+rush_prompt_pwd() {
+  git_root="$(git rev-parse --show-toplevel 2>/dev/null)" || {
+    prompt_pwd
+    return
+  }
+
+  case "$PWD" in
+    "$git_root") printf '%s\n' "${git_root##*/}" ;;
+    "$git_root"/*) printf '%s/%s\n' "${git_root##*/}" "${PWD#"$git_root"/}" ;;
+    *) prompt_pwd ;;
+  esac
+}
+
+rush_prompt_git_stash() {
+  if git rev-parse --verify --quiet refs/stash >/dev/null 2>&1; then
+    printf '≡'
+  fi
+}
+
+rush_prompt_git_conflict() {
+  if git ls-files --unmerged 2>/dev/null | grep -q .; then
+    printf ';'
+  fi
+}
+
+rush_prompt() {
+  rush_prompt_status=$?
+  rush_update_job_count
+
+  if test -n "${SSH_TTY-}"; then
+	prompt segment --fg green "$(whoami)@$(hostname) "
+  fi
+
+  if test "$(id -u)" = 0; then
+    prompt segment --fg red "$(rush_prompt_pwd)"
+  else
+    prompt segment --fg cyan "$(rush_prompt_pwd)"
+  fi
+
+  prompt async git --ttl 2000 --prefix ' ' --fg bright-blue -- rush_prompt_git
+  prompt async git_stash --ttl 2000 --prefix ' ' --fg bright-blue -- rush_prompt_git_stash
+  # I want to make this magenta but it is not working and I have to test more
+  prompt async git_conflict --ttl 2000 --prefix ' ' --fg bright-yellow -- rush_prompt_git_conflict
+  prompt newline
+
+  if test "${rush_stopped_jobs:-0}" -gt 0; then
+    prompt segment --fg yellow "${rush_stopped_jobs}•"
+  fi
+
+  if test "$rush_prompt_status" = 0; then
+      prompt segment --fg green '❯ '
+  else
+      prompt segment --fg red '❯ '
+  fi
+}
+
+rush_prompt_right() {
+  if test -n "${IN_NIX_SHELL-}"; then
+    prompt segment --fg yellow "✱ "
+  fi
+  if test "$(prompt_duration)" != ""; then
+    prompt segment --dim "$(prompt_duration)"
+  fi
+}
+
+alias sshn='ssh -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile=/dev/null'
+
+if command -v eza >/dev/null 2>&1; then
+    alias ll='eza -lah --git --icons auto'
+    alias ls='eza'
+fi
+
+if command -v git >/dev/null 2>&1; then
+    abbr g 'git'
+    abbr ga 'git add'
+    abbr gaa 'git add .'
+    abbr gs 'git status'
+    abbr gd 'git diff'
+    abbr gds 'git diff --staged'
+    abbr gl 'git log --oneline --graph --decorate'
+    abbr gp 'git pull'
+    abbr gP 'git push'
+    abbr gc 'git commit'
+    abbr gcm 'git commit -m'
+    abbr gco 'git checkout'
+    abbr gb 'git branch'
+    abbr gr 'git remote'
+    abbr grv 'git remote -v'
+fi
+
+if command -v zfs >/dev/null 2>&1; then
+	abbr zls 'zfs list -o name,used,compressratio,lused,avail'
+	abbr zsls 'zfs list -t snapshot -S creation -o name,creation,used,written,refer'
+fi
+
+if command -v bat >/dev/null 2>&1; then
+    alias cat='bat -p'
+fi
+
+if command -v kubectl >/dev/null 2>&1; then
+	abbr k 'kubectl'
+fi

@@ -1,0 +1,40 @@
+[[language]]
+language-servers = ["basedpyright", "ruff"]
+name = "python"
+
+[language.debugger]
+args = ["-m", "debugpy.adapter"]
+command = "python3"
+name = "debugpy"
+transport = "stdio"
+
+[[language.debugger.templates]]
+name = "source"
+request = "launch"
+[[language.debugger.templates.completion]]
+completion = "filename"
+default = "."
+name = "entrypoint"
+
+[language.debugger.templates.args]
+mode = "debug"
+program = "{0}"
+
+[language.formatter]
+args = ["format", "--quiet", "-"]
+command = "ruff"
+
+[language-server.basedpyright]
+args = ["--stdio"]
+command = "basedpyright-langserver"
+
+[language-server.basedpyright.config.basedpyright.analysis]
+typeCheckingMode = "standard"
+
+[language-server.json]
+args = ["--stdio"]
+command = "vscode-json-language-server"
+
+[language-server.ruff]
+args = ["server"]
+command = "ruff"

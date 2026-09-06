@@ -1,0 +1,41 @@
+assert_lefthook_installed = true
+
+[[pre-commit.jobs]]
+interactive = true
+name = "treefmt"
+exclude = ["kernel/**"]
+run = "treefmt --config-file .config/treefmt.toml {staged_files}"
+stage_fixed = true
+
+[[pre-commit.jobs]]
+name = "deadnix"
+exclude = ["_sources/**", "npins/**"]
+glob = "*.nix"
+run = "deadnix --fail {staged_files}"
+
+[[pre-commit.jobs]]
+name = "nil"
+exclude = ["_sources/**", "npins/**"]
+glob = "*.nix"
+run = "nil diagnostics --deny-warnings {staged_files}"
+
+[[pre-commit.jobs]]
+name = "taplo"
+glob = "*.toml"
+run = "taplo lint {staged_files}"
+
+[[pre-commit.jobs]]
+name = "shellcheck"
+glob = "*.sh"
+run = "shellcheck {staged_files}"
+
+[[pre-commit.jobs]]
+name = "statix"
+exclude = "npins/"
+glob = "*.nix"
+run = "statix check -c .config/statix.toml --format errfmt"
+
+[[pre-commit.jobs]]
+name = "typos"
+exclude = ["kernel/**"]
+run = "typos -c .config/typos.toml --force-exclude {staged_files}"
