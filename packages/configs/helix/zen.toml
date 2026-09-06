@@ -1,0 +1,23 @@
+# A simple custom theme that is pretty neutral and only has a small amount of color
+"ui.background" = { bg = "black" }
+"ui.text" = "white"
+"ui.cursor" = { fg = "black", bg = "white" }
+"ui.cursor.match" = { fg = "red", modifiers = ["bold"] }
+"ui.selection" = { fg = "cyan", bg = "light_gray" }
+"ui.virtual.ruler" = { bg = "dark_grey" }
+
+comment = "gray"
+string = "orange"
+
+# Keep punctuation neutral unless it is the active matching pair.
+punctuation = "white"
+
+[palette]
+black = "#000000"
+white = "#ffffff"
+gray = "#7a7a7a"
+orange = "#f6c177"
+light_gray = "#dfe0dc"
+red = "#ff4040"
+cyan = "#44A3A3"
+dark_grey = "#6f6262"

@@ -1,0 +1,41 @@
+theme = "ayu_evolve"
+
+[editor]
+auto-format = false
+bufferline = "multiple"
+cursorline = true
+end-of-line-diagnostics = "hint"
+line-number = "relative"
+rulers = [120]
+true-color = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.indent-guides]
+character = "."
+render = true
+skip_levels = 1
+
+[editor.inline-diagnostics]
+cursor-line = "error"
+other-lines = "disable"
+
+[keys.normal]
+"A-," = "goto_previous_buffer"
+"A-." = "goto_next_buffer"
+A-r = ":reload-all"
+A-f = ":format"
+A-w = ":buffer-close"
+A-x = "extend_to_line_bounds"
+X = "select_line_above"
+"C-/" = "toggle_comments"
+
+[keys.select]
+A-x = "extend_to_line_bounds"
+X = "select_line_above"
