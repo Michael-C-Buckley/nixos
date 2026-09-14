@@ -11,6 +11,7 @@ in
   imports = [
     inputs.lanzaboote.nixosModules.default
     ./base.nix
+    ./metal.nix
     ./graphical/umbriel.nix
     ./graphical/tuigreet.nix
     ./network/tailscale.nix

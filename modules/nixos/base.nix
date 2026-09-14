@@ -15,26 +15,7 @@
   environment.systemPackages =
     with pkgs;
     [
-      # System
-      killall
-      expect
-      nh
-
-      # Performance
-      btop
-
-      # Hardware
-      usbutils
-      pciutils
-
-      # Editors
       vim
-
-      # Machine Utilities
-      gptfdisk
-      parted
-
-      # CLI
       bat
       duf
       dust
@@ -42,12 +23,16 @@
       fd
       file
       fzf
+      gh
+      jq
       git
       ripgrep
       unzip
       sops
       age
       zoxide
+      socat
+      nix-tree
 
       # Terminfo
       alacritty.terminfo
@@ -58,25 +43,6 @@
     ++ [
       inputs.rush.packages.${pkgs.stdenv.hostPlatform.system}.rush-shell
     ];
-
-  boot = {
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
-    initrd.systemd = {
-      enable = true;
-      packages = [ pkgs.busybox ];
-      emergencyAccess = true;
-    };
-    loader = {
-      timeout = 10;
-      # Systemd unless lanzaboote or something else is used
-      systemd-boot = {
-        enable = lib.mkDefault true;
-        configurationLimit = 10;
-        netbootxyz.enable = true;
-      };
-      efi.canTouchEfiVariables = true;
-    };
-  };
 
   services = {
     # Farewell printing, read this article if you didn't know you could print with just netcat
@@ -108,8 +74,6 @@
   };
 
   programs = {
-    ssh.startAgent = true;
-    nh.enable = true;
     direnv = {
       enable = true;
       silent = true;
