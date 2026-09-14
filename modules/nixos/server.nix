@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   imports = [
     ./base.nix
+    ./metal.nix
     ./packages/network.nix
   ];
 

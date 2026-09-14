@@ -1,12 +1,19 @@
-{ config, ... }:
+# Nixos-container just for moderate containment of agents
+# it is not as strong as a VM but a lot lighter and more convenient
+# Mainly provides barriers on host system and filesystem access
+# Allows bots to have "full access" and limit what they can actually touch
+{
+  self,
+  inputs,
+  config,
+  ...
+}:
 let
   sshPort = 1122;
-  inherit (config.users.users.michael.openssh.authorizedKeys) keys;
-  extraKeys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDHG8H6bGZzW1jggJ2PNFWHa+CCK4iTfqsEi4KeeewlB michael@x570"
-  ];
+  host = "${self}/modules/nixos";
 in
 {
+  # The container will fail if the host doesn't have the directories.
   systemd.tmpfiles.rules = [
     "d /home/michael/Projects 0755 michael users -"
     "d /home/michael/.codex 0755 michael users"
@@ -30,45 +37,21 @@ in
       };
     };
 
-    config = { pkgs, ... }: {
-      networking.hostName = "agentbox";
-      # Keep the same UID as the host so files created in the bind mount have
-      # the right owner on both sides.
-      users.users.michael = {
-        isNormalUser = true;
-        extraGroups = [ "wheel" ];
-        home = "/home/michael";
-        createHome = true;
-        openssh.authorizedKeys.keys = keys ++ extraKeys;
-        inherit (config.users.users.michael) shell uid;
-      };
+    specialArgs = { inherit self inputs; };
 
-      nix = {
-        package = pkgs.nixVersions.latest;
-        settings = {
-          experimental-features = [
-            "nix-command"
-            "flakes"
-          ];
-          trusted-users = [
-            "root"
-            "michael"
-          ];
-        };
-      };
+    config = { pkgs, ... }: {
+      # Reuse sections I want to mimic from my host
+      imports = [
+        "${host}/base.nix"
+      ];
+      networking.hostName = "agentbox";
 
       services.openssh = {
-        enable = true;
         startWhenNeeded = false;
         ports = [ sshPort ];
       };
 
       programs = {
-        direnv = {
-          enable = true;
-          nix-direnv.enable = true;
-        };
-        git.enable = true;
         nix-ld.enable = true;
       };
 
@@ -77,20 +60,8 @@ in
         opencode
         pi-coding-agent
         bubblewrap
-        socat
         herdr
-
-        # General project and inspection tools. Project-specific compilers and
-        # SDKs should normally come from each project's devShell.
-        curl
-        fd
-        gh
-        git
-        jq
-        ripgrep
         tmux
-        tree
-        unzip
         uv
         wget
       ];
