@@ -1,7 +1,7 @@
 {
   pkgs,
   name ? "Michael Buckley",
-  email ? "michaelcbuckley@proton.me",
+  userEmail ? "michaelcbuckley@proton.me",
   signingkey ? "~/.ssh/active/signingKey",
   editor ? "vim",
   sign ? true,
@@ -40,7 +40,8 @@ let
 in
 (pkgs.formats.gitIni { }).generate "gitconfig" {
   user = {
-    inherit name email signingkey;
+    inherit name signingkey;
+    email = userEmail;
   };
   advice.defaultBranchName = false;
   gpg.format = "ssh";
