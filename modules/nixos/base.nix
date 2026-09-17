@@ -44,6 +44,11 @@
       inputs.rush.packages.${pkgs.stdenv.hostPlatform.system}.rush-shell
     ];
 
+  time = {
+    timeZone = "America/New_York";
+    hardwareClockInLocalTime = false;
+  };
+
   services = {
     # Farewell printing, read this article if you didn't know you could print with just netcat
     # https://retrohacker.substack.com/p/bye-cups-printing-with-netcat
