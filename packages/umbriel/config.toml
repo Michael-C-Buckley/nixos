@@ -1,0 +1,168 @@
+[general]
+autostart = []
+xwayland = true
+show_cheatsheet = false
+focus_on_activate = false
+honor_restored_maximize = false
+
+[workspaces]
+back_and_forth = false
+
+[overview]
+zoom = 0.5
+
+[appearance]
+prefer_no_csd = true
+border_width = 2
+outer_border_width = 0
+corner_radius = 10
+
+[appearance.blur]
+enabled = true
+optimized = true
+passes = 3
+radius = 3
+noise = 0.02
+brightness = 0.9
+contrast = 0.9
+saturation = 1.1
+
+[appearance.shadow]
+enabled = true
+softness = 10
+offset_x = 2
+offset_y = 2
+
+[layout]
+mode = "dwindle"
+gap = 8
+width_presets = [0.333, 0.5, 0.667]
+
+[layout.scrolling]
+default_width_fraction = 0.5
+center_underfull_strip = true
+
+[input]
+middle_click_paste = true
+
+[input.focus]
+follows_mouse = true
+
+[input.touchpad]
+tap = true
+
+[input.tablet]
+enabled = true
+
+[input.keyboard]
+layout = "us"
+variant = ""
+options = ""
+repeat_rate = 25
+repeat_delay = 600
+
+[input.mouse]
+sensitivity = 0.4
+scroll_wheel_step = 60
+
+[input.cursor]
+theme = "nordzy-cursor-white"
+size = 24
+hardware_cursor = true
+hide_when_typing = true
+hide_timeout_ms = 1000
+
+[keybinds]
+"Mod+Shift+WheelUp" = "window-move-to-workspace-previous"
+"Mod+Shift+WheelDown" = "window-move-to-workspace-next"
+"Mod+Ctrl+Escape" = "session-quit:skip-confirmation"
+"Mod+Ctrl+Semicolon" = "spawn:systemctl shutdown"
+"Mod+Ctrl+Alt+Semicolon" = "spawn:systemctl reboot"
+"Mod+T" = "window-toggle-floating"
+"Mod+P" = "window-toggle-pinned"
+"Mod+F" = "window-toggle-maximize-to-edges"
+"Mod+Shift+Q" = "window-close"
+"Mod+O" = "overview-toggle"
+"Mod+Space" = "spawn:noctalia msg panel-toggle launcher"
+"Mod+Ctrl+Space" = "spawn:noctalia msg bar-toggle"
+"Mod+Ctrl+L" = "spawn:noctalia msg session lock"
+"Mod+S" = "spawn:noctalia msg screenshot-region"
+"Mod+Wheelleft" = "window-focus-or-output-left"
+"Mod+left" = "window-focus-or-output-left"
+"Mod+H" = "window-focus-or-output-left"
+"Mod+Shift+H" = "window-move-or-output-left"
+"Mod+Shift+left" = "window-move-or-output-left"
+"Mod+Wheelright" = "window-focus-or-output-right"
+"Mod+right" = "window-focus-or-output-right"
+"Mod+L" = "window-focus-or-output-right"
+"Mod+Shift+L" = "window-move-or-output-right"
+"Mod+Shift+right" = "window-move-or-output-right"
+"Mod+Wheelup" = "window-focus-or-workspace-up"
+"Mod+up" = "window-focus-or-workspace-up"
+"Mod+K" = "window-focus-or-workspace-up"
+"Mod+Shift+K" = "window-move-or-workspace-up"
+"Mod+Shift+up" = "window-move-or-workspace-up"
+"Mod+Wheeldown" = "window-focus-or-workspace-down"
+"Mod+down" = "window-focus-or-workspace-down"
+"Mod+J" = "window-focus-or-workspace-down"
+"Mod+Shift+J" = "window-move-or-workspace-down"
+"Mod+Shift+down" = "window-move-or-workspace-down"
+
+# These commands are replaced from the browser and terminal package arguments.
+"Mod+B" = "spawn:helium"
+"Mod+Return" = "spawn:kitty"
+
+"Mod+1" = "workspace-switch:1"
+"Mod+2" = "workspace-switch:2"
+"Mod+3" = "workspace-switch:3"
+"Mod+4" = "workspace-switch:4"
+"Mod+5" = "workspace-switch:5"
+"Mod+6" = "workspace-switch:6"
+"Mod+7" = "workspace-switch:7"
+"Mod+8" = "workspace-switch:8"
+"Mod+9" = "workspace-switch:9"
+"Mod+0" = "workspace-switch:10"
+"Mod+Shift+1" = "window-move-to-workspace:1"
+"Mod+Shift+2" = "window-move-to-workspace:2"
+"Mod+Shift+3" = "window-move-to-workspace:3"
+"Mod+Shift+4" = "window-move-to-workspace:4"
+"Mod+Shift+5" = "window-move-to-workspace:5"
+"Mod+Shift+6" = "window-move-to-workspace:6"
+"Mod+Shift+7" = "window-move-to-workspace:7"
+"Mod+Shift+8" = "window-move-to-workspace:8"
+"Mod+Shift+9" = "window-move-to-workspace:9"
+"Mod+Shift+0" = "window-move-to-workspace:10"
+
+"XF86AudioRaiseVolume" = { action = "spawn:wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+", allow_when_locked = true }
+"XF86AudioLowerVolume" = { action = "spawn:wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-", allow_when_locked = true }
+"Mod+XF86AudioMute" = { action = "spawn:wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle", allow_when_locked = true }
+"XF86AudioPlay" = { action = "spawn:playerctl play-pause", allow_when_locked = true }
+"XF86AudioNext" = { action = "spawn:playerctl next", allow_when_locked = true }
+"XF86AudioPrev" = { action = "spawn:playerctl prev", allow_when_locked = true }
+"XF86MonBrightnessDown" = { action = "spawn:noctalia msg brightness-down 10", allow_when_locked = true }
+"XF86MonBrightnessUp" = { action = "spawn:noctalia msg brightness-up 10", allow_when_locked = true }
+
+[[window_rule]]
+blur = true
+blur_optimized = true
+
+[[window_rule]]
+default_floating = true
+default_size = [1020, 900]
+
+[window_rule.match]
+app_id = "^dev.noctalia.Noctalia$"
+
+[[window_rule]]
+default_floating = true
+default_size = [800, 600]
+
+[window_rule.match]
+app_id = "^dev.noctalia.UmbrielSharePicker$"
+
+[[layer_rule]]
+blur = true
+blur_ignore_alpha = 0.5
+
+[layer_rule.match]
+namespace = '^noctalia-(bar-[^"]+|notification|dock|panel|attached-panel|osd)$'

@@ -8,18 +8,25 @@
   ...
 }:
 let
-  # extraConfig/extraBinds are merged in by the callers of each imported file
-  settings =
-    (import ./base.nix { inherit extraConfig; })
-    // (import ./binds.nix {
-      inherit
-        pkgs
-        workspaces
-        browser
-        terminal
-        ;
-      extraConfig = extraBinds;
-    });
+  inherit (pkgs.lib)
+    filterAttrs
+    listToAttrs
+    range
+    recursiveUpdate
+    ;
+
+  sourceConfig = builtins.fromTOML (builtins.readFile ./config.toml);
+
+  generatedConfig = {
+    keybinds = {
+      "Mod+B" = "spawn:${browser}";
+      "Mod+Return" = "spawn:${terminal}";
+    };
+  };
+  mergedConfig = recursiveUpdate (recursiveUpdate sourceConfig generatedConfig) extraConfig;
+  settings = mergedConfig // {
+    keybinds = mergedConfig.keybinds // extraBinds;
+  };
   settingsToml = pkgs.writers.writeTOML "umbriel.toml" settings;
 in
 pkgs.stdenvNoCC.mkDerivation {
