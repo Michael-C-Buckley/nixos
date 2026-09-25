@@ -1,6 +1,12 @@
 # Wrapped helix, includes my configs and the tools needed for them
 { pkgs, helix, ... }:
 let
+  configHome = pkgs.linkFarm "helix-config" [
+    {
+      name = "helix";
+      path = ./.;
+    }
+  ];
   runtimeEnv = pkgs.buildEnv {
     name = "hx-runtime-env";
     paths = with pkgs; [
@@ -31,6 +37,6 @@ pkgs.symlinkJoin {
     ''
       wrapProgram $out/bin/hx \
         --prefix PATH : ${runtimeEnv}/bin \
-        --set XDG_CONFIG_HOME ${./configs}
+        --set XDG_CONFIG_HOME ${configHome}
     '';
 }

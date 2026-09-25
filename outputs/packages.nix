@@ -28,7 +28,7 @@ recursiveUpdate
       noctalia-config = pkgs.callPackage ../packages/noctalia { };
       umbriel-config = pkgs.callPackage ../packages/umbriel { };
       zed = pkgs.callPackage ../packages/zed.nix { };
-      kitty = pkgs.callPackage ../packages/kitty.nix { };
+      kitty = pkgs.callPackage ../packages/kitty { };
     }
   ))
   (
@@ -38,11 +38,11 @@ recursiveUpdate
         pkgs = nixpkgsFor.${system};
       in
       {
-        helix = pkgs.callPackage ../packages/helix.nix { };
+        helix = pkgs.callPackage ../packages/helix { };
         ns = pkgs.callPackage ../packages/ns.nix { };
         git-config = pkgs.callPackage ../packages/git-config.nix { };
         git-credential-sops = pkgs.callPackage ../packages/git-credential-sops.nix { };
-        rush = pkgs.callPackage ../packages/rush.nix { inherit inputs; };
+        rush = pkgs.callPackage ../packages/rush { inherit inputs; };
       }
     )
   )

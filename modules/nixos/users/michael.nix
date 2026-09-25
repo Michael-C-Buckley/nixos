@@ -11,7 +11,7 @@ in
   hjem.users.michael = {
     enable = true;
     xdg.config.files = {
-      "rush/config.rush".source = "${self}/packages/configs/rush/config.rush";
+      "rush/config.rush".source = "${self}/packages/rush/config.rush";
       "git/config".source = self.packages.${system}.git-config;
     };
   };
