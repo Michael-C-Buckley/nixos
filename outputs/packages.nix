@@ -25,7 +25,7 @@ recursiveUpdate
       pkgs = nixpkgsFor.${system};
     in
     {
-      noctalia-config = pkgs.callPackage ../packages/noctalia.nix { };
+      noctalia-config = pkgs.callPackage ../packages/noctalia { };
       umbriel-config = pkgs.callPackage ../packages/umbriel { };
       zed = pkgs.callPackage ../packages/zed.nix { };
       kitty = pkgs.callPackage ../packages/kitty.nix { };
