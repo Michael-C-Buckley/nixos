@@ -12,7 +12,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rush = {
-      url = "github:michael-c-buckley/rush/nix-update";
+      url = "github:rockorager/rush";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lanzaboote = {

@@ -16,6 +16,7 @@
     with pkgs;
     [
       vim
+      neovim
       bat
       duf
       dust
