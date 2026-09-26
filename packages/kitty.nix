@@ -7,7 +7,7 @@
 }:
 let
   font = pkgs.makeFontsConf { fontDirectories = fonts; };
-  config = ./kitty.conf;
+  config = ../configs/kitty/kitty.conf;
   # My default, unless I override
   optionsFile = ''
     font_family family='Lilex Nerd Font' style=Medium

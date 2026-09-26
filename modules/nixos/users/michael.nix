@@ -10,10 +10,12 @@ in
   hjem.users.michael = {
     enable = true;
     files = {
-      ".zshrc".source = "${self}/packages/configs/zsh/zshrc";
+      ".zshrc".source = "${self}/configs/zsh/zshrc";
     };
     xdg.config.files = {
       "git/config".source = self.packages.${system}.git-config;
+      "rush/config.rush".source = "${self}/configs/rush/config.rush";
+      "starship/config.toml".source = "${self}/configs/starship.toml";
     };
   };
   users.users.michael = {

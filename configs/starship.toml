@@ -1,0 +1,66 @@
+format = """
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$git_state\
+$cmd_duration\
+$fill\
+$nix_shell\
+$time\
+$line_break\
+$battery\
+$jobs\
+$python\
+$character"""
+
+[character]
+disabled = false
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
+
+[directory]
+style = "cyan"
+
+[fill]
+symbol = " "
+
+[git_branch]
+format = '[git:\(](blue)[$branch]($style)[\)](blue)'
+style = "fg:1"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[git_status]
+conflicted = "​;"
+deleted = "​"
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style) "
+modified = "​"
+renamed = "​"
+staged = "​"
+stashed = "≡"
+style = "cyan"
+untracked = "​"
+
+[hostname]
+format = "[$hostname:]($style)"
+style = "fg:71"
+
+[nix_shell]
+format = "$state"
+impure_msg = "[✱ ](yellow)"
+pure_msg = "[✱ ](green)"
+unknown_msg = "[✱ ](red)"
+
+[python]
+format = "[$virtualenv]($style) "
+style = "bright-black"
+
+[time]
+disabled = false
+format = " [$time]($style) "
+style = "grey"

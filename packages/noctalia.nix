@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
   inherit (pkgs) lib;
-  defaultSettings = builtins.fromTOML (builtins.readFile ./config.toml);
+  defaultSettings = builtins.fromTOML (builtins.readFile ../configs/noctalia/config.toml);
 
   # extraSettings is recursively merged over defaultSettings, so callers only need to specify what they're changing
   mkNoctaliaConfig = lib.makeOverridable (

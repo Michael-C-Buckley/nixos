@@ -4,7 +4,7 @@ let
   configHome = pkgs.linkFarm "helix-config" [
     {
       name = "helix";
-      path = ./.;
+      path = ../configs/helix;
     }
   ];
   runtimeEnv = pkgs.buildEnv {

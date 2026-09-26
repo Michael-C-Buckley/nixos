@@ -15,7 +15,7 @@ let
     recursiveUpdate
     ;
 
-  sourceConfig = builtins.fromTOML (builtins.readFile ./config.toml);
+  sourceConfig = builtins.fromTOML (builtins.readFile ../configs/umbriel/config.toml);
 
   generatedConfig = {
     keybinds = {
