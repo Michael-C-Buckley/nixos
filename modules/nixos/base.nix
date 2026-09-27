@@ -1,49 +1,49 @@
 # Common settings I have in all current systems
 {
-  inputs,
   pkgs,
   lib,
   ...
 }:
 {
   imports = [
-    inputs.hjem.nixosModules.hjem
     ./users
     ./system/nix.nix
   ];
 
-  environment.systemPackages =
-    with pkgs;
-    [
-      vim
-      neovim
-      bat
-      duf
-      dust
-      eza
-      fd
-      file
-      fzf
-      gh
-      jq
-      git
-      ripgrep
-      unzip
-      sops
-      age
-      zoxide
-      socat
-      nix-tree
+  environment.systemPackages = with pkgs; [
+    vim
+    neovim
+    bat
+    duf
+    dust
+    eza
+    fd
+    file
+    fzf
+    gh
+    jq
+    git
+    ripgrep
+    unzip
+    sops
+    age
+    zoxide
+    socat
+    nix-tree
 
-      # Terminfo
-      alacritty.terminfo
-      kitty.terminfo
-      ghostty.terminfo
-      tmux.terminfo
-    ]
-    ++ [
-      inputs.rush.packages.${pkgs.stdenv.hostPlatform.system}.rush-shell
-    ];
+    # Zsh things
+    starship
+    zsh-fzf-tab
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    zsh-completions
+
+    # Terminfo
+    alacritty.terminfo
+    kitty.terminfo
+    ghostty.terminfo
+    tmux.terminfo
+  ];
 
   time = {
     timeZone = "America/New_York";
@@ -89,5 +89,6 @@
         hide_env_diff=true
       '';
     };
+    zsh.enable = true;
   };
 }

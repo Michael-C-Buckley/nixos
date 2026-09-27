@@ -6,6 +6,8 @@ setopt COMPLETE_IN_WORD
 setopt CORRECT
 setopt EXTENDED_GLOB
 
+export NH_OS_FLAKE="$HOME/.config/nixos"
+
 # Starship replaces this when available. Keep a usable prompt when the command
 # is absent because a Nix or Homebrew profile was not loaded.
 PROMPT='%F{cyan}%~%f %# '
@@ -22,6 +24,7 @@ alias gc='git commit'
 alias gcm='git commit -m'
 alias gco='git checkout'
 alias gd='git diff'
+alias gd='git diff --staged'
 alias gdc='git diff --cached'
 alias gf='git fetch'
 alias gm='git merge'
@@ -52,95 +55,13 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTORY_IGNORE='(ls|ls *)'
 
-# Keep plugin ownership explicit and overridable. Homebrew owns plugins on
-# macOS; Linux expects them in a Nix profile. An unknown provider simply leaves
-# the optional integrations disabled.
-typeset -g ZSH_PLUGIN_PROVIDER="${ZSH_PLUGIN_PROVIDER:-}"
-if [[ -z "$ZSH_PLUGIN_PROVIDER" ]]; then
-	case "$OSTYPE" in
-		darwin*) ZSH_PLUGIN_PROVIDER=homebrew ;;
-		linux*)  ZSH_PLUGIN_PROVIDER=nix ;;
-		*)       ZSH_PLUGIN_PROVIDER=none ;;
-	esac
+# Install zcomet on first use.
+_zcomet_dir="${ZDOTDIR:-$HOME}/.zcomet/bin"
+if [[ ! -r "$_zcomet_dir/zcomet.zsh" ]]; then
+    command git clone https://github.com/agkozak/zcomet.git "$_zcomet_dir" || return
 fi
-
-typeset -ga _zsh_plugin_share_roots
-_zsh_plugin_share_roots=()
-
-case "$ZSH_PLUGIN_PROVIDER" in
-	homebrew)
-		typeset -g _zsh_brew_prefix=''
-		for _zsh_prefix_candidate in "${HOMEBREW_PREFIX:-}" /opt/homebrew /usr/local; do
-			if [[ -n "$_zsh_prefix_candidate" &&
-			      -d "$_zsh_prefix_candidate/share" ]]; then
-				_zsh_brew_prefix="$_zsh_prefix_candidate"
-				_zsh_plugin_share_roots=("$_zsh_brew_prefix/share")
-				break
-			fi
-		done
-		unset _zsh_prefix_candidate
-		;;
-	nix)
-		for _zsh_share_candidate in \
-			"${NIX_PROFILE:+$NIX_PROFILE/share}" \
-			"$HOME/.nix-profile/share" \
-			"${USER:+/etc/profiles/per-user/$USER/share}" \
-			/run/current-system/sw/share \
-			/nix/var/nix/profiles/default/share
-		do
-			if [[ -n "$_zsh_share_candidate" &&
-			      -d "$_zsh_share_candidate" ]]; then
-				_zsh_plugin_share_roots+=("$_zsh_share_candidate")
-			fi
-		done
-		unset _zsh_share_candidate
-		;;
-esac
-
-typeset -U _zsh_plugin_share_roots
-
-_zsh_find_plugin_file() {
-	local _zsh_share_root _zsh_relative_path
-	for _zsh_share_root in "$_zsh_plugin_share_roots[@]"; do
-		for _zsh_relative_path in "$@"; do
-			if [[ -r "$_zsh_share_root/$_zsh_relative_path" ]]; then
-				REPLY="$_zsh_share_root/$_zsh_relative_path"
-				return 0
-			fi
-		done
-	done
-	REPLY=''
-	return 1
-}
-
-typeset -g _zsh_fzf_tab_file=''
-typeset -g _zsh_autosuggestions_file=''
-typeset -g _zsh_transient_prompt_file=''
-typeset -g _zsh_syntax_highlighting_file=''
-
-_zsh_find_plugin_file fzf-tab/fzf-tab.zsh &&
-	_zsh_fzf_tab_file="$REPLY"
-_zsh_find_plugin_file zsh-autosuggestions/zsh-autosuggestions.zsh &&
-	_zsh_autosuggestions_file="$REPLY"
-_zsh_find_plugin_file zsh-transient-prompt/transient-prompt.zsh-theme &&
-	_zsh_transient_prompt_file="$REPLY"
-_zsh_find_plugin_file zsh-syntax-highlighting/zsh-syntax-highlighting.zsh &&
-	_zsh_syntax_highlighting_file="$REPLY"
-
-# Completion directories must be added to fpath before compinit. Nix profiles
-# merge package completions into zsh/site-functions; Homebrew formulas may use
-# either that standard location or a package-specific share directory.
-for _zsh_share_root in "$_zsh_plugin_share_roots[@]"; do
-	for _zsh_completion_dir in \
-		"$_zsh_share_root/zsh/site-functions" \
-		"$_zsh_share_root/zsh-completions"
-	do
-		[[ -d "$_zsh_completion_dir" ]] &&
-			fpath=("$_zsh_completion_dir" $fpath)
-	done
-done
-typeset -U fpath
-unset _zsh_share_root _zsh_completion_dir
+source "$_zcomet_dir/zcomet.zsh"
+unset _zcomet_dir
 
 zmodload zsh/complist
 bindkey -M menuselect 'h' vi-backward-char
@@ -148,10 +69,9 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
-autoload -Uz compinit
-# The system zshrc runs compinit earlier with a smaller fpath. Keep this
-# dump separate so the two completion sets do not rebuild each other's cache.
-compinit -d "$ZDOTDIR/.zcompdump-user"
+# Keep a separate dump because the system zshrc also runs compinit.
+zstyle ':zcomet:compinit' dump-file "${ZDOTDIR:-$HOME}/.zcompdump-user"
+zcomet compinit
 
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/.zcompcache"
@@ -188,11 +108,10 @@ if (( $+commands[fzf] )); then
 fi
 
 # fzf-tab must load after compinit and fzf, but before autosuggestions.
-if (( $+commands[fzf] )) &&
-   [[ -n "$_zsh_fzf_tab_file" ]]; then
-	source "$_zsh_fzf_tab_file"
-	zstyle ':fzf-tab:*' fzf-flags --height=60% --layout=reverse --border
-	zstyle ':fzf-tab:*' switch-group '<' '>'
+if (( $+commands[fzf] )); then
+    zcomet load Aloxaf/fzf-tab
+    zstyle ':fzf-tab:*' fzf-flags --height=60% --layout=reverse --border
+    zstyle ':fzf-tab:*' switch-group '<' '>'
 fi
 
 # Use command-aware completion when a command is present; otherwise retain
@@ -213,11 +132,9 @@ if (( $+widgets[fzf-tab-complete] || $+widgets[fzf-file-widget] )); then
 	bindkey '^T' _fzf_context_widget
 fi
 
-if [[ -n "$_zsh_autosuggestions_file" ]]; then
-	ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-	ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
-	source "$_zsh_autosuggestions_file"
-fi
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+zcomet load zsh-users/zsh-autosuggestions
 
 if (( $+commands[zoxide] )); then
 	eval "$(zoxide init zsh --cmd z 2>/dev/null)"
@@ -234,15 +151,12 @@ if (( $+commands[starship] )); then
 	eval "$(starship init zsh 2>/dev/null)"
 fi
 
-# Collapse completed Starship prompts to the same dim character used by the
-# Fish transient prompt. The current prompt remains the full Starship prompt.
-if [[ "${STARSHIP_SHELL:-}" == zsh &&
-      -n "$_zsh_transient_prompt_file" ]]; then
-	TRANSIENT_PROMPT_PROMPT=$PROMPT
-	TRANSIENT_PROMPT_RPROMPT=$RPROMPT
-	TRANSIENT_PROMPT_TRANSIENT_PROMPT='%F{8}❯%f '
-	TRANSIENT_PROMPT_TRANSIENT_RPROMPT=''
-	source "$_zsh_transient_prompt_file"
+if [[ "${STARSHIP_SHELL:-}" == zsh ]]; then
+    TRANSIENT_PROMPT_PROMPT=$PROMPT
+    TRANSIENT_PROMPT_RPROMPT=$RPROMPT
+    TRANSIENT_PROMPT_TRANSIENT_PROMPT='%F{8}❯%f '
+    TRANSIENT_PROMPT_TRANSIENT_RPROMPT=''
+    zcomet load olets/zsh-transient-prompt transient-prompt.zsh-theme
 fi
 
 killdns() {
@@ -250,10 +164,7 @@ killdns() {
 	sudo killall -HUP mDNSResponder
 }
 
-# Syntax highlighting needs to be sourced after every other ZLE integration.
-if [[ -n "$_zsh_syntax_highlighting_file" ]]; then
-	source "$_zsh_syntax_highlighting_file"
-fi
+zcomet load zdharma-continuum/fast-syntax-highlighting
 
 unfunction _zsh_find_plugin_file
 unset _zsh_brew_prefix

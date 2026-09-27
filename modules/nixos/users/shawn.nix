@@ -1,10 +1,4 @@
 { pkgs, ... }: {
-  programs.zsh.enable = true;
-
-  hjem.users = {
-    shawn.enable = true;
-  };
-
   users.users = {
     shawn = {
       shell = pkgs.zsh;

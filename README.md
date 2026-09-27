@@ -48,7 +48,6 @@ What has survived:
 
 - Some wrappers
 - Pre-commit (not as an input)
-- [NVF](https://github.com/notashelf/nvf) (in nix profile)
 - Lanzaboote
 
 When I say declaring everything, I mean it.
@@ -87,12 +86,6 @@ I still use secureboot (mainly for work machine compatibility) and I chose Lanza
 There is some friction, but overall it is based on and uses systemd-boot and works well.
 I tried Limine, which is pretty good, but not being as "well" integrated as systemd-boot when it came to
 recognizing and handling UKIs and Windows was a driving factor on going back.
-
-- Hjem
-
-I really thought about going framework-less and doing some systemd-tmpfiles for home files, but hjem does
-lifecycle management of the links used.
-That's valuable enough to keep though I may change my mind in the future.
 
 - Flake Inputs
 

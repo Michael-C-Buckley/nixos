@@ -31,10 +31,5 @@ in
       playerctl
       wl-clipboard
     ];
-
-    hjem.users.michael.xdg.config.files = {
-      "umbriel/config.toml".source = "${cfg}/umbriel.toml";
-      "noctalia/settings.toml".source = "${self.packages.${system}.noctalia-config}/settings.toml";
-    };
   };
 }
