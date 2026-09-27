@@ -23,6 +23,7 @@ A minimized and thoughtout structure prevents the needs for weaving together a d
 
 I've tried a lot and many things have not survived:
 
+- Nix-based home management
 - Secrets
 - Flake-Parts
 - Dendritic
@@ -57,20 +58,20 @@ I had secrets, multiple browsers, heavy wrappers, even kubernetes configs.
 
 This is an important section, as this rewrite as deliberately excluded features normal to many modern flakes.
 
-The biggest departure is secrets management.
+### The biggest departure is secrets management.
 
 I no longer manage secrets within the flake.
 Instead, I have an imperative management system I control externally.
 The decision was largely driven by the complexity of secrets, coupled with the fact that my secrets don't change very often.
 The removal of servers, especially kubernetes hosts, was a huge factor in the reduction of secrets.
 
-The next mention is various "frameworks".
+### The next mention is various "frameworks".
 
 There's been a bunch of frameworks I've tried, each promising to make things better.
 Many did - for a while.
 Then the complexity either directly grew or I was tempted to keep adding onto them.
 
-Surprising to those who know me, I've moved off of ZFS on my NixOS devices.
+### Surprising to those who know me, I've moved off of ZFS on my NixOS devices.
 
 ZFS is still the clearly superior filesystem option, however, I just don't use the features that makes it such.
 I'm not on btrfs (as a hardware config examination would show) and using just the necessary common features to get by.

@@ -58,8 +58,6 @@ in
   users.users.michael.packages = builtins.attrValues {
     inherit (self.packages.${system})
       zed
-      helix
-      kitty
       ;
   };
 
@@ -72,6 +70,7 @@ in
 
       # Terminal
       alacritty
+      kitty
       nushell
       yazi
       herdr
