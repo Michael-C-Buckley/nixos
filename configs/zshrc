@@ -55,6 +55,11 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTORY_IGNORE='(ls|ls *)'
 
+# Activate a rootbeer profile if it exists
+if [[ -r " $HOME/.local/state/rootbeer/profiles/user/current/bin/rb"]]; then
+  eval ("$HOME/.local/state/rootbeer/profiles/user/current/bin/rb env")
+end
+
 # Install zcomet on first use.
 _zcomet_dir="${ZDOTDIR:-$HOME}/.zcomet/bin"
 if [[ ! -r "$_zcomet_dir/zcomet.zsh" ]]; then
