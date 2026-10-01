@@ -1,0 +1,11 @@
+[shorturls]
+nixpkgs = "https://channels.nixos.org/{path}/nixexprs.tar.zst"
+gh = "github:{path}"
+
+[all_follow]
+nixpkgs = "nixpkgs"
+
+[inputs]
+nixpkgs.url = "nixpkgs:nixos-unstable"
+helium.url = "gh:amaanq/helium-flake"
+lanzaboote.url = "gh:nix-community/lanzaboote"

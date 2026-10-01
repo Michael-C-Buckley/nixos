@@ -30,7 +30,6 @@ I've tried a lot and many things have not survived:
 - Import-Tree (and spin-offs)
 - Disko
 - Nixos-anywhere
-- Non-flake inputs
 - Pre-commit flake
 - Various Browsers
 - Various Window Managers
@@ -87,13 +86,3 @@ I still use secureboot (mainly for work machine compatibility) and I chose Lanza
 There is some friction, but overall it is based on and uses systemd-boot and works well.
 I tried Limine, which is pretty good, but not being as "well" integrated as systemd-boot when it came to
 recognizing and handling UKIs and Windows was a driving factor on going back.
-
-- Flake Inputs
-
-After going through tack, npins, nvfetcher, etc. I'm back on vanilla flake inputs.
-They are getting better compared to what they were when I started and explored other options.
-The inclusion of optimizations and some partially lazy trees has helped a lot.
-Plus, as the community standard mechanism, everything just works with it.
-
-Likewise, I'm not pulling appImages and wrapping them myself anymore.
-The community at large supplies quite a lot of excellent work, like the Helium flake I am currently using.

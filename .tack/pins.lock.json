@@ -1,0 +1,24 @@
+{
+  "helium": {
+    "type": "github",
+    "owner": "amaanq",
+    "repo": "helium-flake",
+    "rev": "fa670d821a8b1dcbf653256e48a9387285b02748",
+    "narHash": "sha256-DElBT51c3oIxydiC/8KNScp8S/U0WV46ZnWclvb61iw=",
+    "lastModified": 1790829646
+  },
+  "lanzaboote": {
+    "type": "github",
+    "owner": "nix-community",
+    "repo": "lanzaboote",
+    "rev": "ba33415d747d8dedd2931af107521634f1f2e8a8",
+    "narHash": "sha256-v5+DBEGnMC6phAf+/Rt7EtxjIDzy+NMKdHJIFJGh5qc=",
+    "lastModified": 1790853984
+  },
+  "nixpkgs": {
+    "type": "tarball",
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1083223.c59305bab206/nixexprs.tar.zst",
+    "rev": "c59305bab2065cfecc4944690d9eedbb56f3a9fa",
+    "narHash": "sha256-VBA0QerzzmL+4wxgtwiCdiLwLpJg2/9xOxhgO3BRJQA="
+  }
+}

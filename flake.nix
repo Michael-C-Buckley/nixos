@@ -1,23 +1,11 @@
 {
   description = "Michael's system flake";
 
-  inputs = {
-    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
-    helium = {
-      url = "github:amaanq/helium-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        pre-commit.follows = "";
-      };
-    };
-  };
-
   outputs =
-    { self, ... }@inputs:
+    { self, ... }@args:
+    let
+      inputs = (import ./.tack) { overrides = args.tackOverrides or { }; };
+    in
     {
       devShells = import ./outputs/devShells.nix { inherit self inputs; };
       packages = import ./outputs/packages.nix { inherit self inputs; };

@@ -10,6 +10,8 @@ let
     paths =
       with pkgs;
       [
+        tack
+
         # Nix
         nixfmt
         deadnix
