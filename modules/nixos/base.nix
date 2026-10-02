@@ -26,17 +26,11 @@
     ripgrep
     unzip
     sops
+    starship
     age
     zoxide
     socat
     nix-tree
-
-    # Zsh things
-    starship
-    zsh-fzf-tab
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-    zsh-completions
 
     # Terminfo
     alacritty.terminfo

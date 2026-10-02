@@ -69,21 +69,17 @@ in
       wavemon
 
       # Terminal
-      alacritty
       kitty
       nushell
       yazi
       herdr
       tmux
-      zellij
 
       # Utility
-      wmenu
       gammastep
       termshark
       tshark
-      putty
-      winbox4
+      winbox
       kubectl
       talosctl
 
@@ -93,8 +89,6 @@ in
       materialgram
 
       # Productivity
-      obsidian
-      flow-control
       codex
       opencode
 
@@ -102,7 +96,6 @@ in
       lazygit
       tig
       delta
-      hunk
       gh
       nix-tree
       jq
