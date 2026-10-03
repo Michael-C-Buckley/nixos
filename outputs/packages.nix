@@ -36,6 +36,7 @@ recursiveUpdate
       in
       {
         ns = pkgs.callPackage ../packages/ns.nix { };
+        nvim = pkgs.callPackage ../packages/nvim.nix { };
         git-credential-sops = pkgs.callPackage ../packages/git-credential-sops.nix { };
       }
     )
