@@ -33,9 +33,15 @@ in
     privateNetwork = false;
 
     bindMounts = {
+      # My general work directories
       "${m}/Projects" = {
         hostPath = "${m}/Projects";
         isReadOnly = false;
+      };
+      # Make my SSH pubkeys available
+      "/etc/ssh/authorized_keys.d/michael" = {
+        hostPath = "/etc/ssh/authorized_keys.d/michael";
+        isReadOnly = true;
       };
       # Copy my configs from my host for zsh
       "${m}/.config/rootbeer" = {
