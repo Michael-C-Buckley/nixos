@@ -38,12 +38,16 @@ in
         isReadOnly = false;
       };
       # Copy my configs from my host for zsh
+      "${m}/.config/rootbeer" = {
+        hostPath = "${m}/.config/rootbeer";
+        isReadOnly = true;
+      };
       "${m}/.config/zsh" = {
         hostPath = "${m}/.config/zsh";
         isReadOnly = true;
       };
       "${m}/.zshenv" = {
-        hostPath = "{m}/.zshenv";
+        hostPath = "${m}/.zshenv";
         isReadOnly = true;
       };
     };
