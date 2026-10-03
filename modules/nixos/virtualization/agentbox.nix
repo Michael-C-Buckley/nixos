@@ -11,6 +11,8 @@
 let
   sshPort = 1122;
   host = "${self}/modules/nixos";
+
+  m = "/home/michael";
 in
 {
   # The container will fail if the host doesn't have the directories.
@@ -31,9 +33,18 @@ in
     privateNetwork = false;
 
     bindMounts = {
-      "/home/michael/Projects" = {
-        hostPath = "/home/michael/Projects";
+      "${m}/Projects" = {
+        hostPath = "${m}/Projects";
         isReadOnly = false;
+      };
+      # Copy my configs from my host for zsh
+      "${m}/.config/zsh" = {
+        hostPath = "${m}/.config/zsh";
+        isReadOnly = true;
+      };
+      "${m}/.zshenv" = {
+        hostPath = "{m}/.zshenv";
+        isReadOnly = true;
       };
     };
 

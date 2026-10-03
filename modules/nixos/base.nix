@@ -23,14 +23,15 @@
     gh
     jq
     git
+    tig
     ripgrep
-    unzip
     sops
     starship
     age
     zoxide
     socat
     nix-tree
+    nix-graph
 
     # Terminfo
     alacritty.terminfo
