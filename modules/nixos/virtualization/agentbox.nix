@@ -13,6 +13,24 @@ let
   host = "${self}/modules/nixos";
 
   m = "/home/michael";
+
+  readOnlyBinds = builtins.listToAttrs (
+    map
+      (a: {
+        name = a;
+        value = {
+          hostPath = a;
+          isReadOnly = true;
+        };
+      })
+      [
+        "/etc/ssh/authorized_keys.d/michael"
+        "${m}/.config/rootbeer"
+        "${m}/.config/starship/config.toml"
+        "${m}/.config/zsh"
+        "${m}/.zshenv"
+      ]
+  );
 in
 {
   # The container will fail if the host doesn't have the directories.
@@ -38,25 +56,8 @@ in
         hostPath = "${m}/Projects";
         isReadOnly = false;
       };
-      # Make my SSH pubkeys available
-      "/etc/ssh/authorized_keys.d/michael" = {
-        hostPath = "/etc/ssh/authorized_keys.d/michael";
-        isReadOnly = true;
-      };
-      # Copy my configs from my host for zsh
-      "${m}/.config/rootbeer" = {
-        hostPath = "${m}/.config/rootbeer";
-        isReadOnly = true;
-      };
-      "${m}/.config/zsh" = {
-        hostPath = "${m}/.config/zsh";
-        isReadOnly = true;
-      };
-      "${m}/.zshenv" = {
-        hostPath = "${m}/.zshenv";
-        isReadOnly = true;
-      };
-    };
+    }
+    // readOnlyBinds;
 
     specialArgs = { inherit self inputs; };
 
