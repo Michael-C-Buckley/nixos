@@ -22,6 +22,8 @@ in
   };
   swapDevices = [ ];
 
+  services.zfs.autoScrub.enable = true;
+
   fileSystems = {
     "/boot" = {
       device = "/dev/disk/by-uuid/E09B-A739";
