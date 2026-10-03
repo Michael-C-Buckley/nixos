@@ -51,10 +51,6 @@ in
         ports = [ sshPort ];
       };
 
-      programs = {
-        nix-ld.enable = true;
-      };
-
       environment.systemPackages = with pkgs; [
         codex
         opencode

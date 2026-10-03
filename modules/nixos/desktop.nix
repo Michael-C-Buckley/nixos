@@ -52,8 +52,6 @@ in
     powerOnBoot = true;
   };
 
-  programs.nix-ld.enable = true;
-
   # Wrapped packages for my user
   users.users.michael.packages = builtins.attrValues {
     inherit (self.packages.${system})

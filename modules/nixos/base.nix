@@ -83,6 +83,7 @@
         hide_env_diff=true
       '';
     };
+    nix-ld.enable = true;
     zsh.enable = true;
   };
 }
