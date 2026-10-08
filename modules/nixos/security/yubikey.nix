@@ -12,6 +12,12 @@
     udev.packages = [ pkgs.yubikey-personalization ];
   };
 
+  programs.yubikey-touch-detector = {
+    enable = true;
+    libnotify = true;
+    unixSocket = true;
+  };
+
   # https://github.com/NixOS/nixpkgs/issues/290926
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
