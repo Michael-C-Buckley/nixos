@@ -41,7 +41,6 @@ in
     hostname = "b550";
     modules = [
       ../modules/nixos/server.nix
-      ../modules/nixos/virtualization/agentbox.nix
       ../modules/nixos/virtualization/incus.nix
     ];
   };

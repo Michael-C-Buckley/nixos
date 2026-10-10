@@ -18,7 +18,6 @@ in
     ./packages/network.nix
     ./security/tpm2.nix
     ./security/yubikey.nix
-    ./virtualization/agentbox.nix
     ./virtualization/containerlab.nix
     ./virtualization/incus.nix
     ./virtualization/libvirt.nix
