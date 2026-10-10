@@ -1,0 +1,13 @@
+{
+  "host": "b550",
+  "architecture": "x86_64",
+  "kernel_release": "7.0.12",
+  "kernel_config_source": "/proc/config.gz",
+  "kernel_config_sha256": "8b8ec0f81ddcc67adb480fac8b65fc40c9213d78d453ee6fecda5f041252b654",
+  "captured_at": "2026-07-12T14:11:42-04:00",
+  "scenario": "active-host-over-ssh",
+  "notes": [
+    "This is a loaded-module snapshot, not a complete boot requirement set.",
+    "Boot and declared NixOS module requirements must be retained separately."
+  ]
+}

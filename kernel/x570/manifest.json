@@ -1,0 +1,12 @@
+{
+  "host": "x570",
+  "architecture": "x86_64",
+  "kernel_release": "7.0.14-xanmod1",
+  "kernel_config_source": "/proc/config.gz",
+  "captured_at": "2026-07-12T13:33:22-04:00",
+  "scenario": "active-desktop",
+  "notes": [
+    "This is a loaded-module snapshot, not a complete boot requirement set.",
+    "Boot and declared NixOS module requirements must be retained separately."
+  ]
+}

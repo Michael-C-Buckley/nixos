@@ -1,0 +1,28 @@
+# Filesystem types mounted during the active-host snapshot.
+bpf
+cgroup2
+configfs
+debugfs
+devpts
+devtmpfs
+efivarfs
+fuse
+fusectl
+hugetlbfs
+mqueue
+nsfs
+overlay
+proc
+pstore
+ramfs
+securityfs
+sysfs
+tmpfs
+tracefs
+vfat
+zfs
+
+# Block transport/type combinations observed.
+disk
+nvme disk
+sata disk

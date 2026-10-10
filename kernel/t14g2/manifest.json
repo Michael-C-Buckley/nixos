@@ -1,0 +1,13 @@
+{
+  "host": "t14g2",
+  "architecture": "x86_64",
+  "kernel_release": "7.0.9",
+  "kernel_config_source": "/proc/config.gz",
+  "kernel_config_sha256": "deaf75affcdd7cb6a46c0207fbfa4f26dc64e639fe6e191e1cca90abe207da7b",
+  "captured_at": "2026-07-12T14:22:58-04:00",
+  "scenario": "active-laptop-over-ssh",
+  "notes": [
+    "This is a loaded-module snapshot, not a complete boot requirement set.",
+    "Boot and declared NixOS module requirements must be retained separately."
+  ]
+}

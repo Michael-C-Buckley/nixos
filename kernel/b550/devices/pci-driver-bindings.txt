@@ -1,0 +1,17 @@
+# PCI ID, device, active driver, and module candidates observed on 2026-07-12.
+# IDs are stable hardware identifiers; no subsystem serial data is recorded.
+1022:790b  AMD FCH SMBus Controller                 driver=piix4_smbus modules=i2c_piix4,sp5100_tco
+1022:166d  AMD Cezanne Data Fabric                  driver=k10temp modules=k10temp
+1022:43ee  AMD 500 Series USB 3.1 host controller   driver=xhci_hcd modules=xhci_pci
+1022:43eb  AMD 500 Series SATA controller (AHCI)    driver=ahci modules=ahci
+8086:10fb  Intel 82599ES 10GbE SFI/SFP+             driver=ixgbe modules=ixgbe
+1344:5416  Micron 2550 NVMe SSD                     driver=nvme modules=nvme
+10ec:8125  Realtek RTL8125 2.5GbE                   driver=r8169 modules=r8169
+10ec:8168  Realtek RTL8111/8168 GbE                 driver=r8169 modules=r8169
+8086:24f3  Intel Wireless 8260                      driver=iwlwifi modules=iwlwifi
+144d:a804  Samsung SM961/PM961/SM963 NVMe           driver=nvme modules=nvme
+1002:1638  AMD Cezanne Radeon Vega graphics         driver=amdgpu modules=amdgpu
+1002:1637  AMD Cezanne HDMI/DP audio                driver=snd_hda_intel modules=snd_hda_intel
+1022:15df  AMD Cezanne platform security processor  driver=ccp modules=ccp
+1022:1639  AMD Cezanne USB 3.1 host controller      driver=xhci_hcd modules=xhci_pci
+1022:15e3  AMD Ryzen HD audio                       driver=snd_hda_intel modules=snd_hda_intel

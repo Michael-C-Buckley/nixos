@@ -1,4 +1,12 @@
 {
+  "cachyos-kernel": {
+    "type": "github",
+    "owner": "xddxdd",
+    "repo": "nix-cachyos-kernel",
+    "rev": "9c08e7cff055978bbd6f10820cde38c76bd37d6c",
+    "narHash": "sha256-uXb1WNzEfB+faQIFUrKxr/ujzVQkPGVuOerOTVKvBh4=",
+    "lastModified": 1791498364
+  },
   "helium": {
     "type": "github",
     "owner": "amaanq",

@@ -1,0 +1,15 @@
+# PCI ID, device, active driver, and module candidates observed on 2026-07-12.
+# IDs are stable hardware identifiers; no subsystem serial data is recorded.
+1022:790b  AMD FCH SMBus Controller                   driver=piix4_smbus modules=i2c_piix4,sp5100_tco
+1022:166d  AMD Cezanne Data Fabric                    driver=k10temp modules=k10temp
+1c5c:174a  SK hynix Gold P31/BC711/PC711 NVMe         driver=nvme modules=nvme
+10ec:8168  Realtek RTL8111/8168 Gigabit Ethernet     driver=r8169 modules=r8169
+8086:2723  Intel Wi-Fi 6 AX200                        driver=iwlwifi modules=iwlwifi
+17a0:9750  Genesys Logic GL9750 SD host controller    driver=sdhci-pci modules=sdhci_pci
+1912:0015  Renesas uPD720202 USB 3.0 host controller  driver=xhci-pci-renesas modules=xhci_pci,xhci_pci_renesas
+1002:1638  AMD Cezanne Radeon Vega graphics           driver=amdgpu modules=amdgpu
+1002:1637  AMD Cezanne HDMI/DP audio                  driver=snd_hda_intel modules=snd_hda_intel
+1022:15df  AMD Cezanne platform security processor    driver=ccp modules=ccp
+1022:1639  AMD Cezanne USB host controller            driver=xhci_hcd modules=xhci_pci
+1022:15e2  AMD audio coprocessor                      driver=snd_rn_pci_acp3x modules=snd_rn_pci_acp3x
+1022:15e3  AMD Ryzen HD audio                         driver=snd_hda_intel modules=snd_hda_intel

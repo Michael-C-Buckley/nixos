@@ -1,0 +1,19 @@
+# PCI ID, device, active driver, and module candidates observed on 2026-07-12.
+# IDs are stable hardware identifiers; no subsystem serial data is recorded.
+1022:790b  AMD FCH SMBus Controller                   driver=piix4_smbus modules=i2c_piix4,sp5100_tco
+1022:14f3  AMD Phoenix Data Fabric                    driver=k10temp modules=k10temp
+10ec:8168  Realtek RTL8111/8168 Gigabit Ethernet     driver=r8169 modules=r8169
+17cb:1103  Qualcomm QCNFA765 Wi-Fi                    driver=ath11k_pci modules=ath11k_pci
+1987:5012  Phison E12 NVMe controller                 driver=nvme modules=nvme
+1002:1900  AMD Hawk Point graphics                    driver=amdgpu modules=amdgpu
+1002:1640  AMD Radeon HD audio                        driver=snd_hda_intel modules=snd_hda_intel
+1022:15c7  AMD Phoenix CCP/PSP                        driver=ccp modules=ccp
+1022:15b9  AMD Phoenix USB host controller            driver=xhci_hcd modules=xhci_pci
+1022:15ba  AMD Phoenix USB host controller            driver=xhci_hcd modules=xhci_pci
+1022:15e2  AMD audio coprocessor                      driver=snd_pci_ps modules=snd_pci_ps
+1022:15e3  AMD Ryzen HD audio                         driver=snd_hda_intel modules=snd_hda_intel
+1022:1502  AMD IPU                                    driver=amdxdna modules=amdxdna
+1022:15c0  AMD Phoenix USB host controller            driver=xhci_hcd modules=xhci_pci
+1022:15c1  AMD Phoenix USB host controller            driver=xhci_hcd modules=xhci_pci
+1022:1668  AMD USB4/Thunderbolt NHI controller        driver=thunderbolt modules=thunderbolt
+1022:1669  AMD USB4/Thunderbolt NHI controller        driver=thunderbolt modules=thunderbolt

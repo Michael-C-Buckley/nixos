@@ -1,0 +1,30 @@
+# Filesystem types mounted during the active-desktop snapshot.
+autofs
+binfmt_misc
+bpf
+cgroup2
+configfs
+debugfs
+devpts
+devtmpfs
+efivarfs
+fuse
+fuse.gvfsd-fuse
+fuse.portal
+fusectl
+hugetlbfs
+mqueue
+proc
+pstore
+ramfs
+securityfs
+sysfs
+tmpfs
+tracefs
+vfat
+zfs
+
+# Block transport/type combinations observed.
+disk
+nvme disk
+sata disk

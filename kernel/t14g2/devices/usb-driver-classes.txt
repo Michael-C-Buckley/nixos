@@ -1,0 +1,7 @@
+# Sanitized active USB topology, 2026-07-12. Device addresses are omitted.
+# Active class drivers: xhci_hcd, xhci-pci-renesas, usbhid, btusb, uvcvideo.
+root hubs: USB 2.0, USB 3.x, and Renesas USB 3.0 host controllers
+human-interface device: usbhid
+Bluetooth adapter: btusb
+integrated camera: uvcvideo
+smart-card and vendor-specific interfaces: no kernel driver bound

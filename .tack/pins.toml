@@ -9,3 +9,7 @@ nixpkgs = "nixpkgs"
 nixpkgs.url = "nixpkgs:nixos-unstable"
 helium.url = "gh:amaanq/helium-flake"
 lanzaboote.url = "gh:nix-community/lanzaboote"
+
+[inputs.cachyos-kernel]
+url = "github:xddxdd/nix-cachyos-kernel"
+exclude_follow = ["nixpkgs"]

@@ -1,0 +1,8 @@
+# Sanitized active USB topology, 2026-07-12. Device addresses are omitted.
+# Active class drivers: xhci_hcd, hub, usbhid, snd-usb-audio, xpad, btusb.
+root hubs: USB 2.0 and USB 3.x via xhci_hcd
+human-interface devices: usbhid
+USB audio devices: snd-usb-audio
+game controller: xpad
+Bluetooth adapter: btusb
+smart-card interface: no kernel driver bound

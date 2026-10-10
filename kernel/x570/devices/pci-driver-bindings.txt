@@ -1,0 +1,15 @@
+# PCI ID, device, active driver, and module candidates observed on 2026-07-12.
+# IDs are stable hardware identifiers; no subsystem serial data is recorded.
+1022:790b  AMD FCH SMBus Controller                 modules=i2c_piix4,sp5100_tco
+1022:1443  AMD Matisse/Vermeer Data Fabric          driver=k10temp modules=k10temp
+c0a9:540a  Micron/Crucial P2/P3/P3 Plus NVMe        driver=nvme modules=nvme
+8086:2522  Intel Optane Memory M10 NVMe             driver=nvme modules=nvme
+8086:2723  Intel Wi-Fi 6 AX200                      driver=iwlwifi modules=iwlwifi
+8086:1539  Intel I211 Gigabit Ethernet              driver=igb modules=igb
+10ec:8125  Realtek RTL8125 2.5GbE                   driver=r8169 modules=r8169
+1022:149c  AMD Matisse USB 3.0 host controller      driver=xhci_hcd modules=xhci_pci
+1022:7901  AMD FCH SATA controller (AHCI)           driver=ahci modules=ahci
+8086:e20c  Intel Battlemage G21 / Arc B570 graphics driver=xe modules=xe
+8086:e2f7  Intel Arc B570 HD audio                  driver=snd_hda_intel modules=snd_hda_intel
+15b3:1015  Mellanox ConnectX-4 Lx Ethernet          driver=mlx5_core modules=mlx5_core
+1022:1486  AMD PSP cryptographic coprocessor        driver=ccp modules=ccp
