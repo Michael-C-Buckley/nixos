@@ -20,6 +20,7 @@ in
     ./security/yubikey.nix
     ./virtualization/agentbox.nix
     ./virtualization/containerlab.nix
+    ./virtualization/incus.nix
     ./virtualization/libvirt.nix
   ];
 

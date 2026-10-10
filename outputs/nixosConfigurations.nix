@@ -42,6 +42,7 @@ in
     modules = [
       ../modules/nixos/server.nix
       ../modules/nixos/virtualization/agentbox.nix
+      ../modules/nixos/virtualization/incus.nix
     ];
   };
 }
