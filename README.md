@@ -80,6 +80,6 @@ recognizing and handling UKIs and Windows was a driving factor on going back.
 
 - ZFS
 
-It's the best. NixOS is annoying on their packaging, but I still come back to ZFS after using other solution.
+It's the best. NixOS is annoying on their packaging, but I still come back to ZFS after using other solutions.
 Btrfs is okay and LVM is okay too, and both have their places and I use them.
 ZFS just has the best experience and performance for me and my use-cases.
