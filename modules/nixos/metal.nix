@@ -1,6 +1,10 @@
 # Template for defaults of bare metal systems
 { pkgs, lib, ... }: {
 
+  imports = [
+    ./system/zfs.nix
+  ];
+
   environment.systemPackages = with pkgs; [
     # System
     killall

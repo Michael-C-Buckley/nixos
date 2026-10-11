@@ -39,7 +39,6 @@ I've tried a lot and many things have not survived:
 - Non-nix Home
 - Git submodules
 - Custom Kernels
-- ZFS
 
 There's many reasons but they all reduce down to simplicity over complexity.
 I have less NixOS devices than I used to, as many servers have gone to other platforms, for reasons.
@@ -70,14 +69,6 @@ There's been a bunch of frameworks I've tried, each promising to make things bet
 Many did - for a while.
 Then the complexity either directly grew or I was tempted to keep adding onto them.
 
-### Surprising to those who know me, I've moved off of ZFS on my NixOS devices.
-
-ZFS is still the clearly superior filesystem option, however, I just don't use the features that makes it such.
-I'm not on btrfs (as a hardware config examination would show) and using just the necessary common features to get by.
-Friction is radically reduced on not needing to careful interweave my ZFS and kernel versions,
-since Nixpkgs rather *sucks* for maintaining a ZFS-compatible line of kernels.
-Yes, I can juggle more nixpkgs pins but that is increasing complexity at a cost that wasn't helpful to me.
-
 ## What is Still Left
 
 - Lanzaboote
@@ -86,3 +77,9 @@ I still use secureboot (mainly for work machine compatibility) and I chose Lanza
 There is some friction, but overall it is based on and uses systemd-boot and works well.
 I tried Limine, which is pretty good, but not being as "well" integrated as systemd-boot when it came to
 recognizing and handling UKIs and Windows was a driving factor on going back.
+
+- ZFS
+
+It's the best. NixOS is annoying on their packaging, but I still come back to ZFS after using other solution.
+Btrfs is okay and LVM is okay too, and both have their places and I use them.
+ZFS just has the best experience and performance for me and my use-cases.
