@@ -35,7 +35,6 @@ in
     "/var" = mkZfsBoot "zroot/nixos/var";
     "/home" = mkZfsBoot "zroot/nixos/home";
 
-    "/var/lib/attic" = mkZfs "zroot/local/attic";
     "/var/lib/docker" = mkZfs "zhdd/var/docker";
   };
 }
