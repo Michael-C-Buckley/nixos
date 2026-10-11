@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   lib,
   modulesPath,
   ...
@@ -12,7 +11,6 @@
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_7_2;
     kernelModules = [
       "kvm"
       "kvm-amd"

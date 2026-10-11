@@ -18,7 +18,7 @@
   ];
 
   boot = {
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_7_2;
     initrd.systemd = {
       enable = true;
       packages = [ pkgs.busybox ];
