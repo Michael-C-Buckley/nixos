@@ -12,6 +12,8 @@ in
     inputs.lanzaboote.nixosModules.default
     ./base.nix
     ./metal.nix
+    ./graphical/appearance.nix
+    ./graphical/mime.nix
     ./graphical/umbriel.nix
     ./graphical/tuigreet.nix
     ./network/tailscale.nix
@@ -63,6 +65,7 @@ in
     inherit (pkgs)
       # System Utilities
       cage
+      pcmanfm
       pavucontrol # Pulse Volume control
       wavemon
 
@@ -76,7 +79,7 @@ in
       # Utility
       gammastep
       termshark
-      tshark
+      wireshark
       winbox
       kubectl
       talosctl
@@ -89,6 +92,14 @@ in
       # Productivity
       codex
       opencode
+      libreoffice
+
+      # File viewers
+      mpv
+      imv
+      xarchiver
+      papers
+      ffmpegthumbnailer
 
       #development
       lazygit
