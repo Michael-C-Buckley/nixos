@@ -1,16 +1,8 @@
 {
-  self,
-  config,
   pkgs,
   lib,
   ...
 }:
-let
-  inherit (pkgs.stdenv.hostPlatform) system;
-  cfg = self.packages.${system}.umbriel-config.override {
-    inherit (config.custom.umbriel) extraConfig;
-  };
-in
 {
   options.custom.umbriel.extraConfig = lib.mkOption {
     description = "Extra config for umbriel";
