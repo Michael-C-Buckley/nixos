@@ -3,22 +3,22 @@
     "type": "github",
     "owner": "amaanq",
     "repo": "helium-flake",
-    "rev": "590e6fbb91105b44fb1d46debdee21fb266abfa7",
-    "narHash": "sha256-zJ/ezx6peOYU1gnjUtwVhuldWx9Tre6wzkrfZOBj3CQ=",
-    "lastModified": 1791200822
+    "rev": "ae0f6aa2386da60f48ab8c5e12cfbc85159d53f7",
+    "narHash": "sha256-g7e/fH33cs/Et8ppLAFb2Xh2SYeb5jd7DZ8Os+KzK/U=",
+    "lastModified": 1792017905
   },
   "lanzaboote": {
     "type": "github",
     "owner": "nix-community",
     "repo": "lanzaboote",
-    "rev": "ba33415d747d8dedd2931af107521634f1f2e8a8",
-    "narHash": "sha256-v5+DBEGnMC6phAf+/Rt7EtxjIDzy+NMKdHJIFJGh5qc=",
-    "lastModified": 1790853984
+    "rev": "b39d0853df99afe18a5a5ea6576c597023dc7196",
+    "narHash": "sha256-9c0Cd16neZP4jb/jUY1kcvvFG1U480mC9qtrSXqXxAY=",
+    "lastModified": 1792016088
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1086391.151fa4e8ddfd/nixexprs.tar.zst",
-    "rev": "151fa4e8ddfdd8dd25d945ad94ed54a13de9f6e4",
-    "narHash": "sha256-MFBjw66d4h06MvpW6lIl7RwarLteD0sk859CncGwb1Q="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1092090.55bfb4d7437b/nixexprs.tar.zst",
+    "rev": "55bfb4d7437bd4e09ab7cba58a43bd68eb310044",
+    "narHash": "sha256-gJX2+xcImvxBCI3bp7zXKLUX2AwsdTxMgJ1UX/5Hm/o="
   }
 }

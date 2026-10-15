@@ -68,6 +68,7 @@ in
       pcmanfm
       pavucontrol # Pulse Volume control
       wavemon
+      gparted
 
       # Terminal
       kitty
@@ -87,7 +88,7 @@ in
       # Communication
       signal-desktop
       legcord
-      materialgram
+      telegram-desktop
 
       # Productivity
       codex
