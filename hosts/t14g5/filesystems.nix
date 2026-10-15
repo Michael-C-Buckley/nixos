@@ -1,21 +1,3 @@
-let
-  mkBtrfs =
-    {
-      device ? "/dev/disk/by-uuid/0ecc4808-a4e5-4600-8682-1cace4078a98", # will be replaced on provisioning
-      subvol,
-    }:
-    {
-      inherit device;
-      fsType = "btrfs";
-      options = [
-        "subvol=${subvol}"
-        "compress=zstd:2"
-        "ssd"
-        "discard=async"
-        "noatime"
-      ];
-    };
-in
 {
   boot = {
     initrd.luks = {
@@ -42,8 +24,6 @@ in
     };
   };
 
-  services.btrfs.autoScrub.enable = true;
-
   fileSystems = {
     "/boot" = {
       device = "/dev/disk/by-uuid/12CE-A600";
@@ -56,21 +36,26 @@ in
         "nosuid"
       ];
     };
-    # Btrfs for the main components
-    "/" = mkBtrfs { subvol = "@nixos"; };
-    "/home" = mkBtrfs { subvol = "@nixos-home"; };
-    "/nix" = mkBtrfs { subvol = "@nixos-nix"; };
+    "/" = {
+      device = "zroot/nixos/root";
+      fsType = "zfs";
+    };
+    "/nix" = {
+      device = "zroot/nixos/nix";
+      fsType = "zfs";
+    };
+    "/home" = {
+      device = "zroot/nixos/home";
+      fsType = "zfs";
+    };
+    "/var" = {
+      device = "zroot/nixos/var";
+      fsType = "zfs";
+    };
     # Bulk data on XFS that will be bound to other usage locations
     "/data" = {
       device = "/dev/disk/by-uuid/ee79ce37-3960-43a2-b6fb-10253e096e69";
       fsType = "xfs";
-    };
-    # Currently I'm only anticipating VM drive images to be off the COW
-    "/var/lib/libvirt/images" = {
-      device = "/data/nixos/libvirt/images";
-      fsType = "none";
-      options = [ "bind" ];
-      depends = [ "/data" ];
     };
   };
 }
