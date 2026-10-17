@@ -1,28 +1,8 @@
-let
-  mkBtrfs =
-    {
-      device ? "/dev/disk/by-uuid/d65908f7-0071-427b-8f0f-1bf9906ef5e9",
-      subvol,
-    }:
-    {
-      inherit device;
-      fsType = "btrfs";
-      options = [
-        "subvol=${subvol}"
-        "compress=zstd:2"
-        "ssd"
-        "discard=async"
-        "noatime"
-      ];
-    };
-in
 {
   boot.tmp = {
     useTmpfs = true;
     tmpfsSize = "4G";
   };
-
-  services.btrfs.autoScrub.enable = true;
 
   fileSystems = {
     "/boot" = {
@@ -36,9 +16,30 @@ in
         "nosuid"
       ];
     };
-    "/" = mkBtrfs { subvol = "@nixos"; };
-    "/home" = mkBtrfs { subvol = "@nixos-home"; };
-    "/nix" = mkBtrfs { subvol = "@nixos-nix"; };
+    "/" = {
+      device = "zroot/nixos/root";
+      fsType = "zfs";
+    };
+    "/nix" = {
+      device = "zroot/nixos/nix";
+      fsType = "zfs";
+    };
+    "/home" = {
+      device = "zroot/nixos/home";
+      fsType = "zfs";
+    };
+    "/var" = {
+      device = "zroot/nixos/var";
+      fsType = "zfs";
+    };
+    "/var/log" = {
+      device = "zroot/nixos/var/log";
+      fsType = "zfs";
+    };
+    "/var/lib" = {
+      device = "zroot/nixos/var/lib";
+      fsType = "zfs";
+    };
     # Data mount is XFS for non-cow things like VMs and also steam
     "/data" = {
       device = "/dev/disk/by-uuid/e6bc9bb7-9a26-405f-9a51-d880cb4bb3d3";
