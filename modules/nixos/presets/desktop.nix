@@ -30,5 +30,8 @@
 
   ];
 
+  hjem.users.michael.imports = [ ../../hjem/presets/nixos-desktop.nix ];
+  programs.umbriel.enable = true;
+
   systemd.network.wait-online.enable = false;
 }

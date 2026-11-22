@@ -19,7 +19,7 @@
         lib.tackInputs = inputs;
         inherit configPaths hjemModules;
         nixosModules = mkModules ./modules/nixos;
-        nixosConfigurations = { };
+        nixosConfigurations = import ./hosts { inherit self inputs configPaths; };
       };
 
       perSystem =

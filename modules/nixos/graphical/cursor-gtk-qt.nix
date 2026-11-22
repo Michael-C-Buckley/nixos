@@ -51,7 +51,7 @@ in
       }
     ];
   };
-  sessionVariables = {
+  environment.sessionVariables = {
     XCURSOR_THEME = cursor_name;
     XCURSOR_SIZE = toString cursor_size;
     HYPRCURSOR_THEME = "Nordzy-hyprcursors-white";
