@@ -118,6 +118,18 @@ Everything in the container, including tmux, ends when it stops. Claude Code
 and Codex keep conversations in the mounted host state, so `claude --continue`
 and `codex resume` can pick one up in a new session.
 
+## Terminal types
+
+When run from a terminal, the launcher passes your `TERM` and `COLORTERM` to
+each session, so tmux and other programs use your terminal's colors and
+features rather than the engine's `TERM=xterm` default. The image includes
+`ncurses-term` along with `xterm-kitty`, `xterm-ghostty`, and `foot-extra`,
+which covers kitty, Ghostty, Alacritty, foot, WezTerm, tmux, and most other
+terminals. Rebuild the image after updating the launcher, and recreate
+persistent containers, or programs will report an unknown terminal. A custom
+image needs a definition for your `TERM`; otherwise run
+`export TERM=xterm-256color` in the session.
+
 ## Agent state and Nix
 
 The default image launch mounts existing `~/.codex`, `~/.claude`, and

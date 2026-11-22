@@ -252,14 +252,19 @@ case "$engine" in
 esac
 command -v "$engine" >/dev/null || die "$engine is unavailable (install Docker or Podman)"
 
-tty_options=()
+# Pass the host terminal type so programs such as tmux use its capabilities
+# instead of the engine's TERM=xterm default.
+terminal_options=()
 if [[ -t 0 && -t 1 ]]; then
-  tty_options=(--tty)
+  terminal_options=(--tty)
+  for name in TERM COLORTERM; do
+    [[ -z ${!name-} ]] || terminal_options+=(--env "$name=${!name}")
+  done
 fi
 
 # Replace the launcher with a new bash session in the persistent container.
 enter_container() {
-  exec "$engine" exec --interactive ${tty_options[@]+"${tty_options[@]}"} "$persist" bash
+  exec "$engine" exec --interactive ${terminal_options[@]+"${terminal_options[@]}"} "$persist" bash
 }
 
 # Reuse an existing persistent container before any setup that has side effects.
@@ -283,7 +288,7 @@ if [[ -n $persist ]]; then
     --name "$persist" --label "agentbox.workspace=$workspace"
   )
 else
-  run_options=(--rm --pull=never --interactive ${tty_options[@]+"${tty_options[@]}"})
+  run_options=(--rm --pull=never --interactive ${terminal_options[@]+"${terminal_options[@]}"})
 fi
 if [[ -n ${HOME:-} ]] &&
   [[ $agent_state == --agent-state || ($agent_state == auto && $1 =~ ^(localhost/)?agentbox(:latest)?$) ]]; then

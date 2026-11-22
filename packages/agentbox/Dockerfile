@@ -19,14 +19,18 @@ RUN npm install --global --ignore-scripts --no-audit --no-fund \
 
 FROM ubuntu:26.04
 
-# Node.js runs Pi and the Codex launcher.
+# Node.js runs Pi and the Codex launcher. The launcher passes the host's TERM,
+# so the image carries terminal definitions: ncurses-term covers Alacritty,
+# foot, WezTerm, tmux, and most others; the rest add xterm-kitty and foot-extra.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         bubblewrap \
         ca-certificates \
         direnv \
+        foot-extra-terminfo \
         git \
-        neovim \
+        kitty-terminfo \
+        ncurses-term \
         nix-bin \
         nodejs \
         procps \
@@ -34,8 +38,11 @@ RUN apt-get update \
         socat \
         tmux \
         wget \
-        zsh \
     && rm -rf /var/lib/apt/lists/*
+
+# Ghostty sets TERM=xterm-ghostty, but ncurses-term only names the entry ghostty.
+RUN printf 'xterm-ghostty|Ghostty terminal emulator,\n\tuse=ghostty,\n' \
+    | tic -x -o /etc/terminfo -
 
 COPY --from=agents /usr/local/lib/node_modules /usr/local/lib/node_modules
 COPY --from=agents /usr/local/bin/ /usr/local/bin/
