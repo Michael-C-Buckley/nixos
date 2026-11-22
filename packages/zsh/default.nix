@@ -55,7 +55,7 @@ pkgs.symlinkJoin {
   postBuild = ''
     wrapProgram "$out/bin/zsh" \
       --set ZDOTDIR ${config} \
-      --set STARSHIP_CONFIG ${./configs/starship.toml} \
+      --set STARSHIP_CONFIG ${../starship/default.toml} \
       --set-default ZSH_PLUGIN_DIR ${mkPlugins "${pkgs.zsh-fzf-tab}/share/fzf-tab"}
   '';
   meta.mainProgram = "zsh";
