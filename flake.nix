@@ -13,12 +13,12 @@
       flake = {
         # Exposed so it is available for any downstreams that use this flake as an input
         lib.tackInputs = inputs;
-        nixosConfigurations = {};
-        hjemConfigurations = {};
+        nixosConfigurations = { };
+        hjemConfigurations = { };
       };
 
       perSystem =
-        { pkgs, system, ... }:
+        { system, ... }:
         let
           pkgs = import inputs.nixpkgs {
             inherit system;
@@ -28,7 +28,7 @@
         {
           # This instance is reused everywhere so that no other nixpkgs has to be imported or reimported
           legacyPackages = pkgs;
-          devShells.default = pkgs.mkShellNoCC {};
+          devShells.default = import ./shell.nix { inherit pkgs; };
           packages = import ./outputs/packages.nix { inherit pkgs inputs; };
         };
     };

@@ -1,0 +1,6 @@
+std = "nvim"
+
+[lints]
+global_usage = "allow"
+mixed_table = "allow"
+unused_variable = "allow"

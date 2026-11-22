@@ -1,0 +1,27 @@
+[global]
+excludes = [
+  "*.lock",
+  ".gitignore",
+  ".tack/default.nix",
+  ".tack/pins.lock.json",
+  "nvim-pack-lock.json",
+]
+on-unmatched = "warn"
+
+[formatter.nixfmt]
+command = "nixfmt"
+includes = ["*.nix"]
+
+[formatter.mdformat]
+command = "mdformat"
+includes = ["*.md"]
+
+[formatter.taplo]
+command = "taplo"
+includes = ["*.toml"]
+options = ["format"]
+
+[formatter.stylua]
+command = "stylua"
+includes = ["*.lua"]
+options = ["--config-path", ".config/stylua.toml"]

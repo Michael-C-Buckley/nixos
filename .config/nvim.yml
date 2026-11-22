@@ -1,0 +1,28 @@
+base: lua51
+name: nvim
+globals:
+  hl:
+    any: true
+  os:
+    any: true
+  jit:
+    any: true
+  bit:
+    any: true
+  vim:
+    any: true
+  Snacks:
+    any: true
+  MiniIcons:
+    any: true
+  assert:
+    args:
+      - type: bool
+      - type: string
+        required: false
+  table:
+    any: true
+  string:
+    any: true
+  math:
+    any: true

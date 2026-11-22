@@ -1,0 +1,23 @@
+[default]
+extend-ignore-re = [
+  # Ignore lines ending with `# typos:ignore-line`
+  "(?Rm)^.*#\\s*typos:ignore-line$",
+  # Ignore sha256 hashes
+  "sha256-[A-Za-z0-9+/]{43}=",
+  # Ignore MAC addresses
+  "(?i)\\b[0-9a-f]{2}(?:[:-][0-9a-f]{2}){5}\\b",
+]
+
+[default.extend-words]
+nd = "nd"
+# nftables output-interface keyword
+oif = "oif"
+noice = "noice"
+
+[files]
+extend-exclude = [
+  "**/*.enc.*",
+  "**/*.age",
+  "secrets/**",
+  "packages/nvim/configs/nvim-pack-lock.json",
+]

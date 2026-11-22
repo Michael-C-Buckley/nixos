@@ -4,7 +4,7 @@
 > This project is still being written and not yet achieved parity with my other iterations.
 > Progress is ongoing and this notice will disappear when I get it "current" with my closed flake.
 
-This is the 7th generation of rewrite on my flake since I've come to nixos. 
+This is the 7th generation of rewrite on my flake since I've come to nixos.
 
 Significant amounts of things have changed over time.
 I've changed onto and off-of of some patterns, designs, and techniques that have led
@@ -55,6 +55,7 @@ However, nix and nixos are not prisons for my systems and configurations.
 As such, certain aspects will have more "raw" implementations.
 
 These include:
+
 - Providing my own modules and solutions
 - Keeping dotfiles in pure text format with minimal interpolation
 
