@@ -5,6 +5,7 @@ let
 in
 {
   inherit nvim git-credential-sops;
+  agentbox = pkgs.callPackage ../packages/agentbox { };
   git = pkgs.callPackage ../packages/git { inherit git-credential-sops; };
   zsh = pkgs.callPackage ../packages/zsh { inherit inputs; };
 }
