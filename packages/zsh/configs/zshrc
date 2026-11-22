@@ -19,9 +19,6 @@ setopt EXTENDED_GLOB
 # Nix components
 export NH_OS_FLAKE="${NH_OS_FLAKE:-${NH_FLAKE:-$HOME/.config/nixos}}"
 alias nix='noglob nix'
-if [[ -r "$HOME/.nix-profile/share/nix-direnv/direnvrc" ]]; then
-    source "$HOME/.nix-profile/share/nix-direnv/direnvrc"
-fi
 
 # Basic prompt for when no starship
 PROMPT='%F{cyan}%~%f %# '
@@ -36,13 +33,7 @@ if (( $+commands[bat] )); then
     alias cat='bat -p'
 fi
 
-setopt APPEND_HISTORY
-setopt EXTENDED_HISTORY
-setopt SHARE_HISTORY
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_FIND_NO_DUPS
-setopt HIST_IGNORE_SPACE
+setopt EXTENDED_HISTORY SHARE_HISTORY HIST_IGNORE_ALL_DUPS HIST_FIND_NO_DUPS HIST_IGNORE_SPACE
 
 HISTFILE=$ZDOTDIR/.zsh_history
 HISTSIZE=10000
@@ -75,6 +66,8 @@ plug() {
     fi
 }
 
+# complist provides list-colors and the menuselect keymap. These bindings only
+# apply when fzf-tab is unavailable and menu selection is enabled below.
 zmodload zsh/complist
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
@@ -120,10 +113,10 @@ fi
 
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/.zcompcache"
-zstyle ':completion:*:squeeze-slashes' true
+zstyle ':completion:*' squeeze-slashes true
+zstyle ':completion:*' group-name ''
 zstyle ':completion:*:*:-command-:*:*' group-order alias builtins functions commands
-zstyle ':completion:*:file-list' all
-zstyle ':completion:*:group-name' ''
+zstyle ':completion:*' file-list all
 zstyle ':completion:*:*:*:*:descriptions' format '%F{green}--> %d%f'
 zstyle ':completion:*:warnings' format ' %F{red}!-> no matches found%f'
 zstyle ':completion:*:messages' format ' %F{purple}--> %d%f'
@@ -175,6 +168,9 @@ if (( $+commands[fzf] )); then
 	fi
 fi
 
+# Without fzf-tab, fall back to zsh's own menu selection (hjkl bindings above).
+(( $+widgets[fzf-tab-complete] )) || zstyle ':completion:*' menu select
+
 plug michael-c-buckley/zsh-git-tab
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
@@ -189,19 +185,15 @@ if (( $+commands[direnv] )); then
 	eval "$(direnv hook zsh 2>/dev/null)"
 fi
 
+# Starship reads $STARSHIP_CONFIG (set by the Nix wrapper) or its default
+# ~/.config/starship.toml.
 if (( $+commands[starship] )); then
-	if [[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/starship/config.toml" ]]; then
-		export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/starship/config.toml"
-	fi
 	eval "$(starship init zsh 2>/dev/null)"
-fi
-
-if [[ "${STARSHIP_SHELL:-}" == zsh ]]; then
-    TRANSIENT_PROMPT_PROMPT=$PROMPT
-    TRANSIENT_PROMPT_RPROMPT=$RPROMPT
-    TRANSIENT_PROMPT_TRANSIENT_PROMPT='%F{8}❯%f '
-    TRANSIENT_PROMPT_TRANSIENT_RPROMPT=''
-    plug olets/zsh-transient-prompt transient-prompt.zsh-theme
+	TRANSIENT_PROMPT_PROMPT=$PROMPT
+	TRANSIENT_PROMPT_RPROMPT=$RPROMPT
+	TRANSIENT_PROMPT_TRANSIENT_PROMPT='%F{8}❯%f '
+	TRANSIENT_PROMPT_TRANSIENT_RPROMPT=''
+	plug olets/zsh-transient-prompt transient-prompt.zsh-theme
 fi
 
 killdns() {

@@ -1,8 +1,7 @@
-if [[ -x /opt/homebrew/bin/brew ]]; then
-	eval "$(/opt/homebrew/bin/brew shellenv)"
-elif [[ -x /usr/local/bin/brew ]]; then
-	eval "$(/usr/local/bin/brew shellenv)"
-fi
-if command -v brew >/dev/null 2>&1; then
-  export XDG_DATA_DIRS="/opt/homebrew/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
-fi
+for brew in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+    [[ -x $brew ]] || continue
+    eval "$($brew shellenv)"
+    export XDG_DATA_DIRS="$HOMEBREW_PREFIX/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+    break
+done
+unset brew

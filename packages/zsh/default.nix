@@ -1,6 +1,8 @@
 { inputs, pkgs }:
 let
   tools = with pkgs; [
+    fd
+    ripgrep
     starship
     zoxide
     eza

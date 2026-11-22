@@ -1,7 +1,10 @@
+# Drop duplicate PATH entries from repeated prepends and nested shells. Both
+# names are needed: -U on `path` alone ignores `PATH=...` assignments.
+typeset -U path PATH
+
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 export EDITOR="nvim"
 export VISUAL="$EDITOR"
-export OS="$(uname -s)"
 export PATH="$HOME/.local/bin:$PATH"
 
 # Use my custom agent socket for mac
