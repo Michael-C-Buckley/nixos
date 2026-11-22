@@ -3,21 +3,32 @@
 # Kept cheap to redraw:
 # - A new prompt runs one `git rev-parse` and one `date`. The branch is read
 #   straight from the HEAD file instead of asking git.
-# - `git status` runs in the background and the prompt redraws when it lands.
+# - `git status` runs in the background, and the prompt redraws when it lands
+#   if the result changed.
 # - Any other redraw (vi mode switches, that async result) reuses the cached
 #   values and starts no processes.
+# - While the prompt waits for input, the branch and git status refresh every
+#   $prompt_refresh_interval seconds (default 5; 0 turns it off). This redraws
+#   the prompt in place only when something changed.
 
 # Re-sourcing (e.g. `prompt starship`) starts from a clean cache
 set -e __native_prompt_pwd
 set -e __native_prompt_git_key
+set -g __native_prompt_source (status filename)
 
 function __native_prompt_mark_stale --on-event fish_prompt
     set -g __native_prompt_stale 1
     set -g __native_prompt_git_stale 1
+    set -e __native_prompt_busy
+end
+
+function __native_prompt_mark_busy --on-event fish_preexec
+    set -g __native_prompt_busy 1
 end
 
 function __native_prompt_cleanup --on-event fish_exit
     set -q __native_prompt_git_file; and command rm -f -- $__native_prompt_git_file
+    __native_prompt_timer_stop
 end
 
 # Everything shown except git status, using at most one git process
@@ -40,9 +51,13 @@ function __native_prompt_refresh
         set -g __native_prompt_dir_label (path basename -- "$info[1]")
     end
     set -g __native_prompt_git_dir $info[2]
+    __native_prompt_read_branch
+end
 
+# The branch, read from the HEAD file rather than by asking git
+function __native_prompt_read_branch
     set -l head
-    test -r "$info[2]/HEAD"; and read -l head <"$info[2]/HEAD"
+    test -r "$__native_prompt_git_dir/HEAD"; and read -l head <"$__native_prompt_git_dir/HEAD"
     set -l branch (string replace -r '^ref: (refs/heads/)?' '' -- "$head")
     if test "$branch" = "$head"
         # Detached HEAD holds a commit hash
@@ -52,6 +67,19 @@ function __native_prompt_refresh
         set branch (command git symbolic-ref --quiet --short HEAD 2>/dev/null)
     end
     set -g __native_prompt_branch $branch
+end
+
+# Start a background git status when one is due. Only one runs at a time; if
+# another becomes due meanwhile, it starts when the running one lands.
+function __native_prompt_git_kick
+    set -q __native_prompt_git_dir; or return
+    set -q __native_prompt_git_pid; and return
+    set -q __native_prompt_git_stale
+    or test "$__native_prompt_git_key" != "$__native_prompt_git_dir"
+    or return
+
+    set -e __native_prompt_git_stale
+    __native_prompt_git_refresh
 end
 
 # Start `git status` in the background; __native_prompt_git_store picks it up
@@ -74,7 +102,12 @@ function __native_prompt_git_refresh
         __native_prompt_git_store
         set -e __native_prompt_git_pid
         functions -e __native_prompt_git_done
-        commandline -f repaint 2>/dev/null
+        # Redraw only for a change, so a timer refresh that finds nothing new
+        # leaves the screen alone
+        if test "$__native_prompt_git_shown" != "$(__native_prompt_git_view)"
+            commandline -f repaint 2>/dev/null
+        end
+        __native_prompt_git_kick
     end
 end
 
@@ -108,6 +141,63 @@ function __native_prompt_git_store
     end
 
     set -q pieces[1]; and set -g __native_prompt_git_text (string join ' ' -- $pieces)' '
+end
+
+# The git part of the first line, which tells a finished status whether the
+# prompt needs a redraw
+function __native_prompt_git_view
+    printf '%s%s' (__native_prompt_git_branch) (__native_prompt_git_status)
+end
+
+# ── Periodic refresh ─────────────────────────────────────────────────────────
+# Fish has no timers, so a small sh loop sends fish SIGWINCH (the terminal
+# resize signal) every $prompt_refresh_interval seconds. SIGWINCH is safe for
+# this: fish always handles it, and a process that doesn't handle it ignores
+# it, whereas SIGUSR1 would kill it. A same-size SIGWINCH doesn't redraw
+# anything by itself.
+
+# Re-sourcing restarts the loop with the current interval
+function __native_prompt_timer_start
+    __native_prompt_timer_stop
+    set -l interval 5
+    set -q prompt_refresh_interval; and set interval $prompt_refresh_interval
+    string match -qr '^[1-9][0-9]*$' -- $interval; or return
+
+    # The loop ends once fish is no longer its parent, or once exec has
+    # replaced fish with another program
+    command sh -c '
+        while sleep "$1"; do
+            [ $(ps -o ppid= -p $$) = "$2" ] || exit
+            case $(ps -o comm= -p "$2") in *fish*) ;; *) exit ;; esac
+            kill -s WINCH "$2" || exit
+        done' fish-prompt-timer $interval $fish_pid </dev/null >/dev/null 2>&1 &
+    # Exported so that after `exec fish`, the new shell (same PID) stops this
+    # loop before starting its own
+    set -gx __native_prompt_timer_pid $last_pid
+    disown $last_pid
+end
+
+function __native_prompt_timer_stop
+    set -q __native_prompt_timer_pid; or return
+    # Kill it only while it is still our child, in case the PID was reused
+    set -l parent (command ps -o ppid= -p $__native_prompt_timer_pid 2>/dev/null | string trim)
+    test "$parent" = "$fish_pid"; and command kill $__native_prompt_timer_pid 2>/dev/null
+    set -e __native_prompt_timer_pid
+end
+
+function __native_prompt_tick --on-signal WINCH
+    # `prompt` switched to another prompt: stop until this one is sourced again
+    if test "$(functions --details fish_prompt)" != "$__native_prompt_source"
+        __native_prompt_timer_stop
+        return
+    end
+    # Only while waiting for input in a repository
+    set -q __native_prompt_busy; and return
+    set -q __native_prompt_git_dir; or return
+
+    __native_prompt_read_branch
+    set -g __native_prompt_git_stale 1
+    __native_prompt_git_kick
 end
 
 function __native_prompt_dir
@@ -261,22 +351,13 @@ function fish_prompt
         __native_prompt_refresh
     end
 
-    # One background status at a time. If one is already running, the stale
-    # flag stays set and the redraw it triggers starts the next one.
-    if set -q __native_prompt_git_dir
-        and not set -q __native_prompt_git_pid
-        and begin
-            set -q __native_prompt_git_stale
-            or test "$__native_prompt_git_key" != "$__native_prompt_git_dir"
-        end
-        set -e __native_prompt_git_stale
-        __native_prompt_git_refresh
-    end
+    __native_prompt_git_kick
 
     set -l cmd_duration 0
     set -q CMD_DURATION; and set cmd_duration $CMD_DURATION
 
     set -l left (__native_prompt_first_line $cmd_duration)
+    set -g __native_prompt_git_shown (__native_prompt_git_view)
     set -l right (__native_prompt_right)
 
     set -l columns 80
@@ -290,3 +371,5 @@ function fish_prompt
     printf '%s%s%s\n' $left (string repeat --count $fill_width ' ') $right
     printf '%s' (__native_prompt_second_line $last_status)
 end
+
+__native_prompt_timer_start
