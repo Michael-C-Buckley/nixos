@@ -18,7 +18,7 @@
       };
 
       perSystem =
-        { system, lib, ... }:
+        { pkgs, system, ... }:
         let
           pkgs = import inputs.nixpkgs {
             inherit system;
@@ -29,6 +29,7 @@
           # This instance is reused everywhere so that no other nixpkgs has to be imported or reimported
           legacyPackages = pkgs;
           devShells.default = pkgs.mkShellNoCC {};
+          packages = import ./outputs/packages.nix { inherit pkgs inputs; };
         };
     };
 }

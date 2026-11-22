@@ -1,0 +1,214 @@
+[[ -o interactive ]] || return
+
+# Keep writable state in the user config directory, even with store startup files.
+typeset -g ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+typeset +x ZDOTDIR
+if [[ ! -d $ZDOTDIR ]]; then
+    (umask 077; command mkdir -p -- "$ZDOTDIR") || return
+fi
+
+bindkey -e
+# Ctrl+Arrow word movement (Kitty and other xterm-compatible terminals).
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
+setopt AUTO_LIST
+setopt COMPLETE_IN_WORD
+setopt CORRECT
+setopt EXTENDED_GLOB
+
+# Nix components
+export NH_OS_FLAKE="${NH_OS_FLAKE:-${NH_FLAKE:-$HOME/.config/nixos}}"
+alias nix='noglob nix'
+if [[ -r "$HOME/.nix-profile/share/nix-direnv/direnvrc" ]]; then
+    source "$HOME/.nix-profile/share/nix-direnv/direnvrc"
+fi
+
+# Basic prompt for when no starship
+PROMPT='%F{cyan}%~%f %# '
+
+if (( $+commands[eza] )); then
+	alias ls='eza --group-directories-first'
+	alias ll='eza -lah --git --icons --group-directories-first'
+	alias la='eza -la --group-directories-first'
+fi
+
+if (( $+commands[bat] )); then
+    alias cat='bat -p'
+fi
+
+setopt APPEND_HISTORY
+setopt EXTENDED_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_SPACE
+
+HISTFILE=$ZDOTDIR/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+HISTORY_IGNORE='(ls|ls *)'
+
+# Activate a rootbeer profile if it exists
+if [[ -x /opt/rb/profiles/$UID/user/bin/rb ]]; then
+  eval "$(/opt/rb/profiles/$UID/user/bin/rb env)"
+fi
+
+# Plugins load from ZSH_PLUGIN_DIR (one directory per repository, provided by
+# Nix) when it is set, and through zcomet otherwise. `ZSH_PLUGIN_DIR= zsh`
+# forces zcomet.
+if [[ -z ${ZSH_PLUGIN_DIR:-} ]]; then
+    if [[ -r $ZDOTDIR/.zcomet/bin/zcomet.zsh ]] ||
+       command git clone https://github.com/agkozak/zcomet.git "$ZDOTDIR/.zcomet/bin"; then
+        source "$ZDOTDIR/.zcomet/bin/zcomet.zsh"
+    fi
+fi
+
+# plug <owner/repo[@ref]> [file]: file defaults to <repo>.plugin.zsh.
+plug() {
+    local repo=${${1%@*}:t}
+    local file=${2:-$repo.plugin.zsh}
+    if [[ -n ${ZSH_PLUGIN_DIR:-} ]]; then
+        source "$ZSH_PLUGIN_DIR/$repo/$file"
+    elif (( $+functions[zcomet] )); then
+        zcomet load "$1" "$file"
+    fi
+}
+
+zmodload zsh/complist
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+
+plug olets/zsh-abbr@v6
+if (( $+functions[abbr] && ! $+parameters[ABBR_INITIALIZING] )); then
+    abbr -S --quiet g='git'
+    abbr -S --quiet ga='git add'
+    abbr -S --quiet gaa='git add .'
+    abbr -S --quiet gad='git add'
+    abbr -S --quiet gb='git branch'
+    abbr -S --quiet gc='git commit'
+    abbr -S --quiet gcm='git commit -m'
+    abbr -S --quiet gco='git checkout'
+    abbr -S --quiet gd='git diff'
+    abbr -S --quiet gds='git diff --staged'
+    abbr -S --quiet gdc='git diff --cached'
+    abbr -S --quiet gf='git fetch'
+    abbr -S --quiet gm='git merge'
+    abbr -S --quiet gp='git pull'
+    abbr -S --quiet gP='git push'
+    abbr -S --quiet gpoh='git push origin HEAD'
+    abbr -S --quiet gr='git restore'
+    abbr -S --quiet gR='git remote'
+    abbr -S --quiet gRv='git remote -v'
+    abbr -S --quiet gredo='git commit --amend -S'
+    # Reserve gs for Git even when Ghostscript provides a command with that name.
+    abbr -S --force --quieter gs='git status'
+    abbr -S --quiet nv='nvim'
+    abbr -S --quiet b='brew'
+    abbr -S --quiet k='kubectl'
+fi
+
+if (( $+functions[zcomet] )); then
+    # zcomet replays the compdef calls it captured before compinit.
+    zstyle ':zcomet:compinit' dump-file "$ZDOTDIR/.zcompdump-user"
+    zcomet compinit
+else
+    autoload -Uz compinit && compinit -d "$ZDOTDIR/.zcompdump-nix"
+fi
+
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/.zcompcache"
+zstyle ':completion:*:squeeze-slashes' true
+zstyle ':completion:*:*:-command-:*:*' group-order alias builtins functions commands
+zstyle ':completion:*:file-list' all
+zstyle ':completion:*:group-name' ''
+zstyle ':completion:*:*:*:*:descriptions' format '%F{green}--> %d%f'
+zstyle ':completion:*:warnings' format ' %F{red}!-> no matches found%f'
+zstyle ':completion:*:messages' format ' %F{purple}--> %d%f'
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!-> %d (errors: %e)%f'
+zstyle ':completion:*' completer _complete _approximate
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+# fzf's native integration supplies Ctrl-R history, Ctrl-T files, Alt-C
+# directories, and fuzzy completion. All dependencies are optional.
+if (( $+commands[fzf] )); then
+	export FZF_DEFAULT_OPTS='--height=60% --layout=reverse --border'
+
+	if (( $+commands[fd] )); then
+		export FZF_CTRL_T_COMMAND='fd --type f --hidden --follow --exclude .git'
+		export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+	fi
+
+	if (( $+commands[bat] )); then
+		export FZF_CTRL_T_OPTS="
+			--preview 'bat --color=always --style=numbers --line-range=:500 -- {} 2>/dev/null'
+			--preview-window 'right:60%:wrap'
+		"
+	fi
+
+	source <(fzf --zsh 2>/dev/null)
+
+	# fzf-tab must load after compinit and fzf, but before autosuggestions.
+	plug Aloxaf/fzf-tab
+	zstyle ':fzf-tab:*' fzf-flags --height=60% --layout=reverse --border
+	zstyle ':fzf-tab:*' switch-group '<' '>'
+
+	# Use command-aware completion when a command is present; otherwise retain
+	# Ctrl-T's generic file picker.
+	_fzf_context_widget() {
+		if [[ -n "${LBUFFER//[[:space:]]/}" ]] &&
+		   (( $+widgets[fzf-tab-complete] )); then
+			zle fzf-tab-complete
+		elif (( $+widgets[fzf-file-widget] )); then
+			zle fzf-file-widget
+		else
+			zle redisplay
+		fi
+	}
+
+	if (( $+widgets[fzf-tab-complete] || $+widgets[fzf-file-widget] )); then
+		zle -N _fzf_context_widget
+		bindkey '^T' _fzf_context_widget
+	fi
+fi
+
+plug michael-c-buckley/zsh-git-tab
+
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+plug zsh-users/zsh-autosuggestions
+
+if (( $+commands[zoxide] )); then
+	eval "$(zoxide init zsh --cmd z 2>/dev/null)"
+fi
+
+if (( $+commands[direnv] )); then
+	eval "$(direnv hook zsh 2>/dev/null)"
+fi
+
+if (( $+commands[starship] )); then
+	if [[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/starship/config.toml" ]]; then
+		export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/starship/config.toml"
+	fi
+	eval "$(starship init zsh 2>/dev/null)"
+fi
+
+if [[ "${STARSHIP_SHELL:-}" == zsh ]]; then
+    TRANSIENT_PROMPT_PROMPT=$PROMPT
+    TRANSIENT_PROMPT_RPROMPT=$RPROMPT
+    TRANSIENT_PROMPT_TRANSIENT_PROMPT='%F{8}❯%f '
+    TRANSIENT_PROMPT_TRANSIENT_RPROMPT=''
+    plug olets/zsh-transient-prompt transient-prompt.zsh-theme
+fi
+
+killdns() {
+	sudo dscacheutil -flushcache
+	sudo killall -HUP mDNSResponder
+}
+
+plug zdharma-continuum/fast-syntax-highlighting
+plug 5A6F65/fast-abbr-highlighting
+unfunction plug
