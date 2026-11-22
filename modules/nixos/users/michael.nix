@@ -28,9 +28,13 @@ let
   # through foreign-env, as the NixOS fish module does for its own environment
   hjemFishInit = lib.optionalString useHjemEnv ''
     if test "$_NIXOS_HJEM_ENV" != ${loadEnv}; and test (id -u) -eq ${uid}
+      set -l inherited_ssh_auth_sock "$SSH_AUTH_SOCK"
       set fish_function_path ${pkgs.fishPlugins.foreign-env}/share/fish/vendor_functions.d $fish_function_path
       fenv source ${loadEnv} >/dev/null
       set -e fish_function_path[1]
+      if test -S "$inherited_ssh_auth_sock"
+        set -gx SSH_AUTH_SOCK "$inherited_ssh_auth_sock"
+      end
       set -gx _NIXOS_HJEM_ENV ${loadEnv}
     end
   '';

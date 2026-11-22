@@ -1,51 +1,45 @@
 # ── Environment ──────────────────────────────────────────────────────────────
-set -gx EDITOR vim
-set -gx VISUAL vim
-set -gx PAGER less
-set -gx LESS '-R -F -X -i'
-set -gx LANG en_US.UTF-8
-set -gx LC_ALL en_US.UTF-8
-set -gx NH_FLAKE $HOME/.config/nixos
+set -q EDITOR; or set -gx EDITOR vim
+set -q VISUAL; or set -gx VISUAL $EDITOR
+set -q PAGER; or set -gx PAGER less
+set -q LESS; or set -gx LESS '-R -F -X -i'
 
-# XDG base directories
-set -gx XDG_CONFIG_HOME $HOME/.config
-set -gx XDG_DATA_HOME $HOME/.local/share
-set -gx XDG_CACHE_HOME $HOME/.cache
-set -gx XDG_STATE_HOME $HOME/.local/state
-set -q XDG_CONFIG_DIRS[1]; or set -gx --path XDG_CONFIG_DIRS /etc/xdg
-set -q XDG_DATA_DIRS[1]; or set -gx --path XDG_DATA_DIRS /usr/local/share /usr/share
+# XDG base directories. The login environment or a local conf.d file can set them.
+test -n "$XDG_CONFIG_HOME"; or set -gx XDG_CONFIG_HOME "$HOME/.config"
+test -n "$XDG_DATA_HOME"; or set -gx XDG_DATA_HOME "$HOME/.local/share"
+test -n "$XDG_CACHE_HOME"; or set -gx XDG_CACHE_HOME "$HOME/.cache"
+test -n "$XDG_STATE_HOME"; or set -gx XDG_STATE_HOME "$HOME/.local/state"
+test -n "$XDG_CONFIG_DIRS"; or set -gx --path XDG_CONFIG_DIRS /etc/xdg
 
-if command -q brew
-    set -l brew_data_dir (brew --prefix)/share
-    contains -- $brew_data_dir $XDG_DATA_DIRS; or set -gx --path XDG_DATA_DIRS $brew_data_dir $XDG_DATA_DIRS
+if test -z "$XDG_DATA_DIRS"
+    set -gx --path XDG_DATA_DIRS /usr/local/share /usr/share
+    if command -q brew
+        set -l brew_prefix (brew --prefix)
+        if test -n "$brew_prefix"; and not contains -- "$brew_prefix/share" $XDG_DATA_DIRS
+            set -p XDG_DATA_DIRS "$brew_prefix/share"
+        end
+    end
 end
 
 # ── PATH ─────────────────────────────────────────────────────────────────────
 fish_add_path -g /opt/homebrew/sbin /opt/homebrew/bin $HOME/bin $HOME/.local/bin
 
 # ── SSH  ─────────────────────────────────────────────────────────────────────
-# macOS ships OpenSSH without libfido2 support. Nix-darwin owns this fixed
-# socket with a nixpkgs OpenSSH agent; do not fall back to Apple's agent.
-set fido_agent "$HOME/.ssh/agent/nix-fido.sock"
-set custom_agent "$HOME/.ssh/agent/custom.sock"
-set internal_agent "$HOME/.ssh/agent/internal.sock"
-set standard_agent /run/user/(id -u)/ssh-agent.sock
-
-if test (uname) = Darwin
-    set -gx SSH_AUTH_SOCK $fido_agent
-else
-    if not set -q SSH_AUTH_SOCK; or not test -S "$SSH_AUTH_SOCK"
-        for agent_sock in $custom_agent $standard_agent $internal_agent
-            if test -S $agent_sock
-                set -gx SSH_AUTH_SOCK $agent_sock
-                break
-            end
+# Inherit the session agent, including agents forwarded by SSH. Probe legacy
+# Linux sockets when the session has no usable socket.
+if not test -S "$SSH_AUTH_SOCK"; and test (uname -s) = Linux
+    set -l runtime_dir "$XDG_RUNTIME_DIR"
+    test -n "$runtime_dir"; or set runtime_dir /run/user/(id -u)
+    for agent_sock in "$HOME/.ssh/agent/custom.sock" "$runtime_dir/ssh-agent.sock" "$HOME/.ssh/agent/internal.sock"
+        if test -S "$agent_sock"
+            set -gx SSH_AUTH_SOCK "$agent_sock"
+            break
         end
     end
 end
 
 # ── Interactive shell only ───────────────────────────────────────────────────
-status is-interactive; or return
+status is-interactive; or return 0
 
 # Disable the default greeting
 set -g fish_greeting
@@ -58,18 +52,22 @@ set -gx CLICOLOR 1
 
 # Prompt: `prompt` lists them, `prompt NAME` switches for this shell, and
 # `prompt --save NAME` makes it the default for new shells
-set -q prompt_style; or set -g prompt_style starship
-prompt $prompt_style; or prompt starship
+if functions -q prompt
+    set -q prompt_style; or set -g prompt_style starship
+    prompt $prompt_style; or prompt starship
+end
 
 bind -M insert ctrl-backspace backward-kill-word
 bind -M insert alt-backspace backward-kill-word
 
 # Local fzf widgets: Ctrl-R searches history, Ctrl-T inserts a file, and Alt-C
 # changes directory. These replace the fzf-fish plugin without sourcing it.
-for mode in default insert
-    bind -M $mode \cr __rb_fzf_history_widget
-    bind -M $mode \ct __rb_fzf_file_widget
-    bind -M $mode alt-c __rb_fzf_cd_widget
+if functions -q __rb_fzf_history_widget __rb_fzf_file_widget __rb_fzf_cd_widget
+    for mode in default insert
+        bind -M $mode \cr __rb_fzf_history_widget
+        bind -M $mode \ct __rb_fzf_file_widget
+        bind -M $mode alt-c __rb_fzf_cd_widget
+    end
 end
 
 # ── Shared definitions ───────────────────────────────────────────────────────
@@ -122,6 +120,5 @@ if type -q direnv
 end
 
 function ru --description "Root Fish with my interactive config"
-    set -l user_config_home $HOME/.config
-    command sudo env XDG_CONFIG_HOME=$user_config_home
+    command sudo env XDG_CONFIG_HOME="$XDG_CONFIG_HOME"
 end
