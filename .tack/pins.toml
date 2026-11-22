@@ -1,0 +1,35 @@
+[all_follow]
+nixpkgs = "nixpkgs"
+
+
+[shorturls]
+nixpkgs = "https://channels.nixos.org/{path}/nixexprs.tar.zst"
+gh = "github:{path}"
+mine = "github:michael-c-buckley/{path}"
+
+[inputs]
+nixpkgs.url = "nixpkgs:nixos-unstable"
+adios-flake.url = "gh:mic92/adios-flake"
+hjem.url = "gh:feel-co/hjem"
+lanzaboote.url = "gh:nix-community/lanzaboote"
+helium.url = "gh:amaanq/helium-flake"
+finix.url = "gh:finix-community/finix"
+nixos-core.url = "gh:manic-systems/nixos-core"
+nix-secrets.url = "gh:unnamed-systems/nix-secrets"
+
+# Zsh Plugins I use
+[inputs.zsh-git-tab]
+url = "mine:zsh-git-tab"
+type = "fetch"
+
+[inputs.zsh-transient-prompt]
+url = "gh:olets/zsh-transient-prompt"
+type = "fetch"
+
+[inputs.fast-abbr-highlighting]
+url = "gh:5A6F65/fast-abbr-highlighting"
+type = "fetch"
+
+
+[tack]
+recomposable = true
