@@ -7,11 +7,6 @@ export EDITOR="nvim"
 export VISUAL="$EDITOR"
 export PATH="$HOME/.local/bin:$PATH"
 
-# Use my custom agent socket for mac
-if [[ "$OSTYPE" == darwin* ]]; then
-    export SSH_AUTH_SOCK="$HOME/.ssh/agent/openssh.sock"
-fi
-
 # Ensure that nix gets sourced
 if [[ -r /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]] &&
    (( ! $+commands[nix] )); then

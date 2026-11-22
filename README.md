@@ -45,9 +45,7 @@ Not necessarily recommended for someone who isn't strongly confident in both.
 
 ### Hjem
 
-Hjem is still the user home tool I'll be using.
-Simple, clean, elegeant.
-Now with more both `nix-darwin` and standalone.
+I use Hjem for home configuration in the NixOS modules.
 
 ### Portability
 

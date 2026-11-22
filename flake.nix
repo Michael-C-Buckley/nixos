@@ -15,6 +15,7 @@
         # Exposed so it is available for any downstreams that use this flake as an input
         lib.tackInputs = inputs;
         inherit configPaths;
+        nixosModules = import ./modules/nixos { inherit (inputs.nixpkgs) lib; };
         nixosConfigurations = { };
         hjemConfigurations = { };
       };
