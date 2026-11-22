@@ -1,4 +1,5 @@
-# Abbreviations shared by Zsh (through zsh-abbr) and Fish. See README.md.
+# Abbreviations shared by Zsh (through zsh-abbr), Fish, and Nushell. See
+# README.md.
 #
 # NAME=EXPANSION, one per line. Everything after the first `=` is the literal
 # expansion, so no quoting is needed. An entry wins over a command with the
@@ -17,6 +18,7 @@ gd=git diff
 gds=git diff --staged
 gdc=git diff --cached
 gf=git fetch
+gl=git log --oneline --graph --decorate
 gm=git merge
 gp=git pull
 gP=git push
@@ -26,8 +28,19 @@ gR=git remote
 gRv=git remote -v
 gredo=git commit --amend -S
 gs=git status
+gu=gitui
+
+# eza
+lll=eza -lah --git --icons
+tree=eza --tree --icons
+
+# Directories
+..=cd ..
+...=cd ../..
+....=cd ../../..
 
 # Tools
+cl=clear
 nv=nvim
 b=brew
 k=kubectl
