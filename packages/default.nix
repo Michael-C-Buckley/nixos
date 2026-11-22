@@ -16,3 +16,6 @@ in
   git = pkgs.callPackage ./git/git.nix { inherit configPaths git-credential-sops; };
   zsh = pkgs.callPackage ./zsh { inherit configPaths inputs; };
 }
+// pkgs.lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
+  zed = pkgs.callPackage ./zed { };
+}

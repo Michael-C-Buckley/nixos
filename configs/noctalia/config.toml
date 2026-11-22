@@ -1,0 +1,91 @@
+[bar]
+order = ["default"]
+
+[bar.default]
+background_opacity = 1.0
+center = ["clock", "notifications"]
+compositor_blur = false
+end = ["tray", "bluetooth", "volume", "brightness", "session"]
+font_family = "Consolas"
+font_weight = 700
+icon_color = "primary"
+margin_edge = 0
+margin_ends = 0
+radius = 0
+shadow = false
+start = ["workspaces"]
+thickness = 22
+widget_spacing = 15
+
+[brightness]
+enable_ddcutil = true
+
+[dock]
+smart_auto_hide = true
+
+[location]
+auto_locate = true
+
+[lockscreen_widgets.grid]
+cell_size = 16
+major_interval = 4
+visible = true
+
+[lockscreen_widgets.widget."lockscreen-login-box@DP-1"]
+box_height = 196.0
+box_width = 810.0
+cx = 1720.0
+cy = 1258.0
+output = "DP-1"
+placement_height = 1440.0
+placement_width = 3440.0
+rotation = 0.0
+type = "login_box"
+
+[nightlight]
+enabled = true
+temperature_night = 3000
+
+[osd]
+position = "top_right"
+
+[shell]
+corner_radius_scale = 0.0
+external_ip_enabled = true
+polkit_agent = true
+telemetry_enabled = false
+
+[shell.panel]
+border_color = "on_surface_variant"
+borders = false
+
+[shell.screenshot]
+directory = "/tmp"
+show_cursor = true
+
+[theme]
+builtin = "Ayu"
+community_palette = "Paradise"
+mode = "dark"
+source = "community"
+wallpaper_scheme = "m3-content"
+
+[theme.templates]
+builtin_ids = ["gtk3", "gtk4", "qt", "umbriel"]
+
+[wallpaper]
+directory = "@HOME@/Pictures/wallpapers"
+
+[weather]
+unit = "imperial"
+
+[widget.launcher]
+glyph = "rocket"
+
+[widget.notifications]
+hide_when_no_unread = true
+
+[widget.workspaces]
+focused_color = "on_error_container"
+style = "minimal"
+urgent_color = "error_container"

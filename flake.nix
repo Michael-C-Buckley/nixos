@@ -4,9 +4,11 @@
   outputs =
     { self, ... }@args:
     let
+      inherit (inputs.nixpkgs) lib;
       inputs = (import ./.tack) { overrides = args.tackOverrides or { }; };
       systems = args.systemOverrides or (import ./systems.nix);
       configPaths = import ./configs { inherit (inputs.nixpkgs) lib; };
+      hjemModules = import ./modules/hjem { inherit lib; };
     in
     inputs.adios-flake.lib.mkFlake {
       inherit self inputs systems;
@@ -14,10 +16,9 @@
       flake = {
         # Exposed so it is available for any downstreams that use this flake as an input
         lib.tackInputs = inputs;
-        inherit configPaths;
-        nixosModules = import ./modules/nixos { inherit (inputs.nixpkgs) lib; };
+        inherit configPaths hjemModules;
+        nixosModules = import ./modules/nixos { inherit lib; };
         nixosConfigurations = { };
-        hjemConfigurations = { };
       };
 
       perSystem =

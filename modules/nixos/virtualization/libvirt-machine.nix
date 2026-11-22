@@ -1,5 +1,5 @@
 {
-  imports = [ ../base.nix ];
+  imports = [ ../presets/base.nix ];
 
   boot.kernelParams = [
     "console=tty0"

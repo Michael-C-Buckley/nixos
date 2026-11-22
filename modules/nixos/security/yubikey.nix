@@ -1,16 +1,6 @@
-let
-  commonPkgs =
-    pkgs: with pkgs; [
-      yubikey-manager
-      age-plugin-yubikey
-      age
-      libfido2
-      yubico-piv-tool
-      libp11
-    ];
-in
 { pkgs, ... }: {
-  environment.systemPackages = commonPkgs pkgs;
+  # TODO: clean up paths
+  environment.systemPackages = (import ../../../packages/lists.nix pkgs).yubikey;
 
   services = {
     pcscd.enable = true;

@@ -11,10 +11,8 @@
     specialArgs = { inherit inputs; };
     clobberByDefault = true;
     extraModules = [
-      ./_nh.nix
-      ./_direnv.nix
-      ./_ssh.nix
-      ./runtime.nix
+      # TODO: clean paths up
+      ../../hjem/runtime.nix
     ];
   };
   systemd.services."hjem-reload@".serviceConfig.ExecStartPre = [

@@ -45,7 +45,12 @@ Not necessarily recommended for someone who isn't strongly confident in both.
 
 ### Hjem
 
-I use Hjem for home configuration in the NixOS modules.
+The flake exports reusable Hjem modules as paths under `hjemModules`. The NixOS
+and Finix adapters provide their platform-specific activation hooks.
+
+Todo:
+
+- clean up pathing with hjem modules
 
 ### Portability
 

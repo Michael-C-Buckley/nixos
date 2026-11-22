@@ -8,7 +8,6 @@
     ../packages/base.nix
     ../system/openssh.nix
     ../security/sudo.nix
-    ../shell/direnv.nix
     ../system/time.nix
     ../shell
   ];

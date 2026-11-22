@@ -21,7 +21,6 @@ in
 { pkgs, lib, ... }: {
   imports = [
     ./base.nix
-    ../secrets.nix
     ../virtualization/agentbox.nix
   ];
 

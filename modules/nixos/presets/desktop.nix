@@ -6,7 +6,7 @@
 
     # Graphical
     ../graphical/tuigreet.nix
-    ../graphical/curosr-gtk-qt.nix
+    ../graphical/cursor-gtk-qt.nix
     ../graphical/hyprland.nix
     ../graphical/mime.nix
 

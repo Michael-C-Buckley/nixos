@@ -1,0 +1,68 @@
+{
+  "restore_on_startup": "empty_tab",
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "auto_install_extensions": {
+    "nix": true,
+    "toml": true,
+    "lua": true,
+    "zuban": true
+  },
+  "tabs": { "file_icons": true, "git_status": true, "show_diagnostics": "all" },
+  "telemetry": { "diagnostics": false, "metrics": false },
+  "toolbar": { "code_actions": true },
+  "diagnostics": { "inline": { "enabled": true, "min_column": 80 } },
+   "git": { "git_gutter": "tracked_files" },
+  "agent": {
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "icon_theme": {
+    "mode": "system",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
+  },
+  "session": {
+    "trust_all_worktrees": true
+  },
+  "vim_mode": true,
+  "vim": {
+      "toggle_relative_line_numbers": true
+  },
+  "base_keymap": "Zed",
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "system",
+    "light": "Ayu Light",
+    "dark": "Oasis Midnight Dark"
+  },
+
+  "languages": {
+    "YAML": {
+      "format_on_save": "off"
+    },
+    "JSON": {
+      "formatter": {
+        "external": {
+          "arguments": ["format", "--stdin-file-path", "{buffer_path}"],
+          "command": "biome"
+        }
+      }
+    },
+    "Nix": {
+      "language_servers": ["nil"]
+    },
+    "Python": {
+      "language_servers": ["ruff", "zuban"]
+    }
+  }
+}
