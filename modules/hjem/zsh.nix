@@ -26,6 +26,7 @@ in
     "zsh/.zshenv".text = zshenv;
     "zsh/.zshrc".text = ''
       : ''${ZSH_PLUGIN_DIR=${plugins}}
+      : ''${SHELL_COMMON_DIR=${configPaths.shell}}
       fpath=(${profileDirectory}/share/zsh/site-functions $fpath)
     ''
     + lib.optionalString genericLinux ''

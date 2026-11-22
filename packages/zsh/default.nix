@@ -60,6 +60,7 @@ pkgs.symlinkJoin {
     wrapProgram "$out/bin/zsh" \
       --set ZDOTDIR ${config} \
       --set STARSHIP_CONFIG ${configPaths.starship + "/default.toml"} \
+      --set-default SHELL_COMMON_DIR ${configPaths.shell} \
       --set-default ZSH_PLUGIN_DIR ${mkPlugins "${pkgs.zsh-fzf-tab}/share/fzf-tab"}
   '';
   meta.mainProgram = "zsh";

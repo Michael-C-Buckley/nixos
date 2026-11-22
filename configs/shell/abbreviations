@@ -1,0 +1,33 @@
+# Abbreviations shared by Zsh (through zsh-abbr) and Fish. See README.md.
+#
+# NAME=EXPANSION, one per line. Everything after the first `=` is the literal
+# expansion, so no quoting is needed. An entry wins over a command with the
+# same name (gs expands to Git, not Ghostscript).
+
+# Git
+g=git
+ga=git add
+gaa=git add .
+gad=git add
+gb=git branch
+gc=git commit
+gcm=git commit -m
+gco=git checkout
+gd=git diff
+gds=git diff --staged
+gdc=git diff --cached
+gf=git fetch
+gm=git merge
+gp=git pull
+gP=git push
+gpoh=git push origin HEAD
+gr=git restore
+gR=git remote
+gRv=git remote -v
+gredo=git commit --amend -S
+gs=git status
+
+# Tools
+nv=nvim
+b=brew
+k=kubectl

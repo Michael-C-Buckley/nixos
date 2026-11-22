@@ -72,6 +72,32 @@ for mode in default insert
     bind -M $mode alt-c __rb_fzf_cd_widget
 end
 
+# ── Shared definitions ───────────────────────────────────────────────────────
+# Shared with Zsh (configs/shell/README.md). The Nix wrapper sets
+# SHELL_COMMON_DIR; otherwise use the XDG location.
+test -n "$SHELL_COMMON_DIR"; or set -g SHELL_COMMON_DIR $XDG_CONFIG_HOME/shell
+
+# __shell_common FILE COMMAND...: run `COMMAND... NAME VALUE` for each entry
+# of $SHELL_COMMON_DIR/FILE. A missing file is not an error.
+function __shell_common --description 'Apply NAME=VALUE entries of a shared shell file'
+    set -l file $SHELL_COMMON_DIR/$argv[1]
+    test -r $file; or return 0
+    # Skip blank lines, comments, and lines without a name before `=`.
+    for line in (string match -r '^\s*[^#\s=][^=]*=.*' <$file)
+        set -l pair (string split -m1 = -- $line | string trim)
+        $argv[2..-1] $pair
+    end
+end
+
+# Shared aliases apply only when the command they run is available, so ls stays
+# plain ls without eza.
+function __shell_alias --description 'Define a shared alias if its command is available'
+    type -q -- (string match -r -- '^\S+' $argv[2]); and alias $argv[1] $argv[2]
+end
+
+__shell_common abbreviations abbr --add --
+__shell_common aliases __shell_alias
+
 # ── Local compatibility aliases ──────────────────────────────────────────────
 if not command -q rb && test -x ~/.rootbeer/bin/rb
     alias rb="~/.rootbeer/bin/rb"

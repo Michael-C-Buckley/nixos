@@ -65,6 +65,7 @@ pkgs.symlinkJoin {
     wrapProgram $out/bin/fish \
       --add-flag --init-command \
       --add-flag "set -g __prompt_dir ${fishConfig}/prompts; set -p fish_function_path ${fishConfig}/functions; source ${fishConfig}/config.fish" \
+      --set-default SHELL_COMMON_DIR ${configPaths.shell} \
       --prefix PATH : ${runtimeEnv}/bin
   '';
   meta.mainProgram = "fish";

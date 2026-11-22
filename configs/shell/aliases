@@ -1,0 +1,14 @@
+# Aliases shared by Zsh and Fish. See README.md.
+#
+# NAME=VALUE, one per line, with the value taken literally. An alias applies
+# only when the first word of its value is an available command, so ls stays
+# plain ls on machines without eza. Shell-specific aliases, such as Zsh's
+# `noglob nix`, stay in that shell's config.
+
+# eza
+ls=eza --group-directories-first
+ll=eza -lah --git --icons --group-directories-first
+la=eza -la --group-directories-first
+
+# bat
+cat=bat -p
