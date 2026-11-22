@@ -1,5 +1,10 @@
-{inputs, pkgs, ...}: {
-  # For now, this nvim, more will come in the future as I make a minimal edition without tooling
-  nvim = pkgs.callPackage ../packages/nvim {};
-  zsh = pkgs.callPackage ../packages/zsh {inherit inputs;};
+{ inputs, pkgs, ... }:
+let
+  git-credential-sops = pkgs.callPackage ../packages/git/credential-sops.nix { };
+  nvim = pkgs.callPackage ../packages/nvim { };
+in
+{
+  inherit nvim git-credential-sops;
+  git = pkgs.callPackage ../packages/git { inherit git-credential-sops; };
+  zsh = pkgs.callPackage ../packages/zsh { inherit inputs; };
 }
