@@ -1,10 +1,11 @@
 {
   imports = [
     ../runtime.nix
-    ../apps/git.nix
-    ../cli/nvim.nix
-    ../packages/base.nix
-    ../cli/direnv.nix
     ../system-nix.nix
+    ../apps/git.nix
+    ../cli/direnv.nix
+    ../cli/nvim.nix
+    ../cli/nushell.nix
+    ../packages/base.nix
   ];
 }
