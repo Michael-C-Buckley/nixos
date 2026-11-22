@@ -12,6 +12,8 @@ readDir ./.
 |> builtins.mapAttrs (
   b: _:
   readDir (./. + "/${b}")
-  |> filterAttrs (c: _: !lib.hasPrefix "_" c)
+  # Make sure the files are nix ones but ignore leading _
+  |> filterAttrs (c: _: (!lib.hasPrefix "_" c) && (lib.hasSuffix ".nix" c))
+  # Finally, put the whole thing back together
   |> lib.concatMapAttrs (d: _: { "${getFilename d}" = ./. + "/${b}/${d}"; })
 )
