@@ -1,4 +1,8 @@
-{ inputs, pkgs }:
+{
+  inputs,
+  pkgs,
+  configPaths,
+}:
 let
   tools = with pkgs; [
     fd
@@ -28,7 +32,7 @@ let
         # bash
         ''
           _zsh_startup_dir=$ZDOTDIR
-          source ${./configs/zshenv}
+          source ${configPaths.zsh + "/zshenv"}
           ZDOTDIR=$_zsh_startup_dir
           unset _zsh_startup_dir
           typeset +x ZDOTDIR ZSH_PLUGIN_DIR
@@ -42,10 +46,10 @@ let
         # bash
         ''
           unsetopt GLOBAL_RCS
-          source ${./configs/zprofile}
+          source ${configPaths.zsh + "/zprofile"}
         '';
 
-    ".zshrc" = ./configs/zshrc;
+    ".zshrc" = configPaths.zsh + "/zshrc";
   };
 in
 pkgs.symlinkJoin {
@@ -55,7 +59,7 @@ pkgs.symlinkJoin {
   postBuild = ''
     wrapProgram "$out/bin/zsh" \
       --set ZDOTDIR ${config} \
-      --set STARSHIP_CONFIG ${../starship/default.toml} \
+      --set STARSHIP_CONFIG ${configPaths.starship + "/default.toml"} \
       --set-default ZSH_PLUGIN_DIR ${mkPlugins "${pkgs.zsh-fzf-tab}/share/fzf-tab"}
   '';
   meta.mainProgram = "zsh";

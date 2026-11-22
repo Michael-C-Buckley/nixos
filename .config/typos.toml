@@ -19,5 +19,5 @@ extend-exclude = [
   "**/*.enc.*",
   "**/*.age",
   "secrets/**",
-  "packages/nvim/configs/nvim-pack-lock.json",
+  "configs/nvim/nvim-pack-lock.json",
 ]

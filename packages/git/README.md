@@ -19,7 +19,7 @@ The traditional approach of linking your files is fine too.
 
 ## Design
 
-My standard config is here, but can be modified with nix attrs as an override:
+The wrapper reads the [shared Git config](../../configs/git/config). You can override its settings with Nix attributes.
 
 ```nix
 flake.packages.${system}.git.override {

@@ -1,13 +1,14 @@
 {
   lib,
   pkgs,
+  configPaths,
   extraParsers ? [ ],
   ...
 }:
 let
   # vim.pack installs every plugin in the lockfile on first start, active or
   # not. Nix supplies nvim-treesitter, so leave it out of the seed.
-  lock = lib.importJSON ./configs/nvim-pack-lock.json;
+  lock = lib.importJSON (configPaths.nvim + "/nvim-pack-lock.json");
   seedLock = pkgs.writeText "nvim-pack-lock.json" (
     builtins.toJSON (lock // { plugins = removeAttrs lock.plugins [ "nvim-treesitter" ]; })
   );
@@ -59,6 +60,6 @@ pkgs.neovim.override {
           )
         end
       ''
-      + builtins.readFile ./configs/init.lua;
+      + builtins.readFile (configPaths.nvim + "/init.lua");
   };
 }

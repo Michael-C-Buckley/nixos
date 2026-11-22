@@ -4,6 +4,7 @@
   git,
   neovim,
   delta,
+  configPaths,
   git-credential-sops,
   settings ? { },
 }:
@@ -32,8 +33,8 @@ let
       '';
 
   config = pkgs.runCommand "git-config" { nativeBuildInputs = [ git ]; } ''
-    install -Dm644 ${./configs/config} "$out/defaults"
-    ${applySetting "core.excludesfile" ./configs/ignore}
+    install -Dm644 ${configPaths.git + "/config"} "$out/defaults"
+    ${applySetting "core.excludesfile" (configPaths.git + "/ignore")}
     # Only the portable user config can find local.inc beside itself.
     git config --file "$out/defaults" --fixed-value --unset-all include.path local.inc || [ "$?" -eq 5 ]
     ${lib.concatStrings (lib.mapAttrsToList applySetting settings)}

@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, configPaths }:
 pkgs.writeShellApplication {
   name = "git-credential-sops";
   runtimeInputs =
@@ -11,5 +11,5 @@ pkgs.writeShellApplication {
       age-plugin-yubikey
     ]
     ++ lib.optionals stdenv.hostPlatform.isLinux [ age-plugin-tpm ];
-  text = builtins.readFile ./git-credential-sops.sh;
+  text = builtins.readFile (configPaths.git + "/git-credential-sops.sh");
 }

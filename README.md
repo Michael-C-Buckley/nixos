@@ -13,11 +13,13 @@ Invariably, I'll continue that trend as each iteration lets me experiments.
 
 ## What's New This Time Around
 
-### No More Dendritic
+### Adios Modules
 
-I've moved away from dendritic patterns.
-They have substantially helped with large flakes,
-though having tighter designs makes the need redundant.
+I'm implementing adios modules via the adios-flake input.
+There is no strict adherence on patterning and I'm creating what I need,
+when I need it, to solve the problem at hand.
+
+The performance is good, which is why I selected it over flake-parts.
 
 ### Finix
 
