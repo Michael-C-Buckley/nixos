@@ -25,7 +25,8 @@ or a command.
                           --interface. PREFIX sets the --interface subnet.
   --outbound IFACE|ADDR   Keep engine networking but send traffic from IFACE or
                           ADDR (Podman: pasta binding; Docker: source NAT only).
-  --nix                   Share the host Nix socket and read-only store.
+  --nix                   Build via the host Nix daemon; bind its socket and
+                          read-only store (local Linux engine only).
   --agent-state           Share host agent state when using engine run options.
   --no-agent-state        Skip the default agent mounts for agentbox:latest.
   --                      End launcher options.'
@@ -290,8 +291,18 @@ if [[ -n $persist ]]; then
 else
   run_options=(--rm --pull=never --interactive ${terminal_options[@]+"${terminal_options[@]}"})
 fi
+# Only supply image-specific defaults when no engine options precede the image.
+stock_image=false
+if [[ $1 =~ ^(localhost/)?agentbox(:latest)?$ ]]; then
+  stock_image=true
+  if [[ $engine == podman && $EUID != 0 ]]; then
+    # Otherwise the image's non-root user maps to a subordinate host UID,
+    # not the account that owns the binds and connects to the Nix daemon.
+    run_options+=(--userns=keep-id)
+  fi
+fi
 if [[ -n ${HOME:-} ]] &&
-  [[ $agent_state == --agent-state || ($agent_state == auto && $1 =~ ^(localhost/)?agentbox(:latest)?$) ]]; then
+  [[ $agent_state == --agent-state || ($agent_state == auto && $stock_image == true) ]]; then
   container_home=/home/agentbox
   codex_dir=$(host_agent_dir "${CODEX_HOME:-.codex}")
   claude_dir=$(host_agent_dir "${CLAUDE_CONFIG_DIR:-.claude}")
@@ -299,6 +310,9 @@ if [[ -n ${HOME:-} ]] &&
 
   mount_agent_path "$codex_dir" "$container_home/.codex"
   mount_agent_path "$claude_dir" "$container_home/.claude"
+  # Mount the directory even on first use, so /login and later token refreshes
+  # persist outside an ephemeral container. Do not change existing permissions.
+  (umask 077; mkdir -p -- "$pi_dir") || die "cannot create Pi state directory: $pi_dir"
   mount_agent_path "$pi_dir" "$container_home/.pi/agent"
   mount_agent_path "$HOME/.agents/skills" "$container_home/.agents/skills" ',ro'
 

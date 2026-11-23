@@ -30,9 +30,11 @@ available, uses the local `agentbox:latest` image by default, and removes the
 container on exit. On a host with Bash, you can also run
 `bash packages/agentbox/agentbox.sh` directly.
 
-Specify the image when passing engine options or a custom command. For rootless
-Podman, build with `podman build` and pass `--userns=keep-id` before the image
-to map your host UID and GID.
+For rootless Podman, use the same build arguments with `podman build`. On a
+normal `agentbox:latest` launch the wrapper adds `--userns=keep-id`, so the
+image user maps to your host UID/GID. Specify the image when passing engine
+options or a custom command. If passing engine options, supply the mapping
+(and `--agent-state` if desired) yourself, for example:
 
 ```sh
 nix run path:.#agentbox -- --engine podman --agent-state ~/src/project \
@@ -130,17 +132,58 @@ persistent containers, or programs will report an unknown terminal. A custom
 image needs a definition for your `TERM`; otherwise run
 `export TERM=xterm-256color` in the session.
 
-## Agent state and Nix
+## Building with the host Nix daemon
 
-The default image launch mounts existing `~/.codex`, `~/.claude`, and
-`~/.pi/agent` read-write, sharing sign-ins, settings, and token updates with the
-host. It mounts `~/.agents/skills` read-only and copies `~/.claude.json` into
-the container home so Claude Code can replace its copy when saving. The
-launcher honors `CODEX_HOME`, `CLAUDE_CONFIG_DIR`, and `PI_CODING_AGENT_DIR`.
-Use `--no-agent-state` to skip these mounts, or pass `--agent-state` before the
-workspace to enable them explicitly when passing engine options.
+```sh
+agentbox --nix .                         # on the host, from the flake root
+nix store info --store daemon            # inside: verify daemon access
+nix build --no-link --print-out-paths .#agentbox
+```
 
-On a Linux host that runs both the engine and the Nix daemon, pass `--nix`
-before the workspace to share the daemon socket and mount `/nix/store`
-read-only. The daemon applies the mapped user's host permissions, including
-privileges granted through `trusted-users`.
+`--nix` requires a local Linux engine and a running or socket-activated host
+Nix daemon. It binds `/nix/store` and `/nix/var/nix/daemon-socket` read-only
+at the same paths and sets `NIX_REMOTE=daemon`. The client sends build requests
+over the socket; the **host daemon** writes the results. The container needs
+neither a writable store nor its own daemon. Recreate an existing `--persist`
+container to add the mounts.
+
+The daemon checks the **host account for the mapped UID**, not the name
+`agentbox` in the image. With ordinary rootful Docker (no user namespace
+remapping), build the image with your UID/GID as above. With rootless Podman,
+use the keep-id mapping described above. With other mappings, check the actual
+host UID before changing permissions.
+
+Ordinary builds need an **allowed**, not a **trusted**, user. Upstream Nix
+defaults to `allowed-users = *`; this repo's `modules/nixos/system/nix.nix`
+allows **and trusts** `root` and `@wheel`. A mapped wheel user therefore needs
+no change, but sharing that user's socket access gives the container
+root-equivalent Nix privileges on the host. This is why `--nix` is opt-in.
+For less privilege, launch as a separate non-wheel host account with workspace
+access, build the image with its IDs, and add just that account to your host
+configuration (replace `builduser` with its name), then rebuild NixOS:
+
+```nix
+nix.settings.allowed-users = [ "builduser" ];
+```
+
+## Keeping agent logins
+
+Pi's `/login` credentials live in **`~/.pi/agent/auth.json`**. The launcher
+binds `${PI_CODING_AGENT_DIR:-$HOME/.pi/agent}` on the host to
+`/home/agentbox/.pi/agent` **read-write**. Bind the directory, not just the
+file, so Pi can lock and update credentials during token refresh. If the
+directory doesn't exist the launcher creates it private to your user. Log in
+once on the host or inside the box; a new container using the same directory
+picks up that login without `--persist`.
+
+Processes in the container can read and modify everything in that directory,
+including credentials. To keep container logins separate from your host Pi
+profile, use e.g. `PI_CODING_AGENT_DIR=~/.local/state/agentbox/pi agentbox .`
+consistently. Recreate persistent containers to change their mounts.
+
+The default launch also mounts existing `~/.codex` and `~/.claude` read-write,
+mounts `~/.agents/skills` read-only, and copies `~/.claude.json` into the
+container home so Claude Code can replace its copy. The launcher honors
+`CODEX_HOME` and `CLAUDE_CONFIG_DIR`. Use `--no-agent-state` to skip the agent
+mounts, or `--agent-state` before the workspace to enable them explicitly when
+passing engine options.
