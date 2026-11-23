@@ -25,8 +25,8 @@ or a command.
                           --interface. PREFIX sets the --interface subnet.
   --outbound IFACE|ADDR   Keep engine networking but send traffic from IFACE or
                           ADDR (Podman: pasta binding; Docker: source NAT only).
-  --nix                   Build via the host Nix daemon; bind its socket and
-                          read-only store (local Linux engine only).
+  --no-nix                Skip sharing the host Nix daemon socket and store
+                          (shared by default).
   --agent-state           Share host agent state when using engine run options.
   --no-agent-state        Skip the default agent mounts for agentbox:latest.
   --                      End launcher options.'
@@ -158,7 +158,7 @@ use_network() {
 engine=
 persist=
 target=/workspace
-mount_nix=false
+mount_nix=true
 agent_state=auto
 bind_mounts=()
 network_flag=
@@ -192,6 +192,10 @@ while (($#)); do
       ;;
     --nix)
       mount_nix=true
+      shift
+      ;;
+    --no-nix)
+      mount_nix=false
       shift
       ;;
     --agent-state | --no-agent-state)
@@ -325,7 +329,7 @@ fi
 if [[ $mount_nix == true ]]; then
   nix_socket_dir=/nix/var/nix/daemon-socket
   [[ -S $nix_socket_dir/socket && -d /nix/store ]] ||
-    die '--nix requires the host Nix daemon socket and /nix/store'
+    die 'host Nix daemon socket or /nix/store missing; pass --no-nix to run without host Nix'
   run_options+=(
     --env NIX_REMOTE=daemon
     --mount "type=bind,src=$nix_socket_dir,dst=$nix_socket_dir,ro"

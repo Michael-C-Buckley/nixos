@@ -33,7 +33,9 @@ nix run path:.#agentbox -- --engine docker ~/src/project
 Docker or Podman must be available on the host. The launcher prefers Podman when
 available, uses the local `agentbox:latest` image by default, and removes the
 container on exit. On a host with Bash, you can also run
-`bash packages/agentbox/agentbox.sh` directly.
+`bash packages/agentbox/agentbox.sh` directly. The launcher shares the host Nix
+store and daemon socket by default; use `agentbox --no-nix ~/src/project` to
+skip both mounts or run on a host without Nix.
 
 For rootless Podman, use the same build arguments with `podman build`. On a
 normal `agentbox:latest` launch the wrapper adds `--userns=keep-id`, so the
@@ -117,7 +119,7 @@ You can't reattach to a disconnected session, and its processes may keep running
 unseen. Run agents inside the image's tmux so you can return to them:
 
 ```sh
-agentbox --persist project --nix ~/src/project
+agentbox --persist project ~/src/project
 tmux new-session -A -s main  # Detach with Ctrl-b d; run both commands to return.
 ```
 
@@ -140,17 +142,18 @@ image needs a definition for your `TERM`; otherwise run
 ## Building with the host Nix daemon
 
 ```sh
-agentbox --nix .                         # on the host, from the flake root
+agentbox .                               # on the host, from the flake root
 nix store info --store daemon            # inside: verify daemon access
 nix build --no-link --print-out-paths .#agentbox
 ```
 
-`--nix` requires a local Linux engine and a running or socket-activated host
-Nix daemon. It binds `/nix/store` and `/nix/var/nix/daemon-socket` read-only
+The default launch requires a local Linux engine and a running or socket-activated
+host Nix daemon. It binds `/nix/store` and `/nix/var/nix/daemon-socket` read-only
 at the same paths and sets `NIX_REMOTE=daemon`. The client sends build requests
 over the socket; the **host daemon** writes the results. The container needs
-neither a writable store nor its own daemon. Recreate an existing `--persist`
-container to add the mounts.
+neither a writable store nor its own daemon. Pass `--no-nix` before the workspace
+to skip both mounts and the `NIX_REMOTE` setting. Recreate an existing `--persist`
+container to change its mounts.
 
 The daemon checks the **host account for the mapped UID**, not the name
 `agentbox` in the image. With ordinary rootful Docker (no user namespace
@@ -162,7 +165,7 @@ Ordinary builds need an **allowed**, not a **trusted**, user. Upstream Nix
 defaults to `allowed-users = *`; this repo's `modules/nixos/system/nix.nix`
 allows **and trusts** `root` and `@wheel`. A mapped wheel user therefore needs
 no change, but sharing that user's socket access gives the container
-root-equivalent Nix privileges on the host. This is why `--nix` is opt-in.
+root-equivalent Nix privileges on the host. Use `--no-nix` for untrusted images.
 For less privilege, launch as a separate non-wheel host account with workspace
 access, build the image with its IDs, and add just that account to your host
 configuration (replace `builduser` with its name), then rebuild NixOS:
