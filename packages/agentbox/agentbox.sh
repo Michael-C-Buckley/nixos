@@ -2,13 +2,15 @@
 set -euo pipefail
 
 usage() {
-  printf '%s\n' 'Usage: agentbox [OPTIONS] WORKSPACE [[RUN OPTIONS] IMAGE [COMMAND [ARG...]]]
+  printf '%s\n' 'Usage: agentbox [OPTIONS] [WORKSPACE [[RUN OPTIONS] IMAGE [COMMAND [ARG...]]]]
 
-Bind WORKSPACE read-write at PATH (default /workspace) and start there.
-Use local agentbox:latest when only WORKSPACE is supplied. Remove the container
+Bind WORKSPACE (default .) read-write at PATH (default /workspace) and start there.
+Read launcher defaults from WORKSPACE/.agentbox, one option per line.
+Use local agentbox:latest when no image is supplied. Remove the container
 on exit unless --persist is given. Specify IMAGE when passing engine run options
 or a command.
 
+  --no-config             Ignore WORKSPACE/.agentbox (use for untrusted projects).
   --persist NAME          Keep container NAME running after you disconnect.
                           Open bash in it, creating or starting it as needed.
                           Other options apply only when NAME is created.
@@ -33,7 +35,7 @@ or a command.
 }
 
 die() {
-  printf 'agentbox: %s\n' "$*" >&2
+  printf 'agentbox: %s%s\n' "$config_context" "$*" >&2
   exit 2
 }
 
@@ -155,6 +157,7 @@ use_network() {
   run_options+=(--network "$name")
 }
 
+config_context=
 engine=
 persist=
 target=/workspace
@@ -167,39 +170,75 @@ address=
 ipv4_pattern='^[0-9]{1,3}(\.[0-9]{1,3}){3}$'
 ipv4_cidr_pattern='^[0-9]{1,3}(\.[0-9]{1,3}){3}(/([0-9]|[12][0-9]|3[0-2]))?$'
 
+takes_value() {
+  case "$1" in
+    --persist | --engine | --target | --bind | --bind-file | --network | --interface | --outbound | --ip) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+# Apply a single launcher option. Relative sources use the supplied base directory.
+apply_option() {
+  local base=$1 option=$2 value=$3
+  if takes_value "$option"; then
+    [[ -n $value ]] || die "$option requires a value"
+  elif [[ -n $value ]]; then
+    die "unexpected value for $option: $value"
+  fi
+  case "$option" in
+    --persist)
+      [[ $value =~ ^[A-Za-z0-9][A-Za-z0-9_.-]*$ ]] ||
+        die "invalid container name: $value (use letters, digits, _, ., and -)"
+      persist=$value
+      ;;
+    --engine) engine=$value ;;
+    --target) target=$value ;;
+    --bind) add_bind "$value" "$base" ;;
+    --bind-file)
+      [[ $value = /* ]] || value=$base/$value
+      add_bind_file "$value"
+      ;;
+    --network | --interface | --outbound)
+      [[ -z $network_flag ]] || die 'use only one of --network, --interface, and --outbound'
+      network_flag=$option
+      network=$value
+      ;;
+    --ip) address=$value ;;
+    --nix) mount_nix=true ;;
+    --no-nix) mount_nix=false ;;
+    --agent-state | --no-agent-state) agent_state=$option ;;
+    *) die "unknown launcher option: $option" ;;
+  esac
+}
+
+read_project_config() {
+  local file=$workspace/.agentbox line option value n=0 config_context=
+  [[ -e $file || -L $file ]] || return 0
+  [[ -f $file && -r $file ]] || die "not a readable regular file: $file"
+  printf 'agentbox: reading %s\n' "$file" >&2
+  while IFS= read -r line || [[ -n $line ]]; do
+    n=$((n + 1))
+    line=${line#"${line%%[![:space:]]*}"}
+    line=${line%"${line##*[![:space:]]}"}
+    [[ -z $line || $line == '#'* ]] && continue
+    option=${line%%[[:space:]]*}
+    value=${line#"$option"}
+    config_context="$file:$n: "
+    value=${value#"${value%%[![:space:]]*}"}
+    apply_option "$workspace" "$option" "$value"
+  done <"$file"
+}
+
+# Find the workspace without consuming the image/command tail. Apply CLI options
+# only after reading that workspace's defaults.
+read_config=true
+cli_network=false
+cli_flags=()
+cli_values=()
 while (($#)); do
   case "$1" in
-    --persist | --engine | --target | --bind | --bind-file | --network | --interface | --outbound | --ip)
-      [[ -n ${2-} ]] || die "$1 requires a value"
-      case "$1" in
-        --persist)
-          [[ $2 =~ ^[A-Za-z0-9][A-Za-z0-9_.-]*$ ]] ||
-            die "invalid container name: $2 (use letters, digits, _, ., and -)"
-          persist=$2
-          ;;
-        --engine) engine=$2 ;;
-        --target) target=$2 ;;
-        --bind) add_bind "$2" . ;;
-        --bind-file) add_bind_file "$2" ;;
-        --network | --interface | --outbound)
-          [[ -z $network_flag ]] || die "use only one of --network, --interface, and --outbound"
-          network_flag=$1
-          network=$2
-          ;;
-        --ip) address=$2 ;;
-      esac
-      shift 2
-      ;;
-    --nix)
-      mount_nix=true
-      shift
-      ;;
-    --no-nix)
-      mount_nix=false
-      shift
-      ;;
-    --agent-state | --no-agent-state)
-      agent_state=$1
+    --no-config)
+      read_config=false
       shift
       ;;
     -h | --help)
@@ -210,13 +249,41 @@ while (($#)); do
       shift
       break
       ;;
-    -*) die "unknown launcher option: $1" ;;
+    -*)
+      option=$1
+      shift
+      value=
+      if takes_value "$option"; then
+        [[ -n ${1-} ]] || die "$option requires a value"
+        value=$1
+        shift
+      fi
+      case "$option" in --network | --interface | --outbound) cli_network=true ;; esac
+      cli_flags+=("$option")
+      cli_values+=("$value")
+      ;;
     *) break ;;
   esac
 done
 
-(($# >= 1)) || die 'provide a workspace (see --help)'
-[[ -n $1 ]] || die 'workspace must be a directory'
+workspace_input=${1-.}
+if (($#)); then shift; fi
+[[ -n $workspace_input ]] || die 'workspace must be a directory'
+[[ $workspace_input = /* ]] || workspace_input=./$workspace_input
+if [[ ! -d $workspace_input ]] || ! resolve_path "$workspace_input"; then
+  die "cannot access workspace directory: $workspace_input"
+fi
+workspace=$REPLY
+if [[ $read_config == true ]]; then read_project_config; fi
+if [[ $cli_network == true ]]; then
+  # Replacing the project network also drops its IP unless the CLI supplies one.
+  network_flag=
+  address=
+fi
+for i in "${!cli_flags[@]}"; do
+  apply_option . "${cli_flags[i]}" "${cli_values[i]}"
+done
+
 [[ $target = /* ]] || die 'target must be an absolute container path'
 case "$network_flag:$address" in
   --interface:) die '--interface requires --ip with the container address' ;;
@@ -231,16 +298,9 @@ case "$network_flag:$address" in
   *:?*) die '--ip requires --network or --interface' ;;
 esac
 
-workspace_input=$1
-shift
 if (($# == 0)); then
   set -- agentbox:latest
 fi
-[[ $workspace_input = /* ]] || workspace_input=./$workspace_input
-if [[ ! -d $workspace_input ]] || ! resolve_path "$workspace_input"; then
-  die "cannot access workspace directory: $workspace_input"
-fi
-workspace=$REPLY
 
 check_mount_path "$workspace$target"
 

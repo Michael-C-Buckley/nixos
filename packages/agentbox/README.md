@@ -53,6 +53,34 @@ host workspace's absolute path can keep session paths consistent between the
 host and the container. Pass the engine's `--mount` or `--volume` option before
 the image for additional files or persistent state.
 
+## Workspace defaults: `.agentbox`
+
+Create `.agentbox` in the workspace root, then run `agentbox` there or
+`agentbox /path/to/project` from elsewhere. For example:
+
+```text
+# One launcher option per line
+--no-nix
+--network none
+--target /src
+--bind ./sample data:/data:ro
+```
+
+The rest of each line after the option name is its literal value. Don't quote
+paths with spaces. Blank lines and full-line `#` comments are ignored. The file
+is not a shell script: there is no variable, command, or glob expansion. Relative
+`--bind` sources and `--bind-file` names in the file resolve from the workspace.
+As on the CLI, a `--bind` source starting with `~/` resolves from your home.
+
+Command-line options override file defaults; binds accumulate. Selecting a
+network on the CLI replaces the file's network selection and IP together. Pass
+engine run options, the image, and its command on the CLI after the workspace,
+not in `.agentbox`. Recreate a persistent container to change its mounts.
+
+Review `.agentbox` before launching an unfamiliar checkout: its options can
+expose host files and change networking. Use `agentbox --no-config .` to ignore
+it. Only the selected workspace is checked; parent directories are not searched.
+
 ## Extra bind mounts
 
 ```sh
