@@ -1,14 +1,12 @@
 {
   config,
   configPaths,
-  inputs,
   lib,
   pkgs,
   ...
 }:
 let
   inherit (config.environment) loadEnv profileDirectory genericLinux;
-  inherit (pkgs.callPackage ../../packages/zsh { inherit configPaths inputs; }) plugins;
   zshenv = ''
     if [[ "''${_NIXOS_HJEM_ENV:-}" != ${loadEnv} ]]; then
       . ${loadEnv}
@@ -25,7 +23,7 @@ in
   xdg.config.files = {
     "zsh/.zshenv".text = zshenv;
     "zsh/.zshrc".text = ''
-      : ''${ZSH_PLUGIN_DIR=${plugins}}
+      : ''${ZSH_PLUGIN_DIR=${pkgs.localZsh.plugins}}
       : ''${SHELL_COMMON_DIR=${configPaths.shell}}
       fpath=(${profileDirectory}/share/zsh/site-functions $fpath)
     ''

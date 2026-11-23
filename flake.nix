@@ -10,6 +10,7 @@
       systems = args.systemOverrides or (import ./systems.nix);
       configPaths = import ./configs { inherit (inputs.nixpkgs) lib; };
       hjemModules = mkModules ./modules/hjem;
+      localOverlay = import ./packages/overlays.nix { inherit inputs configPaths; };
     in
     inputs.adios-flake.lib.mkFlake {
       inherit self inputs systems;
@@ -20,6 +21,7 @@
         inherit configPaths hjemModules;
         nixosModules = mkModules ./modules/nixos;
         nixosConfigurations = import ./hosts { inherit self inputs configPaths; };
+        overlays.default = localOverlay;
       };
 
       perSystem =
@@ -28,6 +30,7 @@
           pkgs = import inputs.nixpkgs {
             inherit system;
             config.allowUnfree = true;
+            overlays = [ localOverlay ];
           };
         in
         {

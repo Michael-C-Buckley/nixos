@@ -8,5 +8,8 @@
       kitty.terminfo
       ghostty.terminfo
       tmux.terminfo
-    ]);
+    ])
+    ++ [
+      pkgs.localFish
+    ];
 }

@@ -5,6 +5,7 @@
   ...
 }:
 {
+  packages = lib.optionals pkgs.stdenv.hostPlatform.isLinux [ pkgs.localZed ];
   xdg.config.files."zed/themes/oasis_midnight_dark.json".source =
     ../../../configs/zed/themes/oasis_midnight_dark.json;
   activation.commands."30-zed-settings" = ''

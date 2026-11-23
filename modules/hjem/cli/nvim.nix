@@ -1,6 +1,5 @@
-{ configPaths, pkgs, ... }:
+{ pkgs, ... }:
 let
-  nvim = pkgs.callPackage ../../../packages/nvim { inherit configPaths; };
   python = pkgs.python3.withPackages (ps: [
     ps.debugpy
     ps.pytest
@@ -10,7 +9,7 @@ in
   imports = [ ../runtime.nix ];
 
   packages = [
-    nvim
+    pkgs.localNvim
     python
   ]
   ++ (with pkgs; [
