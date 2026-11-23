@@ -1,12 +1,11 @@
 {
   config,
-  configPaths,
   pkgs,
-  inputs,
   lib,
   ...
 }:
 let
+  inherit (pkgs) localFish localZsh;
   home = config.hjem.users.michael or null;
   useHjemEnv = home != null && home.enable;
   uid = toString config.users.users.michael.uid;
@@ -38,9 +37,6 @@ let
       set -gx _NIXOS_HJEM_ENV ${loadEnv}
     end
   '';
-
-  zsh = pkgs.callPackage ../../../packages/zsh { inherit inputs configPaths; };
-  fish = pkgs.callPackage ../../../packages/fish { inherit configPaths; };
 in
 {
   # Zsh stays installed and configured; Fish is the login shell
@@ -55,15 +51,15 @@ in
     };
   };
   environment.shells = map lib.getExe [
-    zsh
-    fish
+    localFish
+    localZsh
   ];
 
   users.users.michael = {
-    shell = lib.getExe fish;
+    shell = lib.getExe pkgs.localFish;
     packages = [
-      zsh
-      fish
+      localZsh
+      localFish
     ];
     uid = lib.mkDefault 1000;
     extraGroups = [ "wheel" ];
