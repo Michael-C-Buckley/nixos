@@ -14,6 +14,11 @@ pass `--persist`.
 The base image is ubuntu and a few common dev tools are included (like nix).
 Modify to suite your needs.
 
+## CLANKED
+
+This tool is very largely clanked. I own the design and the idea, execution is
+nearly entirely bot-written, especially the bash script.
+
 ## Build and run
 
 Build the image with your host UID and GID so the container user can write to

@@ -11,6 +11,10 @@
 #   $prompt_refresh_interval seconds (default 5; 0 turns it off). This redraws
 #   the prompt in place only when something changed.
 
+# CLANKED: I had a bot create this based on the starship config that I have used
+# it works well; I occasionally request changes though haven't touched it myself
+# This is the prompt I use primarily when using fish
+
 # Re-sourcing (e.g. `prompt starship`) starts from a clean cache
 set -e __native_prompt_pwd
 set -e __native_prompt_git_key

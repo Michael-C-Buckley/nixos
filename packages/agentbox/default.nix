@@ -1,3 +1,4 @@
+# CLANKED: see local README
 { writeShellApplication }:
 
 writeShellApplication {

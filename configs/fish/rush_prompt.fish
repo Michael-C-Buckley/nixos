@@ -1,4 +1,6 @@
 # Two-line Fish-native prompt matching the Rush configuration.
+# CLANKED: another prompt I had an agent write, it was based on
+# a shell I made for Rush, which liked enough to port back
 
 function __rb_prompt_git_root
     command -q git; or return 1

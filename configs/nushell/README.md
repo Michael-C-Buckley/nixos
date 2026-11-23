@@ -4,6 +4,11 @@ The interactive config is a set of autoload files. Nushell sources every
 `*.nu` in `autoload/` in name order, and only for interactive shells, so
 scripts, `nu -c`, and shebangs run without it.
 
+## CLANKED
+
+The bot came up with the design and implementation for it.
+Original spec came from my requirements, the actual design was clanked too.
+
 ## Load order
 
 1. `~/.config/nushell/env.nu`, then `config.nu`. These stay machine-local, and
