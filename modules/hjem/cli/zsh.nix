@@ -16,7 +16,7 @@ let
   '';
 in
 {
-  imports = [ ./cli/starship.nix ];
+  imports = [ ./starship.nix ];
 
   packages = [ pkgs.zsh ];
   files.".zshenv".text = zshenv;
