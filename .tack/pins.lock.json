@@ -7,6 +7,14 @@
     "narHash": "sha256-tPaJU3F4mshoSnp2x5ArlepBNBFniNNOugT7mWIIz5g=",
     "lastModified": 1793308264
   },
+  "agentbox": {
+    "type": "github",
+    "owner": "michael-c-buckley",
+    "repo": "agentbox",
+    "rev": "e49ba6566a76d227138c63c583d794ac49b26bd4",
+    "narHash": "sha256-8B8+fCDIwHiIu7O7MeTlov5TvkVT9C8HeFCiszZJCkk=",
+    "lastModified": 1795525431
+  },
   "fast-abbr-highlighting": {
     "type": "github",
     "owner": "5A6F65",

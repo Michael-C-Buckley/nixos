@@ -10,6 +10,7 @@
       systems = args.systemOverrides or (import ./systems.nix);
       configPaths = import ./configs { inherit (inputs.nixpkgs) lib; };
       hjemModules = mkModules ./modules/hjem;
+      nixosModules = mkModules ./modules/nixos;
       localOverlay = import ./packages/overlays.nix { inherit inputs configPaths; };
     in
     inputs.adios-flake.lib.mkFlake {
@@ -18,9 +19,16 @@
       flake = {
         # Exposed so it is available for any downstreams that use this flake as an input
         lib.tackInputs = inputs;
-        inherit configPaths hjemModules;
-        nixosModules = mkModules ./modules/nixos;
-        nixosConfigurations = import ./hosts { inherit self inputs configPaths; };
+        inherit configPaths hjemModules nixosModules;
+        nixosConfigurations = import ./hosts {
+          inherit
+            self
+            inputs
+            configPaths
+            hjemModules
+            nixosModules
+            ;
+        };
         overlays.default = localOverlay;
       };
 

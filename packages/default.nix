@@ -12,7 +12,6 @@ let
 in
 {
   inherit nvim git-credential-sops;
-  agentbox = pkgs.callPackage ./agentbox { };
   git = pkgs.callPackage ./git/git.nix { inherit configPaths git-credential-sops; };
   zsh = pkgs.callPackage ./zsh { inherit configPaths inputs; };
   fish = pkgs.callPackage ./fish { inherit configPaths; };
