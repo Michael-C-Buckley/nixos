@@ -1,4 +1,4 @@
 { pkgs, ... }:
 {
-  packages = [ (pkgs.callPackage ../../../packages/zed { }) ];
+  packages = [ (pkgs.callPackage ../../../packages/gram { }) ];
 }

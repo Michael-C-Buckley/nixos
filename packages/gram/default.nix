@@ -1,8 +1,7 @@
-# Wrapped Zed for fonts and other binary tooling
-# Settings excluded since Zed does not do well with immutable files there
+# Wrapped Gram for fonts and other binary tooling
 {
   pkgs,
-  zed-editor,
+  gram,
   fontDirectories ? with pkgs; [
     ibm-plex
     lilex
@@ -10,8 +9,8 @@
   ...
 }:
 let
-  zedPkgs = pkgs.buildEnv {
-    name = "zed-runtimeenv";
+  gramPkgs = pkgs.buildEnv {
+    name = "gram-runtimeenv";
     pathsToLink = [ "/bin" ];
     paths = with pkgs; [
       # Nix
@@ -27,21 +26,30 @@ let
       # Python
       python3
       ruff
-      zuban
+      basedpyright
 
       # Yaml
       yaml-language-server
+
+      # Json
+      biome
+
+      # Toml
+      taplo
+
+      # Lua
+      lua-language-server
     ];
   };
 in
 pkgs.symlinkJoin {
-  name = "zeditor";
-  paths = [ zed-editor ];
+  name = "gramitor";
+  paths = [ gram ];
   nativeBuildInputs = [ pkgs.makeBinaryWrapper ];
-  meta.mainProgram = "zeditor";
+  meta.mainProgram = "gram";
   postBuild = ''
-    wrapProgram $out/bin/zeditor \
-    --prefix PATH : ${zedPkgs}/bin \
+    wrapProgram $out/bin/gram \
+    --prefix PATH : ${gramPkgs}/bin \
     --set FONTCONFIG_FILE ${pkgs.makeFontsConf { inherit fontDirectories; }}
   '';
 }

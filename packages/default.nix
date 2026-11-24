@@ -18,5 +18,5 @@ in
   nushell = pkgs.callPackage ./nushell { inherit configPaths; };
 }
 // pkgs.lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
-  zed = pkgs.callPackage ./zed { };
+  gram = pkgs.callPackage ./gram { };
 }

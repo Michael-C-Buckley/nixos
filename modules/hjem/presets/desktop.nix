@@ -5,6 +5,6 @@
     ../graphics/noctalia.nix
     ../packages/desktop.nix
     ../graphics/umbriel.nix
-    ../apps/zed.nix
+    ../apps/gram.nix
   ];
 }
