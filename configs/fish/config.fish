@@ -25,12 +25,19 @@ end
 fish_add_path -g /opt/homebrew/sbin /opt/homebrew/bin $HOME/bin $HOME/.local/bin
 
 # ── SSH  ─────────────────────────────────────────────────────────────────────
-# Inherit the session agent, including agents forwarded by SSH. Probe legacy
-# Linux sockets when the session has no usable socket.
-if not test -S "$SSH_AUTH_SOCK"; and test (uname -s) = Linux
-    set -l runtime_dir "$XDG_RUNTIME_DIR"
-    test -n "$runtime_dir"; or set runtime_dir /run/user/(id -u)
-    for agent_sock in "$HOME/.ssh/agent/custom.sock" "$runtime_dir/ssh-agent.sock" "$HOME/.ssh/agent/internal.sock"
+# Inherit the session agent, including agents forwarded by SSH. Look up a
+# local agent only when the session has no usable socket.
+if not test -S "$SSH_AUTH_SOCK"
+    set -l agent_sockets
+    switch (uname -s)
+        case Darwin
+            set agent_sockets (/bin/launchctl getenv SSH_AUTH_SOCK 2>/dev/null) "$HOME/.ssh/agent/openssh.sock"
+        case Linux
+            set -l runtime_dir "$XDG_RUNTIME_DIR"
+            test -n "$runtime_dir"; or set runtime_dir /run/user/(id -u)
+            set agent_sockets "$HOME/.ssh/agent/custom.sock" "$runtime_dir/ssh-agent.sock" "$HOME/.ssh/agent/internal.sock"
+    end
+    for agent_sock in $agent_sockets
         if test -S "$agent_sock"
             set -gx SSH_AUTH_SOCK "$agent_sock"
             break
