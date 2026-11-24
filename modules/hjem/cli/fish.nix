@@ -8,6 +8,8 @@
 let
   inherit (config.environment) loadEnv;
   inherit (configPaths) fish;
+  # Older setups may already have a symlink at fish/functions.
+  functionDirectory = "hjem-functions";
   prompts =
     builtins.readDir fish
     |> lib.filterAttrs (name: type: type == "regular" && lib.hasSuffix "_prompt.fish" name)
@@ -18,7 +20,7 @@ let
       }
     );
   functions = lib.mapAttrs' (
-    name: body: lib.nameValuePair "fish/functions/${name}.fish" { text = body; }
+    name: body: lib.nameValuePair "fish/${functionDirectory}/${name}.fish" { text = body; }
   ) (import (fish + "/functions.nix"));
 in
 {
@@ -40,6 +42,7 @@ in
         end
       end
 
+      set -gp fish_function_path "$__fish_config_dir/${functionDirectory}"
       set -g __prompt_dir "$__fish_config_dir/prompts"
       set -q SHELL_COMMON_DIR; or set -g SHELL_COMMON_DIR ${configPaths.shell}
     '';
