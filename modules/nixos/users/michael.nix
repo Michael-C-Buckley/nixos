@@ -62,7 +62,10 @@ in
       localFish
     ];
     uid = lib.mkDefault 1000;
-    extraGroups = [ "wheel" ];
+    extraGroups = [
+      "wheel"
+      "rex"
+    ];
     isNormalUser = true;
   };
 }
