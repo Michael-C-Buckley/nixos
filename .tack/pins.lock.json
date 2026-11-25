@@ -77,6 +77,14 @@
     "rev": "04906337b6d53e8bb0eaf0470ae9f070a4d4eb55",
     "narHash": "sha256-vJoAj1xon3Mhfc8FZ5uBrPyZee9Eqa05gG/taXv6iZ8="
   },
+  "rexy": {
+    "type": "github",
+    "owner": "michael-c-buckley",
+    "repo": "rexy",
+    "rev": "3e6a0360224ea1c91002f1c677db5d4872995b8b",
+    "narHash": "sha256-bsXT6HffRBbJaWcDpON/VOvs4U8LBV5r2pIS2ZUin7g=",
+    "lastModified": 1795609121
+  },
   "zsh-git-tab": {
     "type": "github",
     "owner": "michael-c-buckley",
