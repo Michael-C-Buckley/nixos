@@ -39,7 +39,7 @@ setopt CORRECT
 setopt EXTENDED_GLOB
 
 # Nix components
-export NH_OS_FLAKE="${NH_OS_FLAKE:-${NH_FLAKE:-$HOME/.config/nixos}}"
+export NH_OS_FLAKE="${NH_OS_FLAKE:-${NH_FLAKE:-$HOME/.config/flake}}"
 # Zsh-only, so it is not in configs/shell/aliases.
 alias nix='noglob nix'
 
