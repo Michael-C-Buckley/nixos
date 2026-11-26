@@ -1,0 +1,17 @@
+[[language]]
+name = "python"
+auto-format = false
+formatter = { command = "ruff", args = ["format", "--quiet", "-"] }
+language-servers = ["basedpyright", "ruff"]
+
+[language.debugger]
+name = "debugpy"
+transport = "stdio"
+command = "python3"
+args = ["-m", "debugpy.adapter"]
+
+[[language.debugger.templates]]
+name = "source"
+request = "launch"
+completion = [{ name = "entrypoint", completion = "filename", default = "." }]
+args = { mode = "debug", program = "{0}" }

@@ -1,0 +1,37 @@
+theme = "ao"
+
+[editor]
+line-number = "relative"
+bufferline = "multiple"
+cursorline = true
+true-color = true
+rulers = [120]
+end-of-line-diagnostics = "hint"
+
+[editor.inline-diagnostics]
+cursor-line = "error"
+other-lines = "disable"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.indent-guides]
+character = "╎"
+render = true
+
+[keys.normal]
+"A-," = "goto_previous_buffer"
+"A-." = "goto_next_buffer"
+A-w = ":buffer-close"
+A-x = "extend_to_line_bounds"
+A-r = ":reload-all"
+X = "select_line_above"
+
+[keys.select]
+A-x = "extend_to_line_bounds"
+X = "select_line_above"

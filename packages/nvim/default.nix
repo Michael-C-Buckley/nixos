@@ -17,28 +17,7 @@ pkgs.neovim.override {
   configure = {
     packages.treesitter.start = [
       (pkgs.vimPlugins.nvim-treesitter.withPlugins (
-        p:
-        with p;
-        [
-          bash
-          diff
-          go
-          json
-          lua
-          markdown
-          markdown_inline
-          nix
-          nu
-          python
-          query
-          rust
-          toml
-          vim
-          vimdoc
-          yaml
-          yang
-        ]
-        ++ extraParsers
+        p: map (name: p.${name}) (import ../grammars.nix) ++ extraParsers
       ))
     ];
 

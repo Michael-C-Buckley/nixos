@@ -17,6 +17,7 @@ nixos-core.url = "gh:manic-systems/nixos-core"
 nix-secrets.url = "gh:unnamed-systems/nix-secrets"
 agentbox.url = "mine:agentbox"
 rexy.url = "mine:rexy"
+helix.url = "gh:helix-editor/helix"
 
 # This one is rather thick with or without the follow
 # It does also break quite easily if following, and the

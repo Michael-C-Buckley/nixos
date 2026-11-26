@@ -3,6 +3,7 @@
     codex
     claude-code
     signal-desktop
+    localHelix
     imv
     mpv
     xarchiver
