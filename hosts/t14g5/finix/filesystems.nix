@@ -15,8 +15,6 @@ let
 in
 {
   boot.initrd = {
-    supportedFilesystems.lvm.enable = true;
-    # TODO: Remove once Finix boots reliably on this host.
     emergencyAccess = true;
     finit.tasks = {
       # Activate the existing volume group only after cryptroot is unlocked.
@@ -28,11 +26,6 @@ in
       conditions = [ "task/lvm/success" ];
     });
   };
-  boot.supportedFilesystems.lvm.enable = true;
-
-  # Finix's default tmpfiles rule resets /tmp to 0755 after it is mounted.
-  # Restore the sticky, writable mode so the user D-Bus session can bind its socket.
-  finit.tmpfiles.rules = lib.mkAfter [ "d /tmp 1777 root root" ];
 
   fileSystems = {
     # Finix represents LUKS mappings as pseudo-filesystems, not mount points.

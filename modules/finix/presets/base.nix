@@ -7,6 +7,7 @@
 {
   imports = [
     ../hjem
+    ../system/filesystems.nix
     ../users/michael.nix
     modules.bash
     modules.getty
