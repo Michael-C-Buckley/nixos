@@ -7,6 +7,14 @@
   ...
 }:
 let
+  specialArgs = {
+    inherit
+      inputs
+      configPaths
+      nixosModules
+      hjemModules
+      ;
+  };
   system = "x86_64-linux";
   hostImports = import ../modules/nixos/host-imports.nix;
   mkNixosHost =
@@ -17,14 +25,7 @@ let
     }:
     inputs.nixpkgs.lib.nixosSystem {
       pkgs = self.legacyPackages.${system};
-      specialArgs = {
-        inherit
-          inputs
-          configPaths
-          nixosModules
-          hjemModules
-          ;
-      };
+      inherit specialArgs;
       modules =
         hostImports.${hostname}
         ++ [
@@ -43,7 +44,7 @@ let
     hostname: entry:
     inputs.finix.lib.finixSystem {
       inherit (inputs.nixpkgs) lib;
-      specialArgs = { inherit inputs configPaths; };
+      inherit specialArgs;
       modules = [
         entry
         {

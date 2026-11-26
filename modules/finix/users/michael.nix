@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  hjemModules,
   ...
 }:
 let
@@ -20,7 +21,8 @@ in
 
   hjem.users.michael = {
     imports = [
-      ../../hjem/presets/base-common.nix
+      hjemModules.presets.base-common
+      # TODO: relocate this module
       ../../hjem/michael.nix
     ];
     packages = [
