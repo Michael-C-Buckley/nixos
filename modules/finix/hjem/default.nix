@@ -1,4 +1,3 @@
-# Some basic plumbing to get hjem to work with finix
 {
   config,
   inputs,
@@ -12,7 +11,7 @@
     specialArgs = { inherit inputs; };
     clobberByDefault = true;
     extraModules = [
-      ../hjem/runtime.nix
+      ../../hjem/runtime.nix
       {
         config.environment.useSystemd = false;
         # Shared Linux modules may contain disabled systemd definitions. Finix
@@ -35,6 +34,9 @@
       }
     ];
   };
+
+  # Include package data in Hjem's per-user profile.
+  environment.pathsToLink = [ "/share" ];
 
   # Finix creates users' home directories in tmpfiles-setup. The linker must
   # not race that task or create the home itself with the wrong ownership.

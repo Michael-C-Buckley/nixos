@@ -39,9 +39,17 @@ systems, like home files.
 
 ### Finix
 
-A NixOS spin that replaced PID 1 from systemd to finit.
-Suitable for daily driving by power users of both linux and nix.
-Not necessarily recommended for someone who isn't strongly confident in both.
+Finix uses Finit as PID 1. The flake exports reusable, grouped
+`finixModules` and three x86_64 configurations under
+`nixosConfigurations`.
+
+- `t14f` is the Finix installation for T14g5. It shares hardware, Secure Boot
+  keys, and the Hjem desktop with `t14`. Finix unlocks LUKS with a passphrase.
+- `finix` is a persistent UEFI guest using Limine. Its disk layout expects
+  an ext4 root labeled `finix` and a FAT32 EFI partition labeled `EFI`.
+- `finix-vm` is a disposable QEMU guest with a serial console. On x86_64 Linux,
+  run `nix run 'path:.#finix-vm'` to start it. The console logs in as
+  `michael` with passwordless sudo.
 
 ### Hjem
 

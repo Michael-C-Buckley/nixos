@@ -1,4 +1,4 @@
 { pkgs, ... }:
 {
-  packages = [ (pkgs.callPackage ../../../packages/gram { }) ];
+  packages = [ pkgs.localGram ];
 }

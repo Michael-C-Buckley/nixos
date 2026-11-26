@@ -7,9 +7,17 @@
   ...
 }:
 let
+  specialArgs = {
+    inherit
+      inputs
+      configPaths
+      nixosModules
+      hjemModules
+      ;
+  };
   system = "x86_64-linux";
   hostImports = import ../modules/nixos/host-imports.nix;
-  mkHost =
+  mkNixosHost =
     hostname:
     {
       modules ? [ ],
@@ -17,14 +25,7 @@ let
     }:
     inputs.nixpkgs.lib.nixosSystem {
       pkgs = self.legacyPackages.${system};
-      specialArgs = {
-        inherit
-          inputs
-          configPaths
-          nixosModules
-          hjemModules
-          ;
-      };
+      inherit specialArgs;
       modules =
         hostImports.${hostname}
         ++ [
@@ -39,10 +40,28 @@ let
         ]
         ++ modules;
     };
+  mkFinixHost =
+    hostname: entry:
+    inputs.finix.lib.finixSystem {
+      inherit (inputs.nixpkgs) lib;
+      inherit specialArgs;
+      modules = [
+        entry
+        {
+          networking.hostName = hostname;
+          nixpkgs.pkgs = self.legacyPackages.${system};
+        }
+      ];
+    };
 in
-builtins.mapAttrs mkHost {
+builtins.mapAttrs mkNixosHost {
   x570 = { };
   t14.cfgName = "t14g5";
   b550 = { };
   tungsten = { };
+}
+// builtins.mapAttrs mkFinixHost {
+  t14f = ./t14g5/finix/config.nix;
+  finix = ./finix/config.nix;
+  finix-vm = ./finix-vm/config.nix;
 }

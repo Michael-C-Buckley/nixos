@@ -11,6 +11,9 @@
       configPaths = import ./configs { inherit (inputs.nixpkgs) lib; };
       hjemModules = mkModules ./modules/hjem;
       nixosModules = mkModules ./modules/nixos;
+      finixModules = mkModules ./modules/finix // {
+        inherit (nixosModules) packages;
+      };
       localOverlay = import ./packages/overlays.nix { inherit inputs configPaths; };
     in
     inputs.adios-flake.lib.mkFlake {
@@ -19,7 +22,12 @@
       flake = {
         # Exposed so it is available for any downstreams that use this flake as an input
         lib.tackInputs = inputs;
-        inherit configPaths hjemModules nixosModules;
+        inherit
+          configPaths
+          hjemModules
+          nixosModules
+          finixModules
+          ;
         nixosConfigurations = import ./hosts {
           inherit
             self
@@ -45,7 +53,11 @@
           # This instance is reused everywhere so that no other nixpkgs has to be imported or reimported
           legacyPackages = pkgs;
           devShells.default = import ./shell.nix { inherit pkgs; };
-          packages = import ./packages { inherit pkgs inputs configPaths; };
+          packages =
+            import ./packages { inherit pkgs inputs configPaths; }
+            // lib.optionalAttrs (system == "x86_64-linux") {
+              finix-vm = self.nixosConfigurations.finix-vm.config.system.build.vm;
+            };
         };
     };
 }
