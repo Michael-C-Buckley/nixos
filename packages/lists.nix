@@ -3,23 +3,34 @@ pkgs: with pkgs; {
     age
     bat
     delta
+    duf
     dust
     eza
     fd
+    file
     fzf
     git
     jq
     mosh
+    nh
     nix-graph
     nix-tree
+    neovim
     ripgrep
+    socat
     sops
     starship
+    tmux
     tig
     tmux
+    vim
     yazi
     zoxide
     (callPackage ./ns { })
+    alacritty.terminfo
+    kitty.terminfo
+    ghostty.terminfo
+    tmux.terminfo
   ];
 
   dev = [
