@@ -15,7 +15,6 @@ pkgs: with pkgs; {
     nh
     nix-graph
     nix-tree
-    neovim
     ripgrep
     socat
     sops
