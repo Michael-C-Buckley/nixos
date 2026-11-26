@@ -6,38 +6,19 @@
   "outline_panel": {
     "dock": "left"
   },
-  "collaboration_panel": {
-    "dock": "left"
-  },
-  "auto_install_extensions": {
-    "nix": true,
-    "toml": true,
-    "lua": true,
-    "zuban": true
-  },
   "tabs": { "file_icons": true, "git_status": true, "show_diagnostics": "all" },
-  "telemetry": { "diagnostics": false, "metrics": false },
   "toolbar": { "code_actions": true },
   "diagnostics": { "inline": { "enabled": true, "min_column": 80 } },
-   "git": { "git_gutter": "tracked_files" },
-  "agent": {
-    "dock": "right",
-    "favorite_models": [],
-    "model_parameters": []
-  },
+  "git": { "git_gutter": "tracked_files" },
   "icon_theme": {
     "mode": "system",
-    "light": "Zed (Default)",
-    "dark": "Zed (Default)"
-  },
-  "session": {
-    "trust_all_worktrees": true
+    "light": "Gram (Default)",
+    "dark": "Gram (Default)"
   },
   "vim_mode": true,
   "vim": {
-      "toggle_relative_line_numbers": true
+    "toggle_relative_line_numbers": true
   },
-  "base_keymap": "Zed",
   "ui_font_size": 16,
   "buffer_font_size": 15,
   "theme": {
@@ -60,9 +41,6 @@
     },
     "Nix": {
       "language_servers": ["nil"]
-    },
-    "Python": {
-      "language_servers": ["ruff", "zuban"]
     }
   }
 }

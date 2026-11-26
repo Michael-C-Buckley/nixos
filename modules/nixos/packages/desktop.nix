@@ -31,5 +31,6 @@ in
       ;
     ns = pkgs.callPackage ../../../packages/ns { };
     inherit (inputs.helium.packages.${system}) helium-widevine;
+    inherit (inputs.rexy.packages.${system}) rexy;
   };
 }

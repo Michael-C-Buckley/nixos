@@ -7,6 +7,14 @@
     "narHash": "sha256-tPaJU3F4mshoSnp2x5ArlepBNBFniNNOugT7mWIIz5g=",
     "lastModified": 1793308264
   },
+  "agentbox": {
+    "type": "github",
+    "owner": "michael-c-buckley",
+    "repo": "agentbox",
+    "rev": "e49ba6566a76d227138c63c583d794ac49b26bd4",
+    "narHash": "sha256-8B8+fCDIwHiIu7O7MeTlov5TvkVT9C8HeFCiszZJCkk=",
+    "lastModified": 1795525431
+  },
   "fast-abbr-highlighting": {
     "type": "github",
     "owner": "5A6F65",
@@ -68,6 +76,14 @@
     "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1122823.04906337b6d5/nixexprs.tar.zst",
     "rev": "04906337b6d53e8bb0eaf0470ae9f070a4d4eb55",
     "narHash": "sha256-vJoAj1xon3Mhfc8FZ5uBrPyZee9Eqa05gG/taXv6iZ8="
+  },
+  "rexy": {
+    "type": "github",
+    "owner": "michael-c-buckley",
+    "repo": "rexy",
+    "rev": "3e6a0360224ea1c91002f1c677db5d4872995b8b",
+    "narHash": "sha256-bsXT6HffRBbJaWcDpON/VOvs4U8LBV5r2pIS2ZUin7g=",
+    "lastModified": 1795609121
   },
   "zsh-git-tab": {
     "type": "github",

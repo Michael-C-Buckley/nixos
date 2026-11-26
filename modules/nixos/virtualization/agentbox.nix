@@ -1,13 +1,5 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-{
-  # Move this once I figure out how I want to position it
-  environment.systemPackages = [ (pkgs.callPackage ../../../packages/agentbox { }) ];
+{ inputs, ... }: {
+  imports = [ inputs.agentbox.nixosModules.default ];
 
-  # Include a container engine if none is enabled.
-  virtualisation.docker.enable = lib.mkIf (!config.virtualisation.podman.enable) (lib.mkDefault true);
+  programs.agentbox.enable = true;
 }

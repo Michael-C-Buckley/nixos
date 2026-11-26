@@ -30,8 +30,8 @@ let
     "application/toml"
     "application/x-shellscript"
     "application/x-zerosize"
-    "x-scheme-handler/zed"
-  ] (_: "dev.zed.Zed.desktop");
+    "x-scheme-handler/gram"
+  ] (_: "app.liten.Gram.desktop");
 
   webTypes = lib.genAttrs [
     "x-scheme-handler/http"

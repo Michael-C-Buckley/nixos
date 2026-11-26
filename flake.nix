@@ -28,7 +28,15 @@
           nixosModules
           finixModules
           ;
-        nixosConfigurations = import ./hosts { inherit self inputs configPaths; };
+        nixosConfigurations = import ./hosts {
+          inherit
+            self
+            inputs
+            configPaths
+            hjemModules
+            nixosModules
+            ;
+        };
         overlays.default = localOverlay;
       };
 
