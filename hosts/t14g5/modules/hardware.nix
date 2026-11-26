@@ -1,4 +1,4 @@
-{
+{ pkgs, ... }: {
   boot = {
     initrd = {
       availableKernelModules = [
@@ -20,6 +20,7 @@
         "hid_generic"
       ];
     };
+    kernelPackages = pkgs.linuxPackages_xanmod_stable;
     kernelParams = [ "amd_pstate=active" ];
     kernelModules = [
       "kvm"

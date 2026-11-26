@@ -9,7 +9,6 @@
   t14 = [
     ./presets/desktop.nix
     ./system/btrfs.nix
-    ./system/zfs.nix # Still needed during the storage migration.
     ./system/lanzaboote.nix
   ];
   b550 = [

@@ -17,6 +17,7 @@
 
   boot = {
     binfmt.emulatedSystems = [ "aarch64-linux" ];
+    kernelPackages = pkgs.linuxPackages_xanmod_stable;
     kernelModules = [
       "kvm"
       "kvm-amd"
