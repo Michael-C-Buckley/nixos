@@ -46,7 +46,10 @@
           pkgs = import inputs.nixpkgs {
             inherit system;
             config.allowUnfree = true;
-            overlays = [ localOverlay ];
+            overlays = [
+              localOverlay
+              inputs.hermes.overlays.default
+            ];
           };
         in
         {

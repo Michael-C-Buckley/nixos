@@ -39,6 +39,14 @@
     "narHash": "sha256-a0Q3+z23BSIvsQaiz4fInmIbEuCEDgG+w0wh2hASu8g=",
     "lastModified": 1795607293
   },
+  "hermes": {
+    "type": "github",
+    "owner": "NousResearch",
+    "repo": "hermes-agent",
+    "rev": "fd482f8183dc6cc90f53726941aa64f757e4b330",
+    "narHash": "sha256-j57kduGbtO+1VWlEiuOZetwxPdHKGOcp4ncuVOz9yzs=",
+    "lastModified": 1795707689
+  },
   "hjem": {
     "type": "github",
     "owner": "feel-co",

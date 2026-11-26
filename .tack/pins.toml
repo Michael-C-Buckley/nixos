@@ -1,7 +1,6 @@
 [all_follow]
 nixpkgs = "nixpkgs"
 
-
 [shorturls]
 nixpkgs = "https://channels.nixos.org/{path}/nixexprs.tar.zst"
 gh = "github:{path}"
@@ -18,6 +17,14 @@ nixos-core.url = "gh:manic-systems/nixos-core"
 nix-secrets.url = "gh:unnamed-systems/nix-secrets"
 agentbox.url = "mine:agentbox"
 rexy.url = "mine:rexy"
+
+# This one is rather thick with or without the follow
+# It does also break quite easily if following, and the
+# same space difference is not worth it to me versus
+# the maintenance overhead, for this one
+[inputs.hermes]
+url = "gh:NousResearch/hermes-agent"
+exclude_follow = ["nixpkgs"]
 
 # Zsh Plugins I use
 [inputs.zsh-git-tab]
