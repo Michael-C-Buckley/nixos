@@ -44,3 +44,5 @@ cl=clear
 nv=nvim
 b=brew
 k=kubectl
+ra=rex-attach
+ta=tmux a
