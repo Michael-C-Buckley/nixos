@@ -26,11 +26,16 @@ pkgs: with pkgs; {
     yazi
     zoxide
     (callPackage ./ns { })
-    alacritty.terminfo
-    kitty.terminfo
-    ghostty.terminfo
-    tmux.terminfo
-  ];
+  ]
+  ++ (pkgs.lib.optionals pkgs.stdenv.isLinux (
+    with pkgs;
+    [
+      alacritty.terminfo
+      kitty.terminfo
+      ghostty.terminfo
+      tmux.terminfo
+    ]
+  ));
 
   dev = [
     git
