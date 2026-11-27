@@ -21,6 +21,7 @@ in
 { pkgs, lib, ... }: {
   imports = [
     ./base.nix
+    ../system/modprobed-db.nix
     ../virtualization/agentbox.nix
   ];
 
