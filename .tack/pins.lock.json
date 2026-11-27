@@ -35,9 +35,9 @@
     "type": "github",
     "owner": "amaanq",
     "repo": "helium-flake",
-    "rev": "077f04d80e1ddd98ff86b0709d9916f86385d12f",
-    "narHash": "sha256-a0Q3+z23BSIvsQaiz4fInmIbEuCEDgG+w0wh2hASu8g=",
-    "lastModified": 1795607293
+    "rev": "8f978b543fe1863c84c543d379c543b21eacbb0e",
+    "narHash": "sha256-Qwy97hBOaFd1Om3X3vEJ73rYO1vb9hJk6Zbt4GJqH5o=",
+    "lastModified": 1795732087
   },
   "helix": {
     "type": "github",
@@ -51,9 +51,9 @@
     "type": "github",
     "owner": "NousResearch",
     "repo": "hermes-agent",
-    "rev": "fd482f8183dc6cc90f53726941aa64f757e4b330",
-    "narHash": "sha256-j57kduGbtO+1VWlEiuOZetwxPdHKGOcp4ncuVOz9yzs=",
-    "lastModified": 1795707689
+    "rev": "28ef6e4e7d1df3015bf786dea6b0d355baf5c211",
+    "narHash": "sha256-1IU8+IJn4Hzz3zuKmgy6lZhVfs0M6u7r+++QY3S+rE0=",
+    "lastModified": 1795774050
   },
   "hjem": {
     "type": "github",
@@ -75,9 +75,9 @@
     "type": "github",
     "owner": "unnamed-systems",
     "repo": "nix-secrets",
-    "rev": "6790b3968acdaea623e210bedd290e24a6bd90a4",
-    "narHash": "sha256-iT2uRAVoTwcNXpX8uFiBEIYa2LhZEnol823UQrJvOVk=",
-    "lastModified": 1795635705
+    "rev": "8f0b0a7e114bb859fc4c0031ff60da49b3b56c75",
+    "narHash": "sha256-ZhhQcsCGml+tXFcIOd3r+ngCd+RH74aby2ouwrbRhaU=",
+    "lastModified": 1795724975
   },
   "nixos-core": {
     "type": "github",
