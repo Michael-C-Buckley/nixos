@@ -37,7 +37,6 @@ pkgs: with pkgs; {
     tig
     delta
     gh
-    herdr
     lazygit
     claude-code
     pi-coding-agent
