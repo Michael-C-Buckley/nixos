@@ -209,7 +209,8 @@ function __native_prompt_dir
 end
 
 function __native_prompt_hostname
-    set -q SSH_CONNECTION; or set -q SSH_CLIENT; or return
+    # Set FISH_PROMPT_SHOW_HOSTNAME=1 for remote sessions without SSH variables.
+    set -q SSH_CONNECTION; or set -q SSH_CLIENT; or test "$FISH_PROMPT_SHOW_HOSTNAME" = 1; or return
     printf '%s%s:%s' (set_color 5faf5f) (prompt_hostname) (set_color normal)
 end
 
