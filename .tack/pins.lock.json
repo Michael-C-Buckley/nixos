@@ -3,6 +3,8 @@
     "comview-aarch64-darwin": "https://github.com/rockorager/comview/releases/download/{tag}/comview_{version}_darwin_arm64.tar.gz",
     "comview-aarch64-linux": "https://github.com/rockorager/comview/releases/download/{tag}/comview_{version}_linux_arm64.tar.gz",
     "comview-x86_64-linux": "https://github.com/rockorager/comview/releases/download/{tag}/comview_{version}_linux_amd64.tar.gz",
+    "hjem": "github:feel-co/hjem",
+    "sops-nix": "github:mic92/sops-nix",
     "tack-aarch64-linux": "https://github.com/manic-systems/tack/releases/download/{tag}/tack-linux-arm64",
     "tack-x86_64-linux": "https://github.com/manic-systems/tack/releases/download/{tag}/tack-linux-amd64"
   },
@@ -90,9 +92,10 @@
     "type": "github",
     "owner": "feel-co",
     "repo": "hjem",
-    "rev": "414dbed9d65167f7a062d6292fe24eaf3f359ac7",
-    "narHash": "sha256-m0Dmp18AtrsD+X4HXRQ/jfEU7jg89P+7kjUf+Raz0t0=",
-    "lastModified": 1795415752
+    "rev": "d18b69ac5007602089b91714c194ce77dab7d10a",
+    "narHash": "sha256-1pa5tFqUKFkUtAap+wqET93Zvjc11lSN6EUeCXpk4yY=",
+    "lastModified": 1795817280,
+    "public": true
   },
   "lanzaboote": {
     "type": "github",
@@ -101,14 +104,6 @@
     "rev": "69c7f74b872aae4f360bdd0050106e0fddfed7aa",
     "narHash": "sha256-Yb47Gb1KlSGsedQuAqdDz/NNr9goz9PI+uCBDybN9Cs=",
     "lastModified": 1794657966
-  },
-  "nix-secrets": {
-    "type": "github",
-    "owner": "unnamed-systems",
-    "repo": "nix-secrets",
-    "rev": "8f0b0a7e114bb859fc4c0031ff60da49b3b56c75",
-    "narHash": "sha256-ZhhQcsCGml+tXFcIOd3r+ngCd+RH74aby2ouwrbRhaU=",
-    "lastModified": 1795724975
   },
   "nixos-core": {
     "type": "github",
@@ -131,6 +126,15 @@
     "rev": "e9122023f24c947f5cef6390b4858ab5a6e5b96c",
     "narHash": "sha256-A4bDID5zdeJvh0vOJmiuiGFi3y2cnVIfcyE9Xk6gsgQ=",
     "lastModified": 1795654400
+  },
+  "sops-nix": {
+    "type": "github",
+    "owner": "mic92",
+    "repo": "sops-nix",
+    "rev": "d5abe5e53200ad48254e8e6bd95e6cef94e66577",
+    "narHash": "sha256-2p8/wnENYHU2Z79Ir/rpq+V1sMI9mSD6xGAlvlbVBUY=",
+    "lastModified": 1795471345,
+    "public": true
   },
   "tack-aarch64-linux": {
     "type": "fixed",

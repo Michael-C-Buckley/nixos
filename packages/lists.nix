@@ -2,7 +2,7 @@ pkgs: with pkgs; {
   base = [
     age
     bat
-    delta
+    localComview
     duf
     dust
     eza
@@ -40,7 +40,7 @@ pkgs: with pkgs; {
   dev = [
     git
     tig
-    delta
+    localComview
     gh
     lazygit
     claude-code

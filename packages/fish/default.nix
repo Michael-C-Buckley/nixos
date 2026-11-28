@@ -26,7 +26,7 @@ let
         starship
         git
         ripgrep
-        delta
+        localComview
         tig
         lazygit
       ]

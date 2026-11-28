@@ -36,7 +36,7 @@ let
       [
         bat
         carapace
-        delta
+        localComview
         direnv
         eza
         fd

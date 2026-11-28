@@ -37,8 +37,8 @@ def fzf-file [] {
     let git_add_context = ($buffer_before_cursor =~ '^\s*git\s+add(?:\s|$)')
     let file = try {
         if $git_add_context {
-            let git_diff_preview = if (which delta | is-not-empty) {
-                "git diff --color=always -- {} | delta --dark --color-only"
+            let git_diff_preview = if (which comview | is-not-empty) {
+                "git diff --color=always -- {} | comview"
             } else {
                 "git diff --color=always -- {}"
             }

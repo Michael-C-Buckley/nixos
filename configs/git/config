@@ -16,13 +16,7 @@
 
 [core]
 	editor = nvim
-	pager = delta
-
-[delta]
-	line-numbers = true
-	navigate = true
-	side-by-side = true
-	zero-style = dim syntax
+	pager = localComview
 
 [diff]
 	algorithm = histogram

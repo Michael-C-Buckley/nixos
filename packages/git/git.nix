@@ -3,7 +3,7 @@
   pkgs,
   git,
   neovim,
-  delta,
+  localComview,
   configPaths,
   git-credential-sops,
   settings ? { },
@@ -54,7 +54,7 @@ pkgs.symlinkJoin {
       --set-default GIT_CONFIG_SYSTEM ${config}/gitconfig \
       --suffix PATH : ${
         lib.makeBinPath [
-          delta
+          localComview
           neovim
           git-credential-sops
         ]
