@@ -6,6 +6,11 @@
   # Instead, put the items on my user's path
   packages = with pkgs; [
     localHelix
+    # Integration Tooling
+    lazygit
+    scooter
+    yazi
+    # Language Tooling
     zuban
     ruff
     nil

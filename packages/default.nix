@@ -17,6 +17,7 @@ in
   fish = pkgs.callPackage ./fish { inherit configPaths; };
   nushell = pkgs.callPackage ./nushell { inherit configPaths; };
   helix = pkgs.callPackage ./helix { inherit inputs configPaths; };
+  helix-wrapped = pkgs.callPackage ./helix-wrapped { inherit inputs configPaths; };
 }
 // pkgs.lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
   gram = pkgs.callPackage ./gram { };

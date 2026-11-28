@@ -2,6 +2,7 @@ theme = "ayu_evolve"
 
 [editor]
 line-number = "relative"
+mouse = true
 bufferline = "multiple"
 cursorline = true
 true-color = true
@@ -31,6 +32,27 @@ A-w = ":buffer-close"
 A-x = "extend_to_line_bounds"
 A-r = ":reload-all"
 X = "select_line_above"
+C-y = [
+  ':sh rm -f /tmp/helix-yazi-chooser',
+  ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/helix-yazi-chooser',
+  ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/helix-yazi-chooser}',
+  ':redraw',
+  ':set mouse false',
+  ':set mouse true',
+]
+C-g = [
+  ":write-all",
+  ":insert-output lazygit >/dev/tty",
+  ":redraw",
+  ":reload-all",
+]
+C-r = [
+  ":write-all",
+  ":insert-output scooter --no-stdin >/dev/tty",
+  ":redraw",
+  ":reload-all",
+]
 
 [keys.select]
 A-x = "extend_to_line_bounds"
