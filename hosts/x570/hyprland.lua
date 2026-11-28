@@ -6,6 +6,12 @@ require("windowrules")
 
 hl.monitor({ output = "DP-1", mode = "3440x1440@165", position = "0x0", scale = 1 })
 
+hl.config({
+  render = {
+    cm_auto_hdr = 0,
+  },
+})
+
 for workspace = 1, 10 do
   hl.workspace_rule({
     workspace = tostring(workspace),
