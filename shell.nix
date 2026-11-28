@@ -4,7 +4,7 @@ let
     name = "flake-shell-env";
     pathsToLink = [ "/bin" ];
     paths = with pkgs; [
-      tack
+      (pkgs.localTack or tack)
       deadnix
       lefthook
       mdformat

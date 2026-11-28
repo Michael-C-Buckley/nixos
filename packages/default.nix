@@ -23,3 +23,6 @@ in
 // pkgs.lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
   gram = pkgs.callPackage ./gram { };
 }
+// pkgs.lib.optionalAttrs (inputs ? "tack-${pkgs.stdenv.hostPlatform.system}") {
+  tack = pkgs.callPackage ./tack { inherit inputs; };
+}

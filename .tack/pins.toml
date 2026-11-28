@@ -6,6 +6,7 @@ nixpkgs = "https://channels.nixos.org/{path}/nixexprs.tar.zst"
 gh = "github:{path}"
 mine = "github:michael-c-buckley/{path}"
 comview = "https://github.com/rockorager/comview/releases/download/{tag}/comview_{version}_{path}.tar.gz"
+tack = "https://github.com/manic-systems/tack/releases/download/{tag}/tack-linux-{path}"
 
 [inputs]
 nixpkgs.url = "nixpkgs:nixos-unstable"
@@ -50,6 +51,15 @@ tag = "v{version}"
 comview-aarch64-darwin.url = "comview:darwin_arm64"
 comview-aarch64-linux.url = "comview:linux_arm64"
 comview-x86_64-linux.url = "comview:linux_amd64"
+
+[groups.tack]
+type = "fixed"
+unpack = "file"
+tag = "v{version}"
+
+[inputs.tack]
+tack-aarch64-linux.url = "tack:arm64"
+tack-x86_64-linux.url = "tack:amd64"
 
 
 [tack]

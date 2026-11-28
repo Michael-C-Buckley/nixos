@@ -51,6 +51,7 @@ in
     nh.enable = true;
     tack = {
       enable = true;
+      package = lib.mkDefault (pkgs.localTack or pkgs.tack);
       nixConfTokens = true;
     };
   };

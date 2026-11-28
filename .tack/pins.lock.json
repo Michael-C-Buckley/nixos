@@ -2,7 +2,9 @@
   "$declared": {
     "comview-aarch64-darwin": "https://github.com/rockorager/comview/releases/download/{tag}/comview_{version}_darwin_arm64.tar.gz",
     "comview-aarch64-linux": "https://github.com/rockorager/comview/releases/download/{tag}/comview_{version}_linux_arm64.tar.gz",
-    "comview-x86_64-linux": "https://github.com/rockorager/comview/releases/download/{tag}/comview_{version}_linux_amd64.tar.gz"
+    "comview-x86_64-linux": "https://github.com/rockorager/comview/releases/download/{tag}/comview_{version}_linux_amd64.tar.gz",
+    "tack-aarch64-linux": "https://github.com/manic-systems/tack/releases/download/{tag}/tack-linux-arm64",
+    "tack-x86_64-linux": "https://github.com/manic-systems/tack/releases/download/{tag}/tack-linux-amd64"
   },
   "adios-flake": {
     "type": "github",
@@ -129,6 +131,22 @@
     "rev": "e9122023f24c947f5cef6390b4858ab5a6e5b96c",
     "narHash": "sha256-A4bDID5zdeJvh0vOJmiuiGFi3y2cnVIfcyE9Xk6gsgQ=",
     "lastModified": 1795654400
+  },
+  "tack-aarch64-linux": {
+    "type": "fixed",
+    "url": "https://github.com/manic-systems/tack/releases/download/v2.0.0/tack-linux-arm64",
+    "sha256": "sha256-j/aX2tL6rPFRphhLmcTwffbA45hmsQZhtw+j77nx0bg=",
+    "unpack": "file",
+    "tag": "v2.0.0",
+    "version": "2.0.0"
+  },
+  "tack-x86_64-linux": {
+    "type": "fixed",
+    "url": "https://github.com/manic-systems/tack/releases/download/v2.0.0/tack-linux-amd64",
+    "sha256": "sha256-yv7vsGRsnwYOVlGop8ZdK8EroY2qQoqeW9stsild9NQ=",
+    "unpack": "file",
+    "tag": "v2.0.0",
+    "version": "2.0.0"
   },
   "zsh-git-tab": {
     "type": "github",
