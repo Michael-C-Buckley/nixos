@@ -27,21 +27,15 @@ in
 
   environment.systemPackages = metalPackages pkgs;
 
-  boot = {
-    initrd.systemd = {
-      packages = [ pkgs.busybox ];
-      emergencyAccess = true;
+  boot.loader = {
+    timeout = 10;
+    # Systemd unless lanzaboote or something else is used
+    systemd-boot = {
+      enable = lib.mkDefault true;
+      configurationLimit = 10;
+      netbootxyz.enable = true;
     };
-    loader = {
-      timeout = 10;
-      # Systemd unless lanzaboote or something else is used
-      systemd-boot = {
-        enable = lib.mkDefault true;
-        configurationLimit = 10;
-        netbootxyz.enable = true;
-      };
-      efi.canTouchEfiVariables = true;
-    };
+    efi.canTouchEfiVariables = true;
   };
 
   services.netbird.enable = true;

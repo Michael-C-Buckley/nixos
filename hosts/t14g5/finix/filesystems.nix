@@ -15,7 +15,7 @@ let
 in
 {
   boot.initrd = {
-    emergencyAccess = true;
+    emergencyAccess = "$y$j9T$nLo0vU4Q0O5n0Co3nWLsB1$/3nIIizcrSTcnkw.28CTn6pvuhaoMmJNVMUW4Ulx0g5";
     finit.tasks = {
       # Activate the existing volume group only after cryptroot is unlocked.
       lvm.conditions = [ "task/luks/success" ];
