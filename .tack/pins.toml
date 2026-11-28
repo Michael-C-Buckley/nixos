@@ -1,5 +1,7 @@
 [all_follow]
 nixpkgs = "nixpkgs"
+crame = "crane"
+rust-overlay = "rust-overlay"
 
 [shorturls]
 nixpkgs = "https://channels.nixos.org/{path}/nixexprs.tar.zst"
