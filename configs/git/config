@@ -16,7 +16,7 @@
 
 [core]
 	editor = nvim
-	pager = localComview
+	pager = comview
 
 [diff]
 	algorithm = histogram
@@ -38,7 +38,7 @@
 	defaultBranch = main
 
 [interactive]
-	diffFilter = delta --color-only
+	diffFilter = comview
 
 [merge]
 	conflictstyle = zdiff3
