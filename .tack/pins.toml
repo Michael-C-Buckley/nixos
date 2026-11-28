@@ -5,6 +5,7 @@ nixpkgs = "nixpkgs"
 nixpkgs = "https://channels.nixos.org/{path}/nixexprs.tar.zst"
 gh = "github:{path}"
 mine = "github:michael-c-buckley/{path}"
+comview = "https://github.com/rockorager/comview/releases/download/{tag}/comview_{version}_{path}.tar.gz"
 
 [inputs]
 nixpkgs.url = "nixpkgs:nixos-unstable"
@@ -14,7 +15,7 @@ lanzaboote.url = "gh:nix-community/lanzaboote"
 helium.url = "gh:amaanq/helium-flake"
 finix.url = "gh:finix-community/finix"
 nixos-core.url = "gh:manic-systems/nixos-core"
-nix-secrets.url = "gh:unnamed-systems/nix-secrets"
+sops-nix.url = "gh:mic92/sops-nix"
 agentbox.url = "mine:agentbox"
 rexy.url = "mine:rexy"
 helix.url = "gh:helix-editor/helix"
@@ -39,6 +40,16 @@ type = "fetch"
 [inputs.fast-abbr-highlighting]
 url = "gh:5A6F65/fast-abbr-highlighting"
 type = "fetch"
+
+[groups.comview]
+type = "fixed"
+unpack = "file"
+tag = "v{version}"
+
+[inputs.comview]
+comview-aarch64-darwin.url = "comview:darwin_arm64"
+comview-aarch64-linux.url = "comview:linux_arm64"
+comview-x86_64-linux.url = "comview:linux_amd64"
 
 
 [tack]

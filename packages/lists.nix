@@ -27,7 +27,7 @@ pkgs: with pkgs; {
     zoxide
     (callPackage ./ns { })
   ]
-  ++ (pkgs.lib.optionals pkgs.stdenv.isLinux (
+  ++ (pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux (
     with pkgs;
     [
       alacritty.terminfo

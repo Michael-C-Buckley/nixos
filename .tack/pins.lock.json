@@ -1,4 +1,9 @@
 {
+  "$declared": {
+    "comview-aarch64-darwin": "https://github.com/rockorager/comview/releases/download/{tag}/comview_{version}_darwin_arm64.tar.gz",
+    "comview-aarch64-linux": "https://github.com/rockorager/comview/releases/download/{tag}/comview_{version}_linux_arm64.tar.gz",
+    "comview-x86_64-linux": "https://github.com/rockorager/comview/releases/download/{tag}/comview_{version}_linux_amd64.tar.gz"
+  },
   "adios-flake": {
     "type": "github",
     "owner": "mic92",
@@ -14,6 +19,30 @@
     "rev": "e49ba6566a76d227138c63c583d794ac49b26bd4",
     "narHash": "sha256-8B8+fCDIwHiIu7O7MeTlov5TvkVT9C8HeFCiszZJCkk=",
     "lastModified": 1795525431
+  },
+  "comview-aarch64-darwin": {
+    "type": "fixed",
+    "url": "https://github.com/rockorager/comview/releases/download/v0.3.0/comview_0.3.0_darwin_arm64.tar.gz",
+    "sha256": "sha256-EXSXRU9Q1MUByYosprPUE8HDRWU+/acVO4NCEaUayao=",
+    "unpack": "file",
+    "tag": "v0.3.0",
+    "version": "0.3.0"
+  },
+  "comview-aarch64-linux": {
+    "type": "fixed",
+    "url": "https://github.com/rockorager/comview/releases/download/v0.3.0/comview_0.3.0_linux_arm64.tar.gz",
+    "sha256": "sha256-KmOpDb3jlocrytNUe27t1FSg4KhuWdQksAWw7VYQJC0=",
+    "unpack": "file",
+    "tag": "v0.3.0",
+    "version": "0.3.0"
+  },
+  "comview-x86_64-linux": {
+    "type": "fixed",
+    "url": "https://github.com/rockorager/comview/releases/download/v0.3.0/comview_0.3.0_linux_amd64.tar.gz",
+    "sha256": "sha256-v/S5+d20vr8Jnw6OA5PPcg88C1ipzT9Y0ZmWt4HVKic=",
+    "unpack": "file",
+    "tag": "v0.3.0",
+    "version": "0.3.0"
   },
   "fast-abbr-highlighting": {
     "type": "github",
