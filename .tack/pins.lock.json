@@ -1,12 +1,27 @@
 {
   "$declared": {
+    "adios-flake": "github:mic92/adios-flake",
+    "agentbox": "github:michael-c-buckley/agentbox",
     "comview-aarch64-darwin": "https://github.com/rockorager/comview/releases/download/{tag}/comview_{version}_darwin_arm64.tar.gz",
     "comview-aarch64-linux": "https://github.com/rockorager/comview/releases/download/{tag}/comview_{version}_linux_arm64.tar.gz",
     "comview-x86_64-linux": "https://github.com/rockorager/comview/releases/download/{tag}/comview_{version}_linux_amd64.tar.gz",
+    "crane": "github:ipetkov/crane",
+    "fast-abbr-highlighting": "github:5A6F65/fast-abbr-highlighting",
+    "finix": "github:finix-community/finix",
+    "helium": "github:amaanq/helium-flake",
+    "helix": "github:helix-editor/helix",
+    "hermes": "github:NousResearch/hermes-agent",
     "hjem": "github:feel-co/hjem",
+    "lanzaboote": "github:nix-community/lanzaboote",
+    "nixos-core": "github:manic-systems/nixos-core",
+    "nixpkgs": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst",
+    "rexy": "github:michael-c-buckley/rexy",
+    "rust-overlay": "github:oxalica/rust-overlay",
     "sops-nix": "github:mic92/sops-nix",
     "tack-aarch64-linux": "https://github.com/manic-systems/tack/releases/download/{tag}/tack-linux-arm64",
-    "tack-x86_64-linux": "https://github.com/manic-systems/tack/releases/download/{tag}/tack-linux-amd64"
+    "tack-x86_64-linux": "https://github.com/manic-systems/tack/releases/download/{tag}/tack-linux-amd64",
+    "zsh-git-tab": "github:michael-c-buckley/zsh-git-tab",
+    "zsh-transient-prompt": "github:olets/zsh-transient-prompt"
   },
   "adios-flake": {
     "type": "github",
@@ -48,6 +63,15 @@
     "tag": "v0.3.0",
     "version": "0.3.0"
   },
+  "crane": {
+    "type": "github",
+    "owner": "ipetkov",
+    "repo": "crane",
+    "rev": "95e62def851e9d650f0eab63cb4f59a3306e20bd",
+    "narHash": "sha256-zrweT2tXbcWiJMACOhOr2eYFJKVa6g59ouRaZ3BS5Do=",
+    "lastModified": 1794962885,
+    "public": true
+  },
   "fast-abbr-highlighting": {
     "type": "github",
     "owner": "5A6F65",
@@ -84,9 +108,10 @@
     "type": "github",
     "owner": "NousResearch",
     "repo": "hermes-agent",
-    "rev": "28ef6e4e7d1df3015bf786dea6b0d355baf5c211",
-    "narHash": "sha256-1IU8+IJn4Hzz3zuKmgy6lZhVfs0M6u7r+++QY3S+rE0=",
-    "lastModified": 1795774050
+    "rev": "3ef8bf4f68c91dce2870eba5625426b32ac6ba58",
+    "narHash": "sha256-8SrBuLazZchjuFztaZqQoKXrW0SJCuBwNun5J6a9dQU=",
+    "lastModified": 1795866045,
+    "public": true
   },
   "hjem": {
     "type": "github",
@@ -109,15 +134,17 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "nixos-core",
-    "rev": "3abf3650ea38f697b3dd153e5c3dbf9a8ab0a450",
-    "narHash": "sha256-wUYrAm+xPO45noODb30u5d2K/WsAqJYGERQqbVEFgEo=",
-    "lastModified": 1795235003
+    "rev": "ed45c4b8743331fbf856f5bd6056eaf80d314b91",
+    "narHash": "sha256-aoAUT98f0ReVnoBgv1kFeH8/Dm1omW9L0YEOuu57KIs=",
+    "lastModified": 1795839931,
+    "public": true
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1125864.2786a2a72088/nixexprs.tar.zst",
-    "rev": "2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
-    "narHash": "sha256-pAEASBc6wof0S58XcSEdZoQ2iFQDkCnZwH+wFLrkd1Q="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1129576.58d0d3e9d527/nixexprs.tar.zst?lastModified=1795546490&rev=58d0d3e9d527ca7263be6a45d1f86eacdc700dab",
+    "rev": "58d0d3e9d527ca7263be6a45d1f86eacdc700dab",
+    "narHash": "sha256-35vVm59QE15oPhDJ2y2J03w+h/4XTMJvvDMP3zRSrY0=",
+    "lastModified": 1795546490
   },
   "rexy": {
     "type": "github",
@@ -126,6 +153,15 @@
     "rev": "e9122023f24c947f5cef6390b4858ab5a6e5b96c",
     "narHash": "sha256-A4bDID5zdeJvh0vOJmiuiGFi3y2cnVIfcyE9Xk6gsgQ=",
     "lastModified": 1795654400
+  },
+  "rust-overlay": {
+    "type": "github",
+    "owner": "oxalica",
+    "repo": "rust-overlay",
+    "rev": "f88aa8dea8f4136a0897fd7baddb3a07481f29f6",
+    "narHash": "sha256-ohgonNy3+RvquNpQVDOiI7lanO246mw1qZ/RaBIXUFE=",
+    "lastModified": 1795860178,
+    "public": true
   },
   "sops-nix": {
     "type": "github",

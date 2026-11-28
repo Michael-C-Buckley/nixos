@@ -1,6 +1,6 @@
 [all_follow]
 nixpkgs = "nixpkgs"
-crame = "crane"
+crane = "crane"
 rust-overlay = "rust-overlay"
 
 [shorturls]
@@ -22,6 +22,8 @@ sops-nix.url = "gh:mic92/sops-nix"
 agentbox.url = "mine:agentbox"
 rexy.url = "mine:rexy"
 helix.url = "gh:helix-editor/helix"
+rust-overlay.url = "gh:oxalica/rust-overlay"
+crane.url = "gh:ipetkov/crane"
 
 # This one is rather thick with or without the follow
 # It does also break quite easily if following, and the
